@@ -157,5 +157,3 @@ kable(left_join(x = standardizedsolution(m1_cfa) %>%
 
 # Invariance 
 
-
-

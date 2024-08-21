@@ -68,3 +68,14 @@ Los resultados preliminares indican que la escala presenta buenos indicadores de
 
 ::: {#refs}
 :::
+
+```{r}
+#| echo: false
+#| label: wordstats
+#| warning: false
+#| message: false
+wordcount <- wordcountaddin::text_stats('extended-abstract.qmd')
+words <- substr(wordcount[3], start=19, stop=29)
+```
+
+**Word count**: `r words`

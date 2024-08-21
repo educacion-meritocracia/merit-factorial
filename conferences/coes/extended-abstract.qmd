@@ -1,42 +1,27 @@
 ---
-format: 
-  html: 
-    code-fold: true
-    html-math-method: katex
-  pdf: 
-    geometry: 
-      - top=30mm
-      - left=20mm
-    template-partials: 
-      - title.tex
-    include-in-header:
-      text: |
-        \usepackage[noblocks]{authblk}
-        \renewcommand*{\Authsep}{, }
-        \renewcommand*{\Authand}{, }
-        \renewcommand*{\Authands}{, }
-        \renewcommand\Affilfont{\small}
-editor: source
-#bibliography: "../../input/bib/merit-redis-school.bib"
+title: "Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile"
+format:
+  html: default
+  hikmah-pdf: 
+    indent: false
+  hikmah-manuscript-pdf: 
+    indent: false
 author:
   - name: Juan Carlos Castillo
-    corresponding: true
     orcid: 0000-0003-1265-7854
     email: juancastillov@uchile.cl
     affiliations:
       - ref: 1
-      - ref: 2
-      - ref: 3
   - name: Andreas Laffert
     orcid: 0000-0002-9008-2454
-    email: kevin.carrasco@ug.uchile.cl
+    email: alaffertt@estudiante.uc.cl
     affiliations:
-      - ref: 4
+      - ref: 2
   - name: Kevin Carrasco
     orcid: 0000-0002-9348-8361
     email: kevin.carrasco@ug.uchile.cl
     affiliations:
-      - ref: 2
+      - ref: 3
   - name: María Fernanda Núñez
     orcid: 0009-0004-7559-9959
     email: maria.nunez.2@ug.uchile.cl
@@ -44,56 +29,42 @@ author:
       - ref: 1
 affiliations: 
   - id: 1
-    name: Universidad de Chile
+    name: Departamento de Sociología, Universidad de Chile
   - id: 2
-    name: Centro de estudios del conflicto y cohesión social (COES)
+    name: Instituto de Sociología, Universidad Católica de Chile
   - id: 3
-    name: Núcleo milenio de desigualdades y oportunidades digitales (NUDOS)
-  - id: 4
-    name: Pontificia Universidad Católica de Chile
-lang: es
-citeproc: true
+    name: Centro de estudios de Conflicto y Cohesión Social
+bibliography: "/Users/macbookair/Documents/GitHub/merit-factorial/input/bib/merit-factorial.bib"
+csl: "/Users/macbookair/Documents/GitHub/merit-factorial/input/bib/apa6.csl"
+link-citations: true
+linestretch: 1.15       
+mainfont: Times New Roman
+fontsize: 12pt          
+geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
+papersize: letter
+colorlinks: true
+fig-height: 4
+fig-width: 7.5
 ---
 
-# Meritocracia en la etapa escolar: una validación y aplicación de una escala sobre percepciones y preferencias de meritocracia
+# Introducción
+
+Las creencias de que las sociedades distribuyen sus recompensas en función de principios meritocráticos—donde las disparidades económicas se justifican por diferencias en esfuerzo y talento individual [@young_rise_1958]—han sido identificadas como mecanismos clave para explicar la persistencia de las desigualdades. Desde sus comienzos, las instituciones educativas han sido fundamentales en la promoción de los valores meritocráticos, dado su vínculo con las promesas de movilidad social y mejores oportunidades de vida. Ante los desafíos derivados de las diferentes conceptualizaciones y mediciones de la meritocracia, Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición para evaluar las percepciones y preferencias meritocráticas y no meritocráticas en contextos de encuestas. Con el propósito de contribuir a la investigación empírica sobre la formación de la meritocracia y sus factores relacionados en edades tempranas [@darnon_where_2018; @batruch_belief_2022; @wiederkehr_belief_2015], este estudio se propone evaluar la aplicabilidad de esta escala en población escolar en Chile.
+
+Argumentamos en primer lugar que la percepción de la meritocracia es una variable latente construida a partir de indicadores que miden la importancia atribuida al esfuerzo y al talento en la obtención de recompensas. En segundo lugar, sugerimos que la percepción no meritocrática es una variable latente derivada de indicadores que reflejan el acuerdo con afirmaciones sobre el rol de los contactos personales y la riqueza familiar en el éxito en la vida. En tercer lugar, sostenemos que las preferencias meritocráticas funcionan como una variable latente basada en el valor normativo asignado al esfuerzo y talento, mientras que las preferencias no meritocráticas se fundamentan en el valor asignado a los contactos y la riqueza familiar. Respecto a la aplicabilidad y validez de este marco, sostenemos que las escalas de meritocracia y no meritocracia exhiben invarianza métrica entre dos olas de una encuesta panel. Finalmente, planteamos que los factores meritocráticos se asocian negativamente con las preferencias por la redistribución de ingresos.
+
+# Datos, variables y métodos
+
+Este estudio se basa en la información proporcionada por la base de datos de la Encuesta Panel Educación y Meritocracia en sus olas de 2023 (N = 804) y 2024 (N = 804) para estudiantes. En esta encuesta se evaluaron estudiantes de sexto básico y primero medio provenientes de 9 escuelas de la región metropolitana de Chile. Las variables incluidas en el modelo de medición sobre percepciones y preferencias de meritocracia y no meritocracia se operacionalizan según los ítems propuestos por Castillo et al. [-@castillo_multidimensional_2023]. La percepción de la meritocracia se mide mediante dos ítems que indagan sobre el grado de acuerdo con que el esfuerzo y la habilidad son recompensados en Chile, mientras que la percepción no meritocrática se mide con dos ítems que evalúan el grado de acuerdo sobre el éxito asociado a contactos y riqueza familiar. La preferencia por la meritocracia se mide con dos ítems que evalúan el acuerdo en que quienes más se esfuerzan o tienen más talento deberían ser más recompensados. La preferencia por aspectos no meritocráticos se mide con dos indicadores que evalúan el acuerdo en que está bien que quienes tienen mejores contactos o padres ricos tengan más éxito. La variable dependiente sobre preferencias redistributivas se midió con la pregunta "El gobierno de Chile debería hacer algo para reducir las brechas de ingresos entre ricos y pobres". Cada ítem se contestó en una escala Likert de cuatro puntos que va desde “muy en desacuerdo” (1) hasta “muy de acuerdo” (4).
+
+Debido a las hipótesis de este estudio, empleamos análisis factoriales confirmatorios (CFA) basado en un modelo de medición con cuatro factores latentes con estimador Diagonal Weighted Least Squares (DWLS) debido al nivel ordinal de los ítems [@kline_principles_2023]. Para evaluar la estabilidad métrica del modelo [@davidov_measurement_2014], realizaremos una prueba de invariancia longitudinal con datos de las dos olas del estudio. Siguiendo a @liu_testing_2017, probaremos una serie de cuatro modelos jerárquicos: Configural, Débil, Fuerte y Estricto, específicamente para indicadores categóricos ordenados, dado que una escala Likert de cuatro puntos no puede tratarse como continua sin riesgo de sesgo en las estimaciones. Finalmente, realizaremos un análisis de regresión con variables latentes (modelos de ecuaciones estructurales) para explorar la relación entre factores meritocráticos y no meritocráticos y preferencias redistributivas.
 
 
-El aumento de la desigualdad económica y la concentración de la riqueza se ha asociado con una creciente preocupación por estudiar sus implicancias subjetivas. Las creencias de que las sociedades operan y distribuyen las recompensas en función de principios meritocráticos—donde las disparidades económicas se justifican por diferencias en esfuerzo y talento individual— han sido identificadas como uno los mecanismos claves para explicar la persistencia de las desigualdades. Ante los desafíos asociados con las diferentes conceptualizaciones y mediciones de la meritocracia, Castillo et al. (2023) proponen un marco conceptual y de medición para evaluar las percepciones y preferencias meritocráticas y no meritocráticas en contextos de encuestas. Este estudio pretende probar la validez y aplicabilidad de esta propuesta de escala en población escolar en Chile. A partir de los datos de la Encuesta Panel Educación y Meritocracia en sus olas de 2023 (N = 804) y 2024 (N = X) para estudiantes, estimamos análisis factoriales confirmatorios (CFA), pruebas de invariancia y modelos de ecuaciones estructurales. Los resultados preliminares indican que la escala presenta buenos indicadores de ajuste y que sus dimensiones se corresponden con el modelo conceptual multidimensional propuesto, con altas contribuciones factoriales de sus ítems. Con el análisis de invarianza encontramos evidencia que respalda la equivalencia y aplicabilidad de la escala en diferentes muestras medidas en dos puntos de tiempo. Adicionalmente, los modelos de ecuaciones estructurales muestran que la escala predice actitudes políticas en la manera esperada por la evidencia previa, sugiriendo su validez de criterio. Estos hallazgos contribuyen tanto al desarrollo de la medición de la meritocracia y la no meritocracia como a la investigación empírica que examina su relación con diversas actitudes políticas en la etapa escolar en Chile.
+# Resultados
 
+Los resultados preliminares indican que la escala presenta buenos indicadores de ajuste y que sus dimensiones se corresponden con el modelo conceptual multidimensional propuesto, con altas contribuciones factoriales de sus ítems. Con el análisis de invarianza encontramos evidencia que respalda la equivalencia y aplicabilidad de la escala en diferentes muestras medidas en dos puntos de tiempo. Adicionalmente, los modelos de ecuaciones estructurales muestran que la escala predice actitudes políticas en la manera esperada por la evidencia previa. Estos hallazgos contribuyen tanto al desarrollo de la medición de la meritocracia y la no meritocracia como a la investigación empírica que examina su relación con diversas actitudes políticas en la etapa escolar en Chile.
 
-```{r, echo = FALSE, include = FALSE}
-library(here)
+# Referencias
 
-source(file = here("processing/02-analysis.R"))
-
-```
-
-
-```{r, echo = FALSE}
-likerplot
-```
-
-
-```{r, echo = FALSE}
-corrplot::corrplot(M$rho,
-                   method = "color",
-                   addCoef.col = "black",
-                   type = "upper",
-                   tl.col = "black",
-                   col = colorRampPalette(c("#E16462", "white", "#0D0887"))(12),
-                   bg = "white",
-                   na.label = "-")
-```
-
-
-```{r, echo = TRUE}
-
-m2_cfa <- cfa(model = model_cfa, 
-              data = db, 
-              estimator = "DWLS",
-              ordered = T,
-              std.lv = F)
-              
-summary(m2_cfa, fit.measures = T, standardized = T, rsquare = T, modindices = T) 
-
-```
+::: {#refs}
+:::

@@ -4,8 +4,6 @@ format:
   html: default
   hikmah-pdf: 
     indent: false
-  hikmah-manuscript-pdf: 
-    indent: false
 author:
   - name: Juan Carlos Castillo
     orcid: 0000-0003-1265-7854

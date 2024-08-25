@@ -48,11 +48,6 @@ db %>%
   dplyr::select("Mean"=mean,"SD"=sd,"Min"=min,"Max"=max) %>% 
   round(.,2)
 
-
-db %>% 
-  mutate_all(~ as.numeric(.)) %>% 
-  vtable::st()
-
 a <- db %>% 
   select(starts_with("perc")) %>% 
   mutate_all(~ sjmisc::rec(., rec = "rev")) %>% 
@@ -88,7 +83,7 @@ likerplot <- a / b + plot_annotation(caption = paste0("Source: Authors calculati
 
 # Bivariate ----
 
-M <- psych::polychoric(db)
+M <- psych::polychoric(db[c(1:8)])
 
 diag(M$rho) <- NA
 
@@ -154,6 +149,35 @@ kable(left_join(x = standardizedsolution(m1_cfa) %>%
                   filter(op=="=~") %>%
                   select(lhs,rhs,est.std),c("lhs","rhs")),
       format = "markdown",digits = 2,col.names = cnames, caption = "Factor loadings")
+
+modin <- modificationIndices(m2_cfa)
+
+modin %>% 
+  filter(mi > 3.84)
+
+# SEM
+
+## Especificar el modelo: medición y estructural
+m_sem1 <- '
+# Modelo medición
+perc_merit = ~ perc_effort + perc_talent
+perc_nmerit = ~ perc_rich_parents + perc_contact
+pref_merit = ~ pref_effort + pref_talent
+pref_nmerit = ~ pref_rich_parents + pref_contact
+
+  # Modelo estructural
+pref_redis ~  pref_merit + pref_nmerit
+'
+
+## Ajustar modelo
+f_sem1 <- sem(m_sem1, data = db)
+
+## Ver resultados completos
+summary(f_sem1, fit.measures = T, standardized = T, 
+        rsquare = T, modindices = T)
+
+## Exportar tablas
+### Ajustar versión estandarizada
 
 # Invariance 
 

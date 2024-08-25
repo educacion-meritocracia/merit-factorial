@@ -43,7 +43,8 @@ db <- db %>%
          pref_effort = p1_5,
          pref_talent = p1_6,
          pref_rich_parents = p1_7,
-         pref_contact = p1_8)
+         pref_contact = p1_8,
+         pref_redis = p9_2)
 
 # filter ----
 
@@ -59,6 +60,7 @@ frq(db$pref_effort)
 frq(db$pref_talent)
 frq(db$pref_rich_parents)
 frq(db$pref_contact)
+frq(db$pref_redis)
 
 db <- db %>% 
   mutate(
@@ -88,7 +90,7 @@ any_na(db)
 
 n_miss(db)
 
-prop_miss(db[c(1:8)])
+prop_miss(db[c(1:9)])
 
 naniar::gg_miss_var(db)
 

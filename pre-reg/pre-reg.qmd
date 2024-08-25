@@ -1,0 +1,205 @@
+---
+title: "**Measuring perceptions and preferences on meritocracy in school in Chile**"
+format:
+  submittable-pdf:
+    keep-tex: false
+    endnotes: false
+    titlepage: false
+  submittable-docx:
+    keep-md: false
+author:
+  - name: Juan Carlos Castillo
+    orcid: 0000-0003-1265-7854
+    email: juancastillov@uchile.cl
+    affiliations:
+      - ref: 1
+  - name: Andreas Laffert
+    orcid: 0000-0002-9008-2454
+    email: alaffertt@estudiante.uc.cl
+    affiliations:
+      - ref: 2
+  - name: Kevin Carrasco
+    orcid: 0000-0002-9348-8361
+    email: kevin.carrasco@ug.uchile.cl
+    affiliations:
+      - ref: 3
+  - name: María Fernanda Núñez
+    orcid: 0009-0004-7559-9959
+    email: maria.nunez.2@ug.uchile.cl
+    affiliations:
+      - ref: 1
+affiliations: 
+  - id: 1
+    name: Department of Sociology, University of Chile
+  - id: 2
+    name: Institute of Sociology, Catholic University of Chile
+  - id: 3
+    name: Center for the Study of Conflict and Social Cohesion - COES
+bibliography: "/Users/macbookair/Documents/GitHub/merit-factorial/input/bib/merit-factorial.bib"
+csl: "/Users/macbookair/Documents/GitHub/merit-factorial/input/bib/apa6.csl"
+link-citations: true
+linestretch: 1.15       
+mainfont: Times New Roman
+fontsize: 12pt          
+geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
+papersize: letter
+colorlinks: true
+fig-height: 4
+fig-width: 7.5
+linkcolor: blue
+urlcolor: blue
+---
+
+# Description
+
+This research aims to assess the applicability of a measurement model on meritocratic beliefs developed by @castillo_multidimensional_2023 within a sample of the school population in Chile during the 2023-2024 period. The belief that societies distribute rewards based on meritocratic principles—where economic disparities are justified by differences in individual effort and talent [@young_rise_1958]—has been identified as a critical mechanism for understanding the persistence of inequalities. Educational institutions have historically played a pivotal role in promoting meritocratic values, given their association with promises of social mobility and enhanced life opportunities. In this context, Chile emerges as one of the most unequal countries globally, characterized by a highly stratified educational system [@corvalan_mercado_2017]. Given the inherent challenges in conceptualizing and measuring meritocracy in empirical research, @castillo_multidimensional_2023 propose a comprehensive model structured along two axes. The first axis differentiates between types of “beliefs,” specifically perceptions and preferences [@janmaat_subjective_2013]. Perceptions refer to the extent to which individuals perceive meritocracy as functioning in society, representing subjective estimations of “what is”, while preferences pertain to normative expectations regarding how meritocracy “should function” within society. The second axis distinguishes between meritocratic dimensions—those related to individual effort and talent—and non-meritocratic dimensions, which involve the utilization of other resources or advantages not derived from individual effort or talent, such as connections or family background. To this end, the model is operationalized through a survey item scale that captures both how individuals perceive meritocracy and how they prefer it to operate in society. The validity and applicability of this measurement model will be tested using data from a Chilean school population sample collected between 2023 and 2024, employing confirmatory factor analyses, equivalence tests, and structural equation models to explore the relationship between meritocratic beliefs and attitudes towards income redistribution.
+
+
+# Hypotheses
+
+$H_1$: The perception of meritocracy is a latent variable constructed from indicators measuring the importance attributed to talent and effort in achieving greater rewards in life.
+
+$H_2$: The non-meritocratic perception is a latent variable derived from indicators reflecting agreement with the statements that individuals with personal contacts and wealthy parents are more likely to succeed in life.
+
+$H_3$: Meritocratic preferences function as a latent variable based on the normative value assigned to effort and talent.
+
+$H_4$: Non-meritocratic preferences function as a latent variable based on the normative value assigned to the use of personal contacts and having wealthy parents.
+
+$H_5$: The meritocracy and non-meritocracy scales exhibit metric invariance between the two waves of the study.
+
+$H_6$: Meritocratic preferences are negatively related to redistributive preferences.
+
+# Design Plan
+
+## Study type
+
+Observational Study - Data is collected from study subjects that are not randomly assigned to a treatment. This includes surveys, “natural experiments”, and regression discontinuity designs.
+
+## Blinding
+
+No blinding is involved in this study.
+
+## Is there any additional blinding in this study?
+
+No response
+
+## Study design
+
+The scale is included in a two-wave panel survey study administered through CAWI. This study includes items related to meritocracy, social inequality and citizenship, as well as an experiment examining the effect of information on educational inequality on the aforementioned topics. The scale will be administered in both the first and second waves.
+
+No files selected
+
+# Sampling Plan
+
+## Existing Data
+
+Registration after to creation of data
+
+## Explanation of existing data
+
+No response
+
+## Data collection procedures
+
+The study involves web-based surveys conducted with three groups: students, parents, and teachers. The instruments were designed by the study's technical counterpart, with adjustments and revisions made by Datavoz, mainly to clarify certain concepts and to program specific questions. Three distinct questionnaires were developed, one for each group.
+
+Given the non-representative nature of the study concerning geographical zones and school types, no weighting was applied to adjust for differences between sample distributions and the population, and the results cannot be generalized to the entire population. The data collection targeted all students and their parents from at least one class per grade level (sixth grade and first-year high school) in each selected school, and one teacher per class. The initial target was to survey 900 students, 540 parents, and 15 teachers across 15 schools in the Metropolitan Region.
+
+However, due to challenges during fieldwork, including refusals from the originally selected schools, the final sample was drawn from 9 schools across two regions, achieving a total of 900 student responses.
+
+## Sample Size
+
+The initial sample size aimed to survey 900 students, 540 parents, and 15 teachers. However, given the fieldwork challenges, the final sample included students from 9 schools across two regions, with 900 students surveyed.
+
+## Sample Size Rationale
+
+The initial sample size was based on the number of students per school and the expected response rate from parents (estimated at 60%). Although the study originally planned to survey 15 schools, the final sample included 9 schools due to refusals from the initially selected schools. Despite these challenges, the target of 900 student responses was met.
+
+## Stopping Rule
+
+The stopping rule for data collection was based on reaching the target number of 900 student respondents. However, adjustments were made during fieldwork to account for the high refusal rate from the originally selected schools, leading to the inclusion of replacement schools to meet the sample size target.
+
+# Variables
+
+## Manipulated variables
+
+No response
+
+No files selected
+
+## Measured variables
+
+For the variables that compose the Perceptions and Preferences for Meritocracy Scale wi will use the following items in the questionnaire: 
+
+“We present below a series of statements regarding the opportunities and rewards that people in Chile receive. Please indicate your level of agreement or disagreement with each of them”:
+
+**Meritocracy perception**:
+
+* In Chile, people are rewarded for their efforts.
+* In Chile, people are rewarded for their intelligence and skill.
+
+**Non-meritocracy perception**:
+
+* In Chile, those who have rich parents manage to get ahead.
+* In Chile, those who have good contacts manage to get ahead.
+
+**Meritocracy preferences**:
+
+* Those who work harder should receive greater rewards than those who work less hard.
+* Those who possess more talent should receive greater rewards than those with less talent.
+
+**Non-meritocracy preferences**:
+
+* It is fine if those with rich parents get ahead.
+* It is fine if those with good contacts get ahead.
+
+**Redistributive preferences**: The dependent variable on redistributive preferences was measured with the question, "The Chilean government should do something to reduce the income gap between the rich and the poor". 
+
+Each of the listed items was answered on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4). 
+
+No files selected
+
+## Indices
+
+No response
+
+No files selected
+
+# Analysis Plan
+
+## Statistical models
+
+To evaluate the hypotheses, we will employ Confirmatory Factor Analysis (CFA) based on a measurement model with four underlying factors. The estimation method will be Diagonal Weighted Least Squares (DWLS), due to the items’ ordinal level of measurement [@kline_principles_2023].  To assess the metric stability of the measurement model [@davidov_measurement_2014], we will conduct a longitudinal invariance test using data from the first and second waves of our study. Following @liu_testing_2017, we will test a series of four hierarchical models: Configural, Weak, Strong, and Strict invariance, specifically for ordered categorical indicators, based on the premise that a four-point Likert scale cannot be treated as a continuous variable due to the risk of biased parameter estimates. Finally, we will perform regression analysis using latent variables (structural equation modeling) to explore the relationship between meritocratic and non-meritocratic factors and redistributive preferences. 
+
+For the analysis, we will use the R package lavaan.
+
+No files selected
+
+## Transformations
+
+No response
+
+## Inference criteria
+
+The values that will be used as evaluation criteria for the goodness of the adjustment of the model were taken from the proposal of @brown_confirmatory_2015 and are the following: 
+
+* Chi-square: greater than 0.05 
+* Chi-square ratio: greater than 3 
+* Comparative adjustment goodness index (CFI): greater than 0.95 
+* Tucker-Lewis Index (TLI): greater than 0.95 
+* Root of the average squared residual approximation: less than 0.08.
+
+## Data exclusion
+
+All cases will be used as long as they do not show missing values in any of the items on the scale. No imputation criteria will be used.
+
+## Missing data
+
+No response
+
+## Exploratory analysis
+
+Before performing the multivariate analyses, descriptive (frequency distribution) and bivariate (polychoric correlations) analyses will be conducted to explain the general behavior and association of the variables included in the study.
+
+# References
+

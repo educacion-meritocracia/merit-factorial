@@ -44,7 +44,9 @@ db <- db %>%
          pref_talent = p1_6,
          pref_rich_parents = p1_7,
          pref_contact = p1_8,
-         pref_redis = p9_2)
+         just_educ = p9_3,
+         just_health = p9_4,
+         just_pension = p9_5)
 
 # filter ----
 
@@ -60,7 +62,9 @@ frq(db$pref_effort)
 frq(db$pref_talent)
 frq(db$pref_rich_parents)
 frq(db$pref_contact)
-frq(db$pref_redis)
+frq(db$just_educ)
+frq(db$just_health)
+frq(db$just_pension)
 
 db <- db %>% 
   mutate(
@@ -77,7 +81,7 @@ db <- db %>%
       .fns = ~ sjmisc::rec(., rec = "rev")
     )
   )
-  
+
 # missings ----
 
 colSums(is.na(db))
@@ -90,7 +94,7 @@ any_na(db)
 
 n_miss(db)
 
-prop_miss(db[c(1:9)])
+prop_miss(db[c(1:11)])
 
 naniar::gg_miss_var(db)
 
@@ -105,6 +109,13 @@ miss_case_table(db)
 vis_miss(db) + theme(axis.text.x = element_text(angle=80))
 
 db <- na.omit(db)
+
+
+db <- db %>% 
+  rowwise() %>% 
+  mutate(mj_index = mean(just_educ, just_health, just_pension, na.rm = F)) %>% 
+  ungroup()
+
 
 # 4. Save -----------------------------------------------------------------
 

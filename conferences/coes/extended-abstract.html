@@ -58,6 +58,35 @@ div.csl-indent {
 <link href="extended-abstract_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="extended-abstract_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -127,16 +156,27 @@ div.csl-indent {
 <section id="introducción" class="level1">
 <h1>Introducción</h1>
 <p>Las creencias de que las sociedades distribuyen sus recompensas en función de principios meritocráticos—donde las disparidades económicas se justifican por diferencias en esfuerzo y talento individual <span class="citation" data-cites="young_rise_1958">(<a href="#ref-young_rise_1958" role="doc-biblioref">Young, 1958</a>)</span>—han sido identificadas como mecanismos clave para explicar la persistencia de las desigualdades. Desde sus comienzos, las instituciones educativas han sido fundamentales en la promoción de los valores meritocráticos, dado su vínculo con las promesas de movilidad social y mejores oportunidades de vida. Ante los desafíos derivados de las diferentes conceptualizaciones y mediciones de la meritocracia, Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span> proponen un marco conceptual y de medición para evaluar las percepciones y preferencias meritocráticas y no meritocráticas en contextos de encuestas. Con el propósito de contribuir a la investigación empírica sobre la formación de la meritocracia y sus factores relacionados en edades tempranas <span class="citation" data-cites="darnon_where_2018 batruch_belief_2022 wiederkehr_belief_2015">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>, este estudio se propone evaluar la aplicabilidad de esta escala en población escolar en Chile, un país caracterizado por una aguda y persistente desigualdad económica y que cuenta un sistema educacional altamente estratificado <span class="citation" data-cites="corvalan_mercado_2017 chancel_world_2022">(<a href="#ref-chancel_world_2022" role="doc-biblioref">Chancel et al., 2022</a>; <a href="#ref-corvalan_mercado_2017" role="doc-biblioref">Corvalán et al., 2017</a>)</span>.</p>
-<p>Argumentamos en primer lugar que la percepción de la meritocracia es una variable latente construida a partir de indicadores que miden la importancia atribuida al esfuerzo y al talento en la obtención de recompensas. En segundo lugar, sugerimos que la percepción no meritocrática es una variable latente derivada de indicadores que reflejan el acuerdo con afirmaciones sobre el rol de los contactos personales y la riqueza familiar en el éxito en la vida. En tercer lugar, sostenemos que las preferencias meritocráticas funcionan como una variable latente basada en el valor normativo asignado al esfuerzo y talento, mientras que las preferencias no meritocráticas se fundamentan en el valor asignado a los contactos y la riqueza familiar. Respecto a la aplicabilidad y validez de este marco, sostenemos que las escalas de meritocracia y no meritocracia exhiben invarianza métrica entre dos olas de una encuesta panel. Finalmente, planteamos que los factores meritocráticos se asocian negativamente con las preferencias por la redistribución de ingresos.</p>
+<p>Argumentamos en primer lugar que la percepción de la meritocracia es una variable latente construida a partir de indicadores que miden la importancia atribuida al esfuerzo y al talento en la obtención de recompensas. En segundo lugar, sugerimos que la percepción no meritocrática es una variable latente derivada de indicadores que reflejan el acuerdo con afirmaciones sobre el rol de los contactos personales y la riqueza familiar en el éxito en la vida. En tercer lugar, sostenemos que las preferencias meritocráticas funcionan como una variable latente basada en el valor normativo asignado al esfuerzo y talento, mientras que las preferencias no meritocráticas se fundamentan en el valor asignado a los contactos y la riqueza familiar. Respecto a la aplicabilidad y validez de este marco, sostenemos que las escalas de meritocracia y no meritocracia exhiben invarianza métrica entre dos olas de una encuesta panel. Finalmente, planteamos que los factores meritocráticos (no-meritocráticos) se asocian positivamente (negativamente) con las preferencias por justicia de mercado en salud, pensiones y educación.</p>
 </section>
 <section id="datos-variables-y-métodos" class="level1">
 <h1>Datos, variables y métodos</h1>
-<p>Este estudio se basa en la información proporcionada por la base de datos de la Encuesta Panel Educación y Meritocracia en sus olas de 2023 (N = 804) y 2024 (N = 804) para estudiantes. En esta encuesta se evaluaron estudiantes de sexto básico y primero medio provenientes de 9 escuelas de la región metropolitana de Chile. Las variables incluidas en el modelo de medición sobre percepciones y preferencias de meritocracia y no meritocracia se operacionalizan según los ítems propuestos por Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span>. La percepción de la meritocracia se mide mediante dos ítems que indagan sobre el grado de acuerdo con que el esfuerzo y la habilidad son recompensados en Chile, mientras que la percepción no meritocrática se mide con dos ítems que evalúan el grado de acuerdo sobre el éxito asociado a contactos y riqueza familiar. La preferencia por la meritocracia se mide con dos ítems que evalúan el acuerdo en que quienes más se esfuerzan o tienen más talento deberían ser más recompensados. La preferencia por aspectos no meritocráticos se mide con dos indicadores que evalúan el acuerdo en que está bien que quienes tienen mejores contactos o padres ricos tengan más éxito. La variable dependiente sobre preferencias redistributivas se midió con la pregunta “El gobierno de Chile debería hacer algo para reducir las brechas de ingresos entre ricos y pobres”. Cada ítem se contestó en una escala Likert de cuatro puntos que va desde “muy en desacuerdo” (1) hasta “muy de acuerdo” (4).</p>
-<p>Debido a las hipótesis de este estudio, empleamos análisis factoriales confirmatorios (CFA) basado en un modelo de medición con cuatro factores latentes con estimador Diagonal Weighted Least Squares (DWLS) debido al nivel ordinal de los ítems <span class="citation" data-cites="kline_principles_2023">(<a href="#ref-kline_principles_2023" role="doc-biblioref">Kline, 2023</a>)</span>. Para evaluar la estabilidad métrica del modelo <span class="citation" data-cites="davidov_measurement_2014">(<a href="#ref-davidov_measurement_2014" role="doc-biblioref">Davidov et al., 2014</a>)</span>, realizaremos una prueba de invariancia longitudinal con datos de las dos olas del estudio. Siguiendo a <span class="citation" data-cites="liu_testing_2017">Liu et al. (<a href="#ref-liu_testing_2017" role="doc-biblioref">2017</a>)</span>, probaremos una serie de cuatro modelos jerárquicos: Configural, Débil, Fuerte y Estricto, específicamente para indicadores categóricos ordenados, dado que una escala Likert de cuatro puntos no puede tratarse como continua sin riesgo de sesgo en las estimaciones. Finalmente, realizaremos un análisis de regresión con variables latentes (modelos de ecuaciones estructurales) para explorar la relación entre factores meritocráticos y no meritocráticos y preferencias redistributivas.</p>
+<section id="datos" class="level2">
+<h2 class="anchored" data-anchor-id="datos">Datos</h2>
+<p>Este estudio se basa en la información proporcionada por la base de datos de la Encuesta Panel Educación y Meritocracia en sus olas de 2023 (N = 840) y 2024 (N = 840) para estudiantes. Esta base de datos se sustenta en la aplicación de cuestionarios web a estudiantes de sexto básico y primero medio provenientes de 9 escuelas de la región Metropolitana y Valparaíso de Chile.</p>
+</section>
+<section id="variables" class="level2">
+<h2 class="anchored" data-anchor-id="variables">Variables</h2>
+<p><strong>Escala de percepciones y preferencias sobre meritocracia</strong>: Las variables incluidas en el modelo de medición sobre percepciones y preferencias de meritocracia y no meritocracia se operacionalizan según los ítems propuestos por Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span>. La percepción de la meritocracia se mide mediante dos ítems que indagan sobre el grado de acuerdo con que el esfuerzo y la habilidad son recompensados en Chile, mientras que la percepción no meritocrática se mide con dos ítems que evalúan el grado de acuerdo sobre el éxito asociado a contactos y riqueza familiar. La preferencia por la meritocracia se mide con dos ítems que evalúan el acuerdo en que quienes más se esfuerzan o tienen más talento deberían ser más recompensados. La preferencia por aspectos no meritocráticos se mide con dos indicadores que evalúan el acuerdo en que está bien que quienes tienen mejores contactos o padres ricos tengan más éxito. Cada ítem se contestó en una escala Likert de cuatro puntos que va desde “muy en desacuerdo” (1) hasta “muy de acuerdo” (4).</p>
+<p><strong>Preferencias por justicia de mercado</strong>: Este constructo se mide a través de tres variables que abordan el grado de justificación respecto a si el acceso a los servicios sociales en salud, pensiones y educación debe estar condicionado por los ingresos. La justificación de la desigualdad en salud se mide a través del ítem: «¿Está bien que aquellos que puedan pagar más tengan mejor acceso a salud?». La misma pregunta se hace para pensiones y educación. En todos los casos, los encuestados indican sus preferencias en una escala Likert que va desde “muy en desacuerdo” (1) hasta “muy de acuerdo” (4). Además, incluimos un indicador resumido de “preferencias por la justicia de mercado”, medido por un índice promedio de todos estos ítems (<span class="math inline">\(\alpha\)</span> = 0,83), con valores que van de 1 a 4, donde los valores más altos representan mayores preferencias por justicia de mercado.</p>
+</section>
+<section id="métodos" class="level2">
+<h2 class="anchored" data-anchor-id="métodos">Métodos</h2>
+<p>Para evaluar las hipótesis, empleamos análisis factoriales confirmatorios (CFA) basado en un modelo de medición con cuatro factores latentes con estimador Diagonal Weighted Least Squares (DWLS) debido al nivel ordinal de los ítems <span class="citation" data-cites="kline_principles_2023">(<a href="#ref-kline_principles_2023" role="doc-biblioref">Kline, 2023</a>)</span>. Para evaluar la estabilidad métrica del modelo <span class="citation" data-cites="davidov_measurement_2014">(<a href="#ref-davidov_measurement_2014" role="doc-biblioref">Davidov et al., 2014</a>)</span>, realizaremos una prueba de invariancia longitudinal con datos de las dos olas del estudio. Siguiendo a <span class="citation" data-cites="liu_testing_2017">Liu et al. (<a href="#ref-liu_testing_2017" role="doc-biblioref">2017</a>)</span>, probaremos una serie de cuatro modelos jerárquicos: Configural, Débil, Fuerte y Estricto, específicamente para indicadores categóricos ordenados, dado que una escala Likert de cuatro puntos no puede tratarse como continua sin riesgo de sesgo en las estimaciones. Finalmente, realizaremos un análisis de regresión con variables latentes (modelos de ecuaciones estructurales) para explorar la relación entre factores meritocráticos y no meritocráticos y preferencias por justicia de mercado.</p>
+</section>
 </section>
 <section id="resultados" class="level1">
 <h1>Resultados</h1>
-<p>Los resultados preliminares indican que la escala presenta buenos indicadores de ajuste y que sus dimensiones se corresponden con el modelo conceptual multidimensional propuesto, con altas contribuciones factoriales de sus ítems. Con el análisis de invarianza encontramos evidencia que respalda la equivalencia y aplicabilidad de la escala en diferentes muestras medidas en dos puntos de tiempo. Adicionalmente, los modelos de ecuaciones estructurales muestran que la escala predice actitudes políticas en la manera esperada por la evidencia previa. Estos hallazgos contribuyen tanto al desarrollo de la medición de la meritocracia y la no meritocracia como a la investigación empírica que examina su relación con diversas actitudes políticas en la etapa escolar en Chile.</p>
+<p>Los resultados preliminares indican que la escala presenta buenos indicadores de ajuste y que sus dimensiones se corresponden con el modelo conceptual multidimensional propuesto, con altas contribuciones factoriales de sus ítems. Con el análisis de invarianza encontramos evidencia que respalda la equivalencia longitudinal de la escala en las dos olas del estudio. Adicionalmente, los modelos de ecuaciones estructurales muestran que la escala predice las preferencias por justicia de mercado en la manera esperada, tanto a nivel agregado como en los ítems por separado. Estos hallazgos contribuyen tanto al desarrollo de la medición de la meritocracia como a la investigación empírica que examina su relación con diversas preferencias por la desigualdad en la etapa escolar en Chile.</p>
 </section>
 <section id="pre-registro" class="level1">
 <h1>Pre-registro</h1>
@@ -176,7 +216,7 @@ Wiederkehr, V., Bonnot, V., Krauth-Gruber, S., &amp; Darnon, C. (2015). Belief i
 Young, M. (1958). <em>The rise of the meritocracy</em>. New Brunswick, N.J., U.S.A: Transaction Publishers.
 </div>
 </div>
-<p><strong>Word count</strong>: 850</p>
+<p><strong>Word count</strong>: 998 |</p>
 </section>
 
 </main>

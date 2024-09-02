@@ -1,14 +1,53 @@
-#*******************************************************************************************************************
-#
-# 0. Identification ---------------------------------------------------
-# Title: Data analysis for research paper
-# Author: Andreas Laffert            
-# Overview: Analysis of the EDUMER Students Data Wave 1        
-# Date: 13-066-2024            
-#
-#******************************************************************************************************************
+---
+title: "Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile"
+subtitle: "Análisis de datos"
+author: "Andreas Laffert, Asistente de Investigación"
+date: today
+lang: es
+fontsize: 14pt
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-expand: 2
+    toc-title: Contenidos
+    number-sections: true
+    number-depth: 3
+    theme:
+      light: journal
+---
 
-# 1. Packages ---------------------------------------------------------
+<style>
+.logo {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+}
+</style>
+
+<img class="logo" src="edumer.png" width="200" height="170">
+
+<div style="text-align: justify">
+
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, warning = FALSE, message = FALSE)
+
+```
+
+
+# Librerías
+
+```{r}
+#| label: library
+#| echo: false
+
 if (!require("pacman")) install.packages("pacman")
 
 pacman::p_load(tidyverse,
@@ -26,28 +65,48 @@ pacman::p_load(tidyverse,
 
 options(scipen=999)
 rm(list = ls())
+```
 
-# 2. Data --------------------------------------------------------------
+
+# Datos
+
+```{r}
+#| label: data
+#| echo: false
+#| output: false
 
 load(file = here("output", "data", "db_proc.RData"))
 
 names(db)
 glimpse(db)
 
-# 3. Analysis -------------------------------------------------------------
+```
+
+# 3. Analísis
+
+
+## Descriptivos
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Estadísticos descriptivos"
+#| tbl-cap-location: top
 
 db <- db %>% select(-n_miss_all)
 
 theme_set(theme_ggdist())
-# Descriptive ----
-
-sjmisc::descr(db, show = "all")
 
 db %>% 
   psych::describe() %>% 
   as.data.frame() %>% 
   dplyr::select("Mean"=mean,"SD"=sd,"Min"=min,"Max"=max) %>% 
   round(.,2)
+
+```
+
+
+```{r}
+#| label: fig-likert
 
 a <- db %>% 
   select(starts_with("perc")) %>% 
@@ -82,9 +141,14 @@ b <- db %>%
 likerplot <- a / b + plot_annotation(caption = paste0("Source: Authors calculations based on EDUMER data"," (n = ",dim(db)[1],")"
 ))
 
+likerplot
+```
 
 
-# Bivariate ----
+## Bivariados
+
+```{r}
+#| label: fig-correlaciones
 
 M <- psych::polychoric(db[c(1:8)])
 
@@ -115,15 +179,13 @@ corrplot::corrplot(M$rho,
                    bg = "white",
                    na.label = "-")
 
-# Market justice index alpha
-matriz <- db %>% select(just_health,just_pension, just_educ)
-matriz_poly <- polychoric(matriz) 
-psych::alpha(matriz_poly$rho) # coef = 0.83
+```
 
-# Measurement model ----
+## Multivariados
 
-names(db)
+### CFA
 
+```{r}
 # model
 model_cfa <- '
   perc_merit = ~ perc_effort + perc_talent
@@ -145,26 +207,15 @@ m2_cfa <- cfa(model = model_cfa,
               ordered = T,
               std.lv = F)
 
-summary(m1_cfa, fit.measures = T, standardized = T, rsquare = T, modindices = T) 
-
 summary(m2_cfa, fit.measures = T, standardized = T, rsquare = T, modindices = T) 
 
+```
 
-cnames <- c("Factor","Indicator","Loading (MLR)","Loading (DWLS)")
-kable(left_join(x = standardizedsolution(m1_cfa) %>% 
-                  filter(op=="=~") %>% 
-                  select(lhs,rhs,est.std),y = standardizedsolution(m2_cfa) %>% 
-                  filter(op=="=~") %>%
-                  select(lhs,rhs,est.std),c("lhs","rhs")),
-      format = "markdown",digits = 2,col.names = cnames, caption = "Factor loadings")
 
-modin <- modificationIndices(m2_cfa)
+### SEM
 
-modin %>% 
-  filter(mi > 3.84)
-
+```{r}
 # SEM
-
 ## Especificar el modelo: medición y estructural
 m_sem1 <- '
 # Modelo medición
@@ -174,7 +225,7 @@ pref_merit = ~ pref_effort + pref_talent
 pref_nmerit = ~ pref_rich_parents + pref_contact
 
   # Modelo estructural
-mj_index ~  perc_merit + perc_nmerit + pref_merit + pref_nmerit
+pref_redis ~  pref_merit + pref_nmerit
 '
 
 ## Ajustar modelo
@@ -184,87 +235,7 @@ f_sem1 <- sem(m_sem1, data = db)
 summary(f_sem1, fit.measures = T, standardized = T, 
         rsquare = T, modindices = T)
 
-## Exportar tablas
-### Ajustar versión estandarizada
-
 semTable(f_sem1, type = "html", columns = c ("est" , "estsestars"),
-         paramSets = "all",
-         file = here("processing/tabla_sem1"))
+         paramSets = "all")
+```
 
-## Especificar el modelo: medición y estructural
-m_sem2 <- '
-# Modelo medición
-perc_merit = ~ perc_effort + perc_talent
-perc_nmerit = ~ perc_rich_parents + perc_contact
-pref_merit = ~ pref_effort + pref_talent
-pref_nmerit = ~ pref_rich_parents + pref_contact
-
-  # Modelo estructural
-just_health ~  perc_merit + perc_nmerit + pref_merit + pref_nmerit
-'
-
-## Ajustar modelo
-f_sem2 <- sem(m_sem2, data = db)
-
-## Ver resultados completos
-summary(f_sem2, fit.measures = T, standardized = T, 
-        rsquare = T, modindices = T)
-
-## Exportar tablas
-### Ajustar versión estandarizada
-
-semTable(f_sem2, type = "html", columns = c ("est" , "estsestars"),
-         paramSets = "all",
-         file = here("processing/tabla_sem2"))
-
-## Especificar el modelo: medición y estructural
-m_sem3 <- '
-# Modelo medición
-perc_merit = ~ perc_effort + perc_talent
-perc_nmerit = ~ perc_rich_parents + perc_contact
-pref_merit = ~ pref_effort + pref_talent
-pref_nmerit = ~ pref_rich_parents + pref_contact
-
-  # Modelo estructural
-just_pension ~  perc_merit + perc_nmerit + pref_merit + pref_nmerit
-'
-
-## Ajustar modelo
-f_sem3 <- sem(m_sem3, data = db)
-
-## Ver resultados completos
-summary(f_sem3, fit.measures = T, standardized = T, 
-        rsquare = T, modindices = T)
-
-## Exportar tablas
-### Ajustar versión estandarizada
-
-semTable(f_sem3, type = "html", columns = c ("est" , "estsestars"),
-         paramSets = "all",
-         file = here("processing/tabla_sem3"))
-
-## Especificar el modelo: medición y estructural
-m_sem4 <- '
-# Modelo medición
-perc_merit = ~ perc_effort + perc_talent
-perc_nmerit = ~ perc_rich_parents + perc_contact
-pref_merit = ~ pref_effort + pref_talent
-pref_nmerit = ~ pref_rich_parents + pref_contact
-
-  # Modelo estructural
-just_educ ~  perc_merit + perc_nmerit + pref_merit + pref_nmerit
-'
-
-## Ajustar modelo
-f_sem4 <- sem(m_sem4, data = db)
-
-## Ver resultados completos
-summary(f_sem4, fit.measures = T, standardized = T, 
-        rsquare = T, modindices = T)
-
-## Exportar tablas
-### Ajustar versión estandarizada
-
-semTable(f_sem4, type = "html", columns = c ("est" , "estsestars"),
-         paramSets = "all",
-         file = here("processing/tabla_sem4"))

@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Andreas Laffert, Asistente de Investigación">
+
+<title>Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="avances_files/libs/clipboard/clipboard.min.js"></script>
+<script src="avances_files/libs/quarto-html/quarto.js"></script>
+<script src="avances_files/libs/quarto-html/popper.min.js"></script>
+<script src="avances_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="avances_files/libs/quarto-html/anchor.min.js"></script>
+<link href="avances_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="avances_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="avances_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="avances_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="avances_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Contenidos</h2>
+   
+  <ul class="collapse">
+  <li><a href="#librerías" id="toc-librerías" class="nav-link active" data-scroll-target="#librerías"><span class="header-section-number">1</span> Librerías</a></li>
+  <li><a href="#datos" id="toc-datos" class="nav-link" data-scroll-target="#datos"><span class="header-section-number">2</span> Datos</a></li>
+  <li><a href="#analísis" id="toc-analísis" class="nav-link" data-scroll-target="#analísis"><span class="header-section-number">3</span> 3. Analísis</a>
+  <ul class="collapse">
+  <li><a href="#descriptivos" id="toc-descriptivos" class="nav-link" data-scroll-target="#descriptivos"><span class="header-section-number">3.1</span> Descriptivos</a></li>
+  <li><a href="#bivariados" id="toc-bivariados" class="nav-link" data-scroll-target="#bivariados"><span class="header-section-number">3.2</span> Bivariados</a></li>
+  <li><a href="#multivariados" id="toc-multivariados" class="nav-link" data-scroll-target="#multivariados"><span class="header-section-number">3.3</span> Multivariados</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile</h1>
+<p class="subtitle lead">Análisis de datos</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Andreas Laffert, Asistente de Investigación </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">27 de agosto de 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+.logo {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+}
+</style>
+<p><img class="logo" src="edumer.png" width="200" height="170"></p>
+<div style="text-align: justify">
+
+
+
+<section id="librerías" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Librerías</h1>
+</section>
+<section id="datos" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Datos</h1>
+</section>
+<section id="analísis" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 3. Analísis</h1>
+<section id="descriptivos" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="descriptivos"><span class="header-section-number">3.1</span> Descriptivos</h2>
+<div id="tbl-summary" class="cell quarto-float anchored" data-tbl-cap-location="top">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;1: Estadísticos descriptivos
+</figcaption>
+<div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> db <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>n_miss_all)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_ggdist</span>())</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>db <span class="sc">%&gt;%</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  psych<span class="sc">::</span><span class="fu">describe</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"Mean"</span><span class="ot">=</span>mean,<span class="st">"SD"</span><span class="ot">=</span>sd,<span class="st">"Min"</span><span class="ot">=</span>min,<span class="st">"Max"</span><span class="ot">=</span>max) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(.,<span class="dv">2</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  Mean   SD Min Max
+perc_effort       2.24 0.77   1   4
+perc_talent       2.16 0.76   1   4
+perc_rich_parents 1.98 0.95   1   4
+perc_contact      1.94 0.85   1   4
+pref_effort       1.62 0.79   1   4
+pref_talent       2.37 0.84   1   4
+pref_rich_parents 2.46 0.78   1   4
+pref_contact      2.34 0.81   1   4
+pref_redis        2.10 0.75   1   4</code></pre>
+</div>
+</div>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> db <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"perc"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span> sjmisc<span class="sc">::</span><span class="fu">rec</span>(., <span class="at">rec =</span> <span class="st">"rev"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  sjPlot<span class="sc">::</span><span class="fu">plot_likert</span>(<span class="at">geom.colors =</span> <span class="st">"RdBu"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">title =</span> <span class="fu">c</span>(<span class="st">"a. Perceptions"</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">geom.size =</span> <span class="fl">0.8</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">axis.labels =</span> <span class="fu">c</span>(<span class="st">"Effort"</span>, <span class="st">"Talent"</span>, <span class="st">"Rich Parents"</span>, <span class="st">"Contacts"</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">catcount =</span> <span class="dv">4</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values  =</span>  <span class="st">"sum.outside"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">reverse.colors =</span> F,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                      <span class="at">reverse.scale =</span> T,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                      <span class="at">show.n =</span> <span class="cn">FALSE</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                      ) <span class="sc">+</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> db <span class="sc">%&gt;%</span> </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"pref"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span> sjmisc<span class="sc">::</span><span class="fu">rec</span>(., <span class="at">rec =</span> <span class="st">"rev"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  sjPlot<span class="sc">::</span><span class="fu">plot_likert</span>(<span class="at">geom.colors =</span> <span class="st">"RdBu"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                      <span class="at">title =</span> <span class="fu">c</span>(<span class="st">"b. Preferences"</span>),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                      <span class="at">geom.size =</span> <span class="fl">0.8</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                      <span class="at">axis.labels =</span> <span class="fu">c</span>(<span class="st">"Effort"</span>, <span class="st">"Talent"</span>, <span class="st">"Rich Parents"</span>, <span class="st">"Contacts"</span>),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                      <span class="at">catcount =</span> <span class="dv">4</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values  =</span>  <span class="st">"sum.outside"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>                      <span class="at">reverse.colors =</span> F,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                      <span class="at">reverse.scale =</span> T,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                      <span class="at">show.n =</span> <span class="cn">FALSE</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>likerplot <span class="ot">&lt;-</span> a <span class="sc">/</span> b <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">"Source: Authors calculations based on EDUMER data"</span>,<span class="st">" (n = "</span>,<span class="fu">dim</span>(db)[<span class="dv">1</span>],<span class="st">")"</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>likerplot</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-likert" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-likert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="avances_files/figure-html/fig-likert-1.png" id="fig-likert" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-likert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bivariados" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="bivariados"><span class="header-section-number">3.2</span> Bivariados</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> psych<span class="sc">::</span><span class="fu">polychoric</span>(db[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>)])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(M<span class="sc">$</span>rho) <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(M<span class="sc">$</span>rho) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A. Perception Effort"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"B. Perception Talent"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"C. Perception Rich Parents"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"D. Perception Contacts"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"E. Preferences Effort"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"F. Preferences Talent"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"G. Preferences Rich Parents"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"H. Preferences Contacts"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#set Column names of the matrix</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(M<span class="sc">$</span>rho) <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"(A)"</span>, <span class="st">"(B)"</span>,<span class="st">"(C)"</span>,<span class="st">"(D)"</span>,<span class="st">"(E)"</span>,<span class="st">"(F)"</span>,<span class="st">"(G)"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"(H)"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>testp <span class="ot">&lt;-</span> <span class="fu">cor.mtest</span>(M<span class="sc">$</span>rho, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot the matrix using corrplot</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>corrplot<span class="sc">::</span><span class="fu">corrplot</span>(M<span class="sc">$</span>rho,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                   <span class="at">method =</span> <span class="st">"color"</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                   <span class="at">addCoef.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                   <span class="at">type =</span> <span class="st">"upper"</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                   <span class="at">tl.col =</span> <span class="st">"black"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#E16462"</span>, <span class="st">"white"</span>, <span class="st">"#0D0887"</span>))(<span class="dv">12</span>),</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                   <span class="at">bg =</span> <span class="st">"white"</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                   <span class="at">na.label =</span> <span class="st">"-"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-correlaciones" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-correlaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="avances_files/figure-html/fig-correlaciones-1.png" id="fig-correlaciones" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-correlaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="multivariados" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="multivariados"><span class="header-section-number">3.3</span> Multivariados</h2>
+<section id="cfa" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="cfa"><span class="header-section-number">3.3.1</span> CFA</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model_cfa <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">  perc_merit = ~ perc_effort + perc_talent</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">  perc_nmerit = ~ perc_rich_parents + perc_contact</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">  pref_merit = ~ pref_effort + pref_talent</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">  pref_nmerit = ~ pref_rich_parents + pref_contact</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">  '</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation for each order set</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>m1_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> model_cfa, </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> db,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">estimator =</span> <span class="st">"MLR"</span>, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">std.lv =</span> F) <span class="co"># Continuous/ estimator ML Robust</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>m2_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> model_cfa, </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> db, </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">estimator =</span> <span class="st">"DWLS"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">ordered =</span> T,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">std.lv =</span> F)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2_cfa, <span class="at">fit.measures =</span> T, <span class="at">standardized =</span> T, <span class="at">rsquare =</span> T, <span class="at">modindices =</span> T) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6.15 ended normally after 42 iterations
+
+  Estimator                                       DWLS
+  Optimization method                           NLMINB
+  Number of model parameters                        38
+
+  Number of observations                           841
+
+Model Test User Model:
+                                                      
+  Test statistic                                39.513
+  Degrees of freedom                                14
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                              2442.328
+  Degrees of freedom                                28
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.989
+  Tucker-Lewis Index (TLI)                       0.979
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.047
+  90 Percent confidence interval - lower         0.030
+  90 Percent confidence interval - upper         0.064
+  P-value H_0: RMSEA &lt;= 0.050                    0.599
+  P-value H_0: RMSEA &gt;= 0.080                    0.001
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.038
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model        Unstructured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  perc_merit =~                                                         
+    perc_effort       1.000                               0.838    0.838
+    perc_talent       0.742    0.229    3.234    0.001    0.622    0.622
+  perc_nmerit =~                                                        
+    perc_rch_prnts    1.000                               0.646    0.646
+    perc_contact      1.458    0.192    7.609    0.000    0.943    0.943
+  pref_merit =~                                                         
+    pref_effort       1.000                               0.602    0.602
+    pref_talent       0.978    0.150    6.537    0.000    0.589    0.589
+  pref_nmerit =~                                                        
+    pref_rch_prnts    1.000                               0.739    0.739
+    pref_contact      1.125    0.182    6.192    0.000    0.832    0.832
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  perc_merit ~~                                                         
+    perc_nmerit      -0.070    0.019   -3.757    0.000   -0.130   -0.130
+    pref_merit        0.035    0.022    1.581    0.114    0.069    0.069
+    pref_nmerit       0.096    0.024    4.032    0.000    0.155    0.155
+  perc_nmerit ~~                                                        
+    pref_merit        0.183    0.027    6.790    0.000    0.471    0.471
+    pref_nmerit       0.136    0.022    6.148    0.000    0.284    0.284
+  pref_merit ~~                                                         
+    pref_nmerit       0.085    0.021    4.031    0.000    0.190    0.190
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .perc_effort       0.000                               0.000    0.000
+   .perc_talent       0.000                               0.000    0.000
+   .perc_rch_prnts    0.000                               0.000    0.000
+   .perc_contact      0.000                               0.000    0.000
+   .pref_effort       0.000                               0.000    0.000
+   .pref_talent       0.000                               0.000    0.000
+   .pref_rch_prnts    0.000                               0.000    0.000
+   .pref_contact      0.000                               0.000    0.000
+    perc_merit        0.000                               0.000    0.000
+    perc_nmerit       0.000                               0.000    0.000
+    pref_merit        0.000                               0.000    0.000
+    pref_nmerit       0.000                               0.000    0.000
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    perc_effort|t1   -1.047    0.053  -19.736    0.000   -1.047   -1.047
+    perc_effort|t2    0.432    0.045    9.652    0.000    0.432    0.432
+    perc_effort|t3    1.559    0.069   22.604    0.000    1.559    1.559
+    perc_talent|t1   -0.983    0.052  -18.985    0.000   -0.983   -0.983
+    perc_talent|t2    0.620    0.046   13.366    0.000    0.620    0.620
+    perc_talent|t3    1.570    0.069   22.607    0.000    1.570    1.570
+    prc_rch_prnt|1   -0.298    0.044   -6.779    0.000   -0.298   -0.298
+    prc_rch_prnt|2    0.570    0.046   12.428    0.000    0.570    0.570
+    prc_rch_prnt|3    1.407    0.063   22.323    0.000    1.407    1.407
+    perc_contct|t1   -0.416    0.045   -9.311    0.000   -0.416   -0.416
+    perc_contct|t2    0.744    0.048   15.544    0.000    0.744    0.744
+    perc_contct|t3    1.623    0.072   22.585    0.000    1.623    1.623
+    pref_effort|t1    0.103    0.043    2.378    0.017    0.103    0.103
+    pref_effort|t2    1.180    0.056   21.008    0.000    1.180    1.180
+    pref_effort|t3    1.760    0.079   22.283    0.000    1.760    1.760
+    pref_talent|t1   -0.983    0.052  -18.985    0.000   -0.983   -0.983
+    pref_talent|t2    0.115    0.043    2.653    0.008    0.115    0.115
+    pref_talent|t3    1.424    0.064   22.376    0.000    1.424    1.424
+    prf_rch_prnt|1   -1.361    0.061  -22.142    0.000   -1.361   -1.361
+    prf_rch_prnt|2    0.112    0.043    2.584    0.010    0.112    0.112
+    prf_rch_prnt|3    1.303    0.060   21.853    0.000    1.303    1.303
+    pref_contct|t1   -1.117    0.055  -20.447    0.000   -1.117   -1.117
+    pref_contct|t2    0.273    0.044    6.230    0.000    0.273    0.273
+    pref_contct|t3    1.376    0.062   22.206    0.000    1.376    1.376
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .perc_effort       0.297                               0.297    0.297
+   .perc_talent       0.613                               0.613    0.613
+   .perc_rch_prnts    0.582                               0.582    0.582
+   .perc_contact      0.111                               0.111    0.111
+   .pref_effort       0.638                               0.638    0.638
+   .pref_talent       0.654                               0.654    0.654
+   .pref_rch_prnts    0.454                               0.454    0.454
+   .pref_contact      0.308                               0.308    0.308
+    perc_merit        0.703    0.220    3.196    0.001    1.000    1.000
+    perc_nmerit       0.418    0.057    7.284    0.000    1.000    1.000
+    pref_merit        0.362    0.065    5.545    0.000    1.000    1.000
+    pref_nmerit       0.546    0.090    6.064    0.000    1.000    1.000
+
+Scales y*:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    perc_effort       1.000                               1.000    1.000
+    perc_talent       1.000                               1.000    1.000
+    perc_rch_prnts    1.000                               1.000    1.000
+    perc_contact      1.000                               1.000    1.000
+    pref_effort       1.000                               1.000    1.000
+    pref_talent       1.000                               1.000    1.000
+    pref_rch_prnts    1.000                               1.000    1.000
+    pref_contact      1.000                               1.000    1.000
+
+R-Square:
+                   Estimate
+    perc_effort       0.703
+    perc_talent       0.387
+    perc_rch_prnts    0.418
+    perc_contact      0.889
+    pref_effort       0.362
+    pref_talent       0.346
+    pref_rch_prnts    0.546
+    pref_contact      0.692
+
+Modification Indices:
+
+                 lhs op               rhs     mi    epc sepc.lv sepc.all
+1         perc_merit =~ perc_rich_parents  7.977 -0.137  -0.115   -0.115
+2         perc_merit =~      perc_contact  7.977  0.200   0.168    0.168
+3         perc_merit =~       pref_effort  1.081  0.063   0.052    0.052
+4         perc_merit =~       pref_talent  1.081 -0.061  -0.051   -0.051
+5         perc_merit =~ pref_rich_parents  0.044 -0.012  -0.010   -0.010
+6         perc_merit =~      pref_contact  0.044  0.013   0.011    0.011
+7        perc_nmerit =~       perc_effort 15.295 -0.312  -0.202   -0.202
+8        perc_nmerit =~       perc_talent 15.295  0.232   0.150    0.150
+9        perc_nmerit =~       pref_effort  0.396 -0.171  -0.111   -0.111
+10       perc_nmerit =~       pref_talent  0.396  0.167   0.108    0.108
+11       perc_nmerit =~ pref_rich_parents  0.057  0.028   0.018    0.018
+12       perc_nmerit =~      pref_contact  0.057 -0.032  -0.020   -0.020
+13        pref_merit =~       perc_effort 19.742 -0.451  -0.271   -0.271
+14        pref_merit =~       perc_talent 19.742  0.334   0.201    0.201
+15        pref_merit =~ perc_rich_parents  0.208 -0.074  -0.044   -0.044
+16        pref_merit =~      perc_contact  0.208  0.108   0.065    0.065
+17        pref_merit =~ pref_rich_parents  0.025 -0.022  -0.013   -0.013
+18        pref_merit =~      pref_contact  0.025  0.025   0.015    0.015
+19       pref_nmerit =~       perc_effort  7.073 -0.225  -0.166   -0.166
+20       pref_nmerit =~       perc_talent  7.073  0.167   0.123    0.123
+21       pref_nmerit =~ perc_rich_parents  6.514 -0.177  -0.131   -0.131
+22       pref_nmerit =~      perc_contact  6.514  0.258   0.191    0.191
+23       pref_nmerit =~       pref_effort  2.240 -0.120  -0.089   -0.089
+24       pref_nmerit =~       pref_talent  2.240  0.117   0.087    0.087
+25       perc_effort ~~ perc_rich_parents 10.626 -0.131  -0.131   -0.315
+26       perc_effort ~~      perc_contact  0.054  0.012   0.012    0.067
+27       perc_effort ~~       pref_effort  0.443 -0.032  -0.032   -0.073
+28       perc_effort ~~       pref_talent  8.102 -0.126  -0.126   -0.287
+29       perc_effort ~~ pref_rich_parents  1.478 -0.058  -0.058   -0.159
+30       perc_effort ~~      pref_contact  0.008 -0.005  -0.005   -0.015
+31       perc_talent ~~ perc_rich_parents  0.112  0.015   0.015    0.024
+32       perc_talent ~~      perc_contact  9.467  0.148   0.148    0.567
+33       perc_talent ~~       pref_effort  7.387  0.120   0.120    0.191
+34       perc_talent ~~       pref_talent  2.949  0.069   0.069    0.109
+35       perc_talent ~~ pref_rich_parents  1.592  0.056   0.056    0.106
+36       perc_talent ~~      pref_contact  0.118  0.016   0.016    0.037
+37 perc_rich_parents ~~       pref_effort  1.194  0.059   0.059    0.097
+38 perc_rich_parents ~~       pref_talent  0.158 -0.020  -0.020   -0.033
+39 perc_rich_parents ~~ pref_rich_parents  0.569  0.034   0.034    0.067
+40 perc_rich_parents ~~      pref_contact  9.281 -0.144  -0.144   -0.339
+41      perc_contact ~~       pref_effort  0.100 -0.023  -0.023   -0.086
+42      perc_contact ~~       pref_talent  0.092 -0.021  -0.021   -0.077
+43      perc_contact ~~ pref_rich_parents  0.146 -0.022  -0.022   -0.097
+44      perc_contact ~~      pref_contact  5.659  0.141   0.141    0.760
+45       pref_effort ~~ pref_rich_parents  0.982 -0.048  -0.048   -0.090
+46       pref_effort ~~      pref_contact  1.008 -0.050  -0.050   -0.112
+47       pref_talent ~~ pref_rich_parents  0.393  0.027   0.027    0.049
+48       pref_talent ~~      pref_contact  1.334  0.051   0.051    0.113
+   sepc.nox
+1    -0.115
+2     0.168
+3     0.052
+4    -0.051
+5    -0.010
+6     0.011
+7    -0.202
+8     0.150
+9    -0.111
+10    0.108
+11    0.018
+12   -0.020
+13   -0.271
+14    0.201
+15   -0.044
+16    0.065
+17   -0.013
+18    0.015
+19   -0.166
+20    0.123
+21   -0.131
+22    0.191
+23   -0.089
+24    0.087
+25   -0.315
+26    0.067
+27   -0.073
+28   -0.287
+29   -0.159
+30   -0.015
+31    0.024
+32    0.567
+33    0.191
+34    0.109
+35    0.106
+36    0.037
+37    0.097
+38   -0.033
+39    0.067
+40   -0.339
+41   -0.086
+42   -0.077
+43   -0.097
+44    0.760
+45   -0.090
+46   -0.112
+47    0.049
+48    0.113</code></pre>
+</div>
+</div>
+</section>
+<section id="sem" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="sem"><span class="header-section-number">3.3.2</span> SEM</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SEM</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Especificar el modelo: medición y estructural</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>m_sem1 <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st"># Modelo medición</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">perc_merit = ~ perc_effort + perc_talent</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="st">perc_nmerit = ~ perc_rich_parents + perc_contact</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="st">pref_merit = ~ pref_effort + pref_talent</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="st">pref_nmerit = ~ pref_rich_parents + pref_contact</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="st">  # Modelo estructural</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="st">pref_redis ~  pref_merit + pref_nmerit</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Ajustar modelo</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>f_sem1 <span class="ot">&lt;-</span> <span class="fu">sem</span>(m_sem1, <span class="at">data =</span> db)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Ver resultados completos</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(f_sem1, <span class="at">fit.measures =</span> T, <span class="at">standardized =</span> T, </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">rsquare =</span> T, <span class="at">modindices =</span> T)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6.15 ended normally after 60 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        25
+
+  Number of observations                           841
+
+Model Test User Model:
+                                                      
+  Test statistic                                59.605
+  Degrees of freedom                                20
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                              1003.174
+  Degrees of freedom                                36
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.959
+  Tucker-Lewis Index (TLI)                       0.926
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -8687.021
+  Loglikelihood unrestricted model (H1)      -8657.219
+                                                      
+  Akaike (AIC)                               17424.043
+  Bayesian (BIC)                             17542.408
+  Sample-size adjusted Bayesian (SABIC)      17463.016
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.049
+  90 Percent confidence interval - lower         0.035
+  90 Percent confidence interval - upper         0.063
+  P-value H_0: RMSEA &lt;= 0.050                    0.542
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.032
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  perc_merit =~                                                         
+    perc_effort       1.000                               0.624    0.806
+    perc_talent       0.667    0.219    3.040    0.002    0.416    0.547
+  perc_nmerit =~                                                        
+    perc_rch_prnts    1.000                               0.571    0.600
+    perc_contact      1.297    0.163    7.976    0.000    0.740    0.872
+  pref_merit =~                                                         
+    pref_effort       1.000                               0.406    0.511
+    pref_talent       1.113    0.200    5.561    0.000    0.451    0.534
+  pref_nmerit =~                                                        
+    pref_rch_prnts    1.000                               0.526    0.670
+    pref_contact      1.245    0.187    6.638    0.000    0.654    0.806
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  pref_redis ~                                                          
+    pref_merit        0.273    0.100    2.731    0.006    0.111    0.147
+    pref_nmerit      -0.061    0.060   -1.004    0.315   -0.032   -0.042
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  perc_merit ~~                                                         
+    perc_nmerit      -0.035    0.017   -2.065    0.039   -0.100   -0.100
+    pref_merit        0.007    0.016    0.459    0.646    0.029    0.029
+    pref_nmerit       0.048    0.017    2.838    0.005    0.147    0.147
+  perc_nmerit ~~                                                        
+    pref_merit        0.109    0.021    5.182    0.000    0.472    0.472
+    pref_nmerit       0.089    0.019    4.607    0.000    0.296    0.296
+  pref_merit ~~                                                         
+    pref_nmerit       0.039    0.014    2.708    0.007    0.182    0.182
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .perc_effort       0.209    0.127    1.644    0.100    0.209    0.350
+   .perc_talent       0.405    0.060    6.775    0.000    0.405    0.701
+   .perc_rch_prnts    0.580    0.048   12.169    0.000    0.580    0.641
+   .perc_contact      0.173    0.065    2.660    0.008    0.173    0.240
+   .pref_effort       0.467    0.038   12.271    0.000    0.467    0.739
+   .pref_talent       0.509    0.045   11.294    0.000    0.509    0.714
+   .pref_rch_prnts    0.339    0.044    7.761    0.000    0.339    0.551
+   .pref_contact      0.231    0.064    3.630    0.000    0.231    0.350
+   .pref_redis        0.553    0.028   20.007    0.000    0.553    0.979
+    perc_merit        0.389    0.130    2.999    0.003    1.000    1.000
+    perc_nmerit       0.326    0.051    6.356    0.000    1.000    1.000
+    pref_merit        0.164    0.037    4.464    0.000    1.000    1.000
+    pref_nmerit       0.276    0.048    5.813    0.000    1.000    1.000
+
+R-Square:
+                   Estimate
+    perc_effort       0.650
+    perc_talent       0.299
+    perc_rch_prnts    0.359
+    perc_contact      0.760
+    pref_effort       0.261
+    pref_talent       0.286
+    pref_rch_prnts    0.449
+    pref_contact      0.650
+    pref_redis        0.021
+
+Modification Indices:
+
+                 lhs op               rhs     mi    epc sepc.lv sepc.all
+1         perc_merit =~ perc_rich_parents  6.839 -0.145  -0.091   -0.095
+2         perc_merit =~      perc_contact  6.839  0.188   0.118    0.139
+3         perc_merit =~       pref_effort  1.972  0.086   0.054    0.068
+4         perc_merit =~       pref_talent  1.620 -0.086  -0.054   -0.064
+5         perc_merit =~ pref_rich_parents  0.209 -0.023  -0.014   -0.018
+6         perc_merit =~      pref_contact  0.189  0.027   0.017    0.021
+7        perc_nmerit =~       perc_effort  8.781 -0.235  -0.134   -0.173
+8        perc_nmerit =~       perc_talent  8.781  0.157   0.089    0.118
+9        perc_nmerit =~       pref_effort  0.195 -0.086  -0.049   -0.062
+10       perc_nmerit =~       pref_talent  0.015  0.027   0.016    0.018
+11       perc_nmerit =~ pref_rich_parents  0.003  0.005   0.003    0.004
+12       perc_nmerit =~      pref_contact  0.000 -0.002  -0.001   -0.001
+13        pref_merit =~       perc_effort 15.959 -0.510  -0.207   -0.267
+14        pref_merit =~       perc_talent 15.959  0.340   0.138    0.181
+15        pref_merit =~ perc_rich_parents  0.789  0.176   0.071    0.075
+16        pref_merit =~      perc_contact  0.789 -0.228  -0.093   -0.109
+17        pref_merit =~ pref_rich_parents  0.181 -0.047  -0.019   -0.024
+18        pref_merit =~      pref_contact  0.181  0.059   0.024    0.029
+19       pref_nmerit =~       perc_effort  3.316 -0.194  -0.102   -0.132
+20       pref_nmerit =~       perc_talent  3.316  0.130   0.068    0.090
+21       pref_nmerit =~ perc_rich_parents  8.494 -0.243  -0.128   -0.134
+22       pref_nmerit =~      perc_contact  8.494  0.315   0.166    0.195
+23       pref_nmerit =~       pref_effort  1.792 -0.106  -0.056   -0.070
+24       pref_nmerit =~       pref_talent  1.792  0.118   0.062    0.074
+25       perc_effort ~~ perc_rich_parents  5.447 -0.047  -0.047   -0.135
+26       perc_effort ~~      perc_contact  0.989  0.023   0.023    0.120
+27       perc_effort ~~       pref_effort  0.084 -0.006  -0.006   -0.019
+28       perc_effort ~~       pref_talent  5.921 -0.053  -0.053   -0.162
+29       perc_effort ~~ pref_rich_parents  2.035 -0.025  -0.025   -0.095
+30       perc_effort ~~      pref_contact  0.946  0.021   0.021    0.094
+31       perc_talent ~~ perc_rich_parents  0.062  0.005   0.005    0.010
+32       perc_talent ~~      perc_contact  1.380  0.023   0.023    0.088
+33       perc_talent ~~       pref_effort  5.340  0.042   0.042    0.096
+34       perc_talent ~~       pref_talent  2.257  0.029   0.029    0.064
+35       perc_talent ~~ pref_rich_parents  1.981  0.023   0.023    0.062
+36       perc_talent ~~      pref_contact  0.640 -0.015  -0.015   -0.049
+37 perc_rich_parents ~~       pref_effort  1.608  0.030   0.030    0.058
+38 perc_rich_parents ~~       pref_talent  0.320 -0.015  -0.015   -0.027
+39 perc_rich_parents ~~ pref_rich_parents  9.504  0.059   0.059    0.132
+40 perc_rich_parents ~~      pref_contact 20.392 -0.094  -0.094   -0.256
+41      perc_contact ~~       pref_effort  0.433 -0.018  -0.018   -0.064
+42      perc_contact ~~       pref_talent  0.006 -0.002  -0.002   -0.008
+43      perc_contact ~~ pref_rich_parents  6.342 -0.053  -0.053   -0.219
+44      perc_contact ~~      pref_contact 15.225  0.093   0.093    0.463
+45       pref_effort ~~       pref_talent  0.130  0.040   0.040    0.083
+46       pref_effort ~~ pref_rich_parents  0.274 -0.009  -0.009   -0.023
+47       pref_effort ~~      pref_contact  0.618 -0.015  -0.015   -0.045
+48       pref_talent ~~ pref_rich_parents  0.216  0.009   0.009    0.021
+49       pref_talent ~~      pref_contact  0.621  0.016   0.016    0.047
+50 pref_rich_parents ~~      pref_contact  0.015 -0.142  -0.142   -0.509
+51        pref_merit  ~        pref_redis  0.130 -0.018  -0.044   -0.033
+52       pref_nmerit  ~        pref_redis  0.015 -0.013  -0.024   -0.018
+   sepc.nox
+1    -0.095
+2     0.139
+3     0.068
+4    -0.064
+5    -0.018
+6     0.021
+7    -0.173
+8     0.118
+9    -0.062
+10    0.018
+11    0.004
+12   -0.001
+13   -0.267
+14    0.181
+15    0.075
+16   -0.109
+17   -0.024
+18    0.029
+19   -0.132
+20    0.090
+21   -0.134
+22    0.195
+23   -0.070
+24    0.074
+25   -0.135
+26    0.120
+27   -0.019
+28   -0.162
+29   -0.095
+30    0.094
+31    0.010
+32    0.088
+33    0.096
+34    0.064
+35    0.062
+36   -0.049
+37    0.058
+38   -0.027
+39    0.132
+40   -0.256
+41   -0.064
+42   -0.008
+43   -0.219
+44    0.463
+45    0.083
+46   -0.023
+47   -0.045
+48    0.021
+49    0.047
+50   -0.509
+51   -0.033
+52   -0.018</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">semTable</span>(f_sem1, <span class="at">type =</span> <span class="st">"html"</span>, <span class="at">columns =</span> <span class="fu">c</span> (<span class="st">"est"</span> , <span class="st">"estsestars"</span>),</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">paramSets =</span> <span class="st">"all"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;table style="padding-right:20px;padding-left:20px;"&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = '2'; align = 'center'&gt;Model&lt;/td&gt;&lt;/tr&gt; 
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = '1'; align = 'center'&gt;Estimate&lt;/td&gt;&lt;td colspan = '1'; align = 'center'&gt;Estimate(Std.Err.)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = '2'; align = 'center'&gt;&lt;span style="text-decoration: underline;"&gt;Factor Loadings&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td colspan = '1'; align = 'left'&gt;&lt;span style="text-decoration: underline;"&gt;perc_merit&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.effort&lt;/td&gt;&lt;td&gt;1.00&lt;sup&gt;+&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;1.00&lt;sup&gt;+&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.talent&lt;/td&gt;&lt;td&gt;0.67&lt;/td&gt;&lt;td&gt;0.67(0.22)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td colspan = '1'; align = 'left'&gt;&lt;span style="text-decoration: underline;"&gt;perc_nmerit&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.rich.parents&lt;/td&gt;&lt;td&gt;1.00&lt;sup&gt;+&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;1.00&lt;sup&gt;+&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.contact&lt;/td&gt;&lt;td&gt;1.30&lt;/td&gt;&lt;td&gt;1.30(0.16)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td colspan = '1'; align = 'left'&gt;&lt;span style="text-decoration: underline;"&gt;pref_merit&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.effort&lt;/td&gt;&lt;td&gt;1.00&lt;sup&gt;+&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;1.00&lt;sup&gt;+&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.talent&lt;/td&gt;&lt;td&gt;1.11&lt;/td&gt;&lt;td&gt;1.11(0.20)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td colspan = '1'; align = 'left'&gt;&lt;span style="text-decoration: underline;"&gt;pref_nmerit&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.rich.parents&lt;/td&gt;&lt;td&gt;1.00&lt;sup&gt;+&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;1.00&lt;sup&gt;+&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.contact&lt;/td&gt;&lt;td&gt;1.24&lt;/td&gt;&lt;td&gt;1.24(0.19)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = '2'; align = 'center'&gt;&lt;span style="text-decoration: underline;"&gt;Regression Slopes&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt; &lt;tr&gt;&lt;td colspan = '1'; align = 'left'&gt;&lt;span style="text-decoration: underline;"&gt;pref_redis&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.merit&lt;/td&gt;&lt;td&gt;0.27&lt;/td&gt;&lt;td&gt;0.27(0.10)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.nmerit&lt;/td&gt;&lt;td&gt;-0.06&lt;/td&gt;&lt;td&gt;-0.06(0.06)&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = '2'; align = 'center'&gt;&lt;span style="text-decoration: underline;"&gt;Residual Variances&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.effort&lt;/td&gt;&lt;td&gt;0.21&lt;/td&gt;&lt;td&gt;0.21(0.13)&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.talent&lt;/td&gt;&lt;td&gt;0.41&lt;/td&gt;&lt;td&gt;0.41(0.06)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.rich.parents&lt;/td&gt;&lt;td&gt;0.58&lt;/td&gt;&lt;td&gt;0.58(0.05)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.contact&lt;/td&gt;&lt;td&gt;0.17&lt;/td&gt;&lt;td&gt;0.17(0.07)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.effort&lt;/td&gt;&lt;td&gt;0.47&lt;/td&gt;&lt;td&gt;0.47(0.04)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.talent&lt;/td&gt;&lt;td&gt;0.51&lt;/td&gt;&lt;td&gt;0.51(0.05)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.rich.parents&lt;/td&gt;&lt;td&gt;0.34&lt;/td&gt;&lt;td&gt;0.34(0.04)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.contact&lt;/td&gt;&lt;td&gt;0.23&lt;/td&gt;&lt;td&gt;0.23(0.06)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.redis&lt;/td&gt;&lt;td&gt;0.55&lt;/td&gt;&lt;td&gt;0.55(0.03)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = '2'; align = 'center'&gt;&lt;span style="text-decoration: underline;"&gt;Latent Variances&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.merit&lt;/td&gt;&lt;td&gt;0.39&lt;/td&gt;&lt;td&gt;0.39(0.13)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.nmerit&lt;/td&gt;&lt;td&gt;0.33&lt;/td&gt;&lt;td&gt;0.33(0.05)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.merit&lt;/td&gt;&lt;td&gt;0.16&lt;/td&gt;&lt;td&gt;0.16(0.04)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.nmerit&lt;/td&gt;&lt;td&gt;0.28&lt;/td&gt;&lt;td&gt;0.28(0.05)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = '2'; align = 'center'&gt;&lt;span style="text-decoration: underline;"&gt;Latent Covariances&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.merit w/perc.nmerit&lt;/td&gt;&lt;td&gt;-0.04&lt;/td&gt;&lt;td&gt;-0.04(0.02)&lt;sup&gt;*&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.merit w/pref.merit&lt;/td&gt;&lt;td&gt;0.01&lt;/td&gt;&lt;td&gt;0.01(0.02)&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.merit w/pref.nmerit&lt;/td&gt;&lt;td&gt;0.05&lt;/td&gt;&lt;td&gt;0.05(0.02)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.nmerit w/pref.merit&lt;/td&gt;&lt;td&gt;0.11&lt;/td&gt;&lt;td&gt;0.11(0.02)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;perc.nmerit w/pref.nmerit&lt;/td&gt;&lt;td&gt;0.09&lt;/td&gt;&lt;td&gt;0.09(0.02)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;pref.merit w/pref.nmerit&lt;/td&gt;&lt;td&gt;0.04&lt;/td&gt;&lt;td&gt;0.04(0.01)&lt;sup&gt;**&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan = '2'; align = 'center'&gt;&lt;span style="text-decoration: underline;"&gt;Fit Indices&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&amp;chi;&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;59.60(20)&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;CFI&lt;/td&gt;&lt;td&gt;0.96&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;TLI&lt;/td&gt;&lt;td&gt;0.93&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;RMSEA&lt;/td&gt;&lt;td&gt;0.05&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan = '3'; align = 'left'&gt;&lt;sup&gt;+&lt;/sup&gt;Fixed parameter&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan = '3'; align = 'left'&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.05, &lt;sup&gt;**&lt;/sup&gt;p&lt;0.01, &lt;sup&gt;***&lt;/sup&gt;p&lt;0.001&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;&lt;br&gt;
+ </code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+</div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

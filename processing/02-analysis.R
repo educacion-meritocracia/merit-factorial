@@ -18,11 +18,11 @@ pacman::p_load(tidyverse,
                lavaan,
                psych,
                corrplot,
-               semPlot,
-               vtable,
                ggdist,
                patchwork,
-               semTable)
+               semTable,
+               semTools,
+               gtools)
 
 options(scipen=999)
 rm(list = ls())
@@ -33,12 +33,12 @@ load(file = here("output", "data", "db_proc.RData"))
 
 names(db)
 glimpse(db)
+theme_set(theme_ggdist())
 
 # 3. Analysis -------------------------------------------------------------
 
 db <- db %>% select(-n_miss_all)
 
-theme_set(theme_ggdist())
 # Descriptive ----
 
 sjmisc::descr(db, show = "all")
@@ -86,7 +86,7 @@ likerplot <- a / b + plot_annotation(caption = paste0("Source: Authors calculati
 
 # Bivariate ----
 
-M <- psych::polychoric(db[c(1:8)])
+M <- psych::polychoric(db[c(2:9)])
 
 diag(M$rho) <- NA
 
@@ -174,7 +174,7 @@ pref_merit = ~ pref_effort + pref_talent
 pref_nmerit = ~ pref_rich_parents + pref_contact
 
   # Modelo estructural
-mj_index ~  perc_merit + perc_nmerit + pref_merit + pref_nmerit
+mjp ~  perc_merit + perc_nmerit + pref_merit + pref_nmerit
 '
 
 ## Ajustar modelo
@@ -268,3 +268,63 @@ summary(f_sem4, fit.measures = T, standardized = T,
 semTable(f_sem4, type = "html", columns = c ("est" , "estsestars"),
          paramSets = "all",
          file = here("processing/tabla_sem4"))
+
+## Invarianza
+
+inv01 <- semTools::measurementInvariance(model = model_cfa,
+                                         data = db,
+                                         group = "curse_level",
+                                         estimator = "ML",
+                                         strict = T,
+                                         quiet = T)
+
+conf <- inv01$fit.configural
+weak <- inv01$fit.loadings
+strong <- inv01$fit.intercepts
+strict <- inv01$fit.residuals
+
+
+tab01 <- lavaan::anova(conf,weak,strong,strict,SB.classic=TRUE) %>%
+  dplyr::as_tibble() %>%
+  dplyr::select("Chisq","Df","chisq_diff"=`Chisq diff`,"df_diff"=`Df diff`,"pvalue"=`Pr(>Chisq)`) %>%
+  dplyr::mutate(stars=gtools::stars.pval(pvalue),
+                chisqt=paste0(round(Chisq,2)," (",Df,") "),
+                decision=ifelse(pvalue>0.05,yes = "Accept",no = "Reject"),
+                model=c("Configural","Weak","Strong","Strict"))
+
+
+fit.meas <- dplyr::bind_rows(lavaan::fitmeasures(inv01$fit.configural,output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                            lavaan::fitmeasures(inv01$fit.loadings,  output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                            lavaan::fitmeasures(inv01$fit.intercepts,output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                            lavaan::fitmeasures(inv01$fit.residuals, output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),])
+
+# compute differences in chisq, df, cfi and rmsea (90%, lower.ci - upper.ci )
+fit.meas <- fit.meas %>%
+  dplyr::mutate(diff.chi2 = chisq    - lag(chisq,default = dplyr::first(chisq)),
+                diff.df   = df       - lag(df,   default = dplyr::first(df)),
+                diff.cfi  = cfi      - lag(cfi,  default = dplyr::first(cfi)),
+                diff.rmsea   = rmsea - lag(rmsea,default = dplyr::first(rmsea))) %>%
+  round(3) %>%
+  dplyr::mutate(rmsea.ci=paste0(rmsea," \n ", "(",rmsea.ci.lower,"-",rmsea.ci.upper,")"))
+
+tab.inv <- dplyr::bind_cols(tab01,fit.meas) %>%
+  dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.df,diff.cfi,diff.rmsea,stars,decision) %>%
+  dplyr::mutate(diff.chi2=paste0(diff.chi2," (",diff.df,") ",stars)) %>%
+  dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.cfi,diff.rmsea,decision)
+
+#clean values
+tab.inv[tab.inv == c("0 (0) ")] <- NA
+tab.inv[tab.inv == c(0)] <- NA
+
+col.nam <- c("Model","$\\chi^2 (\\text{df})$","CFI","RMSEA (90 CI)",
+             "$\\Delta \\chi^2 (\\Delta \\text{df}$)","$\\Delta \\text{CFI}$","$\\Delta \\text{RMSEA}$","Decision")
+footnote <- paste0("N = 839; Group 1, n = ",conf@Data@nobs[[1]],"; Group 2, n = ",conf@Data@nobs[[2]])
+
+knitr::kable(tab.inv, col.names = col.nam, align = "l",
+             booktabs=TRUE,format = "html",escape = FALSE,
+             caption = "t") %>%
+  kableExtra::kable_styling(full_width = FALSE,
+                            latex_options = "HOLD_position",
+                            bootstrap_options=c("striped", "bordered"),
+                            font_size = 10) %>%
+  kableExtra::footnote(general = footnote, footnote_as_chunk = T)

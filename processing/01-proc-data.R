@@ -23,9 +23,9 @@ rm(list = ls())
 
 # 2. Data --------------------------------------------------------------
 
-load(url("https://github.com/educacion-meritocracia/edumer-data/raw/main/output/data/db_proc_full.RData"))
+load(url("https://github.com/educacion-meritocracia/edumer-data/raw/main/output/data/db_proc_students.RData"))
 
-db <- db_full %>% as_tibble()
+db <- db_students %>% as_tibble()
 
 names(db)
 glimpse(db)
@@ -36,6 +36,7 @@ glimpse(db)
 
 db <- db %>% 
   select(consent = consentimiento,
+         curse_level = nivel_estudiante,
          perc_effort = p1_1,
          perc_talent = p1_2,
          perc_rich_parents = p1_3,
@@ -54,6 +55,7 @@ db <- db %>% filter(consent == 1) %>% select(-consent)
 
 # recode and transform ----
 
+frq(db$curse_level)
 frq(db$perc_effort)
 frq(db$perc_talent)
 frq(db$perc_rich_parents)
@@ -66,10 +68,16 @@ frq(db$just_educ)
 frq(db$just_health)
 frq(db$just_pension)
 
+db$curse_level <- car::recode(db$curse_level, 
+                              recodes = c("1:2 = 'Básica'; 3:4 = 'Media'"),
+                              as.factor = T,
+                              levels = c("Básica", "Media"))
+  
+  
 db <- db %>% 
   mutate(
     across(
-      .cols = everything(),
+      .cols = -c(curse_level),
       .fns = ~ set_na(., na = c(88,99))
     )
   )
@@ -77,10 +85,14 @@ db <- db %>%
 db <- db %>% 
   mutate(
     across(
-      .cols = everything(),
+      .cols = -c(curse_level),
       .fns = ~ sjmisc::rec(., rec = "rev")
     )
   )
+
+db$mjp <- rowMeans(x = db[10:12], na.rm = T)
+
+db$mjp <- if_else(is.nan(db$mjp), NA, db$mjp)
 
 # missings ----
 
@@ -94,7 +106,7 @@ any_na(db)
 
 n_miss(db)
 
-prop_miss(db[c(1:11)])
+prop_miss(db[c(1:13)])
 
 naniar::gg_miss_var(db)
 
@@ -109,13 +121,6 @@ miss_case_table(db)
 vis_miss(db) + theme(axis.text.x = element_text(angle=80))
 
 db <- na.omit(db)
-
-
-db <- db %>% 
-  rowwise() %>% 
-  mutate(mj_index = mean(just_educ, just_health, just_pension, na.rm = F)) %>% 
-  ungroup()
-
 
 # 4. Save -----------------------------------------------------------------
 

@@ -89,7 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Fecha de publicación</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">24 de septiembre de 2024</p>
+        <p class="date">1 de octubre de 2024</p>
       </div>
     </div>
     
@@ -177,18 +177,18 @@ Tabla&nbsp;1: Estadísticos descriptivos
 <div class="cell-output cell-output-stdout">
 <pre><code>                  Mean   SD Min Max
 curse_level*      1.52 0.50   1   2
-perc_effort       2.24 0.77   1   4
-perc_talent       2.16 0.76   1   4
-perc_rich_parents 1.98 0.95   1   4
-perc_contact      1.94 0.85   1   4
-pref_effort       1.62 0.79   1   4
-pref_talent       2.37 0.84   1   4
-pref_rich_parents 2.46 0.78   1   4
-pref_contact      2.34 0.81   1   4
-just_educ         2.72 0.89   1   4
-just_health       3.00 0.94   1   4
-just_pension      2.95 0.87   1   4
-mjp               2.89 0.75   1   4</code></pre>
+perc_effort       2.76 0.77   1   4
+perc_talent       2.84 0.76   1   4
+perc_rich_parents 3.02 0.95   1   4
+perc_contact      3.06 0.85   1   4
+pref_effort       3.38 0.79   1   4
+pref_talent       2.63 0.84   1   4
+pref_rich_parents 2.54 0.78   1   4
+pref_contact      2.66 0.81   1   4
+just_educ         2.28 0.89   1   4
+just_health       2.00 0.94   1   4
+just_pension      2.05 0.87   1   4
+mjp               2.11 0.75   1   4</code></pre>
 </div>
 </div>
 </figure>
@@ -196,7 +196,6 @@ mjp               2.89 0.75   1   4</code></pre>
 <div class="cell">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">db</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"perc"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">mutate_all</span><span class="op">(</span><span class="op">~</span> <span class="fu">sjmisc</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjmisc/reference/rec.html">rec</a></span><span class="op">(</span><span class="va">.</span>, rec <span class="op">=</span> <span class="st">"rev"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">sjPlot</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/plot_likert.html">plot_likert</a></span><span class="op">(</span>geom.colors <span class="op">=</span> <span class="st">"RdBu"</span>,</span>
 <span>                      title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a. Perceptions"</span><span class="op">)</span>,</span>
 <span>                      geom.size <span class="op">=</span> <span class="fl">0.8</span>,</span>
@@ -211,7 +210,6 @@ mjp               2.89 0.75   1   4</code></pre>
 <span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="va">db</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"pref"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">mutate_all</span><span class="op">(</span><span class="op">~</span> <span class="fu">sjmisc</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjmisc/reference/rec.html">rec</a></span><span class="op">(</span><span class="va">.</span>, rec <span class="op">=</span> <span class="st">"rev"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">sjPlot</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/plot_likert.html">plot_likert</a></span><span class="op">(</span>geom.colors <span class="op">=</span> <span class="st">"RdBu"</span>,</span>
 <span>                      title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b. Preferences"</span><span class="op">)</span>,</span>
 <span>                      geom.size <span class="op">=</span> <span class="fl">0.8</span>,</span>
@@ -242,9 +240,15 @@ Figura&nbsp;1
 </section><section id="bivariados" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="bivariados">
 <span class="header-section-number">3.2</span> Bivariados</h2>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/tetrachor.html">polychoric</a></span><span class="op">(</span><span class="va">db</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/tetrachor.html">polychoric</a></span><span class="op">(</span><span class="va">db</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">9</span>,<span class="fl">13</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">db</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">9</span>,<span class="fl">13</span><span class="op">)</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">M</span><span class="op">$</span><span class="va">rho</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">P</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span></span>
+<span><span class="va">M</span><span class="op">$</span><span class="va">rho</span><span class="op">[</span><span class="fl">9</span>,<span class="op">]</span> <span class="op">&lt;-</span> <span class="va">P</span><span class="op">[</span><span class="fl">9</span>,<span class="op">]</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">M</span><span class="op">$</span><span class="va">rho</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A. Perception Effort"</span>,</span>
 <span>                     <span class="st">"B. Perception Talent"</span>,</span>
@@ -253,11 +257,26 @@ Figura&nbsp;1
 <span>                     <span class="st">"E. Preferences Effort"</span>,</span>
 <span>                     <span class="st">"F. Preferences Talent"</span>,</span>
 <span>                     <span class="st">"G. Preferences Rich Parents"</span>,</span>
-<span>                     <span class="st">"H. Preferences Contacts"</span><span class="op">)</span></span>
+<span>                     <span class="st">"H. Preferences Contacts"</span>,</span>
+<span>                     <span class="st">"I. Market Justice Preferences"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#set Column names of the matrix</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">M</span><span class="op">$</span><span class="va">rho</span><span class="op">)</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"(A)"</span>, <span class="st">"(B)"</span>,<span class="st">"(C)"</span>,<span class="st">"(D)"</span>,<span class="st">"(E)"</span>,<span class="st">"(F)"</span>,<span class="st">"(G)"</span>,</span>
-<span>                       <span class="st">"(H)"</span><span class="op">)</span></span>
+<span>                       <span class="st">"(H)"</span>,<span class="st">"(I)"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">P</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A. Perception Effort"</span>,</span>
+<span>                     <span class="st">"B. Perception Talent"</span>,</span>
+<span>                     <span class="st">"C. Perception Rich Parents"</span>,</span>
+<span>                     <span class="st">"D. Perception Contacts"</span>,</span>
+<span>                     <span class="st">"E. Preferences Effort"</span>,</span>
+<span>                     <span class="st">"F. Preferences Talent"</span>,</span>
+<span>                     <span class="st">"G. Preferences Rich Parents"</span>,</span>
+<span>                     <span class="st">"H. Preferences Contacts"</span>,</span>
+<span>                     <span class="st">"I. Market Justice Preferences"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#set Column names of the matrix</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">P</span><span class="op">)</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"(A)"</span>, <span class="st">"(B)"</span>,<span class="st">"(C)"</span>,<span class="st">"(D)"</span>,<span class="st">"(E)"</span>,<span class="st">"(F)"</span>,<span class="st">"(G)"</span>,</span>
+<span>                    <span class="st">"(H)"</span>,<span class="st">"(I)"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">testp</span> <span class="op">&lt;-</span> <span class="fu">cor.mtest</span><span class="op">(</span><span class="va">M</span><span class="op">$</span><span class="va">rho</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
 <span></span>
@@ -269,7 +288,7 @@ Figura&nbsp;1
 <span>                   tl.col <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>                   col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#E16462"</span>, <span class="st">"white"</span>, <span class="st">"#0D0887"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fl">12</span><span class="op">)</span>,</span>
 <span>                   bg <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span>                   na.label <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                   na.label <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-correlaciones" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-correlaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -336,7 +355,7 @@ just_educ    0.84  0.72   0.65</code></pre>
 <span>              ordered <span class="op">=</span> <span class="cn">T</span>,</span>
 <span>              std.lv <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m2_cfa</span>, fit.measures <span class="op">=</span> <span class="cn">T</span>, standardized <span class="op">=</span> <span class="cn">T</span>, rsquare <span class="op">=</span> <span class="cn">T</span>, modindices <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m2_cfa</span>, fit.measures <span class="op">=</span> <span class="cn">T</span>, standardized <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>lavaan 0.6.15 ended normally after 43 iterations
 
@@ -425,30 +444,30 @@ Intercepts:
 
 Thresholds:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
-    perc_effort|t1   -1.051    0.053  -19.752    0.000   -1.051   -1.051
-    perc_effort|t2    0.443    0.045    9.867    0.000    0.443    0.443
-    perc_effort|t3    1.558    0.069   22.577    0.000    1.558    1.558
-    perc_talent|t1   -0.976    0.052  -18.884    0.000   -0.976   -0.976
-    perc_talent|t2    0.626    0.047   13.448    0.000    0.626    0.626
-    perc_talent|t3    1.568    0.069   22.580    0.000    1.568    1.568
-    prc_rch_prnt|1   -0.299    0.044   -6.787    0.000   -0.299   -0.299
-    prc_rch_prnt|2    0.568    0.046   12.375    0.000    0.568    0.568
-    prc_rch_prnt|3    1.406    0.063   22.292    0.000    1.406    1.406
-    perc_contct|t1   -0.410    0.045   -9.185    0.000   -0.410   -0.410
-    perc_contct|t2    0.747    0.048   15.561    0.000    0.747    0.747
-    perc_contct|t3    1.622    0.072   22.559    0.000    1.622    1.622
-    pref_effort|t1    0.103    0.043    2.380    0.017    0.103    0.103
-    pref_effort|t2    1.173    0.056   20.922    0.000    1.173    1.173
-    pref_effort|t3    1.773    0.080   22.210    0.000    1.773    1.773
-    pref_talent|t1   -0.981    0.052  -18.944    0.000   -0.981   -0.981
-    pref_talent|t2    0.115    0.043    2.656    0.008    0.115    0.115
-    pref_talent|t3    1.431    0.064   22.370    0.000    1.431    1.431
-    prf_rch_prnt|1   -1.359    0.061  -22.110    0.000   -1.359   -1.359
-    prf_rch_prnt|2    0.118    0.043    2.725    0.006    0.118    0.118
-    prf_rch_prnt|3    1.309    0.060   21.858    0.000    1.309    1.309
-    pref_contct|t1   -1.110    0.055  -20.356    0.000   -1.110   -1.110
-    pref_contct|t2    0.280    0.044    6.375    0.000    0.280    0.280
-    pref_contct|t3    1.382    0.062   22.205    0.000    1.382    1.382
+    perc_effort|t1   -1.558    0.069  -22.577    0.000   -1.558   -1.558
+    perc_effort|t2   -0.443    0.045   -9.867    0.000   -0.443   -0.443
+    perc_effort|t3    1.051    0.053   19.752    0.000    1.051    1.051
+    perc_talent|t1   -1.568    0.069  -22.580    0.000   -1.568   -1.568
+    perc_talent|t2   -0.626    0.047  -13.448    0.000   -0.626   -0.626
+    perc_talent|t3    0.976    0.052   18.884    0.000    0.976    0.976
+    prc_rch_prnt|1   -1.406    0.063  -22.292    0.000   -1.406   -1.406
+    prc_rch_prnt|2   -0.568    0.046  -12.375    0.000   -0.568   -0.568
+    prc_rch_prnt|3    0.299    0.044    6.787    0.000    0.299    0.299
+    perc_contct|t1   -1.622    0.072  -22.559    0.000   -1.622   -1.622
+    perc_contct|t2   -0.747    0.048  -15.561    0.000   -0.747   -0.747
+    perc_contct|t3    0.410    0.045    9.185    0.000    0.410    0.410
+    pref_effort|t1   -1.773    0.080  -22.210    0.000   -1.773   -1.773
+    pref_effort|t2   -1.173    0.056  -20.922    0.000   -1.173   -1.173
+    pref_effort|t3   -0.103    0.043   -2.380    0.017   -0.103   -0.103
+    pref_talent|t1   -1.431    0.064  -22.370    0.000   -1.431   -1.431
+    pref_talent|t2   -0.115    0.043   -2.656    0.008   -0.115   -0.115
+    pref_talent|t3    0.981    0.052   18.944    0.000    0.981    0.981
+    prf_rch_prnt|1   -1.309    0.060  -21.858    0.000   -1.309   -1.309
+    prf_rch_prnt|2   -0.118    0.043   -2.725    0.006   -0.118   -0.118
+    prf_rch_prnt|3    1.359    0.061   22.110    0.000    1.359    1.359
+    pref_contct|t1   -1.382    0.062  -22.205    0.000   -1.382   -1.382
+    pref_contct|t2   -0.280    0.044   -6.375    0.000   -0.280   -0.280
+    pref_contct|t3    1.110    0.055   20.356    0.000    1.110    1.110
 
 Variances:
                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
@@ -474,119 +493,7 @@ Scales y*:
     pref_effort       1.000                               1.000    1.000
     pref_talent       1.000                               1.000    1.000
     pref_rch_prnts    1.000                               1.000    1.000
-    pref_contact      1.000                               1.000    1.000
-
-R-Square:
-                   Estimate
-    perc_effort       0.710
-    perc_talent       0.383
-    perc_rch_prnts    0.416
-    perc_contact      0.892
-    pref_effort       0.371
-    pref_talent       0.346
-    pref_rch_prnts    0.558
-    pref_contact      0.676
-
-Modification Indices:
-
-                 lhs op               rhs     mi    epc sepc.lv sepc.all
-1         perc_merit =~ perc_rich_parents  8.007 -0.137  -0.116   -0.116
-2         perc_merit =~      perc_contact  8.007  0.201   0.170    0.170
-3         perc_merit =~       pref_effort  0.600  0.047   0.039    0.039
-4         perc_merit =~       pref_talent  0.600 -0.045  -0.038   -0.038
-5         perc_merit =~ pref_rich_parents  0.069 -0.015  -0.013   -0.013
-6         perc_merit =~      pref_contact  0.069  0.017   0.014    0.014
-7        perc_nmerit =~       perc_effort 15.080 -0.317  -0.205   -0.205
-8        perc_nmerit =~       perc_talent 15.080  0.233   0.150    0.150
-9        perc_nmerit =~       pref_effort  0.119 -0.094  -0.061   -0.061
-10       perc_nmerit =~       pref_talent  0.119  0.091   0.059    0.059
-11       perc_nmerit =~ pref_rich_parents  0.085  0.033   0.021    0.021
-12       perc_nmerit =~      pref_contact  0.085 -0.037  -0.024   -0.024
-13        pref_merit =~       perc_effort 19.608 -0.452  -0.275   -0.275
-14        pref_merit =~       perc_talent 19.608  0.332   0.202    0.202
-15        pref_merit =~ perc_rich_parents  0.173 -0.066  -0.040   -0.040
-16        pref_merit =~      perc_contact  0.173  0.097   0.059    0.059
-17        pref_merit =~ pref_rich_parents  0.015 -0.017  -0.010   -0.010
-18        pref_merit =~      pref_contact  0.015  0.018   0.011    0.011
-19       pref_nmerit =~       perc_effort  7.099 -0.229  -0.171   -0.171
-20       pref_nmerit =~       perc_talent  7.099  0.168   0.126    0.126
-21       pref_nmerit =~ perc_rich_parents  6.842 -0.178  -0.133   -0.133
-22       pref_nmerit =~      perc_contact  6.842  0.261   0.195    0.195
-23       pref_nmerit =~       pref_effort  2.003 -0.113  -0.084   -0.084
-24       pref_nmerit =~       pref_talent  2.003  0.109   0.081    0.081
-25       perc_effort ~~ perc_rich_parents 10.274 -0.130  -0.130   -0.315
-26       perc_effort ~~      perc_contact  0.047  0.011   0.011    0.065
-27       perc_effort ~~       pref_effort  0.728 -0.041  -0.041   -0.096
-28       perc_effort ~~       pref_talent  7.056 -0.118  -0.118   -0.271
-29       perc_effort ~~ pref_rich_parents  1.609 -0.062  -0.062   -0.174
-30       perc_effort ~~      pref_contact  0.003 -0.003  -0.003   -0.009
-31       perc_talent ~~ perc_rich_parents  0.079  0.012   0.012    0.020
-32       perc_talent ~~      perc_contact  9.528  0.149   0.149    0.578
-33       perc_talent ~~       pref_effort  6.579  0.113   0.113    0.181
-34       perc_talent ~~       pref_talent  3.452  0.075   0.075    0.118
-35       perc_talent ~~ pref_rich_parents  1.589  0.057   0.057    0.109
-36       perc_talent ~~      pref_contact  0.140  0.018   0.018    0.039
-37 perc_rich_parents ~~       pref_effort  1.397  0.064   0.064    0.106
-38 perc_rich_parents ~~       pref_talent  0.233 -0.025  -0.025   -0.040
-39 perc_rich_parents ~~ pref_rich_parents  0.573  0.035   0.035    0.068
-40 perc_rich_parents ~~      pref_contact 10.030 -0.149  -0.149   -0.343
-41      perc_contact ~~       pref_effort  0.158 -0.029  -0.029   -0.113
-42      perc_contact ~~       pref_talent  0.053 -0.016  -0.016   -0.060
-43      perc_contact ~~ pref_rich_parents  0.123 -0.020  -0.020   -0.092
-44      perc_contact ~~      pref_contact  5.860  0.142   0.142    0.760
-45       pref_effort ~~ pref_rich_parents  0.801 -0.044  -0.044   -0.083
-46       pref_effort ~~      pref_contact  0.915 -0.047  -0.047   -0.105
-47       pref_talent ~~ pref_rich_parents  0.326  0.025   0.025    0.046
-48       pref_talent ~~      pref_contact  1.217  0.048   0.048    0.105
-   sepc.nox
-1    -0.116
-2     0.170
-3     0.039
-4    -0.038
-5    -0.013
-6     0.014
-7    -0.205
-8     0.150
-9    -0.061
-10    0.059
-11    0.021
-12   -0.024
-13   -0.275
-14    0.202
-15   -0.040
-16    0.059
-17   -0.010
-18    0.011
-19   -0.171
-20    0.126
-21   -0.133
-22    0.195
-23   -0.084
-24    0.081
-25   -0.315
-26    0.065
-27   -0.096
-28   -0.271
-29   -0.174
-30   -0.009
-31    0.020
-32    0.578
-33    0.181
-34    0.118
-35    0.109
-36    0.039
-37    0.106
-38   -0.040
-39    0.068
-40   -0.343
-41   -0.113
-42   -0.060
-43   -0.092
-44    0.760
-45   -0.083
-46   -0.105
-47    0.046
-48    0.105</code></pre>
+    pref_contact      1.000                               1.000    1.000</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -665,10 +572,269 @@ Tabla&nbsp;2: Factor loadings
 </figure>
 </div>
 </div>
-</section><section id="sem" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="sem">
-<span class="header-section-number">3.3.2</span> SEM</h3>
+</section><section id="cfa-básica-y-media" class="level3" data-number="3.3.2"><h3 data-number="3.3.2" class="anchored" data-anchor-id="cfa-básica-y-media">
+<span class="header-section-number">3.3.2</span> CFA básica y media</h3>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Especificar el modelo: medición y estructural</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Modelos por separado para basica y media</span></span>
+<span></span>
+<span><span class="va">fit.conf</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span>model <span class="op">=</span> <span class="va">model_cfa</span>, </span>
+<span>                data <span class="op">=</span> <span class="va">db</span>, </span>
+<span>                group <span class="op">=</span> <span class="st">"curse_level"</span>,</span>
+<span>                estimator <span class="op">=</span> <span class="st">"DWLS"</span>,</span>
+<span>                ordered <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>                std.lv <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit.conf</span>, fit.measures <span class="op">=</span> <span class="cn">T</span>, standardized <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6.15 ended normally after 84 iterations
+
+  Estimator                                       DWLS
+  Optimization method                           NLMINB
+  Number of model parameters                        76
+
+  Number of observations per group:                   
+    Básica                                         401
+    Media                                          438
+
+Model Test User Model:
+                                                      
+  Test statistic                                29.209
+  Degrees of freedom                                28
+  P-value (Chi-square)                           0.402
+  Test statistic for each group:
+    Básica                                      17.430
+    Media                                       11.779
+
+Model Test Baseline Model:
+
+  Test statistic                              2689.298
+  Degrees of freedom                                56
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    1.000
+  Tucker-Lewis Index (TLI)                       0.999
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.010
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.040
+  P-value H_0: RMSEA &lt;= 0.050                    0.994
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.032
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model        Unstructured
+
+
+Group 1 [Básica]:
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  perc_merit =~                                                         
+    perc_effort       1.000                               0.556    0.556
+    perc_talent       1.363    0.563    2.419    0.016    0.757    0.757
+  perc_nmerit =~                                                        
+    perc_rch_prnts    1.000                               0.483    0.483
+    perc_contact      1.954    0.337    5.794    0.000    0.944    0.944
+  pref_merit =~                                                         
+    pref_effort       1.000                               0.452    0.452
+    pref_talent       1.946    0.465    4.180    0.000    0.880    0.880
+  pref_nmerit =~                                                        
+    pref_rch_prnts    1.000                               0.644    0.644
+    pref_contact      1.330    0.207    6.424    0.000    0.857    0.857
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  perc_merit ~~                                                         
+    perc_nmerit       0.033    0.017    1.894    0.058    0.122    0.122
+    pref_merit        0.025    0.017    1.487    0.137    0.098    0.098
+    pref_nmerit       0.076    0.028    2.680    0.007    0.213    0.213
+  perc_nmerit ~~                                                        
+    pref_merit        0.097    0.026    3.776    0.000    0.442    0.442
+    pref_nmerit       0.143    0.028    5.097    0.000    0.460    0.460
+  pref_merit ~~                                                         
+    pref_nmerit       0.080    0.023    3.492    0.000    0.273    0.273
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .perc_effort       0.000                               0.000    0.000
+   .perc_talent       0.000                               0.000    0.000
+   .perc_rch_prnts    0.000                               0.000    0.000
+   .perc_contact      0.000                               0.000    0.000
+   .pref_effort       0.000                               0.000    0.000
+   .pref_talent       0.000                               0.000    0.000
+   .pref_rch_prnts    0.000                               0.000    0.000
+   .pref_contact      0.000                               0.000    0.000
+    perc_merit        0.000                               0.000    0.000
+    perc_nmerit       0.000                               0.000    0.000
+    pref_merit        0.000                               0.000    0.000
+    pref_nmerit       0.000                               0.000    0.000
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    perc_effort|t1   -1.646    0.106  -15.567    0.000   -1.646   -1.646
+    perc_effort|t2   -0.861    0.072  -11.982    0.000   -0.861   -0.861
+    perc_effort|t3    0.852    0.072   11.891    0.000    0.852    0.852
+    perc_talent|t1   -1.515    0.097  -15.577    0.000   -1.515   -1.515
+    perc_talent|t2   -0.741    0.069  -10.684    0.000   -0.741   -0.741
+    perc_talent|t3    0.835    0.071   11.708    0.000    0.835    0.835
+    prc_rch_prnt|1   -1.255    0.084  -14.879    0.000   -1.255   -1.255
+    prc_rch_prnt|2   -0.269    0.063   -4.235    0.000   -0.269   -0.269
+    prc_rch_prnt|3    0.592    0.067    8.864    0.000    0.592    0.592
+    perc_contct|t1   -1.515    0.097  -15.577    0.000   -1.515   -1.515
+    perc_contct|t2   -0.470    0.065   -7.203    0.000   -0.470   -0.470
+    perc_contct|t3    0.741    0.069   10.684    0.000    0.741    0.741
+    pref_effort|t1   -1.697    0.109  -15.503    0.000   -1.697   -1.697
+    pref_effort|t2   -0.946    0.074  -12.784    0.000   -0.946   -0.946
+    pref_effort|t3    0.003    0.063    0.050    0.960    0.003    0.003
+    pref_talent|t1   -1.374    0.090  -15.318    0.000   -1.374   -1.374
+    pref_talent|t2   -0.053    0.063   -0.848    0.396   -0.053   -0.053
+    pref_talent|t3    1.060    0.077   13.711    0.000    1.060    1.060
+    prf_rch_prnt|1   -1.297    0.086  -15.059    0.000   -1.297   -1.297
+    prf_rch_prnt|2   -0.084    0.063   -1.347    0.178   -0.084   -0.084
+    prf_rch_prnt|3    1.342    0.088   15.221    0.000    1.342    1.342
+    pref_contct|t1   -1.441    0.093  -15.476    0.000   -1.441   -1.441
+    pref_contct|t2   -0.374    0.064   -5.822    0.000   -0.374   -0.374
+    pref_contct|t3    0.986    0.075   13.129    0.000    0.986    0.986
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .perc_effort       0.691                               0.691    0.691
+   .perc_talent       0.427                               0.427    0.427
+   .perc_rch_prnts    0.767                               0.767    0.767
+   .perc_contact      0.109                               0.109    0.109
+   .pref_effort       0.795                               0.795    0.795
+   .pref_talent       0.226                               0.226    0.226
+   .pref_rch_prnts    0.585                               0.585    0.585
+   .pref_contact      0.265                               0.265    0.265
+    perc_merit        0.309    0.131    2.355    0.019    1.000    1.000
+    perc_nmerit       0.233    0.046    5.113    0.000    1.000    1.000
+    pref_merit        0.205    0.054    3.787    0.000    1.000    1.000
+    pref_nmerit       0.415    0.069    6.007    0.000    1.000    1.000
+
+Scales y*:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    perc_effort       1.000                               1.000    1.000
+    perc_talent       1.000                               1.000    1.000
+    perc_rch_prnts    1.000                               1.000    1.000
+    perc_contact      1.000                               1.000    1.000
+    pref_effort       1.000                               1.000    1.000
+    pref_talent       1.000                               1.000    1.000
+    pref_rch_prnts    1.000                               1.000    1.000
+    pref_contact      1.000                               1.000    1.000
+
+
+Group 2 [Media]:
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  perc_merit =~                                                         
+    perc_effort       1.000                               0.655    0.655
+    perc_talent       1.408    0.525    2.681    0.007    0.923    0.923
+  perc_nmerit =~                                                        
+    perc_rch_prnts    1.000                               0.690    0.690
+    perc_contact      1.471    0.362    4.066    0.000    1.015    1.015
+  pref_merit =~                                                         
+    pref_effort       1.000                               0.830    0.830
+    pref_talent       0.448    0.148    3.034    0.002    0.372    0.372
+  pref_nmerit =~                                                        
+    pref_rch_prnts    1.000                               0.849    0.849
+    pref_contact      0.950    0.326    2.913    0.004    0.806    0.806
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  perc_merit ~~                                                         
+    perc_nmerit      -0.058    0.024   -2.449    0.014   -0.128   -0.128
+    pref_merit        0.094    0.036    2.578    0.010    0.173    0.173
+    pref_nmerit       0.062    0.028    2.199    0.028    0.112    0.112
+  perc_nmerit ~~                                                        
+    pref_merit        0.193    0.045    4.282    0.000    0.337    0.337
+    pref_nmerit       0.096    0.031    3.082    0.002    0.164    0.164
+  pref_merit ~~                                                         
+    pref_nmerit       0.074    0.041    1.817    0.069    0.104    0.104
+
+Intercepts:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .perc_effort       0.000                               0.000    0.000
+   .perc_talent       0.000                               0.000    0.000
+   .perc_rch_prnts    0.000                               0.000    0.000
+   .perc_contact      0.000                               0.000    0.000
+   .pref_effort       0.000                               0.000    0.000
+   .pref_talent       0.000                               0.000    0.000
+   .pref_rch_prnts    0.000                               0.000    0.000
+   .pref_contact      0.000                               0.000    0.000
+    perc_merit        0.000                               0.000    0.000
+    perc_nmerit       0.000                               0.000    0.000
+    pref_merit        0.000                               0.000    0.000
+    pref_nmerit       0.000                               0.000    0.000
+
+Thresholds:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    perc_effort|t1   -1.487    0.092  -16.249    0.000   -1.487   -1.487
+    perc_effort|t2   -0.120    0.060   -2.004    0.045   -0.120   -0.120
+    perc_effort|t3    1.279    0.082   15.660    0.000    1.279    1.279
+    perc_talent|t1   -1.621    0.100  -16.290    0.000   -1.621   -1.621
+    perc_talent|t2   -0.527    0.063   -8.354    0.000   -0.527   -0.527
+    perc_talent|t3    1.126    0.076   14.806    0.000    1.126    1.126
+    prc_rch_prnt|1   -1.580    0.097  -16.305    0.000   -1.580   -1.580
+    prc_rch_prnt|2   -0.897    0.070  -12.885    0.000   -0.897   -0.897
+    prc_rch_prnt|3    0.052    0.060    0.859    0.390    0.052    0.052
+    perc_contct|t1   -1.738    0.108  -16.122    0.000   -1.738   -1.738
+    perc_contct|t2   -1.063    0.074  -14.357    0.000   -1.063   -1.063
+    perc_contct|t3    0.144    0.060    2.385    0.017    0.144    0.144
+    pref_effort|t1   -1.853    0.117  -15.787    0.000   -1.853   -1.853
+    pref_effort|t2   -1.453    0.090  -16.198    0.000   -1.453   -1.453
+    pref_effort|t3   -0.202    0.060   -3.339    0.001   -0.202   -0.202
+    pref_talent|t1   -1.487    0.092  -16.249    0.000   -1.487   -1.487
+    pref_talent|t2   -0.173    0.060   -2.862    0.004   -0.173   -0.173
+    pref_talent|t3    0.914    0.070   13.055    0.000    0.914    0.914
+    prf_rch_prnt|1   -1.319    0.083  -15.824    0.000   -1.319   -1.319
+    prf_rch_prnt|2   -0.149    0.060   -2.481    0.013   -0.149   -0.149
+    prf_rch_prnt|3    1.376    0.086   16.015    0.000    1.376    1.376
+    pref_contct|t1   -1.333    0.084  -15.875    0.000   -1.333   -1.333
+    pref_contct|t2   -0.196    0.060   -3.243    0.001   -0.196   -0.196
+    pref_contct|t3    1.241    0.080   15.482    0.000    1.241    1.241
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .perc_effort       0.570                               0.570    0.570
+   .perc_talent       0.148                               0.148    0.148
+   .perc_rch_prnts    0.524                               0.524    0.524
+   .perc_contact     -0.029                              -0.029   -0.029
+   .pref_effort       0.311                               0.311    0.311
+   .pref_talent       0.862                               0.862    0.862
+   .pref_rch_prnts    0.279                               0.279    0.279
+   .pref_contact      0.350                               0.350    0.350
+    perc_merit        0.430    0.162    2.655    0.008    1.000    1.000
+    perc_nmerit       0.476    0.119    4.006    0.000    1.000    1.000
+    pref_merit        0.689    0.253    2.721    0.007    1.000    1.000
+    pref_nmerit       0.721    0.249    2.895    0.004    1.000    1.000
+
+Scales y*:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+    perc_effort       1.000                               1.000    1.000
+    perc_talent       1.000                               1.000    1.000
+    perc_rch_prnts    1.000                               1.000    1.000
+    perc_contact      1.000                               1.000    1.000
+    pref_effort       1.000                               1.000    1.000
+    pref_talent       1.000                               1.000    1.000
+    pref_rch_prnts    1.000                               1.000    1.000
+    pref_contact      1.000                               1.000    1.000</code></pre>
+</div>
+</div>
+</section><section id="sem" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="sem">
+<span class="header-section-number">3.3.3</span> SEM</h3>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Especificar el modelo: medición y estructural</span></span>
 <span><span class="va">m_sem1</span> <span class="op">&lt;-</span> <span class="st">'</span></span>
 <span><span class="st"># Modelo medición</span></span>
 <span><span class="st">perc_merit = ~ perc_effort + perc_talent</span></span>
@@ -684,8 +850,7 @@ Tabla&nbsp;2: Factor loadings
 <span><span class="va">f_sem1</span> <span class="op">&lt;-</span> <span class="fu">sem</span><span class="op">(</span><span class="va">m_sem1</span>, data <span class="op">=</span> <span class="va">db</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## Ver resultados completos</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">f_sem1</span>, fit.measures <span class="op">=</span> <span class="cn">T</span>, standardized <span class="op">=</span> <span class="cn">T</span>, </span>
-<span>        rsquare <span class="op">=</span> <span class="cn">T</span>, modindices <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">f_sem1</span>, fit.measures <span class="op">=</span> <span class="cn">T</span>, standardized <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>lavaan 0.6.15 ended normally after 57 iterations
 
@@ -788,126 +953,13 @@ Variances:
     perc_merit        0.372    0.103    3.632    0.000    1.000    1.000
     perc_nmerit       0.291    0.050    5.769    0.000    1.000    1.000
     pref_merit        0.112    0.029    3.827    0.000    1.000    1.000
-    pref_nmerit       0.313    0.038    8.179    0.000    1.000    1.000
-
-R-Square:
-                   Estimate
-    perc_effort       0.625
-    perc_talent       0.311
-    perc_rch_prnts    0.321
-    perc_contact      0.847
-    pref_effort       0.179
-    pref_talent       0.431
-    pref_rch_prnts    0.510
-    pref_contact      0.571
-    mjp               0.193
-
-Modification Indices:
-
-                 lhs op               rhs     mi    epc sepc.lv sepc.all
-1         perc_merit =~ perc_rich_parents  6.778 -0.148  -0.090   -0.095
-2         perc_merit =~      perc_contact  6.778  0.214   0.131    0.154
-3         perc_merit =~       pref_effort  0.972  0.055   0.034    0.042
-4         perc_merit =~       pref_talent  0.972 -0.091  -0.055   -0.066
-5         perc_merit =~ pref_rich_parents  0.418 -0.034  -0.021   -0.027
-6         perc_merit =~      pref_contact  0.418  0.037   0.023    0.028
-7        perc_nmerit =~       perc_effort  7.605 -0.208  -0.112   -0.145
-8        perc_nmerit =~       perc_talent  7.605  0.145   0.078    0.102
-9        perc_nmerit =~       pref_effort 16.883  0.529   0.286    0.360
-10       perc_nmerit =~       pref_talent 16.883 -0.874  -0.472   -0.559
-11       perc_nmerit =~ pref_rich_parents  1.195 -0.066  -0.036   -0.046
-12       perc_nmerit =~      pref_contact  1.195  0.073   0.039    0.048
-13        pref_merit =~       perc_effort 14.666 -0.550  -0.185   -0.239
-14        pref_merit =~       perc_talent 14.666  0.383   0.129    0.169
-15        pref_merit =~ perc_rich_parents  1.589  0.233   0.078    0.082
-16        pref_merit =~      perc_contact  1.589 -0.337  -0.113   -0.133
-17        pref_merit =~ pref_rich_parents  0.344 -0.069  -0.023   -0.030
-18        pref_merit =~      pref_contact  0.344  0.076   0.025    0.031
-19       pref_nmerit =~       perc_effort  3.757 -0.186  -0.104   -0.135
-20       pref_nmerit =~       perc_talent  3.757  0.129   0.072    0.095
-21       pref_nmerit =~ perc_rich_parents  2.100 -0.110  -0.061   -0.064
-22       pref_nmerit =~      perc_contact  2.100  0.159   0.089    0.105
-23       pref_nmerit =~       pref_effort  0.802 -0.061  -0.034   -0.043
-24       pref_nmerit =~       pref_talent  0.802  0.101   0.057    0.067
-25       perc_effort ~~ perc_rich_parents  6.846 -0.051  -0.051   -0.139
-26       perc_effort ~~      perc_contact  0.751  0.019   0.019    0.121
-27       perc_effort ~~       pref_effort  0.002  0.001   0.001    0.002
-28       perc_effort ~~       pref_talent  6.709 -0.061  -0.061   -0.202
-29       perc_effort ~~ pref_rich_parents  2.684 -0.027  -0.027   -0.106
-30       perc_effort ~~      pref_contact  1.567  0.022   0.022    0.089
-31       perc_talent ~~ perc_rich_parents  0.014  0.002   0.002    0.005
-32       perc_talent ~~      perc_contact  1.666  0.023   0.023    0.112
-33       perc_talent ~~       pref_effort  5.971  0.044   0.044    0.097
-34       perc_talent ~~       pref_talent  2.028  0.027   0.027    0.068
-35       perc_talent ~~ pref_rich_parents  1.230  0.017   0.017    0.051
-36       perc_talent ~~      pref_contact  0.363 -0.010  -0.010   -0.030
-37 perc_rich_parents ~~       pref_effort  3.124  0.039   0.039    0.069
-38 perc_rich_parents ~~       pref_talent  0.136 -0.010  -0.010   -0.020
-39 perc_rich_parents ~~ pref_rich_parents  9.268  0.058   0.058    0.136
-40 perc_rich_parents ~~      pref_contact 20.740 -0.092  -0.092   -0.220
-41      perc_contact ~~       pref_effort  0.414  0.017   0.017    0.073
-42      perc_contact ~~       pref_talent  1.887 -0.049  -0.049   -0.232
-43      perc_contact ~~ pref_rich_parents  8.461 -0.056  -0.056   -0.307
-44      perc_contact ~~      pref_contact 16.049  0.083   0.083    0.469
-45       pref_effort ~~ pref_rich_parents  0.001  0.001   0.001    0.001
-46       pref_effort ~~      pref_contact  0.031  0.003   0.003    0.008
-47       pref_talent ~~ pref_rich_parents  0.108 -0.006  -0.006   -0.018
-48       pref_talent ~~      pref_contact  0.031  0.004   0.004    0.011
-   sepc.nox
-1    -0.095
-2     0.154
-3     0.042
-4    -0.066
-5    -0.027
-6     0.028
-7    -0.145
-8     0.102
-9     0.360
-10   -0.559
-11   -0.046
-12    0.048
-13   -0.239
-14    0.169
-15    0.082
-16   -0.133
-17   -0.030
-18    0.031
-19   -0.135
-20    0.095
-21   -0.064
-22    0.105
-23   -0.043
-24    0.067
-25   -0.139
-26    0.121
-27    0.002
-28   -0.202
-29   -0.106
-30    0.089
-31    0.005
-32    0.112
-33    0.097
-34    0.068
-35    0.051
-36   -0.030
-37    0.069
-38   -0.020
-39    0.136
-40   -0.220
-41    0.073
-42   -0.232
-43   -0.307
-44    0.469
-45    0.001
-46    0.008
-47   -0.018
-48    0.011</code></pre>
+    pref_nmerit       0.313    0.038    8.179    0.000    1.000    1.000</code></pre>
 </div>
 </div>
-</section><section id="invarianza" class="level3" data-number="3.3.3"><h3 data-number="3.3.3" class="anchored" data-anchor-id="invarianza">
-<span class="header-section-number">3.3.3</span> Invarianza</h3>
+</section><section id="invarianza" class="level3" data-number="3.3.4"><h3 data-number="3.3.4" class="anchored" data-anchor-id="invarianza">
+<span class="header-section-number">3.3.4</span> Invarianza</h3>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">inv01</span> <span class="op">&lt;-</span> <span class="fu">semTools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/semTools/man/semTools-deprecated.html">measurementInvariance</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">model_cfa</span>,</span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">inv01</span> <span class="op">&lt;-</span> <span class="fu">semTools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/semTools/man/semTools-deprecated.html">measurementInvariance</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">model_cfa</span>,</span>
 <span>                                         data <span class="op">=</span> <span class="va">db</span>,</span>
 <span>                                         group <span class="op">=</span> <span class="st">"curse_level"</span>,</span>
 <span>                                         estimator <span class="op">=</span> <span class="st">"ML"</span>,</span>

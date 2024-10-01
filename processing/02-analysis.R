@@ -22,7 +22,8 @@ pacman::p_load(tidyverse,
                patchwork,
                semTable,
                semTools,
-               gtools)
+               gtools,
+               kableExtra)
 
 options(scipen=999)
 rm(list = ls())
@@ -82,13 +83,17 @@ b <- db %>%
 likerplot <- a / b + plot_annotation(caption = paste0("Source: Authors calculations based on EDUMER data"," (n = ",dim(db)[1],")"
 ))
 
-
-
 # Bivariate ----
 
-M <- psych::polychoric(db[c(2:9)])
+M <- psych::polychoric(db[c(2:9,13)])
+
+P <- cor(db[c(2:9,13)], method = "spearman")
 
 diag(M$rho) <- NA
+
+diag(P) <- NA
+
+M$rho[9,] <- P[9,]
 
 rownames(M$rho) <- c("A. Perception Effort",
                      "B. Perception Talent",
@@ -97,11 +102,26 @@ rownames(M$rho) <- c("A. Perception Effort",
                      "E. Preferences Effort",
                      "F. Preferences Talent",
                      "G. Preferences Rich Parents",
-                     "H. Preferences Contacts")
+                     "H. Preferences Contacts",
+                     "I. Market Justice Preferences")
 
 #set Column names of the matrix
 colnames(M$rho) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
-                       "(H)")
+                       "(H)","(I)")
+
+rownames(P) <- c("A. Perception Effort",
+                     "B. Perception Talent",
+                     "C. Perception Rich Parents",
+                     "D. Perception Contacts",
+                     "E. Preferences Effort",
+                     "F. Preferences Talent",
+                     "G. Preferences Rich Parents",
+                     "H. Preferences Contacts",
+                     "I. Market Justice Preferences")
+
+#set Column names of the matrix
+colnames(P) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                    "(H)","(I)")
 
 testp <- cor.mtest(M$rho, conf.level = 0.95)
 
@@ -113,7 +133,8 @@ corrplot::corrplot(M$rho,
                    tl.col = "black",
                    col = colorRampPalette(c("#E16462", "white", "#0D0887"))(12),
                    bg = "white",
-                   na.label = "-")
+                   na.label = "-") 
+
 
 # Market justice index alpha
 matriz <- db %>% select(just_health,just_pension, just_educ)
@@ -162,6 +183,35 @@ modin <- modificationIndices(m2_cfa)
 
 modin %>% 
   filter(mi > 3.84)
+
+
+## Modelos por separado para basica y media
+
+fit.conf <- cfa(model = model_cfa, 
+                data = db, 
+                group = "curse_level",
+                estimator = "DWLS",
+                ordered = T,
+                std.lv = F)
+
+summary(fit.conf, fit.measures = T, standardized = T, rsquare = T, modindices = T) 
+
+
+mbasica_cfa <- cfa(model = model_cfa, 
+                   data = subset(db, curse_level == "Básica"), 
+                   estimator = "DWLS",
+                   ordered = T,
+                   std.lv = F)
+
+mmedia_cfa <- cfa(model = model_cfa, 
+                   data = subset(db, curse_level == "Media"), 
+                   estimator = "DWLS",
+                   ordered = T,
+                   std.lv = F)
+
+summary(mbasica_cfa, fit.measures = T, standardized = T, rsquare = T, modindices = T) 
+summary(mmedia_cfa, fit.measures = T, standardized = T, rsquare = T, modindices = T) 
+
 
 # SEM
 

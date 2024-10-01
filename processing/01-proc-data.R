@@ -82,14 +82,6 @@ db <- db %>%
     )
   )
 
-db <- db %>% 
-  mutate(
-    across(
-      .cols = -c(curse_level),
-      .fns = ~ sjmisc::rec(., rec = "rev")
-    )
-  )
-
 db$mjp <- rowMeans(x = db[10:12], na.rm = T)
 
 db$mjp <- if_else(is.nan(db$mjp), NA, db$mjp)

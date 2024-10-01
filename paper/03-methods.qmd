@@ -1,0 +1,28 @@
+---
+author: "Equipo EDUMER"
+bibliography: "../input/bib/merit-factorial.bib"
+csl: "../input/bib/apa6.csl"
+---
+
+# Data, variables and method
+
+## Data
+
+This study is based on data from the Panel Survey on Education and Meritocracy (EDUMER) from the 2023 (N = 840) and 2024 (N = 840) waves, focusing on students. The database is derived from web-based questionnaires administered to sixth and ninth-grade students from nine schools in the Metropolitan and Valparaíso regions of Chile. Due to the non-probabilistic nature of the data collection process, the design does not allow for representativeness of the target population; therefore, analyses and conclusions can only be drawn at the sample level.
+
+## Variables
+
+**Scale of Perceptions and Preferences on Meritocracy**: The variables included in the measurement model for meritocratic and non-meritocratic perceptions and preferences are operationalized according to the items proposed by Castillo et al. [-@castillo_multidimensional_2023]. Perception of meritocracy is measured by two items that assess the level of agreement with the idea that effort and ability are rewarded in Chile, while non-meritocratic perception is measured by two items evaluating the agreement that success is linked to connections and family wealth. Preference for meritocracy is measured by two items that evaluate agreement with the idea that those who work harder or are more talented should be more rewarded. Preference for non-meritocratic aspects is measured by two indicators assessing agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success. Each item is rated on a four-point Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4).
+
+**Preferences for Market Justice**: This construct is measured using three variables that address the level of justification for whether access to social services in healthcare, pensions, and education should be income-based. The justification for inequality in healthcare is measured by the item: "Is it acceptable for those who can pay more to have better access to healthcare?" The same question is posed for pensions and education. In all cases, respondents indicate their preferences on a Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4). Additionally, a summary indicator of "preferences for market justice" is included, measured by an average index of all these items (α = 0.83), with values ranging from 1 to 4, where higher values represent greater preferences for market justice.
+
+## Methods
+
+To evaluate the scale's underlying structure, we employed Confirmatory Factor Analysis (CFA) using a measurement model with four latent factors and Diagonal Weighted Least Squares (DWLS) estimation, appropriate for ordinal data [@kline_principles_2023]. Following Brown (2015), model fit was assessed by considering the Comparative Fit Index (CFI) and Tucker-Lewis Index (TLI; acceptable fit > 0.95), Root Mean Square Error of Approximation (RMSEA; acceptable fit < 0.08), and Chi-square test (p-value > 0.05, with a Chi-square ratio < 3).
+
+To test the metric stability of the measurement model [@davidov_measurement_2014], we conducted a longitudinal invariance test with data from both waves of the study. In line with @liu_testing_2017, we tested a series of four hierarchical models—Configural, Weak, Strong, and Strict—in order to account for ordered categorical indicators, as treating a four-point Likert scale as continuous may result in biased estimates.
+
+Lastly, we performed regression analysis using latent variables (structural equation models) to investigate the relationship between meritocratic and non-meritocratic factors and preferences for market justice (REF).
+
+
+The hypotheses of this research were pre-registered in the Open Science Framework platform of the Center for Open Science (OSF), the access to the document is available at this [link](https://doi.org/10.17605/OSF.IO/UFSDV). The statistical analysis for this research was conducted using the *lavaan* package in R version 4.2.2.

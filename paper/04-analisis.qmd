@@ -1,0 +1,418 @@
+---
+author: "Equipo EDUMER"
+bibliography: "input/bib/just-ineq-merit.bib"
+csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
+---
+
+# Results
+
+## Descriptive
+
+```{r packages, echo=FALSE}
+pacman::p_load(tidyverse,
+               ggpubr, 
+               lme4,
+               ordinal,
+               sjPlot, 
+               texreg,
+               kableExtra,
+               easystats,
+               ggeffects)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r data, echo=FALSE}
+
+load("input/data/data_index.RData")
+load("input/data/deservingness.RData")
+load("input/data/soc_effort.RData")
+load("input/data/soc_talent.RData")
+load("input/data/school_effort.RData")
+load("input/data/school_talent.RData")
+load("input/data/data_rec.RData")
+load("input/data/mlm_models.RData")
+load("input/data/interact.RData")
+
+```
+
+```{r functions, echo=FALSE}
+
+odds_fun <- function(modelos) {
+   or <- texreg::extract(modelos)
+   or@coef <- exp(or@coef)
+   return(or)
+}
+
+miles <- function(x) {
+  format(round(as.numeric(x),0), big.mark = ".")
+}
+
+decimales <- function(x) {
+  format(round(as.numeric(x), 2), decimal.mark = ",")
+}
+
+# set theme
+
+
+theme_set(theme_bw())
+
+```
+
+@fig-marketjustice illustrates the distribution of responses to the three items on market justice preferences (healthcare, pensions, and education), indicating that most respondents tend to disagree or strongly disagree with the idea that it is just for people with higher incomes to have access to better services in these areas. The strongest opposition is observed in the healthcare sector, as the majority of respondents (66.4%) are against the idea that higher-income individuals should have access to better healthcare services. Similarly, regarding the concept of justice related to access to better pensions based on income, the level of disagreement reaches 63.0%. This decreases significantly in the field of education, as the percentage of respondents who disagree or strongly disagree with those with higher incomes having access to better education decreases to 58.8%. Only a small proportion agree that access to healthcare should be conditional on income (23.6%), and a minority strongly agree (10%), as is the case with pensions. However, this increases in the case of education, being the area where there is a significant proportion of respondents who agree or strongly agree with access based on market justice (41.2%).
+
+```{r echo=FALSE}
+#| fig-cap: "Market justice preferences in health, pensions and education"
+#| fig-asp: 0.4
+#| label: fig-marketjustice
+
+
+data_rec %>% 
+  select(just_salud, just_pension, just_educ) %>% 
+  sjPlot::plot_stackfrq(geom.size = 0.6,
+                        expand.grid =TRUE,
+                      geom.colors = "PuBu",
+                      show.total = FALSE, 
+                      legend.labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"),
+                      axis.labels = c("Health", "Pensions", "Education")) +
+ # theme_light(base_size = 16) +
+  theme(legend.position="bottom", text = element_text(size = 14),
+        plot.caption = element_text(hjust = 1)) +
+       labs(caption = "Source: own elaboration based on First Study of Civic Education 2017")
+
+```
+
+Regarding the perception of meritocracy, @fig-meritocracy displays the frequency distribution of five items related to the dimensions of school and society. At the school level, there is a strong belief that both effort and talent are important for achieving good grades, with especially high agreement for effort. Specifically, while 78.6% agree or strongly agree on the importance of talent for obtaining good grades, this proportion rises to 96.8% for effort, indicating that respondents value effort more than talent in this context.
+
+```{r echo=FALSE}
+#| fig-cap: "Social and school meritocracy"
+#| fig-asp: 0.6
+#| label: fig-meritocracy
+plot_a <- data_rec %>% 
+  select(inteligencia_esc, esfuerzo_esc) %>% 
+  sjPlot::plot_stackfrq(expand.grid =TRUE,
+                        geom.colors = "PuBu",
+                        show.total = FALSE, 
+                        vjust = c(rep(c("center"),4), "bottom", "top", rep(c("center"), 2)),
+                        legend.labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"),
+                        axis.labels = c("School talent", "School effort")) +
+  theme(legend.position = "bottom", text = element_text(size = 14),
+        plot.caption = element_text(hjust = 1))
+
+
+plot_b <- data_rec %>% 
+  select(merito_soc, inteligencia_soc, esfuerzo_soc) %>% 
+  sjPlot::plot_stackfrq(geom.size = 0.6,
+                        expand.grid =TRUE,
+                        geom.colors = "PuBu",
+                        show.total = FALSE, 
+                        vjust = "center",
+                        legend.labels = c("Strongly disagree", "Disagree", "Agree", "Strongly agree"),
+                        axis.labels = c("Deservingness", "Social talent", "Social effort")) +
+  theme(legend.position = "bottom", text = element_text(size = 14),
+        plot.caption = element_text(hjust = 1))
+
+ggarrange(plot_a, plot_b, 
+          common.legend = T, 
+          ncol = 1,
+          legend = "bottom", 
+          labels = c("School", "Society")
+          ) +
+  theme(plot.caption = element_text(hjust = 1, size = 11)) +
+  labs(caption = "Source: own elaboration based on First Study of Civic Education 2017")
+  
+```
+
+At the societal level, @fig-meritocracy shows that a majority of respondents agree or strongly agree that individuals are rewarded for their talents (63.7%) and efforts (62%). Nevertheless, a notable proportion perceives that both effort and talent are not adequately rewarded in society, with 38.1% and 36.3% respectively. The perception of whether people get what they deserve in society is more divided; while a slim majority (56.5% combining agree and strongly agree) agrees, a significant minority (43.6%) disagrees, indicating that this is the most contentious item among respondents. There is general agreement that people are rewarded for talent and effort in society, but the consensus is weaker compared to school meritocracy.
+
+@fig-bivariate shows a series of graphs depicting the association between the variables of market justice preferences - in education, health, and pensions - and the variables of meritocratic perception at school (effort and talent) and in society (effort, talent, and deservingness) (see conceptual diagram in @fig-hypotheses). In general we observe a positive association between meritocracy and market justice preferences for the societal questions, but this is not as straightforward for the school items, particularly for the one referred to effort. 
+
+```{r echo=FALSE}
+#| fig-cap: "Market justice preferences in education, health and pensions by social and school meritocracy"
+#| fig-asp: 1.22
+#| label: fig-bivariate
+
+plot_soc_effort <- soc_effort %>% 
+  mutate(justice = str_to_title(justice),
+         justice = factor(justice, levels = c("Health", "Pensions", "Education"), labels = c("Health", "Pensions", "Education"))) %>% 
+  arrange(esfuerzo_soc, justice) %>% 
+  ggplot(aes(x = esfuerzo_soc, y = mean)) +
+  geom_point(aes(color = justice, shape = justice), size = 2) +
+  scale_y_continuous(labels = decimales, limits = c(1, 4)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly\n disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly\n agree")) +
+  scale_color_brewer(palette = "Paired") +
+  labs(x = "Social effort",
+       y = "Market justice preferences") +
+  theme(legend.position = "none",
+        text = element_text(size = 11))
+
+plot_deservingness <- deservingness %>% 
+   mutate(justice = str_to_title(justice),
+         justice = factor(justice, levels = c("Health", "Pensions", "Education"), labels = c("Health", "Pensions", "Education"))) %>% 
+  arrange(merito_soc, justice) %>% 
+  ggplot(aes(x = merito_soc, y = mean)) +
+  geom_point(aes(color = justice, shape = justice), size = 2) +
+  scale_y_continuous(labels = decimales, limits = c(1, 4)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly\n disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly\n agree")) +
+  scale_color_brewer(palette = "Paired") +
+  labs(x = "Deservingness",
+       y = "Market justice preferences") +
+  theme(legend.position = "none",
+        text = element_text(size = 11))
+
+plot_soc_talent <- soc_talent %>% 
+   mutate(justice = str_to_title(justice),
+         justice = factor(justice, levels = c("Health", "Pensions", "Education"), labels = c("Health", "Pensions", "Education"))) %>% 
+  arrange(inteligencia_soc, justice) %>%  
+  ggplot(aes(x = inteligencia_soc, y = mean)) +
+  geom_point(aes(color = justice, shape = justice), size = 2) +
+  scale_y_continuous(labels = decimales, limits = c(1, 4)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly\n disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly\n agree")) +
+  scale_color_brewer(palette = "Paired") +
+  labs(x = "Social talent",
+       y = "Market justice preferences") +
+  theme(legend.position = "none",
+        text = element_text(size = 11))
+
+plot_school_effort <- school_effort %>% 
+  mutate(justice = str_to_title(justice),
+         justice = factor(justice, levels = c("Health", "Pensions", "Education"), labels = c("Health", "Pensions", "Education"))) %>% 
+  arrange(esfuerzo_esc, justice) %>%  
+  ggplot(aes(x = esfuerzo_esc, y = mean)) +
+  geom_point(aes(color = justice, shape = justice), size = 2) +
+  scale_y_continuous(labels = decimales, limits = c(1, 4)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly\n disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly\n agree")) +
+  scale_color_brewer(palette = "Paired") +
+  labs(x = "School effort",
+       y = "") +
+  theme(legend.position = "none",
+        text = element_text(size = 11))
+
+
+plot_school_talent <- school_talent %>% 
+  mutate(justice = str_to_title(justice),
+         justice = factor(justice, levels = c("Health", "Pensions", "Education"), labels = c("Health", "Pensions", "Education"))) %>% 
+  arrange(inteligencia_esc, justice) %>% 
+  ggplot(aes(x = inteligencia_esc, y = mean)) +
+  geom_point(aes(color = justice, shape = justice), size = 2) +
+  scale_y_continuous(labels = decimales, limits = c(1, 4)) +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = seq(1, 4, by = 1),
+                     label = c("Strongly\n disagree", 
+                               "Disagree", 
+                               "Agree", 
+                               "Strongly\n agree")) +
+  scale_color_brewer(palette = "Paired") +
+  labs(x = "School talent",
+       y = "",
+       color = NULL,
+       shape = NULL) +
+  theme(text = element_text(size = 11))
+
+leg <- get_legend(plot_school_talent)
+
+plot_school_talent <- plot_school_talent + theme(legend.position = "none")
+
+ggarrange(plot_soc_effort, plot_school_effort, plot_soc_talent,
+          plot_school_talent, plot_deservingness, leg, ncol = 2, nrow = 3) +
+ theme(plot.caption = element_text(hjust = 1, size = 11)) +
+  labs(caption = "Source: own elaboration based on First Study of Civic Education 2017")
+```
+
+## Multivariate
+
+This section presents the results of the multilevel models. We begin by showing the results of the cumulative link mixed models in @tbl-ordinal-reg for the ordinal dependent variables of justice in health, pensions, and education separately in order to compare the effect of the predictors. Then, we present the results of the linear mixed-effects models for the average index of preference for market justice in @tbl-lineal-reg[^1]. 
+
+For the health item, the intraclass correlation (ICC) obtained for the null model (not shown) indicates that 5% of the total variance of this item is associated with specific characteristics of the schools, while it is 3% for the pensions item and 4% for the education item [ICC based on @hox_multilevel_2010, p.15]. For the average index of market justice preferences, the ICC reaches 4%, indicating that overall, only a small percentage of the total variance in students' market justice preferences is associated with school characteristics, thus limiting the possibility of finding effects at this second level of analysis.
+
+[^1]: The table shows the effects of individual and contextual-level independent variables related to our hypotheses; however, the models also incorporate the control variables for each of the three dependent variables separately and for the average index (complete models are available in the [Supplementary Material](#appendix)).
+
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Cumulative link multilevel models of differential acces justificacion of health, pensions, and education"
+#| label: tbl-ordinal-reg
+
+modelos_health <- list(m1_h, m2_h, m3_h)
+modelos_pension <- list(m1_p, m2_p, m3_p)
+modelos_educ <- list(m1_e, m2_e, m3_e)
+
+ccoef <- list(
+  inteligencia_esc = "School talent",
+  esfuerzo_esc = "School effort",
+  inteligencia_soc = "Social talent",
+  esfuerzo_soc = "Social effort",
+  merito_soc = "Deservingness",
+  "universitarioSi" = "University or posgraduate",
+  "universitarioNs/Nr" = "Missing",
+  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
+  "school_nseMedio" = "SES Medium",
+  school_nseAlto = "SES High",
+  simceMedio = "Simce Medium",
+  simceAlto = "Simce High"
+)
+
+texreg::texreg(
+  l = list(modelos_health[[2]], modelos_health[[3]], modelos_pension[[2]], modelos_pension[[3]], modelos_educ[[2]], modelos_educ[[3]]),
+  caption = NULL,
+  stars = c(0.05, 0.01, 0.001),
+  custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",threeparttable = T,
+  custom.header = list("Health" = 1:2, "Pensions" = 3:4, "Education" = 5:6),
+  custom.model.names = rep(c("Model 1", "Model 2"), 3),
+  custom.coef.map = ccoef,
+  leading.zero = TRUE,
+  use.packages = FALSE,
+  booktabs = TRUE,
+  scalebox = 0.8,
+  include.loglik = FALSE,
+  include.aic = FALSE,
+  groups = list("Parental education (Ref.= Non-university)" = 6:7, "Socioeconomic level (Ref.= Low)" = 9:10, "Achievement score (Ref.= Low)" = 11:12),
+  custom.gof.names = c("BIC", 
+                       "Num.obs",
+                       "Num. groups: Schools",
+                       "Var: Schools (Intercept)"),
+  custom.gof.rows = list("Controls"=rep("Yes", 6))
+)
+
+               
+```
+
+
+Model 1 in @tbl-ordinal-reg for the three dependent variables of justice in differential access to health, pensions, and education demonstrates a similar trend regarding the effect of the perception of meritocracy on these items, with all effects being statistically significant (*p* \< 0.05). Regarding the variables of social meritocracy, the three variables---talent, effort, and deservingness---show that as these increase, the justification for differentiated access to pensions, education, and health also increases. In the context of school meritocracy, the effects are mixed: as perceived school talent increases, the justification for differentiated access to these services increases; conversely, as perceived school effort increases, the justification decreases, holding all other variables constant.
+
+Additionally, Model 1 examines family status through parents' educational level and the number of books at home. For health, pensions, and education, a negative but statistically non-significant association with parents' education is observed. However, having more than 25 books at home shows a negative and statistically significant effect on market justice in health and pensions, suggesting less justification for differentiated access compared to those with fewer books. 
+
+Model 2 in @tbl-ordinal-reg incorporates school-level variables. The results show that high socioeconomic level schools show greater preferences for market justice in health, pensions, and education compared to low socioeconomic level schools, with statistically significant results (*p* \< 0.05). Moreover, and contrary to our hypothesis, schools with higher academic performance show negative and statistically significant effects across the three items.
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Linear mixed-effects models for meritocracy perception and market justice preferences"
+#| label: tbl-lineal-reg
+
+
+ccoef <- list(
+  "(Intercept)" = "Constant",
+  inteligencia_esc = "School talent",
+  esfuerzo_esc = "School effort",
+  inteligencia_soc = "Social talent",
+  esfuerzo_soc = "Social effort",
+  merito_soc = "Deservingness",
+  "universitarioSi" = "University or posgraduate",
+  "universitarioNs/Nr" = "Missing",
+  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
+  "school_nseMedio" = "SES Medium",
+  school_nseAlto = "SES High",
+  simceMedio = "Simce Medium",
+  simceAlto = "Simce High"
+)
+
+
+texreg::texreg(list(reg1_bienestar, reg2_bienestar, 
+                       reg4_bienestar, reg5_bienestar),
+               custom.model.names = c("Model 1",
+                                      "Model 2",
+                                      "Model 3",
+                                      "Model 4"),
+               caption = NULL,
+               stars = c(0.05, 0.01, 0.001),
+               custom.coef.map = ccoef,
+               custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",threeparttable = T,
+               leading.zero = T,
+               use.packages = F,
+               booktabs = TRUE,
+               scalebox = 0.85,
+               include.loglik = FALSE,
+               include.aic = FALSE,
+               groups = list("Parental education (Ref.= Non-university)" = 7:8,
+                             "Socioeconomic level (Ref.= Low)" = 10:11,
+                             "Achievement score (Ref.= Low)" = 12:13),
+               custom.gof.names = c("BIC", 
+                                    "Num.obs",
+                                    "Num. groups: Schools",
+                                    "Var: Schools (Intercept)",
+                                    "Var: Residual"),
+               custom.gof.rows = list("Controls"=rep("Yes",4),
+                                      "Deviance" = c(deviance1,
+                                                     deviance2,
+                                                     deviance4,
+                                                     deviance5),
+                                      "Deviance Test (p)" = c(test.pvalues1,
+                                                              test.pvalues2,
+                                                              test.pvalues4,
+                                                              test.pvalues5))
+               )
+
+
+```
+
+@tbl-lineal-reg presents the results of linear mixed-effects models for the market justice preference index. Model 1 shows that higher perceived societal meritocracy, through effort, talent, and deservingness, is positively and significantly associated with market justice preferences. School meritocracy perceptions yield mixed effects: perceived talent increases market justice preference, while perceived effort decreases it, both statistically significant (*p* \< 0.001). Model 2 includes family status, finding no statistically significant effects from parents' education or the number of books at home. Regarding school characteristics, Models 3 and 4 introduce socioeconomic level and academic performance. The results of Model 3 suggest a statistically significant relationship between school socioeconomic levels and market justice preferences, specifically those schools with high socioeconomic levels ($\beta$ = 0.37) compared to low socioeconomic levels. However, Model 4 indicates that schools with medium ($\beta$ = -0.11) and high ($\beta$ = -0.26) academic performance present lower market justice preferences compared to low-performing schools, with these effects being statistically significant when controlling for other variables.
+
+```{r echo=FALSE}
+#| tbl-cap: "Interactions effects"
+#| label: tbl-interact
+
+collapse_rows[c(-4),] %>% 
+  as_tibble() %>% 
+  kbl(.,
+      align = "lccccc", booktabs = T,
+      col.names =  c("Variable", 
+                     "School talent", 
+                     "School effort",
+                     "Social talent",
+                     "Social effort", 
+                     "Deservingness")) %>% 
+  add_header_above(c(" " = 1,
+                     "Market Justice Preferences"=5), 
+                   bold = T) %>% 
+  kable_styling(latex_options = c("scale_down","HOLD_position"),
+                full_width = T) %>% 
+  column_spec(1, bold = T, width = "4cm") %>%
+  column_spec(column = 2:6,width = "1.5cm") %>%
+  collapse_rows(columns = 1:2, valign = "middle") %>% 
+  kableExtra::add_footnote(label = "Note: ***p < 0.001, **p < 0.01, *p < 0.05. Source: own elaboration based on First Study of Civic Education 2017.", 
+                           notation = "none")
+
+
+```
+
+@tbl-interact displays the interaction terms related to our hypotheses. The results suggest that students' family background moderates the relationship between their meritocratic perceptions and their justification of market allocation in social services. Specifically, the relationship between social effort and market justice preferences is less positive for students whose parents have university or postgraduate education. Lower-status students (measured by parental education) prefer more market justice when they strongly adhere to meritocratic perceptions of deservingness. A similar moderating effect is seen with family cultural capital: the relationship between effort and market justice preferences is less positive for students with more than 25 books at home.
+
+At the school level, we observe that school status and students' meritocratic beliefs moderate their preferences for market justice. High-status schools show less preference for market justice when their students, on average, have a greater perception of meritocracy, as measured by effort, deservingness, and talent. Conversely, low-achieving schools prefer more market justice when their students have stronger meritocratic beliefs. @fig-interaction illustrates this moderating effect of school achievement on the relationship between deservingness and market justice. No moderating effects were observed at the school level for students' meritocratic beliefs regarding effort or talent in achieving good grades.
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| fig-cap: "Interaction between deservingness and justification of inequality by school SIMCE achievement"
+#| label: fig-interaction
+
+ggpredict(model = reg26.2_bienestar, terms = c("merito_soc", "simce")) %>% 
+  filter(group != "Medium") %>% 
+  plot() +
+  ylim(1,4) +
+  labs(title = NULL,
+       x = "Deservingness", 
+       y ="Market Justice Preferences", 
+       colour = "School Simce",
+       caption = "Source: own elaboration based on First Study of Civic Education 2017") +
+  theme_bw()
+
+```

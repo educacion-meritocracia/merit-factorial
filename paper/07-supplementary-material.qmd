@@ -1,0 +1,705 @@
+---
+author: "Equipo EDUMER"
+bibliography: "input/bib/just-ineq-merit.bib"
+csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
+---
+
+# Supplementary material
+
+```{r load, include=FALSE}
+pacman::p_load(tidyverse,
+               ggpubr, 
+               lme4,
+               ordinal,
+               sjPlot, 
+               texreg,
+               kableExtra,
+               easystats,
+               ggeffects,
+               knitr,
+               webshot2)
+
+options(scipen=999)
+rm(list = ls())
+
+load("input/data/data_index.RData")
+load("input/data/data_rec.RData")
+load("input/data/mlm_models.RData")
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+```
+
+## Complete multilevel models
+
+
+```{r echo=FALSE}
+
+data_rec <- data_rec %>% mutate(universitario = case_when(educacion_rec=="Ed Basica"~"No",
+                                                          educacion_rec=="Ed Media"~"No",
+                                                          educacion_rec=="Ed Tecnica"~"No",
+                                                          educacion_rec=="Universidad o posgrado"~"Si",
+                                                          educacion_rec=="Ns/Nr"~"Ns/Nr"))
+data_rec$universitario <- factor(data_rec$universitario, levels = c("No", "Si", "Ns/Nr"))
+
+data_rec <- data_rec %>% mutate(school_nse = case_when(cod_grupo=="Bajo"~"Bajo",
+                                                          cod_grupo=="Medio bajo"~"Medio",
+                                                          cod_grupo=="Medio"~"Medio",
+                                                          cod_grupo=="Medio alto"~"Medio",
+                                                          cod_grupo=="Alto"~"Alto"))
+data_rec$school_nse <- factor(data_rec$school_nse, levels = c("Bajo", "Medio", "Alto"))
+
+data_salud <- data_rec %>% 
+    dplyr::select(-just_pension, -just_educ, -redistribucion)
+data_salud <- na.omit(data_salud)
+data_salud$just_salud_fact <- as_factor(data_salud$just_salud)
+
+m0_h <- clmm(just_salud_fact ~ 1 + (1 | mrbd), data=data_salud)
+
+m1_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_salud) 
+
+m2_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + (1 | mrbd), data=data_salud) 
+
+m3_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_salud) 
+
+m4_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + school_nse + simce + (1 | mrbd), data=data_salud) 
+
+m5_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + school_nse + simce +
+    mean_educ + cod_depe2 +(1 | mrbd), data=data_salud) 
+
+modelos_health <- list(m0_h, m1_h, m2_h, m3_h, m4_h, m5_h)
+
+```
+
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Cumulative Link Multilevel Models for Justifying Differential Access to Health Care"
+#| label: tbl-ordinal-health
+
+ccoef <- list(
+  "1|2" = "Strongly Disagree|Disagree",
+  "2|3" = "Disagree|Agree",
+  "3|4" = "Agree|Strongly Agree",
+  inteligencia_esc = "School talent",
+  esfuerzo_esc = "School effort",
+  inteligencia_soc = "Social talent",
+  esfuerzo_soc = "Social effort",
+  merito_soc = "Deservingness",
+  universitarioSi = "University or posgraduate",
+  "universitarioNs/Nr" = "Missing",
+  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
+  acc_tec = "Technology acces",
+  internet_rec2 = "No internet connectivity (Ref.= Internet connectivity)",
+  school_nseMedio = "SES Medium",
+  school_nseAlto = "SES High",
+  simceMedio = "Simce Medium",
+  simceAlto = "Simce High",
+  mean_educ = "Prop. university level at school",
+  "cod_depe2Part. subvencionado" = "Subsidized Private",
+  "cod_depe2Part. privado" = "Private")
+
+texreg::texreg(
+  l = modelos_health,
+  caption = NULL,
+  stars = c(0.05, 0.01, 0.001),
+  custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
+  threeparttable = T,
+  custom.model.names = paste0(rep("Model ",6), seq(0,5)),
+  custom.coef.map = ccoef,
+  leading.zero = TRUE,
+  use.packages = FALSE,
+  booktabs = TRUE,
+  scalebox = 0.7,
+  groups = list("Parental education (Ref.= Non-university)" = 9:10, "Socioeconomic level (Ref.= Low)" = 14:15, "Achievement score (Ref.= Low)" = 16:17, "School dependence (Ref.= Public)" = 19:20),
+  custom.gof.names = c("Log Likelihood",
+                       "AIC", 
+                       "BIC", 
+                       "Num.obs",
+                       "Num. groups: Schools",
+                       "Var: Schools (Intercept)"))
+
+               
+```
+
+
+```{r echo=FALSE}
+data_pension <- data_rec %>% 
+    dplyr::select(-just_educ, -just_salud, -redistribucion)
+data_pension <- na.omit(data_pension)
+data_pension$just_pension_fact <- as_factor(data_pension$just_pension)
+
+m0_p <- clmm(just_pension_fact ~ 1 + (1 | mrbd), data=data_pension)
+
+m1_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc +
+             esfuerzo_esc + inteligencia_soc + esfuerzo_soc +
+             merito_soc + (1 | mrbd), data=data_pension) 
+
+m2_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc +
+             esfuerzo_esc + inteligencia_soc + esfuerzo_soc +
+             merito_soc + universitario + libros_rec +
+             (1 | mrbd), data=data_pension) 
+
+m3_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc +
+             esfuerzo_esc + inteligencia_soc + esfuerzo_soc +
+             merito_soc + universitario + libros_rec + acc_tec +
+             internet_rec + (1 | mrbd), data=data_pension) 
+
+m4_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc +
+             esfuerzo_esc + inteligencia_soc + esfuerzo_soc +
+             merito_soc + universitario + libros_rec + acc_tec + 
+             internet_rec + school_nse + simce + (1 | mrbd),
+             data=data_pension) 
+
+m5_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc +
+             esfuerzo_esc + inteligencia_soc + esfuerzo_soc +
+             merito_soc + universitario + libros_rec + acc_tec + 
+             internet_rec + school_nse + simce + mean_educ + 
+             cod_depe2 + (1 | mrbd), data=data_pension) 
+
+modelos_pension <- list(m0_p, m1_p, m2_p, m3_p, m4_p, m5_p)
+
+```
+
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Cumulative Link Multilevel Models for Justifying Differential Access to Pensions"
+#| label: tbl-ordinal-pension
+
+texreg::texreg(
+  l = modelos_pension,
+  caption = NULL,
+  stars = c(0.05, 0.01, 0.001),
+  custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
+  threeparttable = T,
+  custom.model.names = paste0(rep("Model ",6), seq(0,5)),
+  custom.coef.map = ccoef,
+  leading.zero = TRUE,
+  use.packages = FALSE,
+  booktabs = TRUE,
+  scalebox = 0.7,
+  groups = list("Parental education (Ref.= Non-university)" = 9:10, "Socioeconomic level (Ref.= Low)" = 14:15, "Achievement score (Ref.= Low)" = 16:17, "School dependence (Ref.= Public)" = 19:20),
+  custom.gof.names = c("Log Likelihood",
+                       "AIC", 
+                       "BIC", 
+                       "Num.obs",
+                       "Num. groups: Schools",
+                       "Var: Schools (Intercept)"))
+               
+```
+
+
+```{r echo=FALSE}
+data_educ <- data_rec %>% 
+    dplyr::select(-just_pension, -just_salud, -redistribucion)
+data_educ <- na.omit(data_educ)
+data_educ$just_educ_fact <- as_factor(data_educ$just_educ)
+
+m0_e <- clmm(just_educ_fact ~ 1 + (1 | mrbd), data=data_educ)
+
+m1_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_educ) 
+
+m2_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + (1 | mrbd), data=data_educ) 
+
+m3_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_educ) 
+
+m4_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + school_nse + simce + (1 | mrbd), data=data_educ) 
+
+m5_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
+    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
+    libros_rec + acc_tec + internet_rec + school_nse + simce +
+    mean_educ + cod_depe2 + (1 | mrbd), data=data_educ) 
+
+modelos_educ <- list(m0_e, m1_e, m2_e, m3_e, m4_e, m5_e)
+
+```
+
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Cumulative Link Multilevel Models for Justifying Differential Access to Education"
+#| label: tbl-ordinal-educ
+
+texreg::texreg(
+  l = modelos_educ,
+  caption = NULL,
+  stars = c(0.05, 0.01, 0.001),
+  custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
+  threeparttable = T,
+  custom.model.names = paste0(rep("Model ",6), seq(0,5)),
+  custom.coef.map = ccoef,
+  leading.zero = TRUE,
+  use.packages = FALSE,
+  booktabs = TRUE,
+  scalebox = 0.7,
+  groups = list("Parental education (Ref.= Non-university)" = 9:10, "Socioeconomic level (Ref.= Low)" = 14:15, "Achievement score (Ref.= Low)" = 16:17, "School dependence (Ref.= Public)" = 19:20),
+  custom.gof.names = c("Log Likelihood",
+                       "AIC", 
+                       "BIC", 
+                       "Num.obs",
+                       "Num. groups: Schools",
+                       "Var: Schools (Intercept)"))
+               
+```
+
+
+
+
+```{r echo=FALSE, include=FALSE}
+
+data_bienestar <- data_bienestar %>% mutate(universitario = case_when(educacion_rec=="Ed Basica"~"No",
+                                                          educacion_rec=="Ed Media"~"No",
+                                                          educacion_rec=="Ed Tecnica"~"No",
+                                                          educacion_rec=="Universidad o posgrado"~"Si",
+                                                          educacion_rec=="Ns/Nr"~"Ns/Nr"))
+data_bienestar$universitario <- factor(data_bienestar$universitario, levels = c("No", "Si", "Ns/Nr"))
+
+data_bienestar <- data_bienestar %>% mutate(school_nse = case_when(cod_grupo=="Bajo"~"Bajo",
+                                                          cod_grupo=="Medio bajo"~"Medio",
+                                                          cod_grupo=="Medio"~"Medio",
+                                                          cod_grupo=="Medio alto"~"Medio",
+                                                          cod_grupo=="Alto"~"Alto"))
+data_bienestar$school_nse <- factor(data_bienestar$school_nse, levels = c("Bajo", "Medio", "Alto"))
+
+
+reg0_bienestar <- lmer(bienestar ~ 1 + (1 | mrbd), data = data_bienestar)
+
+reg1_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
+                         inteligencia_soc + esfuerzo_soc + merito_soc + 
+                         (1 | mrbd), data=data_bienestar)
+
+reg2_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
+                         inteligencia_soc + esfuerzo_soc + merito_soc + 
+                         universitario + libros_rec + (1 | mrbd), data=data_bienestar)
+
+reg3_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
+                         inteligencia_soc + esfuerzo_soc + merito_soc + 
+                         universitario + libros_rec + acc_tec + 
+                         internet_rec +  (1 | mrbd), data=data_bienestar)
+
+reg4_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
+                         inteligencia_soc + esfuerzo_soc + merito_soc + 
+                         universitario + libros_rec + acc_tec + 
+                         internet_rec +  school_nse + simce + 
+                         (1 | mrbd), data=data_bienestar)
+
+reg5_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
+                         inteligencia_soc + esfuerzo_soc + merito_soc + 
+                         universitario + libros_rec + acc_tec + 
+                         internet_rec +  school_nse + simce + 
+                         mean_educ + cod_depe2 + 
+                         (1 | mrbd), data=data_bienestar)
+```
+
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Linear mixed-effects models for meritocracy perception and market justice preferences"
+#| label: tbl-lineal-reg-complete
+ccoef <- list(
+ "(Intercept)" = "Constant",
+  inteligencia_esc = "School talent",
+  esfuerzo_esc = "School effort",
+  inteligencia_soc = "Social talent",
+  esfuerzo_soc = "Social effort",
+  merito_soc = "Deservingness",
+  universitarioSi = "University or posgraduate",
+  "universitarioNs/Nr" = "Missing",
+  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
+  acc_tec = "Technology acces",
+  internet_rec2 = "No internet connectivity (Ref.= Internet connectivity)",
+  school_nseMedio = "SES Medium",
+  school_nseAlto = "SES High",
+  simceMedio = "Simce Medium",
+  simceAlto = "Simce High",
+  mean_educ = "Prop. university level at school",
+  "cod_depe2Part. subvencionado" = "Subsidized Private",
+  "cod_depe2Part. privado" = "Private")
+
+texreg::texreg(
+  l = list(reg0_bienestar, reg1_bienestar, reg2_bienestar, reg3_bienestar, reg4_bienestar, reg5_bienestar),
+  caption = NULL,
+  stars = c(0.05, 0.01, 0.001),
+  custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
+  threeparttable = T,
+  custom.model.names = paste0(rep("Model ",6), seq(0,5)),
+  custom.coef.map = ccoef,
+  leading.zero = TRUE,
+  use.packages = FALSE,
+  booktabs = TRUE,
+  scalebox = 0.7,
+  groups = list("Parental education (Ref.= Non-university)" = 7:8, "Socioeconomic level (Ref.= Low)" = 12:13, "Achievement score (Ref.= Low)" = 14:15, "School dependence (Ref.= Public)" = 16:18),
+   custom.gof.names = c("AIC", 
+                               "BIC", 
+                               "Log Likelihood", 
+                               "Num.obs",
+                               "Num. groups: Schools",
+                               "Var: Schools (Intercept)",
+                               "Var: Residual"))
+
+```
+
+
+```{r}
+
+load("input/data/data_rec.RData")
+
+data_rec <- data_rec %>% rowwise() %>%  mutate(educacion_rec2 = case_when(educacion_rec=="Ed Basica"~"Low level",
+                                                 educacion_rec=="Ed Media"~"Low level",
+                                                 educacion_rec=="Ed Tecnica"~"Low level",
+                                                 educacion_rec=="Universidad o posgrado"~"University or Postgraduate",
+                                                 educacion_rec=="Ns/Nr"~"Missing"
+                                                 ))
+data_rec$educacion_rec2 <- factor(data_rec$educacion_rec2, levels = c("Low level", "University or Postgraduate", "Missing"))
+
+
+data_rec <- data_rec %>% rowwise() %>%  mutate(cod_grupo2  = case_when(cod_grupo=="Bajo"~"Bajo",
+                                                                       cod_grupo=="Medio bajo"~"Bajo",
+                                                                       cod_grupo=="Medio"~"Bajo",
+                                                                       cod_grupo=="Medio alto"~"Alto",
+                                                                       cod_grupo=="Alto"~"Alto"))
+data_rec$cod_grupo2 <- factor(data_rec$cod_grupo2, levels = c("Bajo", "Alto"))
+data_rec$simce <- factor(data_rec$simce, labels = c("Low", "Medium", "High"))
+
+
+data_bienestar <- na.omit(data_rec)
+#data_bienestar <- data_bienestar %>% mutate(pension_rec = 5-just_pension,
+#                                            educ_rec = 5-just_educ,
+#                                            salud_rec = 5-just_salud)
+data_bienestar <- data_bienestar %>% rowwise() %>% dplyr::mutate(bienestar = mean(c(just_educ, just_salud, just_pension), na.omit=TRUE))
+data_bienestar$bienestar <- round(data_bienestar$bienestar, 2)
+
+
+```
+
+```{r}
+
+# meritocracia x ses familiar (educacion)
+reg10_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*esfuerzo_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+
+reg11_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*merito_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+
+reg12_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*inteligencia_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+
+reg13_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2*esfuerzo_esc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+
+reg14_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2*inteligencia_esc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
+```
+
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Linear mixed-effects models for meritocracy perception, parental education and market justice preferences"
+#| label: tbl-interac-educparent
+
+
+ccoef <- list(
+  "(Intercept)" = "Constant",
+  inteligencia_esc = "School talent",
+  esfuerzo_esc = "School effort",
+  inteligencia_soc = "Social talent",
+  esfuerzo_soc = "Social effort",
+  merito_soc = "Deservingness",
+  "educacion_rec2University or Postgraduate" = "University or posgraduate",
+  "educacion_rec2Missing" = "Missing",
+  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
+  cod_grupo2Alto = "SES High (Ref.= Low)",
+  simceMedium = "Simce Medium",
+  simceHigh = "Simce High",
+  "educacion_rec2University or Postgraduate:esfuerzo_soc" = "University or posgraduate * Social effort",
+  "educacion_rec2Missing:esfuerzo_soc" = "Missing * Social effort",
+  "educacion_rec2University or Postgraduate:merito_soc" = "University or posgraduate * Deservingness",
+  "educacion_rec2Missing:merito_soc" = "Missing * Deservingness",
+  "educacion_rec2University or Postgraduate:inteligencia_soc" = "University or posgraduate * Social talent",
+  "educacion_rec2Missing:inteligencia_soc" = "Missing * Social talent",
+  "educacion_rec2University or Postgraduate:esfuerzo_esc" = "University or posgraduate * School effort",
+  "educacion_rec2Missing:esfuerzo_esc" = "Missing * School effort",
+  "educacion_rec2University or Postgraduate:inteligencia_esc" = "University or posgraduate * School talent",
+  "educacion_rec2Missing:inteligencia_esc" = "Missing * School talent"
+  )
+
+
+# meritocracia x ses familiar (educacion)
+
+texreg::texreg(l = list(reg10_bienestar, reg11_bienestar,
+                   reg12_bienestar, reg13_bienestar,
+                   reg14_bienestar),
+          caption = NULL,
+          stars = c(0.05, 0.01, 0.001),
+          custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
+          threeparttable = T,
+          custom.model.names = paste0(rep("Model ",5), seq(1,5)),
+          custom.coef.map = ccoef,
+          leading.zero = TRUE,
+          use.packages = FALSE,
+          booktabs = TRUE,
+          scalebox = 0.7,
+          groups = list("Parental education (Ref.= Non-university)" = 7:8,
+                        "Achievement score (Ref.= Low)" = 11:12,
+                        "Parental education x Meritocracy" = 13:22),
+          custom.gof.names = c("AIC", 
+                               "BIC", 
+                               "Log Likelihood", 
+                               "Num.obs",
+                               "Num. groups: Schools",
+                               "Var: Schools (Intercept)",
+                               "Var: Schools University or Postgraduate",
+                               "Var: Schools Missing",
+                               "Cov: Schools (Intercept) University or Postgraduate",
+                               "Cov: Schools (Intercept) Missing",
+                               "Cov: Schools University or Postgraduate, Missing",
+                               "Var: Residual"),
+          custom.gof.rows = list("Controls"=rep("Yes",5)))
+
+```
+
+
+
+
+```{r}
+
+# meritocracia x ses familiar (libros)
+
+reg15_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*esfuerzo_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
+reg16_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*merito_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
+reg17_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*inteligencia_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
+reg18_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec*esfuerzo_esc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
+reg19_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec*inteligencia_esc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
+```
+
+
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Linear mixed-effects models for meritocracy perception, books at home and market justice preferences"
+#| label: tbl-interac-books
+
+
+ccoef <- list(
+  "(Intercept)" = "Constant",
+  inteligencia_esc = "School talent",
+  esfuerzo_esc = "School effort",
+  inteligencia_soc = "Social talent",
+  esfuerzo_soc = "Social effort",
+  merito_soc = "Deservingness",
+  "educacion_rec2University or Postgraduate" = "University or posgraduate",
+  "educacion_rec2Missing" = "Missing",
+  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
+  cod_grupo2Alto = "SES High (Ref.= Low)",
+  simceMedium = "Simce Medium",
+  simceHigh = "Simce High",
+  "libros_recMás de 25:esfuerzo_soc" = "More than 25 books * Social effort",
+  "libros_recMás de 25:merito_soc" = "More than 25 books * Deservingness",
+  "libros_recMás de 25:inteligencia_soc" = "More than 25 books * Social talent",
+  "libros_recMás de 25:esfuerzo_esc" = "More than 25 books * School effort",
+  "libros_recMás de 25:inteligencia_esc" = "More than 25 books * School talent"
+  )
+
+
+# meritocracia x ses familiar (libros)
+
+texreg::texreg(l = list(reg15_bienestar, reg16_bienestar,
+                   reg17_bienestar, reg18_bienestar,
+                   reg19_bienestar),
+          caption = NULL,
+          stars = c(0.05, 0.01, 0.001),
+          custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
+          threeparttable = T,
+          custom.model.names = paste0(rep("Model ",5), seq(1,5)),
+          custom.coef.map = ccoef,
+          leading.zero = TRUE,
+          use.packages = FALSE,
+          booktabs = TRUE,
+          scalebox = 0.7,
+          groups = list("Parental education (Ref.= Non-university)" = 7:8,
+                        "Achievement score (Ref.= Low)" = 11:12,
+                        "Books at home x Meritocracy" = 13:17),
+          custom.gof.names = c("AIC", 
+                               "BIC", 
+                               "Log Likelihood", 
+                               "Num.obs",
+                               "Num. groups: Schools",
+                               "Var: Schools (Intercept)",
+                               "Var: Schools More than 25 books",
+                               "Cov: Schools (Intercept) More than 25 books",
+                               "Var: Residual"),
+          custom.gof.rows = list("Controls"=rep("Yes",5)))
+
+```
+
+
+```{r}
+
+# meritocracia x ses escuela
+
+reg20_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*esfuerzo_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
+reg21_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*merito_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
+reg22_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*inteligencia_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
+reg23_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*esfuerzo_esc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
+reg24_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*inteligencia_esc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
+```
+
+
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Linear mixed-effects models for meritocracy perception, school socioeconomic status and market justice preferences"
+#| label: tbl-interac-schoolses
+
+
+ccoef <- list(
+  "(Intercept)" = "Constant",
+  inteligencia_esc = "School talent",
+  esfuerzo_esc = "School effort",
+  inteligencia_soc = "Social talent",
+  esfuerzo_soc = "Social effort",
+  merito_soc = "Deservingness",
+  "educacion_rec2University or Postgraduate" = "University or posgraduate",
+  "educacion_rec2Missing" = "Missing",
+  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
+  cod_grupo2Alto = "SES High (Ref.= Low)",
+  simceMedium = "Simce Medium",
+  simceHigh = "Simce High",
+  "cod_grupo2Alto:esfuerzo_soc" = "SES High * Social effort",
+  "cod_grupo2Alto:merito_soc" = "SES High * Deservingness",
+  "cod_grupo2Alto:inteligencia_soc" = "SES High * Social talent",
+  "cod_grupo2Alto:esfuerzo_esc" = "SES High * School effort",
+  "cod_grupo2Alto:inteligencia_esc" = "SES High * School talent"
+  )
+
+
+# meritocracia x ses escuela
+
+texreg::texreg(l = list(reg20_bienestar, reg21_bienestar,
+                   reg22_bienestar, reg23_bienestar,
+                   reg24_bienestar),
+          caption = NULL,
+          stars = c(0.05, 0.01, 0.001),
+          custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
+          threeparttable = T,
+          custom.model.names = paste0(rep("Model ",5), seq(1,5)),
+          custom.coef.map = ccoef,
+          leading.zero = TRUE,
+          use.packages = FALSE,
+          booktabs = TRUE,
+          scalebox = 0.7,
+          groups = list("Parental education (Ref.= Non-university)" = 7:8,
+                        "Achievement score (Ref.= Low)" = 11:12,
+                        "School SES x Meritocracy" = 13:17),
+          custom.gof.names = c("AIC", 
+                               "BIC", 
+                               "Log Likelihood", 
+                               "Num.obs",
+                               "Num. groups: Schools",
+                               "Var: Schools (Intercept)",
+                               "Var: Schools SES High",
+                               "Cov: Schools (Intercept) SES High",
+                               "Var: Residual"),
+          custom.gof.rows = list("Controls"=rep("Yes",5)))
+
+```
+
+```{r}
+
+#meritocracia x prop. educacion universitaria por escuela
+
+reg20.1_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*esfuerzo_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
+reg21.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*merito_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
+reg22.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*inteligencia_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
+reg23.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*esfuerzo_esc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
+reg24.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*inteligencia_esc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
+```
+
+
+```{r}
+# meritocracia x simce
+
+reg25_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*esfuerzo_soc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+
+reg26_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*merito_soc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+
+reg27_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*inteligencia_soc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+
+reg28_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*esfuerzo_esc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+
+reg29_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*inteligencia_esc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
+```
+
+```{r echo=FALSE, results='asis'}
+#| tbl-cap: "Linear mixed-effects models for meritocracy perception, school perfomance status and market justice preferences"
+#| label: tbl-interac-schoolperfo
+
+ccoef <- list(
+  "(Intercept)" = "Constant",
+  inteligencia_esc = "School talent",
+  esfuerzo_esc = "School effort",
+  inteligencia_soc = "Social talent",
+  esfuerzo_soc = "Social effort",
+  merito_soc = "Deservingness",
+  "educacion_rec2University or Postgraduate" = "University or posgraduate",
+  "educacion_rec2Missing" = "Missing",
+  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
+  cod_grupo2Alto = "SES High (Ref.= Low)",
+  simceMedium = "Simce Medium",
+  simceHigh = "Simce High",
+  "simceMedium:esfuerzo_soc" = "Simce Medium * Social effort",
+  "simceHigh:esfuerzo_soc" = "Simce High * Social effort",
+  "simceMedium:merito_soc" = "Simce Medium * Deservingness",
+  "simceHigh:merito_soc" = "Simce High * Deservingness",
+  "simceMedium:inteligencia_soc" = "Simce Medium * Social talent",
+  "simceHigh:inteligencia_soc" = "Simce High * Social talent",
+  "simceMedium:esfuerzo_esc" = "Simce Medium * School effort",
+  "simceHigh:esfuerzo_esc" = "Simce High * School effort",
+  "simceMedium:inteligencia_esc" = "Simce Medium * School talent",
+  "simceHigh:inteligencia_esc" = "Simce High * School talent"
+  )
+
+
+# meritocracia x perfomance escuela
+
+texreg::texreg(l = list(reg25_bienestar, reg26_bienestar,
+                   reg27_bienestar, reg28_bienestar,
+                   reg29_bienestar),
+          caption = NULL,
+          stars = c(0.05, 0.01, 0.001),
+          custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
+          threeparttable = T,
+          custom.model.names = paste0(rep("Model ",5), seq(1,5)),
+          custom.coef.map = ccoef,
+          leading.zero = TRUE,
+          use.packages = FALSE,
+          booktabs = TRUE,
+          scalebox = 0.7,
+          groups = list("Parental education (Ref.= Non-university)" = 7:8,
+                        "Achievement score (Ref.= Low)" = 11:12,
+                        "School perfomance (SIMCE) x Meritocracy" = 13:22),
+          custom.gof.names = c("AIC", 
+                               "BIC", 
+                               "Log Likelihood", 
+                               "Num.obs",
+                               "Num. groups: Schools",
+                               "Var: Schools (Intercept)",
+                               "Var: Schools Simce Medium",
+                               "Var: Schools Simce High",
+                               "Cov: Schools (Intercept) Simce Medium",
+                               "Cov: Schools (Intercept) Simce High",
+                               "Cov: Schools Simce Medium, Simce High",
+                               "Var: Residual"),
+          custom.gof.rows = list("Controls"=rep("Yes",5)))
+
+```

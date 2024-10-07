@@ -17,14 +17,13 @@ author:
       - ref: 2
 affiliations: 
   - id: 1
-    name: Departamento de Sociología, Universidad de Chile
+    name: Departmento de Sociología, Universidad de Chile
   - id: 2
-    name: Instituto de Sociología, Universidad Católica de Chile
+    name: Instituto de Sociología, Universidad Católica de Chile 
 bibliography: "/Users/macbookair/Documents/GitHub/merit-factorial/input/bib/merit-factorial.bib"
 csl: "/Users/macbookair/Documents/GitHub/merit-factorial/input/bib/apa6.csl"
 link-citations: true
 linestretch: 1.15       
-mainfont: Times New Roman
 fontsize: 12pt          
 geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
 papersize: letter
@@ -37,9 +36,18 @@ fig-width: 7.5
 
 La creencia en que las disparidades económicas se justifican por diferencias en elementos meritocráticos --- como esfuerzo y talento individual [@young_rise_1958] --- han sido identificadas como mecanismos clave para explicar la persistencia de las desigualdades. Desde sus comienzos, las instituciones educativas han sido fundamentales en la promoción de este tipo de valores, dado su vínculo con las promesas de movilidad social y mejores oportunidades de vida. Ante los desafíos derivados de las diferentes conceptualizaciones y mediciones de la meritocracia, Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición para evaluar las percepciones y preferencias meritocráticas y no meritocráticas. Con el propósito de contribuir a la investigación empírica sobre la formación de la meritocracia y sus factores relacionados en edades tempranas [@darnon_where_2018; @batruch_belief_2022; @wiederkehr_belief_2015], este estudio se propone evaluar la aplicabilidad de esta escala en población escolar en Chile, un país caracterizado por una aguda y persistente desigualdad económica y que cuenta un sistema educacional altamente estratificado [@corvalan_mercado_2017; @chancel_world_2022].
 
-Argumentamos en primer lugar que existe una distinción entre percepción y preferencias en la meritocracia. Mientras la percepción se asocia a como las personas observan el funcinoamiento de principios meritocráticos en la sociedad (lo que es), las preferencias se refieren a juicios normativos (lo que debería ser). La segunda distinción tiene que ver con elementos meritocráticos y no meritocráticos. En este caso, se considera también que aspectos como el rol de los contactos personales y la riqueza familiar no son necesariamente opuestos a la percepción y valoración del esfuerzo y del talento en la obtención de logros y recompensas. 
+Argumentamos en primer lugar que existe una distinción entre percepción y preferencias en la meritocracia. Mientras la percepción se asocia a como las personas observan el funcionamiento de principios meritocráticos en la sociedad (lo que es), las preferencias se refieren a juicios normativos (lo que debería ser). La segunda distinción tiene que ver con elementos meritocráticos y no meritocráticos. En este caso, se considera también que aspectos como el rol de los contactos personales y la riqueza familiar no son necesariamente opuestos a la percepción y valoración del esfuerzo y del talento en la obtención de logros y recompensas. 
 
-Para poder establecer en qué medida es posible reconocer las distintas dimensiones de la meritocracia en la población escolar se implementará un procedimiento de análisis factorial confirmatorio en datos de estudiantes chilenos. Además, se realizarán estimaciones de invarianza entre grupos y también longitudinal. Finalmente, planteamos que los factores meritocráticos se asocian positivamente con las preferencias por justicia de mercado en salud, pensiones y educación [@lindh_public_2015], mientras lo opuesto ocurre para los factores no meritocráticos.
+Para poder establecer en qué medida es posible reconocer las distintas dimensiones de la meritocracia en la población escolar se implementará un procedimiento de análisis factorial confirmatorio en datos de estudiantes chilenos. Además, se realizarán estimaciones de invarianza longitudinal entre dos olas de una muestra de estudiantes en Chile. Finalmente, planteamos que los factores meritocráticos se asocian positivamente con las preferencias por justicia de mercado en salud, pensiones y educación [@lindh_public_2015], mientras lo opuesto ocurre para los factores no meritocráticos.
+
+# Hipótesis
+
+- $H_1$: La percepción de meritocracia es una variable latente construida a partir de indicadores que miden la importancia atribuida al talento y al esfuerzo para lograr mayores recompensas en la vida.
+- $H_2$: La percepción no meritocrática es una variable latente derivada de indicadores que reflejan el acuerdo con afirmaciones de que las personas con contactos personales y padres adinerados tienen más probabilidades de tener éxito en la vida.
+- $H_3$: Las preferencias meritocráticas funcionan como una variable latente basada en el valor normativo asignado al esfuerzo y al talento.
+- $H_4$: Las preferencias no meritocráticas funcionan como una variable latente basada en el valor normativo asignado al uso de contactos personales y tener padres adinerados.
+- $H_5$: Las escalas de meritocracia y no meritocracia presentan invarianza métrica entre las dos olas del estudio.
+- $H_6$: Los factores meritocráticos están positivamente asociados con las preferencias por la justicia de mercado en salud, pensiones y educación, mientras que lo contrario se observa para los factores no meritocráticos.
 
 # Datos, variables y métodos
 
@@ -58,7 +66,7 @@ Para evaluar las hipótesis, empleamos análisis factoriales confirmatorios (CFA
 
 # Resultados
 
-Los resultados preliminares indican que la escala presenta buenos indicadores de ajuste y que sus dimensiones se corresponden con el modelo conceptual multidimensional propuesto, con altas contribuciones factoriales de sus ítems. Con el análisis de invarianza encontramos evidencia que respalda la equivalencia longitudinal de la escala en las dos olas del estudio. Adicionalmente, los modelos de ecuaciones estructurales muestran que la escala predice las preferencias por justicia de mercado en la manera esperada, tanto a nivel agregado como en los ítems por separado. Estos hallazgos contribuyen tanto al desarrollo de la medición de la meritocracia como a la investigación empírica que examina su relación con diversas preferencias por la desigualdad en la etapa escolar en Chile.
+Los resultados preliminares indican que la escala presenta buenos indicadores de ajuste y que sus dimensiones se corresponden con el modelo conceptual multidimensional propuesto, con altas contribuciones factoriales de sus ítems. Con el análisis de invarianza encontramos evidencia que respalda la equivalencia longitudinal de la escala en las dos olas del estudio. Adicionalmente, los modelos de ecuaciones estructurales muestran que la escala predice las preferencias por justicia de mercado en la manera esperada, tanto a nivel agregado como en los ítems de salud, pensiones y educación por separado. Estos hallazgos contribuyen tanto al desarrollo de la medición de la meritocracia como a la investigación empírica que examina su relación con diversas preferencias por justificación de la desigualdad en la etapa escolar en Chile.
 
 # Pre-registro
 
@@ -74,7 +82,7 @@ El pre-registro del estudio puede encontrarse en este [link](https://osf.io/2uhr
 #| label: wordstats
 #| warning: false
 #| message: false
-wordcount <- wordcountaddin::text_stats('extended-abstract.qmd')
+wordcount <- wordcountaddin::text_stats('extended-abstract-demosal2025.qmd')
 words <- substr(wordcount[3], start=19, stop=29)
 ```
 

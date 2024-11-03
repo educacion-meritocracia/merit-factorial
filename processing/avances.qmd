@@ -19,6 +19,8 @@ format:
       - edumer.scss
     code-link: true
     title-block-banner: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 <style>
@@ -92,10 +94,15 @@ rm(list = ls())
 #| echo: true
 #| output: false
 
-load(file = here("output", "data", "db_proc.RData"))
+load(file = here("output", "data", "db1_proc.RData"))
+load(file = here("output", "data", "db_long_proc.RData"))
 
-names(db)
-glimpse(db)
+
+names(db1)
+glimpse(db1)
+
+names(db_long)
+glimpse(db_long)
 theme_set(theme_ggdist())
 
 ```
@@ -110,10 +117,7 @@ theme_set(theme_ggdist())
 #| tbl-cap: "Estadísticos descriptivos"
 #| tbl-cap-location: top
 
-db <- db %>% select(-n_miss_all)
-
-
-db %>% 
+db1 %>% 
   psych::describe() %>% 
   as.data.frame() %>% 
   dplyr::select("Mean"=mean,"SD"=sd,"Min"=min,"Max"=max) %>% 
@@ -125,9 +129,9 @@ db %>%
 ```{r}
 #| label: fig-likert
 
-a <- db %>% 
+a <- db1 %>% 
   select(starts_with("perc")) %>% 
-  sjPlot::plot_likert(geom.colors = "RdBu",
+  sjPlot::plot_likert(geom.colors = "Rdb1u",
                       title = c("a. Perceptions"),
                       geom.size = 0.8,
                       axis.labels = c("Effort", "Talent", "Rich Parents", "Contacts"),
@@ -139,9 +143,9 @@ a <- db %>%
                       ) +
   ggplot2::theme(legend.position = "none")
 
-b <- db %>% 
+b <- db1 %>% 
   select(starts_with("pref")) %>% 
-  sjPlot::plot_likert(geom.colors = "RdBu",
+  sjPlot::plot_likert(geom.colors = "Rdb1u",
                       title = c("b. Preferences"),
                       geom.size = 0.8,
                       axis.labels = c("Effort", "Talent", "Rich Parents", "Contacts"),
@@ -153,7 +157,7 @@ b <- db %>%
   ) +
   ggplot2::theme(legend.position = "bottom")
 
-likerplot <- a / b + plot_annotation(caption = paste0("Source: Authors calculations based on EDUMER data"," (n = ",dim(db)[1],")"
+likerplot <- a / b + plot_annotation(caption = paste0("Source: Authors calculations based on EDUMER Wave 1 data"," (n = ",dim(db1)[1],")"
 ))
 
 likerplot
@@ -165,9 +169,9 @@ likerplot
 ```{r}
 #| label: fig-correlaciones
 
-M <- psych::polychoric(db[c(2:9,13)])
+M <- psych::polychoric(db1[c(2:9,13)])
 
-P <- cor(db[c(2:9,13)], method = "spearman")
+P <- cor(db1[c(2:9,13)], method = "spearman")
 
 diag(M$rho) <- NA
 
@@ -222,7 +226,7 @@ corrplot::corrplot(M$rho,
 #| label: mjp index alpha
 #| echo: true
 
-matriz <- db %>% select(just_health,just_pension, just_educ)
+matriz <- db1 %>% select(just_health,just_pension, just_educ)
 matriz_poly <- polychoric(matriz) 
 psych::alpha(matriz_poly$rho) # coef = 0.83
 ```
@@ -245,12 +249,12 @@ model_cfa <- '
 # estimation for each order set
 
 m1_cfa <- cfa(model = model_cfa, 
-              data = db,
+              data = db1,
               estimator = "MLR", 
               std.lv = F) # Continuous/ estimator ML Robust
 
 m2_cfa <- cfa(model = model_cfa, 
-              data = db, 
+              data = db1, 
               estimator = "DWLS",
               ordered = T,
               std.lv = F)
@@ -258,6 +262,9 @@ m2_cfa <- cfa(model = model_cfa,
 summary(m2_cfa, fit.measures = T, standardized = T) 
 
 ```
+
+
+
 ```{r}
 #| label: tbl-dwls
 #| echo: true
@@ -273,14 +280,14 @@ kable(left_join(x = standardizedsolution(m1_cfa) %>%
 
 ```
 
-### CFA básica y media
+### CFA Ola 1 y 2
 
 ```{r}
 ## Modelos por separado para basica y media
 
 fit.conf <- cfa(model = model_cfa, 
-                data = db, 
-                group = "curse_level",
+                data = db_long, 
+                group = "ola",
                 estimator = "DWLS",
                 ordered = T,
                 std.lv = F)
@@ -309,7 +316,7 @@ mjp ~  perc_merit + perc_nmerit + pref_merit + pref_nmerit
 '
 
 ## Ajustar modelo
-f_sem1 <- sem(m_sem1, data = db)
+f_sem1 <- sem(m_sem1, data = db1)
 
 ## Ver resultados completos
 summary(f_sem1, fit.measures = T, standardized = T)
@@ -322,8 +329,8 @@ summary(f_sem1, fit.measures = T, standardized = T)
 #| label: tab-invariance
 #| echo: true
 inv01 <- semTools::measurementInvariance(model = model_cfa,
-                                         data = db,
-                                         group = "curse_level",
+                                         data = db_long,
+                                         group = "ola",
                                          estimator = "ML",
                                          strict = T,
                                          quiet = T)

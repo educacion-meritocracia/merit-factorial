@@ -144,7 +144,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>               <span class="va">patchwork</span>,</span>
 <span>               <span class="va">semTable</span>,</span>
 <span>               <span class="va">semTools</span>,</span>
-<span>               <span class="va">gtools</span><span class="op">)</span></span>
+<span>               <span class="va">gtools</span>,</span>
+<span>               <span class="va">RColorBrewer</span>,</span>
+<span>               <span class="va">skimr</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>scipen<span class="op">=</span><span class="fl">999</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -167,38 +169,129 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="header-section-number">3</span> Analísis</h1>
 <section id="descriptivos" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="descriptivos">
 <span class="header-section-number">3.1</span> Descriptivos</h2>
+<div class="cell" data-tbl-cap-location="top">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">t1</span> <span class="op">&lt;-</span> <span class="va">db1</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="va">curse_level</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">skim</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">yank</span><span class="op">(</span><span class="st">"numeric"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">as_tibble</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>,<span class="va">p0</span>,<span class="st">"-"</span>,<span class="va">p100</span>,<span class="st">")"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">mutate_if</span><span class="op">(</span>.predicate <span class="op">=</span> <span class="va">is.numeric</span>, .funs <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">.</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="st">"Variable"</span> <span class="op">=</span> <span class="va">skim_variable</span>,<span class="st">"Mean"</span><span class="op">=</span> <span class="va">mean</span>, <span class="st">"SD"</span><span class="op">=</span><span class="va">sd</span>, <span class="st">"Range"</span> <span class="op">=</span> <span class="va">range</span>, <span class="st">"Histogram"</span><span class="op">=</span><span class="va">hist</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">t1</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"markdown"</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="tbl-summary" class="cell quarto-float anchored" data-tbl-cap-location="top">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabla&nbsp;1: Estadísticos descriptivos
 </figcaption><div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">db1</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="st">"Mean"</span><span class="op">=</span><span class="va">mean</span>,<span class="st">"SD"</span><span class="op">=</span><span class="va">sd</span>,<span class="st">"Min"</span><span class="op">=</span><span class="va">min</span>,<span class="st">"Max"</span><span class="op">=</span><span class="va">max</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">.</span>,<span class="fl">2</span><span class="op">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                  Mean   SD Min Max
-curse_level*      1.52 0.50   1   2
-perc_effort       2.76 0.77   1   4
-perc_talent       2.84 0.76   1   4
-perc_rich_parents 3.02 0.95   1   4
-perc_contact      3.06 0.85   1   4
-pref_effort       3.38 0.79   1   4
-pref_talent       2.63 0.84   1   4
-pref_rich_parents 2.54 0.78   1   4
-pref_contact      2.66 0.81   1   4
-just_educ         2.28 0.89   1   4
-just_health       2.00 0.94   1   4
-just_pension      2.05 0.87   1   4
-mjp               2.11 0.75   1   4</code></pre>
+<div class="cell-output-display">
+<table class="do-not-create-environment cell table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">SD</th>
+<th style="text-align: left;">Range</th>
+<th style="text-align: left;">Histogram</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">perc_effort</td>
+<td style="text-align: right;">2.76</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▁▅▁▇▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">perc_talent</td>
+<td style="text-align: right;">2.84</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▁▃▁▇▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">perc_rich_parents</td>
+<td style="text-align: right;">3.02</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▂▅▁▇▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">perc_contact</td>
+<td style="text-align: right;">3.06</td>
+<td style="text-align: right;">0.85</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▁▃▁▇▆</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pref_effort</td>
+<td style="text-align: right;">3.38</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▁▁▁▅▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pref_talent</td>
+<td style="text-align: right;">2.63</td>
+<td style="text-align: right;">0.84</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▂▇▁▇▃</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pref_rich_parents</td>
+<td style="text-align: right;">2.54</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▂▆▁▇▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pref_contact</td>
+<td style="text-align: right;">2.66</td>
+<td style="text-align: right;">0.81</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▂▅▁▇▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">just_educ</td>
+<td style="text-align: right;">2.28</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▅▇▁▆▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">just_health</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">0.94</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▇▇▁▅▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">just_pension</td>
+<td style="text-align: right;">2.05</td>
+<td style="text-align: right;">0.87</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▆▇▁▅▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mjp</td>
+<td style="text-align: right;">2.11</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: left;">(1-4)</td>
+<td style="text-align: left;">▆▇▆▃▁</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </figure>
 </div>
+</div>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">db1</span> <span class="op">%&gt;%</span> </span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, name <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">db1</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"perc"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">sjPlot</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/plot_likert.html">plot_likert</a></span><span class="op">(</span>geom.colors <span class="op">=</span> <span class="st">"Rdb1u"</span>,</span>
+<span>  <span class="fu">sjPlot</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/plot_likert.html">plot_likert</a></span><span class="op">(</span>geom.colors <span class="op">=</span> <span class="va">colors</span>,</span>
 <span>                      title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a. Perceptions"</span><span class="op">)</span>,</span>
 <span>                      geom.size <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>                      axis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Effort"</span>, <span class="st">"Talent"</span>, <span class="st">"Rich Parents"</span>, <span class="st">"Contacts"</span><span class="op">)</span>,</span>
@@ -206,13 +299,14 @@ mjp               2.11 0.75   1   4</code></pre>
 <span>                      values  <span class="op">=</span>  <span class="st">"sum.outside"</span>,</span>
 <span>                      reverse.colors <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>                      reverse.scale <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>                      show.n <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>                      show.n <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                      show.prc.sign <span class="op">=</span> <span class="cn">T</span></span>
 <span>                      <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">b</span> <span class="op">&lt;-</span> <span class="va">db1</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"pref"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">sjPlot</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/plot_likert.html">plot_likert</a></span><span class="op">(</span>geom.colors <span class="op">=</span> <span class="st">"Rdb1u"</span>,</span>
+<span>  <span class="fu">sjPlot</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/plot_likert.html">plot_likert</a></span><span class="op">(</span>geom.colors <span class="op">=</span> <span class="va">colors</span>,</span>
 <span>                      title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b. Preferences"</span><span class="op">)</span>,</span>
 <span>                      geom.size <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>                      axis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Effort"</span>, <span class="st">"Talent"</span>, <span class="st">"Rich Parents"</span>, <span class="st">"Contacts"</span><span class="op">)</span>,</span>
@@ -220,7 +314,8 @@ mjp               2.11 0.75   1   4</code></pre>
 <span>                      values  <span class="op">=</span>  <span class="st">"sum.outside"</span>,</span>
 <span>                      reverse.colors <span class="op">=</span> <span class="cn">F</span>,</span>
 <span>                      reverse.scale <span class="op">=</span> <span class="cn">T</span>,</span>
-<span>                      show.n <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>                      show.n <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                      show.prc.sign <span class="op">=</span> <span class="cn">T</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
 <span></span>
@@ -242,7 +337,7 @@ Figura&nbsp;1
 </section><section id="bivariados" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="bivariados">
 <span class="header-section-number">3.2</span> Bivariados</h2>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/tetrachor.html">polychoric</a></span><span class="op">(</span><span class="va">db1</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">9</span>,<span class="fl">13</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">M</span> <span class="op">&lt;-</span> <span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/tetrachor.html">polychoric</a></span><span class="op">(</span><span class="va">db1</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">9</span>,<span class="fl">13</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">db1</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">9</span>,<span class="fl">13</span><span class="op">)</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span>
 <span></span>
@@ -283,14 +378,92 @@ Figura&nbsp;1
 <span><span class="va">testp</span> <span class="op">&lt;-</span> <span class="fu">cor.mtest</span><span class="op">(</span><span class="va">M</span><span class="op">$</span><span class="va">rho</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#Plot the matrix using corrplot</span></span>
-<span><span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html">corrplot</a></span><span class="op">(</span><span class="va">M</span><span class="op">$</span><span class="va">rho</span>,</span>
+<span><span class="va">plot_corr</span> <span class="op">&lt;-</span> <span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/corrplot.html">corrplot</a></span><span class="op">(</span><span class="va">M</span><span class="op">$</span><span class="va">rho</span>,</span>
 <span>                   method <span class="op">=</span> <span class="st">"color"</span>,</span>
 <span>                   addCoef.col <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>                   type <span class="op">=</span> <span class="st">"upper"</span>,</span>
 <span>                   tl.col <span class="op">=</span> <span class="st">"black"</span>,</span>
 <span>                   col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#E16462"</span>, <span class="st">"white"</span>, <span class="st">"#0D0887"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fl">12</span><span class="op">)</span>,</span>
 <span>                   bg <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span>                   na.label <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span> </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>                   na.label <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">plot_corr</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$corr
+                                       (A)          (B)         (C)
+A. Perception Effort                    NA  0.521409447 -0.15905432
+B. Perception Talent           0.521409447           NA -0.04229040
+C. Perception Rich Parents    -0.159054322 -0.042290402          NA
+D. Perception Contacts        -0.099061756  0.008923036  0.60884474
+E. Preferences Effort          0.005311193  0.117389493  0.21284172
+F. Preferences Talent         -0.041925535  0.083459150  0.15947271
+G. Preferences Rich Parents    0.064666527  0.110335697  0.15334517
+H. Preferences Contacts        0.108537431  0.090604572  0.05203532
+I. Market Justice Preferences  0.134663056  0.114544086 -0.01818848
+                                       (D)          (E)         (F)        (G)
+A. Perception Effort          -0.099061756  0.005311193 -0.04192553 0.06466653
+B. Perception Talent           0.008923036  0.117389493  0.08345915 0.11033570
+C. Perception Rich Parents     0.608844741  0.212841721  0.15947271 0.15334517
+D. Perception Contacts                  NA  0.253138034  0.24863857 0.18512416
+E. Preferences Effort          0.253138034           NA  0.35846509 0.05081613
+F. Preferences Talent          0.248638574  0.358465092          NA 0.09749260
+G. Preferences Rich Parents    0.185124156  0.050816127  0.09749260         NA
+H. Preferences Contacts        0.255283512  0.058916979  0.11833169 0.61404507
+I. Market Justice Preferences -0.053341265 -0.050998736  0.14914113 0.26739746
+                                     (H)          (I)
+A. Perception Effort          0.10853743  0.129081719
+B. Perception Talent          0.09060457  0.132171293
+C. Perception Rich Parents    0.05203532  0.018417149
+D. Perception Contacts        0.25528351 -0.004204208
+E. Preferences Effort         0.05891698 -0.040485781
+F. Preferences Talent         0.11833169  0.193872506
+G. Preferences Rich Parents   0.61404507  0.314886187
+H. Preferences Contacts               NA  0.320384952
+I. Market Justice Preferences 0.26809404           NA
+
+$corrPos
+   xName                       yName x y         corr
+1    (B)        A. Perception Effort 2 9  0.521409447
+2    (C)        A. Perception Effort 3 9 -0.159054322
+3    (C)        B. Perception Talent 3 8 -0.042290402
+4    (D)        A. Perception Effort 4 9 -0.099061756
+5    (D)        B. Perception Talent 4 8  0.008923036
+6    (D)  C. Perception Rich Parents 4 7  0.608844741
+7    (E)        A. Perception Effort 5 9  0.005311193
+8    (E)        B. Perception Talent 5 8  0.117389493
+9    (E)  C. Perception Rich Parents 5 7  0.212841721
+10   (E)      D. Perception Contacts 5 6  0.253138034
+11   (F)        A. Perception Effort 6 9 -0.041925535
+12   (F)        B. Perception Talent 6 8  0.083459150
+13   (F)  C. Perception Rich Parents 6 7  0.159472709
+14   (F)      D. Perception Contacts 6 6  0.248638574
+15   (F)       E. Preferences Effort 6 5  0.358465092
+16   (G)        A. Perception Effort 7 9  0.064666527
+17   (G)        B. Perception Talent 7 8  0.110335697
+18   (G)  C. Perception Rich Parents 7 7  0.153345174
+19   (G)      D. Perception Contacts 7 6  0.185124156
+20   (G)       E. Preferences Effort 7 5  0.050816127
+21   (G)       F. Preferences Talent 7 4  0.097492597
+22   (H)        A. Perception Effort 8 9  0.108537431
+23   (H)        B. Perception Talent 8 8  0.090604572
+24   (H)  C. Perception Rich Parents 8 7  0.052035317
+25   (H)      D. Perception Contacts 8 6  0.255283512
+26   (H)       E. Preferences Effort 8 5  0.058916979
+27   (H)       F. Preferences Talent 8 4  0.118331686
+28   (H) G. Preferences Rich Parents 8 3  0.614045069
+29   (I)        A. Perception Effort 9 9  0.129081719
+30   (I)        B. Perception Talent 9 8  0.132171293
+31   (I)  C. Perception Rich Parents 9 7  0.018417149
+32   (I)      D. Perception Contacts 9 6 -0.004204208
+33   (I)       E. Preferences Effort 9 5 -0.040485781
+34   (I)       F. Preferences Talent 9 4  0.193872506
+35   (I) G. Preferences Rich Parents 9 3  0.314886187
+36   (I)     H. Preferences Contacts 9 2  0.320384952
+
+$arg
+$arg$type
+[1] "upper"</code></pre>
+</div>
 <div class="cell-output-display">
 <div id="fig-correlaciones" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-correlaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

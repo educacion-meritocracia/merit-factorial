@@ -80,7 +80,9 @@ pacman::p_load(tidyverse,
                patchwork,
                semTable,
                semTools,
-               gtools)
+               gtools,
+               RColorBrewer,
+               skimr)
 
 options(scipen=999)
 rm(list = ls())
@@ -117,21 +119,28 @@ theme_set(theme_ggdist())
 #| tbl-cap: "Estadísticos descriptivos"
 #| tbl-cap-location: top
 
-db1 %>% 
-  psych::describe() %>% 
-  as.data.frame() %>% 
-  dplyr::select("Mean"=mean,"SD"=sd,"Min"=min,"Max"=max) %>% 
-  round(.,2)
+t1 <- db1 %>% 
+  select(-curse_level) %>% 
+  skim() %>% 
+  yank("numeric") %>% 
+  as_tibble() %>% 
+  mutate(range = paste0("(",p0,"-",p100,")")) %>% 
+  mutate_if(.predicate = is.numeric, .funs = ~ round(.,2)) %>% 
+  select("Variable" = skim_variable,"Mean"= mean, "SD"=sd, "Range" = range, "Histogram"=hist) 
 
+t1 %>% 
+  kableExtra::kable(format = "markdown")
 ```
 
 
 ```{r}
 #| label: fig-likert
 
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
 a <- db1 %>% 
   select(starts_with("perc")) %>% 
-  sjPlot::plot_likert(geom.colors = "Rdb1u",
+  sjPlot::plot_likert(geom.colors = colors,
                       title = c("a. Perceptions"),
                       geom.size = 0.8,
                       axis.labels = c("Effort", "Talent", "Rich Parents", "Contacts"),
@@ -139,13 +148,14 @@ a <- db1 %>%
                       values  =  "sum.outside",
                       reverse.colors = F,
                       reverse.scale = T,
-                      show.n = FALSE
+                      show.n = FALSE,
+                      show.prc.sign = T
                       ) +
   ggplot2::theme(legend.position = "none")
 
 b <- db1 %>% 
   select(starts_with("pref")) %>% 
-  sjPlot::plot_likert(geom.colors = "Rdb1u",
+  sjPlot::plot_likert(geom.colors = colors,
                       title = c("b. Preferences"),
                       geom.size = 0.8,
                       axis.labels = c("Effort", "Talent", "Rich Parents", "Contacts"),
@@ -153,7 +163,8 @@ b <- db1 %>%
                       values  =  "sum.outside",
                       reverse.colors = F,
                       reverse.scale = T,
-                      show.n = FALSE
+                      show.n = FALSE,
+                      show.prc.sign = T
   ) +
   ggplot2::theme(legend.position = "bottom")
 
@@ -210,7 +221,7 @@ colnames(P) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
 testp <- cor.mtest(M$rho, conf.level = 0.95)
 
 #Plot the matrix using corrplot
-corrplot::corrplot(M$rho,
+plot_corr <- corrplot::corrplot(M$rho,
                    method = "color",
                    addCoef.col = "black",
                    type = "upper",
@@ -219,7 +230,7 @@ corrplot::corrplot(M$rho,
                    bg = "white",
                    na.label = "-") 
 
-
+plot_corr
 ```
 
 ```{r}
@@ -388,4 +399,30 @@ knitr::kable(tab.inv, col.names = col.nam, align = "l",
 
 ```
 
+
+```{r}
+#| echo: false
+#| include: false
+#| eval: true
+
+
+save(t1, 
+     likerplot,
+     plot_corr,
+     model_cfa,
+     m2_cfa,
+     fit.conf,
+     m_sem1,
+     f_sem1,
+     inv01,
+     conf,
+     weak,
+     strong,
+     strict,
+     tab01,
+     fit.meas,
+     tab.inv, file = here("output/results.RData"))
+
+
+```
 

@@ -339,6 +339,10 @@
       margin-right: 0; 
     }
   </style>
+  <script src="COES_2024_files/libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="COES_2024_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+  <link href="COES_2024_files/libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+  <script src="COES_2024_files/libs/bsTable-3.3.7/bootstrapTable.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -435,7 +439,7 @@
 <h2>Datos</h2>
 <div class="highlight-last" style="font-size: 120%;">
 <ul>
-<li class="fragment"><p><a href="https://github.com/educacion-meritocracia/edumer-data">Encuesta Panel Educación y Meritocracia (EDUMER)</a> en sus olas de 2023 (N = ) y 2024 (N = ) para estudiantes.</p></li>
+<li class="fragment"><p><a href="https://github.com/educacion-meritocracia/edumer-data">Encuesta Panel Educación y Meritocracia (EDUMER)</a> en sus olas de 2023 (N = 839) y 2024 (N = 612) para estudiantes.</p></li>
 <li class="fragment"><p>Aplicación de entrevistas CAWI a estudiantes de sexto básico y primero medio provenientes de 9 escuelas de la región Metropolitana y Valparaíso de Chile.</p></li>
 <li class="fragment"><p>Muestra no probabilística.</p></li>
 <li class="fragment"><p>Módulos sobre meritocracia, preferencias y desigualdad, y cuidadanía.</p></li>
@@ -444,108 +448,312 @@
 </section>
 <section id="variables" class="slide level2">
 <h2>Variables</h2>
-<div id="tbl-desc-dependientes" class="cell quarto-float">
+<p><strong>Escala de percepciones y preferencias sobre meritocracia (PPMS)</strong>: Las variables incluidas en el modelo de medición se operacionalizan según los ítems propuestos por Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#/referencias" role="doc-biblioref" onclick="">2023</a>)</span></p>
+<div id="tbl-vars-ppms" class="cell quarto-float">
 <figure class="quarto-float quarto-float-tbl">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-desc-dependientes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabla&nbsp;1: Variables dependientes
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-ppms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;1: Items de PPMS
 </figcaption>
-<div aria-describedby="tbl-desc-dependientes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="cell">
-<colgroup>
-<col style="width: 42%">
-<col style="width: 25%">
-<col style="width: 21%">
-<col style="width: 10%">
-</colgroup>
+<div aria-describedby="tbl-vars-ppms-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<table class="table table-striped table-bordered table-condensed cell" data-quarto-postprocess="true" style="font-size: 15px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Label</th>
-<th style="text-align: left;">Stats / Values</th>
-<th style="text-align: left;">Freqs (% of Valid)</th>
-<th style="text-align: left;">Valid</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Componente</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Dimensiones</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Item</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Categorías de respuesta</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">It is just that in Chile people with higher incomes can have better pensions than people with low incomes</td>
-<td style="text-align: left;">1. Strongly disagree<br>
-2. Disagree<br>
-3. Agree<br>
-4. Strongly agree</td>
-<td style="text-align: left;">1837 (30.6%)<br>
-1945 (32.4%)<br>
-1622 (27.0%)<br>
-608 (10.1%)</td>
-<td style="text-align: left;">6012<br>
-(95.9%)</td>
+<td style="text-align: center; width: 1.5cm;">Percepción</td>
+<td style="text-align: center; width: 2cm;">Meritocrática</td>
+<td style="text-align: center;">En Chile, las personas son recompensadas por sus esfuerzos</td>
+<td style="text-align: center;">Likert “muy en desacuerdo” (1) hasta “muy de acuerdo” (4)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">It is just that in Chile people who can pay have a better education for their children</td>
-<td style="text-align: left;">1. Strongly disagree<br>
-2. Disagree<br>
-3. Agree<br>
-4. Strongly agree</td>
-<td style="text-align: left;">1766 (29.7%)<br>
-1732 (29.1%)<br>
-1704 (28.6%)<br>
-750 (12.6%)</td>
-<td style="text-align: left;">5952<br>
-(94.9%)</td>
+<td style="text-align: center; width: 1.5cm;">Percepción</td>
+<td style="text-align: center; width: 2cm;">Meritocrática</td>
+<td style="text-align: center;">En Chile, las personas son recompensadas por su inteligencia y habilidad</td>
+<td style="text-align: center;">Likert “muy en desacuerdo” (1) hasta “muy de acuerdo” (4)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">It is just that in Chile people with higher incomes can access better health services than people with low incomes</td>
-<td style="text-align: left;">1. Strongly disagree<br>
-2. Disagree<br>
-3. Agree<br>
-4. Strongly agree</td>
-<td style="text-align: left;">2254 (38.0%)<br>
-1685 (28.4%)<br>
-1401 (23.6%)<br>
-593 (10.0%)</td>
-<td style="text-align: left;">5933<br>
-(94.6%)</td>
+<td style="text-align: center; width: 1.5cm;">Percepción</td>
+<td style="text-align: center; width: 2cm;">No meritocrática</td>
+<td style="text-align: center;">En Chile, a quienes tienen padres ricos les va mucho mejor en la vida</td>
+<td style="text-align: center;">Likert “muy en desacuerdo” (1) hasta “muy de acuerdo” (4)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Inequality justification index</td>
-<td style="text-align: left;">Mean (sd) : 2.2 (0.9)<br>
-min &lt; med &lt; max:<br>
-1 &lt; 2 &lt; 4<br>
-IQR (CV) : 1.7 (0.4)</td>
-<td style="text-align: left;">13 distinct values</td>
-<td style="text-align: left;">6077<br>
-(96.9%)</td>
+<td style="text-align: center; width: 1.5cm;">Percepción</td>
+<td style="text-align: center; width: 2cm;">No meritocrática</td>
+<td style="text-align: center;">En Chile, quienes tienen buenos contactos les va mejor en la vida</td>
+<td style="text-align: center;">Likert “muy en desacuerdo” (1) hasta “muy de acuerdo” (4)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 1.5cm;">Preferencia</td>
+<td style="text-align: center; width: 2cm;">Meritocrática</td>
+<td style="text-align: center;">Quienes más se esfuerzan deberían obtener mayores recompensas que quienes se esfuerzan menos</td>
+<td style="text-align: center;">Likert “muy en desacuerdo” (1) hasta “muy de acuerdo” (4)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 1.5cm;">Preferencia</td>
+<td style="text-align: center; width: 2cm;">Meritocrática</td>
+<td style="text-align: center;">Quienes poseen más talento deberían obtener mayores recompensas que quienes poseen menos talento</td>
+<td style="text-align: center;">Likert “muy en desacuerdo” (1) hasta “muy de acuerdo” (4)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 1.5cm;">Preferencia</td>
+<td style="text-align: center; width: 2cm;">No meritocrática</td>
+<td style="text-align: center;">Está bien que quienes tienen padres ricos les vaya bien en la vida</td>
+<td style="text-align: center;">Likert “muy en desacuerdo” (1) hasta “muy de acuerdo” (4)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 1.5cm;">Preferencia</td>
+<td style="text-align: center; width: 2cm;">No meritocrática</td>
+<td style="text-align: center;">Está bien que quienes tienen buenos contactos les vaya bien en la vida</td>
+<td style="text-align: center;">Likert “muy en desacuerdo” (1) hasta “muy de acuerdo” (4)</td>
 </tr>
 </tbody>
 </table>
+
+
+</div>
 </div>
 </figure>
 </div>
-<p>:::</p>
+</section>
+<section id="variables-1" class="slide level2">
+<h2>Variables</h2>
+<div class="cell fig-cap-location-top" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-likerplot" class="quarto-figure quarto-figure-center quarto-float" data-cap-location="top" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-likerplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Escala de percepciones y preferencias sobre meritocracia (PPMS)
+</figcaption>
+<div aria-describedby="fig-likerplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="COES_2024_files/figure-revealjs/fig-likerplot-1.png" class="quarto-figure quarto-figure-center" style="width:75.0%">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="variables-2" class="slide level2">
+<h2>Variables</h2>
+<p><strong>Market Justice Preferences</strong>: Índice promedio de tres indicadores que abordan el grado de justificación respecto a si el acceso a los servicios sociales en salud, pensiones y educación debe estar condicionado por los ingresos (<span class="math inline">\(\alpha\)</span> = 0.83).</p>
+<div id="tbl-vars-mjp" class="cell quarto-float">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vars-mjp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;2: Items de preferencias por justicia de mercado
+</figcaption>
+<div aria-describedby="tbl-vars-mjp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<table class="table table-striped table-bordered cell" data-quarto-postprocess="true" style="font-size: 22px; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Variable</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Etiqueta</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Media</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">DE</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Rango</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Histograma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 3 cm;">Justicia en Educación</td>
+<td style="text-align: center; width: 3 cm;">Está bien que aquellos que puedan pagar más tengan mejor educación</td>
+<td style="text-align: center;">2.28</td>
+<td style="text-align: center;">0.89</td>
+<td style="text-align: center;">(1-4)</td>
+<td style="text-align: center;">▅▇▁▆▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 3 cm;">Justicia en Salud</td>
+<td style="text-align: center; width: 3 cm;">Está bien que aquellos que puedan pagar más tengan mejor acceso a salud</td>
+<td style="text-align: center;">2.00</td>
+<td style="text-align: center;">0.94</td>
+<td style="text-align: center;">(1-4)</td>
+<td style="text-align: center;">▇▇▁▅▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 3 cm;">Justicia en Pensiones</td>
+<td style="text-align: center; width: 3 cm;">Está bien que en Chile las personas con mayores ingresos puedan tener mejores pensiones que las personas de ingresos más bajos.</td>
+<td style="text-align: center;">2.05</td>
+<td style="text-align: center;">0.87</td>
+<td style="text-align: center;">(1-4)</td>
+<td style="text-align: center;">▆▇▁▅▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 3 cm;">Market Justice Preferences</td>
+<td style="text-align: center; width: 3 cm;">Índice promedio preferencias por justicia de mercado</td>
+<td style="text-align: center;">2.11</td>
+<td style="text-align: center;">0.75</td>
+<td style="text-align: center;">(1-4)</td>
+<td style="text-align: center;">▆▇▆▃▁</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
 </section>
 <section id="métodos" class="slide level2">
 <h2>Métodos</h2>
+<div class="highlight-last" style="font-size: 110%;">
+<ol type="1">
+<li class="fragment"><p>Análisis Factorial Confirmatorio (CFA) en base a un modelo de cuatro factores latentes <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#/referencias" role="doc-biblioref" onclick="">Castillo et&nbsp;al., 2023</a>)</span>, con estimador Diagonal Weighted Least Squares (DWLS) debido al nivel ordinal de los ítems <span class="citation" data-cites="kline_principles_2023">(<a href="#/referencias" role="doc-biblioref" onclick="">Kline, 2023</a>)</span></p></li>
+<li class="fragment"><p>Invarianza longitudinal con cuatro módelos jerárquicos <span class="citation" data-cites="liu_testing_2017">(<a href="#/referencias" role="doc-biblioref" onclick="">Liu et&nbsp;al., 2017</a>)</span>:</p>
 <ul>
-<li>Métodos</li>
-</ul>
+<li class="fragment">Configural (misma estructura factorial)</li>
+<li class="fragment">Débil (+ mismas cargas factoriales)</li>
+<li class="fragment">Fuerte (+ mismos interceptos)</li>
+<li class="fragment">Estricto (+ mismas varianzas de error)</li>
+</ul></li>
+<li class="fragment"><p>Regresiones de variables observadas en variables latentes (SEM): factores meritocráticos y no meritocráticos sobre preferencias por justicia de mercado <span class="citation" data-cites="castillo_socialization_2024">(<a href="#/referencias" role="doc-biblioref" onclick="">Castillo et&nbsp;al., 2024</a>)</span></p></li>
+</ol>
+</div>
 </section></section>
 <section>
 <section id="resultados" class="title-slide slide level1 center" data-background-color="#5f5758">
 <h1>Resultados</h1>
 
 </section>
-<section id="modelos" class="slide level2">
-<h2>Modelos</h2>
-<div style="font-size: 100%;">
+<section id="correlaciones" class="slide level2">
+<h2>Correlaciones</h2>
+<div style="font-size: 120%;">
 <div class="cell fig-cap-location-top" data-layout-align="center">
-<div id="fig-lineal-reg" class="quarto-figure quarto-figure-center quarto-float" data-cap-location="top" data-fig-align="center">
+<div class="cell-output-display">
+<div id="fig-matriz" class="quarto-figure quarto-figure-center quarto-float" data-cap-location="top" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-lineal-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1: Linear mixed-effects models for meritocracy perception and market justice preferences
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-matriz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Matriz de correlaciones
 </figcaption>
-<div aria-describedby="fig-lineal-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="COES_2024_files/figure-revealjs/fig-lineal-reg-1.png" class="quarto-figure quarto-figure-center" style="width:80.0%">
+<div aria-describedby="fig-matriz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="COES_2024_files/figure-revealjs/fig-matriz-1.png" class="quarto-figure quarto-figure-center" style="width:80.0%">
 </div>
 </figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="análisis-factorial-confirmatorio" class="slide level2">
+<h2>Análisis Factorial Confirmatorio</h2>
+<div style="font-size: 120%;">
+<div class="cell fig-cap-location-top" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-cfa" class="quarto-figure quarto-figure-center quarto-float" data-cap-location="top" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-cfa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Análisis factorial confirmatorio de PPMS en población escolar Chile
+</figcaption>
+<div aria-describedby="fig-cfa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="images/cfa_diag.png" class="quarto-figure quarto-figure-center" style="width:110.0%">
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="invarianza-longitudinal" class="slide level2">
+<h2>Invarianza longitudinal</h2>
+<div style="font-size: 120%;">
+<div id="tbl-invarianza" class="cell quarto-float">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-invarianza-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabla&nbsp;3: Resultados de invarianza de medida de grupos múltiples para PPMS
+</figcaption>
+<div aria-describedby="tbl-invarianza-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<table class="table table-striped table-bordered table-condensed cell" data-quarto-postprocess="true" style="font-size: 22px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">χ^2 (df)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">CFI</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">RMSEA (90 CI)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Δ χ^2 (Δ df)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Δ CFI</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Δ RMSEA</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">Configural</td>
+<td style="text-align: center;">102.1 (28)</td>
+<td style="text-align: center; width: 4cm;">0.958</td>
+<td style="text-align: center; width: 4cm;">0.06 (0.048-0.073)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">Weak</td>
+<td style="text-align: center;">123.61 (32)</td>
+<td style="text-align: center; width: 4cm;">0.948</td>
+<td style="text-align: center; width: 4cm;">0.063 (0.051-0.075)</td>
+<td style="text-align: center;">21.509 (4) ***</td>
+<td style="text-align: center;">-0.010</td>
+<td style="text-align: center;">0.002</td>
+<td style="text-align: center;">Reject</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">Strong</td>
+<td style="text-align: center;">127.72 (36)</td>
+<td style="text-align: center; width: 4cm;">0.948</td>
+<td style="text-align: center; width: 4cm;">0.059 (0.048-0.071)</td>
+<td style="text-align: center;">4.11 (4)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">-0.004</td>
+<td style="text-align: center;">Accept</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">Strict</td>
+<td style="text-align: center;">134.34 (44)</td>
+<td style="text-align: center; width: 4cm;">0.948</td>
+<td style="text-align: center; width: 4cm;">0.053 (0.043-0.064)</td>
+<td style="text-align: center;">6.619 (8)</td>
+<td style="text-align: center;">0.001</td>
+<td style="text-align: center;">-0.006</td>
+<td style="text-align: center;">Accept</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
+<div class="small">
+<p>Group 1, n = 839; Group 2, n = 612</p>
+</div>
+</div>
+</section>
+<section id="modelos-de-regresión" class="slide level2">
+<h2>Modelos de regresión</h2>
+<div style="font-size: 120%;">
+<div class="cell fig-cap-location-top" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-sem" class="quarto-figure quarto-figure-center quarto-float" data-cap-location="top" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-sem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4: Regresión de variables latentes PPMS sobre preferencias por justicia de mercado
+</figcaption>
+<div aria-describedby="fig-sem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="images/sem_diag.png" class="quarto-figure quarto-figure-center" style="width:110.0%">
+</div>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -582,8 +790,20 @@ Figura&nbsp;1: Linear mixed-effects models for meritocracy perception and market
 </div>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-castillo_multidimensional_2023" class="csl-entry" role="listitem">
+Castillo, J. C., Iturra, J., Maldonado, L., Atria, J., &amp; Meneses, F. (2023). A <span>Multidimensional Approach</span> for <span>Measuring Meritocratic Beliefs</span>: <span>Advantages</span>, <span>Limitations</span> and <span>Alternatives</span> to the <span>ISSP Social Inequality Survey</span>. <em>International Journal of Sociology</em>, <em>53</em>(6), 448-472. <a href="https://doi.org/10.1080/00207659.2023.2274712">https://doi.org/10.1080/00207659.2023.2274712</a>
+</div>
+<div id="ref-castillo_socialization_2024" class="csl-entry" role="listitem">
+Castillo, J. C., Salgado, M., Carrasco, K., &amp; Laffert, A. (2024). The <span>Socialization</span> of <span>Meritocracy</span> and <span>Market Justice Preferences</span> at <span>School</span>. <em>Societies</em>, <em>14</em>(11), 214. <a href="https://doi.org/10.3390/soc14110214">https://doi.org/10.3390/soc14110214</a>
+</div>
+<div id="ref-kline_principles_2023" class="csl-entry" role="listitem">
+Kline, R. B. (2023). <em>Principles and <span>Practice</span> of <span>Structural Equation Modeling</span></em>. Guilford Publications.
+</div>
 <div id="ref-lindh_public_2015" class="csl-entry" role="listitem">
 Lindh, A. (2015). Public <span>Opinion</span> against <span>Markets</span>? <span>Attitudes</span> towards <span>Market Distribution</span> of <span>Social Services</span> – <span>A Comparison</span> of 17 <span>Countries</span>. <em>Social Policy &amp; Administration</em>, <em>49</em>(7), 887-910. <a href="https://doi.org/10.1111/spol.12105">https://doi.org/10.1111/spol.12105</a>
+</div>
+<div id="ref-liu_testing_2017" class="csl-entry" role="listitem">
+Liu, Y., Millsap, R. E., West, S. G., Tein, J.-Y., Tanaka, R., &amp; Grimm, K. J. (2017). Testing Measurement Invariance in Longitudinal Data with Ordered-Categorical Measures. <em>Psychological Methods</em>, <em>22</em>(3), 486-506. <a href="https://doi.org/10.1037/met0000075">https://doi.org/10.1037/met0000075</a>
 </div>
 <div id="ref-young_rise_1958" class="csl-entry" role="listitem">
 Young, M. (1958). <em>The Rise of the Meritocracy</em>. New Brunswick, N.J., U.S.A: Transaction Publishers.

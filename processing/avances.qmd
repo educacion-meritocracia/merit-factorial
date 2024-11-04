@@ -141,9 +141,9 @@ colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
 a <- db1 %>% 
   select(starts_with("perc")) %>% 
   sjPlot::plot_likert(geom.colors = colors,
-                      title = c("a. Perceptions"),
+                      title = c("a. Percepciones"),
                       geom.size = 0.8,
-                      axis.labels = c("Effort", "Talent", "Rich Parents", "Contacts"),
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
                       catcount = 4,
                       values  =  "sum.outside",
                       reverse.colors = F,
@@ -156,9 +156,9 @@ a <- db1 %>%
 b <- db1 %>% 
   select(starts_with("pref")) %>% 
   sjPlot::plot_likert(geom.colors = colors,
-                      title = c("b. Preferences"),
+                      title = c("b. Preferencias"),
                       geom.size = 0.8,
-                      axis.labels = c("Effort", "Talent", "Rich Parents", "Contacts"),
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
                       catcount = 4,
                       values  =  "sum.outside",
                       reverse.colors = F,
@@ -168,7 +168,7 @@ b <- db1 %>%
   ) +
   ggplot2::theme(legend.position = "bottom")
 
-likerplot <- a / b + plot_annotation(caption = paste0("Source: Authors calculations based on EDUMER Wave 1 data"," (n = ",dim(db1)[1],")"
+likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1)[1],")"
 ))
 
 likerplot
@@ -190,28 +190,28 @@ diag(P) <- NA
 
 M$rho[9,] <- P[9,]
 
-rownames(M$rho) <- c("A. Perception Effort",
-                     "B. Perception Talent",
-                     "C. Perception Rich Parents",
-                     "D. Perception Contacts",
-                     "E. Preferences Effort",
-                     "F. Preferences Talent",
-                     "G. Preferences Rich Parents",
-                     "H. Preferences Contacts",
+rownames(M$rho) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencias Esfuerzo",
+                     "F. Preferencias Talento",
+                     "G. Preferencias Padres Ricos",
+                     "H. Preferencias Contactos",
                      "I. Market Justice Preferences")
 
 #set Column names of the matrix
 colnames(M$rho) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
                        "(H)","(I)")
 
-rownames(P) <- c("A. Perception Effort",
-                     "B. Perception Talent",
-                     "C. Perception Rich Parents",
-                     "D. Perception Contacts",
-                     "E. Preferences Effort",
-                     "F. Preferences Talent",
-                     "G. Preferences Rich Parents",
-                     "H. Preferences Contacts",
+rownames(P) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencias Esfuerzo",
+                     "F. Preferencias Talento",
+                     "G. Preferencias Padres Ricos",
+                     "H. Preferencias Contactos",
                      "I. Market Justice Preferences")
 
 #set Column names of the matrix

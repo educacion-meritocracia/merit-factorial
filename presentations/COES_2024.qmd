@@ -209,7 +209,7 @@ $H_{n}$
 
 
 
-**Escala de percepciones y preferencias sobre meritocracia (PPMS)**: Las variables incluidas en el modelo de medición se operacionalizan según los ítems propuestos por Castillo et al. [-@castillo_multidimensional_2023]
+**<span style="color:darkorange">Escala de percepciones y preferencias sobre meritocracia (PPMS)**: Las variables incluidas en el modelo de medición se operacionalizan según los ítems propuestos por Castillo et al. [-@castillo_multidimensional_2023] </font>
 
 ```{r}
 #| label: tbl-vars-ppms
@@ -288,7 +288,7 @@ likerplot
 
 ## Variables
 
-**Market Justice Preferences**: Índice promedio de tres indicadores que abordan el grado de justificación respecto a si el acceso a los servicios sociales en salud, pensiones y educación debe estar condicionado por los ingresos ($\alpha$ = 0.83). 
+**<span style="color:darkorange">Market Justice Preferences**: Índice promedio de tres indicadores que abordan el grado de justificación respecto a si el acceso a los servicios sociales en salud, pensiones y educación debe estar condicionado por los ingresos ($\alpha$ = 0.83). </font>
 
 ```{r}
 #| label: tbl-vars-mjp
@@ -416,7 +416,8 @@ testp <- cor.mtest(M$rho, conf.level = 0.95)
 
 ## Análisis Factorial Confirmatorio
 
-::: {style="font-size: 120%;"}
+:::: { .incremental style="font-size: 120%;"}
+
 ```{r}
 #| label: fig-cfa
 #| fig-cap: "Análisis factorial confirmatorio de PPMS en población escolar Chile"
@@ -428,11 +429,15 @@ testp <- cor.mtest(M$rho, conf.level = 0.95)
 knitr::include_graphics(path = here("presentations/images/cfa_diag.png"))
 ```
 
+::: { .green}
+- ✓ $H_1$, $H_2$, $H_3$, $H_4$
 :::
+
+::::
 
 ## Invarianza longitudinal
 
-:::: {style="font-size: 120%;"}
+:::: { .incremental style="font-size: 120%;"}
 
 ```{r}
 #| label: tbl-invarianza
@@ -443,6 +448,8 @@ knitr::include_graphics(path = here("presentations/images/cfa_diag.png"))
 col.nam <- c("Model","&chi;^2 (df)","CFI","RMSEA (90 CI)",
              "&Delta; &chi;^2 (&Delta; df)","&Delta; CFI","&Delta; RMSEA","Decision")
 footnote <- paste0("Group 1, n = ",conf@Data@nobs[[1]],"; Group 2, n = ",conf@Data@nobs[[2]])
+
+tab.inv[3,6] <- 0
 
 tab.inv %>% 
   kableExtra::kable(format = "html",
@@ -455,8 +462,9 @@ tab.inv %>%
                             latex_options = "hold_position",
                             bootstrap_options=c("striped", "bordered", "condensed"),
                             font_size = 22) %>%
- kableExtra::column_spec(1, width = "5cm") %>% 
-kableExtra::column_spec(3:4, width = "4cm") 
+ kableExtra::column_spec(c(1,8), width = "3.5cm") %>% 
+kableExtra::column_spec(2:7, width = "4cm") %>% 
+  kableExtra::column_spec(4, width = "5cm")
 ```
 
 ::: {.small}
@@ -464,36 +472,51 @@ kableExtra::column_spec(3:4, width = "4cm")
 `r footnote`
 :::
 
+::: { .red}
+- ✗ $H_5$
+:::
+
 ::::
 
-## Modelos de regresión
+## Modelo de regresión
 
-::: {style="font-size: 120%;"}
+:::: { .incremental style="font-size: 110%;"}
 ```{r}
 #| label: fig-sem
 #| fig-cap: "Regresión de variables latentes PPMS sobre preferencias por justicia de mercado"
 #| fig-cap-location: top
 #| fig-align: center
-#| fig-width: 8
-#| out-width: '110%'
+#| fig-width: 7
+#| out-width: '90%'
 
 knitr::include_graphics(path = here("presentations/images/sem_diag.png"))
 
 ```
+
+::: { .red}
+- ✗ $H_6$
 :::
+
+::::
 
 
 # Discusión y conclusiones {data-background-color="#5f5758"}
 
 
-# Discusión y conclusiones {data-background-color="#5f5758"}
+## Discusión y conclusiones 
 
-::: { .incremental .highlight-last2 style="font-size: 100%;"}
 
-- Discusión 
+:::: { .incremental style="font-size: 100%;"}
 
-  - Conclusión
-:::
+**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: modelo de medición PPMS presenta buenos indicadores de ajuste y sus dimensiones se corresponden con el modelo conceptual multidimensional en población escolar [@castillo_multidimensional_2023] </font>
+
+**<span style="color:darkorange">2. Invarianza longitudinal**: no es posible asumir que los ítems tienen una relación consistente con el constructo en ambas olas de estudiantes [@liu_testing_2017] </font>
+
+**<span style="color:darkorange">3. Preferencias por justicia de mercado**: quienes sostienen preferencias meritocráticas prefieren menos justicia de mercado en salud, pensiones y educación, mientras que lo opuesto ocurre con quienes prefieren elementos no meritocráticos [@castillo_socialization_2024; @lindh_public_2015]</font>
+
+
+**<span style="color:darkorange">4. Proyecciones**: aplicación de la escala en población adulta, </font>
+::::
 
 
 # Gracias por su atención! 

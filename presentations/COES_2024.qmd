@@ -320,8 +320,7 @@ t1[9:12,] %>%
      bootstrap_options=c("striped", "bordered")) %>%
   kableExtra::row_spec(0, bold = T) %>% 
   kableExtra::column_spec(column = 1, width = "3 cm") %>%
-   kableExtra::column_spec(column = 2, width = "3 cm")
-  
+   kableExtra::column_spec(column = 2, width = "3 cm") 
   
 ```
 
@@ -354,7 +353,7 @@ t1[9:12,] %>%
 
 ```{r}
 #| label: fig-matriz
-#| fig-cap: "Matriz de correlaciones"
+#| fig-cap: "Matriz de correlaciones Ola 1"
 #| fig-cap-location: top
 #| fig-align: center
 #| fig-width: 7
@@ -408,7 +407,7 @@ testp <- cor.mtest(M$rho, conf.level = 0.95)
                    tl.col = "black",
                    col = colorRampPalette(c("#E16462", "white", "#0D0887"))(12),
                    bg = "white",
-                   na.label = "-") 
+                   na.label = "-")
 
 
 ```
@@ -420,20 +419,39 @@ testp <- cor.mtest(M$rho, conf.level = 0.95)
 
 ```{r}
 #| label: fig-cfa
-#| fig-cap: "Análisis factorial confirmatorio de PPMS en población escolar Chile"
+#| fig-cap: "Análisis factorial confirmatorio de PPMS en población escolar Chile Ola 1"
 #| fig-cap-location: top
 #| fig-align: center
-#| fig-width: 8
-#| out-width: '110%'
+#| fig-width: 7
+#| out-width: '100%'
 
 knitr::include_graphics(path = here("presentations/images/cfa_diag.png"))
 ```
 
-::: { .green}
+::: { .green .medium}
 - ✓ $H_1$, $H_2$, $H_3$, $H_4$
 :::
 
 ::::
+
+
+## Análisis Factorial Confirmatorio
+
+:::: { .incremental style="font-size: 120%;"}
+
+```{r}
+#| label: fig-cfa2
+#| fig-cap: "Análisis factorial confirmatorio de PPMS en población escolar Chile Ola 2"
+#| fig-cap-location: top
+#| fig-align: center
+#| fig-width: 7
+#| out-width: '100%'
+
+knitr::include_graphics(path = here("presentations/images/cfa2_diag.png"))
+```
+
+::::
+
 
 ## Invarianza longitudinal
 
@@ -472,7 +490,7 @@ kableExtra::column_spec(2:7, width = "4cm") %>%
 `r footnote`
 :::
 
-::: { .red}
+::: { .red .medium}
 - ✗ $H_5$
 :::
 
@@ -480,7 +498,7 @@ kableExtra::column_spec(2:7, width = "4cm") %>%
 
 ## Modelo de regresión
 
-:::: { .incremental style="font-size: 110%;"}
+:::: { .incremental style="font-size: 100%;"}
 ```{r}
 #| label: fig-sem
 #| fig-cap: "Regresión de variables latentes PPMS sobre preferencias por justicia de mercado"
@@ -493,7 +511,7 @@ knitr::include_graphics(path = here("presentations/images/sem_diag.png"))
 
 ```
 
-::: { .red}
+::: { .red .medium}
 - ✗ $H_6$
 :::
 

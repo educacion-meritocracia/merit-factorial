@@ -95,14 +95,17 @@ load(file = here("output", "results.RData"))
 
 ![](images/edumer.png)
 
+::: {.red2 .medium}
 
+FONDECYT No. 1210847 "Meritocracia en la escuela"
+
+:::
 
 :::
 
 ::: {.column .column-right width="80%"}
-<br>
 
-## **Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile**
+# **Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile**
 
 ------------------------------------------------------------------------
 
@@ -117,7 +120,6 @@ load(file = here("output", "results.RData"))
 
 **Centro de Estudios de Conflicto y Cohesión Social - COES**
 
-**FONDECYT No. 1210847 "Meritocracia en la escuela: fundamentos morales del mercado educativo y sus implicancias para la formación ciudadana en Chile"**
 
 :::
 

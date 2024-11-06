@@ -95,11 +95,7 @@ load(file = here("output", "results.RData"))
 
 ![](images/edumer.png)
 
-::: {.red2 .medium}
-
-FONDECYT No. 1210847 "Meritocracia en la escuela"
-
-:::
+![](images/qrcode.png)
 
 :::
 
@@ -109,7 +105,8 @@ FONDECYT No. 1210847 "Meritocracia en la escuela"
 
 ------------------------------------------------------------------------
 
-**Juan Carlos Castillo, Andreas Laffert & Kevin Carrasco**
+**Juan Carlos Castillo, Andreas Laffert, Kevin Carrasco**
+<br> **Benjamín Zavala & Jésus Díaz**
 
 
 ::: {.red2 .medium}
@@ -138,55 +135,97 @@ Aquí mis notas
 # Contexto y motivación {data-background-color="#5f5758"}
 
 
+## Creencias sobre la desigualdad, meritocracia y educación
+
+::: {.incremental .highlight-last style="font-size: 120%;"}
+
+- Creencias sobre la desigualdad: nivel individual y social [@kluegel_beliefs_1987]
+
+- Ideal meritocrático como mecanismo clave para legitimar la distribución de bienes y recompensas en base al talento y esfuerzo individual 
+    
+    * Mérito = esfuerzo + talento 
+    * Meritocracia como un principio distributivo donde los bienes y recompensas se asignan en base al mérito [@young_rise_1958]
+
+- Creencias meritocráticas pueden conducir a tolerar y justificar disparidades económicas y sociales [@sandel_tyranny_2020; @mijs_paradox_2019; @bucca_merit_2016]
+
+:::
+
+## Creencias sobre la desigualdad, meritocracia y educación
+
+::: {.incremental .highlight-last style="font-size: 120%;"}
+
+- Instituciones educativas han sido fundamentales en la promoción de ideales meritocráticos [@dubet_repensar_2011]
+
+    - Educación como vía de movilidad social e igualdad de oportunidades 
+
+    - Enfásis en el desempeño académico, conocimiento y logros
+    
+- Alta reproducción de las desigualdades en las escuelas [@bourdieu_reproduction_1990; @duru-bellat_who_2012]
+
+-  Las creencias meritocráticas a nivel escolar se asocian con una mayor justificación de las desigualdades sociales [e.g. @batruch_belief_2022; @wiederkehr_belief_2015; @darnon_where_2018]
 
 
-## Antecedentes
+:::
+
+## Medición de meritocracia
+
 
 ::: {.incremental .highlight-last style="font-size: 100%;"}
 
-- The justification of social inequality based on market-type criteria has been conceptualized as the individuals' adherence to the deservingness of social goods and services (such as health, education, and pensions) based on prices and individuals' ability to pay [@boltanski_new_2005; @lane_market_1986; @streeck_citizens_2012].
+- Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición para evaluar:
 
-- Research on social stratification beliefs [@kluegel_beliefs_1987], highlights that people's explanations and justifications of social inequality are closely tied to their judgments of deservingness. 
+    * Percepciones (lo que es) y preferencias (lo que debería ser) [@janmaat_subjective_2013; @duru-bellat_who_2012]
+    * Aspectos meritocráticos y _no_ meritocráticos [@reynolds_perceptions_2014]
 
--  The expansion of marketization has been related to a larger justification of market mechanisms, whereby societies with larger private spending on services show larger market justice preferences [@lindh_public_2015].
+
+```{r}
+#| label: fig-concep
+#| fig-cap-location: top
+#| fig-cap: "Modelo conceptual de Castillo et al. (2023)"
+#| fig-align: center
+#| fig-width: 8
+#| out-width: '100%'
+
+
+knitr::include_graphics(path = here("presentations/images/modelo_con.png"))
+
+```
+
+
+
+
+::: 
+
+# Este estudio {data-background-color="#5f5758"}
+
+
+
+::: {.incremental style="font-size: 200%; display: flex; justify-content: center; align-items: center"}
+</br>
+
+Evaluar la aplicabilidad de la Escala de Percepciones y Preferencias por Meritocracia en población escolar en Chile
 
 :::
 
-## Antecedentes
 
-::::: columns
-::: {.column width="50%" .content-box-red}
 
-#### A
-
-- The original definition of merit is a combination of effort and talent [@young_rise_1958]
-- 2
-- 3
-
-:::
-
-::: {.column width="50%" .content-box-yellow}
-
-#### B
-
-- Adolescents from low-socioeconomic-status families are likelier to have an egalitarian fairness view and consider an equal distribution as fair in a situation with unequal merits [@almas_fairness_2017]
-- 2
-- 3
-
-:::
-:::::
 
 ## Hipótesis
 
-::: {.incremental .highlight-last style="font-size: 100%;"}
+::: {style="font-size: 120%;"}
 
-$H_{1}$
+```{r}
+#| label: fig-hipo
+#| fig-cap-location: top
+#| fig-cap: "Resumen de hipótesis"
+#| fig-align: center
+#| fig-width: 15
+#| out-width: '130%'
 
-$H_{2}$
 
-$H_{3}$
+knitr::include_graphics(path = here("presentations/images/diag_hipo.png"))
 
-$H_{n}$
+```
 
 
 ::: 
@@ -208,46 +247,50 @@ $H_{n}$
 :::
 
 ## Variables
+::: {.incremental .highlight-last style="font-size: 120%;"}
 
 
+**<span style="color:darkorange">Escala de percepciones y preferencias sobre meritocracia**</font>
 
-**<span style="color:darkorange">Escala de percepciones y preferencias sobre meritocracia (PPMS)**: Las variables incluidas en el modelo de medición se operacionalizan según los ítems propuestos por Castillo et al. [-@castillo_multidimensional_2023] </font>
+- Las variables incluidas en el modelo de medición se operacionalizan según los ítems propuestos por Castillo et al. [-@castillo_multidimensional_2023].
 
-```{r}
-#| label: tbl-vars-ppms
-#| tbl-cap: "Items de PPMS"
-#| results: asis
-#| echo: false
+- Escala de dos componentes, cuatro dimensiones y 8 ítems (2 por cada dimensión).
 
-tabitems <- read_excel(path = here("input/tables/table_items.xlsx"),
-                       sheet = 1)
-cnames <- c("Componente", "Dimensiones","Item", "Categorías de respuesta")
 
-kableExtra::kable(tabitems, format = "html", booktabs= T, escape = F, align = 'c',col.names = cnames, caption = NULL) %>%
-   kableExtra::kable_styling(
-     full_width = F,
-     latex_options = c("hold_position"),
-     position = "center",
-     font_size = 15,
-     bootstrap_options=c("striped", "bordered", "condensed")) %>%
-   kableExtra::collapse_rows(columns = 1:2, valign = "top") %>% 
-   kableExtra::column_spec(column = 1, width = "1.5cm") %>%
-   kableExtra::column_spec(column = 2, width = "2cm")
-   
+- Cada ítem se contestó en una escala Likert de cuatro puntos que va desde “muy en desacuerdo” (1) hasta “muy de acuerdo” (4).
 
-```
+::: 
 
 ## Variables
 
+::: {style="font-size: 110%;"}
 
+```{r}
+#| label: fig-vars-ppms
+#| fig-cap-location: top
+#| fig-cap: "Items de Escala de Percepciones y Preferencias sobre Meritocracia"
+#| fig-align: center
+#| fig-width: 8
+#| out-width: '200%'
+
+
+knitr::include_graphics(path = here("presentations/images/tab_items.png"))
+
+```
+::: 
+
+
+## Variables
+
+::: {style="font-size: 110%;"}
 
 ```{r}
 #| label: fig-likerplot
 #| fig-align: center
-#| fig-cap: "Escala de percepciones y preferencias sobre meritocracia (PPMS)"
+#| fig-cap: "Distribución de respuestas en escala de percepciones y preferencias sobre meritocracia (PPMS)"
 #| fig-cap-location: top
 #| fig-width: 7
-#| out-width: '75%'
+#| out-width: '80%'
 
 theme_set(theme_ggdist())
 colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
@@ -287,52 +330,12 @@ likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración prop
 
 likerplot
 ```
-
-## Variables
-
-**<span style="color:darkorange">Market Justice Preferences**: Índice promedio de tres indicadores que abordan el grado de justificación respecto a si el acceso a los servicios sociales en salud, pensiones y educación debe estar condicionado por los ingresos ($\alpha$ = 0.83). </font>
-
-```{r}
-#| label: tbl-vars-mjp
-#| tbl-cap: "Items de preferencias por justicia de mercado"
-#| results: asis
-#| echo: false
-
-
-db1$mjp <- sjlabelled::set_label(db1$mjp, "Índice promedio preferencias por justicia de mercado")
-labels <- get_label(db1[,c(10:13)])
-vars_l <- c("Justicia en Educación", "Justicia en Salud", "Justicia en Pensiones", "Market Justice Preferences")
-
-
-t1[9:12,] %>% 
-  mutate(label = labels,
-         Variable = vars_l) %>% 
-  select(Variable, label, Mean, SD, Range, Histogram) %>% 
-  kableExtra::kable(format = "html", 
-                    booktabs= T, 
-                    escape = F, 
-                    align = 'c',
-                    col.names = c("Variable", "Etiqueta", "Media", "DE", "Rango", "Histograma"),
-                    caption = NULL) %>%
-   kableExtra::kable_styling(
-     full_width = F,
-     latex_options = c("hold_position"),
-     position = "center",
-     font_size = 22,
-     bootstrap_options=c("striped", "bordered")) %>%
-  kableExtra::row_spec(0, bold = T) %>% 
-  kableExtra::column_spec(column = 1, width = "3 cm") %>%
-   kableExtra::column_spec(column = 2, width = "3 cm") 
-  
-```
-
-
-
+::: 
 
 
 ## Métodos
 
-::: {.incremental .highlight-last style="font-size: 110%;"}
+::: {.incremental .highlight-last style="font-size: 115%;"}
 
 1. Análisis Factorial Confirmatorio (CFA) en base a un modelo de cuatro factores latentes [@castillo_multidimensional_2023], con estimador Diagonal Weighted Least Squares (DWLS) debido al nivel ordinal de los ítems [@kline_principles_2023]
 
@@ -341,9 +344,6 @@ t1[9:12,] %>%
     - Débil (+ mismas cargas factoriales)
     - Fuerte (+ mismos interceptos)
     - Estricto (+ mismas varianzas de error)
-  
-3. Regresiones de variables observadas en variables latentes (SEM): factores meritocráticos y no meritocráticos sobre preferencias por justicia de mercado [@castillo_socialization_2024]
-
 
 :::
 
@@ -361,43 +361,39 @@ t1[9:12,] %>%
 #| fig-width: 7
 #| out-width: '80%'
 
-M <- psych::polychoric(db1[c(2:9,13)])
+M <- psych::polychoric(db1[c(2:9)])
 
-P <- cor(db1[c(2:9,13)], method = "spearman")
+P <- cor(db1[c(2:9)], method = "spearman")
 
 diag(M$rho) <- NA
 
 diag(P) <- NA
 
-M$rho[9,] <- P[9,]
-
 rownames(M$rho) <- c("A. Percepción Esfuerzo",
                      "B. Percepción Talento",
                      "C. Percepción Padres Ricos",
                      "D. Percepción Contactos",
-                     "E. Preferencias Esfuerzo",
-                     "F. Preferencias Talento",
-                     "G. Preferencias Padres Ricos",
-                     "H. Preferencias Contactos",
-                     "I. Market Justice Preferences")
+                     "E. Preferencia Esfuerzo",
+                     "F. Preferencia Talento",
+                     "G. Preferencia Padres Ricos",
+                     "H. Preferencia Contactos")
 
 #set Column names of the matrix
 colnames(M$rho) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
-                       "(H)","(I)")
+                       "(H)")
 
 rownames(P) <- c("A. Percepción Esfuerzo",
                      "B. Percepción Talento",
                      "C. Percepción Padres Ricos",
                      "D. Percepción Contactos",
-                     "E. Preferencias Esfuerzo",
-                     "F. Preferencias Talento",
-                     "G. Preferencias Padres Ricos",
-                     "H. Preferencias Contactos",
-                     "I. Market Justice Preferences")
+                     "E. Preferencia Esfuerzo",
+                     "F. Preferencia Talento",
+                     "G. Preferencia Padres Ricos",
+                     "H. Preferencia Contactos")
 
 #set Column names of the matrix
 colnames(P) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
-                    "(H)","(I)")
+                    "(H)")
 
 testp <- cor.mtest(M$rho, conf.level = 0.95)
 
@@ -427,15 +423,11 @@ testp <- cor.mtest(M$rho, conf.level = 0.95)
 #| fig-width: 7
 #| out-width: '100%'
 
-knitr::include_graphics(path = here("presentations/images/cfa_diag.png"))
+knitr::include_graphics(path = here("presentations/images/diag1_cfa_w1.png"))
 ```
 
-::: { .green .medium}
-- ✓ $H_1$, $H_2$, $H_3$, $H_4$
-:::
 
 ::::
-
 
 ## Análisis Factorial Confirmatorio
 
@@ -443,14 +435,102 @@ knitr::include_graphics(path = here("presentations/images/cfa_diag.png"))
 
 ```{r}
 #| label: fig-cfa2
-#| fig-cap: "Análisis factorial confirmatorio de PPMS en población escolar Chile Ola 2"
+#| fig-cap: "Análisis factorial confirmatorio de PPMS en población escolar Chile Ola 1"
 #| fig-cap-location: top
 #| fig-align: center
 #| fig-width: 7
 #| out-width: '100%'
 
-knitr::include_graphics(path = here("presentations/images/cfa2_diag.png"))
+knitr::include_graphics(path = here("presentations/images/diag2_cfa_w1.png"))
 ```
+
+
+::::
+
+## Análisis Factorial Confirmatorio
+
+:::: { .incremental style="font-size: 120%;"}
+
+```{r}
+#| label: fig-cfa3
+#| fig-cap: "Análisis factorial confirmatorio de PPMS en población escolar Chile Ola 1"
+#| fig-cap-location: top
+#| fig-align: center
+#| fig-width: 7
+#| out-width: '100%'
+
+knitr::include_graphics(path = here("presentations/images/diag3_cfa_w1.png"))
+```
+
+::::
+
+## Análisis Factorial Confirmatorio
+
+:::: {style="font-size: 120%;"}
+
+
+```{r}
+#| label: tbl-comparacion
+#| tbl-cap: "Comparación de correlación entre factores en datos de población escolar y adulta"
+#| tbl-cap-location: top
+
+comp_students <- standardizedsolution(m2_cfa) %>% 
+  filter(op=="~~") %>%
+  select(lhs,rhs,est.std,pvalue) %>% 
+  slice_tail(n = 6)
+
+comp_adults <- data.frame(lhs = comp_students$lhs,
+           rhs = comp_students$rhs,
+           est.std_adults = c(-0.044,0.457,0.298,0.500,-0.059,0.185),
+           pvalue_adults = c(1,0.01,0.01,0.01,1,0.01))
+
+table_data <- left_join(comp_students, comp_adults, by = c("lhs", "rhs")) %>% 
+  mutate(
+    across(
+      .cols = c(pvalue, pvalue_adults),
+      .fns = ~ case_when(
+        . < 0.05 & . > 0.01 ~ "*",
+        . <= 0.01 ~ "**",
+        TRUE ~ "")
+    ),
+    est.std = paste(round(est.std, 3), pvalue, sep = " "),
+    est.std_adults = paste(round(est.std_adults, 3), pvalue_adults, sep = " "),
+    across(
+      .cols = c(lhs, rhs),
+      .fns = ~ case_when(
+        . == "perc_merit" ~ "Percepción meritocrática",
+        . == "perc_nmerit" ~ "Percepción no meritocrática",
+        . == "pref_merit" ~ "Preferencia meritocrática",
+        . == "pref_nmerit" ~ "Preferencia no meritocrática")),
+    simbol = "~~"
+    ) %>% 
+  select(lhs, simbol, rhs, est.std, est.std_adults) 
+
+table_data[c(2,3,5),1] <- NA
+
+table_data %>% 
+  kableExtra::kable(format = "html", 
+                    booktabs= T, 
+                    escape = F, 
+                    align = 'c', 
+                    col.names = c("Factor X", "","Factor Y", "Correlación Estudiantes", "Correlación Adultos"), 
+                    caption = NULL) %>%
+   kableExtra::kable_styling(latex_options = "hold_position", 
+                             bootstrap_options = c("striped", "condensed"), 
+                             full_width = T,
+                             font_size = 22) %>% 
+  kableExtra::column_spec(3, border_right = T) %>% 
+  kableExtra::column_spec(1, width = "6cm") %>% 
+  kableExtra::column_spec(2, width = "1cm") %>%
+  kableExtra::column_spec(3, width = "6cm") %>% 
+  kableExtra::add_footnote(label = "** p<0.01, * p<0.5", notation = "none")
+
+```
+
+::: {.small}
+
+Castillo et al. [-@castillo_multidimensional_2023, p.18, Figura 9] concluyen que, a mayor percepción de meritocracia y no meritocracia, mayor preferencia por meritocracia
+:::
 
 ::::
 
@@ -464,12 +544,142 @@ knitr::include_graphics(path = here("presentations/images/cfa2_diag.png"))
 #| tbl-cap: "Resultados de invarianza de medida de grupos múltiples para PPMS"
 #| results: asis
 #| echo: false
+#| warning: false
+
+db_invariance <- 
+  db_long %>% 
+  select(id_estudiante, ola, starts_with(c("perc", "pref"))) %>% 
+  pivot_wider(id_cols = id_estudiante,
+              names_from = ola,
+              names_glue = "{.value}{ola}",
+              values_from = c(perc_effort, perc_talent,
+                              perc_rich_parents, perc_contact,
+                              pref_effort, pref_talent,
+                              pref_rich_parents, pref_contact)) %>% 
+  na.omit() %>% 
+  rename_with(~str_replace_all(., "_", ""))
+  
+
+
+# First, define the configural model, using the repeated measures factors and
+# indicators
+configural_model_smt <- ("
+  # Measurement model
+  percmerit1 =~ perceffort1 + perctalent1
+  percmerit2 =~ perceffort2 + perctalent2
+  percnmerit1 =~ percrichparents1 + perccontact1
+  percnmerit2 =~ percrichparents2 + perccontact2
+  prefmerit1 =~ prefeffort1 + preftalent1
+  prefmerit2 =~ prefeffort2 + preftalent2
+  prefnmerit1 =~ prefrichparents1 + prefcontact1
+  prefnmerit2 =~ prefrichparents2 + prefcontact2
+")
+
+
+# Second, create a named list indicating which factors are actually the same
+# latent variable measured repeatedly.
+longitudinal_factor_names <- list(
+  comp = c("percmerit1", "percmerit2", 
+           "percnmerit1", "percnmerit2",
+           "prefmerit1", "prefmerit2",
+           "prefnmerit1", "prefnmerit2")
+)
+
+
+# Configural
+# Third, generate the lavaan model syntax using semTools.
+configural_model_smt <- measEq.syntax(
+  configural.model = configural_model_smt,
+  longFacNames = longitudinal_factor_names,
+  ID.fac = "std.lv",
+  ID.cat = "millsap",
+  data = db_invariance
+)
+configural_model_smt <- as.character(configural_model_smt)
+
+# Finally, fit the model using lavaan.
+configural_model_smt_fit <- sem(configural_model_smt, data = db_invariance)
+
+# Weak
+weak_model_smt <- measEq.syntax(
+  configural.model = configural_model_smt,
+  longFacNames = longitudinal_factor_names,
+  ID.fac = "std.lv",
+  ID.cat = "millsap",
+  long.equal = c("loadings"),
+  data = db_invariance
+)
+weak_model_smt <- as.character(weak_model_smt)
+
+weak_model_smt_fit <- sem(weak_model_smt, data = db_invariance)
+
+# Strong
+
+strong_model_smt <- measEq.syntax(
+  configural.model = configural_model_smt,
+  longFacNames = longitudinal_factor_names,
+  ID.fac = "std.lv",
+  ID.cat = "millsap",
+  long.equal = c("loadings", "lv.variances"),
+  data = db_invariance
+)
+
+strong_model_smt <- as.character(strong_model_smt)
+
+strong_model_smt_fit <- sem(strong_model_smt, data = db_invariance)
+
+
+# Strict
+strict_model_smt <- measEq.syntax(
+  configural.model = configural_model_smt,
+  longFacNames = longitudinal_factor_names,
+  ID.fac = "std.lv",
+  ID.cat = "millsap",
+  long.equal = c("loadings", "lv.variances", "residuals"),
+  data = db_invariance
+)
+strict_model_smt <- as.character(strict_model_smt)
+
+strict_model_smt_fit <- sem(strict_model_smt, data = db_invariance)
+
+
+# Compare ajust
+
+tab01 <- lavTestLRT(configural_model_smt_fit, weak_model_smt_fit, strong_model_smt_fit, strict_model_smt_fit) %>%
+  dplyr::as_tibble() %>%
+  dplyr::select("Chisq","Df","chisq_diff"=`Chisq diff`,"df_diff"=`Df diff`,"pvalue"=`Pr(>Chisq)`) %>%
+  dplyr::mutate(stars=gtools::stars.pval(pvalue),
+                chisqt=paste0(round(Chisq,2)," (",Df,") "),
+                decision=ifelse(pvalue>0.05,yes = "Accept",no = "Reject"),
+                model=c("Configural","Weak","Strong","Strict"))
+
+
+fit.meas <- dplyr::bind_rows(lavaan::fitmeasures(configural_model_smt_fit, output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                             lavaan::fitmeasures(weak_model_smt_fit,  output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                             lavaan::fitmeasures(strong_model_smt_fit, output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                             lavaan::fitmeasures(strict_model_smt_fit, output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),])
+
+fit.meas <- fit.meas %>%
+  dplyr::mutate(diff.chi2 = chisq    - lag(chisq,default = dplyr::first(chisq)),
+                diff.df   = df       - lag(df,   default = dplyr::first(df)),
+                diff.cfi  = cfi      - lag(cfi,  default = dplyr::first(cfi)),
+                diff.rmsea   = rmsea - lag(rmsea,default = dplyr::first(rmsea))) %>%
+  round(3) %>%
+  dplyr::mutate(rmsea.ci=paste0(rmsea," \n ", "(",rmsea.ci.lower,"-",rmsea.ci.upper,")"))
+
+tab.inv <- dplyr::bind_cols(tab01,fit.meas) %>%
+  dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.df,diff.cfi,diff.rmsea,stars,decision) %>%
+  dplyr::mutate(diff.chi2=paste0(diff.chi2," (",diff.df,") ",stars)) %>%
+  dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.cfi,diff.rmsea,decision)
+
+#clean values
+tab.inv[tab.inv == c("0 (0) ")] <- NA
+tab.inv[tab.inv == c(0)] <- NA
+
 
 col.nam <- c("Model","&chi;^2 (df)","CFI","RMSEA (90 CI)",
              "&Delta; &chi;^2 (&Delta; df)","&Delta; CFI","&Delta; RMSEA","Decision")
-footnote <- paste0("Group 1, n = ",conf@Data@nobs[[1]],"; Group 2, n = ",conf@Data@nobs[[2]])
-
-tab.inv[3,6] <- 0
+footnote <- paste0("N = ",configural_model_smt_fit@Data@nobs[[1]])
 
 tab.inv %>% 
   kableExtra::kable(format = "html",
@@ -481,7 +691,7 @@ tab.inv %>%
   kableExtra::kable_styling(full_width = T,
                             latex_options = "hold_position",
                             bootstrap_options=c("striped", "bordered", "condensed"),
-                            font_size = 22) %>%
+                            font_size = 23) %>%
  kableExtra::column_spec(c(1,8), width = "3.5cm") %>% 
 kableExtra::column_spec(2:7, width = "4cm") %>% 
   kableExtra::column_spec(4, width = "5cm")
@@ -492,50 +702,62 @@ kableExtra::column_spec(2:7, width = "4cm") %>%
 `r footnote`
 :::
 
-::: { .red .medium}
-- ✗ $H_5$
-:::
 
 ::::
 
-## Modelo de regresión
+## Comparación CFA Ola 1 y 2
 
-:::: { .incremental style="font-size: 100%;"}
+:::: { .incremental style="font-size: 120%;"}
+
 ```{r}
-#| label: fig-sem
-#| fig-cap: "Regresión de variables latentes PPMS sobre preferencias por justicia de mercado"
+#| label: fig-cfa4
+#| fig-cap: "Análisis factorial confirmatorio de PPMS en población escolar Chile Ola 1"
 #| fig-cap-location: top
 #| fig-align: center
 #| fig-width: 7
-#| out-width: '90%'
+#| out-width: '100%'
 
-knitr::include_graphics(path = here("presentations/images/sem_diag.png"))
-
+knitr::include_graphics(path = here("presentations/images/diag1_cfa_w1.png"))
 ```
-
-::: { .red .medium}
-- ✗ $H_6$
-:::
 
 ::::
 
+
+## Comparación CFA Ola 1 y 2
+
+:::: { .incremental style="font-size: 120%;"}
+
+```{r}
+#| label: fig-cfa5
+#| fig-cap: "Análisis factorial confirmatorio de PPMS en población escolar Chile Ola 2"
+#| fig-cap-location: top
+#| fig-align: center
+#| fig-width: 7
+#| out-width: '100%'
+
+knitr::include_graphics(path = here("presentations/images/diag_cfa_w2.png"))
+```
+
+::::
 
 # Discusión y conclusiones {data-background-color="#5f5758"}
 
 
-## Discusión y conclusiones 
+## Discusión y conclusiones {data-background-color="#5f5758"}
 
 
-:::: { .incremental style="font-size: 100%;"}
+:::: {.incremental style="font-size: 115%;"}
 
-**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: modelo de medición PPMS presenta buenos indicadores de ajuste y sus dimensiones se corresponden con el modelo conceptual multidimensional en población escolar [@castillo_multidimensional_2023] </font>
+**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: escala presenta buenos indicadores de ajuste y sus dimensiones se corresponden con el modelo conceptual multidimensional en población escolar [@castillo_multidimensional_2023] </font>
 
-**<span style="color:darkorange">2. Invarianza longitudinal**: no es posible asumir que los ítems tienen una relación consistente con el constructo en ambas olas de estudiantes [@liu_testing_2017] </font>
+**<span style="color:darkorange">2. Significado de la meritocracia**: tanto a nivel de estudiantes como adultos los factores se relacionan de manera similar → _a mayor percepción no meritocrática, mayor preferencia por la meritocracia_
+</font>
 
-**<span style="color:darkorange">3. Preferencias por justicia de mercado**: quienes sostienen preferencias meritocráticas prefieren menos justicia de mercado en salud, pensiones y educación, mientras que lo opuesto ocurre con quienes prefieren elementos no meritocráticos [@castillo_socialization_2024; @lindh_public_2015]</font>
+**<span style="color:darkorange">3. Invarianza longitudinal**: no es posible asumir que los ítems tienen una relación consistente con el constructo en ambas olas de estudiantes [@liu_testing_2017]  → _cargas factoriales cambian en el tiempo_ 
+</font>
 
 
-**<span style="color:darkorange">4. Proyecciones**: aplicación de la escala en población adulta, </font>
+**<span style="color:darkorange">4. Proyecciones**: aplicación de la escala en población adulta para evaluar su utilidad y validez predictiva </font>
 ::::
 
 

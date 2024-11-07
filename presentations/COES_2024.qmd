@@ -335,15 +335,19 @@ likerplot
 
 ## Métodos
 
-::: {.incremental .highlight-last style="font-size: 115%;"}
+::: {.incremental .highlight-last style="font-size: 110%;"}
 
 1. Análisis Factorial Confirmatorio (CFA) en base a un modelo de cuatro factores latentes [@castillo_multidimensional_2023], con estimador Diagonal Weighted Least Squares (DWLS) debido al nivel ordinal de los ítems [@kline_principles_2023]
 
+    - Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95;RMSEA< 0.06$
+
 2. Invarianza longitudinal con cuatro módelos jerárquicos [@liu_testing_2017]: 
+    
     - Configural (misma estructura factorial)
     - Débil (+ mismas cargas factoriales)
     - Fuerte (+ mismos interceptos)
     - Estricto (+ mismas varianzas de error)
+    - Cuttof de ajuste [@chen_sensitivity_2007]: $\Delta \text{CFI} \geq -0.010; \Delta \text{RMSEA} \geq 0.015$
 
 :::
 

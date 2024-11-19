@@ -1,0 +1,695 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  12pt,
+  letterpaper,
+]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{setspace}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+% -----------------------
+% CUSTOM PREAMBLE STUFF
+% -----------------------
+
+% -----------------
+% Typography tweaks
+% -----------------
+% Indent size
+\setlength{\parindent}{1pc}  % 1p0
+
+% Fix widows and orphans
+\usepackage[all,defaultlines=2]{nowidow}
+
+% List things
+\usepackage{enumitem}
+% Same document-level indentation for ordered and ordered lists
+\setlist[1]{labelindent=\parindent}
+\setlist[itemize]{leftmargin=*}
+\setlist[enumerate]{leftmargin=*}
+
+% Wrap definition list terms
+% https://tex.stackexchange.com/a/9763/11851
+\setlist[description]{style=unboxed}
+
+
+% For better TOCs
+\usepackage{tocloft}
+
+% Remove left margin in lists inside longtables
+% https://tex.stackexchange.com/a/378190/11851
+\AtBeginEnvironment{longtable}{\setlist[itemize]{nosep, wide=0pt, leftmargin=*, before=\vspace*{-\baselineskip}, after=\vspace*{-\baselineskip}}}
+
+% Allow for /singlespacing and /doublespacing
+\usepackage{setspace}
+
+
+% -----------------
+% Title block stuff
+% -----------------
+
+% Abstract
+\usepackage[overload]{textcase}
+\usepackage[runin]{abstract}
+\renewcommand{\abstractnamefont}{\sffamily\footnotesize\bfseries\MakeUppercase}
+\renewcommand{\abstracttextfont}{\sffamily\small}
+\setlength{\absleftindent}{\parindent * 2}
+\setlength{\absrightindent}{\parindent * 2}
+\abslabeldelim{\quad}
+\setlength{\abstitleskip}{-\parindent}
+
+
+% Keywords
+\newenvironment{keywords}
+{\vskip -3em \hspace{\parindent}\small\sffamily{\sffamily\footnotesize\bfseries\MakeUppercase{Keywords}}\quad}
+{\vskip 3em}
+
+  
+% Title
+\usepackage{titling}
+\setlength{\droptitle}{3em}
+\pretitle{\par\vskip 5em \begin{flushleft}\LARGE\sffamily\bfseries}
+\posttitle{\par\end{flushleft}\vskip 0.75em}
+
+
+% Authors
+%
+% PHEW this is complicated for a number of reasons!
+%
+% When using \and with multiple authors, the article class in LaTeX wraps each 
+% author block in a tabluar environment with a hardcoded center alignment. It's 
+% possible to use \preauthor{} to start tabulars with a left alignment {l}, but 
+% that only applies to the first author because the others all use \and with the 
+% hardcoded {c}. But we can override the \and command and add our own {l}
+%
+% (See https://github.com/rstudio/rmarkdown/issues/1716#issuecomment-560601691 
+% for an example of redefining \and to just be \\)
+%
+% That's all great, except tabulars have some amount of default horizontal 
+% padding, which makes left-aligned author blocks not actuall get fully 
+% left-aligned on the page. We can set the horizontal padding for the column to 
+% 0, but it requires some wonky syntax: {@{\hspace{0em}}l@{}}
+\renewcommand{\and}{\end{tabular} \hskip 3em \begin{tabular}[t]{@{\hspace{0em}}l@{}}}
+\preauthor{\begin{flushleft}
+           \lineskip 1.5em 
+           \begin{tabular}[t]{@{\hspace{0em}}l@{}}}
+\postauthor{\end{tabular}\par\end{flushleft}}
+
+% Omit the date since the \published command does that
+\predate{}
+\postdate{}
+
+% Command for a note at the top of the first page describing the publication
+% status of the paper.
+\newcommand{\published}[1]{%
+   \gdef\puB{#1}}
+   \newcommand{\puB}{}
+   \renewcommand{\maketitlehooka}{%
+       \par\noindent\footnotesize\sffamily \puB}
+
+
+% ------------------
+% Section headings
+% ------------------
+\usepackage{titlesec}
+\titleformat*{\section}{\Large\sffamily\bfseries\raggedright}
+\titleformat*{\subsection}{\large\sffamily\bfseries\raggedright}
+\titleformat*{\subsubsection}{\normalsize\sffamily\bfseries\raggedright}
+\titleformat*{\paragraph}{\small\sffamily\bfseries\raggedright}
+
+% \titlespacing{<command>}{<left>}{<before-sep>}{<after-sep>}
+% Starred version removes indentation in following paragraph
+\titlespacing*{\section}{0em}{2em}{0.1em}
+\titlespacing*{\subsection}{0em}{1.25em}{0.1em}
+\titlespacing*{\subsubsection}{0em}{0.75em}{0em}
+
+
+% -----------
+% Footnotes
+% -----------
+% NB: footmisc has to come after setspace and biblatex because of conflicts
+\usepackage[bottom, flushmargin]{footmisc}
+\renewcommand*{\footnotelayout}{\footnotesize}
+
+\addtolength{\skip\footins}{10pt}    % vertical space between rule and main text
+\setlength{\footnotesep}{5pt}  % vertical space between footnotes
+
+
+% ----------
+% Captions
+% ----------
+\usepackage[font={small,sf}, labelfont={small,sf,bf}]{caption}
+
+
+% --------
+% Macros
+% --------
+% pandoc will not convert text within \begin{} XXX \end{} to Markdown and will
+% treat it as regular TeX. Because of this, it's impossible to do stuff like
+% this:
+
+% \begin{landscape}
+%
+% | One | Two   |
+% |-----+-------|
+% | my  | table |
+% | is  | nice  |
+%
+% \end{landscape}
+%
+% Since it'll render like: | One | Two | |—–+——-| | my | table | | is | nice |
+% 
+% BUT, from this http://stackoverflow.com/a/41945462/120898 we can get around
+% this by creating new commands for \begin and \end, like this:
+\usepackage{pdflscape}
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+
+% \blandscape
+%
+% | One | Two   |
+% |-----+-------|
+% | my  | table |
+% | is  | nice  |
+%
+% \elandscape
+
+% Same thing, but for generic groups
+% But can't use \bgroup and \egroup because those are built-in TeX things
+\newcommand{\stgroup}{\begingroup}
+\newcommand{\fingroup}{\endgroup}
+
+
+% ---------------------------
+% END CUSTOM PREAMBLE STUFF
+% ---------------------------
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile},
+  pdfauthor={Juan Carlos Castillo; Andreas Laffert},
+  colorlinks=true,
+  linkcolor={DarkSlateBlue},
+  filecolor={Maroon},
+  citecolor={DarkSlateBlue},
+  urlcolor={DarkSlateBlue},
+  pdfcreator={LaTeX via pandoc}}
+
+% -----------------------
+% END-OF-PREAMBLE STUFF
+% -----------------------
+
+
+
+% ---------------------- 
+% Title block elements
+% ---------------------- 
+\usepackage{orcidlink}  % Create automatic ORCID icons/links
+
+\title{Medición de percepciones y preferencias sobre meritocracia en
+etapa escolar en Chile}
+
+
+\author{
+{\large Juan Carlos Castillo~\orcidlink{0000-0003-1265-7854}}%
+ \\%
+Departmento de Sociología, Universidad de Chile \\%
+{\footnotesize \url{juancastillov@uchile.cl}} \and
+{\large Andreas Laffert~\orcidlink{0000-0002-9008-2454}}%
+ \\%
+Instituto de Sociología, Universidad Católica de Chile \\%
+{\footnotesize \url{alaffertt@estudiante.uc.cl}} \and
+}
+
+\date{}
+
+
+% Typeset URLs in the same font as their parent environment
+%
+% This has to come at the end of the preamble, after any biblatex stuff because 
+% some biblatex styles (like APA) define their own \urlstyle{}
+\usepackage{url}
+\urlstyle{same}
+
+% ---------------------------
+% END END-OF-PREAMBLE STUFF
+% ---------------------------
+\begin{document}
+% ---------------
+% TITLE SECTION
+% ---------------
+\published{\textbf{}}
+
+\maketitle
+
+
+
+% -------------------
+% END TITLE SECTION
+% -------------------
+
+
+\setstretch{1.15}
+\section{Introducción}\label{introducciuxf3n}
+
+La creencia en que las disparidades económicas se justifican por
+diferencias en elementos meritocráticos --- como esfuerzo y talento
+individual (\citeproc{ref-young_rise_1958}{Young, 1958}) --- han sido
+identificadas como mecanismos clave para explicar la persistencia de las
+desigualdades. Desde sus comienzos, las instituciones educativas han
+sido fundamentales en la promoción de este tipo de valores, dado su
+vínculo con las promesas de movilidad social y mejores oportunidades de
+vida. Ante los desafíos derivados de las diferentes conceptualizaciones
+y mediciones de la meritocracia, Castillo et al.
+(\citeproc{ref-castillo_multidimensional_2023}{2023}) proponen un marco
+conceptual y de medición para evaluar las percepciones y preferencias
+meritocráticas y no meritocráticas. Con el propósito de contribuir a la
+investigación empírica sobre la formación de la meritocracia y sus
+factores relacionados en edades tempranas
+(\citeproc{ref-batruch_belief_2022}{Batruch et al., 2022};
+\citeproc{ref-darnon_where_2018}{Darnon et al., 2018};
+\citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et al., 2015}), este
+estudio se propone evaluar la aplicabilidad de esta escala en población
+escolar en Chile, un país caracterizado por una aguda y persistente
+desigualdad económica y que cuenta un sistema educacional altamente
+estratificado (\citeproc{ref-chancel_world_2022}{Chancel et al., 2022};
+\citeproc{ref-corvalan_mercado_2017}{Corvalán et al., 2017}).
+
+Argumentamos en primer lugar que existe una distinción entre percepción
+y preferencias en la meritocracia. Mientras la percepción se asocia a
+como las personas observan el funcionamiento de principios
+meritocráticos en la sociedad (lo que es), las preferencias se refieren
+a juicios normativos (lo que debería ser). La segunda distinción tiene
+que ver con elementos meritocráticos y no meritocráticos. En este caso,
+se considera también que aspectos como el rol de los contactos
+personales y la riqueza familiar no son necesariamente opuestos a la
+percepción y valoración del esfuerzo y del talento en la obtención de
+logros y recompensas.
+
+Para poder establecer en qué medida es posible reconocer las distintas
+dimensiones de la meritocracia en la población escolar se implementará
+un procedimiento de análisis factorial confirmatorio en datos de
+estudiantes chilenos. Además, se realizarán estimaciones de invarianza
+longitudinal entre dos olas de una muestra de estudiantes en Chile.
+Finalmente, planteamos que los factores meritocráticos se asocian
+positivamente con las preferencias por justicia de mercado en salud,
+pensiones y educación (\citeproc{ref-lindh_public_2015}{Lindh, 2015}),
+mientras lo opuesto ocurre para los factores no meritocráticos.
+
+\section{Hipótesis}\label{hipuxf3tesis}
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_1\): La percepción de meritocracia es una variable latente
+  construida a partir de indicadores que miden la importancia atribuida
+  al talento y al esfuerzo para lograr mayores recompensas en la vida.
+\item
+  \(H_2\): La percepción no meritocrática es una variable latente
+  derivada de indicadores que reflejan el acuerdo con afirmaciones de
+  que las personas con contactos personales y padres adinerados tienen
+  más probabilidades de tener éxito en la vida.
+\item
+  \(H_3\): Las preferencias meritocráticas funcionan como una variable
+  latente basada en el valor normativo asignado al esfuerzo y al
+  talento.
+\item
+  \(H_4\): Las preferencias no meritocráticas funcionan como una
+  variable latente basada en el valor normativo asignado al uso de
+  contactos personales y tener padres adinerados.
+\item
+  \(H_5\): Las escalas de meritocracia y no meritocracia presentan
+  invarianza métrica entre las dos olas del estudio.
+\item
+  \(H_6\): Los factores meritocráticos están positivamente asociados con
+  las preferencias por la justicia de mercado en salud, pensiones y
+  educación, mientras que lo contrario se observa para los factores no
+  meritocráticos.
+\end{itemize}
+
+\section{Datos, variables y métodos}\label{datos-variables-y-muxe9todos}
+
+\subsection{Datos}\label{datos}
+
+Este estudio se basa en la información proporcionada por la base de
+datos de la Encuesta Panel Educación y Meritocracia (EDUMER) en sus olas
+de 2023 (N = 839) y 2024 (N = 612) para estudiantes. Esta base de datos
+se sustenta en la aplicación de cuestionarios web a estudiantes de sexto
+básico y primero medio provenientes de 9 escuelas de la región
+Metropolitana y Valparaíso de Chile.
+
+\subsection{Variables}\label{variables}
+
+\textbf{Escala de percepciones y preferencias sobre meritocracia}: Las
+variables incluidas en el modelo de medición sobre percepciones y
+preferencias de meritocracia y no meritocracia se operacionalizan según
+los ítems propuestos por Castillo et al.
+(\citeproc{ref-castillo_multidimensional_2023}{2023}). La percepción de
+la meritocracia se mide mediante dos ítems que indagan sobre el grado de
+acuerdo con que el esfuerzo y la habilidad son recompensados en Chile,
+mientras que la percepción no meritocrática se mide con dos ítems que
+evalúan el grado de acuerdo sobre el éxito asociado a contactos y
+riqueza familiar. La preferencia por la meritocracia se mide con dos
+ítems que evalúan el acuerdo en que quienes más se esfuerzan o tienen
+más talento deberían ser más recompensados. La preferencia por aspectos
+no meritocráticos se mide con dos indicadores que evalúan el acuerdo en
+que está bien que quienes tienen mejores contactos o padres ricos tengan
+más éxito. Cada ítem se contestó en una escala Likert de cuatro puntos
+que va desde ``muy en desacuerdo'' (1) hasta ``muy de acuerdo'' (4).
+
+\textbf{Preferencias por justicia de mercado}: Este constructo se mide a
+través de tres variables que abordan el grado de justificación respecto
+a si el acceso a los servicios sociales en salud, pensiones y educación
+debe estar condicionado por los ingresos. La justificación de la
+desigualdad en salud se mide a través del ítem: «¿Está bien que aquellos
+que puedan pagar más tengan mejor acceso a salud?». La misma pregunta se
+hace para pensiones y educación. En todos los casos, los encuestados
+indican sus preferencias en una escala Likert que va desde ``muy en
+desacuerdo'' (1) hasta ``muy de acuerdo'' (4). Además, incluimos un
+indicador resumido de ``preferencias por la justicia de mercado'',
+medido por un índice promedio de todos estos ítems (\(\alpha\) = 0,83),
+con valores que van de 1 a 4, donde los valores más altos representan
+mayores preferencias por justicia de mercado.
+
+\subsection{Métodos}\label{muxe9todos}
+
+Para evaluar nuestras hipótesis, empleamos análisis factoriales
+confirmatorios (CFA) basado en un modelo de medición de cuatro factores
+latentes (\citeproc{ref-castillo_multidimensional_2023}{Castillo et al.,
+2023}) con estimador Diagonal Weighted Least Squares (DWLS) debido al
+nivel ordinal de los ítems (\citeproc{ref-kline_principles_2023}{Kline,
+2023}). La evaluación del ajuste del modelo se fundamentó en los
+criterios propuestos por Brown
+(\citeproc{ref-brown_confirmatory_2015}{2015}): CFI \textgreater{} 0.95;
+TLI \textgreater{} 0.95; RMSEA \textless{} 0.06.
+
+Para examinar la estabilidad métrica del modelo de medición
+(\citeproc{ref-davidov_measurement_2014}{Davidov et al., 2014}),
+realizamos pruebas de invarianza longitudinal utilizando los datos de
+las dos olas del estudio. En línea con Liu et al.
+(\citeproc{ref-liu_testing_2017}{2017}), seguimos un enfoque jerárquico
+de cuatro modelos: configural (estructura factorial equivalente), débil
+(igualdad de cargas factoriales), fuerte (igualdad de interceptos) y
+estricto (igualdad de varianzas de error). Este enfoque resulta
+especialmente pertinente para indicadores categóricos ordenados, dado
+que tratar escalas Likert de cuatro puntos como continuas puede
+introducir sesgos en las estimaciones. Además del criterio basado en el
+cambio en el valor del chi-cuadrado, adoptamos como indicadores de
+invarianza el cambio en el CFI (\(\Delta \geq -0.010\)) y el RMSEA
+(\(\Delta \geq 0.015\)), siguiendo las recomendaciones de Chen (2007).
+
+Finalmente, para evaluar la validez externa del modelo de medición,
+llevamos a cabo un análisis de regresión entre variables latentes y
+observadas (\citeproc{ref-kline_principles_2023}{Kline, 2023}). Este
+análisis permitió explorar la relación entre factores meritocráticos y
+no meritocráticos con las preferencias por la justicia de mercado en
+salud, pensiones y educación, conforme a la literatura existente
+(\citeproc{ref-castillo_socialization_2024}{Castillo et al., 2024}).
+
+\section{Resultados}\label{resultados}
+
+Los resultados muestran que la escala presenta un adecuado ajuste al
+modelo propuesto, con indicadores sólidos (CFI = 0.989, TLI = 0.979,
+RMSEA = 0.046, χ²(df = 14) = 39.183), confirmando la validez de sus
+dimensiones en población escolar. Los análisis revelan altas cargas
+factoriales (\textgreater{} 0.6) para todos los ítems en sus respectivos
+factores latentes.
+
+Asimismo, las correlaciones entre factores son consistentes con las
+observadas en población adulta
+(\citeproc{ref-castillo_multidimensional_2023}{Castillo et al., 2023}):
+la percepción de elementos meritocráticos se asocia negativamente con la
+percepción de elementos no meritocráticos, mientras que esta última
+muestra una relación positiva con la preferencia por la meritocracia.
+Estos hallazgos sugieren que, incluso en una etapa temprana de
+socialización, los estudiantes diferencian entre cómo perciben el
+funcionamiento de elementos meritocráticos y no meritocráticos, y cómo
+prefieren que estos operen en la sociedad. Resulta especialmente notable
+que una mayor percepción de no meritocracia esté vinculada con una mayor
+preferencia por la misma, destacando el papel central de este principio
+moral en la formación de valores y actitudes durante la etapa escolar
+(\citeproc{ref-batruch_belief_2022}{Batruch et al., 2022};
+\citeproc{ref-darnon_where_2018}{Darnon et al., 2018};
+\citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et al., 2015}).
+
+Los resultados del análisis de invarianza longitudinal no respaldan la
+estabilidad métrica del modelo. En el nivel de invarianza débil, que
+implica la restricción de las cargas factoriales entre las dos olas, los
+indicadores sugieren falta de ajuste adecuado (\(\Delta\) CFI = -0.006,
+\(\Delta\) RMSEA = 0.006). Al examinar el modelo factorial en la segunda
+ola, se observa que, aunque los ítems se relacionan positivamente con
+sus respectivos factores, las cargas factoriales muestran cambios en el
+orden jerárquico. En particular, los ítems relacionados con la
+percepción o preferencia de los contactos adquieren mayor peso en los
+factores de no meritocracia, desplazando la preeminencia previa del ítem
+sobre ``padres ricos''. Este cambio podría explicarse por un proceso de
+socialización en el cual, con el tiempo, los estudiantes adquieren una
+mayor comprensión sobre el funcionamiento de los elementos no
+meritocráticos y su relevancia en las interacciones sociales.
+
+Los resultados de los modelos de regresión indican que una mayor
+percepción y preferencia por la meritocracia se asocian positivamente
+con una mayor preferencia por la justicia de mercado, mientras que esta
+relación no se observa de manera equivalente con los factores no
+meritocráticos. En particular, los análisis muestran que una mayor
+percepción de no meritocracia se relaciona con una menor preferencia por
+la justicia de mercado, aunque, paradójicamente, una mayor preferencia
+por elementos no meritocráticos se asocia con una mayor preferencia por
+la justicia de mercado. Aunque este hallazgo contraviene nuestra
+hipótesis inicial, resulta coherente bajo la premisa de que preferir que
+la meritocracia opere a través de contactos o riqueza familiar podría
+estar vinculado con una mayor aceptación de que el acceso a servicios
+sociales básicos dependa de la capacidad de pago individual (Lindh,
+2015; Castillo et al., 2014; Lindh \& McCall, 2020).
+
+\section{Pre-registro}\label{pre-registro}
+
+El pre-registro del estudio puede encontrarse en este
+\href{https://osf.io/2uhrk}{link}.
+
+\section{Referencias}\label{referencias}
+
+\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-batruch_belief_2022}
+Batruch, A., Jetten, J., Van de Werfhorst, H., Darnon, C., \& Butera, F.
+(2022). Belief in {School Meritocracy} and the {Legitimization} of
+{Social} and {Income Inequality}. \emph{Social Psychological and
+Personality Science}, 194855062211110.
+\url{https://doi.org/10.1177/19485506221111017}
+
+\bibitem[\citeproctext]{ref-brown_confirmatory_2015}
+Brown, T. A. (2015). \emph{Confirmatory factor analysis for applied
+research} (Second edition). New York London: The Guilford Press.
+
+\bibitem[\citeproctext]{ref-castillo_multidimensional_2023}
+Castillo, J. C., Iturra, J., Maldonado, L., Atria, J., \& Meneses, F.
+(2023). A {Multidimensional Approach} for {Measuring Meritocratic
+Beliefs}: {Advantages}, {Limitations} and {Alternatives} to the {ISSP
+Social Inequality Survey}. \emph{International Journal of Sociology},
+\emph{53}(6), 448--472.
+\url{https://doi.org/10.1080/00207659.2023.2274712}
+
+\bibitem[\citeproctext]{ref-castillo_socialization_2024}
+Castillo, J. C., Salgado, M., Carrasco, K., \& Laffert, A. (2024). The
+{Socialization} of {Meritocracy} and {Market Justice Preferences} at
+{School}. \emph{Societies}, \emph{14}(11), 214.
+\url{https://doi.org/10.3390/soc14110214}
+
+\bibitem[\citeproctext]{ref-chancel_world_2022}
+Chancel, L., Piketty, T., Saez, E., \& Zucman, G. (2022). World
+inequality report 2022.
+https://bibliotecadigital.ccb.org.co/handle/11520/27510.
+
+\bibitem[\citeproctext]{ref-corvalan_mercado_2017}
+Corvalán, J., Carrasco, A., \& García-Huidobro;J. E. (2017).
+\emph{Mercado escolar: {Libertad}, diversidad y desigualdad}. Ediciones
+UC.
+
+\bibitem[\citeproctext]{ref-darnon_where_2018}
+Darnon, C., Wiederkehr, V., Dompnier, B., \& Martinot, D. (2018).
+{``{Where} there is a will, there is a way''}: {Belief} in school
+meritocracy and the social-class achievement gap. \emph{British Journal
+of Social Psychology}, \emph{57}(1), 250--262.
+\url{https://doi.org/10.1111/bjso.12214}
+
+\bibitem[\citeproctext]{ref-davidov_measurement_2014}
+Davidov, E., Meuleman, B., Cieciuch, J., Schmidt, P., \& Billiet, J.
+(2014). Measurement {Equivalence} in {Cross-National Research}.
+\emph{Annual Review of Sociology}, \emph{40}(Volume 40, 2014), 55--75.
+\url{https://doi.org/10.1146/annurev-soc-071913-043137}
+
+\bibitem[\citeproctext]{ref-kline_principles_2023}
+Kline, R. B. (2023). \emph{Principles and {Practice} of {Structural
+Equation Modeling}}. Guilford Publications.
+
+\bibitem[\citeproctext]{ref-lindh_public_2015}
+Lindh, A. (2015). Public {Opinion} against {Markets}? {Attitudes}
+towards {Market Distribution} of {Social Services} -- {A Comparison} of
+17 {Countries}. \emph{Social Policy \& Administration}, \emph{49}(7),
+887--910. \url{https://doi.org/10.1111/spol.12105}
+
+\bibitem[\citeproctext]{ref-liu_testing_2017}
+Liu, Y., Millsap, R. E., West, S. G., Tein, J.-Y., Tanaka, R., \& Grimm,
+K. J. (2017). Testing measurement invariance in longitudinal data with
+ordered-categorical measures. \emph{Psychological Methods},
+\emph{22}(3), 486--506. \url{https://doi.org/10.1037/met0000075}
+
+\bibitem[\citeproctext]{ref-wiederkehr_belief_2015}
+Wiederkehr, V., Bonnot, V., Krauth-Gruber, S., \& Darnon, C. (2015).
+Belief in school meritocracy as a system-justifying tool for low status
+students. \emph{Frontiers in Psychology}, \emph{6}.
+
+\bibitem[\citeproctext]{ref-young_rise_1958}
+Young, M. (1958). \emph{The rise of the meritocracy}. New Brunswick,
+N.J., U.S.A: Transaction Publishers.
+
+\end{CSLReferences}
+
+\textbf{Word count}: 1662
+
+
+
+\end{document}

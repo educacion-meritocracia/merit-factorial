@@ -15,6 +15,16 @@ author:
     email: alaffertt@estudiante.uc.cl
     affiliations:
       - ref: 2
+  - name: Jesús Díaz
+    orcid: 
+    email: jesus.diaz.m@ug.uchile.cl
+    affiliations:
+      - ref: 1
+  - name: Benjamín Zavala
+    orcid: 
+    email: benjamin.zavala.t@ug.uchile.cl
+    affiliations:
+      - ref: 1
 affiliations: 
   - id: 1
     name: Departmento de Sociología, Universidad de Chile
@@ -40,14 +50,6 @@ Argumentamos en primer lugar que existe una distinción entre percepción y pref
 
 Para poder establecer en qué medida es posible reconocer las distintas dimensiones de la meritocracia en la población escolar se implementará un procedimiento de análisis factorial confirmatorio en datos de estudiantes chilenos. Además, se realizarán estimaciones de invarianza longitudinal entre dos olas de una muestra de estudiantes en Chile. Finalmente, planteamos que los factores meritocráticos se asocian positivamente con las preferencias por justicia de mercado en salud, pensiones y educación [@lindh_public_2015], mientras lo opuesto ocurre para los factores no meritocráticos.
 
-# Hipótesis
-
-- $H_1$: La percepción de meritocracia es una variable latente construida a partir de indicadores que miden la importancia atribuida al talento y al esfuerzo para lograr mayores recompensas en la vida.
-- $H_2$: La percepción no meritocrática es una variable latente derivada de indicadores que reflejan el acuerdo con afirmaciones de que las personas con contactos personales y padres adinerados tienen más probabilidades de tener éxito en la vida.
-- $H_3$: Las preferencias meritocráticas funcionan como una variable latente basada en el valor normativo asignado al esfuerzo y al talento.
-- $H_4$: Las preferencias no meritocráticas funcionan como una variable latente basada en el valor normativo asignado al uso de contactos personales y tener padres adinerados.
-- $H_5$: Las escalas de meritocracia y no meritocracia presentan invarianza métrica entre las dos olas del estudio.
-- $H_6$: Los factores meritocráticos están positivamente asociados con las preferencias por la justicia de mercado en salud, pensiones y educación, mientras que lo contrario se observa para los factores no meritocráticos.
 
 # Datos, variables y métodos
 
@@ -72,13 +74,11 @@ Finalmente, para evaluar la validez externa del modelo de medición, llevamos a 
 
 # Resultados
 
-Los resultados muestran que la escala presenta un adecuado ajuste al modelo propuesto, con indicadores sólidos (CFI = 0.989, TLI = 0.979, RMSEA = 0.046, χ²(df = 14) = 39.183), confirmando la validez de sus dimensiones en población escolar. Los análisis revelan altas cargas factoriales (> 0.6) para todos los ítems en sus respectivos factores latentes.
+Los resultados revelan que la escala presenta buenos indicadores de ajuste (CFI = 0.989, TLI = 0.979, RMSEA = 0.046, $\chi^2$ (df = 14) = 39.183) y que sus dimensiones se corresponden con el modelo multidimensional propuesto en población escolar. Se observan altas cargas factoriales (> 0.6) para todos los ítems en sus respectivos factores latentes. Las correlaciones entre factores son consistentes con las observadas en población adulta [@castillo_multidimensional_2023]: la percepción de elementos meritocráticos se asocia negativamente con la percepción de elementos no meritocráticos, mientras que esta última se relaciona positivamente con la preferencia por la meritocracia. Estos hallazgos sugieren que, en una etapa temprana de socialización, los estudiantes diferencian entre cómo perciben el funcionamiento de elementos meritocráticos y no meritocráticos, y cómo prefieren que estos operen en la sociedad. Resulta relevante notar que una mayor percepción de no meritocracia esté vinculada con una mayor preferencia por la misma, destacando la importancia de este principio moral en la formación de valores y actitudes durante la etapa escolar [@batruch_belief_2022; @wiederkehr_belief_2015; @darnon_where_2018].
 
-Asimismo, las correlaciones entre factores son consistentes con las observadas en población adulta [@castillo_multidimensional_2023]: la percepción de elementos meritocráticos se asocia negativamente con la percepción de elementos no meritocráticos, mientras que esta última muestra una relación positiva con la preferencia por la meritocracia. Estos hallazgos sugieren que, incluso en una etapa temprana de socialización, los estudiantes diferencian entre cómo perciben el funcionamiento de elementos meritocráticos y no meritocráticos, y cómo prefieren que estos operen en la sociedad. Resulta especialmente notable que una mayor percepción de no meritocracia esté vinculada con una mayor preferencia por la misma, destacando el papel central de este principio moral en la formación de valores y actitudes durante la etapa escolar [@batruch_belief_2022; @wiederkehr_belief_2015; @darnon_where_2018].
+Los resultados del análisis de invarianza longitudinal no respaldan la estabilidad métrica del modelo. En el nivel de invarianza débil, donde se restringuen las cargas factoriales entre las dos olas, los indicadores sugieren un mal ajuste ($\Delta$ CFI = -0.006, $\Delta$ RMSEA = 0.006). Al examinar el modelo factorial en la segunda ola, se observa que, aunque los ítems se relacionan positivamente con sus respectivos factores, las cargas factoriales muestran cambios en el orden jerárquico. Los ítems relacionados con la percepción o preferencia de los contactos adquieren mayor peso en los factores de no meritocracia, desplazando la preeminencia previa del ítem sobre padres ricos. Este cambio podría explicarse por un proceso de socialización en el cual, con el tiempo, los estudiantes adquieren una mayor comprensión sobre el funcionamiento e importancia de los elementos no meritocráticos en la sociedad.
 
-Los resultados del análisis de invarianza longitudinal no respaldan la estabilidad métrica del modelo. En el nivel de invarianza débil, que implica la restricción de las cargas factoriales entre las dos olas, los indicadores sugieren falta de ajuste adecuado ($\Delta$ CFI = -0.006, $\Delta$ RMSEA = 0.006). Al examinar el modelo factorial en la segunda ola, se observa que, aunque los ítems se relacionan positivamente con sus respectivos factores, las cargas factoriales muestran cambios en el orden jerárquico. En particular, los ítems relacionados con la percepción o preferencia de los contactos adquieren mayor peso en los factores de no meritocracia, desplazando la preeminencia previa del ítem sobre "padres ricos". Este cambio podría explicarse por un proceso de socialización en el cual, con el tiempo, los estudiantes adquieren una mayor comprensión sobre el funcionamiento de los elementos no meritocráticos y su relevancia en las interacciones sociales.
-
-Los resultados de los modelos de regresión indican que una mayor percepción y preferencia por la meritocracia se asocian positivamente con una mayor preferencia por la justicia de mercado, mientras que esta relación no se observa de manera equivalente con los factores no meritocráticos. En particular, los análisis muestran que una mayor percepción de no meritocracia se relaciona con una menor preferencia por la justicia de mercado, aunque, paradójicamente, una mayor preferencia por elementos no meritocráticos se asocia con una mayor preferencia por la justicia de mercado. Aunque este hallazgo contraviene nuestra hipótesis inicial, resulta coherente bajo la premisa de que preferir que la meritocracia opere a través de contactos o riqueza familiar podría estar vinculado con una mayor aceptación de que el acceso a servicios sociales básicos dependa de la capacidad de pago individual (Lindh, 2015; Castillo et al., 2014; Lindh & McCall, 2020). 
+Los resultados de los modelos de regresión indican que una mayor percepción y preferencia por la meritocracia se asocian positivamente con una mayor preferencia por la justicia de mercado, mientras que esta relación no se observa con los factores no meritocráticos. En detalle, una mayor preferencia por elementos no meritocráticos se asocia con una mayor preferencia por la justicia de mercado. Aunque este hallazgo contradice nuestra hipótesis, resulta coherente bajo la premisa de que preferir que la meritocracia opere a través de contactos o riqueza familiar podría estar vinculado con una mayor aceptación de que el acceso a servicios sociales básicos dependa de la capacidad de pago individual [@castillo_socialization_2024]. 
 
 # Pre-registro
 

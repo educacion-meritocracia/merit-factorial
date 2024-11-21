@@ -27,9 +27,15 @@ author:
       - ref: 1
 affiliations: 
   - id: 1
-    name: Departmento de Sociología, Universidad de Chile
+    name: Departamento de Sociología, Universidad de Chile
   - id: 2
     name: Instituto de Sociología, Universidad Católica de Chile 
+keywords: 
+  - meritocracia 
+  - medición
+  - socialización
+  - escuelas
+  - Chile
 bibliography: "/Users/macbookair/Documents/GitHub/merit-factorial/input/bib/merit-factorial.bib"
 csl: "/Users/macbookair/Documents/GitHub/merit-factorial/input/bib/apa6.csl"
 link-citations: true
@@ -66,7 +72,7 @@ Este estudio se basa en la información proporcionada por la base de datos de la
 
 Para evaluar nuestras hipótesis, empleamos análisis factoriales confirmatorios (CFA) basado en un modelo de medición de cuatro factores latentes [@castillo_multidimensional_2023] con estimador Diagonal Weighted Least Squares (DWLS) debido al nivel ordinal de los ítems [@kline_principles_2023]. La evaluación del ajuste del modelo se fundamentó en los criterios propuestos por Brown [-@brown_confirmatory_2015]: CFI > 0.95; TLI > 0.95; RMSEA < 0.06. 
 
-Para examinar la estabilidad métrica del modelo de medición [@davidov_measurement_2014], realizamos pruebas de invarianza longitudinal utilizando los datos de las dos olas del estudio. En línea con @liu_testing_2017, seguimos un enfoque jerárquico de cuatro modelos: configural (estructura factorial equivalente), débil (igualdad de cargas factoriales), fuerte (igualdad de interceptos) y estricto (igualdad de varianzas de error). Este enfoque resulta especialmente pertinente para indicadores categóricos ordenados, dado que tratar escalas Likert de cuatro puntos como continuas puede introducir sesgos en las estimaciones. Además del criterio basado en el cambio en el valor del chi-cuadrado, adoptamos como indicadores de invarianza el cambio en el CFI ($\Delta \geq -0.010$)  y el RMSEA ($\Delta \geq 0.015$), siguiendo las recomendaciones de Chen (2007).
+Para examinar la estabilidad métrica del modelo de medición [@davidov_measurement_2014], realizamos pruebas de invarianza longitudinal utilizando los datos de las dos olas del estudio. En línea con @liu_testing_2017, seguimos un enfoque jerárquico de cuatro modelos: configural (estructura factorial equivalente), débil (igualdad de cargas factoriales), fuerte (igualdad de interceptos) y estricto (igualdad de varianzas de error). Este enfoque resulta especialmente pertinente para indicadores categóricos ordenados, dado que tratar escalas Likert de cuatro puntos como continuas puede introducir sesgos en las estimaciones. Además del criterio basado en el cambio en el valor del chi-cuadrado, adoptamos como indicadores de invarianza el cambio en el CFI ($\Delta \geq -0.010$)  y el RMSEA ($\Delta \geq 0.015$), siguiendo las recomendaciones de Chen [-@chen_sensitivity_2007].
 
 
 Finalmente, para evaluar la validez externa del modelo de medición, llevamos a cabo un análisis de regresión entre variables latentes y observadas  [@kline_principles_2023]. Este análisis permitió explorar la relación entre factores meritocráticos y no meritocráticos con las preferencias por la justicia de mercado en salud, pensiones y educación, conforme a la literatura existente [@castillo_socialization_2024].

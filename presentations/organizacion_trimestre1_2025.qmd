@@ -1,0 +1,170 @@
+---
+pagetitle: "Organización 2025"
+Author: Equipo EDUMER
+lang: es
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      
+      knitr.graphics.auto_pdf: true
+format:
+  revealjs:
+    #logo: images/edumer.png
+    slide-number: true
+    theme: "libs/edumer.scss"
+    auto-stretch: false
+    title-slide-attributes:
+      visibility: false
+    transition: fade
+    transition-speed: slow
+# data-background-image: images/cover.jpg
+# data-background-size: cover
+    auto-play-media: true
+    mathjax: "default"
+  pdf:
+    format: beamer 
+    keep-tex: true  # Debug LaTeX output if needed
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(knitr)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
+#| label: packages
+#| include: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               kableExtra,
+               here)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+
+
+::: columns
+::: {.column width="30%"}
+
+
+![](images/edumer.png)
+
+
+:::
+
+::: {.column .column-right width="70%"}
+
+# **Organización primer trimestre 2025**
+
+------------------------------------------------------------------------
+<br>
+
+**Equipo EDUMER**
+
+
+6 enero 2025, Chile
+
+:::
+:::
+
+::: {.notes}
+Aquí mis notas
+:::
+
+
+# Productos y fechas {data-background-color="#5f5758"}
+
+## Urgentes
+
+::: {.incremental .highlight-last style="font-size: 125%;"}
+
+- Abstract para call de revista [Frontiers "(Mis)perceptions of Inequality as Social Issue"](https://www.frontiersin.org/research-topics/67645/misperceptions-of-inequality-as-a-social-issue?j=2404906&sfmc_sub=288848708&l=94_HTML&u=89642131&mid=7236711&jb=2683&id_mc=288848708&utm_source=sfmc&utm_medium=email&utm_campaign=MSC-CfP-EOF-Reminder-1-C&utm_id=2404906&Business_Goal=MSC&Audience=CfP&Email_Category=Reminder1&Channel=Email&BusinessGoal_Audience_EmailCategory_Channel=MSC_CfP_Reminder1_Email&utm_source=sfmc&utm_term=&utm_content=3887531&utm_id=8ec20e47-c636-43b8-8cc3-7de95346541e&sfmc_id=288848708&sfmc_activityid=3b39c6e3-fb53-4902-ad94-f085e773b78f&utm_medium=email) → **8 ENERO** 
+
+- Revisión componente ético del proyecto Fondecyt → **8 ENERO** 
+
+- Paper completo "Changes in Beliefs about Meritocracy and Preferences for Market Justice in the School Context" para el Special Issue Inequality → **15 FEBRERO** 
+
+:::
+
+## Importantes y en continuación
+
+::: {.incremental .highlight-last style="font-size: 125%;"}
+
+- Paper completo "Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile" para [Revista Internacional de Educación para la Justicia Social](https://revistas.uam.es/riejs/next) → **1 MAYO** 
+
+- Paper sobre experimento distribucional de encuesta para Special Issue Social Psychology → **30 de marzo abstract, paper 30 de agosto**
+
+- Encuesta EDUMER Web a Adultos
+
+- Documentación encuesta EDUMER Ola 1 y 2
+
+
+::: 
+
+# Distribución y responsabilidades {data-background-color="#5f5758"}
+
+
+## Diagrama
+
+
+```{r}
+#| label: fig-concep
+#| fig-cap-location: top
+#| fig-cap: "Modelo conceptual de Castillo et al. (2023)"
+#| fig-align: center
+#| fig-width: 8
+#| out-width: '100%'
+
+
+knitr::include_graphics(path = here("presentations/images/modelo_con.png"))
+
+```
+
+
+# Avances {data-background-color="#5f5758"}
+
+## Avances en...
+
+::: {.incremental .highlight-last style="font-size: 110%;"}
+
+- [Encuesta Panel Educación y Meritocracia (EDUMER)](https://github.com/educacion-meritocracia/edumer-data) 
+    
+    * Limpieza y generación de bases de datos completas
+    * Manual metodológico
+
+- Aplicación de Encuesta EDUMER Web a Adultos.
+
+- Paper "Changes in Beliefs about Meritocracy and Preferences for Market Justice in the School Context":
+
+    * Pre registro 
+    * Procesamiento de datos
+
+- Paper "Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile":
+
+    * Procesamiento y análisis de datos
+    * Escritura de apartado metodológico y resultados
+
+- Revisión ética proyecto Fondecyt
+
+:::
+
+
+# Gracias por su atención! 
+

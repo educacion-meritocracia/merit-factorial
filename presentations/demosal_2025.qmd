@@ -595,7 +595,7 @@ configural_model_smt <- measEq.syntax(
 configural_model_smt <- as.character(configural_model_smt)
 
 # Finally, fit the model using lavaan.
-configural_model_smt_fit <- sem(configural_model_smt, data = db_invariance)
+configural_model_smt_fit <- cfa(configural_model_smt, data = db_invariance)
 
 # Weak
 weak_model_smt <- measEq.syntax(
@@ -608,7 +608,7 @@ weak_model_smt <- measEq.syntax(
 )
 weak_model_smt <- as.character(weak_model_smt)
 
-weak_model_smt_fit <- sem(weak_model_smt, data = db_invariance)
+weak_model_smt_fit <- cfa(weak_model_smt, data = db_invariance)
 
 # Strong
 
@@ -623,7 +623,7 @@ strong_model_smt <- measEq.syntax(
 
 strong_model_smt <- as.character(strong_model_smt)
 
-strong_model_smt_fit <- sem(strong_model_smt, data = db_invariance)
+strong_model_smt_fit <- cfa(strong_model_smt, data = db_invariance)
 
 
 # Strict
@@ -637,7 +637,7 @@ strict_model_smt <- measEq.syntax(
 )
 strict_model_smt <- as.character(strict_model_smt)
 
-strict_model_smt_fit <- sem(strict_model_smt, data = db_invariance)
+strict_model_smt_fit <- cfa(strict_model_smt, data = db_invariance)
 
 
 # Compare ajust
@@ -696,13 +696,16 @@ kableExtra::column_spec(2:7, width = "4cm") %>%
 
 ::: {.small}
 
-`r footnote`
+`r footnote`, *** p<0.001, ** p<0.01, * p<0.5
 :::
 
 
 ::::
 
 ## Fuentes de invarianza
+
+::: {.incremental style="font-size: 110%;"}
+
 
 ```{r}
 #| label: tbl-fuentesinvarianza
@@ -726,6 +729,11 @@ lavTestScore(strong_model_smt_fit)$uni %>%
                             font_size = 23)
 ```
 
+- Se observa una fuente de invarianza asociada a los parámetros p1 y p2, que corresponden a los **ítems de percepción de esfuerzo y de talento**, respectivamente.
+
+- **Sustantivamente**: el $\bar{X}$ en estos ítems _cambia_ entre mediciones
+
+:::
 
 # Discusión y conclusiones {data-background-color="#5f5758"}
 
@@ -735,20 +743,19 @@ lavTestScore(strong_model_smt_fit)$uni %>%
 
 :::: {.incremental style="font-size: 115%;"}
 
-**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: escala presenta buenos indicadores de ajuste y sus dimensiones se corresponden con el modelo conceptual multidimensional en población escolar [@castillo_multidimensional_2023] </font>
+**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: escala presenta buenos indicadores de ajuste y sus dimensiones se corresponden con el modelo conceptual multidimensional en población escolar [@castillo_multidimensional_2023] 
 
 **<span style="color:darkorange">2. Significado de la meritocracia**: tanto a nivel de estudiantes como adultos los factores se relacionan de manera similar → _a mayor percepción no meritocrática, mayor preferencia por la meritocracia_
-</font>
 
-**<span style="color:darkorange">3. Invarianza longitudinal**: no invarianza fuerte sugiere que estudiantes tienden a cambiar sus valores de respuesta promedio en ciertos ítems entre olas [@liu_testing_2017]  → _interceptos de los ítems cambian en el tiempo_ 
-</font>
+**<span style="color:darkorange">3. Invarianza longitudinal**: hay evidencia de que el modelo de medición es comparable/estable _entre_ individuos en dos momentos en el tiempo (a un nivel débil) [@liu_testing_2017] 
 
 
-**<span style="color:darkorange">4. Proyecciones**: aplicación de la escala en población adulta para evaluar su utilidad y validez predictiva </font>
+**<span style="color:darkorange">4. Proyecciones**: aplicación de la escala en población adulta para evaluar su utilidad y validez predictiva 
+
 ::::
 
 
-# Gracias por su atención! 
+# ¡Gracias por su atención! 
 
 -   **Github del proyecto:** <https://github.com/educacion-meritocracia>
 

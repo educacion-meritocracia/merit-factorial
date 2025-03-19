@@ -39,7 +39,6 @@ db_long <- db_long %>%
   select(id_estudiante,
          ola,
          consent = consentimiento,
-         curse_level = nivel_estudiante,
          perc_effort = p1_1,
          perc_talent = p1_2,
          perc_rich_parents = p1_3,
@@ -58,7 +57,6 @@ db_long <- db_long %>% filter(consent == 1) %>% select(-consent)
 
 # recode and transform ----
 
-frq(db_long$curse_level)
 frq(db_long$perc_effort)
 frq(db_long$perc_talent)
 frq(db_long$perc_rich_parents)
@@ -72,12 +70,6 @@ frq(db_long$just_health)
 frq(db_long$just_pension)
 
 
-db_long$curse_level <- car::recode(db_long$curse_level, 
-                               recodes = c("1:2 = 'Básica'; 3:4 = 'Media'"),
-                               as.factor = T,
-                               levels = c("Básica", "Media"))
-
-
 labels1 <- c("Muy en desacuerdo" = 1, 
              "En desacuerdo" = 2, 
              "De acuerdo" = 3, 
@@ -86,18 +78,18 @@ labels1 <- c("Muy en desacuerdo" = 1,
              "No responde" = 99)
 
 db_long <- db_long %>% 
-  mutate_at(.vars = (4:14),.funs = ~ sjlabelled::set_labels(., labels = labels1))
+  mutate_at(.vars = (3:13),.funs = ~ sjlabelled::set_labels(., labels = labels1))
 
 
 db_long <- db_long %>% 
   mutate(
     across(
-      .cols = -c(id_estudiante,ola,curse_level),
+      .cols = -c(id_estudiante,ola),
       .fns = ~ set_na(., na = c(88,99))
     )
   )
 
-db_long$mjp <- rowMeans(x = db_long[12:14], na.rm = T)
+db_long$mjp <- rowMeans(x = db_long[11:13], na.rm = T)
 db_long$mjp <- if_else(is.nan(db_long$mjp), NA, db_long$mjp)
 
 
@@ -113,7 +105,7 @@ any_na(db_long)
 
 n_miss(db_long)
 
-prop_miss(db_long[c(4:14)])
+prop_miss(db_long[c(3:13)])
 
 naniar::gg_miss_var(db_long)
 

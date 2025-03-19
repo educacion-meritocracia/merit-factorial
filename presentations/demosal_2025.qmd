@@ -133,19 +133,66 @@ Aquí mis notas
 
 # Contexto y motivación {data-background-color="#5f5758"}
 
+# Contexto y motivación 
+
+::: {.columns}
+
+::: {.column width="20%"}
+
+![](images/edumer.png)
+
+:::
+
+::: {.column width="80%"}
+::: {.incremental .highlight-last style="font-size: 110%;"}
+- ANID/FONDECYT N°1210847 2021-2024 - Meritocracia en la escuela: Fundamentos morales del mercado educativo y sus implicancias para la formación ciudadana en Chile.
+
+- Primera etapa:
+  * Estudio cualitativo
+  * Análisis de datos secundarios
+ 
+- Segunda etapa:
+  * Encuesta panel: dos olas estudiantes y apoderados
+  * Experimentos de encuestas
+  
+- Más información: [jc-castillo.com/project/fondecyt-edumer/](jc-castillo.com/project/fondecyt-edumer/)
+
+:::
+:::
+:::
+
+
 ## Creencias sobre la desigualdad, meritocracia y educación {background-image="images/fondo-Photoroom.png"}
 
 ::: {.incremental .highlight-last style="font-size: 120%;"}
 
-- Creencias sobre la desigualdad [@kluegel_beliefs_1987]
+- Creencias sobre la desigualdad: quién merece qué y por qué [@kluegel_beliefs_1987]
 
-- Mérito como _principio_ donde los bienes y recompensas se distribuyen en base al talento y esfuerzo [@sen_merit_2000]
+- Mérito: _principio_ donde los bienes y recompensas se distribuyen en base al talento y esfuerzo [@sen_merit_2000]
 
-- Meritocracia como un _sistema_ basado en el mérito como principal mecanismo distributivo [@young_rise_1958]
+- Meritocracia: _sistema_ distributivo basado en el mérito [@young_rise_1958]
 
-    * Igualdad de oportunidades vs. igualdad de resultados: la promesa incumpible [@mijs_unfulfillable_2016]
+- Agenda de investigación sobre meritocracia: 
 
-- Creencias meritocráticas pueden conducir a tolerar y justificar disparidades económicas y sociales [@sandel_tyranny_2020; @mijs_paradox_2019; @bucca_merit_2016]
+     -  El funcionamiento y promesa inherente de la meritocracia [@mijs_unfulfillable_2016; @reynolds_perceptions_2014]
+     - Justificación y legitimación de disparidades económicas y sociales [@sandel_tyranny_2020; @mijs_paradox_2019; @bucca_merit_2016]
+
+:::
+
+
+
+## Creencias sobre la desigualdad, meritocracia y educación {background-image="images/cima2-Photoroom.png"}
+
+::: {.incremental .highlight-last style="font-size: 120%;"}
+
+- Investigaciones sobre meritocracia en la escuela [e.g. @batruch_belief_2022; @wiederkehr_belief_2015; @darnon_where_2018], dado que: 
+
+    - Instituciones educativas han sido fundamentales en la promoción de ideales meritocráticos [@dubet_repensar_2011]
+
+    - Alta reproducción de las desigualdades en las escuelas [@bourdieu_reproduction_1990; @duru-bellat_who_2012]
+
+- Las creencias meritocráticas a nivel escolar se asocian con una mayor justificación de las desigualdades sociales [@batruch_belief_2022]
+
 
 :::
 
@@ -153,9 +200,12 @@ Aquí mis notas
 ## Medición de meritocracia
 
 
-::: {.incremental .highlight-last style="font-size: 100%;"}
+::: {.incremental .highlight-last style="font-size: 115%;"}
 
-- Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición para evaluar:
+- Sin embargo, **los conceptos e instrumentos para medir meritocracia** varían sustantivamente en la literatura
+
+- Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición minimalista para meritocracia en contextos de encuestas. 
+
 
 ```{r}
 #| label: fig-concep
@@ -174,23 +224,92 @@ knitr::include_graphics(path = here("presentations/images/modelo_con.png"))
 ::: 
 
 
-## Creencias sobre la desigualdad, meritocracia y educación {background-image="images/cima2-Photoroom.png"}
 
-::: {.incremental .highlight-last style="font-size: 120%;"}
+## Modelo
 
-- Instituciones educativas han sido fundamentales en la promoción de ideales meritocráticos [@dubet_repensar_2011]
+::: {style="font-size: 120%;"}
 
-    - Educación como vía de movilidad social e igualdad de oportunidades 
-
-    - Enfásis en el desempeño académico, conocimiento y logros
-    
-- Alta reproducción de las desigualdades en las escuelas [@bourdieu_reproduction_1990; @duru-bellat_who_2012]
-
-- Las creencias meritocráticas a nivel escolar se asocian con una mayor justificación de las desigualdades sociales [e.g. @batruch_belief_2022; @wiederkehr_belief_2015; @darnon_where_2018]
+```{r}
+#| fig-align: center
+#| fig-width: 15
+#| out-width: '220%'
 
 
-:::
+knitr::include_graphics(path = here("presentations/images/hipo1.png"))
 
+```
+
+
+::: 
+
+## Modelo
+
+::: {style="font-size: 120%;"}
+
+```{r}
+#| fig-align: center
+#| fig-width: 15
+#| out-width: '150%'
+
+
+knitr::include_graphics(path = here("presentations/images/hipo2.png"))
+
+```
+
+
+::: 
+
+## Modelo
+
+::: {style="font-size: 120%;"}
+
+```{r}
+#| fig-align: center
+#| fig-width: 15
+#| out-width: '150%'
+
+
+knitr::include_graphics(path = here("presentations/images/hipo3.png"))
+
+```
+
+
+::: 
+
+## Modelo
+
+::: {style="font-size: 120%;"}
+
+```{r}
+#| fig-align: center
+#| fig-width: 15
+#| out-width: '150%'
+
+
+knitr::include_graphics(path = here("presentations/images/hipo4.png"))
+
+```
+
+
+::: 
+
+## Modelo
+
+::: {style="font-size: 120%;"}
+
+```{r}
+#| fig-align: center
+#| fig-asp: 1.1
+#| fig-width: 15
+#| out-width: '150%'
+
+
+knitr::include_graphics(path = here("presentations/images/hipo5.png"))
+
+```
+
+
+::: 
 
 # Este estudio {data-background-color="#5f5758"}
 
@@ -200,30 +319,10 @@ knitr::include_graphics(path = here("presentations/images/modelo_con.png"))
 </br>
 
 **<span style="color:darkorange">Evaluar la aplicabilidad de la Escala de Percepciones y Preferencias por Meritocracia en población escolar en Chile**</font>
+
+
 :::
 
-
-
-
-## Hipótesis
-
-::: {style="font-size: 120%;"}
-
-```{r}
-#| label: fig-hipo
-#| fig-cap-location: top
-#| fig-cap: "Resumen de hipótesis"
-#| fig-align: center
-#| fig-width: 15
-#| out-width: '130%'
-
-
-knitr::include_graphics(path = here("presentations/images/diag_hipo.png"))
-
-```
-
-
-::: 
 
 # Datos, variables y métodos {data-background-color="#5f5758"}
 
@@ -231,11 +330,13 @@ knitr::include_graphics(path = here("presentations/images/diag_hipo.png"))
 
 ::: {.incremental .highlight-last style="font-size: 120%;"}
 
-- [Encuesta Panel Educación y Meritocracia (EDUMER)](https://github.com/educacion-meritocracia/edumer-data) en sus olas de 2023 (N = 839) y 2024 (N = 612) para estudiantes.
+- [Encuesta Panel Educación y Meritocracia (EDUMER)](https://github.com/educacion-meritocracia/edumer-data) en su primera ola de 2023 (*N* = 839) para estudiantes.
 
-- Aplicación de entrevistas CAWI a estudiantes de sexto básico y primero medio provenientes de 9 escuelas de la región Metropolitana y Valparaíso de Chile.
+- Aplicación de entrevistas CAWI a estudiantes de primaria y secundaria provenientes de 9 escuelas de la región Metropolitana y Valparaíso de Chile.
 
 - Muestra no probabilística.
+
+- Compuesta por 411 mujeres, 446 hombres, 45 otro; $\bar{X}_{edad}$ = 13.1, $SD_{edad}$ = 1.6
 
 - Módulos sobre meritocracia, preferencias y desigualdad, y cuidadanía.
 
@@ -250,7 +351,6 @@ knitr::include_graphics(path = here("presentations/images/diag_hipo.png"))
 - Las variables incluidas en el modelo de medición se operacionalizan según los ítems propuestos por Castillo et al. [-@castillo_multidimensional_2023].
 
 - Escala de dos componentes, cuatro dimensiones y 8 ítems (2 x dimensión).
-
 
 - Cada ítem se contestó en una escala Likert de cuatro puntos que va desde “muy en desacuerdo” (1) hasta “muy de acuerdo” (4).
 
@@ -318,7 +418,7 @@ b <- db1 %>%
                       show.n = FALSE,
                       show.prc.sign = T
   ) +
-  ggplot2::theme(legend.position = "bottom")
+  ggplot2::theme(legend.position = "top")
 
 likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1)[1],")"
 ))
@@ -332,12 +432,15 @@ likerplot
 
 ::: {.incremental .highlight-last style="font-size: 110%;"}
 
-- Análisis Factorial Confirmatorio (CFA) en base a un modelo de cuatro factores latentes [@castillo_multidimensional_2023], con estimador Diagonal Weighted Least Squares (DWLS) debido al nivel ordinal de los ítems [@kline_principles_2023]
+- Análisis Factorial Confirmatorio (CFA) para evaluar/confirmar las dimensiones subyacentes a la escala propuesta [@brown_confirmatory_2015].
 
-    * Extraer dimensiones latentes que hacen referencia a los distintos dominios en que se percibe/prefiere la meritocracia
-    * Determinar el grado en que dichas dimensiones reflejan el comportamiento de los indicadores 
+    * Corroborar empíricamente la estructura teórica de la escala y verificar la coherencia de los ítems con su factor latente [@brown_confirmatory_2015].
+  
+    * Identificar posibles problemas de validez (p. ej., cargas factoriales débiles o correlaciones excesivas entre factores) y refinar la medición [@kline_principles_2023]
+    
+    * Modelo de cuatro factores latentes [@castillo_multidimensional_2023] con estimador Diagonal Weighted Least Squares (DWLS) por el carácter ordinal de los ítems.
+    
     * Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95;RMSEA< 0.06$
-
 
 :::
 
@@ -458,6 +561,32 @@ knitr::include_graphics(path = here("presentations/images/diag3_cfa_w1.png"))
 
 ::::
 
+
+# Discusión y conclusiones {data-background-color="#5f5758"}
+
+
+## Discusión y conclusiones {data-background-color="#5f5758"}
+
+
+:::: {.incremental style="font-size: 115%;"}
+
+**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: escala presenta buenos indicadores de ajuste y sus dimensiones se corresponden con el modelo conceptual multidimensional en población escolar → _es posible diferenciar entre percepciones y preferencias, meritocracia y no meritocracia_ 
+
+**<span style="color:darkorange">2. Implicancias de la meritocracia**: tanto a nivel de estudiantes como adultos [@castillo_multidimensional_2023] las dimensiones se relacionan de manera similar → _a mayor percepción no meritocrática, mayor preferencia por la meritocracia_
+
+**<span style="color:darkorange">3. Proyecciones**: (i) evaluar la estabilidad métrica de la escala (ej. invarianza longitudinal), (ii) profundizar en el rol del esfuerzo, talento y contactos, y (iii) evaluar la validez predictiva de la escala
+::::
+
+
+# ¡Gracias por su atención! 
+
+-   **Github del proyecto:** <https://github.com/educacion-meritocracia>
+
+
+# Anexo  {data-background-color="#5f5758"}
+
+
+
 ## Análisis Factorial Confirmatorio
 
 :::: {style="font-size: 120%;"}
@@ -528,33 +657,6 @@ Castillo et al. [-@castillo_multidimensional_2023, p.18, Figura 9] concluyen que
 
 ::::
 
-
-
-# Discusión y conclusiones {data-background-color="#5f5758"}
-
-
-## Discusión y conclusiones {data-background-color="#5f5758"}
-
-
-:::: {.incremental style="font-size: 115%;"}
-
-**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: escala presenta buenos indicadores de ajuste y sus dimensiones se corresponden con el modelo conceptual multidimensional en población escolar [@castillo_multidimensional_2023] 
-
-**<span style="color:darkorange">2. Significado de la meritocracia**: tanto a nivel de estudiantes como adultos los factores se relacionan de manera similar → _a mayor percepción no meritocrática, mayor preferencia por la meritocracia_
-
-**<span style="color:darkorange">3. Invarianza longitudinal**: hay evidencia de que el modelo de medición es comparable/estable _entre_ individuos en dos momentos en el tiempo (a un nivel débil) [@liu_testing_2017] 
-
-**<span style="color:darkorange">4. Proyecciones**: aplicación de la escala en población adulta para evaluar su utilidad y validez predictiva 
-
-::::
-
-
-# ¡Gracias por su atención! 
-
--   **Github del proyecto:** <https://github.com/educacion-meritocracia>
-
-
-# Anexo  {data-background-color="#5f5758"}
 
 ## Invarianza longitudinal
 

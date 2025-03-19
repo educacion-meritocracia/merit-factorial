@@ -141,7 +141,7 @@ Aquí mis notas
 
 - Mérito como _principio_ donde los bienes y recompensas se distribuyen en base al talento y esfuerzo [@sen_merit_2000]
 
-- Meritocracia como un _sistema_ basado en el mérito como principal mecanismo distributivo [-@young_rise_1958]
+- Meritocracia como un _sistema_ basado en el mérito como principal mecanismo distributivo [@young_rise_1958]
 
     * Igualdad de oportunidades vs. igualdad de resultados: la promesa incumpible [@mijs_unfulfillable_2016]
 
@@ -149,22 +149,6 @@ Aquí mis notas
 
 :::
 
-## Creencias sobre la desigualdad, meritocracia y educación {background-image="images/cima2-Photoroom.png"}
-
-::: {.incremental .highlight-last style="font-size: 120%;"}
-
-- Instituciones educativas han sido fundamentales en la promoción de ideales meritocráticos [@dubet_repensar_2011]
-
-    - Educación como vía de movilidad social e igualdad de oportunidades 
-
-    - Enfásis en el desempeño académico, conocimiento y logros
-    
-- Alta reproducción de las desigualdades en las escuelas [@bourdieu_reproduction_1990; @duru-bellat_who_2012]
-
-- Las creencias meritocráticas a nivel escolar se asocian con una mayor justificación de las desigualdades sociales [e.g. @batruch_belief_2022; @wiederkehr_belief_2015; @darnon_where_2018]
-
-
-:::
 
 ## Medición de meritocracia
 
@@ -187,9 +171,26 @@ knitr::include_graphics(path = here("presentations/images/modelo_con.png"))
 ```
 
 
-
-
 ::: 
+
+
+## Creencias sobre la desigualdad, meritocracia y educación {background-image="images/cima2-Photoroom.png"}
+
+::: {.incremental .highlight-last style="font-size: 120%;"}
+
+- Instituciones educativas han sido fundamentales en la promoción de ideales meritocráticos [@dubet_repensar_2011]
+
+    - Educación como vía de movilidad social e igualdad de oportunidades 
+
+    - Enfásis en el desempeño académico, conocimiento y logros
+    
+- Alta reproducción de las desigualdades en las escuelas [@bourdieu_reproduction_1990; @duru-bellat_who_2012]
+
+- Las creencias meritocráticas a nivel escolar se asocian con una mayor justificación de las desigualdades sociales [e.g. @batruch_belief_2022; @wiederkehr_belief_2015; @darnon_where_2018]
+
+
+:::
+
 
 # Este estudio {data-background-color="#5f5758"}
 
@@ -331,17 +332,12 @@ likerplot
 
 ::: {.incremental .highlight-last style="font-size: 110%;"}
 
-1. Análisis Factorial Confirmatorio (CFA) en base a un modelo de cuatro factores latentes [@castillo_multidimensional_2023], con estimador Diagonal Weighted Least Squares (DWLS) debido al nivel ordinal de los ítems [@kline_principles_2023]
+- Análisis Factorial Confirmatorio (CFA) en base a un modelo de cuatro factores latentes [@castillo_multidimensional_2023], con estimador Diagonal Weighted Least Squares (DWLS) debido al nivel ordinal de los ítems [@kline_principles_2023]
 
-    - Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95;RMSEA< 0.06$
+    * Extraer dimensiones latentes que hacen referencia a los distintos dominios en que se percibe/prefiere la meritocracia
+    * Determinar el grado en que dichas dimensiones reflejan el comportamiento de los indicadores 
+    * Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95;RMSEA< 0.06$
 
-2. Invarianza longitudinal con cuatro módelos jerárquicos [@liu_testing_2017]: 
-    
-    - Configural (misma estructura factorial)
-    - Débil (+ mismas cargas factoriales)
-    - Fuerte (+ mismos interceptos)
-    - Estricto (+ mismas varianzas de error)
-    - Cuttof de ajuste [@chen_sensitivity_2007]: $\Delta \text{CFI} \geq -0.010; \Delta \text{RMSEA} \geq 0.015$
 
 :::
 
@@ -533,6 +529,47 @@ Castillo et al. [-@castillo_multidimensional_2023, p.18, Figura 9] concluyen que
 ::::
 
 
+
+# Discusión y conclusiones {data-background-color="#5f5758"}
+
+
+## Discusión y conclusiones {data-background-color="#5f5758"}
+
+
+:::: {.incremental style="font-size: 115%;"}
+
+**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: escala presenta buenos indicadores de ajuste y sus dimensiones se corresponden con el modelo conceptual multidimensional en población escolar [@castillo_multidimensional_2023] 
+
+**<span style="color:darkorange">2. Significado de la meritocracia**: tanto a nivel de estudiantes como adultos los factores se relacionan de manera similar → _a mayor percepción no meritocrática, mayor preferencia por la meritocracia_
+
+**<span style="color:darkorange">3. Invarianza longitudinal**: hay evidencia de que el modelo de medición es comparable/estable _entre_ individuos en dos momentos en el tiempo (a un nivel débil) [@liu_testing_2017] 
+
+**<span style="color:darkorange">4. Proyecciones**: aplicación de la escala en población adulta para evaluar su utilidad y validez predictiva 
+
+::::
+
+
+# ¡Gracias por su atención! 
+
+-   **Github del proyecto:** <https://github.com/educacion-meritocracia>
+
+
+# Anexo  {data-background-color="#5f5758"}
+
+## Invarianza longitudinal
+
+:::: {.incremental style="font-size: 115%;"}
+
+- Invarianza longitudinal con cuatro módelos jerárquicos [@liu_testing_2017]: 
+    
+    - Configural (misma estructura factorial)
+    - Débil (+ mismas cargas factoriales)
+    - Fuerte (+ mismos interceptos)
+    - Estricto (+ mismas varianzas de error)
+    - Cuttof de ajuste [@chen_sensitivity_2007]: $\Delta \text{CFI} \geq -0.010; \Delta \text{RMSEA} \geq 0.015$
+    
+:::: 
+
 ## Invarianza longitudinal
 
 :::: { .incremental style="font-size: 120%;"}
@@ -557,7 +594,6 @@ db_invariance <-
   na.omit() %>% 
   rename_with(~str_replace_all(., "_", ""))
   
-
 
 # First, define the configural model, using the repeated measures factors and
 # indicators
@@ -593,6 +629,7 @@ configural_model_smt <- measEq.syntax(
   ID.cat = "millsap",
   data = db_invariance
 )
+
 configural_model_smt <- as.character(configural_model_smt)
 
 # Finally, fit the model using lavaan.
@@ -607,6 +644,7 @@ weak_model_smt <- measEq.syntax(
   long.equal = c("loadings"),
   data = db_invariance
 )
+
 weak_model_smt <- as.character(weak_model_smt)
 
 weak_model_smt_fit <- cfa(weak_model_smt, data = db_invariance)
@@ -626,7 +664,6 @@ strong_model_smt <- as.character(strong_model_smt)
 
 strong_model_smt_fit <- cfa(strong_model_smt, data = db_invariance)
 
-
 # Strict
 strict_model_smt <- measEq.syntax(
   configural.model = configural_model_smt,
@@ -636,10 +673,10 @@ strict_model_smt <- measEq.syntax(
   long.equal = c("loadings", "lv.variances", "residuals"),
   data = db_invariance
 )
+
 strict_model_smt <- as.character(strict_model_smt)
 
 strict_model_smt_fit <- cfa(strict_model_smt, data = db_invariance)
-
 
 # Compare ajust
 
@@ -674,7 +711,6 @@ tab.inv <- dplyr::bind_cols(tab01,fit.meas) %>%
 tab.inv[tab.inv == c("0 (0) ")] <- NA
 tab.inv[tab.inv == c(0)] <- NA
 
-
 col.nam <- c("Model","&chi;^2 (df)","CFI","RMSEA (90 CI)",
              "&Delta; &chi;^2 (&Delta; df)","&Delta; CFI","&Delta; RMSEA","Decision")
 footnote <- paste0("N = ",configural_model_smt_fit@Data@nobs[[1]])
@@ -693,6 +729,7 @@ tab.inv %>%
  kableExtra::column_spec(c(1,8), width = "3.5cm") %>% 
 kableExtra::column_spec(2:7, width = "4cm") %>% 
   kableExtra::column_spec(4, width = "5cm")
+
 ```
 
 ::: {.small}
@@ -735,29 +772,5 @@ lavTestScore(strong_model_smt_fit)$uni %>%
 - **Sustantivamente**: el $\bar{X}$ en estos ítems _cambia_ entre mediciones
 
 :::
-
-# Discusión y conclusiones {data-background-color="#5f5758"}
-
-
-## Discusión y conclusiones {data-background-color="#5f5758"}
-
-
-:::: {.incremental style="font-size: 115%;"}
-
-**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: escala presenta buenos indicadores de ajuste y sus dimensiones se corresponden con el modelo conceptual multidimensional en población escolar [@castillo_multidimensional_2023] 
-
-**<span style="color:darkorange">2. Significado de la meritocracia**: tanto a nivel de estudiantes como adultos los factores se relacionan de manera similar → _a mayor percepción no meritocrática, mayor preferencia por la meritocracia_
-
-**<span style="color:darkorange">3. Invarianza longitudinal**: hay evidencia de que el modelo de medición es comparable/estable _entre_ individuos en dos momentos en el tiempo (a un nivel débil) [@liu_testing_2017] 
-
-
-**<span style="color:darkorange">4. Proyecciones**: aplicación de la escala en población adulta para evaluar su utilidad y validez predictiva 
-
-::::
-
-
-# ¡Gracias por su atención! 
-
--   **Github del proyecto:** <https://github.com/educacion-meritocracia>
 
 ## Referencias

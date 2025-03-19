@@ -135,14 +135,15 @@ Aquí mis notas
 
 ## Creencias sobre la desigualdad, meritocracia y educación {background-image="images/fondo-Photoroom.png"}
 
-::: {.incremental style="font-size: 120%;"}
+::: {.incremental .highlight-last style="font-size: 120%;"}
 
-- Creencias sobre la desigualdad: nivel individual y social [@kluegel_beliefs_1987]
+- Creencias sobre la desigualdad [@kluegel_beliefs_1987]
 
-- Ideal meritocrático como mecanismo clave para legitimar la distribución de bienes y recompensas en base al talento y esfuerzo individual 
-    
-    * Mérito = esfuerzo + talento 
-    * Meritocracia como un principio distributivo donde los bienes y recompensas se asignan en base al mérito [@young_rise_1958]
+- Mérito como _principio_ donde los bienes y recompensas se distribuyen en base al talento y esfuerzo [@sen_merit_2000]
+
+- Meritocracia como un _sistema_ basado en el mérito como principal mecanismo distributivo [-@young_rise_1958]
+
+    * Igualdad de oportunidades vs. igualdad de resultados: la promesa incumpible [@mijs_unfulfillable_2016]
 
 - Creencias meritocráticas pueden conducir a tolerar y justificar disparidades económicas y sociales [@sandel_tyranny_2020; @mijs_paradox_2019; @bucca_merit_2016]
 
@@ -150,7 +151,7 @@ Aquí mis notas
 
 ## Creencias sobre la desigualdad, meritocracia y educación {background-image="images/cima2-Photoroom.png"}
 
-::: {.incremental style="font-size: 120%;"}
+::: {.incremental .highlight-last style="font-size: 120%;"}
 
 - Instituciones educativas han sido fundamentales en la promoción de ideales meritocráticos [@dubet_repensar_2011]
 

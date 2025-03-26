@@ -418,7 +418,7 @@ b <- db1 %>%
                       show.n = FALSE,
                       show.prc.sign = T
   ) +
-  ggplot2::theme(legend.position = "top")
+  ggplot2::theme(legend.position = "bottom")
 
 likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1)[1],")"
 ))

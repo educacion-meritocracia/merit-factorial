@@ -1,9 +1,40 @@
 ---
-title: "03-cohort-invariance"
-author: "Tomás Urzúa"
-editor: visual
-format: html
+title: "Measuring perceptions and preferences about meritocracy in school in Chile"
+subtitle: "Cohort analysis"
+author: "Tomás Urzúa, Research Helper"
+date: today
+lang: en
+fontsize: 14pt
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    toc-expand: 2
+    toc-title: Contenidos
+    number-sections: true
+    number-depth: 3
+    theme:
+      - cosmo
+      - edumer.scss
+    code-link: true
+    title-block-banner: true
+editor_options: 
+  chunk_output_type: console
 ---
+
+<style>
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+</style>
+
+<img class="logo" src="edumer.png" width="250" height="190">
+
+<div style="text-align: justify">
+
 
 ```{r}
 #| label: set
@@ -30,7 +61,8 @@ options(knitr.kable.NA = "")
 ```
 
 
-# 1. Libraries
+# Libraries
+
 ```{r}
 #| label: packages 
 #| results: hide 
@@ -40,6 +72,7 @@ if (!require("pacman")) install.packages("pacman")
 pacman::p_load(tidyverse,
                sjmisc, 
                sjPlot,
+               skimr,
                here,
                lavaan,
                psych,
@@ -55,18 +88,319 @@ options(scipen=999)
 rm(list = ls())
 ```
 
-# 2. Data
+# Data
+
 ```{r}
-load("../output/data/db1_proc.RData")
+load(file = here("output/data/db1_proc.RData"))
 
 names(db1)
 glimpse(db1)
-theme_set(theme_ggdist())
 ```
 
-# 3. Analysis
 
-## 3.1 Measurement model
+# Analysis
+
+
+## Descriptives
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "General descriptives"
+#| tbl-cap-location: top
+
+general <- db1 %>% 
+  skim() %>% 
+  yank("numeric") %>% 
+  as_tibble() %>% 
+  mutate(range = paste0("(",p0,"-",p100,")")) %>% 
+  mutate_if(.predicate = is.numeric, .funs = ~ round(.,2)) %>% 
+  select("Variable" = skim_variable,"Mean"= mean, "SD"=sd, "Range" = range, "Histogram"=hist) 
+
+general %>% 
+  kableExtra::kable(format = "markdown")
+```
+
+
+```{r}
+#| label: tbl-summary2
+#| tbl-cap: "Básica descriptives"
+#| tbl-cap-location: top
+
+basica <- db1 %>% 
+  filter(curse_level == "Básica") %>% 
+  skim() %>% 
+  yank("numeric") %>% 
+  as_tibble() %>% 
+  mutate(range = paste0("(",p0,"-",p100,")")) %>% 
+  mutate_if(.predicate = is.numeric, .funs = ~ round(.,2)) %>% 
+  select("Variable" = skim_variable,"Mean"= mean, "SD"=sd, "Range" = range, "Histogram"=hist) 
+
+basica %>% 
+  kableExtra::kable(format = "markdown")
+```
+
+
+```{r}
+#| label: tbl-summary3
+#| tbl-cap: "Media descriptives"
+#| tbl-cap-location: top
+
+media <- db1 %>% 
+  filter(curse_level == "Media") %>% 
+  skim() %>% 
+  yank("numeric") %>% 
+  as_tibble() %>% 
+  mutate(range = paste0("(",p0,"-",p100,")")) %>% 
+  mutate_if(.predicate = is.numeric, .funs = ~ round(.,2)) %>% 
+  select("Variable" = skim_variable,"Mean"= mean, "SD"=sd, "Range" = range, "Histogram"=hist) 
+
+media %>% 
+  kableExtra::kable(format = "markdown")
+```
+
+
+```{r}
+#| label: fig-likert-perc
+#| echo: false
+#| fig-cap: Perceptions likerplot
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+ab <- db1 %>% 
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. General"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+cb <- db1 %>% 
+  filter(curse_level == "Básica") %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Básica"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+eb <- db1 %>% 
+  filter(curse_level == "Media") %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("c. Media"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot_perc <- ab / cb / eb
+
+likerplot_perc
+```
+
+```{r}
+#| label: fig-likert-pref
+#| echo: false
+#| fig-cap: Preferences likerplot
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+bb <- db1 %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. General"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "none")
+
+db <- db1 %>% 
+  filter(curse_level == "Básica") %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Básica"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "none")
+
+fb <- db1 %>% 
+  filter(curse_level == "Media") %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("c. Media"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot_pref <- bb / db / fb
+
+likerplot_pref 
+```
+
+
+## Bivariates
+
+```{r}
+#| label: fig-corr
+#| echo: false
+#| fig-cap: Basica correlations
+#| fig-cap-location: top
+
+M <- psych::polychoric(db1[db1$curse_level == "Básica",][c(2:9,13)])
+
+P <- cor(db1[db1$curse_level == "Básica",][c(2:9,13)], method = "pearson")
+
+diag(M$rho) <- NA
+
+diag(P) <- NA
+
+M$rho[9,] <- P[9,]
+
+rownames(M$rho) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencias Esfuerzo",
+                     "F. Preferencias Talento",
+                     "G. Preferencias Padres Ricos",
+                     "H. Preferencias Contactos",
+                     "I. Market Justice Preferences")
+
+#set Column names of the matrix
+colnames(M$rho) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                       "(H)","(I)")
+
+rownames(P) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencias Esfuerzo",
+                     "F. Preferencias Talento",
+                     "G. Preferencias Padres Ricos",
+                     "H. Preferencias Contactos",
+                     "I. Market Justice Preferences")
+
+#set Column names of the matrix
+colnames(P) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                    "(H)","(I)")
+
+testp <- cor.mtest(M$rho, conf.level = 0.95)
+
+#Plot the matrix using corrplot
+corrplot::corrplot(M$rho,
+                   method = "color",
+                   addCoef.col = "black",
+                   type = "upper",
+                   tl.col = "black",
+                   col = colorRampPalette(c("#E16462", "white", "#0D0887"))(12),
+                   bg = "white",
+                   na.label = "-") 
+```
+
+
+```{r}
+#| label: fig-corr2
+#| echo: false
+#| fig-cap: Media correlations
+#| fig-cap-location: top
+
+Mm <- psych::polychoric(db1[db1$curse_level == "Media",][c(2:9,13)])
+
+Pm <- cor(db1[db1$curse_level == "Media",][c(2:9,13)], method = "pearson")
+
+diag(Mm$rho) <- NA
+
+diag(Pm) <- NA
+
+Mm$rho[9,] <- Pm[9,]
+
+rownames(Mm$rho) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencias Esfuerzo",
+                     "F. Preferencias Talento",
+                     "G. Preferencias Padres Ricos",
+                     "H. Preferencias Contactos",
+                     "I. Market Justice Preferences")
+
+#set Column names of the matrix
+colnames(Mm$rho) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                       "(H)","(I)")
+
+rownames(Pm) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencias Esfuerzo",
+                     "F. Preferencias Talento",
+                     "G. Preferencias Padres Ricos",
+                     "H. Preferencias Contactos",
+                     "I. Market Justice Preferences")
+
+#set Column names of the matrix
+colnames(Pm) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                    "(H)","(I)")
+
+testp <- cor.mtest(Mm$rho, conf.level = 0.95)
+
+#Plot the matrix using corrplot
+corrplot::corrplot(Mm$rho,
+                   method = "color",
+                   addCoef.col = "black",
+                   type = "upper",
+                   tl.col = "black",
+                   col = colorRampPalette(c("#E16462", "white", "#0D0887"))(12),
+                   bg = "white",
+                   na.label = "-") 
+```
+
+
+## Confirmatory factor analysis
 
 ```{r}
 #| label: Measurement model
@@ -77,12 +411,6 @@ model_cfa <- '
   pref_merit = ~ pref_effort + pref_talent
   pref_nmerit = ~ pref_rich_parents + pref_contact
   '
-
-mgeneral_cfa <- cfa(model = model_cfa, 
-                   data = db1, 
-                   estimator = "DWLS",
-                   ordered = T,
-                   std.lv = F)
 
 m1_cfa <- cfa(model = model_cfa, 
               data = db1,
@@ -97,7 +425,7 @@ m2_cfa <- cfa(model = model_cfa,
 ```
 
 ```{r}
-#| label: Factor loadings table
+#| label: Factor loadings
 #| echo: true
 #| message: false
 
@@ -119,10 +447,16 @@ modin %>%
   filter(mi > 3.84)
 ```
 
-## 3.2 Models by cohort
+## Models by cohort
 
 ```{r}
 #| label: Models by cohort
+
+mgeneral_cfa <- cfa(model = model_cfa, 
+                   data = db1, 
+                   estimator = "DWLS",
+                   ordered = T,
+                   std.lv = F)
 
 mbasica_cfa <- cfa(model = model_cfa, 
                    data = subset(db1, curse_level == "Básica"), 
@@ -135,6 +469,8 @@ mmedia_cfa <- cfa(model = model_cfa,
                   estimator = "DWLS",
                   ordered = T,
                   std.lv = F)
+
+standardizedSolution(mmedia_cfa)
 ```
 
 ```{r}
@@ -153,9 +489,9 @@ fit_measures <- rbind(
 knitr::kable(fit_measures, digits = 3, caption = "Fit indexes by model")
 ```
 
-El modelo de básica ajusta bien, con un Chi cuadrado = 0.23; CFI = 0.996 y RMSEA = 0.025. Sin embargo, el modelo de media es problemático, arrojando Chi cuadrado = 0.62; **CFI = 1; RMSEA = 0**. Con este modelo, no es recomendable calcular la invarianza entre cohortes pues sus resultados no serán óptimos. En el modelo general llama la atención que Chi cuadrado posee un valor de 0.
+El modelo de básica ajusta bien, con un Chi cuadrado = 0.23; CFI = 0.996 y RMSEA = 0.025. Sin embargo, el modelo de media es problemático, arrojando Chi cuadrado = 0.62; **CFI = 1; RMSEA = 0**. Con este modelo, no es recomendable calcular la invarianza entre cohortes pues sus resultados no serán óptimos. En el modelo general llama la atención que **Chi cuadrado posee un valor de 0**.
 
-## 3.3 Invariance model 
+## Invariance model
 
 ```{r}
 #| label: Invariance measurement
@@ -207,8 +543,8 @@ tab.inv <- dplyr::bind_cols(tab01,fit.meas) %>%
 tab.inv[tab.inv == c("0 (0) ")] <- NA
 tab.inv[tab.inv == c(0)] <- NA
 
-col.nam <- c("Model","$\\chi^2 (\\text{df})$","CFI","RMSEA (90 CI)",
-             "$\\Delta \\chi^2 (\\Delta \\text{df}$)","$\\Delta \\text{CFI}$","$\\Delta \\text{RMSEA}$","Decision")
+col.nam <- c("Model","&chi;^2 (df)","CFI","RMSEA (90 CI)",
+             "&Delta; &chi;^2 (&Delta; df)","&Delta; CFI","&Delta; RMSEA","Decision")
 footnote <- paste0("N = 839; Group 1, n = ",conf@Data@nobs[[1]],"; Group 2, n = ",conf@Data@nobs[[2]])
 
 knitr::kable(tab.inv, col.names = col.nam, align = "l",
@@ -219,5 +555,149 @@ knitr::kable(tab.inv, col.names = col.nam, align = "l",
                             bootstrap_options=c("striped", "bordered"),
                             font_size = 10) %>%
   kableExtra::footnote(general = footnote, footnote_as_chunk = T)
+```
+
+## Others
+
+
+```{r}
+#| label: fig-likert
+#| echo: false
+#| fig-cap: Descriptivos general
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+a <- db1 %>% 
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+b <- db1 %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1)[1],")"
+))
+
+likerplot
+```
+
+
+```{r}
+#| label: fig-likert2
+#| echo: false 
+#| fig-cap: Descriptivos básica
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+c <- db1 %>% 
+  filter(curse_level == "Básica") %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+d <- db1 %>% 
+  filter(curse_level == "Básica") %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot2 <- c / d + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1[db1$curse_level == "Básica",])[1],")"
+))
+
+likerplot2
+```
+
+
+```{r}
+#| label: fig-likert3
+#| echo: false
+#| fig-cap: Descriptivos media
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+e <- db1 %>% 
+  filter(curse_level == "Media") %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+f <- db1 %>% 
+  filter(curse_level == "Media") %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot3 <- e / f + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1[db1$curse_level == "Media",])[1],")"
+))
+
+likerplot3
 ```
 

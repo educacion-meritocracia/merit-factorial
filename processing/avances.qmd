@@ -184,9 +184,9 @@ likerplot
 ```{r}
 #| label: fig-correlaciones
 
-M <- psych::polychoric(db_long[db_long$ola==1,][c(4:11,15)])
+M <- psych::polychoric(db_long[db_long$ola==1,][c(3:10,14)])
 
-P <- cor(db_long[db_long$ola==1,][c(4:11,15)], method = "pearson")
+P <- cor(db_long[db_long$ola==1,][c(3:10,14)], method = "pearson")
 
 diag(M$rho) <- NA
 

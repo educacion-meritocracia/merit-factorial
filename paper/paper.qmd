@@ -21,7 +21,7 @@ affiliations:
   - id: 2
     name: Instituto de Sociología, Universidad Católica de Chile
 abstract: |
-  Previous research has shown that schools justify student performance differences based on meritocratic ideals. However, the link between school meritocracy and students’ justification of inequalities has received little attention. This paper examines how school and family socialization influence students’ beliefs about meritocracy and market-based justifications for access to health, pensions, and education in Chile. Using data from the First Study of Civic Education in Chile, we employ a multilevel modeling strategy to analyze 5,047 students and parents nested within 231 schools. Our findings reveal that a significant proportion of Chilean students agree with market justice principles, at a higher rate than adults. Most students endorse meritocratic views, particularly the reward of effort. Multilevel estimations show strong associations between meritocratic beliefs and market justice preferences: students who believe in the reward of effort and talent are more likely to justify inequalities based on financial capacity. At the school level, market justice preferences are higher in high-status schools but lower in schools with better achievement. Additionally, the conditional influence of meritocracy beliefs weakens in schools with higher socioeconomic status and performance. These results suggest that meritocratic beliefs and market justice preferences begin early and are influenced by the school environment.
+  Previous research has shown that schools justify student performance differences based on meritocratic ideals.
 keywords: 
   - meritocracy
   - measurement
@@ -43,6 +43,14 @@ fig-width: 7.5
 This document was last modified at {{< modified >}}
 and it was last rendered at {{< now >}}.
 
+{{< include 01-introduction.qmd >}}
+
+{{< include 02-antecedentes.qmd >}}
+
 {{< include 03-methods.qmd >}}
 
+{{< include 04-analisis.qmd >}}
 
+{{< include 05-discussion.qmd >}}
+
+{{< include 06-conclusion.qmd >}}

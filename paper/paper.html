@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -104,7 +104,7 @@ div.csl-indent {
 <div>
   <div class="abstract">
     <div class="block-title">Abstract</div>
-    <p>Previous research has shown that schools justify student performance differences based on meritocratic ideals. However, the link between school meritocracy and students’ justification of inequalities has received little attention. This paper examines how school and family socialization influence students’ beliefs about meritocracy and market-based justifications for access to health, pensions, and education in Chile. Using data from the First Study of Civic Education in Chile, we employ a multilevel modeling strategy to analyze 5,047 students and parents nested within 231 schools. Our findings reveal that a significant proportion of Chilean students agree with market justice principles, at a higher rate than adults. Most students endorse meritocratic views, particularly the reward of effort. Multilevel estimations show strong associations between meritocratic beliefs and market justice preferences: students who believe in the reward of effort and talent are more likely to justify inequalities based on financial capacity. At the school level, market justice preferences are higher in high-status schools but lower in schools with better achievement. Additionally, the conditional influence of meritocracy beliefs weakens in schools with higher socioeconomic status and performance. These results suggest that meritocratic beliefs and market justice preferences begin early and are influenced by the school environment.</p>
+    <p>Previous research has shown that schools justify student performance differences based on meritocratic ideals.</p>
   </div>
 </div>
 
@@ -118,7 +118,19 @@ div.csl-indent {
 </header>
 
 
-<p>This document was last modified at 2024-10-01 17:49:28 and it was last rendered at 2024-10-01 17:49:28.</p>
+<p>This document was last modified at 2025-05-20 20:47:25 and it was last rendered at 2025-05-20 20:47:25.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<section id="meritocratic-perceptions-and-preferences" class="level2">
+<h2 class="anchored" data-anchor-id="meritocratic-perceptions-and-preferences">Meritocratic perceptions and preferences</h2>
+</section>
+<section id="meritocratic-perceptions-and-preferences-at-school" class="level2">
+<h2 class="anchored" data-anchor-id="meritocratic-perceptions-and-preferences-at-school">Meritocratic perceptions and preferences at school</h2>
+</section>
+<section id="the-socialization-of-meritocracy-families-and-schools" class="level2">
+<h2 class="anchored" data-anchor-id="the-socialization-of-meritocracy-families-and-schools">The socialization of meritocracy: families and schools</h2>
+</section>
+</section>
 <section id="data-variables-and-method" class="level1">
 <h1>Data, variables and method</h1>
 <section id="data" class="level2">
@@ -136,11 +148,20 @@ div.csl-indent {
 <p>To test the metric stability of the measurement model <span class="citation" data-cites="davidov_measurement_2014">(<a href="#ref-davidov_measurement_2014" role="doc-biblioref">Davidov et al., 2014</a>)</span>, we conducted a longitudinal invariance test with data from both waves of the study. In line with <span class="citation" data-cites="liu_testing_2017">Liu et al. (<a href="#ref-liu_testing_2017" role="doc-biblioref">2017</a>)</span>, we tested a series of four hierarchical models—Configural, Weak, Strong, and Strict—in order to account for ordered categorical indicators, as treating a four-point Likert scale as continuous may result in biased estimates.</p>
 <p>Lastly, we performed regression analysis using latent variables (structural equation models) to investigate the relationship between meritocratic and non-meritocratic factors and preferences for market justice (REF).</p>
 <p>The hypotheses of this research were pre-registered in the Open Science Framework platform of the Center for Open Science (OSF), the access to the document is available at this <a href="https://doi.org/10.17605/OSF.IO/UFSDV">link</a>. The statistical analysis for this research was conducted using the <em>lavaan</em> package in R version 4.2.2.</p>
-
 </section>
 </section>
+<section id="results" class="level1">
+<h1>Results</h1>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+</section>
+<section id="conclusion" class="level1 unnumbered">
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Conclusion</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-castillo_multidimensional_2023" class="csl-entry" role="listitem">
 Castillo, J. C., Iturra, J., Maldonado, L., Atria, J., &amp; Meneses, F. (2023). A <span>Multidimensional Approach</span> for <span>Measuring Meritocratic Beliefs</span>: <span>Advantages</span>, <span>Limitations</span> and <span>Alternatives</span> to the <span>ISSP Social Inequality Survey</span>. <em>International Journal of Sociology</em>, <em>53</em>(6), 448–472. <a href="https://doi.org/10.1080/00207659.2023.2274712">https://doi.org/10.1080/00207659.2023.2274712</a>
 </div>
@@ -190,18 +211,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -233,7 +243,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -241,7 +273,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

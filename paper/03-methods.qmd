@@ -14,7 +14,64 @@ This study is based on data from the Panel Survey on Education and Meritocracy (
 
 **Scale of Perceptions and Preferences on Meritocracy**: The variables included in the measurement model for meritocratic and non-meritocratic perceptions and preferences are operationalized according to the items proposed by Castillo et al. [-@castillo_multidimensional_2023]. Perception of meritocracy is measured by two items that assess the level of agreement with the idea that effort and ability are rewarded in Chile, while non-meritocratic perception is measured by two items evaluating the agreement that success is linked to connections and family wealth. Preference for meritocracy is measured by two items that evaluate agreement with the idea that those who work harder or are more talented should be more rewarded. Preference for non-meritocratic aspects is measured by two indicators assessing agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success. Each item is rated on a four-point Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4).
 
+```{r}
+#| tbl-cap: Items for perceptions and preferences for meritocracy scale
+#| tbl-cap-location: bottom
+#| echo: false
+
+ # remotes::install_github('haozhu233/kableExtra@a6af5c0')  # for problems with collapse_rows()
+ pacman::p_load(knitr, kableExtra, dplyr)
+ table_format = if (knitr::is_html_output()) {
+   #conditional instructions for kable
+   "html" #if html set "html" in format
+ } else if (knitr::is_latex_output()) {
+   "latex"#if latex set "latex" in format
+ }
+ tabitems <- read.csv(file = "../input/tables/table-01.csv",header = 1,sep = ",",encoding = "UTF-8") # call file  generated externally for the table
+ cnames <- c("Components", "Dimensions","Item (English)" , "Item original (Spanish)")
+
+ knitr::kable(tabitems, table_format, booktabs = T, linesep = "",col.names = cnames) %>%
+   kableExtra::kable_styling(
+     full_width = T,
+     latex_options = c("hold_position"),
+     position = "center",
+     font_size = 10,
+     bootstrap_options=c("striped", "bordered")) %>%
+   kableExtra::column_spec(column = 1, width = "1.5cm", ) %>%
+   kableExtra::column_spec(column = 2,width = "2 cm") %>%
+   kableExtra::collapse_rows(columns = 1:2,valign = "middle")
+```
+
+
 **Preferences for Market Justice**: This construct is measured using three variables that address the level of justification for whether access to social services in healthcare, pensions, and education should be income-based. The justification for inequality in healthcare is measured by the item: "Is it acceptable for those who can pay more to have better access to healthcare?" The same question is posed for pensions and education. In all cases, respondents indicate their preferences on a Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4). Additionally, a summary indicator of "preferences for market justice" is included, measured by an average index of all these items (α = 0.83), with values ranging from 1 to 4, where higher values represent greater preferences for market justice.
+
+```{r}
+#| tbl-cap: Market justice preferences construction
+#| tbl-cap-location: bottom
+#| echo: false
+
+ pacman::p_load(knitr, kableExtra, dplyr)
+ table_format = if (knitr::is_html_output()) {
+   #conditional instructions for kable
+   "html" #if html set "html" in format
+ } else if (knitr::is_latex_output()) {
+   "latex"#if latex set "latex" in format
+ }
+ tabitems2 <- read.csv(file = "../input/tables/table-02.csv",sep = ",",encoding = "UTF-8") # call file  generated externally for the table
+ cnames <- c("Component", "Dimensions")
+
+ knitr::kable(tabitems2, table_format, booktabs = T, linesep = "",col.names = cnames) %>%
+   kableExtra::kable_styling(
+     full_width = T,
+     latex_options = c("hold_position"),
+     position = "center",
+     font_size = 10,
+     bootstrap_options=c("striped", "bordered")) %>%
+   kableExtra::column_spec(column = 1, width = "1.5cm", ) %>%
+   kableExtra::column_spec(column = 2,width = "2 cm") %>%
+   kableExtra::collapse_rows(columns = 1:2,valign = "middle")
+```
+
 
 ## Methods
 
@@ -28,4 +85,4 @@ In addition to the traditional Chi-square difference test, we used changes in fi
 
 To evaluate the external validity of the measurement model, we conducted regression analyses within a structural equation modeling (SEM) framework. This allowed us to investigate the relationships between latent constructs—meritocratic and non-meritocratic beliefs—and preferences for market-based justice in healthcare, pensions, and education, in line with prior research (Castillo et al., 2024).
 
-All analyses were performed using the lavaan package in R version 4.2.2. The hypotheses of this research were pre-registered on the Open Science Framework (OSF), hosted by the Center for Open Science.
+All analyses were performed using the lavaan package in R version 4.2.2. The hypotheses of this research were [pre-registered](https://osf.io/hjat2/) on the Open Science Framework (OSF), hosted by the Center of Open Science.

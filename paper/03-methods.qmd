@@ -42,7 +42,6 @@ This study is based on data from the Panel Survey on Education and Meritocracy (
    kableExtra::collapse_rows(columns = 1:2,valign = "middle")
 ```
 
-
 **Preferences for Market Justice**: This construct is measured using three variables that address the level of justification for whether access to social services in healthcare, pensions, and education should be income-based. The justification for inequality in healthcare is measured by the item: "Is it acceptable for those who can pay more to have better access to healthcare?" The same question is posed for pensions and education. In all cases, respondents indicate their preferences on a Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4). Additionally, a summary indicator of "preferences for market justice" is included, measured by an average index of all these items (α = 0.83), with values ranging from 1 to 4, where higher values represent greater preferences for market justice.
 
 ```{r}
@@ -72,17 +71,16 @@ This study is based on data from the Panel Survey on Education and Meritocracy (
    kableExtra::collapse_rows(columns = 1:2,valign = "middle")
 ```
 
-
 ## Methods
 
-To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, as proposed by Castillo et al. (2023), using Diagonally Weighted Least Squares (DWLS) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous \[@kline_principles_2023\].
+To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, as proposed by [@Castillo_et_al_2023], using Diagonally Weighted Least Squares (DWLS) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous [@kline_principles_2023].
 
 Model fit was assessed following the guidelines of Brown (2015), using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by p \> 0.05 and a Chi-square/df ratio \< 3).
 
-To examine the longitudinal metric stability of the measurement model \[\@davidov_measurement_2014\], we conducted a measurement invariance analysis across the two waves of the study. Following a hierarchical approach as outlined by Liu et al. (2017), we tested four nested models: configural (equivalence in factor structure), metric or weak (equality of factor loadings), scalar or strong (equality of intercepts), and strict (equality of residual variances). This stepwise procedure is essential when using ordered categorical indicators, as failing to account for their non-continuous nature may distort parameter estimates.
+To examine the longitudinal metric stability of the measurement model [@davidov_measurement_2014], we conducted a measurement invariance analysis across the two waves of the study. Following a hierarchical approach as outlined by [@Liu_et_al_2017], we tested four nested models: configural (equivalence in factor structure), metric or weak (equality of factor loadings), scalar or strong (equality of intercepts), and strict (equality of residual variances). This stepwise procedure is essential when using ordered categorical indicators, as failing to account for their non-continuous nature may distort parameter estimates.
 
-In addition to the traditional Chi-square difference test, we used changes in fit indices to assess invariance: a change in CFI (ΔCFI ≥ −0.010) and RMSEA (ΔRMSEA ≤ 0.015) were adopted as more robust and sample-size-independent criteria, as recommended by Chen (2007).
+In addition to the traditional Chi-square difference test, we used changes in fit indices to assess invariance: a change in CFI (ΔCFI ≥ −0.010) and RMSEA (ΔRMSEA ≤ 0.015) were adopted as more robust and sample-size-independent criteria, as recommended by [@Chen_2007].
 
-To evaluate the external validity of the measurement model, we conducted regression analyses within a structural equation modeling (SEM) framework. This allowed us to investigate the relationships between latent constructs—meritocratic and non-meritocratic beliefs—and preferences for market-based justice in healthcare, pensions, and education, in line with prior research (Castillo et al., 2024).
+To evaluate the external validity of the measurement model, we conducted regression analyses within a structural equation modeling (SEM) framework. This allowed us to investigate the relationships between latent constructs—meritocratic and non-meritocratic beliefs—and preferences for market-based justice in healthcare, pensions, and education, in line with prior research [@Castillo_et_al_2023].
 
 All analyses were performed using the lavaan package in R version 4.2.2. The hypotheses of this research were [pre-registered](https://osf.io/hjat2/) on the Open Science Framework (OSF), hosted by the Center of Open Science.

@@ -5,3 +5,424 @@ csl: "../input/bib/apa6.csl"
 ---
 
 # Results
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, warning = FALSE, message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
+#| label: packages
+#| include: false
+#| echo: false
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               sjPlot,
+               here,
+               lavaan,
+               psych,
+               corrplot,
+               ggdist,
+               patchwork,
+               semTable,
+               semTools,
+               gtools,
+               kableExtra)
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data
+#| echo: false
+#| output: false
+
+options(scipen=999)
+rm(list = ls())
+
+load(file = here("output", "data", "db_long_proc.RData"))
+
+
+names(db_long)
+glimpse(db_long)
+```
+
+## Longitudinal Invariance Test
+
+```{r}
+#| label: tbl-invarianza
+#| tbl-cap: "Longitudinal Invariance Test Results"
+#| results: asis
+#| echo: false
+#| warning: false
+
+db_invariance <- 
+  db_long %>% 
+  select(id_estudiante, ola, starts_with(c("perc", "pref"))) %>% 
+  pivot_wider(id_cols = id_estudiante,
+              names_from = ola,
+              names_glue = "{.value}{ola}",
+              values_from = c(perc_effort, perc_talent,
+                              perc_rich_parents, perc_contact,
+                              pref_effort, pref_talent,
+                              pref_rich_parents, pref_contact)) %>% 
+  na.omit() %>% 
+  rename_with(~str_replace_all(., "_", ""))
+  
+
+
+# First, define the configural model, using the repeated measures factors and
+# indicators
+configural_model_smt <- ("
+  # Measurement model
+  percmerit1 =~ perceffort1 + perctalent1
+  percmerit2 =~ perceffort2 + perctalent2
+  percnmerit1 =~ percrichparents1 + perccontact1
+  percnmerit2 =~ percrichparents2 + perccontact2
+  prefmerit1 =~ prefeffort1 + preftalent1
+  prefmerit2 =~ prefeffort2 + preftalent2
+  prefnmerit1 =~ prefrichparents1 + prefcontact1
+  prefnmerit2 =~ prefrichparents2 + prefcontact2
+")
+
+
+# Second, create a named list indicating which factors are actually the same
+# latent variable measured repeatedly.
+longitudinal_factor_names <- list(
+  comp = c("percmerit1", "percmerit2", 
+           "percnmerit1", "percnmerit2",
+           "prefmerit1", "prefmerit2",
+           "prefnmerit1", "prefnmerit2")
+)
+
+
+# Configural
+# Third, generate the lavaan model syntax using semTools.
+configural_model_smt <- measEq.syntax(
+  configural.model = configural_model_smt,
+  longFacNames = longitudinal_factor_names,
+  ID.fac = "std.lv",
+  ID.cat = "millsap",
+  data = db_invariance
+)
+configural_model_smt <- as.character(configural_model_smt)
+
+# Finally, fit the model using lavaan.
+configural_model_smt_fit <- sem(configural_model_smt, data = db_invariance)
+
+# Weak
+weak_model_smt <- measEq.syntax(
+  configural.model = configural_model_smt,
+  longFacNames = longitudinal_factor_names,
+  ID.fac = "std.lv",
+  ID.cat = "millsap",
+  long.equal = c("loadings"),
+  data = db_invariance
+)
+weak_model_smt <- as.character(weak_model_smt)
+
+weak_model_smt_fit <- sem(weak_model_smt, data = db_invariance)
+
+# Strong
+
+strong_model_smt <- measEq.syntax(
+  configural.model = configural_model_smt,
+  longFacNames = longitudinal_factor_names,
+  ID.fac = "std.lv",
+  ID.cat = "millsap",
+  long.equal = c("loadings", "lv.variances"),
+  data = db_invariance
+)
+
+strong_model_smt <- as.character(strong_model_smt)
+
+strong_model_smt_fit <- sem(strong_model_smt, data = db_invariance)
+
+
+# Strict
+strict_model_smt <- measEq.syntax(
+  configural.model = configural_model_smt,
+  longFacNames = longitudinal_factor_names,
+  ID.fac = "std.lv",
+  ID.cat = "millsap",
+  long.equal = c("loadings", "lv.variances", "residuals"),
+  data = db_invariance
+)
+strict_model_smt <- as.character(strict_model_smt)
+
+strict_model_smt_fit <- sem(strict_model_smt, data = db_invariance)
+
+
+# Compare ajust
+
+tab01 <- lavTestLRT(configural_model_smt_fit, weak_model_smt_fit, strong_model_smt_fit, strict_model_smt_fit) %>%
+  dplyr::as_tibble() %>%
+  dplyr::select("Chisq","Df","chisq_diff"=`Chisq diff`,"df_diff"=`Df diff`,"pvalue"=`Pr(>Chisq)`) %>%
+  dplyr::mutate(stars=gtools::stars.pval(pvalue),
+                chisqt=paste0(round(Chisq,2)," (",Df,") "),
+                decision=ifelse(pvalue>0.05,yes = "Accept",no = "Reject"),
+                model=c("Configural","Weak","Strong","Strict"))
+
+
+fit.meas <- dplyr::bind_rows(lavaan::fitmeasures(configural_model_smt_fit, output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                             lavaan::fitmeasures(weak_model_smt_fit,  output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                             lavaan::fitmeasures(strong_model_smt_fit, output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                             lavaan::fitmeasures(strict_model_smt_fit, output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),])
+
+fit.meas <- fit.meas %>%
+  dplyr::mutate(diff.chi2 = chisq    - lag(chisq,default = dplyr::first(chisq)),
+                diff.df   = df       - lag(df,   default = dplyr::first(df)),
+                diff.cfi  = cfi      - lag(cfi,  default = dplyr::first(cfi)),
+                diff.rmsea   = rmsea - lag(rmsea,default = dplyr::first(rmsea))) %>%
+  round(3) %>%
+  dplyr::mutate(rmsea.ci=paste0(rmsea," \n ", "(",rmsea.ci.lower,"-",rmsea.ci.upper,")"))
+
+tab.inv <- dplyr::bind_cols(tab01,fit.meas) %>%
+  dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.df,diff.cfi,diff.rmsea,stars,decision) %>%
+  dplyr::mutate(diff.chi2=paste0(diff.chi2," (",diff.df,") ",stars)) %>%
+  dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.cfi,diff.rmsea,decision)
+
+#clean values
+tab.inv[tab.inv == c("0 (0) ")] <- NA
+tab.inv[tab.inv == c(0)] <- NA
+
+
+col.nam <- c("Model","&chi;^2 (df)","CFI","RMSEA (90 CI)",
+             "&Delta; &chi;^2 (&Delta; df)","&Delta; CFI","&Delta; RMSEA","Decision")
+footnote <- paste0("N = ",configural_model_smt_fit@Data@nobs[[1]])
+
+tab.inv %>% 
+  kableExtra::kable(format = "html",
+                    align = "c",
+                    booktabs = T,
+                    escape = F,
+                    caption = NULL,
+                    col.names = col.nam) %>%
+  kableExtra::kable_styling(full_width = T,
+                            latex_options = "hold_position",
+                            bootstrap_options=c("striped", "bordered", "condensed"),
+                            font_size = 23) %>%
+ kableExtra::column_spec(c(1,8), width = "3.5cm") %>% 
+kableExtra::column_spec(2:7, width = "4cm") %>% 
+  kableExtra::column_spec(4, width = "5cm")
+```
+
+The results of a longitudinal invariance test aim to determinate whether a construct measured at different points in time retains the same psychometric properties. This type of analysis is essential to ensure that any observed changes over time reflect true differences in the construct itself and not changes in the measurement model.
+
+The first model tested is the configural invariance model. This baseline model requires only that the factor structure (i.e., which items load on which factors) remains consistent across time points. The fit indices for this model are excellent: the chi-square is 38.02 with 20 degrees of freedom, the Comparative Fit Index (CFI) is 0.990, and the Root Mean Square Error of Approximation (RMSEA) is 0.039, with a 90% confidence interval ranging from 0.019 to 0.058. These values suggest that the model fits the data well at both time points, indicating that the basic structure of the construct is stable. This model serves as a foundation for comparing more constrained models.
+
+The second model, referred to as the weak or metric invariance model, adds the constraint that factor loadings must be equal over time. This tests whether the items contribute similarly to the latent construct at each measurement occasion. Compared to the configural model, the chi-square increases to 50.22 (with 27 degrees of freedom), reflecting a change of 12.196 with 7 additional degrees of freedom. Although numerically higher, this change is not statistically significant (as indicated by the absence of significance markers). Additionally, the CFI drops only slightly from 0.990 to 0.988 (a change of -0.003), and the RMSEA slightly improves from 0.039 to 0.038. Because these changes are minimal and within widely accepted thresholds (e.g., ΔCFI less than -0.01 and ΔRMSEA less than 0.015), weak invariance is supported. This means that the meaning of the construct is comparable over time in terms of the relationships between items and latent factors.
+
+However, the strong or scalar invariance model, which introduces the constraint that item intercepts must also be equal over time, shows a substantial deterioration in model fit. The chi-square rises sharply to 142.03 with 34 degrees of freedom, and the difference from the weak invariance model is 91.816 with 7 additional degrees of freedom, which is highly significant (marked with \*\*\*). Furthermore, the CFI drops considerably to 0.942 (a change of -0.045), and the RMSEA increases to 0.073. These results suggest that item intercepts are not invariant across time, meaning that item-level mean scores are not directly comparable. Therefore, strong invariance is rejected. This implies that latent mean comparisons across time points would be biased and potentially invalid.
+
+Finally, the strict invariance model, which adds the constraint of equal residual variances (measurement error) across time, results in even poorer fit. The chi-square increases further to 245.93 with 48 degrees of freedom, yielding a difference of 103.895 compared to the strong model, again highly significant (\*\*\*). The CFI declines to 0.894, and the RMSEA rises to 0.084, indicating a poor fit to the data. Consequently, strict invariance is also rejected.
+
+In summary, the measure meets the requirements for configural and weak invariance, which means that the overall structure of the construct and the relationship between items and latent factors remain stable over time. However, the results do not support strong or strict invariance, suggesting that it is not valid to compare latent means or error variances across time. While the construct appears to have the same general meaning and structure at each time point, any observed changes in scores cannot be confidently interpreted as real changes in the underlying construct.
+
+## Sources of longitudinal invariance
+
+```{r}
+#| label: tbl-lavTestScore
+#| tbl-cap: "Longitudinal Invariance Sources"
+#| results: asis
+#| echo: false
+#| warning: false
+
+
+#Run lavTestScore on strong invariance model
+score_result <- lavTestScore(strong_model_smt_fit)
+
+#Extract univariate score test results
+score_df <- score_result$uni
+
+#Create readable table with evaluation
+
+score_table <- score_df %>%
+  mutate(
+    restriction = paste(lhs, op, rhs),
+    evaluation = case_when(
+      p.value >= 0.05 ~ "No violation",
+      p.value >= 0.01 ~ "Possible violation",
+      TRUE ~ "Clear violation"
+    )
+  ) %>%
+  select(restriction, X2, df, p.value, evaluation)
+
+col.nam <- c("Restriction Tested", "Chi-square", "df", "p-value", "Evaluation")
+
+score_table %>%
+  kable(format = "html",
+        align = "c",
+        booktabs = TRUE,
+        escape = FALSE,
+        caption = "Assessment of Metric Invariance Based on Score Test (Strong Invariance Model)",
+        col.names = col.nam,
+        digits = 3) %>%
+  kable_styling(
+    full_width = TRUE,
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    latex_options = "hold_position",
+    font_size = 18
+  ) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2:4, width = "3.5cm") %>%
+  column_spec(5, width = "4cm")
+```
+
+### Specific Violations
+
+```{r}
+#| label: tbl-subset
+#| tbl-cap: "Clear Violations of Invariance"
+#| results: asis
+#| echo: false
+#| warning: false
+
+clear_vio <- score_table %>%
+  filter(evaluation == "Clear violation")
+
+# Crear tabla kable solo con las violaciones claras
+clear_vio %>%
+  kable(format = "html",
+        align = "c",
+        booktabs = TRUE,
+        escape = FALSE,
+        caption = "Clear Violation Restrictions (Strong Invariance)",
+        col.names = col.nam,
+        digits = 3) %>%
+  kable_styling(
+    full_width = TRUE,
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    latex_options = "hold_position",
+    font_size = 18
+  ) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2:4, width = "3.5cm") %>%
+  column_spec(5, width = "4cm")
+```
+
+The table presents the results of a series of score tests conducted to evaluate the assumption of strong factorial invariance in a longitudinal confirmatory factor analysis (CFA) framework. Each row corresponds to a specific equality constraint tested between two parameters—typically loadings or intercepts—across different waves of data collection.
+
+In this context, the equality constraints (e.g., `.p1. == .p7.`) assess whether a specific parameter estimated in one wave is statistically equivalent to the same parameter in a different wave. A significant chi-square test (p \< 0.05) indicates that the equality constraint is violated, meaning that the parameter differs across time points and thus does not meet the requirement for strong invariance.
+
+All the tested constraints in this table show clear violations, with p-values below 0.01 and often far below 0.001. This implies that the assumption of equality for these parameters across waves is strongly rejected by the data. For example: The restriction `.p1. == .p7.` compares the same item’s loading (or intercept) in different waves. The significant chi-square statistic (χ² = 17.963, p \< .001) shows that this parameter changes over time. Similarly, `.p2. == .p6.`, `.p2. == .p8.`, and other comparisons indicate substantial variation in item functioning across time points.
+
+This systematic pattern of significant violations suggests that several items behave differently over time, either in their loading onto the latent factor or in their intercepts. In practical terms, this challenges the longitudinal comparability of the latent constructs involved (e.g., perceptions of meritocracy), since the same construct may not be measured in the same way across waves.
+
+Consequently, these findings call for relaxing some of the invariance constraints—that is, allowing certain parameters to vary freely across waves—to estimate a partial invariance model. Doing so enables the researcher to still make meaningful comparisons, provided that a sufficient number of parameters remain invariant to anchor the scale.
+
+In summary, the table provides robust statistical evidence that strong invariance is violated for key parameters, emphasizing the need for caution when interpreting changes in latent means over time as substantive shifts in attitudes or perceptions.
+
+### Parameters Information
+
+```{r}
+#| label: info-parametros
+#| echo: false
+#| output: false
+
+param_info <- parameterEstimates(strong_model_smt_fit, standardized = FALSE) %>%
+  dplyr::mutate(index = dplyr::row_number()) %>%
+  dplyr::select(index, lhs, op, rhs, label)
+
+param_info %>% filter(index %in% c(6, 7, 8, 9, 10, 11, 12)) # Selection of the parameters wose charges between waves remains the same
+```
+
+```{r}
+#| label: tbl-param_info
+#| tbl-cap: "Específic Parameters"
+#| results: asis
+#| echo: false
+#| warning: false
+
+# Original Table with Parameters
+structure <- tibble::tribble(
+  ~index, ~factor,        ~item,              ~wave,    ~label,        ~param,
+  6,      "percnmerit1",  "perccontact1",     "Wave 2", "lambda.2_1",  ".p6.",
+  7,      "percnmerit2",  "percrichparents2", "Wave 1", "lambda.1_1",  ".p7.",
+  8,      "percnmerit2",  "perccontact2",     "Wave 2", "lambda.2_1",  ".p8.",
+  9,      "prefmerit1",   "prefeffort1",      "Wave 1", "lambda.1_1",  ".p9.",
+  10,     "prefmerit1",   "preftalent1",      "Wave 2", "lambda.2_1",  ".p10.",
+  11,     "prefmerit2",   "prefeffort2",      "Wave 1", "lambda.1_1",  ".p11.",
+  12,     "prefmerit2",   "preftalent2",      "Wave 2", "lambda.2_1",  ".p12."
+)
+
+# Invariance test results
+test_results <- tibble::tribble(
+  ~lhs,   ~op,  ~rhs,     ~X2,     ~df, ~p.value,
+  ".p1.", "==", ".p7.",  17.963,   1,   0.000,
+  ".p1.", "==", ".p9.",  14.775,   1,   0.000,
+  ".p1.", "==", ".p11.", 11.124,   1,   0.001,
+  ".p2.", "==", ".p6.",  13.308,   1,   0.000,
+  ".p2.", "==", ".p8.",  17.162,   1,   0.000,
+  ".p2.", "==", ".p10.",  8.398,   1,   0.004,
+  ".p2.", "==", ".p12.", 28.983,   1,   0.000
+)
+
+# Procesamiento de decisiones por parámetro
+decisions <- test_results %>%
+  select(lhs, rhs, p.value) %>%
+  pivot_longer(cols = c(lhs, rhs), names_to = "side", values_to = "param") %>%
+  distinct(param, p.value) %>%
+  group_by(param) %>%
+  summarise(min_p = min(p.value, na.rm = TRUE), .groups = "drop") %>%
+  mutate(decision = ifelse(min_p < 0.05, "Not invariant", "Invariant"))
+
+# Unión con tabla base
+structure_final <- structure %>%
+  left_join(decisions, by = "param") %>%
+  select(index, factor, item, wave, label, param, decision)
+
+
+structure_final %>%
+  kable(
+    format = "html",
+    col.names = c("Index", "Latent Factor", "Item", "Wave", "Label", "Parameter", "Strong Invariance"),
+    caption = "Quality Assessment Table – Strong Invariance (Automated)",
+    align = "c",
+    booktabs = TRUE,
+    escape = FALSE
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "bordered", "condensed", "hover"),
+    latex_options = "hold_position",
+    full_width = TRUE,
+    font_size = 18
+  ) %>%
+  column_spec(1, width = "2cm") %>%
+  column_spec(2:4, width = "3.5cm") %>%
+  column_spec(5:6, width = "4cm") %>%
+  column_spec(7, width = "3.5cm", bold = TRUE)
+```
+
+The table presents the results of a strong invariance assessment applied to a set of items measuring beliefs and preferences related to meritocracy, collected across the two survey waves. Each row corresponds to a parameter in the measurement model—specifically, a factor loading or intercept linked to a particular item—that has been identified as non-invariant. A parameter being non-invariant means that its value is not held constant across waves.
+
+For instance, the item "perccontact1" (which measures the extent to which personal contacts are seen as key to success) is non-invariant in Wave 2 for the latent factor percnmerit1 (non-meritocratic perception). This suggests that, at that specific time point, the relationship between the item and the latent factor changed. It's plausible that contextual shifts—such as political, economic, or social developments—altered how individuals perceive the role of personal contacts in success, thereby changing what the item actually captures.
+
+Similar issues are observed with other items like "percrichparents2", "prefeffort1", "preftalent1", "prefeffort2", and "preftalent2", all of which show non-invariance in at least one wave. These items address concepts such as the role of effort, talent, or family background in achieving success. Their lack of invariance suggests that responses may be influenced by time-specific factors such as public discourse, recent events, or generational shifts.
+
+Taken together, these results indicate that the items do not maintain a stable relationship with their respective latent constructs over time. In other words, the latent factors capturing perceptions and preferences regarding merit and distributive justice are not being measured equivalently across waves. This prevents direct comparisons of latent means unless the model is adjusted to allow for partial invariance (i.e., by identifying and freeing the non-invariant parameters).
+
+This finding has both methodological and substantive implications. Methodologically, it advises caution in interpreting longitudinal differences as genuine attitudinal change. Substantively, it suggests that the social meanings attached to merit, effort, or structural advantage may be sensitive to historical and cultural context. Thus, shifts observed in these indicators may reflect changes not only in attitudes, but also in how individuals interpret the questions themselves.

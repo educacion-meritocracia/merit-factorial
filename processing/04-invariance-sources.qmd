@@ -29,11 +29,11 @@ options(kableExtra.html.bsTable = T)
 options(knitr.kable.NA = "")
 ```
 
-## 1. Libraries
-
 ```{r}
 #| label: packages
 #| include: false
+#| warning: false
+#| echo: false
 
 if (!require("pacman")) install.packages("pacman")
 
@@ -55,12 +55,9 @@ options(scipen=999)
 rm(list = ls())
 ```
 
-## 2. Data
-
 ```{r}
 #| label: data
-#| echo: true
-#| output: false
+#| echo: false
 
 options(scipen=999)
 rm(list = ls())
@@ -72,7 +69,7 @@ names(db_long)
 glimpse(db_long)
 ```
 
-## 3. Longitudinal Invariance Test
+## Longitudinal Invariance Test
 
 ```{r}
 #| label: tbl-invarianza
@@ -234,7 +231,19 @@ kableExtra::column_spec(2:7, width = "4cm") %>%
 
 ```
 
-## 4. Longitudinal Invariance Sources 
+The results of a longitudinal invariance test aim to determinate whether a construct measured at different points in time retains the same psychometric properties. This type of analysis is essential to ensure that any observed changes over time reflect true differences in the construct itself and not changes in the measurement model.
+
+The first model tested is the configural invariance model. This baseline model requires only that the factor structure (i.e., which items load on which factors) remains consistent across time points. The fit indices for this model are excellent: the chi-square is 38.02 with 20 degrees of freedom, the Comparative Fit Index (CFI) is 0.990, and the Root Mean Square Error of Approximation (RMSEA) is 0.039, with a 90% confidence interval ranging from 0.019 to 0.058. These values suggest that the model fits the data well at both time points, indicating that the basic structure of the construct is stable. This model serves as a foundation for comparing more constrained models.
+
+The second model, referred to as the weak or metric invariance model, adds the constraint that factor loadings must be equal over time. This tests whether the items contribute similarly to the latent construct at each measurement occasion. Compared to the configural model, the chi-square increases to 50.22 (with 27 degrees of freedom), reflecting a change of 12.196 with 7 additional degrees of freedom. Although numerically higher, this change is not statistically significant (as indicated by the absence of significance markers). Additionally, the CFI drops only slightly from 0.990 to 0.988 (a change of -0.003), and the RMSEA slightly improves from 0.039 to 0.038. Because these changes are minimal and within widely accepted thresholds (e.g., ΔCFI less than -0.01 and ΔRMSEA less than 0.015), weak invariance is supported. This means that the meaning of the construct is comparable over time in terms of the relationships between items and latent factors.
+
+However, the strong or scalar invariance model, which introduces the constraint that item intercepts must also be equal over time, shows a substantial deterioration in model fit. The chi-square rises sharply to 142.03 with 34 degrees of freedom, and the difference from the weak invariance model is 91.816 with 7 additional degrees of freedom, which is highly significant (marked with \*\*\*). Furthermore, the CFI drops considerably to 0.942 (a change of -0.045), and the RMSEA increases to 0.073. These results suggest that item intercepts are not invariant across time, meaning that item-level mean scores are not directly comparable. Therefore, strong invariance is rejected. This implies that latent mean comparisons across time points would be biased and potentially invalid.
+
+Finally, the strict invariance model, which adds the constraint of equal residual variances (measurement error) across time, results in even poorer fit. The chi-square increases further to 245.93 with 48 degrees of freedom, yielding a difference of 103.895 compared to the strong model, again highly significant (\*\*\*). The CFI declines to 0.894, and the RMSEA rises to 0.084, indicating a poor fit to the data. Consequently, strict invariance is also rejected.
+
+In summary, the measure meets the requirements for configural and weak invariance, which means that the overall structure of the construct and the relationship between items and latent factors remain stable over time. However, the results do not support strong or strict invariance, suggesting that it is not valid to compare latent means or error variances across time. While the construct appears to have the same general meaning and structure at each time point, any observed changes in scores cannot be confidently interpreted as real changes in the underlying construct.
+
+## Longitudinal Invariance Sources
 
 ```{r}
 #| label: tbl-lavTestScore
@@ -287,7 +296,7 @@ score_table %>%
 
 ```
 
-### Subset de las violaciones específicas
+### Subset of Specific Violations
 
 ```{r}
 #| label: tbl-subset
@@ -331,10 +340,11 @@ Consequently, these findings call for relaxing some of the invariance constraint
 
 In summary, the table provides robust statistical evidence that strong invariance is violated for key parameters, emphasizing the need for caution when interpreting changes in latent means over time as substantive shifts in attitudes or perceptions.
 
-## Información específica de los parámetros
+## Specific parameters information
 
 ```{r}
 #| label: info-parametros
+#| echo: false
 
 param_info <- parameterEstimates(strong_model_smt_fit, standardized = FALSE) %>%
   dplyr::mutate(index = dplyr::row_number()) %>%

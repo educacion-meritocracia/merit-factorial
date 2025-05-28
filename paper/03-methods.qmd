@@ -73,7 +73,10 @@ This study is based on data from the Panel Survey on Education and Meritocracy (
 
 ## Methods
 
+<<<<<<< Updated upstream
 To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, as proposed by [@Castillo_et_al_2023], using Diagonally Weighted Least Squares (DWLS) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous [@kline_principles_2023].
+=======
+To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, as proposed by Castillo et al. (2023), using Diagonally Weighted Least Squares (DWLS) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous Kline (2023)
 
 Model fit was assessed following the guidelines of Brown (2015), using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by p \> 0.05 and a Chi-square/df ratio \< 3).
 

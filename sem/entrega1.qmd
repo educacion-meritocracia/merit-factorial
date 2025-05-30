@@ -1,0 +1,379 @@
+---
+title: "Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile"
+format:
+  html: 
+    code-fold: true
+    html-math-method: katex
+    number-sections: true
+    code-link: true
+    title-block-banner: true
+    theme:
+      - cosmo
+      - pretty.scss
+  pdf: 
+    geometry: margin=2cm
+    template-partials: 
+      - title.tex
+    keep-tex: true
+    include-in-header:
+      text: |
+        \usepackage[noblocks]{authblk}
+        \renewcommand*{\Authsep}{, }
+        \renewcommand*{\Authand}{, }
+        \renewcommand*{\Authands}{, }
+        \renewcommand\Affilfont{\small}
+    number-sections: true
+editor: source
+bibliography: "../input/bib/merit-factorial.bib"
+csl: "../input/bib/apa6.csl"
+author:
+  - name: Andreas Laffert Tamayo
+    email: alaffertt@estudiante.uc.cl 
+    affiliations: Instituto de Sociología, Pontificia Universidad Católica de Chile
+  - name: Tomas Úrzua
+    affiliations: Departamento de Sociología, Universidad de Chile
+citeproc: true
+link-citations: true
+colorlinks: true
+linestretch: 1.15       
+mainfont: Times New Roman
+fontsize: 12pt          
+fig-height: 4
+fig-width: 7.5
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, warning = FALSE, message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
+#| label: packages
+#| include: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               sjPlot,
+               here,
+               lavaan,
+               psych,
+               corrplot,
+               ggdist,
+               patchwork,
+               sjlabelled,
+               semTools,
+               gtools,
+               RColorBrewer,
+               skimr,
+               readxl,
+               kableExtra)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data
+#| echo: false
+#| output: false
+
+load(file = here("output", "data", "db_long_proc.RData"))
+
+
+names(db_long)
+glimpse(db_long)
+
+```
+
+# Introducción
+
+:::: {.justify}
+
+La creencia de que las desigualdades económicas se justifican por diferencias en elementos meritocráticos—como el esfuerzo individual y el talento [@young_rise_1958]—ha sido identificada como un mecanismo clave para explicar la persistencia de las desigualdades. Desde sus inicios, las instituciones educativas han sido fundamentales en la promoción de estos valores, debido a su conexión con las promesas de movilidad social y mejores oportunidades de vida [@dubet_repensar_2011]. Investigaciones previas muestran que las personas que adhieren con mayor fuerza a creencias meritocráticas tienden a percibir menos desigualdad, atribuyendo las diferencias económicas al logro personal más que a factores estructurales [@mijs_paradox_2019; @wilson_role_2003a]. A nivel escolar, estas creencias también legitiman una mayor desigualdad, ya que fomentan actitudes que aceptan las jerarquías sociales como justas [@batruch_belief_2022; @wiederkehr_belief_2015]. Sin embargo, los conceptos e instrumentos para medir la meritocracia varían sustancialmente en la literatura. En respuesta a este problema, Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición para evaluar percepciones y preferencias meritocráticas y no meritocráticas, demostrando que su escala capta eficazmente estos constructos en la población adulta chilena.
+
+Con el objetivo de contribuir a la investigación empírica sobre la formación de la meritocracia y sus factores asociados en edades tempranas [@darnon_where_2018; @batruch_belief_2022; @wiederkehr_belief_2015], este estudio busca evaluar la aplicabilidad de dicha escala en la población escolar de Chile, un país caracterizado por una aguda y persistente desigualdad económica y un sistema educativo altamente estratificado [@corvalan_mercado_2017; @chancel_world_2022]. En primer lugar, argumentamos que existe una distinción entre percepción y preferencias en meritocracia. Mientras la percepción se asocia con cómo los individuos ven el funcionamiento de los principios meritocráticos en la sociedad (lo que es), las preferencias se refieren a juicios normativos (lo que debería ser). La segunda distinción concierne a elementos meritocráticos y no meritocráticos. En este caso, también se considera que aspectos como el rol de los contactos personales y la riqueza familiar no se oponen necesariamente a la percepción y valoración del esfuerzo y el talento en la obtención de éxito y recompensas.
+
+Para determinar hasta qué punto es posible reconocer las distintas dimensiones de la meritocracia en la población escolar, se implementará un procedimiento de análisis factorial confirmatorio utilizando datos de estudiantes chilenos. Además, se estimará la invarianza longitudinal a través de dos olas de datos de la misma cohorte para evaluar la estabilidad de la escala en el tiempo.
+
+# Datos, Variables y Métodos
+
+## Datos
+
+Este estudio se basa en información proveniente de la base de datos de la Encuesta Panel sobre Educación y Meritocracia (EDUMER) para sus olas de 2023 y 2024 en estudiantes. Esta encuesta se basa en la aplicación de cuestionarios web a estudiantes de sexto básico y primero medio de nueve colegios de las regiones Metropolitana y de Valparaíso en Chile. La primera ola incluyó a 846 estudiantes (383 niñas, 418 niños, 45 identificándose como otro; $M_{edad}$ = 13.1, $DE_{edad}$ = 1.6), y la segunda ola siguió a 662 de ellos (302 niñas, 337 niños, 22 identificándose como otro; $M_{edad}$ = 14.1, $DE_{edad}$ = 1.6). La recolección de datos fue financiada por la Agencia Nacional de Investigación y Desarrollo (ANID) de Chile, bajo el proyecto FONDECYT N.º 1210847, “Meritocracia en la escuela: fundamentos morales del mercado educativo y sus implicancias para la formación ciudadana en Chile”.
+
+
+## Variables
+
+**Escala de Percepciones y Preferencias sobre Meritocracia**: Las variables incluidas en el modelo de medición sobre percepciones y preferencias meritocráticas y no meritocráticas se operacionalizan según los mismos ítems propuestos por Castillo et al. [-@castillo_multidimensional_2023]. Esta es una escala basada en dos componentes, cuatro dimensiones y ocho ítems (dos por cada dimensión). La percepción de la meritocracia se mide con dos ítems que indagan el grado de acuerdo con la afirmación de que el esfuerzo y la habilidad son recompensados en Chile, mientras que la percepción no meritocrática se mide con dos ítems que evalúan el grado de acuerdo con la idea de que el éxito está vinculado a los contactos personales y a la riqueza familiar. La preferencia por la meritocracia se mide con dos ítems que evalúan el acuerdo con la idea de que quienes se esfuerzan más o poseen más talento deberían recibir mayores recompensas. La preferencia por aspectos no meritocráticos se mide con dos indicadores que evalúan el acuerdo con la idea de que es aceptable que quienes tienen mejores contactos o padres adinerados tengan más éxito (ver @tbl-merit). Cada ítem fue respondido en una escala Likert de cuatro puntos que va desde "muy en desacuerdo" (1) hasta "muy de acuerdo" (4).
+
+
+```{r}
+#| label: tbl-merit
+#| echo: false
+#| tbl-cap: "Ítems Meritocráticos y No Meritocráticos"
+#| tbl-cap-location: top
+
+tabla_merit <- data.frame(
+  Componente = c("Percepción", "", "", "", 
+                 "Preferencia", "", "", ""),
+  Dimensión = c("Meritocrática", "Meritocrática", 
+                "No meritocrática", "No meritocrática",
+                "Meritocrática", "Meritocrática", 
+                "No meritocrática", "No meritocrática"),
+  Ítem = c(
+    "En Chile, las personas son recompensadas por su esfuerzo.",
+    "En Chile, las personas son recompensadas por su inteligencia y habilidades.",
+    "En Chile, a quienes tienen padres ricos les va mucho mejor en la vida.",
+    "En Chile, a quienes tienen buenos contactos les va mejor en la vida.",
+    "Quienes se esfuerzan más deberían recibir mayores recompensas que quienes se esfuerzan menos.",
+    "Quienes tienen más talento deberían recibir mayores recompensas que quienes tienen menos talento.",
+    "Está bien que a quienes tienen padres ricos les vaya bien en la vida.",
+    "Está bien que a quienes tienen buenos contactos les vaya bien en la vida."
+  )
+)
+
+tabla_merit %>% kableExtra::kable(., format = "markdown")
+
+```
+
+
+## Métodos
+
+Para evaluar nuestras hipótesis, se emplearon análisis factoriales exploratorios (EFA) y confirmatorios (CFA) basados en un modelo latente de medición de cuatro factores [@castillo_multidimensional_2023], con estimador de Mínimos Cuadrados Ponderados Diagonales (DWLS) debido a la naturaleza ordinal de los ítems [@kline_principles_2023]. El ajuste del modelo se evaluó con base en los criterios propuestos por Brown [-@brown_confirmatory_2015]: CFI > 0.95; TLI > 0.95; RMSEA < 0.06.
+
+Para examinar la estabilidad métrica del modelo de medición [@davidov_measurement_2014], se realizaron pruebas de invarianza longitudinal utilizando los datos de las dos olas del estudio. En línea con @liu_testing_2017, se siguió un enfoque jerárquico con cuatro modelos: configural (estructura factorial equivalente), débil (igualdad de cargas factoriales), fuerte (igualdad de interceptos) y estricto (igualdad de varianzas de error). Este enfoque es especialmente relevante para indicadores categóricos ordenados, ya que tratar escalas Likert de cuatro puntos como continuas puede introducir sesgos en las estimaciones. Además del criterio de cambio en el chi-cuadrado, se adoptaron el cambio en CFI ($\Delta \geq -0.010$) y en RMSEA ($\Delta \geq 0.015$) como indicadores de invarianza, siguiendo las recomendaciones de Chen [-@chen_sensitivity_2007].
+
+# Resultados
+
+## Descriptivos
+
+En la @fig-likert se presenta la distribución de las respuestas para los ítems de la escala, organizadas según sus respectivas dimensiones: percepciones y preferencias. En primer lugar, en el eje de las percepciones, se observa una alta concentración de respuestas en las categorías “de acuerdo” y “muy de acuerdo” para todos los ítems, lo que indica una fuerte percepción de que los elementos evaluados influyen efectivamente en el éxito social. Esta tendencia es particularmente marcada en el ítem referido a los contactos, seguido por el talento, y con una notable cantidad de respuestas en “muy de acuerdo” respecto al ítem padres ricos. Sin embargo, también se evidencia cierto grado de disenso: un 33,1% considera que el esfuerzo no es recompensado en la sociedad; un 28,6% no está de acuerdo con que tener padres ricos implique una ventaja; y un 26,6% manifiesta desacuerdo respecto a la influencia del talento. El menor nivel de desacuerdo se registra en el ítem de contactos.
+
+En segundo lugar, en el eje de las preferencias, el patrón se invierte parcialmente. En el caso del esfuerzo, se observa una fuerte preferencia por que sea un criterio de recompensa, lo que contrasta con la percepción sobre su reconocimiento efectivo. En relación con el talento, un 54,6% manifiesta preferir que sea recompensado, frente a un 45,4% que no lo prefiere. En cuanto a los elementos no meritocráticos, como el origen familiar, la opinión se encuentra más dividida: en el caso de padres ricos, las respuestas se reparten casi equitativamente entre quienes prefieren y quienes no prefieren que este factor influya en el éxito. Finalmente, respecto a los contactos, se identifica una mayor proporción de respuestas que expresan preferencia por este criterio.
+
+
+```{r}
+#| label: fig-likert
+#| echo: false
+#| fig-cap: "Distribución de respuestas en los ítems de Escala de Meritocracia"
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+a <- db_long %>% 
+  filter(ola == 1) %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+b <- db_long %>% 
+  filter(ola == 1) %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db_long[db_long$ola==1,])[1],")"
+))
+
+likerplot
+
+
+```
+
+En la @tbl-correlaciones se presenta la matriz de correlaciones para los items de la escala. En términos generales, se observa una correlación positiva y de magnitud moderada entre los ítems que conforman una misma dimensión de la escala. Es decir, los ítems que miden percepción de esfuerzo y talento ($r$ = 0.52, $p$<.05), así como los que miden percepción sobre padres ricos y contactos ($r$ = 0.61, $p$<.05), tienden a correlacionarse entre sí. Este patrón también se reproduce en el caso de las preferencias normativas, donde los ítems dentro de cada subdimensión presentan correlaciones consistentes entre ellos.
+
+No obstante, un hallazgo relevante es la presencia de correlaciones positivas, aunque de magnitud débil a moderada, entre ítems que pertenecen a dimensiones conceptualmente opuestas. Por ejemplo, se observa que la percepción sobre la influencia de los padres ricos—un elemento típicamente considerado no meritocrático—se asocia positivamente con la preferencia por el esfuerzo—un criterio meritocrático ($r$ = 0.21). Este mismo patrón se observa con la percepción sobre el uso de contactos, que también presenta una correlación positiva con la preferencia por el esfuerzo ($r$ = 0.26).
+
+En resumen, los datos sugieren que la percepción de que operan mecanismos no meritocráticos en la sociedad no excluye la preferencia normativa por criterios meritocráticos. En otras palabras, ambas lógicas—la meritocrática y la no meritocrática—parecen coexistir en las creencias de las y los encuestados.
+
+```{r}
+#| label: tbl-correlaciones
+#| echo: false
+#| tbl-cap: "Matriz de correlaciones policóricas entre los ítems de Escala de Meritocracia"
+#| tbl-cap-location: top
+
+M <- psych::polychoric(db_long[db_long$ola==1,][c(4:11)])
+
+diag(M$rho) <- NA
+
+rownames(M$rho) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencia Esfuerzo",
+                     "F. Preferencia Talento",
+                     "G. Preferencia Padres Ricos",
+                     "H. Preferencia Contactos")
+
+#set Column names of the matrix
+colnames(M$rho) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                    "(H)")
+
+testp <- cor.mtest(M$rho, conf.level = 0.95)
+
+
+df <- as.data.frame(M$rho)
+ 
+mat_cor <- as.matrix(df)
+
+
+p_stars <- gtools::stars.pval(testp$p)
+
+mat_cor_rounded <- round(mat_cor, 2)
+mat_cor_char <- format(mat_cor_rounded, nsmall = 2)
+
+cor_with_stars <- ifelse(is.na(mat_cor_char), "", 
+                         paste0(mat_cor_char, p_stars))
+
+cor_with_stars[upper.tri(cor_with_stars, diag = TRUE)] <- NA
+
+
+cor_with_stars %>% 
+  kableExtra::kable(., format = "markdown") %>% 
+  kableExtra::add_footnote(label = "**p<0.01, *p<0.5", notation = "none")
+
+
+```
+
+## Multivariados
+
+### Análisis factorial exploratorio
+
+### Análisis factorial confirmatorio
+
+
+```{r}
+#| echo: false
+
+
+# model
+model_cfa <- '
+  perc_merit = ~ perc_effort + perc_talent
+  perc_nmerit = ~ perc_rich_parents + perc_contact
+  pref_merit = ~ pref_effort + pref_talent
+  pref_nmerit = ~ pref_rich_parents + pref_contact
+  '
+
+# estimation for each order set
+
+m1_cfa <- cfa(model = model_cfa, 
+              data = subset(db_long, ola == 1),
+              estimator = "DWLS",
+              ordered = T,
+              std.lv = F) 
+
+m2_cfa <- cfa(model = model_cfa, 
+              data = subset(db_long, ola == 2), 
+              estimator = "DWLS",
+              ordered = T,
+              std.lv = F)
+
+```
+
+En la @fig-cfa1 se presenta la solución estandarizada del modelo factorial confirmatorio estimado para la escala de meritocracia en la primera ola del estudio. De acuerdo con los grados de libertad, el modelo se encuentra sobre identidicado ($df$ = 14 > 0). Los indicadores de ajuste global muestran que el modelo presenta un buen ajuste a los datos empíricos. Si bien la prueba del estadístico $\chi^2$, que evalúa si existen discrepancias significativas entre la matriz de covarianza observada y la que es estimada por el modelo resulta significativa (p < 0.001), lo cual podría indicar un mal ajuste del modelo, este resultado debe interpretarse con cautela. Es bien sabido que esta prueba es altamente sensible al tamaño muestral, y en muestras superiores a los 200 casos tiende a rechazar la hipótesis nula incluso ante desviaciones triviales del modelo [@brown_confirmatory_2015]. Por esta razón, se recurre a indicadores alternativos que son más robustos en este contexto. En efecto, tanto el índice de ajuste comparativo (CFI) como el índice de Tucker-Lewis (TLI) y el error cuadrático medio de aproximación (RMSEA) se encuentran dentro de los umbrales comúnmente aceptados para indicar un buen ajuste (CFI y TLI > 0.95; RMSEA < 0.05), lo cual respalda la validez factorial del instrumento.
+
+
+```{r}
+#| label: fig-cfa1
+#| fig-cap: "Análisis factorial confirmatorio de Escala de Meritocracia Ola 1"
+#| fig-cap-location: top
+#| fig-align: center
+#| fig-width: 7
+#| out-width: '100%'
+#| echo: false
+
+knitr::include_graphics(path = here("sem/cfa_w1.png"))
+```
+
+En relación con las cargas factoriales, todos los ítems se asocian de forma positiva y estadísticamente significativa con sus respectivas dimensiones latentes, y presentan cargas estandarizadas superiores a 0.5, lo que indica una adecuada calidad de la medición [@brown_confirmatory_2015]. Dentro de la dimensión de percepción meritocrática, el ítem correspondiente al esfuerzo destaca como el indicador con mayor carga factorial ($\beta$ = 0.87, $p$ < 0.01), lo que sugiere que este principio constituye el eje central en las creencias sobre los mecanismos legítimos del éxito social desde una lógica meritocrática. Por su parte, en la dimensión de percepción no meritocrática, el ítem referido al uso de contactos personales presenta la mayor carga ($\beta$ = 0.944, $p$ < 0.01), posicionándose como el componente más representativo de esta dimensión. En las dimensiones normativas se observan patrones similares: en la preferencia por criterios meritocráticos existe una cierta paridad entre los ítems de esfuerzo y talento, sin que uno predomine claramente sobre el otro, mientras que en la preferencia por criterios no meritocráticos nuevamente el uso de contactos ($\beta$ = 0.833, $p$ < 0.01) emerge como el criterio normativo más relevante.
+
+Respecto de las correlaciones entre factores, se identifican relaciones conceptualmente significativas. Por un lado, la percepción de que los logros sociales se deben a factores meritocráticos se asocia negativamente con la percepción de que estos se explican por mecanismos no meritocráticos ($r$ = -0.133, $p$<0.01). Por otro lado, y en contraste con esta lógica excluyente en el plano perceptivo, se observa una correlación positiva entre las preferencias meritocráticas y no meritocráticas ($r$ = 0.186, $p$<0.01). Este hallazgo sugiere que, normativamente, ambas lógicas pueden coexistir: los estudiantes pueden simultáneamente valorar que el esfuerzo o el talento deban ser recompensados, al mismo tiempo que consideran legítimo que otros factores, como el origen familiar o los contactos, también influyan en el acceso a ventajas.
+
+De manera particularmente relevante, se observa una correlación positiva entre la percepción de mecanismos no meritocráticos y la preferencia por mecanismos meritocráticos. Específicamente, quienes perciben que el funcionamiento social se basa en factores no meritocráticos —como los contactos personales o el origen familiar— tienden a manifestar una mayor preferencia por que elementos meritocráticos, como el esfuerzo y el talento, sean efectivamente recompensados en la sociedad ($r$ = 0.461, $p$ < 0.01). Este hallazgo sugiere que el reconocimiento de una realidad social percibida como injusta o alejada del ideal meritocrático puede reforzar normativamente la adhesión a principios meritocráticos. En otras palabras, cuanto más se percibe que operan criterios ajenos al mérito en la distribución de ventajas, mayor es el deseo de que el mérito —en particular, el esfuerzo y el talento— se convierta en el fundamento legítimo de la recompensa social.
+
+
+```{r}
+#| label: fig-cfa2
+#| fig-cap: "Análisis factorial confirmatorio de Escala de Meritocracia Ola 2"
+#| fig-cap-location: top
+#| fig-align: center
+#| fig-width: 7
+#| out-width: '100%'
+#| echo: false
+knitr::include_graphics(path = here("sem/cfa_w2.png"))
+```
+
+
+En la @fig-cfa2 se presenta la solución estandarizada del modelo factorial confirmatorio estimado para la segunda ola del estudio. Al igual que en la ola anterior, el modelo se encuentra sobreidentificado, con 14 grados de libertad ($df$ = 14 > 0), lo que permite una estimación robusta de los parámetros del modelo.
+
+En términos de ajuste global, el estadístico $\chi^2$ resulta significativo, lo cual podría sugerir una falta de ajuste. Sin embargo, como se discutió previamente, este resultado debe ser interpretado con cautela debido a su sensibilidad al tamaño muestral. En este caso, los indicadores complementarios —el índice de ajuste comparativo (CFI) y el índice de Tucker-Lewis (TLI)— se sitúan por sobre el umbral de 0.95, lo que indica un buen ajuste relativo del modelo. Por su parte, el RMSEA alcanza un valor de 0.06, que corresponde a un ajuste razonable según los criterios establecidos en la literatura especializada ([@brown_confirmatory_2015].
+
+En cuanto a las cargas factoriales, se mantienen los patrones observados en la ola anterior con algunas variaciones menores. Dentro de la dimensión de percepción meritocrática, el ítem de esfuerzo continúa siendo el más relevante, mostrando una carga superior a la del talento. En la percepción no meritocrática, en cambio, se observa una mayor paridad entre los indicadores: tanto el ítem de padres ricos como el de contactos personales contribuyen de manera similar a la dimensión. En lo que respecta a las preferencias normativas, se confirma nuevamente que el esfuerzo es el componente con mayor carga factorial dentro de la dimensión meritocrática, superando al talento. Por su parte, en la preferencia por criterios no meritocráticos, el ítem que presenta mayor peso es el de contactos, reafirmando su centralidad en esta dimensión.
+
+Respecto de las correlaciones entre factores, se replican en gran medida los patrones observados en la primera ola. Se mantiene la correlación negativa entre percepción meritocrática y percepción no meritocrática, así como la correlación positiva entre las preferencias por criterios meritocráticos y no meritocráticos, indicando la persistencia de una tensión entre representación descriptiva y posicionamiento normativo. También se conserva la asociación positiva entre percepción no meritocrática y preferencia por estos mecanismos, lo que refuerza la hipótesis de legitimación normativa de estructuras no basadas en mérito.
+
+No obstante, un hallazgo distintivo en esta segunda medición es la emergencia de una correlación positiva y estadísticamente significativa entre la percepción meritocrática y la preferencia por criterios meritocráticos, relación que no fue significativa en la ola anterior. Esto sugiere que, en este momento del estudio, quienes perciben que la sociedad funciona según principios meritocráticos también tienden a considerar legítimo que dichos principios guíen la distribución de recompensas sociales. Esta convergencia entre percepción y preferencia en el eje meritocrático puede interpretarse como una señal de mayor coherencia normativa, o bien, como una posible reacción ideológica frente a cambios contextuales percibidos entre ambas mediciones.
+
+
+
+Con todo, los resultados revelan que la escala presenta buenos índices de ajuste y que sus dimensiones corresponden al modelo multidimensional propuesto para la población escolar. Se observaron cargas factoriales altas (> 0.6) para todos los ítems en sus respectivos factores latentes. Las correlaciones entre factores son consistentes con las observadas en la población adulta [@castillo_multidimensional_2023]: la percepción de elementos meritocráticos se asocia negativamente con la percepción de elementos no meritocráticos, mientras que esta última se relaciona positivamente con la preferencia por la meritocracia. Estos hallazgos sugieren que, en una etapa temprana de socialización, los estudiantes distinguen entre cómo perciben el funcionamiento de elementos meritocráticos y no meritocráticos y cómo prefieren que estos operen en la sociedad. Es destacable que una mayor percepción de la no meritocracia se vincula con una mayor preferencia por la misma, lo que resalta la importancia de este principio moral en la formación de valores y actitudes durante los años escolares [@batruch_belief_2022; @wiederkehr_belief_2015; @darnon_where_2018].
+
+# Referencias
+
+::: {#refs}
+:::
+
+::::
+
+\pagebreak
+
+# Código de R
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+
+```

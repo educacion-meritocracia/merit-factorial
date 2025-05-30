@@ -1,0 +1,64 @@
+/*--  scss:defaults --*/
+
+.justify {
+  text-align: justify;
+}
+
+body {
+  font-size: 1.40em; /* Puedes ajustar: 1em = normal, 1.2em = 20% más grande */
+}
+
+.navbar {
+  background-color: #523870 !important; /* Morado */
+}
+
+.navbar a, .navbar-brand {
+  color: white !important; /* Texto blanco */
+}
+
+
+/* Para cambiar el fondo del banner de título */
+.quarto-title-block .quarto-title-banner {
+  background-color: #523870;  /* morado */
+  color: white; /* color del texto */
+}
+
+/* Asegurar contraste de texto */
+.quarto-title-banner .title, 
+.quarto-title-banner .subtitle, 
+.quarto-title-banner .author, 
+.quarto-title-banner .date {
+  color: white !important;
+}
+
+
+/*-- scss:rules --*/
+
+
+div.sidebar-item-container .active {
+  font-weight: bold;
+}
+
+.sidebar nav[role=doc-toc] ul>li>a.active, .sidebar nav[role=doc-toc] ul>li>ul>li>a.active{
+  font-weight: bold;
+}
+
+img.quarto-cover-image {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+
+/* Code ------------------------------------------------ */
+
+code {
+  color: #373a3c;
+}
+
+code a:any-link {
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+}
+
+pre {
+  background-image: linear-gradient(160deg,#f8f8f8 0,#f1f1f1 100%);
+}

@@ -79,9 +79,14 @@ pacman::p_load(tidyverse,
                sjPlot,
                here,
                lavaan,
+               devtools,
                psych,
+               psy,
                corrplot,
                ggdist,
+               GPArotations,
+               ggrepel,
+               nfactors,
                patchwork,
                sjlabelled,
                semTools,
@@ -89,7 +94,9 @@ pacman::p_load(tidyverse,
                RColorBrewer,
                skimr,
                readxl,
-               kableExtra)
+               tydiverse,
+               kableExtra,
+               xtable)
 
 
 options(scipen=999)
@@ -163,7 +170,7 @@ tabla_merit %>% kableExtra::kable(., format = "markdown")
 
 ## Métodos
 
-Para evaluar nuestras hipótesis, se emplearon análisis factoriales exploratorios (EFA) y confirmatorios (CFA) basados en un modelo latente de medición de cuatro factores [@castillo_multidimensional_2023], con estimador de Mínimos Cuadrados Ponderados Diagonales (DWLS) debido a la naturaleza ordinal de los ítems [@kline_principles_2023]. El ajuste del modelo se evaluó con base en los criterios propuestos por Brown [-@brown_confirmatory_2015]: CFI > 0.95; TLI > 0.95; RMSEA < 0.06.
+Para evaluar nuestras hipótesis, en un primer momento se empleó análisis factorial exploratorio (EFA) para estimar la cantidad de factores que subyacen la escala de meritocracia mediante el método de Ejes Principales (PA). Posteriormente, se aplicó un análisis factorial confirmatorio (CFA) basado en un modelo latente de medición de cuatro factores [@castillo_multidimensional_2023], con estimador de Mínimos Cuadrados Ponderados Diagonales (DWLS) debido a la naturaleza ordinal de los ítems [@kline_principles_2023]. El ajuste del modelo se evaluó con base en los criterios propuestos por Brown [-@brown_confirmatory_2015]: CFI > 0.95; TLI > 0.95; RMSEA < 0.06.
 
 Para examinar la estabilidad métrica del modelo de medición [@davidov_measurement_2014], se realizaron pruebas de invarianza longitudinal utilizando los datos de las dos olas del estudio. En línea con @liu_testing_2017, se siguió un enfoque jerárquico con cuatro modelos: configural (estructura factorial equivalente), débil (igualdad de cargas factoriales), fuerte (igualdad de interceptos) y estricto (igualdad de varianzas de error). Este enfoque es especialmente relevante para indicadores categóricos ordenados, ya que tratar escalas Likert de cuatro puntos como continuas puede introducir sesgos en las estimaciones. Además del criterio de cambio en el chi-cuadrado, se adoptaron el cambio en CFI ($\Delta \geq -0.010$) y en RMSEA ($\Delta \geq 0.015$) como indicadores de invarianza, siguiendo las recomendaciones de Chen [-@chen_sensitivity_2007].
 
@@ -284,6 +291,169 @@ cor_with_stars %>%
 
 ### Análisis factorial exploratorio
 
+```{r}
+#| label: fa-table 
+#| echo: false
+
+knitr::opts_chunk$set(echo = TRUE, cache = T)
+library(knitr)
+
+
+fa_table <- function(x, varlabels = NULL, title = "Factor analysis results", diffuse = .10, small = .30, cross = .20, sort = TRUE) {
+  #get sorted loadings
+  require(dplyr)
+  require(purrr)
+  require(tibble)
+  require(gt)
+  if(sort == TRUE) {
+    x <- psych::fa.sort(x)
+  }
+  if(!is.null(varlabels)) {
+    if(length(varlabels) != nrow(x$loadings)) { warning("Number of variable labels and number of variables are unequal. Check your input!",
+                                                        call. = FALSE) }
+    if(sort == TRUE) {
+      varlabels <- varlabels[x$order]
+    }
+  }
+  if(is.null(varlabels)) {varlabels <- rownames(x$loadings)}
+  
+  loadings <- data.frame(unclass(x$loadings))
+  
+  #make nice names
+  factornamer <- function(nfactors) {
+    paste0("Factor_", 1:nfactors)}
+  
+  nfactors <- ncol(loadings)
+  fnames <- factornamer(nfactors)
+  names(loadings) <- fnames
+  
+  # prepare locations
+  factorindex <- apply(loadings, 1, function(x) which.max(abs(x)))
+  
+  # adapted from from sjplot: getremovableitems
+  getRemovableItems <- function(dataframe, fctr.load.tlrn = diffuse) {
+    # clear vector
+    removers <- vector(length = nrow(dataframe))
+    # iterate each row of the data frame. each row represents
+    # one item with its factor loadings
+    for (i in seq_along(removers)) {
+      # get factor loadings for each item
+      rowval <- as.numeric(abs(dataframe[i, ]))
+      # retrieve highest loading
+      maxload <- max(rowval)
+      # retrieve 2. highest loading
+      max2load <- sort(rowval, TRUE)[2]
+      # check difference between both
+      if (abs(maxload - max2load) < fctr.load.tlrn) {
+        # if difference is below the tolerance,
+        # remeber row-ID so we can remove that items
+        # for further PCA with updated data frame
+        removers[i] <- TRUE
+      }
+    }
+    # return a vector with index numbers indicating which items
+    # have unclear loadings
+    return(removers)
+  }
+  if(nfactors > 1) {
+    removable <- getRemovableItems(loadings)
+    cross_loadings <- purrr::map2(fnames, seq_along(fnames), function(f, i) {
+      (abs(loadings[,f] > cross)) & (factorindex != i) 
+    })
+  }
+  
+  small_loadings <- purrr::map(fnames, function(f) {
+    abs(loadings[,f]) < small
+  })
+  
+  ind_table <- dplyr::tibble(varlabels, loadings) %>%
+    dplyr::rename(Indicator = varlabels) %>% 
+    dplyr::mutate(Communality = x$communality, Uniqueness = x$uniquenesses, Complexity = x$complexity) %>% 
+    dplyr::mutate(across(starts_with("Factor"), round, 3))  %>%
+    dplyr::mutate(across(c(Communality, Uniqueness, Complexity), round, 2))
+  
+  
+  ind_table <- ind_table %>% gt(rowname_col = "Indicator") %>% tab_header(title = title)
+  # mark small loadiongs
+  for(f in seq_along(fnames)) {
+    ind_table <- ind_table %>%  tab_style(style = cell_text(color = "#D3D3D3", style = "italic"),
+                                          locations = cells_body(columns = fnames[f], rows = small_loadings[[f]]))
+  }
+  # mark cross loadings
+  
+  if (nfactors > 1) {
+    for (f in seq_along(fnames)) {
+      ind_table <-
+        ind_table %>%  tab_style(
+          style = cell_text(style = "italic"),
+          locations = cells_body(columns = fnames[f], rows = cross_loadings[[f]])
+        )
+    }
+    # mark non-assignable indicators
+    ind_table <-
+      ind_table %>%  tab_style(style = cell_fill(color = "#D93B3B"),
+                               locations = cells_body(rows = removable))
+  }
+  
+  # adapted from https://www.anthonyschmidt.co/post/2020-09-27-efa-tables-in-r/
+  Vaccounted <- x[["Vaccounted"]]
+  colnames(Vaccounted) <- fnames 
+  if (nfactors > 1) {
+    Phi <- x[["Phi"]]
+    rownames(Phi) <- fnames
+    colnames(Phi) <- fnames
+    f_table <- rbind(Vaccounted, Phi) %>%
+      as.data.frame() %>% 
+      rownames_to_column("Property") %>%
+      mutate(across(where(is.numeric), round, 3)) %>%
+      gt() %>% tab_header(title = "Eigenvalues, Variance Explained, and Factor Correlations for Rotated Factor Solution")
+  }
+  else if(nfactors == 1) {
+    f_table <- rbind(Vaccounted) %>%
+      as.data.frame() %>% 
+      rownames_to_column("Property") %>%
+      mutate(across(where(is.numeric), round, 3)) %>%
+      gt() %>% tab_header(title = "Eigenvalues, Variance Explained, and Factor Correlations for Rotated Factor Solution")
+  }
+  
+  return(list("ind_table" = ind_table, "f_table" = f_table))
+  
+}
+
+```
+
+```{r}
+#| include: false 
+
+db_w1 <- db_long %>% filter(ola==1) %>% select(starts_with("perc"),
+         starts_with("pref"))
+corMat <- round(cor(db_w1), 2)
+KMO(corMat) 
+cortest.bartlett(corMat, n = 846)
+```
+
+```{r}
+#| include: false 
+
+fac_pa <- fa(r = db_w1, nfactors = 4, fm= "pa")
+#summary(fac_pa)
+fac_pa
+```
+
+```{r}
+#| label: tbl-exploratorio
+#| tbl-cap: "Análisis exploratorio escala de meritocracia"
+#| tbl-cap-location: top
+
+ tab_fa(db_w1, method = "ml", rotation = "varimax", show.comm = TRUE)
+```
+
+Como primera parte del análisis, se aplicó la adecuación muestral (KMO), dando como resultado correlaciones de magnitud moderada de manera generalizada (Ver anexos). Esto quiere decir que los resultados son adecuados para realizar un Análisis Factorial Exploratorio. Además se aplicó un test de esfericidad de Bartlett el cual dio significancia estadística, por lo que se puede afirmar que la matriz de correlaciones observada es una matriz identidad ($p$<.05). 
+
+En la @tbl-exploratorio se pueden observar los resultados del análisis factorial exploratorio realizado a partir del método Maximum likelihood con una rotación ortogonal. Se puede observar la presencia de cuatro factores, pero resultan llamativos los factores 1 y 2, específicamente las cargas factoriales de preferencia de contactos y la percepción de padres ricos, respectivamente. Ambos indicadores tienen una carga factorial de 0.99 y una comunalidad del mismo valor. Su interpretación sugiere que ambos indicadores se asocian casi por completo a un factor, por lo que el indicador con menor carga factorial en los factores 1 y 2 podría ser prescindido. No obstante, este resultado que debe tomarse con precaución, puesto que el método para la extracción de factores empleado fue ML, el cual tiende a maximizar la probabilidad de que los parámetros reproduzcan los parámetros observados, por lo que podría haber generado algún tipo de sobreajuste.
+
+Por otro lado, al aplicar el método de Ejes Principales (Ver anexo), las cargas factoriales de 0.99 que se generaban en el caso anterior disminuyen, pero aún así mantienen una alta comunalidad. Es importante mencionar que todos los indicadores poseen una complejidad > 1, lo cual señala que cada ítem representa un único constructo subyacente. Por último, la suma de cargas al cuadrado para los dos primeros factores el > 1, por lo que son factores que vale la pena conservar. En cambio, los factores 3 y 4 poseen valores < 1 (0.913 y 0.631, respectivamente), lo cual resulta problemático para la escala analizada. Si bien, en términos de conveniencia estadística sería mejor eliminar el factor 4 de la escala, esto no puede realizarse debido a la relevancia teórica que posee para el instrumento de medición, por ello es importante tomar en consideración este resultado para posteriores usos. 
+
 ### Análisis factorial confirmatorio
 
 
@@ -371,6 +541,33 @@ Con todo, los resultados revelan que la escala presenta buenos índices de ajust
 ::::
 
 \pagebreak
+
+# Anexos
+
+```{r}
+KMO(corMat) 
+```
+
+```{r}
+cortest.bartlett(corMat, n = 846)
+```
+
+
+```{r}
+#| label: fig-scree
+#| fig-cap: Gráfico de sedimentación
+#| fig-cap-location: top
+
+scree.plot(db_w1)
+```
+
+```{r}
+fac_pa_t<-fa_table(fac_pa)
+fac_pa_t$ind_table
+fac_pa_t$f_table
+```
+
+
 
 # Código de R
 

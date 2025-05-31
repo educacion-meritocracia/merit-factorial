@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Andreas Laffert Tamayo">
 <meta name="author" content="Tomas Úrzua">
@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +84,7 @@ div.csl-indent {
 <link href="entrega1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="entrega1_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="entrega1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="entrega1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+<link href="entrega1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
  for (var i = 0; i < mathElements.length; i++) {
@@ -97,7 +97,7 @@ div.csl-indent {
     fleqn: false
    });
 }}});
-  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -179,18 +179,75 @@ window.Quarto = {
 <p>Este estudio se basa en información proveniente de la base de datos de la Encuesta Panel sobre Educación y Meritocracia (EDUMER) para sus olas de 2023 y 2024 en estudiantes. Esta encuesta se basa en la aplicación de cuestionarios web a estudiantes de sexto básico y primero medio de nueve colegios de las regiones Metropolitana y de Valparaíso en Chile. La primera ola incluyó a 846 estudiantes (383 niñas, 418 niños, 45 identificándose como otro; <span class="math inline">M_{edad}</span> = 13.1, <span class="math inline">DE_{edad}</span> = 1.6), y la segunda ola siguió a 662 de ellos (302 niñas, 337 niños, 22 identificándose como otro; <span class="math inline">M_{edad}</span> = 14.1, <span class="math inline">DE_{edad}</span> = 1.6). La recolección de datos fue financiada por la Agencia Nacional de Investigación y Desarrollo (ANID) de Chile, bajo el proyecto FONDECYT N.º 1210847, “Meritocracia en la escuela: fundamentos morales del mercado educativo y sus implicancias para la formación ciudadana en Chile”.</p>
 </section><section id="variables" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="variables">
 <span class="header-section-number">2.2</span> Variables</h2>
-<p><strong>Escala de Percepciones y Preferencias sobre Meritocracia</strong>: Las variables incluidas en el modelo de medición sobre percepciones y preferencias meritocráticas y no meritocráticas se operacionalizan según los mismos ítems propuestos por Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span>. Esta es una escala basada en dos componentes, cuatro dimensiones y ocho ítems (dos por cada dimensión). La percepción de la meritocracia se mide con dos ítems que indagan el grado de acuerdo con la afirmación de que el esfuerzo y la habilidad son recompensados en Chile, mientras que la percepción no meritocrática se mide con dos ítems que evalúan el grado de acuerdo con la idea de que el éxito está vinculado a los contactos personales y a la riqueza familiar. La preferencia por la meritocracia se mide con dos ítems que evalúan el acuerdo con la idea de que quienes se esfuerzan más o poseen más talento deberían recibir mayores recompensas. La preferencia por aspectos no meritocráticos se mide con dos indicadores que evalúan el acuerdo con la idea de que es aceptable que quienes tienen mejores contactos o padres adinerados tengan más éxito (ver <strong>?@tbl-merit</strong>). Cada ítem fue respondido en una escala Likert de cuatro puntos que va desde “muy en desacuerdo” (1) hasta “muy de acuerdo” (4).</p>
-<p>tica &amp; En Chile, las personas son recompensadas por su inteligencia y habilidades.<br>
-&amp; No meritocrática &amp; En Chile, a quienes tienen padres ricos les va mucho mejor en la vida.<br>
-&amp; No meritocrática &amp; En Chile, a quienes tienen buenos contactos les va mejor en la vida.<br>
-Preferencia &amp; Meritocrática &amp; Quienes se esfuerzan más deberían recibir mayores recompensas que quienes se esfuerzan menos.<br>
-&amp; Meritocrática &amp; Quienes tienen más talento deberían recibir mayores recompensas que quienes tienen menos talento.<br>
-&amp; No meritocrática &amp; Está bien que a quienes tienen padres ricos les vaya bien en la vida.<br>
-&amp; No meritocrática &amp; Está bien que a quienes tienen buenos contactos les vaya bien en la vida.<br>
-\end{tabular} \end{table}</p>
+<p><strong>Escala de Percepciones y Preferencias sobre Meritocracia</strong>: Las variables incluidas en el modelo de medición sobre percepciones y preferencias meritocráticas y no meritocráticas se operacionalizan según los mismos ítems propuestos por Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span>. Esta es una escala basada en dos componentes, cuatro dimensiones y ocho ítems (dos por cada dimensión). La percepción de la meritocracia se mide con dos ítems que indagan el grado de acuerdo con la afirmación de que el esfuerzo y la habilidad son recompensados en Chile, mientras que la percepción no meritocrática se mide con dos ítems que evalúan el grado de acuerdo con la idea de que el éxito está vinculado a los contactos personales y a la riqueza familiar. La preferencia por la meritocracia se mide con dos ítems que evalúan el acuerdo con la idea de que quienes se esfuerzan más o poseen más talento deberían recibir mayores recompensas. La preferencia por aspectos no meritocráticos se mide con dos indicadores que evalúan el acuerdo con la idea de que es aceptable que quienes tienen mejores contactos o padres adinerados tengan más éxito (ver <a href="#tbl-merit" class="quarto-xref">Table&nbsp;1</a>). Cada ítem fue respondido en una escala Likert de cuatro puntos que va desde “muy en desacuerdo” (1) hasta “muy de acuerdo” (4).</p>
+<div class="cell" data-tbl-cap-location="top">
+<div id="tbl-merit" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-merit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Ítems Meritocráticos y No Meritocráticos
+</figcaption><div aria-describedby="tbl-merit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 13%">
+<col style="width: 77%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Componente</th>
+<th style="text-align: left;">Dimensión</th>
+<th style="text-align: left;">Ítem</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Percepción</td>
+<td style="text-align: left;">Meritocrática</td>
+<td style="text-align: left;">En Chile, las personas son recompensadas por su esfuerzo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Meritocrática</td>
+<td style="text-align: left;">En Chile, las personas son recompensadas por su inteligencia y habilidades.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">No meritocrática</td>
+<td style="text-align: left;">En Chile, a quienes tienen padres ricos les va mucho mejor en la vida.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">No meritocrática</td>
+<td style="text-align: left;">En Chile, a quienes tienen buenos contactos les va mejor en la vida.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Preferencia</td>
+<td style="text-align: left;">Meritocrática</td>
+<td style="text-align: left;">Quienes se esfuerzan más deberían recibir mayores recompensas que quienes se esfuerzan menos.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Meritocrática</td>
+<td style="text-align: left;">Quienes tienen más talento deberían recibir mayores recompensas que quienes tienen menos talento.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">No meritocrática</td>
+<td style="text-align: left;">Está bien que a quienes tienen padres ricos les vaya bien en la vida.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">No meritocrática</td>
+<td style="text-align: left;">Está bien que a quienes tienen buenos contactos les vaya bien en la vida.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section><section id="métodos" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="métodos">
 <span class="header-section-number">2.3</span> Métodos</h2>
-<p>Para evaluar nuestras hipótesis, se emplearon análisis factoriales exploratorios (EFA) y confirmatorios (CFA) basados en un modelo latente de medición de cuatro factores <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">Castillo et al., 2023</a>)</span>, con estimador de Mínimos Cuadrados Ponderados Diagonales (DWLS) debido a la naturaleza ordinal de los ítems <span class="citation" data-cites="kline_principles_2023">(<a href="#ref-kline_principles_2023" role="doc-biblioref">Kline, 2023</a>)</span>. El ajuste del modelo se evaluó con base en los criterios propuestos por Brown <span class="citation" data-cites="brown_confirmatory_2015">(<a href="#ref-brown_confirmatory_2015" role="doc-biblioref">2015</a>)</span>: CFI &gt; 0.95; TLI &gt; 0.95; RMSEA &lt; 0.06.</p>
+<p>Para evaluar nuestras hipótesis, en un primer momento se empleó análisis factorial exploratorio (EFA) para estimar la cantidad de factores que subyacen la escala de meritocracia mediante el método de Ejes Principales (PA). Posteriormente, se aplicó un análisis factorial confirmatorio (CFA) basado en un modelo latente de medición de cuatro factores <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">Castillo et al., 2023</a>)</span>, con estimador de Mínimos Cuadrados Ponderados Diagonales (DWLS) debido a la naturaleza ordinal de los ítems <span class="citation" data-cites="kline_principles_2023">(<a href="#ref-kline_principles_2023" role="doc-biblioref">Kline, 2023</a>)</span>. El ajuste del modelo se evaluó con base en los criterios propuestos por Brown <span class="citation" data-cites="brown_confirmatory_2015">(<a href="#ref-brown_confirmatory_2015" role="doc-biblioref">2015</a>)</span>: CFI &gt; 0.95; TLI &gt; 0.95; RMSEA &lt; 0.06.</p>
 <p>Para examinar la estabilidad métrica del modelo de medición <span class="citation" data-cites="davidov_measurement_2014">(<a href="#ref-davidov_measurement_2014" role="doc-biblioref">Davidov et al., 2014</a>)</span>, se realizaron pruebas de invarianza longitudinal utilizando los datos de las dos olas del estudio. En línea con <span class="citation" data-cites="liu_testing_2017">Liu et al. (<a href="#ref-liu_testing_2017" role="doc-biblioref">2017</a>)</span>, se siguió un enfoque jerárquico con cuatro modelos: configural (estructura factorial equivalente), débil (igualdad de cargas factoriales), fuerte (igualdad de interceptos) y estricto (igualdad de varianzas de error). Este enfoque es especialmente relevante para indicadores categóricos ordenados, ya que tratar escalas Likert de cuatro puntos como continuas puede introducir sesgos en las estimaciones. Además del criterio de cambio en el chi-cuadrado, se adoptaron el cambio en CFI (<span class="math inline">\Delta \geq -0.010</span>) y en RMSEA (<span class="math inline">\Delta \geq 0.015</span>) como indicadores de invarianza, siguiendo las recomendaciones de Chen <span class="citation" data-cites="chen_sensitivity_2007">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">2007</a>)</span>.</p>
 </section></section><section id="resultados" class="level1" data-number="3"><h1 data-number="3">
 <span class="header-section-number">3</span> Resultados</h1>
@@ -200,7 +257,7 @@ Preferencia &amp; Meritocrática &amp; Quienes se esfuerzan más deberían recib
 <p>En segundo lugar, en el eje de las preferencias, el patrón se invierte parcialmente. En el caso del esfuerzo, se observa una fuerte preferencia por que sea un criterio de recompensa, lo que contrasta con la percepción sobre su reconocimiento efectivo. En relación con el talento, un 54,6% manifiesta preferir que sea recompensado, frente a un 45,4% que no lo prefiere. En cuanto a los elementos no meritocráticos, como el origen familiar, la opinión se encuentra más dividida: en el caso de padres ricos, las respuestas se reparten casi equitativamente entre quienes prefieren y quienes no prefieren que este factor influya en el éxito. Finalmente, respecto a los contactos, se identifica una mayor proporción de respuestas que expresan preferencia por este criterio.</p>
 <div class="cell fig-cap-location-top">
 <div class="cell-output-display">
-<div id="fig-likert" class="quarto-figure quarto-figure-center quarto-float anchored" data-cap-location="top">
+<div id="fig-likert" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-likert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Distribución de respuestas en los ítems de Escala de Meritocracia
 </figcaption><div aria-describedby="fig-likert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -210,16 +267,16 @@ Figure&nbsp;1: Distribución de respuestas en los ítems de Escala de Meritocrac
 </div>
 </div>
 </div>
-<p>En la <a href="#tbl-correlaciones" class="quarto-xref">Table&nbsp;1</a> se presenta la matriz de correlaciones para los items de la escala. En términos generales, se observa una correlación positiva y de magnitud moderada entre los ítems que conforman una misma dimensión de la escala. Es decir, los ítems que miden percepción de esfuerzo y talento (<span class="math inline">r</span> = 0.52, <span class="math inline">p</span>&lt;.05), así como los que miden percepción sobre padres ricos y contactos (<span class="math inline">r</span> = 0.61, <span class="math inline">p</span>&lt;.05), tienden a correlacionarse entre sí. Este patrón también se reproduce en el caso de las preferencias normativas, donde los ítems dentro de cada subdimensión presentan correlaciones consistentes entre ellos.</p>
+<p>En la <a href="#tbl-correlaciones" class="quarto-xref">Table&nbsp;2</a> se presenta la matriz de correlaciones para los items de la escala. En términos generales, se observa una correlación positiva y de magnitud moderada entre los ítems que conforman una misma dimensión de la escala. Es decir, los ítems que miden percepción de esfuerzo y talento (<span class="math inline">r</span> = 0.52, <span class="math inline">p</span>&lt;.05), así como los que miden percepción sobre padres ricos y contactos (<span class="math inline">r</span> = 0.61, <span class="math inline">p</span>&lt;.05), tienden a correlacionarse entre sí. Este patrón también se reproduce en el caso de las preferencias normativas, donde los ítems dentro de cada subdimensión presentan correlaciones consistentes entre ellos.</p>
 <p>No obstante, un hallazgo relevante es la presencia de correlaciones positivas, aunque de magnitud débil a moderada, entre ítems que pertenecen a dimensiones conceptualmente opuestas. Por ejemplo, se observa que la percepción sobre la influencia de los padres ricos—un elemento típicamente considerado no meritocrático—se asocia positivamente con la preferencia por el esfuerzo—un criterio meritocrático (<span class="math inline">r</span> = 0.21). Este mismo patrón se observa con la percepción sobre el uso de contactos, que también presenta una correlación positiva con la preferencia por el esfuerzo (<span class="math inline">r</span> = 0.26).</p>
 <p>En resumen, los datos sugieren que la percepción de que operan mecanismos no meritocráticos en la sociedad no excluye la preferencia normativa por criterios meritocráticos. En otras palabras, ambas lógicas—la meritocrática y la no meritocrática—parecen coexistir en las creencias de las y los encuestados.</p>
 <div class="cell" data-tbl-cap-location="top">
-<div id="tbl-correlaciones" class="cell quarto-float anchored" data-tbl-cap-location="top">
+<div id="tbl-correlaciones" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
 <figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-correlaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Matriz de correlaciones policóricas entre los ítems de Escala de Meritocracia
+Table&nbsp;2: Matriz de correlaciones policóricas entre los ítems de Escala de Meritocracia
 </figcaption><div aria-describedby="tbl-correlaciones-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell table table-sm table-striped small">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 38%">
 <col style="width: 9%">
@@ -333,7 +390,7 @@ Table&nbsp;1: Matriz de correlaciones policóricas entre los ítems de Escala de
 </tr>
 </tbody>
 </table>
-<p><strong>Note:</strong> ^^ **p&lt;0.01, *p&lt;0.5</p>
+<p><strong>Note:</strong> **p&lt;0.01, *p&lt;0.5</p>
 </div>
 </div>
 </figure>
@@ -343,12 +400,138 @@ Table&nbsp;1: Matriz de correlaciones policóricas entre los ítems de Escala de
 <span class="header-section-number">3.2</span> Multivariados</h2>
 <section id="análisis-factorial-exploratorio" class="level3" data-number="3.2.1"><h3 data-number="3.2.1" class="anchored" data-anchor-id="análisis-factorial-exploratorio">
 <span class="header-section-number">3.2.1</span> Análisis factorial exploratorio</h3>
+<div class="cell" data-tbl-cap-location="top">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="fu">tab_fa</span><span class="op">(</span><span class="va">db_w1</span>, method <span class="op">=</span> <span class="st">"ml"</span>, rotation <span class="op">=</span> <span class="st">"varimax"</span>, show.comm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>Parallel analysis suggests that the number of factors =  4  and the number of components =  NA </code></pre>
+</div>
+<div id="tbl-exploratorio" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-exploratorio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Análisis exploratorio escala de meritocracia
+</figcaption><div aria-describedby="tbl-exploratorio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Factor Analysis</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">&nbsp;</td>
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 1</td>
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 2</td>
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 3</td>
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm">Factor 4</td>
+<td data-quarto-table-cell-role="th" style="border-top: double black; padding: 0.2cm; font-style: italic; color: #666666">Communality</td>
+</tr>
+<tr class="even">
+<td style="border-top: 1px solid black">En Chile, las personas son recompensadas<br>
+por sus esfuerzos</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; border-top: 1px solid black;">0.07</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; border-top: 1px solid black;">-0.09</td>
+<td style="text-align: center; padding: 0.2cm; border-top: 1px solid black;">0.59</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc; border-top: 1px solid black;">-0.04</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666; border-top: 1px solid black;">0.36</td>
+</tr>
+<tr class="odd">
+<td>En Chile, las personas son recompensadas<br>
+por su inteligencia y habilidad</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.04</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.02</td>
+<td style="text-align: center; padding: 0.2cm;">0.76</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.12</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.60</td>
+</tr>
+<tr class="even">
+<td>En Chile, a quienes tienen padres ricos<br>
+les va mucho mejor en la vida</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.04</td>
+<td style="text-align: center; padding: 0.2cm;">0.99</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">-0.07</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.12</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.99</td>
+</tr>
+<tr class="odd">
+<td>En Chile, quienes tienen buenos<br>
+contactos les va mejor en la vida</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.20</td>
+<td style="text-align: center; padding: 0.2cm;">0.49</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">-0.04</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.30</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.37</td>
+</tr>
+<tr class="even">
+<td>Quienes más se esfuerzan deberían<br>
+obtener mayores recompensas que quienes<br>
+se esfuerzan menos</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.01</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.12</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.06</td>
+<td style="text-align: center; padding: 0.2cm;">0.47</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.24</td>
+</tr>
+<tr class="odd">
+<td>Quienes poseen más talento deberían<br>
+obtener mayores recompensas que quienes<br>
+poseen menos talento</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.07</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.07</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">-0.01</td>
+<td style="text-align: center; padding: 0.2cm;">0.57</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.33</td>
+</tr>
+<tr class="even">
+<td>Está bien que quienes tienen padres<br>
+ricos les vaya bien en la vida</td>
+<td style="text-align: center; padding: 0.2cm;">0.53</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.12</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.07</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.05</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.31</td>
+</tr>
+<tr class="odd">
+<td>Está bien que quienes tienen buenos<br>
+contactos les vaya bien en la vida</td>
+<td style="text-align: center; padding: 0.2cm;">0.99</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.01</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.05</td>
+<td style="text-align: center; padding: 0.2cm; color: #cccccc;">0.07</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; color: #666666;">0.99</td>
+</tr>
+<tr class="even">
+<td style="padding: 0.2cm; font-style: italic">Total Communalities</td>
+<td colspan="4" style="text-align: center; padding: 0.2cm; font-style: italic;"></td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic;">4.19</td>
+</tr>
+<tr class="odd">
+<td style="padding: 0.2cm; font-style: italic; border-bottom: double">Cronbach's α</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; border-bottom: double;">0.70</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; border-bottom: double;">0.69</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; border-bottom: double;">0.61</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; border-bottom: double;">0.43</td>
+<td style="text-align: center; padding: 0.2cm; font-style: italic; border-bottom: double;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Como primera parte del análisis, se aplicó la adecuación muestral (KMO), dando como resultado correlaciones de magnitud moderada de manera generalizada (Ver anexos). Esto quiere decir que los resultados son adecuados para realizar un Análisis Factorial Exploratorio. Además se aplicó un test de esfericidad de Bartlett el cual dio significancia estadística, por lo que se puede afirmar que la matriz de correlaciones observada es una matriz identidad (<span class="math inline">p</span>&lt;.05).</p>
+<p>En la <a href="#tbl-exploratorio" class="quarto-xref">Table&nbsp;3</a> se pueden observar los resultados del análisis factorial exploratorio realizado a partir del método Maximum likelihood con una rotación ortogonal. Se puede observar la presencia de cuatro factores, pero resultan llamativos los factores 1 y 2, específicamente las cargas factoriales de preferencia de contactos y la percepción de padres ricos, respectivamente. Ambos indicadores tienen una carga factorial de 0.99 y una comunalidad del mismo valor. Su interpretación sugiere que ambos indicadores se asocian casi por completo a un factor, por lo que el indicador con menor carga factorial en los factores 1 y 2 podría ser prescindido. No obstante, este resultado que debe tomarse con precaución, puesto que el método para la extracción de factores empleado fue ML, el cual tiende a maximizar la probabilidad de que los parámetros reproduzcan los parámetros observados, por lo que podría haber generado algún tipo de sobreajuste.</p>
+<p>Por otro lado, al aplicar el método de Ejes Principales (Ver anexo), las cargas factoriales de 0.99 que se generaban en el caso anterior disminuyen, pero aún así mantienen una alta comunalidad. Es importante mencionar que todos los indicadores poseen una complejidad &gt; 1, lo cual señala que cada ítem representa un único constructo subyacente. Por último, la suma de cargas al cuadrado para los dos primeros factores el &gt; 1, por lo que son factores que vale la pena conservar. En cambio, los factores 3 y 4 poseen valores &lt; 1 (0.913 y 0.631, respectivamente), lo cual resulta problemático para la escala analizada. Si bien, en términos de conveniencia estadística sería mejor eliminar el factor 4 de la escala, esto no puede realizarse debido a la relevancia teórica que posee para el instrumento de medición, por ello es importante tomar en consideración este resultado para posteriores usos.</p>
 </section><section id="análisis-factorial-confirmatorio" class="level3" data-number="3.2.2"><h3 data-number="3.2.2" class="anchored" data-anchor-id="análisis-factorial-confirmatorio">
 <span class="header-section-number">3.2.2</span> Análisis factorial confirmatorio</h3>
 <p>En la <a href="#fig-cfa1" class="quarto-xref">Figure&nbsp;2</a> se presenta la solución estandarizada del modelo factorial confirmatorio estimado para la escala de meritocracia en la primera ola del estudio. De acuerdo con los grados de libertad, el modelo se encuentra sobre identidicado (<span class="math inline">df</span> = 14 &gt; 0). Los indicadores de ajuste global muestran que el modelo presenta un buen ajuste a los datos empíricos. Si bien la prueba del estadístico <span class="math inline">\chi^2</span>, que evalúa si existen discrepancias significativas entre la matriz de covarianza observada y la que es estimada por el modelo resulta significativa (p &lt; 0.001), lo cual podría indicar un mal ajuste del modelo, este resultado debe interpretarse con cautela. Es bien sabido que esta prueba es altamente sensible al tamaño muestral, y en muestras superiores a los 200 casos tiende a rechazar la hipótesis nula incluso ante desviaciones triviales del modelo <span class="citation" data-cites="brown_confirmatory_2015">(<a href="#ref-brown_confirmatory_2015" role="doc-biblioref">Brown, 2015</a>)</span>. Por esta razón, se recurre a indicadores alternativos que son más robustos en este contexto. En efecto, tanto el índice de ajuste comparativo (CFI) como el índice de Tucker-Lewis (TLI) y el error cuadrático medio de aproximación (RMSEA) se encuentran dentro de los umbrales comúnmente aceptados para indicar un buen ajuste (CFI y TLI &gt; 0.95; RMSEA &lt; 0.05), lo cual respalda la validez factorial del instrumento.</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-cfa1" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-cfa1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-cfa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Análisis factorial confirmatorio de Escala de Meritocracia Ola 1
 </figcaption><div aria-describedby="fig-cfa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -363,7 +546,7 @@ Figure&nbsp;2: Análisis factorial confirmatorio de Escala de Meritocracia Ola 1
 <p>De manera particularmente relevante, se observa una correlación positiva entre la percepción de mecanismos no meritocráticos y la preferencia por mecanismos meritocráticos. Específicamente, quienes perciben que el funcionamiento social se basa en factores no meritocráticos —como los contactos personales o el origen familiar— tienden a manifestar una mayor preferencia por que elementos meritocráticos, como el esfuerzo y el talento, sean efectivamente recompensados en la sociedad (<span class="math inline">r</span> = 0.461, <span class="math inline">p</span> &lt; 0.01). Este hallazgo sugiere que el reconocimiento de una realidad social percibida como injusta o alejada del ideal meritocrático puede reforzar normativamente la adhesión a principios meritocráticos. En otras palabras, cuanto más se percibe que operan criterios ajenos al mérito en la distribución de ventajas, mayor es el deseo de que el mérito —en particular, el esfuerzo y el talento— se convierta en el fundamento legítimo de la recompensa social.</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-cfa2" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-cfa2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
 <figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-cfa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Análisis factorial confirmatorio de Escala de Meritocracia Ola 2
 </figcaption><div aria-describedby="fig-cfa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -431,10 +614,1138 @@ Young, M. (1958). <em>The rise of the meritocracy</em>. New Brunswick, N.J., U.S
 </section>
 </div>
 <div style="page-break-after: always;"></div>
-</section><section id="código-de-r" class="level1" data-number="5"><h1 data-number="5">
-<span class="header-section-number">5</span> Código de R</h1>
+</section><section id="anexos" class="level1" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> Anexos</h1>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">KMO</span><span class="op">(</span><span class="va">corMat</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>Kaiser-Meyer-Olkin factor adequacy
+Call: KMO(r = corMat)
+Overall MSA =  0.56
+MSA for each item = 
+      perc_effort       perc_talent perc_rich_parents      perc_contact 
+             0.52              0.52              0.55              0.59 
+      pref_effort       pref_talent pref_rich_parents      pref_contact 
+             0.67              0.67              0.55              0.52 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">cortest.bartlett</span><span class="op">(</span><span class="va">corMat</span>, n <span class="op">=</span> <span class="fl">846</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>$chisq
+[1] 986.5685
+
+$p.value
+[1] 0.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009929485
+
+$df
+[1] 28</code></pre>
+</div>
+</div>
+<div class="cell fig-cap-location-top">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb7" data-cap-location="top"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">scree.plot</span><span class="op">(</span><span class="va">db_w1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-scree" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top">
+<figure class="quarto-float quarto-float-fig figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-scree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Gráfico de sedimentación
+</figcaption><div aria-describedby="fig-scree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="entrega1_files/figure-html/fig-scree-1.png" class="img-fluid figure-img" width="720">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fac_pa_t</span><span class="op">&lt;-</span><span class="fu">fa_table</span><span class="op">(</span><span class="va">fac_pa</span><span class="op">)</span></span>
+<span><span class="va">fac_pa_t</span><span class="op">$</span><span class="va">ind_table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="czwuhkcqey" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#czwuhkcqey table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#czwuhkcqey thead, #czwuhkcqey tbody, #czwuhkcqey tfoot, #czwuhkcqey tr, #czwuhkcqey td, #czwuhkcqey th {
+  border-style: none;
+}
+
+#czwuhkcqey p {
+  margin: 0;
+  padding: 0;
+}
+
+#czwuhkcqey .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#czwuhkcqey .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#czwuhkcqey .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#czwuhkcqey .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#czwuhkcqey .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#czwuhkcqey .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#czwuhkcqey .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#czwuhkcqey .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#czwuhkcqey .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#czwuhkcqey .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#czwuhkcqey .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#czwuhkcqey .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#czwuhkcqey .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#czwuhkcqey .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#czwuhkcqey .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#czwuhkcqey .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#czwuhkcqey .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#czwuhkcqey .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#czwuhkcqey .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#czwuhkcqey .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#czwuhkcqey .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#czwuhkcqey .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#czwuhkcqey .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#czwuhkcqey .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#czwuhkcqey .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#czwuhkcqey .gt_left {
+  text-align: left;
+}
+
+#czwuhkcqey .gt_center {
+  text-align: center;
+}
+
+#czwuhkcqey .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#czwuhkcqey .gt_font_normal {
+  font-weight: normal;
+}
+
+#czwuhkcqey .gt_font_bold {
+  font-weight: bold;
+}
+
+#czwuhkcqey .gt_font_italic {
+  font-style: italic;
+}
+
+#czwuhkcqey .gt_super {
+  font-size: 65%;
+}
+
+#czwuhkcqey .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#czwuhkcqey .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#czwuhkcqey .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#czwuhkcqey .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#czwuhkcqey .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#czwuhkcqey .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#czwuhkcqey .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#czwuhkcqey .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#czwuhkcqey div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="8" class="gt_heading gt_title gt_font_normal gt_bottom_border">Factor analysis results</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Factor_1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor_1</th>
+<th id="Factor_2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor_2</th>
+<th id="Factor_3" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor_3</th>
+<th id="Factor_4" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor_4</th>
+<th id="Communality" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Communality</th>
+<th id="Uniqueness" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Uniqueness</th>
+<th id="Complexity" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Complexity</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">pref_contact</td>
+<td class="gt_row gt_right" headers="stub_1_1 Factor_1">0.919</td>
+<td class="gt_row gt_right" headers="stub_1_1 Factor_2" style="color: #D3D3D3; font-style: italic">-0.024</td>
+<td class="gt_row gt_right" headers="stub_1_1 Factor_3" style="color: #D3D3D3; font-style: italic">-0.005</td>
+<td class="gt_row gt_right" headers="stub_1_1 Factor_4" style="color: #D3D3D3; font-style: italic">0.002</td>
+<td class="gt_row gt_right" headers="stub_1_1 Communality">0.84</td>
+<td class="gt_row gt_right" headers="stub_1_1 Uniqueness">0.16</td>
+<td class="gt_row gt_right" headers="stub_1_1 Complexity">1.00</td>
+</tr>
+<tr class="even">
+<td id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">pref_rich_parents</td>
+<td class="gt_row gt_right" headers="stub_1_2 Factor_1">0.576</td>
+<td class="gt_row gt_right" headers="stub_1_2 Factor_2" style="color: #D3D3D3; font-style: italic">0.096</td>
+<td class="gt_row gt_right" headers="stub_1_2 Factor_3" style="color: #D3D3D3; font-style: italic">0.035</td>
+<td class="gt_row gt_right" headers="stub_1_2 Factor_4" style="color: #D3D3D3; font-style: italic">-0.028</td>
+<td class="gt_row gt_right" headers="stub_1_2 Communality">0.36</td>
+<td class="gt_row gt_right" headers="stub_1_2 Uniqueness">0.64</td>
+<td class="gt_row gt_right" headers="stub_1_2 Complexity">1.07</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">perc_rich_parents</td>
+<td class="gt_row gt_right" headers="stub_1_3 Factor_1" style="color: #D3D3D3; font-style: italic">-0.030</td>
+<td class="gt_row gt_right" headers="stub_1_3 Factor_2">0.868</td>
+<td class="gt_row gt_right" headers="stub_1_3 Factor_3" style="color: #D3D3D3; font-style: italic">-0.005</td>
+<td class="gt_row gt_right" headers="stub_1_3 Factor_4" style="color: #D3D3D3; font-style: italic">-0.034</td>
+<td class="gt_row gt_right" headers="stub_1_3 Communality">0.73</td>
+<td class="gt_row gt_right" headers="stub_1_3 Uniqueness">0.27</td>
+<td class="gt_row gt_right" headers="stub_1_3 Complexity">1.01</td>
+</tr>
+<tr class="even">
+<td id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">perc_contact</td>
+<td class="gt_row gt_right" headers="stub_1_4 Factor_1" style="color: #D3D3D3; font-style: italic">0.134</td>
+<td class="gt_row gt_right" headers="stub_1_4 Factor_2">0.547</td>
+<td class="gt_row gt_right" headers="stub_1_4 Factor_3" style="color: #D3D3D3; font-style: italic">-0.007</td>
+<td class="gt_row gt_right" headers="stub_1_4 Factor_4" style="color: #D3D3D3; font-style: italic">0.162</td>
+<td class="gt_row gt_right" headers="stub_1_4 Communality">0.44</td>
+<td class="gt_row gt_right" headers="stub_1_4 Uniqueness">0.56</td>
+<td class="gt_row gt_right" headers="stub_1_4 Complexity">1.30</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">perc_talent</td>
+<td class="gt_row gt_right" headers="stub_1_5 Factor_1" style="color: #D3D3D3; font-style: italic">-0.014</td>
+<td class="gt_row gt_right" headers="stub_1_5 Factor_2" style="color: #D3D3D3; font-style: italic">0.036</td>
+<td class="gt_row gt_right" headers="stub_1_5 Factor_3">0.672</td>
+<td class="gt_row gt_right" headers="stub_1_5 Factor_4" style="color: #D3D3D3; font-style: italic">0.077</td>
+<td class="gt_row gt_right" headers="stub_1_5 Communality">0.46</td>
+<td class="gt_row gt_right" headers="stub_1_5 Uniqueness">0.54</td>
+<td class="gt_row gt_right" headers="stub_1_5 Complexity">1.03</td>
+</tr>
+<tr class="even">
+<td id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">perc_effort</td>
+<td class="gt_row gt_right" headers="stub_1_6 Factor_1" style="color: #D3D3D3; font-style: italic">0.021</td>
+<td class="gt_row gt_right" headers="stub_1_6 Factor_2" style="color: #D3D3D3; font-style: italic">-0.047</td>
+<td class="gt_row gt_right" headers="stub_1_6 Factor_3">0.670</td>
+<td class="gt_row gt_right" headers="stub_1_6 Factor_4" style="color: #D3D3D3; font-style: italic">-0.075</td>
+<td class="gt_row gt_right" headers="stub_1_6 Communality">0.46</td>
+<td class="gt_row gt_right" headers="stub_1_6 Uniqueness">0.54</td>
+<td class="gt_row gt_right" headers="stub_1_6 Complexity">1.04</td>
+</tr>
+<tr class="odd">
+<td id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">pref_talent</td>
+<td class="gt_row gt_right" headers="stub_1_7 Factor_1" style="color: #D3D3D3; font-style: italic">0.015</td>
+<td class="gt_row gt_right" headers="stub_1_7 Factor_2" style="color: #D3D3D3; font-style: italic">-0.027</td>
+<td class="gt_row gt_right" headers="stub_1_7 Factor_3" style="color: #D3D3D3; font-style: italic">-0.028</td>
+<td class="gt_row gt_right" headers="stub_1_7 Factor_4">0.590</td>
+<td class="gt_row gt_right" headers="stub_1_7 Communality">0.34</td>
+<td class="gt_row gt_right" headers="stub_1_7 Uniqueness">0.66</td>
+<td class="gt_row gt_right" headers="stub_1_7 Complexity">1.01</td>
+</tr>
+<tr class="even">
+<td id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">pref_effort</td>
+<td class="gt_row gt_right" headers="stub_1_8 Factor_1" style="color: #D3D3D3; font-style: italic">-0.058</td>
+<td class="gt_row gt_right" headers="stub_1_8 Factor_2" style="color: #D3D3D3; font-style: italic">0.060</td>
+<td class="gt_row gt_right" headers="stub_1_8 Factor_3" style="color: #D3D3D3; font-style: italic">0.072</td>
+<td class="gt_row gt_right" headers="stub_1_8 Factor_4">0.466</td>
+<td class="gt_row gt_right" headers="stub_1_8 Communality">0.24</td>
+<td class="gt_row gt_right" headers="stub_1_8 Uniqueness">0.76</td>
+<td class="gt_row gt_right" headers="stub_1_8 Complexity">1.11</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fac_pa_t</span><span class="op">$</span><span class="va">f_table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="igrwnlyebd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#igrwnlyebd table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#igrwnlyebd thead, #igrwnlyebd tbody, #igrwnlyebd tfoot, #igrwnlyebd tr, #igrwnlyebd td, #igrwnlyebd th {
+  border-style: none;
+}
+
+#igrwnlyebd p {
+  margin: 0;
+  padding: 0;
+}
+
+#igrwnlyebd .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#igrwnlyebd .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#igrwnlyebd .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#igrwnlyebd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#igrwnlyebd .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#igrwnlyebd .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#igrwnlyebd .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#igrwnlyebd .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#igrwnlyebd .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#igrwnlyebd .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#igrwnlyebd .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#igrwnlyebd .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#igrwnlyebd .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#igrwnlyebd .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#igrwnlyebd .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#igrwnlyebd .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#igrwnlyebd .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#igrwnlyebd .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#igrwnlyebd .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#igrwnlyebd .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#igrwnlyebd .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#igrwnlyebd .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#igrwnlyebd .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#igrwnlyebd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#igrwnlyebd .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#igrwnlyebd .gt_left {
+  text-align: left;
+}
+
+#igrwnlyebd .gt_center {
+  text-align: center;
+}
+
+#igrwnlyebd .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#igrwnlyebd .gt_font_normal {
+  font-weight: normal;
+}
+
+#igrwnlyebd .gt_font_bold {
+  font-weight: bold;
+}
+
+#igrwnlyebd .gt_font_italic {
+  font-style: italic;
+}
+
+#igrwnlyebd .gt_super {
+  font-size: 65%;
+}
+
+#igrwnlyebd .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#igrwnlyebd .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#igrwnlyebd .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#igrwnlyebd .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#igrwnlyebd .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#igrwnlyebd .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#igrwnlyebd .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#igrwnlyebd .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#igrwnlyebd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border">Eigenvalues, Variance Explained, and Factor Correlations for Rotated Factor Solution</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="Property" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Property</th>
+<th id="Factor_1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor_1</th>
+<th id="Factor_2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor_2</th>
+<th id="Factor_3" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor_3</th>
+<th id="Factor_4" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Factor_4</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Property">SS loadings</td>
+<td class="gt_row gt_right" headers="Factor_1">1.209</td>
+<td class="gt_row gt_right" headers="Factor_2">1.108</td>
+<td class="gt_row gt_right" headers="Factor_3">0.913</td>
+<td class="gt_row gt_right" headers="Factor_4">0.631</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Property">Proportion Var</td>
+<td class="gt_row gt_right" headers="Factor_1">0.151</td>
+<td class="gt_row gt_right" headers="Factor_2">0.138</td>
+<td class="gt_row gt_right" headers="Factor_3">0.114</td>
+<td class="gt_row gt_right" headers="Factor_4">0.079</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Property">Cumulative Var</td>
+<td class="gt_row gt_right" headers="Factor_1">0.151</td>
+<td class="gt_row gt_right" headers="Factor_2">0.290</td>
+<td class="gt_row gt_right" headers="Factor_3">0.404</td>
+<td class="gt_row gt_right" headers="Factor_4">0.483</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Property">Proportion Explained</td>
+<td class="gt_row gt_right" headers="Factor_1">0.313</td>
+<td class="gt_row gt_right" headers="Factor_2">0.287</td>
+<td class="gt_row gt_right" headers="Factor_3">0.236</td>
+<td class="gt_row gt_right" headers="Factor_4">0.163</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Property">Cumulative Proportion</td>
+<td class="gt_row gt_right" headers="Factor_1">0.313</td>
+<td class="gt_row gt_right" headers="Factor_2">0.600</td>
+<td class="gt_row gt_right" headers="Factor_3">0.837</td>
+<td class="gt_row gt_right" headers="Factor_4">1.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Property">Factor_1</td>
+<td class="gt_row gt_right" headers="Factor_1">1.000</td>
+<td class="gt_row gt_right" headers="Factor_2">0.146</td>
+<td class="gt_row gt_right" headers="Factor_3">0.144</td>
+<td class="gt_row gt_right" headers="Factor_4">0.196</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Property">Factor_2</td>
+<td class="gt_row gt_right" headers="Factor_1">0.146</td>
+<td class="gt_row gt_right" headers="Factor_2">1.000</td>
+<td class="gt_row gt_right" headers="Factor_3">-0.111</td>
+<td class="gt_row gt_right" headers="Factor_4">0.364</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Property">Factor_3</td>
+<td class="gt_row gt_right" headers="Factor_1">0.144</td>
+<td class="gt_row gt_right" headers="Factor_2">-0.111</td>
+<td class="gt_row gt_right" headers="Factor_3">1.000</td>
+<td class="gt_row gt_right" headers="Factor_4">0.072</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Property">Factor_4</td>
+<td class="gt_row gt_right" headers="Factor_1">0.196</td>
+<td class="gt_row gt_right" headers="Factor_2">0.364</td>
+<td class="gt_row gt_right" headers="Factor_3">0.072</td>
+<td class="gt_row gt_right" headers="Factor_4">1.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section><section id="código-de-r" class="level1" data-number="6"><h1 data-number="6">
+<span class="header-section-number">6</span> Código de R</h1>
+<div class="cell">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span>, include <span class="op">=</span> <span class="cn">TRUE</span>, warning <span class="op">=</span> <span class="cn">FALSE</span>, message <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">table_format</span> <span class="op">&lt;-</span> <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/output_type.html">is_html_output</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -457,9 +1768,14 @@ Young, M. (1958). <em>The rise of the meritocracy</em>. New Brunswick, N.J., U.S
 <span>               <span class="va">sjPlot</span>,</span>
 <span>               <span class="va">here</span>,</span>
 <span>               <span class="va">lavaan</span>,</span>
+<span>               <span class="va">devtools</span>,</span>
 <span>               <span class="va">psych</span>,</span>
+<span>               <span class="va">psy</span>,</span>
 <span>               <span class="va">corrplot</span>,</span>
 <span>               <span class="va">ggdist</span>,</span>
+<span>               <span class="va">GPArotations</span>,</span>
+<span>               <span class="va">ggrepel</span>,</span>
+<span>               <span class="va">nfactors</span>,</span>
 <span>               <span class="va">patchwork</span>,</span>
 <span>               <span class="va">sjlabelled</span>,</span>
 <span>               <span class="va">semTools</span>,</span>
@@ -467,7 +1783,9 @@ Young, M. (1958). <em>The rise of the meritocracy</em>. New Brunswick, N.J., U.S
 <span>               <span class="va">RColorBrewer</span>,</span>
 <span>               <span class="va">skimr</span>,</span>
 <span>               <span class="va">readxl</span>,</span>
-<span>               <span class="va">kableExtra</span><span class="op">)</span></span>
+<span>               <span class="va">tydiverse</span>,</span>
+<span>               <span class="va">kableExtra</span>,</span>
+<span>               <span class="va">xtable</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>scipen<span class="op">=</span><span class="fl">999</span><span class="op">)</span></span>
@@ -476,14 +1794,35 @@ Young, M. (1958). <em>The rise of the meritocracy</em>. New Brunswick, N.J., U.S
 <span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">db_long</span><span class="op">)</span></span>
-<span><span class="fu">glimpse</span><span class="op">(</span><span class="va">db_long</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">db_long</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tabla_merit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  Componente <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Percepción"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">""</span>, </span>
+<span>                 <span class="st">"Preferencia"</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="st">""</span><span class="op">)</span>,</span>
+<span>  Dimensión <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Meritocrática"</span>, <span class="st">"Meritocrática"</span>, </span>
+<span>                <span class="st">"No meritocrática"</span>, <span class="st">"No meritocrática"</span>,</span>
+<span>                <span class="st">"Meritocrática"</span>, <span class="st">"Meritocrática"</span>, </span>
+<span>                <span class="st">"No meritocrática"</span>, <span class="st">"No meritocrática"</span><span class="op">)</span>,</span>
+<span>  Ítem <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"En Chile, las personas son recompensadas por su esfuerzo."</span>,</span>
+<span>    <span class="st">"En Chile, las personas son recompensadas por su inteligencia y habilidades."</span>,</span>
+<span>    <span class="st">"En Chile, a quienes tienen padres ricos les va mucho mejor en la vida."</span>,</span>
+<span>    <span class="st">"En Chile, a quienes tienen buenos contactos les va mejor en la vida."</span>,</span>
+<span>    <span class="st">"Quienes se esfuerzan más deberían recibir mayores recompensas que quienes se esfuerzan menos."</span>,</span>
+<span>    <span class="st">"Quienes tienen más talento deberían recibir mayores recompensas que quienes tienen menos talento."</span>,</span>
+<span>    <span class="st">"Está bien que a quienes tienen padres ricos les vaya bien en la vida."</span>,</span>
+<span>    <span class="st">"Está bien que a quienes tienen buenos contactos les vaya bien en la vida."</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">tabla_merit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">.</span>, format <span class="op">=</span> <span class="st">"markdown"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">theme_set</span><span class="op">(</span><span class="fu">theme_ggdist</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, name <span class="op">=</span> <span class="st">"RdBu"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">db_long</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">ola</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"perc"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="va">db_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ola</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"perc"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">sjPlot</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/plot_likert.html">plot_likert</a></span><span class="op">(</span>geom.colors <span class="op">=</span> <span class="va">colors</span>,</span>
 <span>                      title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"a. Percepciones"</span><span class="op">)</span>,</span>
 <span>                      geom.size <span class="op">=</span> <span class="fl">0.8</span>,</span>
@@ -497,9 +1836,9 @@ Young, M. (1958). <em>The rise of the meritocracy</em>. New Brunswick, N.J., U.S
 <span>                      <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="va">db_long</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">ola</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="fu">starts_with</span><span class="op">(</span><span class="st">"pref"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="va">db_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ola</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"pref"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">sjPlot</span><span class="fu">::</span><span class="fu"><a href="https://strengejacke.github.io/sjPlot/reference/plot_likert.html">plot_likert</a></span><span class="op">(</span>geom.colors <span class="op">=</span> <span class="va">colors</span>,</span>
 <span>                      title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b. Preferencias"</span><span class="op">)</span>,</span>
 <span>                      geom.size <span class="op">=</span> <span class="fl">0.8</span>,</span>
@@ -555,11 +1894,145 @@ Young, M. (1958). <em>The rise of the meritocracy</em>. New Brunswick, N.J., U.S
 <span><span class="va">cor_with_stars</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/lower.tri.html">upper.tri</a></span><span class="op">(</span><span class="va">cor_with_stars</span>, diag <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
 <span></span>
 <span></span>
-<span><span class="va">cor_with_stars</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">.</span>, format <span class="op">=</span> <span class="st">"markdown"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span><span class="va">cor_with_stars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">.</span>, format <span class="op">=</span> <span class="st">"markdown"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_footnote.html">add_footnote</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"**p&lt;0.01, *p&lt;0.5"</span>, notation <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
 <span></span>
 <span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span>, cache <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">fa_table</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">varlabels</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">title</span> <span class="op">=</span> <span class="st">"Factor analysis results"</span>, <span class="va">diffuse</span> <span class="op">=</span> <span class="fl">.10</span>, <span class="va">small</span> <span class="op">=</span> <span class="fl">.30</span>, <span class="va">cross</span> <span class="op">=</span> <span class="fl">.20</span>, <span class="va">sort</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co">#get sorted loadings</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com">gt</a></span><span class="op">)</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">sort</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">psych</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.sort.html">fa.sort</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">varlabels</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">varlabels</span><span class="op">)</span> <span class="op">!=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">loadings</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span> <span class="kw"><a href="https://rdrr.io/r/base/warning.html">warning</a></span><span class="op">(</span><span class="st">"Number of variable labels and number of variables are unequal. Check your input!"</span>,</span>
+<span>                                                        call. <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">}</span></span>
+<span>    <span class="kw">if</span><span class="op">(</span><span class="va">sort</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">varlabels</span> <span class="op">&lt;-</span> <span class="va">varlabels</span><span class="op">[</span><span class="va">x</span><span class="op">$</span><span class="va">order</span><span class="op">]</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">varlabels</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="va">varlabels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">loadings</span><span class="op">)</span><span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="va">loadings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html">unclass</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">loadings</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co">#make nice names</span></span>
+<span>  <span class="va">factornamer</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">nfactors</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Factor_"</span>, <span class="fl">1</span><span class="op">:</span><span class="va">nfactors</span><span class="op">)</span><span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="va">nfactors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">loadings</span><span class="op">)</span></span>
+<span>  <span class="va">fnames</span> <span class="op">&lt;-</span> <span class="fu">factornamer</span><span class="op">(</span><span class="va">nfactors</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">loadings</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">fnames</span></span>
+<span>  </span>
+<span>  <span class="co"># prepare locations</span></span>
+<span>  <span class="va">factorindex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">loadings</span>, <span class="fl">1</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="co"># adapted from from sjplot: getremovableitems</span></span>
+<span>  <span class="va">getRemovableItems</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">dataframe</span>, <span class="va">fctr.load.tlrn</span> <span class="op">=</span> <span class="va">diffuse</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="co"># clear vector</span></span>
+<span>    <span class="va">removers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dataframe</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="co"># iterate each row of the data frame. each row represents</span></span>
+<span>    <span class="co"># one item with its factor loadings</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">removers</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="co"># get factor loadings for each item</span></span>
+<span>      <span class="va">rowval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">dataframe</span><span class="op">[</span><span class="va">i</span>, <span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span>      <span class="co"># retrieve highest loading</span></span>
+<span>      <span class="va">maxload</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">rowval</span><span class="op">)</span></span>
+<span>      <span class="co"># retrieve 2. highest loading</span></span>
+<span>      <span class="va">max2load</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">rowval</span>, <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span>      <span class="co"># check difference between both</span></span>
+<span>      <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">maxload</span> <span class="op">-</span> <span class="va">max2load</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">fctr.load.tlrn</span><span class="op">)</span> <span class="op">{</span></span>
+<span>        <span class="co"># if difference is below the tolerance,</span></span>
+<span>        <span class="co"># remeber row-ID so we can remove that items</span></span>
+<span>        <span class="co"># for further PCA with updated data frame</span></span>
+<span>        <span class="va">removers</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span></span>
+<span>      <span class="op">}</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="co"># return a vector with index numbers indicating which items</span></span>
+<span>    <span class="co"># have unclear loadings</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">removers</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">nfactors</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">removable</span> <span class="op">&lt;-</span> <span class="fu">getRemovableItems</span><span class="op">(</span><span class="va">loadings</span><span class="op">)</span></span>
+<span>    <span class="va">cross_loadings</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">fnames</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">fnames</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span>, <span class="va">i</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">loadings</span><span class="op">[</span>,<span class="va">f</span><span class="op">]</span> <span class="op">&gt;</span> <span class="va">cross</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">factorindex</span> <span class="op">!=</span> <span class="va">i</span><span class="op">)</span> </span>
+<span>    <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="va">small_loadings</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">fnames</span>, <span class="kw">function</span><span class="op">(</span><span class="va">f</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">loadings</span><span class="op">[</span>,<span class="va">f</span><span class="op">]</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">small</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">ind_table</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="va">varlabels</span>, <span class="va">loadings</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>Indicator <span class="op">=</span> <span class="va">varlabels</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Communality <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">communality</span>, Uniqueness <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">uniquenesses</span>, Complexity <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">complexity</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"Factor"</span><span class="op">)</span>, <span class="va">round</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">Communality</span>, <span class="va">Uniqueness</span>, <span class="va">Complexity</span><span class="op">)</span>, <span class="va">round</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  </span>
+<span>  <span class="va">ind_table</span> <span class="op">&lt;-</span> <span class="va">ind_table</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span>rowname_col <span class="op">=</span> <span class="st">"Indicator"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://gt.rstudio.com/reference/tab_header.html">tab_header</a></span><span class="op">(</span>title <span class="op">=</span> <span class="va">title</span><span class="op">)</span></span>
+<span>  <span class="co"># mark small loadiongs</span></span>
+<span>  <span class="kw">for</span><span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">fnames</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">ind_table</span> <span class="op">&lt;-</span> <span class="va">ind_table</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_style.html">tab_style</a></span><span class="op">(</span>style <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cell_text.html">cell_text</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#D3D3D3"</span>, style <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,</span>
+<span>                                          locations <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cells_body.html">cells_body</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="va">fnames</span><span class="op">[</span><span class="va">f</span><span class="op">]</span>, rows <span class="op">=</span> <span class="va">small_loadings</span><span class="op">[[</span><span class="va">f</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="co"># mark cross loadings</span></span>
+<span>  </span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">nfactors</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">fnames</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="va">ind_table</span> <span class="op">&lt;-</span></span>
+<span>        <span class="va">ind_table</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_style.html">tab_style</a></span><span class="op">(</span></span>
+<span>          style <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cell_text.html">cell_text</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,</span>
+<span>          locations <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cells_body.html">cells_body</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="va">fnames</span><span class="op">[</span><span class="va">f</span><span class="op">]</span>, rows <span class="op">=</span> <span class="va">cross_loadings</span><span class="op">[[</span><span class="va">f</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>        <span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>    <span class="co"># mark non-assignable indicators</span></span>
+<span>    <span class="va">ind_table</span> <span class="op">&lt;-</span></span>
+<span>      <span class="va">ind_table</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="fu"><a href="https://gt.rstudio.com/reference/tab_style.html">tab_style</a></span><span class="op">(</span>style <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cell_fill.html">cell_fill</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#D93B3B"</span><span class="op">)</span>,</span>
+<span>                               locations <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/cells_body.html">cells_body</a></span><span class="op">(</span>rows <span class="op">=</span> <span class="va">removable</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="co"># adapted from https://www.anthonyschmidt.co/post/2020-09-27-efa-tables-in-r/</span></span>
+<span>  <span class="va">Vaccounted</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[[</span><span class="st">"Vaccounted"</span><span class="op">]</span><span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">Vaccounted</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">fnames</span> </span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">nfactors</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">Phi</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[[</span><span class="st">"Phi"</span><span class="op">]</span><span class="op">]</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">Phi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">fnames</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">Phi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">fnames</span></span>
+<span>    <span class="va">f_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">Vaccounted</span>, <span class="va">Phi</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>      <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="st">"Property"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">round</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://gt.rstudio.com/reference/tab_header.html">tab_header</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Eigenvalues, Variance Explained, and Factor Correlations for Rotated Factor Solution"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">nfactors</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">f_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">Vaccounted</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>      <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span><span class="op">(</span><span class="st">"Property"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/where.html">where</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">round</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>      <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://gt.rstudio.com/reference/tab_header.html">tab_header</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Eigenvalues, Variance Explained, and Factor Correlations for Rotated Factor Solution"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"ind_table"</span> <span class="op">=</span> <span class="va">ind_table</span>, <span class="st">"f_table"</span> <span class="op">=</span> <span class="va">f_table</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">db_w1</span> <span class="op">&lt;-</span> <span class="va">db_long</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ola</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"perc"</span><span class="op">)</span>,</span>
+<span>         <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"pref"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">corMat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">db_w1</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu">KMO</span><span class="op">(</span><span class="va">corMat</span><span class="op">)</span> </span>
+<span><span class="fu">cortest.bartlett</span><span class="op">(</span><span class="va">corMat</span>, n <span class="op">=</span> <span class="fl">846</span><span class="op">)</span></span>
+<span><span class="va">fac_pa</span> <span class="op">&lt;-</span> <span class="fu">fa</span><span class="op">(</span>r <span class="op">=</span> <span class="va">db_w1</span>, nfactors <span class="op">=</span> <span class="fl">4</span>, fm<span class="op">=</span> <span class="st">"pa"</span><span class="op">)</span></span>
+<span><span class="co">#summary(fac_pa)</span></span>
+<span><span class="va">fac_pa</span></span>
+<span> <span class="fu">tab_fa</span><span class="op">(</span><span class="va">db_w1</span>, method <span class="op">=</span> <span class="st">"ml"</span>, rotation <span class="op">=</span> <span class="st">"varimax"</span>, show.comm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># model</span></span>
 <span><span class="va">model_cfa</span> <span class="op">&lt;-</span> <span class="st">'</span></span>
@@ -584,7 +2057,13 @@ Young, M. (1958). <em>The rise of the meritocracy</em>. New Brunswick, N.J., U.S
 <span>              std.lv <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">"sem/cfa_w1.png"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">"sem/cfa_w2.png"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span>path <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">"sem/cfa_w2.png"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">KMO</span><span class="op">(</span><span class="va">corMat</span><span class="op">)</span> </span>
+<span><span class="fu">cortest.bartlett</span><span class="op">(</span><span class="va">corMat</span>, n <span class="op">=</span> <span class="fl">846</span><span class="op">)</span></span>
+<span><span class="fu">scree.plot</span><span class="op">(</span><span class="va">db_w1</span><span class="op">)</span></span>
+<span><span class="va">fac_pa_t</span><span class="op">&lt;-</span><span class="fu">fa_table</span><span class="op">(</span><span class="va">fac_pa</span><span class="op">)</span></span>
+<span><span class="va">fac_pa_t</span><span class="op">$</span><span class="va">ind_table</span></span>
+<span><span class="va">fac_pa_t</span><span class="op">$</span><span class="va">f_table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section></main><!-- /main column --><script id="quarto-html-after-body" type="application/javascript">
@@ -622,18 +2101,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -665,7 +2133,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -673,7 +2163,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

@@ -125,7 +125,7 @@ miss_case_table(db_long)
 
 vis_miss(db_long) + theme(axis.text.x = element_text(angle=80))
 
-db_long <- na.omit(db_long)
+#db_long <- na.omit(db_long)
 
 # 4. Save -----------------------------------------------------------------
 

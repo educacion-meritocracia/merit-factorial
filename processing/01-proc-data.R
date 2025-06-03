@@ -49,7 +49,7 @@ db_long <- db_long %>%
          pref_rich_parents = p1_7,
          pref_contact = p1_8)
 
-# filter ----
+
 
 db_long <- db_long %>% filter(consent == 1) %>% select(-consent)
 

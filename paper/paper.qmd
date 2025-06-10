@@ -1,40 +1,80 @@
 ---
 title: "Measuring perceptions and preferences about meritocracy in school in Chile"
 format:
-  html: default
-  hikmah-pdf: 
-    indent: false
+  html: 
+    code-fold: true
+    html-math-method: katex
+    number-sections: true
+    code-link: true
+    title-block-banner: true
+    theme:
+      - cosmo
+      - pretty.scss
+  pdf: 
+    geometry: margin=2cm
+    template-partials: 
+      - title.tex
+    keep-tex: true
+    include-in-header:
+      text: |
+        \usepackage[noblocks]{authblk}
+        \renewcommand*{\Authsep}{, }
+        \renewcommand*{\Authand}{, }
+        \renewcommand*{\Authands}{, }
+        \renewcommand\Affilfont{\small}
+    number-sections: true
+editor: source
+bibliography: "input/bib/merit-factorial.bib"
+csl: "input/bib/apa6.csl"
 author:
+  - name: Andreas Laffert
+    orcid: 0000-0002-9008-2454
+    email: alaffertt@estudiante.uc.cl 
+    affiliations:
+      - ref: 1
   - name: Juan Carlos Castillo
+    corresponding: true
     orcid: 0000-0003-1265-7854
     email: juancastillov@uchile.cl
     affiliations:
-      - ref: 1
-  - name: Andreas Laffert
-    orcid: 0000-0002-9008-2454
-    email: alaffertt@estudiante.uc.cl
-    affiliations:
       - ref: 2
+      - ref: 3
+      - ref: 4
+  - name: Kevin Carrasco
+    orcid: 0000-0002-9348-8361
+    email: kevin.carrasco@ug.uchile.cl
+    affiliations:
+      - ref: 3
+  - name: Gloria Jiménez-Moya
+    orcid: 0000-0002-5927-6437 
+    email: gjimenezm@uc.cl 
+    affiliations:
+      - ref: 5     
+  - name: René Canales
+    affiliations:
+      - ref: 1     
+  - name: Tomás Urzúa
+    affiliations:
+      - ref: 2     
 affiliations: 
   - id: 1
-    name: Departamento de Sociología, Universidad de Chile
+    name: Instituto de Sociología, Pontificia Universidad Católica de Chile
   - id: 2
-    name: Instituto de Sociología, Universidad Católica de Chile
-abstract: |
-  Previous research has shown that schools justify student performance differences based on meritocratic ideals.
-keywords: 
-  - meritocracy
-  - measurement
-  - market justice
-  - students
-  - Chile
-bibliography: "../input/bib/merit-factorial.bib"
-csl: "../input/bib/apa6.csl"
+    name: Departamento de Sociología, Universidad de Chile
+  - id: 3
+    name: Centro de estudios del conflicto y cohesión social (COES)
+  - id: 4
+    name: Núcleo milenio de desigualdades y oportunidades digitales (NUDOS)
+  - id: 5
+    name: Escuela de Psicología, Pontificia Universidad Católica de Chile
+citeproc: true
+abstract: | 
+  \newline
+  **Keywords**: 
 link-citations: true
-linestretch: 1.5      
-fontsize: 12pt          
-geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
-papersize: letter
+linestretch: 1.15       
+mainfont: Times New Roman
+fontsize: 12.5pt          
 colorlinks: true
 fig-height: 4
 fig-width: 7.5
@@ -43,14 +83,24 @@ fig-width: 7.5
 This document was last modified at {{< modified >}}
 and it was last rendered at {{< now >}}.
 
+:::: {.justify}
+
 {{< include 01-introduction.qmd >}}
 
 {{< include 02-antecedentes.qmd >}}
 
-{{< include 03-methods.qmd >}}
 
-{{< include 04-analisis.qmd >}}
+```{r}
+# {{< include 03-methods.qmd >}}
+# {{< include 04-analisis.qmd >}}
+```
 
 {{< include 05-discussion.qmd >}}
 
 {{< include 06-conclusion.qmd >}}
+
+# References
+
+::: {#refs}
+:::
+::::

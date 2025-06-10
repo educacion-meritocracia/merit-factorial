@@ -46,7 +46,7 @@ pacman::p_load(
   psych,
   corrplot,
   ggdist,
-  patchwork, #
+  patchwork, #Combina múltiples gráficos de ggplot2 en una sola figura
   semTable,
   semTools,
   gtools,
@@ -73,7 +73,7 @@ dim(db_long)
 
 ```{r}
 #| label: tbl-invarianza
-#| tbl-cap: "Longitudinal Invariance Test Results"
+#| tbl-cap: "Longitudinal Invariance Test Results 1"
 #| results: asis
 #| echo: false
 #| warning: false
@@ -100,9 +100,17 @@ names(db_long)
 
 
 # Check - ok
-
 db_invariance %>% slice(1:5)
 db_long %>% slice(1:5)
+
+```
+
+```{r}
+#| label: tbl-invarianza
+#| tbl-cap: "Longitudinal Invariance Test Results 2"
+#| results: asis
+#| echo: false
+#| warning: false
 
 # First, define the configural model, using the repeated measures factors and
 # indicators
@@ -118,17 +126,36 @@ configural_model_smt <- ("
   prefnmerit2 =~ prefrichparents2 + prefcontact2
 ")
 
-
 # Second, create a named list indicating which factors are actually the same
 # latent variable measured repeatedly.
+
+#longitudinal_factor_names <- list(
+#  comp = c(
+#    "percmerit1", "percmerit2",
+#    "percnmerit1", "percnmerit2",
+#    "prefmerit1", "prefmerit2",
+#    "prefnmerit1", "prefnmerit2"
+#  )
+# ) 
+
+#Sobre las cargas factoriales: Con lo anterior se le decía a measEq.syntax() que todos esos factores son mediciones repetidas del mismo constructo llamado comp. Como resultado, lavaan trata todos sus indicadores como si midieran el mismo factor, y por eso termina igualando los ítems dentro de una misma ola, como si todos midieran un único factor repetido.
+
 longitudinal_factor_names <- list(
-  comp = c(
-    "percmerit1", "percmerit2",
-    "percnmerit1", "percnmerit2",
-    "prefmerit1", "prefmerit2",
-    "prefnmerit1", "prefnmerit2"
-  )
+  percmerit    = c("percmerit1", "percmerit2"),
+  percnmerit   = c("percnmerit1", "percnmerit2"),
+  prefmerit    = c("prefmerit1", "prefmerit2"),
+  prefnmerit   = c("prefnmerit1", "prefnmerit2")
 )
+
+#Dicho esto, algo importante es que si se aplica lo anterior cambia todo y se pasan todas las invarianzas (desde la débil a la estricta)
+```
+
+```{r}
+#| label: tbl-invarianza
+#| tbl-cap: "Longitudinal Invariance Configural Model"
+#| results: asis
+#| echo: false
+#| warning: false
 
 
 # Configural
@@ -137,19 +164,36 @@ configural_model_smt <- measEq.syntax(
   configural.model = configural_model_smt,
   longFacNames = longitudinal_factor_names,
 #  ID.fac = "std.lv",
-  ID.cat = "millsap",
+  ID.cat = "millsap", ##Se utiliza la opción millsap porque los ítems del cuestionario son de tipo ordinal (escalas tipo Likert de cuatro puntos). En este contexto, es necesario definir una estrategia de identificación del modelo que permita estimar adecuadamente los parámetros de las variables latentes. El método propuesto por Millsap (2004) establece una solución de identificación que fija el primer umbral de cada ítem en cero y la varianza del factor latente en uno, lo que permite escalar correctamente los factores y asegurar la comparabilidad entre grupos o momentos temporales. Esta estrategia es especialmente adecuada para el análisis de invarianza factorial con datos categóricos, ya que facilita la estimación automática del modelo sin requerir ajustes manuales, y permite comparar de manera coherente los distintos niveles de invarianza a lo largo del tiempo.
   data = db_invariance
 )
 configural_model_smt <- as.character(configural_model_smt)
 
 configural_model_smt
 
-
 # Finally, fit the model using lavaan.
-configural_model_smt_fit <- sem(configural_model_smt, data = db_invariance)
+configural_model_smt_fit <- sem(configural_model_smt, data = db_invariance) 
+
+##measEq.syntax() automatiza la construcción de modelos en vez de construirlos a mano. Por ejemplo, en un modelo de invarianza métrica (weak), las cargas factoriales de cada ítem deben ser iguales entre las olas. Si se hace esto manualmente en lavaan, habría que escribir algo como l1*item1_wave1 + l1*item1_wave2 para cada par de ítems equivalentes. Cuando hay decenas de ítems y varios factores, esto se vuelve inmanejable. measEq.syntax() automatiza esa tarea al reconocer ítems equivalentes por nombre y aplicar las restricciones de igualdad correctamente, sin que uno tenga que etiquetar manualmente cada parámetro.
+
+##Otro aspecto importante es que measEq.syntax() permite mantener una estructura clara y replicable del análisis. Esto no solo reduce errores, sino que también facilita la comparación entre los distintos niveles de invarianza (configural, métrica, escalar, estricta) usando funciones como anova() o comparaciones de índices de ajuste como CFI y RMSEA. Además, measEq.syntax() trabaja bien con estructuras complejas como modelos con parámetros ordenados, identificación mediante media o varianza fija, y diferentes parametrizaciones (como "theta" o "delta").
+
+##Asimismo, se utiliza la función `sem()` en lugar de `cfa()` en este caso porque el análisis de invarianza factorial longitudinal con ítems ordinales requiere una especificación más completa y flexible del modelo, la cual es generada automáticamente por `measEq.syntax()`. Esta función no solo construye un modelo de medición, sino que también incluye restricciones estructurales, identificaciones específicas como la opción `ID.cat = "millsap"` y comparaciones entre múltiples grupos o momentos temporales. Dado que `cfa()` está diseñado para modelos de medición simples, su alcance es más limitado y no está preparado para manejar de forma adecuada sintaxis compleja ni restricciones de invarianza generadas automáticamente. En cambio, `sem()` interpreta correctamente toda la estructura del modelo y ofrece el control necesario para estimar modelos con restricciones y condiciones particulares, como las que impone la evaluación de invarianza. Por esta razón, en contextos como el actual —con múltiples momentos de medición, variables ordinales, y pruebas secuenciales de invarianza— `sem()` es la herramienta adecuada.
+
+#No obstante, en modelos puramente confirmatorios simples, sin restricciones entre grupos o momentos, sin ítems categóricos y con una especificación clara y sencilla, sí se suele utilizar `cfa()`, ya que es más directo y legible. En esos casos, `cfa()` es suficiente y puede ser preferido por su simplicidad, siempre que no se requiera la flexibilidad adicional que ofrece `sem()`.
+
 
 # Get detailed output from the lavaan model
 summary(configural_model_smt_fit, fit.measures = TRUE, standardized = TRUE)
+```
+
+```{r}
+#| label: tbl-invarianza
+#| tbl-cap: "Longitudinal Invariance Weak Model"
+#| results: asis
+#| echo: false
+#| warning: false
+
 
 # Weak
 weak_model_smt <- measEq.syntax(
@@ -162,29 +206,43 @@ weak_model_smt <- measEq.syntax(
 )
 weak_model_smt <- as.character(weak_model_smt)
 
-weak_model_smt_fit <- sem(weak_model_smt, data = db_invariance)
+weak_model_smt_fit <- cfa(weak_model_smt, data = db_invariance)
 
 # Get detailed output from the lavaan model
 summary(weak_model_smt_fit, fit.measures = TRUE, standardized = TRUE)
 
 # Compare fit indices
 fit.meas.weak <- lavaan::fitmeasures(weak_model_smt_fit, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ]
+```
+
+```{r}
+#| label: tbl-invarianza
+#| tbl-cap: "Longitudinal Invariance Strong Model"
+#| results: asis
+#| echo: false
+#| warning: false
 
 # Strong
-
 strong_model_smt <- measEq.syntax(
   configural.model = configural_model_smt,
   longFacNames = longitudinal_factor_names,
   ID.fac = "std.lv",
   ID.cat = "millsap",
-  long.equal = c("loadings", "lv.variances"),
+  long.equal = c("loadings", "lv.variances"), #DUDA: imponer igualdades en los interceptos y no en la varianza latente ("intercepts" y no "lv.variances") (Liu et al., 2017). Cuando se cambia esto, el modelo no pasa la fuerte pero sí la estricta. 
   data = db_invariance
 )
 
 strong_model_smt <- as.character(strong_model_smt)
 
-strong_model_smt_fit <- sem(strong_model_smt, data = db_invariance)
+strong_model_smt_fit <- cfa(strong_model_smt, data = db_invariance)
+```
 
+```{r}
+#| label: tbl-invarianza
+#| tbl-cap: "Longitudinal Invariance Strict Model"
+#| results: asis
+#| echo: false
+#| warning: false
 
 # Strict
 strict_model_smt <- measEq.syntax(
@@ -192,16 +250,23 @@ strict_model_smt <- measEq.syntax(
   longFacNames = longitudinal_factor_names,
   ID.fac = "std.lv",
   ID.cat = "millsap",
-  long.equal = c("loadings", "lv.variances", "residuals"),
+  long.equal = c("loadings", "residuals", "lv.variances"),
   data = db_invariance
 )
 strict_model_smt <- as.character(strict_model_smt)
 
-strict_model_smt_fit <- sem(strict_model_smt, data = db_invariance)
+strict_model_smt_fit <- cfa(strict_model_smt, data = db_invariance)
+```
+
+```{r}
+#| label: tbl-invarianza
+#| tbl-cap: "Longitudinal Invariance Test Results 3"
+#| results: asis
+#| echo: false
+#| warning: false
 
 
 # Compare ajust
-
 tab01 <- lavTestLRT(configural_model_smt_fit, weak_model_smt_fit, strong_model_smt_fit, strict_model_smt_fit) %>%
   dplyr::as_tibble() %>%
   dplyr::select("Chisq", "Df", "chisq_diff" = `Chisq diff`, "df_diff" = `Df diff`, "pvalue" = `Pr(>Chisq)`) %>%
@@ -211,7 +276,6 @@ tab01 <- lavTestLRT(configural_model_smt_fit, weak_model_smt_fit, strong_model_s
     decision = ifelse(pvalue > 0.05, yes = "Accept", no = "Reject"),
     model = c("Configural", "Weak", "Strong", "Strict")
   )
-
 
 fit.meas <- dplyr::bind_rows(
   lavaan::fitmeasures(configural_model_smt_fit, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
@@ -234,11 +298,18 @@ tab.inv <- dplyr::bind_cols(tab01, fit.meas) %>%
   dplyr::select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
   dplyr::mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
   dplyr::select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
+```
+
+```{r}
+#| label: tbl-invarianza
+#| tbl-cap: "Longitudinal Invariance Test Results Table"
+#| results: asis
+#| echo: false
+#| warning: false
 
 # clean values
 tab.inv[tab.inv == c("0 (0) ")] <- NA
 tab.inv[tab.inv == c(0)] <- NA
-
 
 col.nam <- c(
   "Model", "&chi;^2 (df)", "CFI", "RMSEA (90 CI)",
@@ -400,12 +471,12 @@ param_info %>% filter(index %in% c(6, 7, 8, 9, 10, 11, 12)) # Selection of the p
 # Original Table with Parameters
 structure <- tibble::tribble(
   ~index, ~factor,        ~item,              ~wave,    ~label,        ~param,
-  6,      "percnmerit1",  "perccontact1",     "Wave 2", "lambda.2_1",  ".p6.",
-  7,      "percnmerit2",  "percrichparents2", "Wave 1", "lambda.1_1",  ".p7.",
+  6,      "percnmerit1",  "perccontact1",     "Wave 1", "lambda.2_1",  ".p6.",
+  7,      "percnmerit2",  "percrichparents2", "Wave 2", "lambda.1_1",  ".p7.",
   8,      "percnmerit2",  "perccontact2",     "Wave 2", "lambda.2_1",  ".p8.",
   9,      "prefmerit1",   "prefeffort1",      "Wave 1", "lambda.1_1",  ".p9.",
-  10,     "prefmerit1",   "preftalent1",      "Wave 2", "lambda.2_1",  ".p10.",
-  11,     "prefmerit2",   "prefeffort2",      "Wave 1", "lambda.1_1",  ".p11.",
+  10,     "prefmerit1",   "preftalent1",      "Wave 1", "lambda.2_1",  ".p10.",
+  11,     "prefmerit2",   "prefeffort2",      "Wave 2", "lambda.1_1",  ".p11.",
   12,     "prefmerit2",   "preftalent2",      "Wave 2", "lambda.2_1",  ".p12."
 )
 

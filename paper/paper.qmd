@@ -8,7 +8,6 @@ format:
     code-link: true
     title-block-banner: true
     theme:
-      - cosmo
       - pretty.scss
   pdf: 
     geometry: margin=2cm
@@ -72,9 +71,9 @@ abstract: |
   \newline
   **Keywords**: 
 link-citations: true
-linestretch: 1.15       
+linestretch: 1.5       
 mainfont: Times New Roman
-fontsize: 12.5pt          
+fontsize: 13pt          
 colorlinks: true
 fig-height: 4
 fig-width: 7.5

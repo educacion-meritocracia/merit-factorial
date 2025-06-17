@@ -1,0 +1,371 @@
+---
+title: "Measuring perceptions and preferences about meritocracy in school in Chile"
+subtitle: "Longitudinal Invariance analysis"
+author: "René Canales, Research Helper"
+date: today
+lang: en
+fontsize: 14pt
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    toc-expand: 2
+    toc-title: Contenidos
+    number-sections: true
+    number-depth: 3
+    theme:
+      - cosmo
+      - edumer.scss
+    code-link: true
+    title-block-banner: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# Longitudinal Invariance
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, warning = FALSE, message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+# Libraries
+
+```{r}
+#| label: packages 
+#| results: hide 
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(
+  tidyverse,
+  sjmisc,
+  sjPlot,
+  here,
+  lavaan,
+  psych,
+  corrplot,
+  ggdist,
+  patchwork, #Combina múltiples gráficos de ggplot2 en una sola figura
+  semTable,
+  semTools,
+  gtools,
+  kableExtra
+)
+
+options(scipen = 999)
+rm(list = ls())
+```
+
+# Data
+
+```{r}
+#| label: data 
+#| results: hide 
+
+load(file = here("output", "data", "db_long_proc.RData"))
+
+names(db_long)
+glimpse(db_long)
+dim(db_long)
+```
+
+```{r}
+#| label: data 2 
+#| results: hide 
+
+db_invariance <-
+  db_long %>%
+  select(id_estudiante, ola, starts_with(c("perc", "pref"))) %>%
+  pivot_wider(
+    id_cols = id_estudiante,
+    names_from = ola,
+    names_glue = "{.value}{ola}",
+    values_from = c(
+      perc_effort, perc_talent,
+      perc_rich_parents, perc_contact,
+      pref_effort, pref_talent,
+      pref_rich_parents, pref_contact
+    )
+  ) %>%
+  na.omit() %>%
+  rename_with(~ str_replace_all(., "_", ""))
+
+names(db_invariance)
+names(db_long)
+```
+
+# Models
+
+## Configural
+
+```{r}
+#| label: conf-model
+#| tbl-cap: "Configural Model"
+#| results: hide
+#| warning: false
+
+# Set up model CFA
+
+configural_model_smt <- ('
+  percmerit1 =~ perceffort1 + perctalent1
+  percmerit2 =~ perceffort2 + perctalent2
+  
+  percnmerit1 =~ percrichparents1 + perccontact1
+  percnmerit2 =~ percrichparents2 + perccontact2
+  
+  prefmerit1 =~ prefeffort1 + preftalent1
+  prefmerit2 =~ prefeffort2 + preftalent2
+  
+  prefnmerit1 =~ prefrichparents1 + prefcontact1
+  prefnmerit2 =~ prefrichparents2 + prefcontact2')
+
+
+#Configural Model
+
+
+model_configural <- ('
+  # Medición en T1
+  percmerit1 =~ perceffort1 + perctalent1
+  percnmerit1 =~ percrichparents1 + perccontact1
+  prefmerit1 =~ prefeffort1 + preftalent1
+  prefnmerit1 =~ prefrichparents1 + prefcontact1
+
+  # Medición en T2
+  percmerit2 =~ perceffort2 + perctalent2
+  percnmerit2 =~ percrichparents2 + perccontact2
+  prefmerit2 =~ prefeffort2 + preftalent2
+  prefnmerit2 =~ prefrichparents2 + prefcontact2
+')
+
+fit_configural <- cfa(model_configural, data = db_invariance, meanstructure = TRUE)
+summary(fit_configural, fit.measures = TRUE, standardized = TRUE)
+
+#To see the internal representation of the model (this helps understand the model definition)
+inspect(fit_configural,what="list")
+```
+
+## Metric (Weak)
+
+```{r}
+#| label: mtr-model
+#| tbl-cap: "Metric Model"
+#| results: hide
+#| warning: false
+
+# Equal Loadings
+
+model_metric <- ('
+  percmerit1 =~ v1*perceffort1 + v2*perctalent1
+  percmerit2 =~ v1*perceffort2 + v2*perctalent2
+
+  percnmerit1 =~ v3*percrichparents1 + v4*perccontact1
+  percnmerit2 =~ v3*percrichparents2 + v4*perccontact2
+
+  prefmerit1 =~ v5*prefeffort1 + v6*preftalent1
+  prefmerit2 =~ v5*prefeffort2 + v6*preftalent2
+
+  prefnmerit1 =~ v7*prefrichparents1 + v8*prefcontact1
+  prefnmerit2 =~ v7*prefrichparents2 + v8*prefcontact2
+')
+
+fit_metric <- cfa(model_metric, data = db_invariance, meanstructure = TRUE)
+summary(fit_metric, fit.measures = TRUE, standardized = TRUE)
+
+```
+
+## Scalar (Strong)
+
+```{r}
+#| label: sclr-model
+#| tbl-cap: "Scalar Model"
+#| results: hide
+#| warning: false
+
+# Equal Loadings and intercepts
+
+model_scalar <- ('
+  # Igualdad de cargas
+  percmerit1 =~ v1*perceffort1 + v2*perctalent1
+  percmerit2 =~ v1*perceffort2 + v2*perctalent2
+
+  percnmerit1 =~ v3*percrichparents1 + v4*perccontact1
+  percnmerit2 =~ v3*percrichparents2 + v4*perccontact2
+
+  prefmerit1 =~ v5*prefeffort1 + v6*preftalent1
+  prefmerit2 =~ v5*prefeffort2 + v6*preftalent2
+
+  prefnmerit1 =~ v7*prefrichparents1 + v8*prefcontact1
+  prefnmerit2 =~ v7*prefrichparents2 + v8*prefcontact2
+
+  # Igualdad de interceptos
+  perceffort1 ~ int1*1
+  perceffort2 ~ int1*1
+
+  perctalent1 ~ int2*1
+  perctalent2 ~ int2*1
+
+  percrichparents1 ~ int3*1
+  percrichparents2 ~ int3*1
+
+  perccontact1 ~ int4*1
+  perccontact2 ~ int4*1
+
+  prefeffort1 ~ int5*1
+  prefeffort2 ~ int5*1
+
+  preftalent1 ~ int6*1
+  preftalent2 ~ int6*1
+
+  prefrichparents1 ~ int7*1
+  prefrichparents2 ~ int7*1
+
+  prefcontact1 ~ int8*1
+  prefcontact2 ~ int8*1
+')
+
+fit_scalar <- cfa(model_scalar, data = db_invariance, meanstructure = TRUE)
+summary(fit_scalar, fit.measures = TRUE, standardized = TRUE)
+
+```
+
+## Strict
+
+```{r}
+#| label: strc-model
+#| tbl-cap: "Strict Model"
+#| results: hide
+#| warning: false
+
+# Equal Loadings, intercepts and variance
+
+model_strict <- paste0(model_scalar, '
+  perceffort1 ~~ e1*perceffort1
+  perceffort2 ~~ e1*perceffort2
+
+  perctalent1 ~~ e2*perctalent1
+  perctalent2 ~~ e2*perctalent2
+
+  percrichparents1 ~~ e3*percrichparents1
+  percrichparents2 ~~ e3*percrichparents2
+
+  perccontact1 ~~ e4*perccontact1
+  perccontact2 ~~ e4*perccontact2
+
+  prefeffort1 ~~ e5*prefeffort1
+  prefeffort2 ~~ e5*prefeffort2
+
+  preftalent1 ~~ e6*preftalent1
+  preftalent2 ~~ e6*preftalent2
+
+  prefrichparents1 ~~ e7*prefrichparents1
+  prefrichparents2 ~~ e7*prefrichparents2
+
+  prefcontact1 ~~ e8*prefcontact1
+  prefcontact2 ~~ e8*prefcontact2
+')
+
+fit_strict <- cfa(model_strict, data = db_invariance, meanstructure = TRUE)
+summary(fit_strict, fit.measures = TRUE, standardized = TRUE)
+```
+
+# Comparative Table
+
+```{r}
+#| label: compare-models
+#| tbl-cap: "Compare Models"
+#| results: asis
+#| warning: false
+
+# Compare ajust
+tab01 <- lavTestLRT(fit_configural, fit_metric, fit_scalar, fit_strict) %>%
+  dplyr::as_tibble() %>%
+  dplyr::select("Chisq", "Df", "chisq_diff" = `Chisq diff`, "df_diff" = `Df diff`, "pvalue" = `Pr(>Chisq)`) %>%
+  dplyr::mutate(
+    stars = gtools::stars.pval(pvalue),
+    chisqt = paste0(round(Chisq, 2), " (", Df, ") "),
+    decision = ifelse(pvalue > 0.05, yes = "Accept", no = "Reject"),
+    model = c("Configural", "Weak", "Strong", "Strict")
+  )
+
+fit.meas <- dplyr::bind_rows(
+  lavaan::fitmeasures(fit_configural, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
+  lavaan::fitmeasures(fit_metric, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
+  lavaan::fitmeasures(fit_scalar, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
+  lavaan::fitmeasures(fit_strict, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ]
+)
+
+fit.meas <- fit.meas %>%
+  dplyr::mutate(
+    diff.chi2 = chisq - lag(chisq, default = dplyr::first(chisq)),
+    diff.df = df - lag(df, default = dplyr::first(df)),
+    diff.cfi = cfi - lag(cfi, default = dplyr::first(cfi)),
+    diff.rmsea = rmsea - lag(rmsea, default = dplyr::first(rmsea))
+  ) %>%
+  round(3) %>%
+  dplyr::mutate(rmsea.ci = paste0(rmsea, " \n ", "(", rmsea.ci.lower, "-", rmsea.ci.upper, ")"))
+
+tab.inv <- dplyr::bind_cols(tab01, fit.meas) %>%
+  dplyr::select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
+  dplyr::mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
+  dplyr::select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
+
+# clean values
+tab.inv[tab.inv == c("0 (0) ")] <- NA
+tab.inv[tab.inv == c(0)] <- NA
+
+col.nam <- c(
+  "Model", "&chi;^2 (df)", "CFI", "RMSEA (90 CI)",
+  "&Delta; &chi;^2 (&Delta; df)", "&Delta; CFI", "&Delta; RMSEA", "Decision"
+)
+footnote <- paste0("N = ", fit_configural@Data@nobs[[1]])
+
+tab.inv %>%
+  kableExtra::kable(
+    format = "html",
+    align = "c",
+    booktabs = T,
+    escape = F,
+    caption = NULL,
+    col.names = col.nam
+  ) %>%
+  kableExtra::kable_styling(
+    full_width = T,
+    latex_options = "hold_position",
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    font_size = 23
+  ) %>%
+  kableExtra::column_spec(c(1, 8), width = "3.5cm") %>%
+  kableExtra::column_spec(2:7, width = "4cm") %>%
+  kableExtra::column_spec(4, width = "5cm")
+```
+
+```{r}
+#| label: Invariance Source Analysis
+#| tbl-cap: "Compare Models"
+#| results: asis
+#| warning: false
+
+
+
+```

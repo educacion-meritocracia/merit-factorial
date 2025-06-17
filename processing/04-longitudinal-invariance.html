@@ -137,7 +137,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span>  <span class="va">corrplot</span>,</span>
 <span>  <span class="va">ggdist</span>,</span>
 <span>  <span class="va">patchwork</span>, <span class="co">#Combina múltiples gráficos de ggplot2 en una sola figura</span></span>
-<span>  <span class="va">semTable</span>,</span>
 <span>  <span class="va">semTools</span>,</span>
 <span>  <span class="va">gtools</span>,</span>
 <span>  <span class="va">kableExtra</span></span>
@@ -214,7 +213,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="st">  prefnmerit2 =~ prefrichparents2 + prefcontact2</span></span>
 <span><span class="st">'</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">fit_configural</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model_configural</span>, data <span class="op">=</span> <span class="va">db_invariance</span>, meanstructure <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">fit_configural</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model_configural</span>, data <span class="op">=</span> <span class="va">db_invariance</span>, std.lv <span class="op">=</span> <span class="cn">TRUE</span>, meanstructure <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co">#Usar la opción std.lv = TRUE en modelos de ecuaciones estructurales o análisis factorial confirmatorio implica cambiar la forma en que identificamos los factores latentes. En lugar de fijar una de las cargas factoriales a 1 —lo que equivale a usar ese ítem como “regla” para escalar el factor—, se opta por fijar la varianza de la variable latente en 1 y permitir que todas las cargas se estimen libremente. Esta decisión tiene varias ventajas importantes, especialmente cuando se trabaja con modelos longitudinales o con análisis de invarianza factorial.</span></span>
+<span></span>
+<span><span class="co">#Primero, usar std.lv = TRUE garantiza que todas las cargas sean comparables entre sí, ya que ninguna está restringida arbitrariamente. Esto es relevante en análisis donde queremos examinar si la estructura factorial se mantiene estable en el tiempo o entre grupos, pues evita dar un peso privilegiado a un ítem específico. Segundo, facilita la interpretación de los parámetros, ya que al fijar la varianza de los factores a 1, cada carga expresa directamente la relación estándar (es decir, la contribución en unidades de desviación estándar del ítem al factor), sin depender de la escala arbitraria inducida por un ítem marcador.</span></span>
+<span></span>
+<span><span class="co">#Además, cuando se busca evaluar la invarianza métrica, escalar o estricta, std.lv = TRUE permite aplicar restricciones de igualdad en las cargas e interceptos de forma simétrica y clara. Por contraste, si se usa el método de identificación por marcador (una carga fija), entonces la carga fijada no se puede restringir entre grupos o tiempos, lo que limita la capacidad para probar igualdad completa. Por esta razón, los procedimientos automatizados como measEq.syntax() del paquete semTools usan por defecto este tipo de identificación, justamente para garantizar flexibilidad y simetría en los modelos de invarianza.</span></span>
+<span></span>
+<span><span class="co">#Finalmente, desde una perspectiva estadística, la identificación mediante varianza del factor fija (std.lv) es más coherente cuando los factores representan construcciones latentes homogéneas. A diferencia de fijar una carga (lo cual implica que ese ítem define el factor), fijar la varianza del factor implica que el constructo se mide en una escala fija y abstracta, lo que es más neutral teóricamente. Esto es especialmente importante si el ítem marcador cambia de comportamiento o fiabilidad entre grupos o tiempos: al no depender de un ítem particular, evitamos distorsiones en la escala del factor.</span></span>
+<span></span>
+<span><span class="co">#En resumen, std.lv = TRUE ofrece ventajas tanto prácticas como teóricas: evita sesgos en la identificación, permite comparaciones limpias entre grupos o momentos, y proporciona estimaciones más estables y fáciles de interpretar en modelos complejos, como los de invarianza longitudinal.</span></span>
+<span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_configural</span>, fit.measures <span class="op">=</span> <span class="cn">TRUE</span>, standardized <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#To see the internal representation of the model (this helps understand the model definition)</span></span>
@@ -223,8 +233,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section><section id="metric-weak" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="metric-weak">
 <span class="header-section-number">4.2</span> Metric (Weak)</h2>
 <div class="cell" data-tbl-cap="Metric Model">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model_metric</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'</span></span>
-<span><span class="st">  # Cargas iguales</span></span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Equal Loadings</span></span>
+<span></span>
+<span><span class="va">model_metric</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'</span></span>
 <span><span class="st">  percmerit1 =~ v1*perceffort1 + v2*perctalent1</span></span>
 <span><span class="st">  percmerit2 =~ v1*perceffort2 + v2*perctalent2</span></span>
 <span><span class="st"></span></span>
@@ -238,13 +249,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="st">  prefnmerit2 =~ v7*prefrichparents2 + v8*prefcontact2</span></span>
 <span><span class="st">'</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">fit_metric</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model_metric</span>, data <span class="op">=</span> <span class="va">db_invariance</span>, meanstructure <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">fit_metric</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model_metric</span>, data <span class="op">=</span> <span class="va">db_invariance</span>,  std.lv <span class="op">=</span> <span class="cn">TRUE</span>, meanstructure <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_metric</span>, fit.measures <span class="op">=</span> <span class="cn">TRUE</span>, standardized <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="scalar-strong" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="scalar-strong">
 <span class="header-section-number">4.3</span> Scalar (Strong)</h2>
 <div class="cell" data-tbl-cap="Scalar Model">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model_scalar</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Equal Loadings and intercepts</span></span>
+<span></span>
+<span><span class="va">model_scalar</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="st">'</span></span>
 <span><span class="st">  # Igualdad de cargas</span></span>
 <span><span class="st">  percmerit1 =~ v1*perceffort1 + v2*perctalent1</span></span>
 <span><span class="st">  percmerit2 =~ v1*perceffort2 + v2*perctalent2</span></span>
@@ -284,13 +297,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="st">  prefcontact2 ~ int8*1</span></span>
 <span><span class="st">'</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">fit_scalar</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model_scalar</span>, data <span class="op">=</span> <span class="va">db_invariance</span>, meanstructure <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">fit_scalar</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model_scalar</span>, data <span class="op">=</span> <span class="va">db_invariance</span>, std.lv <span class="op">=</span> <span class="cn">TRUE</span>, meanstructure <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_scalar</span>, fit.measures <span class="op">=</span> <span class="cn">TRUE</span>, standardized <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="strict" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="strict">
 <span class="header-section-number">4.4</span> Strict</h2>
 <div class="cell" data-tbl-cap="Strict Model">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model_strict</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">model_scalar</span>, <span class="st">'</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Equal Loadings, intercepts and variance</span></span>
+<span></span>
+<span><span class="va">model_strict</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">model_scalar</span>, <span class="st">'</span></span>
 <span><span class="st">  perceffort1 ~~ e1*perceffort1</span></span>
 <span><span class="st">  perceffort2 ~~ e1*perceffort2</span></span>
 <span><span class="st"></span></span>
@@ -316,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="st">  prefcontact2 ~~ e8*prefcontact2</span></span>
 <span><span class="st">'</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">fit_strict</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model_strict</span>, data <span class="op">=</span> <span class="va">db_invariance</span>, meanstructure <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">fit_strict</span> <span class="op">&lt;-</span> <span class="fu">cfa</span><span class="op">(</span><span class="va">model_strict</span>, data <span class="op">=</span> <span class="va">db_invariance</span>, std.lv <span class="op">=</span> <span class="cn">TRUE</span>, meanstructure <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit_strict</span>, fit.measures <span class="op">=</span> <span class="cn">TRUE</span>, standardized <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="comparative-table" class="level1" data-number="5"><h1 data-number="5">
@@ -408,32 +423,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 3.5cm;">Weak</td>
-<td style="text-align: center; width: 4cm;">215.2 (80)</td>
-<td style="text-align: center; width: 4cm;">0.928</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.053 (0.045-0.062)</td>
-<td style="text-align: center; width: 4cm;">7.366 (4)</td>
+<td style="text-align: center; width: 4cm;">220.88 (84)</td>
+<td style="text-align: center; width: 4cm;">0.927</td>
+<td style="text-align: center; width: 4cm; width: 5cm;">0.053 (0.044-0.061)</td>
+<td style="text-align: center; width: 4cm;">13.043 (8)</td>
+<td style="text-align: center; width: 4cm;">-0.003</td>
 <td style="text-align: center; width: 4cm;">-0.002</td>
-<td style="text-align: center; width: 4cm;">-0.001</td>
 <td style="text-align: center; width: 3.5cm;">Accept</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center; width: 3.5cm;">Strong</td>
-<td style="text-align: center; width: 4cm;">228.62 (88)</td>
-<td style="text-align: center; width: 4cm;">0.925</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.052 (0.044-0.06)</td>
-<td style="text-align: center; width: 4cm;">13.42 (8) .</td>
+<td style="text-align: center; width: 4cm;">234.36 (92)</td>
+<td style="text-align: center; width: 4cm;">0.924</td>
+<td style="text-align: center; width: 4cm; width: 5cm;">0.051 (0.043-0.059)</td>
+<td style="text-align: center; width: 4cm;">13.479 (8) .</td>
 <td style="text-align: center; width: 4cm;">-0.003</td>
 <td style="text-align: center; width: 4cm;">-0.001</td>
 <td style="text-align: center; width: 3.5cm;">Accept</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 3.5cm;">Strict</td>
-<td style="text-align: center; width: 4cm;">237.01 (96)</td>
-<td style="text-align: center; width: 4cm;">0.925</td>
+<td style="text-align: center; width: 4cm;">245.88 (100)</td>
+<td style="text-align: center; width: 4cm;">0.922</td>
 <td style="text-align: center; width: 4cm; width: 5cm;">0.05 (0.042-0.058)</td>
-<td style="text-align: center; width: 4cm;">8.385 (8)</td>
-<td style="text-align: center; width: 4cm;"></td>
+<td style="text-align: center; width: 4cm;">11.52 (8)</td>
 <td style="text-align: center; width: 4cm;">-0.002</td>
+<td style="text-align: center; width: 4cm;">-0.001</td>
 <td style="text-align: center; width: 3.5cm;">Accept</td>
 </tr>
 </tbody>

@@ -67,7 +67,6 @@ pacman::p_load(
   corrplot,
   ggdist,
   patchwork, #Combina múltiples gráficos de ggplot2 en una sola figura
-  semTable,
   semTools,
   gtools,
   kableExtra
@@ -158,7 +157,18 @@ model_configural <- ('
   prefnmerit2 =~ prefrichparents2 + prefcontact2
 ')
 
-fit_configural <- cfa(model_configural, data = db_invariance, meanstructure = TRUE)
+fit_configural <- cfa(model_configural, data = db_invariance, std.lv = TRUE, meanstructure = TRUE) 
+
+#Usar la opción std.lv = TRUE en modelos de ecuaciones estructurales o análisis factorial confirmatorio implica cambiar la forma en que identificamos los factores latentes. En lugar de fijar una de las cargas factoriales a 1 —lo que equivale a usar ese ítem como “regla” para escalar el factor—, se opta por fijar la varianza de la variable latente en 1 y permitir que todas las cargas se estimen libremente. Esta decisión tiene varias ventajas importantes, especialmente cuando se trabaja con modelos longitudinales o con análisis de invarianza factorial.
+
+#Primero, usar std.lv = TRUE garantiza que todas las cargas sean comparables entre sí, ya que ninguna está restringida arbitrariamente. Esto es relevante en análisis donde queremos examinar si la estructura factorial se mantiene estable en el tiempo o entre grupos, pues evita dar un peso privilegiado a un ítem específico. Segundo, facilita la interpretación de los parámetros, ya que al fijar la varianza de los factores a 1, cada carga expresa directamente la relación estándar (es decir, la contribución en unidades de desviación estándar del ítem al factor), sin depender de la escala arbitraria inducida por un ítem marcador.
+
+#Además, cuando se busca evaluar la invarianza métrica, escalar o estricta, std.lv = TRUE permite aplicar restricciones de igualdad en las cargas e interceptos de forma simétrica y clara. Por contraste, si se usa el método de identificación por marcador (una carga fija), entonces la carga fijada no se puede restringir entre grupos o tiempos, lo que limita la capacidad para probar igualdad completa. Por esta razón, los procedimientos automatizados como measEq.syntax() del paquete semTools usan por defecto este tipo de identificación, justamente para garantizar flexibilidad y simetría en los modelos de invarianza.
+
+#Finalmente, desde una perspectiva estadística, la identificación mediante varianza del factor fija (std.lv) es más coherente cuando los factores representan construcciones latentes homogéneas. A diferencia de fijar una carga (lo cual implica que ese ítem define el factor), fijar la varianza del factor implica que el constructo se mide en una escala fija y abstracta, lo que es más neutral teóricamente. Esto es especialmente importante si el ítem marcador cambia de comportamiento o fiabilidad entre grupos o tiempos: al no depender de un ítem particular, evitamos distorsiones en la escala del factor.
+
+#En resumen, std.lv = TRUE ofrece ventajas tanto prácticas como teóricas: evita sesgos en la identificación, permite comparaciones limpias entre grupos o momentos, y proporciona estimaciones más estables y fáciles de interpretar en modelos complejos, como los de invarianza longitudinal.
+
 summary(fit_configural, fit.measures = TRUE, standardized = TRUE)
 
 #To see the internal representation of the model (this helps understand the model definition)
@@ -189,7 +199,7 @@ model_metric <- ('
   prefnmerit2 =~ v7*prefrichparents2 + v8*prefcontact2
 ')
 
-fit_metric <- cfa(model_metric, data = db_invariance, meanstructure = TRUE)
+fit_metric <- cfa(model_metric, data = db_invariance,  std.lv = TRUE, meanstructure = TRUE)
 summary(fit_metric, fit.measures = TRUE, standardized = TRUE)
 
 ```
@@ -244,7 +254,7 @@ model_scalar <- ('
   prefcontact2 ~ int8*1
 ')
 
-fit_scalar <- cfa(model_scalar, data = db_invariance, meanstructure = TRUE)
+fit_scalar <- cfa(model_scalar, data = db_invariance, std.lv = TRUE, meanstructure = TRUE)
 summary(fit_scalar, fit.measures = TRUE, standardized = TRUE)
 
 ```
@@ -285,7 +295,7 @@ model_strict <- paste0(model_scalar, '
   prefcontact2 ~~ e8*prefcontact2
 ')
 
-fit_strict <- cfa(model_strict, data = db_invariance, meanstructure = TRUE)
+fit_strict <- cfa(model_strict, data = db_invariance, std.lv = TRUE, meanstructure = TRUE)
 summary(fit_strict, fit.measures = TRUE, standardized = TRUE)
 ```
 
@@ -358,14 +368,4 @@ tab.inv %>%
   kableExtra::column_spec(c(1, 8), width = "3.5cm") %>%
   kableExtra::column_spec(2:7, width = "4cm") %>%
   kableExtra::column_spec(4, width = "5cm")
-```
-
-```{r}
-#| label: Invariance Source Analysis
-#| tbl-cap: "Compare Models"
-#| results: asis
-#| warning: false
-
-
-
 ```

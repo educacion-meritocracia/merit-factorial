@@ -157,7 +157,11 @@ model_configural <- ('
   prefnmerit2 =~ prefrichparents2 + prefcontact2
 ')
 
-fit_configural <- cfa(model_configural, data = db_invariance, std.lv = TRUE, meanstructure = TRUE) 
+fit_configural <- cfa(model_configural,
+                      data = db_invariance, 
+                      std.lv = T, 
+                      meanstructure = TRUE,
+                      ordered = T) 
 
 #Usar la opción std.lv = TRUE en modelos de ecuaciones estructurales o análisis factorial confirmatorio implica cambiar la forma en que identificamos los factores latentes. En lugar de fijar una de las cargas factoriales a 1 —lo que equivale a usar ese ítem como “regla” para escalar el factor—, se opta por fijar la varianza de la variable latente en 1 y permitir que todas las cargas se estimen libremente. Esta decisión tiene varias ventajas importantes, especialmente cuando se trabaja con modelos longitudinales o con análisis de invarianza factorial.
 
@@ -199,7 +203,7 @@ model_metric <- ('
   prefnmerit2 =~ v7*prefrichparents2 + v8*prefcontact2
 ')
 
-fit_metric <- cfa(model_metric, data = db_invariance,  std.lv = TRUE, meanstructure = TRUE)
+fit_metric <- cfa(model_metric, data = db_invariance,  std.lv = T, meanstructure = TRUE, ordered = T)
 summary(fit_metric, fit.measures = TRUE, standardized = TRUE)
 
 ```
@@ -229,32 +233,145 @@ model_scalar <- ('
   prefnmerit2 =~ v7*prefrichparents2 + v8*prefcontact2
 
   # Igualdad de interceptos
-  perceffort1 ~ int1*1
-  perceffort2 ~ int1*1
+  perceffort1 ~ int2*1
+  perceffort2 ~ int2*1
 
-  perctalent1 ~ int2*1
-  perctalent2 ~ int2*1
+  perctalent1 ~ int3*1
+  perctalent2 ~ int3*1
 
-  percrichparents1 ~ int3*1
-  percrichparents2 ~ int3*1
+  percrichparents1 ~ int4*1
+  percrichparents2 ~ int4*1
 
-  perccontact1 ~ int4*1
-  perccontact2 ~ int4*1
+  perccontact1 ~ int5*1
+  perccontact2 ~ int5*1
 
-  prefeffort1 ~ int5*1
-  prefeffort2 ~ int5*1
+  prefeffort1 ~ int6*1
+  prefeffort2 ~ int6*1
 
-  preftalent1 ~ int6*1
-  preftalent2 ~ int6*1
+  preftalent1 ~ int7*1
+  preftalent2 ~ int7*1
 
-  prefrichparents1 ~ int7*1
-  prefrichparents2 ~ int7*1
+  prefrichparents1 ~ int8*1
+  prefrichparents2 ~ int8*1
 
-  prefcontact1 ~ int8*1
-  prefcontact2 ~ int8*1
+  prefcontact1 ~ int9*1
+  prefcontact2 ~ int9*1
 ')
 
-fit_scalar <- cfa(model_scalar, data = db_invariance, std.lv = TRUE, meanstructure = TRUE)
+model_scalar <- ('
+  # Cargas factoriales iguales (modelo métrico)
+  percmerit1 =~ v1*perceffort1 + v2*perctalent1
+  percmerit2 =~ v1*perceffort2 + v2*perctalent2
+
+  percnmerit1 =~ v3*percrichparents1 + v4*perccontact1
+  percnmerit2 =~ v3*percrichparents2 + v4*perccontact2
+
+  prefmerit1 =~ v5*prefeffort1 + v6*preftalent1
+  prefmerit2 =~ v5*prefeffort2 + v6*preftalent2
+
+  prefnmerit1 =~ v7*prefrichparents1 + v8*prefcontact1
+  prefnmerit2 =~ v7*prefrichparents2 + v8*prefcontact2
+
+  # Restricciones de umbrales (formato correcto para lavaan)
+  perceffort1 | a1*t1
+  perceffort2 | a1*t1
+  
+  perceffort1 | a2*t2
+  perceffort2 | a2*t2
+  
+  perceffort1 | a3*t3
+  perceffort2 | a3*t3
+  
+  perceffort1 | a4*t4
+  perceffort2 | a4*t4
+
+  perctalent1 | b1*t1
+  perctalent2 | b1*t1
+  
+  perctalent1 | b2*t2
+  perctalent2 | b2*t2
+  
+  perctalent1 | b3*t3
+  perctalent2 | b3*t3
+  
+  perctalent1 | b4*t4
+  perctalent2 | b4*t4
+
+  # Continúa con el mismo patrón para las demás variables...
+  percrichparents1 | c1*t1
+  percrichparents2 | c1*t1
+  
+  percrichparents1 | c2*t2
+  percrichparents2 | c2*t2
+  
+  percrichparents1 | c3*t3
+  percrichparents2 | c3*t3
+  
+  percrichparents1 | c4*t4
+  percrichparents2 | c4*t4
+
+  perccontact1 | d1*t1
+  perccontact2 | d1*t1
+  
+  perccontact1 | d2*t2
+  perccontact2 | d2*t2
+  
+  perccontact1 | d3*t3
+  perccontact2 | d3*t3
+  
+  perccontact1 | d4*t4
+  perccontact2 | d4*t4
+
+  prefeffort1 | e1*t1
+  prefeffort2 | e1*t1
+  
+  prefeffort1 | e2*t2
+  prefeffort2 | e2*t2
+  
+  prefeffort1 | e3*t3
+  prefeffort2 | e3*t3
+  
+  prefeffort1 | e4*t4
+  prefeffort2 | e4*t4
+
+  preftalent1 | f1*t1
+  preftalent2 | f1*t1
+  
+  preftalent1 | f2*t2
+  preftalent2 | f2*t2
+  
+  preftalent1 | f3*t3
+  preftalent2 | f3*t3
+  
+  preftalent1 | f4*t4
+  preftalent2 | f4*t4
+
+  prefrichparents1 | g1*t1
+  prefrichparents2 | g1*t1
+  
+  prefrichparents1 | g2*t2
+  prefrichparents2 | g2*t2
+  
+  prefrichparents1 | g3*t3
+  prefrichparents2 | g3*t3
+  
+  prefrichparents1 | g4*t4
+  prefrichparents2 | g4*t4
+
+  prefcontact1 | h1*t1
+  prefcontact2 | h1*t1
+  
+  prefcontact1 | h2*t2
+  prefcontact2 | h2*t2
+  
+  prefcontact1 | h3*t3
+  prefcontact2 | h3*t3
+  
+  prefcontact1 | h4*t4
+  prefcontact2 | h4*t4
+')
+
+fit_scalar <- cfa(model_scalar, data = db_invariance, std.lv = T, meanstructure = TRUE, ordered = T)
 summary(fit_scalar, fit.measures = TRUE, standardized = TRUE)
 
 ```
@@ -295,7 +412,7 @@ model_strict <- paste0(model_scalar, '
   prefcontact2 ~~ e8*prefcontact2
 ')
 
-fit_strict <- cfa(model_strict, data = db_invariance, std.lv = TRUE, meanstructure = TRUE)
+fit_strict <- cfa(model_strict, data = db_invariance, std.lv = T, meanstructure = TRUE, ordered = T)
 summary(fit_strict, fit.measures = TRUE, standardized = TRUE)
 ```
 
@@ -308,7 +425,7 @@ summary(fit_strict, fit.measures = TRUE, standardized = TRUE)
 #| warning: false
 
 # Compare ajust
-tab01 <- lavTestLRT(fit_configural, fit_metric, fit_scalar, fit_strict) %>%
+tab01 <- anova(fit_configural, fit_metric, fit_scalar, fit_strict) %>%
   dplyr::as_tibble() %>%
   dplyr::select("Chisq", "Df", "chisq_diff" = `Chisq diff`, "df_diff" = `Df diff`, "pvalue" = `Pr(>Chisq)`) %>%
   dplyr::mutate(

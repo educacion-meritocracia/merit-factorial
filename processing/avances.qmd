@@ -342,10 +342,10 @@ configural_model_smt <- ("
 # Second, create a named list indicating which factors are actually the same
 # latent variable measured repeatedly.
 longitudinal_factor_names <- list(
-  comp = c("percmerit1", "percmerit2", 
-           "percnmerit1", "percnmerit2",
-           "prefmerit1", "prefmerit2",
-           "prefnmerit1", "prefnmerit2")
+  percmerit    = c("percmerit1", "percmerit2"),
+  percnmerit   = c("percnmerit1", "percnmerit2"),
+  prefmerit    = c("prefmerit1", "prefmerit2"),
+  prefnmerit   = c("prefnmerit1", "prefnmerit2")
 )
 
 
@@ -361,7 +361,9 @@ configural_model_smt <- measEq.syntax(
 configural_model_smt <- as.character(configural_model_smt)
 
 # Finally, fit the model using lavaan.
-configural_model_smt_fit <- sem(configural_model_smt, data = db_invariance)
+configural_model_smt_fit <- sem(configural_model_smt, 
+                                data = db_invariance,
+                                ordered = T)
 
 # Weak
 weak_model_smt <- measEq.syntax(
@@ -369,12 +371,14 @@ weak_model_smt <- measEq.syntax(
   longFacNames = longitudinal_factor_names,
   ID.fac = "std.lv",
   ID.cat = "millsap",
-  long.equal = c("loadings"),
+  long.equal = c("thresholds", "loadings"),
   data = db_invariance
 )
 weak_model_smt <- as.character(weak_model_smt)
 
-weak_model_smt_fit <- sem(weak_model_smt, data = db_invariance)
+weak_model_smt_fit <- sem(weak_model_smt, 
+                          data = db_invariance,
+                          ordered = T)
 
 # Strong
 
@@ -383,13 +387,15 @@ strong_model_smt <- measEq.syntax(
   longFacNames = longitudinal_factor_names,
   ID.fac = "std.lv",
   ID.cat = "millsap",
-  long.equal = c("loadings", "lv.variances"),
+  long.equal = c("thresholds","loadings", "intercepts"),
   data = db_invariance
 )
 
 strong_model_smt <- as.character(strong_model_smt)
 
-strong_model_smt_fit <- sem(strong_model_smt, data = db_invariance)
+strong_model_smt_fit <- sem(strong_model_smt, 
+                            data = db_invariance, 
+                            ordered = T)
 
 
 # Strict
@@ -398,13 +404,16 @@ strict_model_smt <- measEq.syntax(
   longFacNames = longitudinal_factor_names,
   ID.fac = "std.lv",
   ID.cat = "millsap",
-  long.equal = c("loadings", "lv.variances", "residuals"),
+  long.equal = c("thresholds", "loadings", "intercepts", "residuals"),
   data = db_invariance
 )
 strict_model_smt <- as.character(strict_model_smt)
 
-strict_model_smt_fit <- sem(strict_model_smt, data = db_invariance)
+strict_model_smt_fit <- sem(strict_model_smt, 
+                            data = db_invariance,
+                            ordered = T)
 
+summary(strict_model_smt_fit, fit.measures = T)
 
 # Compare ajust
 

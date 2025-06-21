@@ -19,3 +19,5 @@ Measuring and applying a scale of perceptions and preferences about meritocracy.
 [Longitudinal invariance](https://educacion-meritocracia.github.io/merit-factorial/processing/04-invariance-sources.html)
 
 [Methods](https://educacion-meritocracia.github.io/merit-factorial/paper/03-methods.html)
+
+[SEM](https://educacion-meritocracia.github.io/merit-factorial/sem/sem_ppt.html)

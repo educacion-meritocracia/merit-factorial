@@ -430,15 +430,6 @@ testp <- cor.mtest(M$rho, conf.level = 0.95)
 ```
 :::
 
-## Análisis Factorial Exploratorio
-
-:::: { .incremental style="font-size: 120%;"}
-
-Aquí Tomy
-
-::::
-
-
 ## Análisis Factorial Confirmatorio
 
 :::: { .incremental style="font-size: 120%;"}

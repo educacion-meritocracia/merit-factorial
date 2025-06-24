@@ -138,7 +138,7 @@ db_invariance <- db_invariance %>%
 ## Configural
 
 ```{r}
-baseline_model <- '
+baseline_model_smt <- ('
 
 ###########################################
 # Definición de factores (1 marcador por factor)
@@ -156,78 +156,6 @@ prefmerit2  =~ 1*prefeffort2     + preftalent2
 prefnmerit1 =~ 1*prefrichparents1 + prefcontact1
 prefnmerit2 =~ 1*prefrichparents2 + prefcontact2
 
-###########################################
-# Covarianzas entre factores (entre olas)
-###########################################
-
-percmerit1  ~~ percmerit2
-percnmerit1 ~~ percnmerit2
-prefmerit1  ~~ prefmerit2
-prefnmerit1 ~~ prefnmerit2
-
-###########################################
-# Medias latentes (referencia = ola 1)
-###########################################
-
-percmerit1  ~ 0*1
-percmerit2  ~ 1
-
-percnmerit1 ~ 0*1
-percnmerit2 ~ 1
-
-prefmerit1  ~ 0*1
-prefmerit2  ~ 1
-
-prefnmerit1 ~ 0*1
-prefnmerit2 ~ 1
-
-###########################################
-# Varianzas únicas (ola 1 = 1, ola 2 libre)
-###########################################
-
-perceffort1 ~~ 1*perceffort1
-perctalent1 ~~ 1*perctalent1
-perceffort2 ~~ NA*perceffort2
-perctalent2 ~~ NA*perctalent2
-
-percrichparents1 ~~ 1*percrichparents1
-perccontact1     ~~ 1*perccontact1
-percrichparents2 ~~ NA*percrichparents2
-perccontact2     ~~ NA*perccontact2
-
-prefeffort1 ~~ 1*prefeffort1
-preftalent1 ~~ 1*preftalent1
-prefeffort2 ~~ NA*prefeffort2
-preftalent2 ~~ NA*preftalent2
-
-prefrichparents1 ~~ 1*prefrichparents1
-prefcontact1     ~~ 1*prefcontact1
-prefrichparents2 ~~ NA*prefrichparents2
-prefcontact2     ~~ NA*prefcontact2
-
-###########################################
-# Umbrales (sin igualar en este modelo)
-###########################################
-
-perceffort1     | pef1_t1*t1 + pef1_t2*t2
-perceffort2     | pef2_t1*t1 + pef2_t2*t2
-perctalent1     | pt1_t1*t1 + pt1_t2*t2
-perctalent2     | pt2_t1*t1 + pt2_t2*t2
-
-percrichparents1| prp1_t1*t1 + prp1_t2*t2
-percrichparents2| prp2_t1*t1 + prp2_t2*t2
-perccontact1    | pc1_t1*t1 + pc1_t2*t2
-perccontact2    | pc2_t1*t1 + pc2_t2*t2
-
-prefeffort1     | pfe1_t1*t1 + pfe1_t2*t2
-prefeffort2     | pfe2_t1*t1 + pfe2_t2*t2
-preftalent1     | prt1_t1*t1 + prt1_t2*t2
-preftalent2     | prt2_t1*t1 + prt2_t2*t2
-
-prefrichparents1| pfrp1_t1*t1 + pfrp1_t2*t2
-prefrichparents2| pfrp2_t1*t1 + pfrp2_t2*t2
-prefcontact1    | pfc1_t1*t1 + pfc1_t2*t2
-prefcontact2    | pfc2_t1*t1 + pfc2_t2*t2
 
 ###########################################
 # Covarianzas entre errores (mismo ítem, distintas olas)
@@ -244,7 +172,7 @@ preftalent1 ~~ preftalent2
 
 prefrichparents1 ~~ prefrichparents2
 prefcontact1     ~~ prefcontact2
-'
+')
 
 
 
@@ -294,70 +222,25 @@ prefnmerit1 ~~ prefnmerit1 + prefnmerit2
 prefnmerit2 ~~ prefnmerit2
 
 
-# Medias latentes
-
-percmerit1  ~ 0*1
-percmerit2  ~ 1
-percnmerit1 ~ 0*1
-percnmerit2 ~ 1
-prefmerit1  ~ 0*1
-prefmerit2  ~ 1
-prefnmerit1 ~ 0*1
-prefnmerit2 ~ 1
-
-
 # Umbrales (uno igualado por ítem)
 
-perceffort1 | pe1t1*t1 + pe1t2*t2
-perceffort2 | pe2t1*t1 + pe2t2*t2
-perctalent1 | pt1t1*t1 + pt1t2*t2
-perctalent2 | pt2t1*t1 + pt2t2*t2
-percrichparents1 | prp1t1*t1 + prp1t2*t2
-percrichparents2 | prp2t1*t1 + prp2t2*t2
-perccontact1 | pc1t1*t1 + pc1t2*t2
-perccontact2 | pc2t1*t1 + pc2t2*t2
-prefeffort1 | pre1t1*t1 + pre1t2*t2
-prefeffort2 | pre2t1*t1 + pre2t2*t2
-preftalent1 | prt1t1*t1 + prt1t2*t2
-preftalent2 | prt2t1*t1 + prt2t2*t2
-prefrichparents1 | pfrp1t1*t1 + pfrp1t2*t2
-prefrichparents2 | pfrp2t1*t1 + pfrp2t2*t2
-prefcontact1 | pfc1t1*t1 + pfc1t2*t2
-prefcontact2 | pfc2t1*t1 + pfc2t2*t2
-
-
-# Interceptos
-
-perceffort1 + perctalent1 ~ 0*1
-perceffort2 + perctalent2 ~ 0*1
-percrichparents1 + perccontact1 ~ 0*1
-percrichparents2 + perccontact2 ~ 0*1
-prefeffort1 + preftalent1 ~ 0*1
-prefeffort2 + preftalent2 ~ 0*1
-prefrichparents1 + prefcontact1 ~ 0*1
-prefrichparents2 + prefcontact2 ~ 0*1
-
-
-# Varianzas únicas
-
-perceffort1 ~~ 1*perceffort1
-perctalent1 ~~ 1*perctalent1
-percrichparents1 ~~ 1*percrichparents1
-perccontact1 ~~ 1*perccontact1
-prefeffort1 ~~ 1*prefeffort1
-preftalent1 ~~ 1*preftalent1
-prefrichparents1 ~~ 1*prefrichparents1
-prefcontact1 ~~ 1*prefcontact1
-
-perceffort2 ~~ NA*perceffort2
-perctalent2 ~~ NA*perctalent2
-percrichparents2 ~~ NA*percrichparents2
-perccontact2 ~~ NA*perccontact2
-prefeffort2 ~~ NA*prefeffort2
-preftalent2 ~~ NA*preftalent2
-prefrichparents2 ~~ NA*prefrichparents2
-prefcontact2 ~~ NA*prefcontact2
-
+# perceffort1 | pe1t1*t1 + pe1t2*t2
+# perceffort2 | pe2t1*t1 + pe2t2*t2
+# perctalent1 | pt1t1*t1 + pt1t2*t2
+# perctalent2 | pt2t1*t1 + pt2t2*t2
+# percrichparents1 | prp1t1*t1 + prp1t2*t2
+# percrichparents2 | prp2t1*t1 + prp2t2*t2
+# perccontact1 | pc1t1*t1 + pc1t2*t2
+# perccontact2 | pc2t1*t1 + pc2t2*t2
+# prefeffort1 | pre1t1*t1 + pre1t2*t2
+# prefeffort2 | pre2t1*t1 + pre2t2*t2
+# preftalent1 | prt1t1*t1 + prt1t2*t2
+# preftalent2 | prt2t1*t1 + prt2t2*t2
+# prefrichparents1 | pfrp1t1*t1 + pfrp1t2*t2
+# prefrichparents2 | pfrp2t1*t1 + pfrp2t2*t2
+# prefcontact1 | pfc1t1*t1 + pfc1t2*t2
+# prefcontact2 | pfc2t1*t1 + pfc2t2*t2
+ 
 
 # Covarianzas entre errores
 
@@ -424,18 +307,6 @@ prefmerit1  ~~ prefmerit1 + prefmerit2
 prefmerit2  ~~ prefmerit2
 prefnmerit1 ~~ prefnmerit1 + prefnmerit2
 prefnmerit2 ~~ prefnmerit2
-
-
-# Medias latentes
-
-percmerit1  ~ 0*1
-percmerit2  ~ 1
-percnmerit1 ~ 0*1
-percnmerit2 ~ 1
-prefmerit1  ~ 0*1
-prefmerit2  ~ 1
-prefnmerit1 ~ 0*1
-prefnmerit2 ~ 1
 
 
 # Thresholds iguales entre olas (invarianza fuerte)

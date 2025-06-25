@@ -1,0 +1,1049 @@
+---
+title: "Medición de percepciones y preferencias sobre meritocracia en etapa escolar en Chile"
+format:
+  html: 
+    code-fold: true
+    html-math-method: katex
+    number-sections: true
+    code-link: true
+    title-block-banner: true
+    theme:
+      - cosmo
+      - pretty.scss
+  pdf: 
+    geometry: margin=2cm
+    template-partials: 
+      - title.tex
+    keep-tex: true
+    include-in-header:
+      text: |
+        \usepackage[noblocks]{authblk}
+        \renewcommand*{\Authsep}{, }
+        \renewcommand*{\Authand}{, }
+        \renewcommand*{\Authands}{, }
+        \renewcommand\Affilfont{\small}
+    number-sections: true
+editor: source
+bibliography: "../input/bib/merit-factorial.bib"
+csl: "../input/bib/apa6.csl"
+author:
+  - name: Andreas Laffert Tamayo
+    email: alaffertt@estudiante.uc.cl 
+    affiliations: Instituto de Sociología, Pontificia Universidad Católica de Chile
+  - name: Tomás Urzúa
+    affiliations: Departamento de Sociología, Universidad de Chile
+citeproc: true
+link-citations: true
+colorlinks: true
+linestretch: 1.15       
+mainfont: Times New Roman
+fontsize: 12pt          
+fig-height: 4
+fig-width: 7.5
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, warning = FALSE, message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
+#| label: packages
+#| include: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               sjPlot,
+               here,
+               lavaan,
+               devtools,
+               psych,
+               psy,
+               corrplot,
+               ggdist,
+               GPArotations,
+               ggrepel,
+               nfactors,
+               patchwork,
+               sjlabelled,
+               semTools,
+               gtools,
+               RColorBrewer,
+               skimr,
+               readxl,
+               tydiverse,
+               kableExtra,
+               xtable)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data
+#| echo: false
+#| output: false
+
+load(file = here("output", "data", "db_long_proc.RData"))
+
+
+names(db_long)
+glimpse(db_long)
+
+```
+
+# Introducción
+
+:::: {.justify}
+
+La creencia de que las desigualdades económicas se justifican por diferencias en elementos meritocráticos—como el esfuerzo individual y el talento [@young_rise_1958]—ha sido identificada como un mecanismo clave para explicar la persistencia de las desigualdades. Desde sus inicios, las instituciones educativas han sido fundamentales en la promoción de estos valores, debido a su conexión con las promesas de movilidad social y mejores oportunidades de vida [@dubet_repensar_2011]. Investigaciones previas muestran que las personas que adhieren con mayor fuerza a creencias meritocráticas tienden a percibir menos desigualdad, atribuyendo las diferencias económicas al logro personal más que a factores estructurales [@mijs_paradox_2019; @wilson_role_2003a]. A nivel escolar, estas creencias también legitiman una mayor desigualdad, ya que fomentan actitudes que aceptan las jerarquías sociales como justas [@batruch_belief_2022; @wiederkehr_belief_2015]. Sin embargo, los conceptos e instrumentos para medir la meritocracia varían sustancialmente en la literatura. En respuesta a este problema, Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición para evaluar percepciones y preferencias meritocráticas y no meritocráticas, demostrando que su escala capta eficazmente estos constructos en la población adulta chilena.
+
+Con el objetivo de contribuir a la investigación empírica sobre la formación de la meritocracia y sus factores asociados en edades tempranas [@darnon_where_2018; @batruch_belief_2022; @wiederkehr_belief_2015], este estudio busca evaluar la aplicabilidad de dicha escala en la población escolar de Chile, un país caracterizado por una aguda y persistente desigualdad económica y un sistema educativo altamente estratificado [@corvalan_mercado_2017; @chancel_world_2022]. En primer lugar, argumentamos que existe una distinción entre percepción y preferencias en meritocracia. Mientras la percepción se asocia con cómo los individuos ven el funcionamiento de los principios meritocráticos en la sociedad (lo que es), las preferencias se refieren a juicios normativos (lo que debería ser). La segunda distinción concierne a elementos meritocráticos y no meritocráticos. En este caso, también se considera que aspectos como el rol de los contactos personales y la riqueza familiar no se oponen necesariamente a la percepción y valoración del esfuerzo y el talento en la obtención de éxito y recompensas.
+
+Para determinar hasta qué punto es posible reconocer las distintas dimensiones de la meritocracia en la población escolar, se implementará un procedimiento de análisis factorial confirmatorio utilizando datos de estudiantes chilenos. Además, se estimará la invarianza longitudinal a través de dos olas de datos de la misma cohorte para evaluar la estabilidad de la escala en el tiempo.
+
+# Datos, Variables y Métodos
+
+## Datos
+
+Este estudio se basa en información proveniente de la base de datos de la Encuesta Panel sobre Educación y Meritocracia (EDUMER) para sus olas de 2023 y 2024 en estudiantes. Esta encuesta se basa en la aplicación de cuestionarios web a estudiantes de sexto básico y primero medio de nueve colegios de las regiones Metropolitana y de Valparaíso en Chile. La primera ola incluyó a 846 estudiantes (383 niñas, 418 niños, 45 identificándose como otro; $M_{edad}$ = 13.1, $DE_{edad}$ = 1.6), y la segunda ola siguió a 662 de ellos (302 niñas, 337 niños, 22 identificándose como otro; $M_{edad}$ = 14.1, $DE_{edad}$ = 1.6). La recolección de datos fue financiada por la Agencia Nacional de Investigación y Desarrollo (ANID) de Chile, bajo el proyecto FONDECYT N.º 1210847, “Meritocracia en la escuela: fundamentos morales del mercado educativo y sus implicancias para la formación ciudadana en Chile”.
+
+
+## Variables
+
+**Escala de Percepciones y Preferencias sobre Meritocracia**: Las variables incluidas en el modelo de medición sobre percepciones y preferencias meritocráticas y no meritocráticas se operacionalizan según los mismos ítems propuestos por Castillo et al. [-@castillo_multidimensional_2023]. Esta es una escala basada en dos componentes, cuatro dimensiones y ocho ítems (dos por cada dimensión). La percepción de la meritocracia se mide con dos ítems que indagan el grado de acuerdo con la afirmación de que el esfuerzo y la habilidad son recompensados en Chile, mientras que la percepción no meritocrática se mide con dos ítems que evalúan el grado de acuerdo con la idea de que el éxito está vinculado a los contactos personales y a la riqueza familiar. La preferencia por la meritocracia se mide con dos ítems que evalúan el acuerdo con la idea de que quienes se esfuerzan más o poseen más talento deberían recibir mayores recompensas. La preferencia por aspectos no meritocráticos se mide con dos indicadores que evalúan el acuerdo con la idea de que es aceptable que quienes tienen mejores contactos o padres adinerados tengan más éxito (ver @tbl-merit). Cada ítem fue respondido en una escala Likert de cuatro puntos que va desde "muy en desacuerdo" (1) hasta "muy de acuerdo" (4).
+
+
+```{r}
+#| label: tbl-merit
+#| echo: false
+#| tbl-cap: "Ítems Meritocráticos y No Meritocráticos"
+#| tbl-cap-location: top
+
+tabla_merit <- data.frame(
+  Componente = c("Percepción", "", "", "", 
+                 "Preferencia", "", "", ""),
+  Dimensión = c("Meritocrática", "Meritocrática", 
+                "No meritocrática", "No meritocrática",
+                "Meritocrática", "Meritocrática", 
+                "No meritocrática", "No meritocrática"),
+  Ítem = c(
+    "En Chile, las personas son recompensadas por su esfuerzo.",
+    "En Chile, las personas son recompensadas por su inteligencia y habilidades.",
+    "En Chile, a quienes tienen padres ricos les va mucho mejor en la vida.",
+    "En Chile, a quienes tienen buenos contactos les va mejor en la vida.",
+    "Quienes se esfuerzan más deberían recibir mayores recompensas que quienes se esfuerzan menos.",
+    "Quienes tienen más talento deberían recibir mayores recompensas que quienes tienen menos talento.",
+    "Está bien que a quienes tienen padres ricos les vaya bien en la vida.",
+    "Está bien que a quienes tienen buenos contactos les vaya bien en la vida."
+  )
+)
+
+tabla_merit %>% kableExtra::kable(., format = "markdown")
+
+```
+
+
+## Métodos
+
+Empleamos análisis factoriales confirmatorios (AFC) basados en un modelo de medición latente de cuatro factores [@castillo_multidimensional_2023] con un estimador de mínimos cuadrados ponderados diagonales con corrección robusta (WLSMV) debido a la naturaleza ordinal de los ítems [@kline_principles_2023]. El ajuste del modelo se evaluó con base en los criterios propuestos por Brown [-@brown_confirmatory_2015]: CFI > 0.95; TLI > 0.95; RMSEA < 0.06.
+
+Para examinar la estabilidad métrica del modelo de medición [@davidov_measurement_2014], se realizaron pruebas de invarianza longitudinal utilizando los datos de las dos olas del estudio. En línea con @liu_testing_2017, se siguió un enfoque jerárquico con cuatro modelos: configural (estructura factorial equivalente), débil (igualdad de cargas factoriales), fuerte (igualdad de interceptos) y estricto (igualdad de varianzas de error). Este enfoque es especialmente relevante para indicadores categóricos ordenados, ya que tratar escalas Likert de cuatro puntos como continuas puede introducir sesgos en las estimaciones. Además del criterio de cambio en el chi-cuadrado, se adoptaron el cambio en CFI ($\Delta \geq -0.010$) y en RMSEA ($\Delta \geq 0.015$) como indicadores de invarianza, siguiendo las recomendaciones de Chen [-@chen_sensitivity_2007].
+
+# Resultados
+
+## Descriptivos
+
+En la @fig-likert se presenta la distribución de las respuestas para los ítems de la escala, organizadas según sus respectivas dimensiones: percepciones y preferencias. En primer lugar, en el eje de las percepciones, se observa una alta concentración de respuestas en las categorías “de acuerdo” y “muy de acuerdo” para todos los ítems, lo que indica una fuerte percepción de que los elementos evaluados influyen efectivamente en el éxito social. Esta tendencia es particularmente marcada en el ítem referido a los contactos, seguido por el talento, y con una notable cantidad de respuestas en “muy de acuerdo” respecto al ítem padres ricos. Sin embargo, también se evidencia cierto grado de disenso: un 33,1% considera que el esfuerzo no es recompensado en la sociedad; un 28,6% no está de acuerdo con que tener padres ricos implique una ventaja; y un 26,6% manifiesta desacuerdo respecto a la influencia del talento. El menor nivel de desacuerdo se registra en el ítem de contactos.
+
+En segundo lugar, en el eje de las preferencias, el patrón se invierte parcialmente. En el caso del esfuerzo, se observa una fuerte preferencia por que sea un criterio de recompensa, lo que contrasta con la percepción sobre su reconocimiento efectivo. En relación con el talento, un 54,6% manifiesta preferir que sea recompensado, frente a un 45,4% que no lo prefiere. En cuanto a los elementos no meritocráticos, como el origen familiar, la opinión se encuentra más dividida: en el caso de padres ricos, las respuestas se reparten casi equitativamente entre quienes prefieren y quienes no prefieren que este factor influya en el éxito. Finalmente, respecto a los contactos, se identifica una mayor proporción de respuestas que expresan preferencia por este criterio.
+
+
+```{r}
+#| label: fig-likert
+#| echo: false
+#| fig-cap: "Distribución de respuestas en los ítems de Escala de Meritocracia"
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+a <- db_long %>% 
+  filter(ola == 1) %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+b <- db_long %>% 
+  filter(ola == 1) %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db_long[db_long$ola==1,])[1],")"
+))
+
+likerplot
+
+
+```
+
+En la @tbl-correlaciones se presenta la matriz de correlaciones para los items de la escala. En términos generales, se observa una correlación positiva y de magnitud moderada entre los ítems que conforman una misma dimensión de la escala. Es decir, los ítems que miden percepción de esfuerzo y talento ($r$ = 0.52, $p$<.05), así como los que miden percepción sobre padres ricos y contactos ($r$ = 0.61, $p$<.05), tienden a correlacionarse entre sí. Este patrón también se reproduce en el caso de las preferencias normativas, donde los ítems dentro de cada subdimensión presentan correlaciones consistentes entre ellos.
+
+No obstante, un hallazgo relevante es la presencia de correlaciones positivas, aunque de magnitud débil a moderada, entre ítems que pertenecen a dimensiones conceptualmente opuestas. Por ejemplo, se observa que la percepción sobre la influencia de los padres ricos—un elemento típicamente considerado no meritocrático—se asocia positivamente con la preferencia por el esfuerzo—un criterio meritocrático ($r$ = 0.21). Este mismo patrón se observa con la percepción sobre el uso de contactos, que también presenta una correlación positiva con la preferencia por el esfuerzo ($r$ = 0.26).
+
+
+```{r}
+#| label: tbl-correlaciones
+#| echo: false
+#| tbl-cap: "Matriz de correlaciones policóricas entre los ítems de Escala de Meritocracia"
+#| tbl-cap-location: top
+
+M <- psych::polychoric(db_long[db_long$ola==1,][c(4:11)])
+
+diag(M$rho) <- NA
+
+rownames(M$rho) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencia Esfuerzo",
+                     "F. Preferencia Talento",
+                     "G. Preferencia Padres Ricos",
+                     "H. Preferencia Contactos")
+
+#set Column names of the matrix
+colnames(M$rho) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                    "(H)")
+
+testp <- cor.mtest(M$rho, conf.level = 0.95)
+
+
+df <- as.data.frame(M$rho)
+ 
+mat_cor <- as.matrix(df)
+
+
+p_stars <- gtools::stars.pval(testp$p)
+
+mat_cor_rounded <- round(mat_cor, 2)
+mat_cor_char <- format(mat_cor_rounded, nsmall = 2)
+
+cor_with_stars <- ifelse(is.na(mat_cor_char), "", 
+                         paste0(mat_cor_char, p_stars))
+
+cor_with_stars[upper.tri(cor_with_stars, diag = TRUE)] <- NA
+
+
+cor_with_stars %>% 
+  kableExtra::kable(., format = "markdown") %>% 
+  kableExtra::add_footnote(label = "**p<0.01, *p<0.5", notation = "none")
+
+
+```
+
+## Multivariados
+
+
+### Análisis factorial confirmatorio
+
+
+```{r}
+#| echo: false
+
+
+# model
+model_cfa <- '
+  perc_merit = ~ perc_effort + perc_talent
+  perc_nmerit = ~ perc_rich_parents + perc_contact
+  pref_merit = ~ pref_effort + pref_talent
+  pref_nmerit = ~ pref_rich_parents + pref_contact
+  '
+
+# estimation for each order set
+
+m1_cfa <- cfa(model = model_cfa, 
+              data = subset(db_long, ola == 1),
+              estimator = "DWLS",
+              ordered = T,
+              std.lv = F) 
+
+m2_cfa <- cfa(model = model_cfa, 
+              data = subset(db_long, ola == 2), 
+              estimator = "DWLS",
+              ordered = T,
+              std.lv = F)
+
+```
+
+En la @fig-cfa1 se presenta la solución estandarizada del modelo factorial confirmatorio estimado para la escala de meritocracia en la primera ola del estudio. De acuerdo con los grados de libertad, el modelo se encuentra sobre identidicado ($df$ = 14 > 0). Los indicadores de ajuste global muestran que el modelo presenta un buen ajuste a los datos empíricos. En efecto, tanto el índice de ajuste comparativo (CFI) como el índice de Tucker-Lewis (TLI) y el error cuadrático medio de aproximación (RMSEA) se encuentran dentro de los umbrales comúnmente aceptados para indicar un buen ajuste (CFI y TLI > 0.95; RMSEA < 0.05), lo cual respalda la validez factorial del instrumento [@brown_confirmatory_2015].
+
+
+```{r}
+#| label: fig-cfa1
+#| fig-cap: "Análisis factorial confirmatorio de Escala de Meritocracia Ola 1"
+#| fig-cap-location: top
+#| fig-align: center
+#| fig-width: 7
+#| out-width: '100%'
+#| echo: false
+
+knitr::include_graphics(path = here("sem/cfa_w1.png"))
+```
+
+En relación con las cargas factoriales, todos los ítems se asocian de forma positiva y estadísticamente significativa con sus respectivas dimensiones latentes, y presentan cargas estandarizadas superiores a 0.5, lo que indica una adecuada calidad de la medición [@brown_confirmatory_2015]. Dentro de la dimensión de percepción meritocrática, el ítem correspondiente al esfuerzo destaca como el indicador con mayor carga factorial ($\beta$ = 0.87, $p$ < 0.01), lo que sugiere que este principio constituye el eje central en las creencias sobre los mecanismos legítimos del éxito social desde una lógica meritocrática. Por su parte, en la dimensión de percepción no meritocrática, el ítem referido al uso de contactos personales presenta la mayor carga ($\beta$ = 0.944, $p$ < 0.01), posicionándose como el componente más representativo de esta dimensión. En las dimensiones normativas se observan patrones similares: en la preferencia por criterios meritocráticos existe una cierta paridad entre los ítems de esfuerzo y talento, sin que uno predomine claramente sobre el otro, mientras que en la preferencia por criterios no meritocráticos nuevamente el uso de contactos ($\beta$ = 0.833, $p$ < 0.01) emerge como el criterio normativo más relevante.
+
+Respecto de las correlaciones entre factores, se identifican relaciones conceptualmente significativas. Por un lado, la percepción de que los logros sociales se deben a factores meritocráticos se asocia negativamente con la percepción de que estos se explican por mecanismos no meritocráticos ($r$ = -0.133, $p$<0.01). Por otro lado, y en contraste con esta lógica excluyente en el plano perceptivo, se observa una correlación positiva entre las preferencias meritocráticas y no meritocráticas ($r$ = 0.186, $p$<0.01). Este hallazgo sugiere que, normativamente, ambas lógicas pueden coexistir: los estudiantes pueden simultáneamente valorar que el esfuerzo o el talento deban ser recompensados, al mismo tiempo que consideran legítimo que otros factores, como el origen familiar o los contactos, también influyan en el acceso a ventajas.
+
+Se observa una correlación positiva entre la percepción de mecanismos no meritocráticos y la preferencia por mecanismos meritocráticos. Específicamente, quienes perciben que el funcionamiento social se basa en factores no meritocráticos —como los contactos personales o el origen familiar— tienden a manifestar una mayor preferencia por que elementos meritocráticos, como el esfuerzo y el talento, sean efectivamente recompensados en la sociedad ($r$ = 0.461, $p$ < 0.01). Este hallazgo sugiere que el reconocimiento de una realidad social percibida como injusta o alejada del ideal meritocrático puede reforzar normativamente la adhesión a principios meritocráticos. En otras palabras, cuanto más se percibe que operan criterios ajenos al mérito en la distribución de ventajas, mayor es el deseo de que el mérito —en particular, el esfuerzo y el talento— se convierta en el fundamento legítimo de la recompensa social.
+
+
+```{r}
+#| label: fig-cfa2
+#| fig-cap: "Análisis factorial confirmatorio de Escala de Meritocracia Ola 2"
+#| fig-cap-location: top
+#| fig-align: center
+#| fig-width: 7
+#| out-width: '100%'
+#| echo: false
+knitr::include_graphics(path = here("sem/cfa_w2.png"))
+```
+
+
+En la @fig-cfa2 se presenta la solución estandarizada del modelo factorial confirmatorio estimado para la segunda ola del estudio. Al igual que en la ola anterior, el modelo se encuentra sobreidentificado, con 14 grados de libertad ($df$ = 14 > 0), lo que permite una estimación robusta de los parámetros del modelo.
+
+En términos de ajuste global, los indicadores complementarios —el índice de ajuste comparativo (CFI) y el índice de Tucker-Lewis (TLI)— se sitúan por sobre el umbral de 0.95, lo que indica un buen ajuste relativo del modelo. Por su parte, el RMSEA alcanza un valor de 0.06, que corresponde a un ajuste razonable según los criterios establecidos en la literatura especializada [@brown_confirmatory_2015].
+
+En cuanto a las cargas factoriales, se mantienen los patrones observados en la ola anterior con algunas variaciones menores. Dentro de la dimensión de percepción meritocrática, el ítem de esfuerzo continúa siendo el más relevante, mostrando una carga superior a la del talento. En la percepción no meritocrática, en cambio, se observa una mayor paridad entre los indicadores: tanto el ítem de padres ricos como el de contactos personales contribuyen de manera similar a la dimensión. En lo que respecta a las preferencias normativas, se confirma nuevamente que el esfuerzo es el componente con mayor carga factorial dentro de la dimensión meritocrática, superando al talento. Por su parte, en la preferencia por criterios no meritocráticos, el ítem que presenta mayor peso es el de contactos, reafirmando su centralidad en esta dimensión.
+
+Respecto de las correlaciones entre factores, se replican en gran medida los patrones observados en la primera ola. Se mantiene la correlación negativa entre percepción meritocrática y percepción no meritocrática, así como la correlación positiva entre las preferencias por criterios meritocráticos y no meritocráticos, indicando la persistencia de una tensión entre representación descriptiva y posicionamiento normativo. También se conserva la asociación positiva entre percepción no meritocrática y preferencia por estos mecanismos, lo que refuerza la hipótesis de legitimación normativa de estructuras no basadas en mérito.
+
+### Invarianza longitudinal
+
+Para evaluar la estabilidad estructural de la escala a lo largo del tiempo, se estimaron modelos jerárquicos de invarianza longitudinal utilizando análisis factorial confirmatorio (CFA) con indicadores categóricos ordenados. En línea con las recomendaciones metodológicas de @liu_testing_2017, se evaluaron cuatro modelos anidados con estimación mediante mínimos cuadrados ponderados diagonales con corrección robusta (WLSMV) y parametrización tipo theta. Los modelos probados fueron: configural (estructura factorial libre), débil (cargas factoriales iguales), fuerte (cargas y umbrales iguales), y estricto (cargas, umbrales y varianzas residuales iguales).
+
+El modelo especificado contempla cuatro factores latentes replicados en dos mediciones (olas), cada uno con dos ítems. Se permitió la covarianza de los errores de medición del mismo ítem entre las dos olas, una práctica recomendada para modelos longitudinales con pocos indicadores por factor. La identificación se logró fijando una carga a 1 por cada factor y un umbral igualado por ítem entre olas.
+
+
+
+
+```{r}
+#| results: hide 
+#| echo: false
+
+load(file = here("output", "data", "db_long_proc.RData"))
+
+names(db_long)
+glimpse(db_long)
+dim(db_long)
+```
+
+```{r}
+#| results: hide 
+#| echo: false
+
+db_invariance <-
+  db_long %>%
+  select(id_estudiante, ola, starts_with(c("perc", "pref"))) %>%
+  pivot_wider(
+    id_cols = id_estudiante,
+    names_from = ola,
+    names_glue = "{.value}{ola}",
+    values_from = c(
+      perc_effort, perc_talent,
+      perc_rich_parents, perc_contact,
+      pref_effort, pref_talent,
+      pref_rich_parents, pref_contact
+    )
+  ) %>%
+  na.omit() %>%
+  rename_with(~ str_replace_all(., "_", ""))
+
+
+db_invariance <- db_invariance %>% 
+  mutate(
+    across(
+      .cols = -idestudiante,
+      .fns = ~ case_when(. == 1 ~ 0,
+                         . == 2 ~ 1,
+                         . == 3 ~ 2,
+                         . == 4 ~ 3)
+    )
+  )
+
+db_invariance <- db_invariance %>% 
+  mutate(
+    across(
+      .cols = -idestudiante,
+      .fns = ~ ordered(.)
+    )
+  )
+```
+
+```{r}
+#| echo: false
+
+baseline_model_smt <- ('
+
+###########################################
+# Definición de factores (1 marcador por factor)
+###########################################
+
+percmerit1  =~ 1*perceffort1     + perctalent1
+percmerit2  =~ 1*perceffort2     + perctalent2
+
+percnmerit1 =~ 1*percrichparents1 + perccontact1
+percnmerit2 =~ 1*percrichparents2 + perccontact2
+
+prefmerit1  =~ 1*prefeffort1     + preftalent1
+prefmerit2  =~ 1*prefeffort2     + preftalent2
+
+prefnmerit1 =~ 1*prefrichparents1 + prefcontact1
+prefnmerit2 =~ 1*prefrichparents2 + prefcontact2
+
+
+###########################################
+# Covarianzas entre errores (mismo ítem, distintas olas)
+###########################################
+
+perceffort1 ~~ perceffort2
+perctalent1 ~~ perctalent2
+
+percrichparents1 ~~ percrichparents2
+perccontact1     ~~ perccontact2
+
+prefeffort1 ~~ prefeffort2
+preftalent1 ~~ preftalent2
+
+prefrichparents1 ~~ prefrichparents2
+prefcontact1     ~~ prefcontact2
+')
+
+
+
+# Estimación del modelo
+fit_baseline <- cfa(baseline_model_smt, data = db_invariance,
+                    ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
+                                "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
+                                "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
+                                "prefrichparents1", "prefcontact1", "prefrichparents2", "prefcontact2"),
+                    parameterization = "theta",
+                    estimator = "WLSMV")
+
+
+loadinginv_model_smt <- ('
+
+# Igualación de cargas (invarianza débil)
+
+percmerit1  =~ 1*perceffort1 + pe_loading*perctalent1
+percmerit2  =~ 1*perceffort2 + pe_loading*perctalent2
+
+percnmerit1 =~ 1*percrichparents1 + prc_loading*perccontact1
+percnmerit2 =~ 1*percrichparents2 + prc_loading*perccontact2
+
+prefmerit1  =~ 1*prefeffort1 + pfe_loading*preftalent1
+prefmerit2  =~ 1*prefeffort2 + pfe_loading*preftalent2
+
+prefnmerit1 =~ 1*prefrichparents1 + pfrc_loading*prefcontact1
+prefnmerit2 =~ 1*prefrichparents2 + pfrc_loading*prefcontact2
+
+
+# Varianzas y covarianzas latentes
+
+percmerit1  ~~ percmerit1 + percmerit2
+percmerit2  ~~ percmerit2
+percnmerit1 ~~ percnmerit1 + percnmerit2
+percnmerit2 ~~ percnmerit2
+prefmerit1  ~~ prefmerit1 + prefmerit2
+prefmerit2  ~~ prefmerit2
+prefnmerit1 ~~ prefnmerit1 + prefnmerit2
+prefnmerit2 ~~ prefnmerit2
+
+
+# Umbrales (uno igualado por ítem)
+
+# perceffort1 | pe1t1*t1 + pe1t2*t2
+# perceffort2 | pe2t1*t1 + pe2t2*t2
+# perctalent1 | pt1t1*t1 + pt1t2*t2
+# perctalent2 | pt2t1*t1 + pt2t2*t2
+# percrichparents1 | prp1t1*t1 + prp1t2*t2
+# percrichparents2 | prp2t1*t1 + prp2t2*t2
+# perccontact1 | pc1t1*t1 + pc1t2*t2
+# perccontact2 | pc2t1*t1 + pc2t2*t2
+# prefeffort1 | pre1t1*t1 + pre1t2*t2
+# prefeffort2 | pre2t1*t1 + pre2t2*t2
+# preftalent1 | prt1t1*t1 + prt1t2*t2
+# preftalent2 | prt2t1*t1 + prt2t2*t2
+# prefrichparents1 | pfrp1t1*t1 + pfrp1t2*t2
+# prefrichparents2 | pfrp2t1*t1 + pfrp2t2*t2
+# prefcontact1 | pfc1t1*t1 + pfc1t2*t2
+# prefcontact2 | pfc2t1*t1 + pfc2t2*t2
+ 
+
+# Covarianzas entre errores
+
+perceffort1 ~~ perceffort2
+perctalent1 ~~ perctalent2
+percrichparents1 ~~ percrichparents2
+perccontact1 ~~ perccontact2
+prefeffort1 ~~ prefeffort2
+preftalent1 ~~ preftalent2
+prefrichparents1 ~~ prefrichparents2
+prefcontact1 ~~ prefcontact2
+')
+
+
+fit_loadinginv <- cfa(loadinginv_model_smt, data = db_invariance,
+                      ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
+                                  "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
+                                  "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
+                                  "prefrichparents1", "prefcontact1", "prefrichparents2", "prefcontact2"),
+                      parameterization = "theta",
+                      estimator = "WLSMV")
+
+thresholdinv_model_smt <- ('
+
+# Igualación de cargas (como en el modelo débil)
+
+percmerit1  =~ 1*perceffort1 + pe_loading*perctalent1
+percmerit2  =~ 1*perceffort2 + pe_loading*perctalent2
+
+percnmerit1 =~ 1*percrichparents1 + prc_loading*perccontact1
+percnmerit2 =~ 1*percrichparents2 + prc_loading*perccontact2
+
+prefmerit1  =~ 1*prefeffort1 + pfe_loading*preftalent1
+prefmerit2  =~ 1*prefeffort2 + pfe_loading*preftalent2
+
+prefnmerit1 =~ 1*prefrichparents1 + pfrc_loading*prefcontact1
+prefnmerit2 =~ 1*prefrichparents2 + pfrc_loading*prefcontact2
+
+
+# Varianzas y covarianzas latentes
+
+percmerit1  ~~ percmerit1 + percmerit2
+percmerit2  ~~ percmerit2
+percnmerit1 ~~ percnmerit1 + percnmerit2
+percnmerit2 ~~ percnmerit2
+prefmerit1  ~~ prefmerit1 + prefmerit2
+prefmerit2  ~~ prefmerit2
+prefnmerit1 ~~ prefnmerit1 + prefnmerit2
+prefnmerit2 ~~ prefnmerit2
+
+
+# Thresholds iguales entre olas (invarianza fuerte)
+
+perceffort1     | pe_t1*t1 + pe_t2*t2
+perceffort2     | pe_t1*t1 + pe_t2*t2
+perctalent1     | pt_t1*t1 + pt_t2*t2
+perctalent2     | pt_t1*t1 + pt_t2*t2
+percrichparents1| prp_t1*t1 + prp_t2*t2
+percrichparents2| prp_t1*t1 + prp_t2*t2
+perccontact1    | pc_t1*t1 + pc_t2*t2
+perccontact2    | pc_t1*t1 + pc_t2*t2
+prefeffort1     | pre_t1*t1 + pre_t2*t2
+prefeffort2     | pre_t1*t1 + pre_t2*t2
+preftalent1     | prt_t1*t1 + prt_t2*t2
+preftalent2     | prt_t1*t1 + prt_t2*t2
+prefrichparents1| pfrp_t1*t1 + pfrp_t2*t2
+prefrichparents2| pfrp_t1*t1 + pfrp_t2*t2
+prefcontact1    | pfc_t1*t1 + pfc_t2*t2
+prefcontact2    | pfc_t1*t1 + pfc_t2*t2
+
+
+# Interceptos fijos
+
+perceffort1 + perctalent1 ~ 0*1
+perceffort2 + perctalent2 ~ 0*1
+percrichparents1 + perccontact1 ~ 0*1
+percrichparents2 + perccontact2 ~ 0*1
+prefeffort1 + preftalent1 ~ 0*1
+prefeffort2 + preftalent2 ~ 0*1
+prefrichparents1 + prefcontact1 ~ 0*1
+prefrichparents2 + prefcontact2 ~ 0*1
+
+
+# Varianzas únicas
+
+perceffort1 ~~ 1*perceffort1
+perctalent1 ~~ 1*perctalent1
+percrichparents1 ~~ 1*percrichparents1
+perccontact1 ~~ 1*perccontact1
+prefeffort1 ~~ 1*prefeffort1
+preftalent1 ~~ 1*preftalent1
+prefrichparents1 ~~ 1*prefrichparents1
+prefcontact1 ~~ 1*prefcontact1
+
+perceffort2 ~~ NA*perceffort2
+perctalent2 ~~ NA*perctalent2
+percrichparents2 ~~ NA*percrichparents2
+perccontact2 ~~ NA*perccontact2
+prefeffort2 ~~ NA*prefeffort2
+preftalent2 ~~ NA*preftalent2
+prefrichparents2 ~~ NA*prefrichparents2
+prefcontact2 ~~ NA*prefcontact2
+
+
+# Covarianzas entre errores longitudinales
+
+perceffort1 ~~ perceffort2
+perctalent1 ~~ perctalent2
+percrichparents1 ~~ percrichparents2
+perccontact1 ~~ perccontact2
+prefeffort1 ~~ prefeffort2
+preftalent1 ~~ preftalent2
+prefrichparents1 ~~ prefrichparents2
+prefcontact1 ~~ prefcontact2
+')
+
+fit_thresholdinv <- cfa(thresholdinv_model_smt, data = db_invariance,
+                        ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
+                                    "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
+                                    "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
+                                    "prefrichparents1", "prefcontact1", "prefrichparents2", "prefcontact2"),
+                        parameterization = "theta",
+                        estimator = "WLSMV")
+
+uniquenessinv_model_smt <- ('
+
+# Cargas factoriales (invarianza débil)
+
+percmerit1  =~ 1*perceffort1 + pe_loading*perctalent1
+percmerit2  =~ 1*perceffort2 + pe_loading*perctalent2
+
+percnmerit1 =~ 1*percrichparents1 + prc_loading*perccontact1
+percnmerit2 =~ 1*percrichparents2 + prc_loading*perccontact2
+
+prefmerit1  =~ 1*prefeffort1 + pfe_loading*preftalent1
+prefmerit2  =~ 1*prefeffort2 + pfe_loading*preftalent2
+
+prefnmerit1 =~ 1*prefrichparents1 + pfrc_loading*prefcontact1
+prefnmerit2 =~ 1*prefrichparents2 + pfrc_loading*prefcontact2
+
+
+# Varianzas y covarianzas de factores latentes
+
+percmerit1  ~~ percmerit1 + percmerit2
+percmerit2  ~~ percmerit2
+percnmerit1 ~~ percnmerit1 + percnmerit2
+percnmerit2 ~~ percnmerit2
+prefmerit1  ~~ prefmerit1 + prefmerit2
+prefmerit2  ~~ prefmerit2
+prefnmerit1 ~~ prefnmerit1 + prefnmerit2
+prefnmerit2 ~~ prefnmerit2
+
+
+# Medias latentes
+
+percmerit1  ~ 0*1
+percmerit2  ~ 1
+percnmerit1 ~ 0*1
+percnmerit2 ~ 1
+prefmerit1  ~ 0*1
+prefmerit2  ~ 1
+prefnmerit1 ~ 0*1
+prefnmerit2 ~ 1
+
+
+# Umbrales (invarianza fuerte)
+
+perceffort1     | pe_t1*t1 + pe_t2*t2
+perceffort2     | pe_t1*t1 + pe_t2*t2
+perctalent1     | pt_t1*t1 + pt_t2*t2
+perctalent2     | pt_t1*t1 + pt_t2*t2
+percrichparents1| prp_t1*t1 + prp_t2*t2
+percrichparents2| prp_t1*t1 + prp_t2*t2
+perccontact1    | pc_t1*t1 + pc_t2*t2
+perccontact2    | pc_t1*t1 + pc_t2*t2
+prefeffort1     | pre_t1*t1 + pre_t2*t2
+prefeffort2     | pre_t1*t1 + pre_t2*t2
+preftalent1     | prt_t1*t1 + prt_t2*t2
+preftalent2     | prt_t1*t1 + prt_t2*t2
+prefrichparents1| pfrp_t1*t1 + pfrp_t2*t2
+prefrichparents2| pfrp_t1*t1 + pfrp_t2*t2
+prefcontact1    | pfc_t1*t1 + pfc_t2*t2
+prefcontact2    | pfc_t1*t1 + pfc_t2*t2
+
+
+# Interceptos fijos
+
+perceffort1 + perctalent1 ~ 0*1
+perceffort2 + perctalent2 ~ 0*1
+percrichparents1 + perccontact1 ~ 0*1
+percrichparents2 + perccontact2 ~ 0*1
+prefeffort1 + preftalent1 ~ 0*1
+prefeffort2 + preftalent2 ~ 0*1
+prefrichparents1 + prefcontact1 ~ 0*1
+prefrichparents2 + prefcontact2 ~ 0*1
+
+
+# Varianzas únicas (invarianza estricta)
+# Fijadas a 1 en todas las olas
+
+perceffort1 ~~ 1*perceffort1
+perceffort2 ~~ 1*perceffort2
+perctalent1 ~~ 1*perctalent1
+perctalent2 ~~ 1*perctalent2
+
+percrichparents1 ~~ 1*percrichparents1
+percrichparents2 ~~ 1*percrichparents2
+perccontact1 ~~ 1*perccontact1
+perccontact2 ~~ 1*perccontact2
+
+prefeffort1 ~~ 1*prefeffort1
+prefeffort2 ~~ 1*prefeffort2
+preftalent1 ~~ 1*preftalent1
+preftalent2 ~~ 1*preftalent2
+
+prefrichparents1 ~~ 1*prefrichparents1
+prefrichparents2 ~~ 1*prefrichparents2
+prefcontact1 ~~ 1*prefcontact1
+prefcontact2 ~~ 1*prefcontact2
+
+
+# Covarianzas entre errores (mismo ítem, diferente ola)
+
+perceffort1 ~~ perceffort2
+perctalent1 ~~ perctalent2
+percrichparents1 ~~ percrichparents2
+perccontact1 ~~ perccontact2
+prefeffort1 ~~ prefeffort2
+preftalent1 ~~ preftalent2
+prefrichparents1 ~~ prefrichparents2
+prefcontact1 ~~ prefcontact2
+')
+
+fit_uniquenessinv <- cfa(uniquenessinv_model_smt, data = db_invariance,
+                         ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
+                                     "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
+                                     "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
+                                     "prefrichparents1", "prefcontact1", "prefrichparents2", "prefcontact2"),
+                         parameterization = "theta",
+                         estimator = "WLSMV")
+```
+
+
+```{r}
+#| echo: false
+#| results: asis
+#| label: tbl-invarianza
+#| tbl-cap: "Pruebas de invarianza longitudinal para el modelo de cuatro factores con indicadores ordinales"
+#| tbl-cap-location: top
+
+an1 <- anova(fit_baseline, fit_loadinginv)
+an2 <- anova(fit_loadinginv, fit_thresholdinv)
+an3 <- anova(fit_thresholdinv, fit_uniquenessinv)
+
+tab01 <- bind_rows(
+  as_tibble(an1)[2,],
+  as_tibble(an2)[2,],
+  as_tibble(an3)[2,]
+) %>%
+  select("Chisq", "Df", chisq_diff = `Chisq diff`, df_diff = `Df diff`, pvalue = `Pr(>Chisq)`) %>%
+  mutate(
+    stars = stars.pval(pvalue),
+    chisqt = paste0(round(Chisq, 2), " (", Df, ")"),
+    decision = ifelse(pvalue > 0.05, "Accept", "Reject"),
+    model = c("Weak", "Strong", "Strict")
+  ) %>%
+  bind_rows(
+    tibble(Chisq = an1$Chisq[1], Df = an1$Df[1], chisq_diff = NA, df_diff = NA,
+           pvalue = NA, stars = "", chisqt = paste0(round(an1$Chisq[1], 2), " (", an1$Df[1], ")"),
+           decision = "Reference", model = "Configural")
+  ) %>%
+  select(model, chisqt, chisq_diff, df_diff, pvalue, stars, decision) %>%
+  mutate(model = factor(model, levels = c("Configural", "Weak", "Strong", "Strict"))) %>%
+  arrange(model)
+
+
+fit.meas <- dplyr::bind_rows(lavaan::fitmeasures(fit_baseline, output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                             lavaan::fitmeasures(fit_loadinginv,  output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                             lavaan::fitmeasures(fit_thresholdinv, output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),],
+                             lavaan::fitmeasures(fit_uniquenessinv, output ="matrix")[c("chisq","df","cfi","rmsea","rmsea.ci.lower","rmsea.ci.upper"),])
+
+fit.meas <- fit.meas %>%
+  dplyr::mutate(diff.chi2 = chisq    - lag(chisq,default = dplyr::first(chisq)),
+                diff.df   = df       - lag(df,   default = dplyr::first(df)),
+                diff.cfi  = cfi      - lag(cfi,  default = dplyr::first(cfi)),
+                diff.rmsea   = rmsea - lag(rmsea,default = dplyr::first(rmsea))) %>%
+  round(3) %>%
+  dplyr::mutate(rmsea.ci=paste0(rmsea," \n ", "(",rmsea.ci.lower,"-",rmsea.ci.upper,")"))
+
+tab.inv <- dplyr::bind_cols(tab01,fit.meas) %>%
+  dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.df,diff.cfi,diff.rmsea,stars,decision) %>%
+  dplyr::mutate(diff.chi2=paste0(diff.chi2," (",diff.df,") ",stars)) %>%
+  dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.cfi,diff.rmsea,decision)
+
+
+col.nam <- c("Model","&chi;^2 (df)","CFI","RMSEA (90 CI)",
+             "&Delta; &chi;^2 (&Delta; df)","&Delta; CFI","&Delta; RMSEA","Decision")
+
+tab.inv %>% 
+  kableExtra::kable(format = "markdown",
+                    align = "c",
+                    booktabs = T,
+                    escape = F,
+                    caption = NULL,
+                    col.names = col.nam) %>%
+  kableExtra::kable_styling(full_width = F,
+                            latex_options = "hold_position",
+                            bootstrap_options=c("striped", "bordered", "condensed"),
+                            font_size = 9) 
+```
+
+
+En la @tbl-invarianza se presentan los índices de ajuste global para cada modelo, junto con las diferencias relativas entre modelos consecutivos. Los valores de CFI ≥ 0.990 y RMSEA ≤ 0.035 en todos los modelos sugieren un ajuste adecuado. Además, los cambios entre modelos anidados fueron sistemáticamente inferiores a los puntos de corte recomendados para evaluar deterioro del ajuste ($\Delta$CFI < 0.01; $\Delta$RMSEA < 0.015), lo que respalda la aceptación de los supuestos de invarianza en cada nivel.
+
+
+En conjunto, estos resultados respaldan la existencia de invarianza estricta longitudinal, lo que permite comparar de manera válida las puntuaciones latentes entre las dos olas del estudio. Esto implica que los cambios observados pueden atribuirse a diferencias reales en las percepciones y preferencias meritocráticas de los estudiantes, y no a cambios en la interpretación o funcionamiento de los ítems a lo largo del tiempo.
+
+# Referencias
+
+::: {#refs}
+:::
+
+::::
+
+\pagebreak
+
+# Anexos
+
+
+## Análisis factorial exploratorio
+
+```{r}
+#| label: fa-table 
+#| echo: false
+
+knitr::opts_chunk$set(echo = TRUE, cache = T)
+library(knitr)
+
+
+fa_table <- function(x, varlabels = NULL, title = "Factor analysis results", diffuse = .10, small = .30, cross = .20, sort = TRUE) {
+  #get sorted loadings
+  require(dplyr)
+  require(purrr)
+  require(tibble)
+  require(gt)
+  if(sort == TRUE) {
+    x <- psych::fa.sort(x)
+  }
+  if(!is.null(varlabels)) {
+    if(length(varlabels) != nrow(x$loadings)) { warning("Number of variable labels and number of variables are unequal. Check your input!",
+                                                        call. = FALSE) }
+    if(sort == TRUE) {
+      varlabels <- varlabels[x$order]
+    }
+  }
+  if(is.null(varlabels)) {varlabels <- rownames(x$loadings)}
+  
+  loadings <- data.frame(unclass(x$loadings))
+  
+  #make nice names
+  factornamer <- function(nfactors) {
+    paste0("Factor_", 1:nfactors)}
+  
+  nfactors <- ncol(loadings)
+  fnames <- factornamer(nfactors)
+  names(loadings) <- fnames
+  
+  # prepare locations
+  factorindex <- apply(loadings, 1, function(x) which.max(abs(x)))
+  
+  # adapted from from sjplot: getremovableitems
+  getRemovableItems <- function(dataframe, fctr.load.tlrn = diffuse) {
+    # clear vector
+    removers <- vector(length = nrow(dataframe))
+    # iterate each row of the data frame. each row represents
+    # one item with its factor loadings
+    for (i in seq_along(removers)) {
+      # get factor loadings for each item
+      rowval <- as.numeric(abs(dataframe[i, ]))
+      # retrieve highest loading
+      maxload <- max(rowval)
+      # retrieve 2. highest loading
+      max2load <- sort(rowval, TRUE)[2]
+      # check difference between both
+      if (abs(maxload - max2load) < fctr.load.tlrn) {
+        # if difference is below the tolerance,
+        # remeber row-ID so we can remove that items
+        # for further PCA with updated data frame
+        removers[i] <- TRUE
+      }
+    }
+    # return a vector with index numbers indicating which items
+    # have unclear loadings
+    return(removers)
+  }
+  if(nfactors > 1) {
+    removable <- getRemovableItems(loadings)
+    cross_loadings <- purrr::map2(fnames, seq_along(fnames), function(f, i) {
+      (abs(loadings[,f] > cross)) & (factorindex != i) 
+    })
+  }
+  
+  small_loadings <- purrr::map(fnames, function(f) {
+    abs(loadings[,f]) < small
+  })
+  
+  ind_table <- dplyr::tibble(varlabels, loadings) %>%
+    dplyr::rename(Indicator = varlabels) %>% 
+    dplyr::mutate(Communality = x$communality, Uniqueness = x$uniquenesses, Complexity = x$complexity) %>% 
+    dplyr::mutate(across(starts_with("Factor"), round, 3))  %>%
+    dplyr::mutate(across(c(Communality, Uniqueness, Complexity), round, 2))
+  
+  
+  ind_table <- ind_table %>% gt(rowname_col = "Indicator") %>% tab_header(title = title)
+  # mark small loadiongs
+  for(f in seq_along(fnames)) {
+    ind_table <- ind_table %>%  tab_style(style = cell_text(color = "#D3D3D3", style = "italic"),
+                                          locations = cells_body(columns = fnames[f], rows = small_loadings[[f]]))
+  }
+  # mark cross loadings
+  
+  if (nfactors > 1) {
+    for (f in seq_along(fnames)) {
+      ind_table <-
+        ind_table %>%  tab_style(
+          style = cell_text(style = "italic"),
+          locations = cells_body(columns = fnames[f], rows = cross_loadings[[f]])
+        )
+    }
+    # mark non-assignable indicators
+    ind_table <-
+      ind_table %>%  tab_style(style = cell_fill(color = "#D93B3B"),
+                               locations = cells_body(rows = removable))
+  }
+  
+  # adapted from https://www.anthonyschmidt.co/post/2020-09-27-efa-tables-in-r/
+  Vaccounted <- x[["Vaccounted"]]
+  colnames(Vaccounted) <- fnames 
+  if (nfactors > 1) {
+    Phi <- x[["Phi"]]
+    rownames(Phi) <- fnames
+    colnames(Phi) <- fnames
+    f_table <- rbind(Vaccounted, Phi) %>%
+      as.data.frame() %>% 
+      rownames_to_column("Property") %>%
+      mutate(across(where(is.numeric), round, 3)) %>%
+      gt() %>% tab_header(title = "Eigenvalues, Variance Explained, and Factor Correlations for Rotated Factor Solution")
+  }
+  else if(nfactors == 1) {
+    f_table <- rbind(Vaccounted) %>%
+      as.data.frame() %>% 
+      rownames_to_column("Property") %>%
+      mutate(across(where(is.numeric), round, 3)) %>%
+      gt() %>% tab_header(title = "Eigenvalues, Variance Explained, and Factor Correlations for Rotated Factor Solution")
+  }
+  
+  return(list("ind_table" = ind_table, "f_table" = f_table))
+  
+}
+
+```
+
+```{r}
+#| include: false 
+
+db_w1 <- db_long %>% filter(ola==1) %>% select(starts_with("perc"),
+         starts_with("pref"))
+corMat <- round(cor(db_w1), 2)
+KMO(corMat) 
+cortest.bartlett(corMat, n = 846)
+```
+
+```{r}
+#| include: false 
+
+fac_pa <- fa(r = db_w1, nfactors = 4, fm= "pa")
+#summary(fac_pa)
+fac_pa
+```
+
+```{r}
+#| label: tbl-exploratorio
+#| tbl-cap: "Análisis exploratorio escala de meritocracia"
+#| tbl-cap-location: top
+
+ tab_fa(db_w1, method = "ml", rotation = "varimax", show.comm = TRUE)
+```
+
+Como primera parte del análisis, se aplicó la adecuación muestral (KMO), dando como resultado correlaciones de magnitud moderada de manera generalizada (Ver anexos). Esto quiere decir que los resultados son adecuados para realizar un Análisis Factorial Exploratorio. Además se aplicó un test de esfericidad de Bartlett el cual dio significancia estadística, por lo que se puede afirmar que la matriz de correlaciones observada es una matriz identidad ($p$<.05). 
+
+En la @tbl-exploratorio se pueden observar los resultados del análisis factorial exploratorio realizado a partir del método Maximum likelihood con una rotación ortogonal. Se puede observar la presencia de cuatro factores, pero resultan llamativos los factores 1 y 2, específicamente las cargas factoriales de preferencia de contactos y la percepción de padres ricos, respectivamente. Ambos indicadores tienen una carga factorial de 0.99 y una comunalidad del mismo valor. Su interpretación sugiere que ambos indicadores se asocian casi por completo a un factor, por lo que el indicador con menor carga factorial en los factores 1 y 2 podría ser prescindido. No obstante, este resultado que debe tomarse con precaución, puesto que el método para la extracción de factores empleado fue ML, el cual tiende a maximizar la probabilidad de que los parámetros reproduzcan los parámetros observados, por lo que podría haber generado algún tipo de sobreajuste.
+
+Por otro lado, al aplicar el método de Ejes Principales, las cargas factoriales de 0.99 que se generaban en el caso anterior disminuyen, pero aún así mantienen una alta comunalidad. Es importante mencionar que todos los indicadores poseen una complejidad > 1, lo cual señala que cada ítem representa un único constructo subyacente. Por último, la suma de cargas al cuadrado para los dos primeros factores el > 1, por lo que son factores que vale la pena conservar. En cambio, los factores 3 y 4 poseen valores < 1 (0.913 y 0.631, respectivamente), lo cual resulta problemático para la escala analizada. Si bien, en términos de conveniencia estadística sería mejor eliminar el factor 4 de la escala, esto no puede realizarse debido a la relevancia teórica que posee para el instrumento de medición, por ello es importante tomar en consideración este resultado para posteriores usos. 
+
+```{r}
+KMO(corMat) 
+```
+
+```{r}
+cortest.bartlett(corMat, n = 846)
+```
+
+
+```{r}
+#| label: fig-scree
+#| fig-cap: Gráfico de sedimentación
+#| fig-cap-location: top
+
+scree.plot(db_w1)
+```
+
+```{r}
+fac_pa_t<-fa_table(fac_pa)
+fac_pa_t$ind_table
+fac_pa_t$f_table
+```
+
+
+
+# Código de R
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+
+```

@@ -4,20 +4,21 @@ bibliography: "../input/bib/merit-factorial.bib"
 csl: "../input/bib/apa6.csl"
 ---
 
-# Data, variables and method
+# Method
 
-## Data
+## Participants and Procedure
 
-This study is based on data from the Panel Survey on Education and Meritocracy (EDUMER) from the 2023 (N = 840) and 2024 (N = 840) waves, focusing on students. The database is derived from web-based questionnaires administered to sixth and ninth-grade students from nine schools in the Metropolitan and Valparaíso regions of Chile. Due to the non-probabilistic nature of the data collection process, the design does not allow for representativeness of the target population; therefore, analyses and conclusions can only be drawn at the sample level.
+This study relies on information from the Panel Survey on Education and Meritocracy (EDUMER) database for its 2023 and 2024 waves for school-age students. This survey is based on the administration of web questionnaires to sixth-grade elementary and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The first wave included 839 students (411 girls, 446 boys, 45 identifying as other; $M_{age}$ = 13.1,  $SD_{age}$ = 1.6), and the second wave followed 612 of them (309 girls, 343 boys, 22 identifying as other; $M_{age}$ = 14.1, $SD_{age}$ = 1.6). 
 
-## Variables
+## Measures
 
-**Scale of Perceptions and Preferences on Meritocracy**: The variables included in the measurement model for meritocratic and non-meritocratic perceptions and preferences are operationalized according to the items proposed by Castillo et al. [-@castillo_multidimensional_2023]. Perception of meritocracy is measured by two items that assess the level of agreement with the idea that effort and ability are rewarded in Chile, while non-meritocratic perception is measured by two items evaluating the agreement that success is linked to connections and family wealth. Preference for meritocracy is measured by two items that evaluate agreement with the idea that those who work harder or are more talented should be more rewarded. Preference for non-meritocratic aspects is measured by two indicators assessing agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success. Each item is rated on a four-point Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4).
+**Scale of Perceptions and Preferences on Meritocracy**: The variables included in the measurement model for meritocratic and non-meritocratic perceptions and preferences are operationalized according to the items proposed by Castillo et al. [-@castillo_multidimensional_2023]. Perception of meritocracy is measured by two items that assess the level of agreement with the idea that effort and ability are rewarded in Chile, while non-meritocratic perception is measured by two items evaluating the agreement that success is linked to connections and family wealth. Preference for meritocracy is measured by two items that evaluate agreement with the idea that those who work harder or are more talented should be more rewarded. Preference for non-meritocratic aspects is measured by two indicators assessing agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success (see @tbl-merit). Each item is rated on a four-point Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4).   
 
 ```{r}
 #| tbl-cap: Items for perceptions and preferences for meritocracy scale
-#| tbl-cap-location: bottom
+#| tbl-cap-location: top
 #| echo: false
+#| label: tbl-merit
 
  # remotes::install_github('haozhu233/kableExtra@a6af5c0')  # for problems with collapse_rows()
  pacman::p_load(knitr, kableExtra, dplyr)
@@ -42,48 +43,14 @@ This study is based on data from the Panel Survey on Education and Meritocracy (
    kableExtra::collapse_rows(columns = 1:2,valign = "middle")
 ```
 
-**Preferences for Market Justice**: This construct is measured using three variables that address the level of justification for whether access to social services in healthcare, pensions, and education should be income-based. The justification for inequality in healthcare is measured by the item: "Is it acceptable for those who can pay more to have better access to healthcare?" The same question is posed for pensions and education. In all cases, respondents indicate their preferences on a Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4). Additionally, a summary indicator of "preferences for market justice" is included, measured by an average index of all these items (α = 0.83), with values ranging from 1 to 4, where higher values represent greater preferences for market justice.
+## Analytical strategy
 
-```{r}
-#| tbl-cap: Market justice preferences construction
-#| tbl-cap-location: bottom
-#| echo: false
+To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, as proposed by Castillo et al. [-@castillo_multidimensional_2023], using Diagonally Weighted Least Squares with robust correction (WLSMV) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous [@kline_principles_2023].
 
- pacman::p_load(knitr, kableExtra, dplyr)
- table_format = if (knitr::is_html_output()) {
-   #conditional instructions for kable
-   "html" #if html set "html" in format
- } else if (knitr::is_latex_output()) {
-   "latex"#if latex set "latex" in format
- }
- tabitems2 <- read.csv(file = "../input/tables/table-02.csv",sep = ",",encoding = "UTF-8") # call file  generated externally for the table
- cnames <- c("Component", "Dimensions")
+Model fit was assessed following the guidelines of Brown [-@brown_confirmatory_2015], using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by $p$ > 0.05 and a Chi-square/df ratio < 3).
 
- knitr::kable(tabitems2, table_format, booktabs = T, linesep = "",col.names = cnames) %>%
-   kableExtra::kable_styling(
-     full_width = T,
-     latex_options = c("hold_position"),
-     position = "center",
-     font_size = 10,
-     bootstrap_options=c("striped", "bordered")) %>%
-   kableExtra::column_spec(column = 1, width = "1.5cm", ) %>%
-   kableExtra::column_spec(column = 2,width = "2 cm") %>%
-   kableExtra::collapse_rows(columns = 1:2,valign = "middle")
-```
+A key contribution of this study lies in assessing the metric stability of the measurement model through factorial invariance testing [@davidov_measurement_2014]. We implemented two complementary strategies: invariance across cohorts (primary vs. secondary school students) and longitudinal invariance using two panel waves. Given the ordinal nature of the items, we estimated measurement invariance using methods appropriate for ordered categorical measures, following Liu et al. [-@liu_testing_2017] analysis. Setting a hierarchical approach, we tested four nested models: configural (equal factorial structure), metric (equal factor loadings), scalar (equal intercepts and thresholds), and strict invariance (equal residual variances). 
 
-## Methods
-
-<<<<<<< Updated upstream
-To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, as proposed by [@Castillo_et_al_2023], using Diagonally Weighted Least Squares (DWLS) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous [@kline_principles_2023].
-=======
-To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, as proposed by Castillo et al. (2023), using Diagonally Weighted Least Squares (DWLS) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous Kline (2023)
-
-Model fit was assessed following the guidelines of Brown (2015), using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by p \> 0.05 and a Chi-square/df ratio \< 3).
-
-To examine the longitudinal metric stability of the measurement model [@davidov_measurement_2014], we conducted a measurement invariance analysis across the two waves of the study. Following a hierarchical approach as outlined by [@Liu_et_al_2017], we tested four nested models: configural (equivalence in factor structure), metric or weak (equality of factor loadings), scalar or strong (equality of intercepts), and strict (equality of residual variances). This stepwise procedure is essential when using ordered categorical indicators, as failing to account for their non-continuous nature may distort parameter estimates.
-
-In addition to the traditional Chi-square difference test, we used changes in fit indices to assess invariance: a change in CFI (ΔCFI ≥ −0.010) and RMSEA (ΔRMSEA ≤ 0.015) were adopted as more robust and sample-size-independent criteria, as recommended by [@Chen_2007].
-
-To evaluate the external validity of the measurement model, we conducted regression analyses within a structural equation modeling (SEM) framework. This allowed us to investigate the relationships between latent constructs—meritocratic and non-meritocratic beliefs—and preferences for market-based justice in healthcare, pensions, and education, in line with prior research [@Castillo_et_al_2023].
+In addition to the traditional Chi-square difference test for model comparisons, we used changes in fit indices to assess invariance: a change in CFI ($\Delta \geq -0.010$) and RMSEA ($\Delta \geq 0.0$) were adopted as more robust and sample-size-independent criteria, following Chen's recommendations [-@chen_sensitivity_2007].
 
 All analyses were performed using the lavaan package in R version 4.2.2. The hypotheses of this research were [pre-registered](https://osf.io/hjat2/) on the Open Science Framework (OSF), hosted by the Center of Open Science.

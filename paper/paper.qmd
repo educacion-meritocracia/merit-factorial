@@ -1,5 +1,5 @@
 ---
-title: "Measuring perceptions and preferences about meritocracy in school in Chile"
+title: "Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts"
 format:
   html: 
     code-fold: true
@@ -88,9 +88,10 @@ and it was last rendered at {{< now >}}.
 
 {{< include 02-antecedentes.qmd >}}
 
+{{< include 03-methods.qmd >}}
 
 ```{r}
-# {{< include 03-methods.qmd >}}
+
 # {{< include 04-analisis.qmd >}}
 ```
 

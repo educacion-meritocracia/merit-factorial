@@ -727,9 +727,7 @@ score_table %>%
   column_spec(5, width = "4cm")
 ```
 
-The table presents the results of score tests used to evaluate metric invariance under the **strict invariance model**, which imposes the strongest set of constraints in longitudinal measurement: equal factor loadings, intercepts, and residual variances across waves. Each row in the table corresponds to a test of the equality between two specific parameters across time points. The chi-square statistic, degrees of freedom (df), and p-value indicate whether that equality constraint significantly worsens model fit, which would suggest a violation of invariance.
-
-In this case, all tested restrictions yield **non-significant** p-values, with none falling below the conventional alpha threshold of 0.05. For example, the constraint `.p2. == .p4.` produces a chi-square of 0.108 and a p-value of 0.742, strongly suggesting that the two parameters are statistically indistinguishable and thus invariant. Other constraints, such as `.p14. == .p16.` (χ² = 0.060, p = 0.806) and `.p66. == .p68.` (χ² = 0.006, p = 0.937), similarly indicate no violation of invariance.
+The results of score tests used to evaluate metric invariance under the **strict invariance model**, which imposes the strongest set of constraints in longitudinal measurement, all tested restrictions yield **non-significant** p-values, with none falling below the conventional alpha threshold of 0.05. For example, the constraint `.p2. == .p4.` produces a chi-square of 0.108 and a p-value of 0.742, strongly suggesting that the two parameters are statistically indistinguishable and thus invariant. Other constraints, such as `.p14. == .p16.` (χ² = 0.060, p = 0.806) and `.p66. == .p68.` (χ² = 0.006, p = 0.937), similarly indicate no violation of invariance.
 
 A few parameters show slightly elevated chi-square values and marginal p-values—for instance, `.p49. == .p51.` yields a chi-square of 3.414 and a p-value of 0.065. While still non-significant, this result is relatively close to the threshold, and the associated parameters might merit further investigation for potential partial invariance or item-level idiosyncrasies.
 

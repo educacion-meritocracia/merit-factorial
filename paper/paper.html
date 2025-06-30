@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.4.554">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Equipo EDUMER">
-<title>Measuring perceptions and preferences about meritocracy in school in Chile</title>
+<title>Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,13 +83,53 @@ div.csl-indent {
 <link href="paper_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="paper_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="paper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="paper_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="paper_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script src="paper_files/libs/kePrint-0.0.1/kePrint.js"></script><link href="paper_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
 <body>
 
 <header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Measuring perceptions and preferences about meritocracy in school in Chile</h1>
+      <h1 class="title">Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts</h1>
                       </div>
   </div>
     
@@ -170,43 +210,134 @@ div.csl-indent {
   </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="paper.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
-<main class="content quarto-banner-title-block" id="quarto-document-content"><p>This document was last modified at 2025-06-16 12:53:01 and it was last rendered at 2025-06-16 12:53:01.</p>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><p>This document was last modified at 2025-06-30 13:38:48 and it was last rendered at 2025-06-30 13:38:48.</p>
 <div class="justify">
 <section id="introduction" class="level1" data-number="1"><h1 data-number="1">
 <span class="header-section-number">1</span> Introduction</h1>
-<p>Despite rising economic inequality and limited social mobility in contemporary societies <span class="citation" data-cites="chancel_world_2022 lopez-roldan_comparative_2021">(<a href="#ref-chancel_world_2022" role="doc-biblioref">Chancel et al., 2022</a>; <a href="#ref-lopez-roldan_comparative_2021" role="doc-biblioref">López-Roldán &amp; Fachelli, 2021</a>)</span>, meritocratic beliefs remain remarkably stable among citizens <span class="citation" data-cites="mijs_paradox_2019">(<a href="#ref-mijs_paradox_2019" role="doc-biblioref">Mijs, 2019</a>)</span>. The notion that economic disparities are justified by differences in meritocratic elements— such as individual effort and talent <span class="citation" data-cites="young_rise_1958">(<a href="#ref-young_rise_1958" role="doc-biblioref">Young, 1958</a>)</span>—has been identified as a key mechanism to explain the persistence of inequalities. Educational institutions have played a central role in promoting these beliefs due to their historical association with the promise of mobility and opportunity <span class="citation" data-cites="dubet_repensar_2011 batruch_belief_2022">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-dubet_repensar_2011" role="doc-biblioref">Dubet, 2011</a>)</span>. Yet, research increasingly shows that schools often reproduce rather than reduce social inequalities <span class="citation" data-cites="bourdieu_reproduction_1990 goudeau_hidden_2017a">(<a href="#ref-bourdieu_reproduction_1990" role="doc-biblioref">Bourdieu &amp; Passeron, 1990</a>; <a href="#ref-goudeau_hidden_2017a" role="doc-biblioref">Goudeau &amp; Croizet, 2017</a>)</span>. This contradiction has drawn attention to the role of schools in fostering meritocratic beliefs that operate as system-justifying ideologies, obscuring structural disadvantages <span class="citation" data-cites="jost_psychology_2003 wiederkehr_belief_2015">(<a href="#ref-jost_psychology_2003" role="doc-biblioref">Jost &amp; Hunyady, 2003</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>. Understanding how young people perceive and endorse these beliefs is crucial, as they shape educational experiences and reinforce broader narratives about fairness and inequality.</p>
+<p>Despite rising economic inequality and limited social mobility in contemporary societies <span class="citation" data-cites="chancel_world_2022 lopez-roldan_comparative_2021">(<a href="#ref-chancel_world_2022" role="doc-biblioref">Chancel et al., 2022</a>; <a href="#ref-lopez-roldan_comparative_2021" role="doc-biblioref">López-Roldán &amp; Fachelli, 2021</a>)</span>, meritocratic beliefs remain remarkably stable among citizens <span class="citation" data-cites="mijs_paradox_2019">(<a href="#ref-mijs_paradox_2019" role="doc-biblioref">Mijs, 2019</a>)</span>. The belief that economic disparities are justified by differences in meritocratic elements— such as individual effort and talent <span class="citation" data-cites="young_rise_1958">(<a href="#ref-young_rise_1958" role="doc-biblioref">Young, 1958</a>)</span>—has been identified as a key mechanism to explain the persistence of inequalities. Educational institutions have played a central role in promoting these beliefs due to their historical association with the promise of mobility and opportunity <span class="citation" data-cites="dubet_repensar_2011 batruch_belief_2022">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-dubet_repensar_2011" role="doc-biblioref">Dubet, 2011</a>)</span>. Yet, research increasingly shows that schools often reproduce rather than reduce social inequalities <span class="citation" data-cites="bourdieu_reproduction_1990 goudeau_hidden_2017a">(<a href="#ref-bourdieu_reproduction_1990" role="doc-biblioref">Bourdieu &amp; Passeron, 1990</a>; <a href="#ref-goudeau_hidden_2017a" role="doc-biblioref">Goudeau &amp; Croizet, 2017</a>)</span>. This contradiction has drawn attention to the role of schools in fostering meritocratic beliefs that operate as system-justifying ideologies, obscuring structural disadvantages <span class="citation" data-cites="jost_psychology_2003 wiederkehr_belief_2015">(<a href="#ref-jost_psychology_2003" role="doc-biblioref">Jost &amp; Hunyady, 2003</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>. Understanding how young people perceive and endorse these beliefs is crucial, as they shape educational experiences and reinforce broader narratives about fairness and inequality.</p>
 <p>While meritocracy is often defined as a system in which rewards are distributed based on individual merit—namely, effort and ability <span class="citation" data-cites="young_rise_1958">(<a href="#ref-young_rise_1958" role="doc-biblioref">Young, 1958</a>)</span>—its conceptualization in empirical research remains fragmented. Across disciplines, meritocratic beliefs have been measured through diverse constructs, ranging from general attitudes about social mobility and distributive justice to implicit ideas about success and individual responsibility <span class="citation" data-cites="trump_when_2020 castillo_meritocracia_2019">(<a href="#ref-castillo_meritocracia_2019" role="doc-biblioref">Castillo et al., 2019</a>; <a href="#ref-trump_when_2020" role="doc-biblioref">Trump, 2020</a>)</span>. Most instruments rely on single-dimension items or fail to distinguish between descriptive and normative components of meritocratic reasoning. Moreover, few tools capture non-meritocratic logics—such as the perceived role of social origin, family wealth, or connections—in shaping outcomes <span class="citation" data-cites="kunovich_systems_2007a reynolds_perceptions_2014">(e.g. <a href="#ref-kunovich_systems_2007a" role="doc-biblioref">Kunovich &amp; Slomczynski, 2007</a>; <a href="#ref-reynolds_perceptions_2014" role="doc-biblioref">Reynolds &amp; Xian, 2014</a>)</span>. This heterogeneity in conceptual and operational definitions hinders comparative research and limits the capacity to assess how individuals, especially youth, interpret and internalize meritocracy. Addressing this measurement gap is particularly relevant in educational settings, where such beliefs are first socialized and may have long-term implications for attitudes toward inequality and justice <span class="citation" data-cites="batruch_belief_2022 elenbaas_unfairness_2019a">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-elenbaas_unfairness_2019a" role="doc-biblioref">Elenbaas, 2019</a>)</span>.</p>
-<p>To respond to this challenge, Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span> propose a conceptual and measurement framework for meritocracy. This work distinguishes between two dimensions of meritocratic beliefs: perceptions (how individuals think meritocracy operates in practice) and preferences (how they think it should operate). The framework also differentiates between meritocratic factors—such as effort and ability—and non-meritocratic ones, including social contacts or coming from a wealthy family. Based on these distinctions, the authors developed a short, multidimensional scale, which they applied and validated in a representative sample of Chilean adults. Their findings show that perceptions and preferences regarding meritocratic and non-meritocratic elements are distinct yet interrelated, coexisting in complex ways</p>
+<p>To respond to this challenge, Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span> propose a conceptual and measurement framework for meritocracy. This work distinguishes between two dimensions of meritocratic beliefs: perceptions (how individuals think meritocracy operates in practice) and preferences (how they think it should operate). The framework also differentiates between meritocratic factors—such as effort and ability—and non-meritocratic ones, including social contacts or coming from a wealthy family. Based on these distinctions, the authors developed a short, multidimensional scale, which they applied and validated in a representative sample of Chilean adults. Their findings show that perceptions and preferences regarding meritocratic and non-meritocratic elements are distinct yet interrelated, coexisting in complex ways.</p>
 <p>Due to the role that meritocratic beliefs play in the justification of individual achievement (or failure) in contemporary societies, schools are central sites for the socialization of meritocratic beliefs, promoting the idea that academic success depends primarily on effort and talent <span class="citation" data-cites="wiederkehr_belief_2015 batruch_belief_2022 erivwo_meritocracy_2021">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-erivwo_meritocracy_2021" role="doc-biblioref">Erivwo et al., 2021</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>. This belief not only sustains the school’s selective function but also reinforces broader narratives of individual responsibility and fairness. Research has shown that belief in school meritocracy is associated with greater acceptance of social and economic inequalities <span class="citation" data-cites="darnon_where_2018 batruch_belief_2022 castillo_socialization_2024">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-castillo_socialization_2024" role="doc-biblioref">Castillo et al., 2024</a>; <a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>)</span>, suggesting that schools contribute not only to the reproduction but also to the legitimization of inequality. In highly stratified systems like Chile’s, this discourse may obscure the effects of social origin on educational outcomes <span class="citation" data-cites="goudeau_hidden_2017a">(<a href="#ref-goudeau_hidden_2017a" role="doc-biblioref">Goudeau &amp; Croizet, 2017</a>)</span>.</p>
 <p>Against this background, and with the aim of contributing to empirical research on the early formation of meritocratic beliefs <span class="citation" data-cites="elenbaas_unfairness_2019a batruch_belief_2022">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-elenbaas_unfairness_2019a" role="doc-biblioref">Elenbaas, 2019</a>)</span>, this study seeks to extend the work of Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span> by evaluating the applicability of their conceptual and measurement framework among school-aged populations in Chile. Specifically, it assesses whether perceptions and preferences regarding meritocratic and non-meritocratic principles are empirically distinguishable, stable across age cohorts, and consistent over time. By focusing on early adolescence—a formative stage for civic and moral socialization—this study explores how distributive beliefs emerge, develop, and potentially consolidate within school settings.</p>
 <p>This study focuses on Chile, a particularly relevant context for examining meritocracy in education. Despite sustained economic growth and poverty reduction, Chile remains one of the most unequal countries in Latin America and the OECD <span class="citation" data-cites="chancel_world_2022 flores_top_2020">(<a href="#ref-chancel_world_2022" role="doc-biblioref">Chancel et al., 2022</a>; <a href="#ref-flores_top_2020" role="doc-biblioref">Flores et al., 2020</a>)</span>, partly rooted in neoliberal reforms that turned education into a competitive market <span class="citation" data-cites="madariaga_three_2020 boccardo_30_2020">(<a href="#ref-boccardo_30_2020" role="doc-biblioref">Boccardo, 2020</a>; <a href="#ref-madariaga_three_2020" role="doc-biblioref">Madariaga, 2020</a>)</span>. Implemented during the dictatorship and expanded in democracy, these reforms institutionalized school choice and public-private competition, generating a highly stratified and segregated educational system <span class="citation" data-cites="corvalan_mercado_2017">(<a href="#ref-corvalan_mercado_2017" role="doc-biblioref">Corvalán et al., 2017</a>)</span>. While public discontent has driven important reforms, meritocratic narratives remain deeply embedded in students’ understandings of success and fairness <span class="citation" data-cites="canalesceron_sujeto_2021">(<a href="#ref-canalesceron_sujeto_2021" role="doc-biblioref">Canales Cerón et al., 2021</a>)</span>.</p>
 <p>This study addresses two research questions: (1) To what extent do Chilean students perceive and prefer meritocratic and non-meritocratic principles in society? (2) Are these beliefs consistent across age cohorts and stable over time? To investigate these questions, we use two waves of panel survey data collected in 2023 (N = 839) and 2024 (N = 612) from sixth-grade and first-year secondary students attending nine schools in Chile. The analyses focus on the factorial validity of the measurement model and its invariance across groups and time, using confirmatory factor analysis (CFA) and longitudinal measurement invariance testing. The following sections present the theoretical framework, describe the data and analytical strategy, and report the empirical findings. We conclude by discussing the implications of our results for research on socialization, education, and the early formation of inequality-related beliefs.</p>
 <section id="meritocratic-perceptions-and-preferences" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="meritocratic-perceptions-and-preferences">
 <span class="header-section-number">1.1</span> Meritocratic perceptions and preferences</h2>
+<p>Meritocracy is often understood as a normative principle that justifies the allocation of rewards and opportunities based on effort and talent. Originally proposed by <span class="citation" data-cites="young_rise_1958">Young (<a href="#ref-young_rise_1958" role="doc-biblioref">1958</a>)</span> in his dystopian novel, the concept was intended to critique a social order in which power is justified by achievement. Despite this critical origin, meritocracy has been widely accepted as a principle of equity: the idea that people should be rewarded based on their effort and talent, rather than inherited privileges. However, as <span class="citation" data-cites="sandel_tyranny_2020">Sandel (<a href="#ref-sandel_tyranny_2020" role="doc-biblioref">2020</a>)</span> argues, the promise of meritocracy often becomes a source of inequality, as those who succeed are encouraged to believe they deserve it, while those who fail are forced to internalize the blame. Rather than mitigating inequality, meritocratic ideals can reinforce it by disguising structural disadvantage as a personal deficiency.</p>
+<p>Recent research has emphasized the need to distinguish between meritocratic preferences and meritocratic perceptions <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">Castillo et al., 2023</a>)</span>. While preferences refer to the belief that social rewards should be allocated based on merit (which should be the case), perceptions refer to the belief in how meritocracy operates in society (which is the case). This distinction allows for a more precise understanding of how people interpret inequality: they may regard merit as an ideal, while recognizing that society’s institutions often fail to deliver on this promise. In stratified societies, this gap between preferences and perceptions becomes particularly evident. People may continue to normatively believe in meritocracy even in the face of evidence that opportunities are unequally distributed.</p>
+<p>Several empirical investigations have examined the social foundations and consequences of meritocratic beliefs, particularly in adult populations. Findings consistently show that people with higher levels of education, income, and occupational prestige are more likely to endorse meritocratic explanations for social outcomes <span class="citation" data-cites="garcia-sanchez_perceptions_2018 mijs_paradox_2019">(<a href="#ref-mijs_paradox_2019" role="doc-biblioref">Mijs, 2019</a>; <a href="#ref-garcia-sanchez_perceptions_2018" role="doc-biblioref"><strong>garcia-sanchez_perceptions_2018?</strong></a>)</span>. These beliefs are not merely cognitive or moral evaluations but have significant implications for how people think about fairness and redistribution. People who believe that society rewards merit are more likely to justify existing inequalities and less likely to endorse redistributive policies <span class="citation" data-cites="reynolds_perceptions_2014 hauser_misperceptions_2017">(<a href="#ref-reynolds_perceptions_2014" role="doc-biblioref">Reynolds &amp; Xian, 2014</a>; <a href="#ref-hauser_misperceptions_2017" role="doc-biblioref"><strong>hauser_misperceptions_2017?</strong></a>)</span>. In this way, meritocratic beliefs shift responsibility for success or failure onto individuals, neglecting the role of structural factors and reinforcing the legitimacy of the status quo.</p>
 </section><section id="meritocratic-perceptions-and-preferences-at-school" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="meritocratic-perceptions-and-preferences-at-school">
 <span class="header-section-number">1.2</span> Meritocratic perceptions and preferences at school</h2>
+<p>The Chilean educational system offers a unique setting for examining the school-based socialization of meritocratic beliefs. As one of the most market-driven educational systems in the world, Chile has experienced decades of neoliberal reform that reshaped its educational landscape around principles of privatization, competition, and individual responsibility. Introduced during the military dictatorship and consolidated under democratic governments, this model relies on public subsidies to families, a strong presence of private providers, and mechanisms that stratify access based on socioeconomic background <span class="citation" data-cites="bellei_estudio_2013 valenzuela_socioeconomic_2013">(<a href="#ref-bellei_estudio_2013" role="doc-biblioref">Bellei, 2013</a>; <a href="#ref-valenzuela_socioeconomic_2013" role="doc-biblioref">Valenzuela et al., 2013</a>)</span>. In this context, schools are not merely sites of learning but also institutional spaces where students are exposed to—and absorb—norms of competition, performance, and accountability. These conditions not only entrench structural inequalities but also foster a cultural environment in which individual success is interpreted as the outcome of merit, obscuring the influence of unequal starting points.</p>
+<p>Central to this process is the school-based dissemination of meritocratic beliefs—understood as the idea that effort and talent should determine educational outcomes and future opportunities. In the school context, the distinction between preferences and perceptions is crucial: students may endorse merit as a fair principle for distributing rewards while simultaneously doubting whether their school environment truly operates under such ideals. Empirical studies in Chile show that students who affirm the importance of effort and intelligence for achieving good grades (i.e., high meritocratic preferences), yet they are more ambivalent about whether these criteria are fairly applied in society and school (i.e., perceptions) <span class="citation" data-cites="castillo_socialization_2024">(<a href="#ref-castillo_socialization_2024" role="doc-biblioref">Castillo et al., 2024</a>)</span>. This gap reveals how the school simultaneously cultivates belief in meritocratic ideals and reproduces the very inequities that challenge their validity.</p>
+<p>Schools play a central role in reinforcing these beliefs through mechanisms of classification, evaluation, and public recognition. Grades, awards, and distinctions function as institutional markers of “merit”, shaping students’ understanding of achievement as individually earned rather than socially conditioned <span class="citation" data-cites="resh_sense_2014">(<a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>)</span>. This framing often leads students—regardless of their social background—to attribute academic success or failure to personal effort, reinforcing individualistic explanations and limiting awareness of structural barriers <span class="citation" data-cites="darnon_where_2018">(<a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>)</span>. As <span class="citation" data-cites="lampert_meritocratic_2013">Lampert (<a href="#ref-lampert_meritocratic_2013" role="doc-biblioref">2013</a>)</span> notes, the meritocratic school systematically rewards a minority while instilling in the majority a sense of personal failure and worthlessness. Despite this, children and adolescents—even from disadvantaged backgrounds—frequently internalize meritocratic narratives, suggesting that school-based exposure is a powerful force in shaping students’ beliefs about inequality and justice <span class="citation" data-cites="henry_development_2006">(<a href="#ref-henry_development_2006" role="doc-biblioref">Henry &amp; Saul, 2006</a>)</span>.</p>
+<p>The consequences of this meritocratic socialization extend beyond the classroom. As shown by <span class="citation" data-cites="castillo_socialization_2024">Castillo et al. (<a href="#ref-castillo_socialization_2024" role="doc-biblioref">2024</a>)</span>, students who perceive higher levels of meritocracy in their schools—particularly those who believe that effort and talent are justly rewarded—are more likely to justify unequal access to education, healthcare, and pensions based on individuals’ economic means. These market justice preferences reflect a broader tendency to accept or legitimize inequality as a fair outcome of differential contributions. Notably, these associations are strongest in high-status schools, where academic performance and social privilege are more prevalent. This suggests that school environments not only shape academic trajectories but also contribute to the cultural reproduction of inequality by reinforcing ideological support for market-based distributive logics. In this way, the school emerges as a central institution in the moral economy of neoliberal societies: one that not only sorts individuals by performance but also legitimates the stratification it helps to produce.</p>
 </section><section id="the-socialization-of-meritocracy-families-and-schools" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="the-socialization-of-meritocracy-families-and-schools">
 <span class="header-section-number">1.3</span> The socialization of meritocracy: families and schools</h2>
+<p>Socialization refers to the process by which individuals internalize social norms, values, and practices, thereby acquiring the dispositions necessary to function in society. Far from being neutral, this process is rooted in structures of power and inequality. From a sociological perspective, <span class="citation" data-cites="bourdieu_sentido_2007">(<a href="#ref-bourdieu_sentido_2007" role="doc-biblioref"><strong>bourdieu_sentido_2007?</strong></a>)</span> conceptualizes socialization as an orientation that shapes individuals’ perceptions and actions, often without their conscious awareness. In a complementary manner, <span class="citation" data-cites="bandura_sociallearning_1969">(<a href="#ref-bandura_sociallearning_1969" role="doc-biblioref"><strong>bandura_sociallearning_1969?</strong></a>)</span> emphasizes the role of social learning, through which children adopt patterns of behavior and value systems modeled by their families. Therefore, the internalization of meritocratic beliefs—such as the idea that effort and talent are the primary determinants of success—is not simply a rational decision, but the result of deep, structured, and class-dependent socialization processes.</p>
+<p>In schools, meritocratic socialization occurs through formal and informal mechanisms. As institutions designed to assess, classify, and organize students, schools function as microcosms of broader social structures. Through grading, awards, and disciplinary practices, students are taught to associate achievement with personal effort, often in ways that obscure the impact of social origin, economic resources, or institutional bias. In stratified, market-oriented systems, such as Chile’s, schools reinforce competition and individual responsibility, naturalizing social hierarchies as the result of fair procedures. As <span class="citation" data-cites="lahire_teoria_2012">(<a href="#ref-lahire_teoria_2012" role="doc-biblioref"><strong>lahire_teoria_2012?</strong></a>)</span> argues, these school experiences can instill lasting dispositions, even if people are not always aware of the structural foundations of such beliefs. Consequently, schools become key spaces for the reproduction of meritocratic ideology, providing students with justifications for existing inequalities while framing them as legitimate and deserved.</p>
+<p>Families also play a fundamental role in shaping meritocratic orientations. Parenting practices reflect social class strategies aimed at preserving or enhancing social status <span class="citation" data-cites="bourdieu_reproduction_1990 bernstein_theoretical_2005">(<a href="#ref-bourdieu_reproduction_1990" role="doc-biblioref">Bourdieu &amp; Passeron, 1990</a>; <a href="#ref-bernstein_theoretical_2005" role="doc-biblioref"><strong>bernstein_theoretical_2005?</strong></a>)</span>. Higher-status families tend to transmit symbolic-relational values such as autonomy, self-expression, and personal responsibility, closely aligned with the meritocratic ideals promoted in schools <span class="citation" data-cites="santanderramirez_preferencias_2020">(<a href="#ref-santanderramirez_preferencias_2020" role="doc-biblioref"><strong>santanderramirez_preferencias_2020?</strong></a>)</span>. On the other hand, families from disadvantaged backgrounds may emphasize discipline, effort, and obedience; values that are also meritocratic, but often dissociated from the institutional resources necessary to achieve upward mobility. Through explicit discourse and lived experience, children absorb messages about success, fairness, and responsibility, which often reflect their parents’ attitudes and expectations <span class="citation" data-cites="bandura_sociallearning_1969">(<a href="#ref-bandura_sociallearning_1969" role="doc-biblioref"><strong>bandura_sociallearning_1969?</strong></a>)</span>.</p>
+</section></section><section id="method" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> Method</h1>
+<section id="participants-and-procedure" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="participants-and-procedure">
+<span class="header-section-number">2.1</span> Participants and Procedure</h2>
+<p>This study relies on information from the Panel Survey on Education and Meritocracy (EDUMER) database for its 2023 and 2024 waves for school-age students. This survey is based on the administration of web questionnaires to sixth-grade elementary and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The first wave included 839 students (411 girls, 446 boys, 45 identifying as other; <span class="math inline">M_{age}</span> = 13.1, <span class="math inline">SD_{age}</span> = 1.6), and the second wave followed 612 of them (309 girls, 343 boys, 22 identifying as other; <span class="math inline">M_{age}</span> = 14.1, <span class="math inline">SD_{age}</span> = 1.6).</p>
+</section><section id="measures" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="measures">
+<span class="header-section-number">2.2</span> Measures</h2>
+<p><strong>Scale of Perceptions and Preferences on Meritocracy</strong>: The variables included in the measurement model for meritocratic and non-meritocratic perceptions and preferences are operationalized according to the items proposed by Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span>. Perception of meritocracy is measured by two items that assess the level of agreement with the idea that effort and ability are rewarded in Chile, while non-meritocratic perception is measured by two items evaluating the agreement that success is linked to connections and family wealth. Preference for meritocracy is measured by two items that evaluate agreement with the idea that those who work harder or are more talented should be more rewarded. Preference for non-meritocratic aspects is measured by two indicators assessing agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success (see <a href="#tbl-merit" class="quarto-xref">Table&nbsp;1</a>). Each item is rated on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4).</p>
+<div class="cell" data-tbl-cap-location="top">
+<div id="tbl-merit" class="cell quarto-float anchored" data-tbl-cap-location="top">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-merit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Items for perceptions and preferences for meritocracy scale
+</figcaption><div aria-describedby="tbl-merit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<table class="table table-striped table-bordered do-not-create-environment cell table-sm small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Components</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dimensions</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Item (English)</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Item original (Spanish)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td rowspan="4" style="text-align: left; width: 1.5cm; vertical-align: middle !important;">Perception</td>
+<td rowspan="2" style="text-align: left; width: 2 cm; vertical-align: middle !important;">Meritocratic</td>
+<td style="text-align: left;">In Chile people are rewarded for their efforts</td>
+<td style="text-align: left;">En Chile las personas son recompensadas por sus esfuerzos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">In Chile people are rewarded for their intelligence and ability</td>
+<td style="text-align: left;">En Chile las personas son recompensadas por su inteligencia y habilidad</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" style="text-align: left; width: 2 cm; vertical-align: middle !important;">Non meritocratic</td>
+<td style="text-align: left;">In Chile those with wealthy parents do much better in life</td>
+<td style="text-align: left;">En Chile a quienes tienen padres ricos les va mucho mejor en la vida</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">In Chile those with good contacts do much better in life</td>
+<td style="text-align: left;">En Chile a quienes tienen buenos contactos les va mejor en la vida</td>
+</tr>
+<tr class="odd">
+<td rowspan="4" style="text-align: left; width: 1.5cm; vertical-align: middle !important;">Preference</td>
+<td rowspan="2" style="text-align: left; width: 2 cm; vertical-align: middle !important;">Meritocratic</td>
+<td style="text-align: left;">Those who work harder should reap greater rewards than those who work less hard</td>
+<td style="text-align: left;">Quienes más se esfuerzan deberían obtener mayores recompensas que quienes se esfuerzan menos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Those with more talent should reap greater rewards than those with less talent</td>
+<td style="text-align: left;">Quienes poseen más talento deberían obtener mayores recompensas que quienes poseen menos talento</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" style="text-align: left; width: 2 cm; vertical-align: middle !important;">Non meritocratic</td>
+<td style="text-align: left;">It is okay that those who have rich parents do better in life</td>
+<td style="text-align: left;">Está bien que quienes tengan padres ricos les vaya mejor en la vida</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">It is okay that those who have good contacts do better in life</td>
+<td style="text-align: left;">Está bien que quienes tengan buenos contactos les vaya mejor en la vida</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section><section id="analytical-strategy" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="analytical-strategy">
+<span class="header-section-number">2.3</span> Analytical strategy</h2>
+<p>To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, as proposed by Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span>, using Diagonally Weighted Least Squares with robust correction (WLSMV) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous <span class="citation" data-cites="kline_principles_2023">(<a href="#ref-kline_principles_2023" role="doc-biblioref">Kline, 2023</a>)</span>.</p>
+<p>Model fit was assessed following the guidelines of Brown <span class="citation" data-cites="brown_confirmatory_2015">(<a href="#ref-brown_confirmatory_2015" role="doc-biblioref">2015</a>)</span>, using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by <span class="math inline">p</span> &gt; 0.05 and a Chi-square/df ratio &lt; 3).</p>
+<p>A key contribution of this study lies in assessing the metric stability of the measurement model through factorial invariance testing <span class="citation" data-cites="davidov_measurement_2014">(<a href="#ref-davidov_measurement_2014" role="doc-biblioref">Davidov et al., 2014</a>)</span>. We implemented two complementary strategies: invariance across cohorts (primary vs.&nbsp;secondary school students) and longitudinal invariance using two panel waves. Given the ordinal nature of the items, we estimated measurement invariance using methods appropriate for ordered categorical measures, following Liu et al. <span class="citation" data-cites="liu_testing_2017">(<a href="#ref-liu_testing_2017" role="doc-biblioref">2017</a>)</span> analysis. Setting a hierarchical approach, we tested four nested models: configural (equal factorial structure), metric (equal factor loadings), scalar (equal intercepts and thresholds), and strict invariance (equal residual variances).</p>
+<p>In addition to the traditional Chi-square difference test for model comparisons, we used changes in fit indices to assess invariance: a change in CFI (<span class="math inline">\Delta \geq -0.010</span>) and RMSEA (<span class="math inline">\Delta \geq 0.0</span>) were adopted as more robust and sample-size-independent criteria, following Chen’s recommendations <span class="citation" data-cites="chen_sensitivity_2007">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">2007</a>)</span>.</p>
+<p>All analyses were performed using the lavaan package in R version 4.2.2. The hypotheses of this research were <a href="https://osf.io/hjat2/">pre-registered</a> on the Open Science Framework (OSF), hosted by the Center of Open Science.</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># {{&lt; include 03-methods.qmd &gt;}}</span></span>
-<span><span class="co"># {{&lt; include 04-analisis.qmd &gt;}}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># {{&lt; include 04-analisis.qmd &gt;}}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section></section><section id="discussion" class="level1" data-number="2"><h1 data-number="2">
-<span class="header-section-number">2</span> Discussion</h1>
-</section><section id="conclusion" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> Conclusion</h1>
-</section><section id="references" class="level1" data-number="4"><h1 data-number="4">
-<span class="header-section-number">4</span> References</h1>
+</section></section><section id="discussion" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> Discussion</h1>
+</section><section id="conclusion" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> Conclusion</h1>
+</section><section id="references" class="level1" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-batruch_belief_2022" class="csl-entry" role="listitem">
 Batruch, A., Jetten, J., Van de Werfhorst, H., Darnon, C., &amp; Butera, F. (2022). Belief in <span>School Meritocracy</span> and the <span>Legitimization</span> of <span>Social</span> and <span>Income Inequality</span>. <em>Social Psychological and Personality Science</em>, 194855062211110. <a href="https://doi.org/10.1177/19485506221111017">https://doi.org/10.1177/19485506221111017</a>
+</div>
+<div id="ref-bellei_estudio_2013" class="csl-entry" role="listitem">
+Bellei, C. (2013). El estudio de la segregaci<span>ó</span>n socioecon<span>ó</span>mica y acad<span>é</span>mica de la educaci<span>ó</span>n chilena. <em>Estudios Pedag<span>ó</span>gicos (Valdivia)</em>, <em>39</em>(1), 325–345. <a href="https://doi.org/10.4067/S0718-07052013000100019">https://doi.org/10.4067/S0718-07052013000100019</a>
 </div>
 <div id="ref-boccardo_30_2020" class="csl-entry" role="listitem">
 Boccardo, G. (2020). <em>30 a<span>ñ</span>os de privatizaciones en <span>Chile</span>: Lo que la pandemia revel<span>ó</span></em> (Nodo XXI). Santiago.
 </div>
 <div id="ref-bourdieu_reproduction_1990" class="csl-entry" role="listitem">
 Bourdieu, P., &amp; Passeron, J. C. (1990). <em>Reproduction in <span>Education</span>, <span>Society</span> and <span>Culture</span></em> (Second Edition). Sage Publications Ltd.
+</div>
+<div id="ref-brown_confirmatory_2015" class="csl-entry" role="listitem">
+Brown, T. A. (2015). <em>Confirmatory factor analysis for applied research</em> (Second edition). New York London: The Guilford Press.
 </div>
 <div id="ref-canalesceron_sujeto_2021" class="csl-entry" role="listitem">
 Canales Cerón, M., Orellana Calderón, V. S., &amp; Guajardo Mañán, F. (2021). Sujeto y cotidiano en la era neoliberal: El caso de la educaci<span>ó</span>n chilena. <em>Revista Mexicana de Ciencias Pol<span>í</span>ticas y Sociales</em>, <em>67</em>(244). <a href="https://doi.org/10.22201/fcpys.2448492xe.2022.244.70386">https://doi.org/10.22201/fcpys.2448492xe.2022.244.70386</a>
@@ -223,11 +354,17 @@ Castillo, J. C., Torres, A., Atria, J., &amp; Maldonado, L. (2019). Meritocracia
 <div id="ref-chancel_world_2022" class="csl-entry" role="listitem">
 Chancel, L., Piketty, T., Saez, E., &amp; Zucman, G. (2022). World inequality report 2022. https://bibliotecadigital.ccb.org.co/handle/11520/27510.
 </div>
+<div id="ref-chen_sensitivity_2007" class="csl-entry" role="listitem">
+Chen, F. F. (2007). Sensitivity of <span>Goodness</span> of <span>Fit Indexes</span> to <span>Lack</span> of <span>Measurement Invariance</span>. <em>Structural Equation Modeling: A Multidisciplinary Journal</em>, <em>14</em>(3), 464–504. <a href="https://doi.org/10.1080/10705510701301834">https://doi.org/10.1080/10705510701301834</a>
+</div>
 <div id="ref-corvalan_mercado_2017" class="csl-entry" role="listitem">
 Corvalán, J., Carrasco, A., &amp; García-Huidobro;J. E. (2017). <em>Mercado escolar: <span>Libertad</span>, diversidad y desigualdad</em>. Ediciones UC.
 </div>
 <div id="ref-darnon_where_2018" class="csl-entry" role="listitem">
 Darnon, C., Wiederkehr, V., Dompnier, B., &amp; Martinot, D. (2018). <span>“<span>Where</span> there is a will, there is a way”</span>: <span>Belief</span> in school meritocracy and the social-class achievement gap. <em>British Journal of Social Psychology</em>, <em>57</em>(1), 250–262. <a href="https://doi.org/10.1111/bjso.12214">https://doi.org/10.1111/bjso.12214</a>
+</div>
+<div id="ref-davidov_measurement_2014" class="csl-entry" role="listitem">
+Davidov, E., Meuleman, B., Cieciuch, J., Schmidt, P., &amp; Billiet, J. (2014). Measurement <span>Equivalence</span> in <span>Cross-National Research</span>. <em>Annual Review of Sociology</em>, <em>40</em>(Volume 40, 2014), 55–75. <a href="https://doi.org/10.1146/annurev-soc-071913-043137">https://doi.org/10.1146/annurev-soc-071913-043137</a>
 </div>
 <div id="ref-dubet_repensar_2011" class="csl-entry" role="listitem">
 Dubet, F. (2011). <em><span>Repensar la justicia social</span></em> (Sexta Edici<span>ó</span>n). Siglo XXI.
@@ -244,11 +381,23 @@ Flores, I., Sanhueza, C., Atria, J., &amp; Mayer, R. (2020). Top <span>Incomes</
 <div id="ref-goudeau_hidden_2017a" class="csl-entry" role="listitem">
 Goudeau, S., &amp; Croizet, J.-C. (2017). Hidden <span>Advantages</span> and <span>Disadvantages</span> of <span>Social Class</span>: <span>How Classroom Settings Reproduce Social Inequality</span> by <span>Staging Unfair Comparison</span>. <em>Psychological Science</em>, <em>28</em>(2), 162–170. <a href="https://doi.org/10.1177/0956797616676600">https://doi.org/10.1177/0956797616676600</a>
 </div>
+<div id="ref-henry_development_2006" class="csl-entry" role="listitem">
+Henry, P. J., &amp; Saul, A. (2006). The <span>Development</span> of <span>System Justification</span> in the <span>Developing World</span>. <em>Social Justice Research</em>, <em>19</em>(3), 365–378. <a href="https://doi.org/10.1007/s11211-006-0012-x">https://doi.org/10.1007/s11211-006-0012-x</a>
+</div>
 <div id="ref-jost_psychology_2003" class="csl-entry" role="listitem">
 Jost, J., &amp; Hunyady, O. (2003). The psychology of system justification and the palliative function of ideology. <em>European Review of Social Psychology</em>, <em>13</em>(1), 111–153. <a href="https://doi.org/10.1080/10463280240000046">https://doi.org/10.1080/10463280240000046</a>
 </div>
+<div id="ref-kline_principles_2023" class="csl-entry" role="listitem">
+Kline, R. B. (2023). <em>Principles and <span>Practice</span> of <span>Structural Equation Modeling</span></em>. Guilford Publications.
+</div>
 <div id="ref-kunovich_systems_2007a" class="csl-entry" role="listitem">
 Kunovich, S., &amp; Slomczynski, K. M. (2007). Systems of <span>Distribution</span> and a <span>Sense</span> of <span>Equity</span>: <span>A Multilevel Analysis</span> of <span>Meritocratic Attitudes</span> in <span class="nocase">Post-industrial Societies</span>. <em>European Sociological Review</em>, <em>23</em>(5), 649–663. <a href="https://doi.org/10.1093/esr/jcm026">https://doi.org/10.1093/esr/jcm026</a>
+</div>
+<div id="ref-lampert_meritocratic_2013" class="csl-entry" role="listitem">
+Lampert, K. (2013). <em>Meritocratic <span>Education</span> and <span>Social Worthlessness</span></em>. London: Palgrave Macmillan UK. <a href="https://doi.org/10.1057/9781137324894">https://doi.org/10.1057/9781137324894</a>
+</div>
+<div id="ref-liu_testing_2017" class="csl-entry" role="listitem">
+Liu, Y., Millsap, R. E., West, S. G., Tein, J.-Y., Tanaka, R., &amp; Grimm, K. J. (2017). Testing measurement invariance in longitudinal data with ordered-categorical measures. <em>Psychological Methods</em>, <em>22</em>(3), 486–506. <a href="https://doi.org/10.1037/met0000075">https://doi.org/10.1037/met0000075</a>
 </div>
 <div id="ref-lopez-roldan_comparative_2021" class="csl-entry" role="listitem">
 López-Roldán, P., &amp; Fachelli, S. (Eds.). (2021). <em>Towards a <span>Comparative Analysis</span> of <span>Social Inequalities</span> between <span>Europe</span> and <span>Latin America</span></em>. Cham: Springer International Publishing. <a href="https://doi.org/10.1007/978-3-030-48442-2">https://doi.org/10.1007/978-3-030-48442-2</a>
@@ -259,11 +408,20 @@ Madariaga, A. (2020). The three pillars of neoliberalism: <span>Chile</span>’s
 <div id="ref-mijs_paradox_2019" class="csl-entry" role="listitem">
 Mijs, J. (2019). The paradox of inequality: Income inequality and belief in meritocracy go hand in hand. <em>Socio-Economic Review</em>, <em>19</em>(1), 7–35. <a href="https://doi.org/10.1093/ser/mwy051">https://doi.org/10.1093/ser/mwy051</a>
 </div>
+<div id="ref-resh_sense_2014" class="csl-entry" role="listitem">
+Resh, N., &amp; Sabbagh, C. (2014). Sense of justice in school and civic attitudes. <em>Social Psychology of Education</em>, <em>17</em>(1), 51–72. <a href="https://doi.org/10.1007/s11218-013-9240-8">https://doi.org/10.1007/s11218-013-9240-8</a>
+</div>
 <div id="ref-reynolds_perceptions_2014" class="csl-entry" role="listitem">
 Reynolds, J., &amp; Xian, H. (2014). Perceptions of meritocracy in the land of opportunity. <em>Research in Social Stratification and Mobility</em>, <em>36</em>, 121–137. <a href="https://doi.org/10.1016/j.rssm.2014.03.001">https://doi.org/10.1016/j.rssm.2014.03.001</a>
 </div>
+<div id="ref-sandel_tyranny_2020" class="csl-entry" role="listitem">
+Sandel, M. J. (2020). <em>The tyranny of merit: <span>What</span>’s become of the common good?</em> (First edition). New York: <span>Farrar, Straus and Giroux</span>.
+</div>
 <div id="ref-trump_when_2020" class="csl-entry" role="listitem">
 Trump, K.-S. (2020). When and why is economic inequality seen as fair. <em>Current Opinion in Behavioral Sciences</em>, <em>34</em>, 46–51. <a href="https://doi.org/10.1016/j.cobeha.2019.12.001">https://doi.org/10.1016/j.cobeha.2019.12.001</a>
+</div>
+<div id="ref-valenzuela_socioeconomic_2013" class="csl-entry" role="listitem">
+Valenzuela, J. P., Bellei, C., &amp; Ríos, D. D. L. (2013). Socioeconomic school segregation in a market-oriented educational system. <span>The</span> case of <span>Chile</span>. <em>Journal of Education Policy</em>, <em>29</em>(2), 217–241. <a href="https://doi.org/10.1080/02680939.2013.806995">https://doi.org/10.1080/02680939.2013.806995</a>
 </div>
 <div id="ref-wiederkehr_belief_2015" class="csl-entry" role="listitem">
 Wiederkehr, V., Bonnot, V., Krauth-Gruber, S., &amp; Darnon, C. (2015). Belief in school meritocracy as a system-justifying tool for low status students. <em>Frontiers in Psychology</em>, <em>6</em>.

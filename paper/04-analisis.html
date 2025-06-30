@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,9 +35,13 @@ ul.task-list li input[type="checkbox"] {
 <link href="04-analisis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="04-analisis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script src="04-analisis_files/libs/kePrint-0.0.1/kePrint.js"></script>
+
 <link href="04-analisis_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 <link href="04-analisis_files/libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
+
 <script src="04-analisis_files/libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
 
 
 </head>
@@ -76,13 +80,19 @@ ul.task-list li input[type="checkbox"] {
 <h1>Results</h1>
 <section id="longitudinal-invariance-test" class="level2">
 <h2 class="anchored" data-anchor-id="longitudinal-invariance-test">Longitudinal Invariance Test</h2>
-<div id="tbl-invarianza" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-invarianza-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Longitudinal Invariance Test Results
-</figcaption>
-<div aria-describedby="tbl-invarianza-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-bordered table-condensed cell caption-top table-sm small" data-quarto-postprocess="true">
+<div class="cell" data-tbl-cap="Longitudinal Invariance Test Results 1">
+<p>[1] “idestudiante” “perceffort1” “perceffort2” “perctalent1”<br>
+[5] “perctalent2” “percrichparents1” “percrichparents2” “perccontact1”<br>
+[9] “perccontact2” “prefeffort1” “prefeffort2” “preftalent1”<br>
+[13] “preftalent2” “prefrichparents1” “prefrichparents2” “prefcontact1”<br>
+[17] “prefcontact2”<br>
+[1] “id_estudiante” “ola” “curse_level”<br>
+[4] “perc_effort” “perc_talent” “perc_rich_parents” [7] “perc_contact” “pref_effort” “pref_talent”<br>
+[10] “pref_rich_parents” “pref_contact” “cohort_level”</p>
+</div>
+<div class="cell">
+<table class="table table-striped table-bordered table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Longitudinal Invariance Test Results 3</caption>
 <thead>
 <tr class="header">
 <th style="text-align: center;" data-quarto-table-cell-role="th">Model</th>
@@ -98,68 +108,61 @@ Table&nbsp;1: Longitudinal Invariance Test Results
 <tbody>
 <tr class="odd">
 <td style="text-align: center; width: 3.5cm;">Configural</td>
-<td style="text-align: center; width: 4cm;">38.02 (20)</td>
-<td style="text-align: center; width: 4cm;">0.990</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.039 (0.019-0.058)</td>
-<td style="text-align: center; width: 4cm;"></td>
-<td style="text-align: center; width: 4cm;"></td>
-<td style="text-align: center; width: 4cm;"></td>
-<td style="text-align: center; width: 3.5cm;"></td>
+<td style="text-align: center; width: 4cm;">117.7 (68)</td>
+<td style="text-align: center; width: 4cm;">0.991</td>
+<td style="text-align: center; width: 4cm; width: 5cm;">0.035 (0.024-0.046)</td>
+<td style="text-align: center; width: 4cm;">0 (0)</td>
+<td style="text-align: center; width: 4cm;">0</td>
+<td style="text-align: center; width: 4cm;">0.000</td>
+<td style="text-align: center; width: 3.5cm;">Reference</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 3.5cm;">Weak</td>
-<td style="text-align: center; width: 4cm;">50.22 (27)</td>
-<td style="text-align: center; width: 4cm;">0.988</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.038 (0.021-0.054)</td>
-<td style="text-align: center; width: 4cm;">12.196 (7) .</td>
-<td style="text-align: center; width: 4cm;">-0.003</td>
+<td style="text-align: center; width: 4cm;">122.51 (72)</td>
+<td style="text-align: center; width: 4cm;">0.990</td>
+<td style="text-align: center; width: 4cm; width: 5cm;">0.034 (0.024-0.045)</td>
+<td style="text-align: center; width: 4cm;">4.809 (4)</td>
+<td style="text-align: center; width: 4cm;">0</td>
 <td style="text-align: center; width: 4cm;">-0.001</td>
 <td style="text-align: center; width: 3.5cm;">Accept</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center; width: 3.5cm;">Strong</td>
-<td style="text-align: center; width: 4cm;">142.03 (34)</td>
-<td style="text-align: center; width: 4cm;">0.942</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.073 (0.061-0.086)</td>
-<td style="text-align: center; width: 4cm;">91.816 (7) ***</td>
-<td style="text-align: center; width: 4cm;">-0.045</td>
-<td style="text-align: center; width: 4cm;">0.035</td>
-<td style="text-align: center; width: 3.5cm;">Reject</td>
+<td style="text-align: center; width: 4cm;">128.53 (80)</td>
+<td style="text-align: center; width: 4cm;">0.991</td>
+<td style="text-align: center; width: 4cm; width: 5cm;">0.032 (0.021-0.042)</td>
+<td style="text-align: center; width: 4cm;">6.02 (8)</td>
+<td style="text-align: center; width: 4cm;">0</td>
+<td style="text-align: center; width: 4cm;">-0.002</td>
+<td style="text-align: center; width: 3.5cm;">Accept</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 3.5cm;">Strict</td>
-<td style="text-align: center; width: 4cm;">245.93 (48)</td>
-<td style="text-align: center; width: 4cm;">0.894</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.084 (0.073-0.094)</td>
-<td style="text-align: center; width: 4cm;">103.895 (14) ***</td>
-<td style="text-align: center; width: 4cm;">-0.048</td>
-<td style="text-align: center; width: 4cm;">0.010</td>
-<td style="text-align: center; width: 3.5cm;">Reject</td>
+<td style="text-align: center; width: 4cm;">130.17 (84)</td>
+<td style="text-align: center; width: 4cm;">0.991</td>
+<td style="text-align: center; width: 4cm; width: 5cm;">0.031 (0.02-0.04)</td>
+<td style="text-align: center; width: 4cm;">1.635 (4)</td>
+<td style="text-align: center; width: 4cm;">0</td>
+<td style="text-align: center; width: 4cm;">-0.002</td>
+<td style="text-align: center; width: 3.5cm;">Accept</td>
 </tr>
 </tbody>
 </table>
 
 
 </div>
-</figure>
-</div>
-<p>The results of a longitudinal invariance test aim to determinate whether a construct measured at different points in time retains the same psychometric properties. This type of analysis is essential to ensure that any observed changes over time reflect true differences in the construct itself and not changes in the measurement model.</p>
-<p>The first model tested is the configural invariance model. This baseline model requires only that the factor structure (i.e., which items load on which factors) remains consistent across time points. The fit indices for this model are excellent: the chi-square is 38.02 with 20 degrees of freedom, the Comparative Fit Index (CFI) is 0.990, and the Root Mean Square Error of Approximation (RMSEA) is 0.039, with a 90% confidence interval ranging from 0.019 to 0.058. These values suggest that the model fits the data well at both time points, indicating that the basic structure of the construct is stable. This model serves as a foundation for comparing more constrained models.</p>
-<p>The second model, referred to as the weak or metric invariance model, adds the constraint that factor loadings must be equal over time. This tests whether the items contribute similarly to the latent construct at each measurement occasion. Compared to the configural model, the chi-square increases to 50.22 (with 27 degrees of freedom), reflecting a change of 12.196 with 7 additional degrees of freedom. Although numerically higher, this change is not statistically significant (as indicated by the absence of significance markers). Additionally, the CFI drops only slightly from 0.990 to 0.988 (a change of -0.003), and the RMSEA slightly improves from 0.039 to 0.038. Because these changes are minimal and within widely accepted thresholds (e.g., ΔCFI less than -0.01 and ΔRMSEA less than 0.015), weak invariance is supported. This means that the meaning of the construct is comparable over time in terms of the relationships between items and latent factors.</p>
-<p>However, the strong or scalar invariance model, which introduces the constraint that item intercepts must also be equal over time, shows a substantial deterioration in model fit. The chi-square rises sharply to 142.03 with 34 degrees of freedom, and the difference from the weak invariance model is 91.816 with 7 additional degrees of freedom, which is highly significant (marked with ***). Furthermore, the CFI drops considerably to 0.942 (a change of -0.045), and the RMSEA increases to 0.073. These results suggest that item intercepts are not invariant across time, meaning that item-level mean scores are not directly comparable. Therefore, strong invariance is rejected. This implies that latent mean comparisons across time points would be biased and potentially invalid.</p>
-<p>Finally, the strict invariance model, which adds the constraint of equal residual variances (measurement error) across time, results in even poorer fit. The chi-square increases further to 245.93 with 48 degrees of freedom, yielding a difference of 103.895 compared to the strong model, again highly significant (***). The CFI declines to 0.894, and the RMSEA rises to 0.084, indicating a poor fit to the data. Consequently, strict invariance is also rejected.</p>
-<p>In summary, the measure meets the requirements for configural and weak invariance, which means that the overall structure of the construct and the relationship between items and latent factors remain stable over time. However, the results do not support strong or strict invariance, suggesting that it is not valid to compare latent means or error variances across time. While the construct appears to have the same general meaning and structure at each time point, any observed changes in scores cannot be confidently interpreted as real changes in the underlying construct.</p>
+<p>A series of nested confirmatory factor analysis (CFA) models was estimated to assess the longitudinal measurement invariance of the constructs across different waves of the study. The evaluation began with the configural model, which allows all parameters (loadings, intercepts, and residuals) to vary freely across time. This model served as the baseline for subsequent comparisons and demonstrated good fit to the data, with χ²(68) = 117.7, a Comparative Fit Index (CFI) of 0.991, and a Root Mean Square Error of Approximation (RMSEA) of 0.035, with a 90% confidence interval ranging from 0.024 to 0.046. These indices suggest that the same factorial structure is replicated across time points, meaning that the general configuration of items and latent variables remains stable.</p>
+<p>Subsequently, the weak invariance model was tested by constraining the factor loadings to be equal across waves. This model also showed excellent fit: χ²(72) = 122.51, CFI = 0.990, RMSEA = 0.034 (90% CI: 0.024–0.045). The comparison with the configural model revealed a negligible and non-significant change in model fit, with Δχ²(4) = 4.809, ΔCFI = 0.000, and ΔRMSEA = -0.001. These results support the assumption of weak invariance, indicating that the strength of the relationship between items and latent constructs is consistent over time.</p>
+<p>The strong invariance model introduced additional constraints by setting item intercepts equal across time points, in addition to the equality of factor loadings. This model yielded a χ²(80) = 128.53, CFI = 0.991, and RMSEA = 0.032 (90% CI: 0.021–0.042). The changes in fit statistics relative to the weak model were Δχ²(8) = 6.02, ΔCFI = 0.000, and ΔRMSEA = -0.002. These minimal differences suggest that the additional constraints did not significantly impair the model’s fit. Therefore, strong invariance is supported, meaning that individuals with the same latent trait level are expected to have the same observed item scores across waves.</p>
+<p>Finally, the strict invariance model imposed equality constraints on residual variances in addition to the loadings and intercepts. This model also showed good fit: χ²(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90% CI: 0.020–0.040). The comparison with the strong model revealed a Δχ²(4) = 1.635, ΔCFI = 0.000, and ΔRMSEA = -0.002. These changes are minimal and fall well within recommended thresholds for model comparison, indicating that strict invariance is also supported.</p>
+<p>In summary, the results support full longitudinal measurement invariance—configural, weak, strong, and strict—suggesting that the constructs are measured equivalently across time. This justifies meaningful comparisons of latent means, variances, and covariances over time, and provides strong evidence of the temporal stability and psychometric robustness of the measurement model. However, it remains important to explore possible sources of misfit or localized non-invariance that could inform refinements to further improve the model.</p>
 </section>
-<section id="sources-of-longitudinal-invariance" class="level2">
-<h2 class="anchored" data-anchor-id="sources-of-longitudinal-invariance">Sources of longitudinal invariance</h2>
-<div id="tbl-lavTestScore" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lavTestScore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Longitudinal Invariance Sources
-</figcaption>
-<div aria-describedby="tbl-lavTestScore-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-bordered table-condensed cell caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Assessment of Metric Invariance Based on Score Test (Strong Invariance Model)</caption>
+</section>
+<section id="possible-error-sources" class="level1">
+<h1>Possible Error Sources</h1>
+<div class="cell">
+<table class="table table-striped table-bordered table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Longitudinal Invariance Sources</caption>
 <thead>
 <tr class="header">
 <th style="text-align: center;" data-quarto-table-cell-role="th">Restriction Tested</th>
@@ -171,99 +174,29 @@ Table&nbsp;2: Longitudinal Invariance Sources
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center; width: 5cm;">.p1. == .p3.</td>
-<td style="text-align: center; width: 3.5cm;">0.102</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.750</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p1. == .p5.</td>
-<td style="text-align: center; width: 3.5cm;">5.278</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.022</td>
-<td style="text-align: center; width: 4cm;">Possible violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p1. == .p7.</td>
-<td style="text-align: center; width: 3.5cm;">18.194</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p1. == .p9.</td>
-<td style="text-align: center; width: 3.5cm;">15.396</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p1. == .p11.</td>
-<td style="text-align: center; width: 3.5cm;">11.750</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.001</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p1. == .p13.</td>
-<td style="text-align: center; width: 3.5cm;">1.070</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.301</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p1. == .p15.</td>
-<td style="text-align: center; width: 3.5cm;">0.277</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.599</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
 <td style="text-align: center; width: 5cm;">.p2. == .p4.</td>
-<td style="text-align: center; width: 3.5cm;">0.445</td>
+<td style="text-align: center; width: 3.5cm;">0.440</td>
 <td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.505</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p2. == .p6.</td>
-<td style="text-align: center; width: 3.5cm;">12.642</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p2. == .p8.</td>
-<td style="text-align: center; width: 3.5cm;">17.839</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p2. == .p10.</td>
-<td style="text-align: center; width: 3.5cm;">8.920</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.003</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p2. == .p12.</td>
-<td style="text-align: center; width: 3.5cm;">29.510</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p2. == .p14.</td>
-<td style="text-align: center; width: 3.5cm;">0.308</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.579</td>
+<td style="text-align: center; width: 3.5cm;">0.507</td>
 <td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="even">
-<td style="text-align: center; width: 5cm;">.p2. == .p16.</td>
-<td style="text-align: center; width: 3.5cm;">0.662</td>
+<td style="text-align: center; width: 5cm;">.p6. == .p8.</td>
+<td style="text-align: center; width: 3.5cm;">0.501</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.479</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p10. == .p12.</td>
+<td style="text-align: center; width: 3.5cm;">2.659</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.103</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p14. == .p16.</td>
+<td style="text-align: center; width: 3.5cm;">0.661</td>
 <td style="text-align: center; width: 3.5cm;">1</td>
 <td style="text-align: center; width: 3.5cm;">0.416</td>
 <td style="text-align: center; width: 4cm;">No violation</td>
@@ -273,18 +206,11 @@ Table&nbsp;2: Longitudinal Invariance Sources
 
 
 </div>
-</figure>
-</div>
-<section id="specific-violations" class="level3">
-<h3 class="anchored" data-anchor-id="specific-violations">Specific Violations</h3>
-<div id="tbl-subset" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-subset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: Clear Violations of Invariance
-</figcaption>
-<div aria-describedby="tbl-subset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-bordered table-condensed cell caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Clear Violation Restrictions (Strong Invariance)</caption>
+<p>The results of the score test for the weak invariance model, which evaluates the equality of factor loadings across time points, indicate that all tested parameter constraints are supported by the data. Specifically, none of the tested restrictions—such as the equality between parameters <code>.p2.</code> and <code>.p4.</code>, <code>.p6.</code> and <code>.p8.</code>, <code>.p10.</code> and <code>.p12.</code>, and <code>.p14.</code> and <code>.p16.</code>—yielded statistically significant chi-square values. All p-values were well above the conventional threshold of 0.05, suggesting that constraining these loadings to be equal does not lead to a significant deterioration in model fit.</p>
+<p>These findings provide strong empirical support for metric (or weak) invariance, meaning that the strength of the relationship between the latent factors and their observed indicators is stable across waves. This level of invariance is a necessary condition for making valid comparisons of structural relationships—such as regression paths or covariances—between latent variables over time. The absence of any violation in the score test results implies that the measurement model functions consistently across the different time points examined.</p>
+<div class="cell">
+<table class="table table-striped table-bordered table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Possible Violations of Invariance</caption>
 <thead>
 <tr class="header">
 <th style="text-align: center;" data-quarto-table-cell-role="th">Restriction Tested</th>
@@ -296,167 +222,316 @@ Table&nbsp;3: Clear Violations of Invariance
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center; width: 5cm;">.p1. == .p7.</td>
-<td style="text-align: center; width: 3.5cm;">18.194</td>
+<td style="text-align: center; width: 5cm;">.p2. == .p4.</td>
+<td style="text-align: center; width: 3.5cm;">0.095</td>
 <td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
+<td style="text-align: center; width: 3.5cm;">0.758</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="even">
-<td style="text-align: center; width: 5cm;">.p1. == .p9.</td>
-<td style="text-align: center; width: 3.5cm;">15.396</td>
+<td style="text-align: center; width: 5cm;">.p6. == .p8.</td>
+<td style="text-align: center; width: 3.5cm;">0.797</td>
 <td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
+<td style="text-align: center; width: 3.5cm;">0.372</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center; width: 5cm;">.p1. == .p11.</td>
-<td style="text-align: center; width: 3.5cm;">11.750</td>
+<td style="text-align: center; width: 5cm;">.p10. == .p12.</td>
+<td style="text-align: center; width: 3.5cm;">3.305</td>
 <td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.001</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
+<td style="text-align: center; width: 3.5cm;">0.069</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="even">
-<td style="text-align: center; width: 5cm;">.p2. == .p6.</td>
-<td style="text-align: center; width: 3.5cm;">12.642</td>
+<td style="text-align: center; width: 5cm;">.p14. == .p16.</td>
+<td style="text-align: center; width: 3.5cm;">0.421</td>
 <td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
+<td style="text-align: center; width: 3.5cm;">0.517</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center; width: 5cm;">.p2. == .p8.</td>
-<td style="text-align: center; width: 3.5cm;">17.839</td>
+<td style="text-align: center; width: 5cm;">.p29. == .p31.</td>
+<td style="text-align: center; width: 3.5cm;">0.574</td>
 <td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
+<td style="text-align: center; width: 3.5cm;">0.449</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="even">
-<td style="text-align: center; width: 5cm;">.p2. == .p10.</td>
-<td style="text-align: center; width: 3.5cm;">8.920</td>
+<td style="text-align: center; width: 5cm;">.p30. == .p32.</td>
+<td style="text-align: center; width: 3.5cm;">0.459</td>
 <td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.003</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
+<td style="text-align: center; width: 3.5cm;">0.498</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center; width: 5cm;">.p2. == .p12.</td>
-<td style="text-align: center; width: 3.5cm;">29.510</td>
+<td style="text-align: center; width: 5cm;">.p33. == .p35.</td>
+<td style="text-align: center; width: 3.5cm;">1.675</td>
 <td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">Clear violation</td>
+<td style="text-align: center; width: 3.5cm;">0.196</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p34. == .p36.</td>
+<td style="text-align: center; width: 3.5cm;">2.496</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.114</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p37. == .p39.</td>
+<td style="text-align: center; width: 3.5cm;">0.305</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.581</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p38. == .p40.</td>
+<td style="text-align: center; width: 3.5cm;">0.060</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.806</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p41. == .p43.</td>
+<td style="text-align: center; width: 3.5cm;">1.716</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.190</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p42. == .p44.</td>
+<td style="text-align: center; width: 3.5cm;">0.470</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.493</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p45. == .p47.</td>
+<td style="text-align: center; width: 3.5cm;">0.071</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.790</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p46. == .p48.</td>
+<td style="text-align: center; width: 3.5cm;">0.318</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.573</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p49. == .p51.</td>
+<td style="text-align: center; width: 3.5cm;">3.829</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.050</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p50. == .p52.</td>
+<td style="text-align: center; width: 3.5cm;">0.914</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.339</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p53. == .p55.</td>
+<td style="text-align: center; width: 3.5cm;">0.534</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.465</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p54. == .p56.</td>
+<td style="text-align: center; width: 3.5cm;">0.188</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.665</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p57. == .p59.</td>
+<td style="text-align: center; width: 3.5cm;">0.008</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.929</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p58. == .p60.</td>
+<td style="text-align: center; width: 3.5cm;">0.657</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.418</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 </tbody>
 </table>
 
 
 </div>
-</figure>
-</div>
-<p>The table presents the results of a series of score tests conducted to evaluate the assumption of strong factorial invariance in a longitudinal confirmatory factor analysis (CFA) framework. Each row corresponds to a specific equality constraint tested between two parameters—typically loadings or intercepts—across different waves of data collection.</p>
-<p>In this context, the equality constraints (e.g., <code>.p1. == .p7.</code>) assess whether a specific parameter estimated in one wave is statistically equivalent to the same parameter in a different wave. A significant chi-square test (p &lt; 0.05) indicates that the equality constraint is violated, meaning that the parameter differs across time points and thus does not meet the requirement for strong invariance.</p>
-<p>All the tested constraints in this table show clear violations, with p-values below 0.01 and often far below 0.001. This implies that the assumption of equality for these parameters across waves is strongly rejected by the data. For example: The restriction <code>.p1. == .p7.</code> compares the same item’s loading (or intercept) in different waves. The significant chi-square statistic (χ² = 17.963, p &lt; .001) shows that this parameter changes over time. Similarly, <code>.p2. == .p6.</code>, <code>.p2. == .p8.</code>, and other comparisons indicate substantial variation in item functioning across time points.</p>
-<p>This systematic pattern of significant violations suggests that several items behave differently over time, either in their loading onto the latent factor or in their intercepts. In practical terms, this challenges the longitudinal comparability of the latent constructs involved (e.g., perceptions of meritocracy), since the same construct may not be measured in the same way across waves.</p>
-<p>Consequently, these findings call for relaxing some of the invariance constraints—that is, allowing certain parameters to vary freely across waves—to estimate a partial invariance model. Doing so enables the researcher to still make meaningful comparisons, provided that a sufficient number of parameters remain invariant to anchor the scale.</p>
-<p>In summary, the table provides robust statistical evidence that strong invariance is violated for key parameters, emphasizing the need for caution when interpreting changes in latent means over time as substantive shifts in attitudes or perceptions.</p>
-</section>
-<section id="parameters-information" class="level3">
-<h3 class="anchored" data-anchor-id="parameters-information">Parameters Information</h3>
-<div id="tbl-param_info" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-param_info-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;4: Específic Parameters
-</figcaption>
-<div aria-describedby="tbl-param_info-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table table-striped table-bordered table-condensed table-hover cell caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Quality Assessment Table – Strong Invariance (Automated)</caption>
+<p>The table presents the results of score tests used to evaluate metric invariance under the <strong>strict invariance model</strong>, which imposes the strongest set of constraints in longitudinal measurement: equal factor loadings, intercepts, and residual variances across waves. Each row in the table corresponds to a test of the equality between two specific parameters across time points. The chi-square statistic, degrees of freedom (df), and p-value indicate whether that equality constraint significantly worsens model fit, which would suggest a violation of invariance.</p>
+<p>In this case, all tested restrictions yield <strong>non-significant</strong> p-values, with none falling below the conventional alpha threshold of 0.05. For example, the constraint <code>.p2. == .p4.</code> produces a chi-square of 0.108 and a p-value of 0.742, strongly suggesting that the two parameters are statistically indistinguishable and thus invariant. Other constraints, such as <code>.p14. == .p16.</code> (χ² = 0.060, p = 0.806) and <code>.p66. == .p68.</code> (χ² = 0.006, p = 0.937), similarly indicate no violation of invariance.</p>
+<p>A few parameters show slightly elevated chi-square values and marginal p-values—for instance, <code>.p49. == .p51.</code> yields a chi-square of 3.414 and a p-value of 0.065. While still non-significant, this result is relatively close to the threshold, and the associated parameters might merit further investigation for potential partial invariance or item-level idiosyncrasies.</p>
+<p>Overall, the evidence suggests that the model meets the criteria for strict invariance. That is, there is no statistical indication that any of the tested loadings, intercepts, or residuals differ meaningfully across waves. This supports the conclusion that the measurement properties of the constructs remain stable over time. Still, researchers should remain cautious and consider examining parameters close to significance thresholds, exploring possible sources of measurement error, or testing for partial invariance if theoretical or substantive justifications arise.</p>
+<div class="cell">
+<table class="table table-striped table-bordered table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Possible Violations of Invariance</caption>
 <thead>
 <tr class="header">
-<th style="text-align: center;" data-quarto-table-cell-role="th">Index</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Latent Factor</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Item</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Wave</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Label</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Parameter</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Strong Invariance</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Restriction Tested</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Chi-square</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">df</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">p-value</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Evaluation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center; width: 2cm;">6</td>
-<td style="text-align: center; width: 3.5cm;">percnmerit1</td>
-<td style="text-align: center; width: 3.5cm;">perccontact1</td>
-<td style="text-align: center; width: 3.5cm;">Wave 2</td>
-<td style="text-align: center; width: 4cm;">lambda.2_1</td>
-<td style="text-align: center; width: 4cm;">.p6.</td>
-<td style="text-align: center; width: 3.5cm; font-weight: bold;">Not invariant</td>
+<td style="text-align: center; width: 5cm;">.p2. == .p4.</td>
+<td style="text-align: center; width: 3.5cm;">0.108</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.742</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="even">
-<td style="text-align: center; width: 2cm;">7</td>
-<td style="text-align: center; width: 3.5cm;">percnmerit2</td>
-<td style="text-align: center; width: 3.5cm;">percrichparents2</td>
-<td style="text-align: center; width: 3.5cm;">Wave 1</td>
-<td style="text-align: center; width: 4cm;">lambda.1_1</td>
-<td style="text-align: center; width: 4cm;">.p7.</td>
-<td style="text-align: center; width: 3.5cm; font-weight: bold;">Not invariant</td>
+<td style="text-align: center; width: 5cm;">.p6. == .p8.</td>
+<td style="text-align: center; width: 3.5cm;">0.989</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.320</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center; width: 2cm;">8</td>
-<td style="text-align: center; width: 3.5cm;">percnmerit2</td>
-<td style="text-align: center; width: 3.5cm;">perccontact2</td>
-<td style="text-align: center; width: 3.5cm;">Wave 2</td>
-<td style="text-align: center; width: 4cm;">lambda.2_1</td>
-<td style="text-align: center; width: 4cm;">.p8.</td>
-<td style="text-align: center; width: 3.5cm; font-weight: bold;">Not invariant</td>
+<td style="text-align: center; width: 5cm;">.p10. == .p12.</td>
+<td style="text-align: center; width: 3.5cm;">1.767</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.184</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="even">
-<td style="text-align: center; width: 2cm;">9</td>
-<td style="text-align: center; width: 3.5cm;">prefmerit1</td>
-<td style="text-align: center; width: 3.5cm;">prefeffort1</td>
-<td style="text-align: center; width: 3.5cm;">Wave 1</td>
-<td style="text-align: center; width: 4cm;">lambda.1_1</td>
-<td style="text-align: center; width: 4cm;">.p9.</td>
-<td style="text-align: center; width: 3.5cm; font-weight: bold;">Not invariant</td>
+<td style="text-align: center; width: 5cm;">.p14. == .p16.</td>
+<td style="text-align: center; width: 3.5cm;">0.060</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.806</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center; width: 2cm;">10</td>
-<td style="text-align: center; width: 3.5cm;">prefmerit1</td>
-<td style="text-align: center; width: 3.5cm;">preftalent1</td>
-<td style="text-align: center; width: 3.5cm;">Wave 2</td>
-<td style="text-align: center; width: 4cm;">lambda.2_1</td>
-<td style="text-align: center; width: 4cm;">.p10.</td>
-<td style="text-align: center; width: 3.5cm; font-weight: bold;">Not invariant</td>
+<td style="text-align: center; width: 5cm;">.p37. == .p39.</td>
+<td style="text-align: center; width: 3.5cm;">0.285</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.593</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="even">
-<td style="text-align: center; width: 2cm;">11</td>
-<td style="text-align: center; width: 3.5cm;">prefmerit2</td>
-<td style="text-align: center; width: 3.5cm;">prefeffort2</td>
-<td style="text-align: center; width: 3.5cm;">Wave 1</td>
-<td style="text-align: center; width: 4cm;">lambda.1_1</td>
-<td style="text-align: center; width: 4cm;">.p11.</td>
-<td style="text-align: center; width: 3.5cm; font-weight: bold;">Not invariant</td>
+<td style="text-align: center; width: 5cm;">.p38. == .p40.</td>
+<td style="text-align: center; width: 3.5cm;">0.193</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.660</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center; width: 2cm;">12</td>
-<td style="text-align: center; width: 3.5cm;">prefmerit2</td>
-<td style="text-align: center; width: 3.5cm;">preftalent2</td>
-<td style="text-align: center; width: 3.5cm;">Wave 2</td>
-<td style="text-align: center; width: 4cm;">lambda.2_1</td>
-<td style="text-align: center; width: 4cm;">.p12.</td>
-<td style="text-align: center; width: 3.5cm; font-weight: bold;">Not invariant</td>
+<td style="text-align: center; width: 5cm;">.p41. == .p43.</td>
+<td style="text-align: center; width: 3.5cm;">0.874</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.350</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p42. == .p44.</td>
+<td style="text-align: center; width: 3.5cm;">0.487</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.485</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p45. == .p47.</td>
+<td style="text-align: center; width: 3.5cm;">0.215</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.643</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p46. == .p48.</td>
+<td style="text-align: center; width: 3.5cm;">0.456</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.499</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p49. == .p51.</td>
+<td style="text-align: center; width: 3.5cm;">3.414</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.065</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p50. == .p52.</td>
+<td style="text-align: center; width: 3.5cm;">0.918</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.338</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p53. == .p55.</td>
+<td style="text-align: center; width: 3.5cm;">0.007</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.935</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p54. == .p56.</td>
+<td style="text-align: center; width: 3.5cm;">0.024</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.878</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p57. == .p59.</td>
+<td style="text-align: center; width: 3.5cm;">1.053</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.305</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p58. == .p60.</td>
+<td style="text-align: center; width: 3.5cm;">0.360</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.548</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p61. == .p63.</td>
+<td style="text-align: center; width: 3.5cm;">0.316</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.574</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p62. == .p64.</td>
+<td style="text-align: center; width: 3.5cm;">0.348</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.555</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 5cm;">.p65. == .p67.</td>
+<td style="text-align: center; width: 3.5cm;">0.073</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.787</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 5cm;">.p66. == .p68.</td>
+<td style="text-align: center; width: 3.5cm;">0.006</td>
+<td style="text-align: center; width: 3.5cm;">1</td>
+<td style="text-align: center; width: 3.5cm;">0.937</td>
+<td style="text-align: center; width: 4cm;">No violation</td>
 </tr>
 </tbody>
 </table>
 
 
 </div>
-</figure>
-</div>
-<p>The table presents the results of a strong invariance assessment applied to a set of items measuring beliefs and preferences related to meritocracy, collected across the two survey waves. Each row corresponds to a parameter in the measurement model—specifically, a factor loading or intercept linked to a particular item—that has been identified as non-invariant. A parameter being non-invariant means that its value is not held constant across waves.</p>
-<p>For instance, the item “perccontact1” (which measures the extent to which personal contacts are seen as key to success) is non-invariant in Wave 2 for the latent factor percnmerit1 (non-meritocratic perception). This suggests that, at that specific time point, the relationship between the item and the latent factor changed. It’s plausible that contextual shifts—such as political, economic, or social developments—altered how individuals perceive the role of personal contacts in success, thereby changing what the item actually captures.</p>
-<p>Similar issues are observed with other items like “percrichparents2”, “prefeffort1”, “preftalent1”, “prefeffort2”, and “preftalent2”, all of which show non-invariance in at least one wave. These items address concepts such as the role of effort, talent, or family background in achieving success. Their lack of invariance suggests that responses may be influenced by time-specific factors such as public discourse, recent events, or generational shifts.</p>
-<p>Taken together, these results indicate that the items do not maintain a stable relationship with their respective latent constructs over time. In other words, the latent factors capturing perceptions and preferences regarding merit and distributive justice are not being measured equivalently across waves. This prevents direct comparisons of latent means unless the model is adjusted to allow for partial invariance (i.e., by identifying and freeing the non-invariant parameters).</p>
-<p>This finding has both methodological and substantive implications. Methodologically, it advises caution in interpreting longitudinal differences as genuine attitudinal change. Substantively, it suggests that the social meanings attached to merit, effort, or structural advantage may be sensitive to historical and cultural context. Thus, shifts observed in these indicators may reflect changes not only in attitudes, but also in how individuals interpret the questions themselves.</p>
-</section>
-</section>
+<p>The table presents the results of score tests used to evaluate metric invariance under the <strong>strict invariance model</strong>, which imposes the strongest set of constraints in longitudinal measurement: equal factor loadings, intercepts, and residual variances across waves. Each row in the table corresponds to a test of the equality between two specific parameters across time points. The chi-square statistic, degrees of freedom (df), and p-value indicate whether that equality constraint significantly worsens model fit, which would suggest a violation of invariance.</p>
+<p>In this case, all tested restrictions yield <strong>non-significant</strong> p-values, with none falling below the conventional alpha threshold of 0.05. For example, the constraint <code>.p2. == .p4.</code> produces a chi-square of 0.108 and a p-value of 0.742, strongly suggesting that the two parameters are statistically indistinguishable and thus invariant. Other constraints, such as <code>.p14. == .p16.</code> (χ² = 0.060, p = 0.806) and <code>.p66. == .p68.</code> (χ² = 0.006, p = 0.937), similarly indicate no violation of invariance.</p>
+<p>A few parameters show slightly elevated chi-square values and marginal p-values—for instance, <code>.p49. == .p51.</code> yields a chi-square of 3.414 and a p-value of 0.065. While still non-significant, this result is relatively close to the threshold, and the associated parameters might merit further investigation for potential partial invariance or item-level idiosyncrasies.</p>
+<p>Overall, the evidence suggests that the model meets the criteria for strict invariance. That is, there is no statistical indication that any of the tested loadings, intercepts, or residuals differ meaningfully across waves. This supports the conclusion that the measurement properties of the constructs remain stable over time. Still, researchers should remain cautious and consider examining parameters close to significance thresholds, exploring possible sources of measurement error, or testing for partial invariance if theoretical or substantive justifications arise.</p>
 </section>
 
 </main>

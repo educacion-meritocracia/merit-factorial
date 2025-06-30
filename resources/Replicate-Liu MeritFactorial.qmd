@@ -1,6 +1,6 @@
 ---
 title: "Measuring perceptions and preferences about meritocracy in school in Chile"
-subtitle: "Longitudinal Invariance Liu et al. (2017) Replication"
+subtitle: "Longitudinal Invariance EduMer using Liu et al. (2017) Replication"
 author: "René Canales, Research Helper"
 date: today
 lang: en
@@ -22,8 +22,6 @@ format:
 editor_options: 
   chunk_output_type: console
 ---
-
-# Longitudinal Invariance
 
 ```{r}
 #| label: set
@@ -138,6 +136,11 @@ db_invariance <- db_invariance %>%
 ## Configural
 
 ```{r}
+#| label: cfg-model
+#| tbl-cap: "Configural Model"
+#| results: hide
+#| warning: false
+
 baseline_model_smt <- ('
 
 ###########################################
@@ -192,6 +195,10 @@ summary(fit_baseline, fit.measures = TRUE)
 ## Weak Model
 
 ```{r}
+#| label: weak-model
+#| tbl-cap: "Weak Model"
+#| results: hide
+#| warning: false
 
 loadinginv_model_smt <- ('
 
@@ -266,20 +273,14 @@ fit_loadinginv <- cfa(loadinginv_model_smt, data = db_invariance,
 summary(fit_loadinginv, fit.measures = TRUE)
 ```
 
-### Anova for Weak and Configural
-
-```{r}
-anova(fit_baseline, fit_loadinginv)
-
-lavTestLRT(fit_baseline, fit_loadinginv)
-
-mi_loadinginv <- modindices(fit_loadinginv)
-subset(mi_loadinginv, mi >= 10)
-```
-
 ## Strong
 
 ```{r}
+#| label: strng-model
+#| tbl-cap: "Strong Model"
+#| results: hide
+#| warning: false
+
 thresholdinv_model_smt <- ('
 
 # Igualación de cargas (como en el modelo débil)
@@ -385,18 +386,14 @@ fit_thresholdinv <- cfa(thresholdinv_model_smt, data = db_invariance,
 summary(fit_thresholdinv, fit.measures = TRUE)
 ```
 
-### Anova Weak and Strong Invariance
-
-```{r}
-anova(fit_loadinginv, fit_thresholdinv)
-
-mi_threshold <- lavTestScore(fit_thresholdinv)
-subset(mi_threshold, mi >= 10)
-```
-
 ## Strict Model
 
 ```{r}
+#| label: strct-model
+#| tbl-cap: "Scalar Model"
+#| results: hide
+#| warning: false
+
 uniquenessinv_model_smt <- ('
 
 # Cargas factoriales (invarianza débil)
@@ -515,23 +512,15 @@ fit_uniquenessinv <- cfa(uniquenessinv_model_smt, data = db_invariance,
                          estimator = "WLSMV")
 ```
 
-### Anova Strong and Strict
-
-```{r}
-# Ver resumen
-summary(fit_uniquenessinv, fit.measures = TRUE)
-
-# Comparar con modelo anterior (invarianza fuerte)
-anova(fit_thresholdinv, fit_uniquenessinv)
-
-# Ver modification indices
-mi_uniqueness <- lavTestScore(fit_uniquenessinv)
-subset(mi_uniqueness, mi >= 10)
-```
-
 ## Compare Fit
 
 ```{r}
+#| label: strict-model
+#| tbl-cap: "Scalar Model"
+#| echo: false
+#| results: asis
+#| warning: false
+
 # Compare fit
 
 an1 <- anova(fit_baseline, fit_loadinginv)
@@ -597,3 +586,178 @@ tab.inv %>%
   kableExtra::column_spec(2:7, width = "4cm") %>% 
   kableExtra::column_spec(4, width = "5cm")
 ```
+
+A series of nested confirmatory factor analysis (CFA) models was estimated to assess the longitudinal measurement invariance of the constructs across different waves of the study. The evaluation began with the configural model, which allows all parameters (loadings, intercepts, and residuals) to vary freely across time. This model served as the baseline for subsequent comparisons and demonstrated good fit to the data, with χ²(68) = 117.7, a Comparative Fit Index (CFI) of 0.991, and a Root Mean Square Error of Approximation (RMSEA) of 0.035, with a 90% confidence interval ranging from 0.024 to 0.046. These indices suggest that the same factorial structure is replicated across time points, meaning that the general configuration of items and latent variables remains stable.
+
+Subsequently, the weak invariance model was tested by constraining the factor loadings to be equal across waves. This model also showed excellent fit: χ²(72) = 122.51, CFI = 0.990, RMSEA = 0.034 (90% CI: 0.024–0.045). The comparison with the configural model revealed a negligible and non-significant change in model fit, with Δχ²(4) = 4.809, ΔCFI = 0.000, and ΔRMSEA = -0.001. These results support the assumption of weak invariance, indicating that the strength of the relationship between items and latent constructs is consistent over time.
+
+The strong invariance model introduced additional constraints by setting item intercepts equal across time points, in addition to the equality of factor loadings. This model yielded a χ²(80) = 128.53, CFI = 0.991, and RMSEA = 0.032 (90% CI: 0.021–0.042). The changes in fit statistics relative to the weak model were Δχ²(8) = 6.02, ΔCFI = 0.000, and ΔRMSEA = -0.002. These minimal differences suggest that the additional constraints did not significantly impair the model’s fit. Therefore, strong invariance is supported, meaning that individuals with the same latent trait level are expected to have the same observed item scores across waves.
+
+Finally, the strict invariance model imposed equality constraints on residual variances in addition to the loadings and intercepts. This model also showed good fit: χ²(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90% CI: 0.020–0.040). The comparison with the strong model revealed a Δχ²(4) = 1.635, ΔCFI = 0.000, and ΔRMSEA = -0.002. These changes are minimal and fall well within recommended thresholds for model comparison, indicating that strict invariance is also supported.
+
+In summary, the results support full longitudinal measurement invariance—configural, weak, strong, and strict—suggesting that the constructs are measured equivalently across time. This justifies meaningful comparisons of latent means, variances, and covariances over time, and provides strong evidence of the temporal stability and psychometric robustness of the measurement model. However, it remains important to explore possible sources of misfit or localized non-invariance that could inform refinements to further improve the model.
+
+# Possible Error Sources
+
+```{r}
+#| label: tbl-lavTestScore-weak
+#| tbl-cap: "Longitudinal Invariance Sources"
+#| results: asis
+#| echo: false
+#| warning: false
+#| 
+#Run lavTestScore on strong invariance model
+score_result <- lavTestScore(fit_loadinginv)
+
+#Extract univariate score test results
+score_df <- score_result$uni
+
+#Create readable table with evaluation
+
+score_table <- score_df %>%
+  mutate(
+    restriction = paste(lhs, op, rhs),
+    evaluation = case_when(
+      p.value >= 0.05 ~ "No violation",
+      p.value >= 0.01 ~ "Possible violation",
+      TRUE ~ "Clear violation"
+    )
+  ) %>%
+  select(restriction, X2, df, p.value, evaluation)
+
+col.nam <- c("Restriction Tested", "Chi-square", "df", "p-value", "Evaluation")
+
+score_table %>%
+  kable(format = "html",
+        align = "c",
+        booktabs = TRUE,
+        escape = FALSE,
+        caption = "Assessment of Metric Invariance Based on Score Test (Weak Invariance Model)",
+        col.names = col.nam,
+        digits = 3) %>%
+  kable_styling(
+    full_width = TRUE,
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    latex_options = "hold_position",
+    font_size = 18
+  ) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2:4, width = "3.5cm") %>%
+  column_spec(5, width = "4cm")
+```
+
+The results of the score test for the weak invariance model, which evaluates the equality of factor loadings across time points, indicate that all tested parameter constraints are supported by the data. Specifically, none of the tested restrictions—such as the equality between parameters `.p2.` and `.p4.`, `.p6.` and `.p8.`, `.p10.` and `.p12.`, and `.p14.` and `.p16.`—yielded statistically significant chi-square values. All p-values were well above the conventional threshold of 0.05, suggesting that constraining these loadings to be equal does not lead to a significant deterioration in model fit.
+
+These findings provide strong empirical support for metric (or weak) invariance, meaning that the strength of the relationship between the latent factors and their observed indicators is stable across waves. This level of invariance is a necessary condition for making valid comparisons of structural relationships—such as regression paths or covariances—between latent variables over time. The absence of any violation in the score test results implies that the measurement model functions consistently across the different time points examined.
+
+```{r}
+#| label: tbl-lavTestScore-strong
+#| tbl-cap: "Longitudinal Invariance Sources"
+#| results: asis
+#| echo: false
+#| warning: false
+
+
+#Run lavTestScore on strong invariance model
+score_result <- lavTestScore(fit_thresholdinv)
+
+#Extract univariate score test results
+score_df <- score_result$uni
+
+#Create readable table with evaluation
+
+score_table <- score_df %>%
+  mutate(
+    restriction = paste(lhs, op, rhs),
+    evaluation = case_when(
+      p.value >= 0.05 ~ "No violation",
+      p.value >= 0.01 ~ "Possible violation",
+      TRUE ~ "Clear violation"
+    )
+  ) %>%
+  select(restriction, X2, df, p.value, evaluation)
+
+col.nam <- c("Restriction Tested", "Chi-square", "df", "p-value", "Evaluation")
+
+score_table %>%
+  kable(format = "html",
+        align = "c",
+        booktabs = TRUE,
+        escape = FALSE,
+        caption = "Assessment of Metric Invariance Based on Score Test (Strong Invariance Model)",
+        col.names = col.nam,
+        digits = 3) %>%
+  kable_styling(
+    full_width = TRUE,
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    latex_options = "hold_position",
+    font_size = 18
+  ) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2:4, width = "3.5cm") %>%
+  column_spec(5, width = "4cm")
+ 
+```
+
+This table presents the results of a series of score tests used to assess potential violations of metric invariance under the strong invariance model. Although each row formally tests the equality of a pair of parameters—typically factor loadings, intercepts, or residual variances—across time points, what is relevant here is the statistical behavior of each restriction, which can signal localized sources of misfit even within an otherwise acceptable global model.
+
+The chi-square statistics associated with each restriction are generally low, and all p-values are well above conventional thresholds for statistical significance. For example, the restriction `.p2. == .p4.` yields a chi-square of 0.095 and a p-value of 0.758, indicating strong empirical support for the equality of these two parameters. Similarly, other restrictions such as `.p38. == .p40.` (χ² = 0.060, p = 0.806) and `.p57. == .p59.` (χ² = 0.008, p = 0.929) suggest that the corresponding parameters are invariant across measurement occasions.
+
+A slightly borderline case appears with `.p49. == .p51.`, which yields a p-value of 0.050. Although it does not reach conventional significance levels, the relatively higher chi-square statistic (χ² = 3.829) may suggest this parameter deserves closer inspection, especially if similar localized discrepancies accumulate. Nonetheless, based on the p-value threshold used here, none of the tested constraints exhibits a statistically significant violation of invariance.
+
+Taken together, these findings suggest that the tested equality constraints are tenable, and there are no strong indications of local misfit or parameter-level sources of error in this subset of the model. Still, it is essential to interpret these results in the broader context of model fit and theoretical expectations. Isolated non-significant results do not eliminate the need for further examination—particularly in parameters that approach the threshold of concern or that correspond to theoretically critical items. Thus, even when score tests support invariance, researchers should remain attentive to substantive plausibility, potential differential item functioning, or item-specific idiosyncrasies that could influence interpretation.
+
+```{r}
+#| label: tbl-lavTestScore-strict
+#| tbl-cap: "Longitudinal Invariance Sources"
+#| results: asis
+#| echo: false
+#| warning: false
+#| 
+#Run lavTestScore on strong invariance model
+score_result <- lavTestScore(fit_uniquenessinv)
+
+#Extract univariate score test results
+score_df <- score_result$uni
+
+#Create readable table with evaluation
+
+score_table <- score_df %>%
+  mutate(
+    restriction = paste(lhs, op, rhs),
+    evaluation = case_when(
+      p.value >= 0.05 ~ "No violation",
+      p.value >= 0.01 ~ "Possible violation",
+      TRUE ~ "Clear violation"
+    )
+  ) %>%
+  select(restriction, X2, df, p.value, evaluation)
+
+col.nam <- c("Restriction Tested", "Chi-square", "df", "p-value", "Evaluation")
+
+score_table %>%
+  kable(format = "html",
+        align = "c",
+        booktabs = TRUE,
+        escape = FALSE,
+        caption = "Assessment of Metric Invariance Based on Score Test (Strict Invariance Model)",
+        col.names = col.nam,
+        digits = 3) %>%
+  kable_styling(
+    full_width = TRUE,
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    latex_options = "hold_position",
+    font_size = 18
+  ) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2:4, width = "3.5cm") %>%
+  column_spec(5, width = "4cm")
+```
+
+The table presents the results of score tests used to evaluate metric invariance under the **strict invariance model**, which imposes the strongest set of constraints in longitudinal measurement: equal factor loadings, intercepts, and residual variances across waves. Each row in the table corresponds to a test of the equality between two specific parameters across time points. The chi-square statistic, degrees of freedom (df), and p-value indicate whether that equality constraint significantly worsens model fit, which would suggest a violation of invariance.
+
+In this case, all tested restrictions yield **non-significant** p-values, with none falling below the conventional alpha threshold of 0.05. For example, the constraint `.p2. == .p4.` produces a chi-square of 0.108 and a p-value of 0.742, strongly suggesting that the two parameters are statistically indistinguishable and thus invariant. Other constraints, such as `.p14. == .p16.` (χ² = 0.060, p = 0.806) and `.p66. == .p68.` (χ² = 0.006, p = 0.937), similarly indicate no violation of invariance.
+
+A few parameters show slightly elevated chi-square values and marginal p-values—for instance, `.p49. == .p51.` yields a chi-square of 3.414 and a p-value of 0.065. While still non-significant, this result is relatively close to the threshold, and the associated parameters might merit further investigation for potential partial invariance or item-level idiosyncrasies.
+
+Overall, the evidence suggests that the model meets the criteria for strict invariance. That is, there is no statistical indication that any of the tested loadings, intercepts, or residuals differ meaningfully across waves. This supports the conclusion that the measurement properties of the constructs remain stable over time. Still, researchers should remain cautious and consider examining parameters close to significance thresholds, exploring possible sources of measurement error, or testing for partial invariance if theoretical or substantive justifications arise.

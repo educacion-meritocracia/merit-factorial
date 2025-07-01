@@ -57,7 +57,7 @@ rm(list = ls())
 ```
 
 ```{r}
-#| label: data
+#| label: longitudinal data 
 #| echo: false
 #| output: false
 
@@ -67,6 +67,209 @@ names(db_long)
 glimpse(db_long)
 dim(db_long)
 ```
+
+```{r}
+#| label: cohort data
+
+load(file = here("output/data/db1_proc.RData"))
+```
+
+
+## Cohort Invariance Test
+
+```{r}
+#| label: Measurement model
+
+model_cfa <- '
+  perc_merit = ~ perc_effort + perc_talent
+  perc_nmerit = ~ perc_rich_parents + perc_contact
+  pref_merit = ~ pref_effort + pref_talent
+  pref_nmerit = ~ pref_rich_parents + pref_contact
+  '
+
+```
+
+```{r}
+#| include: false 
+
+m1_cfa <- cfa(model = model_cfa, 
+              data = db1,
+              estimator = "MLR", 
+              std.lv = F) # Continuous/ estimator ML Robust
+
+m2_cfa <- cfa(model = model_cfa, 
+              data = db1, 
+              estimator = "DWLS",
+              ordered = T,
+              std.lv = F)
+```
+
+```{r}
+#| label: Factor loadings
+#| include: false 
+#| message: false
+
+cnames <- c("Factor","Indicator","Loading (MLR)","Loading (DWLS)")
+kable(left_join(x = standardizedsolution(m1_cfa) %>% 
+                  filter(op=="=~") %>% 
+                  select(lhs,rhs,est.std),y = standardizedsolution(m2_cfa) %>% 
+                  filter(op=="=~") %>%
+                  select(lhs,rhs,est.std),c("lhs","rhs")),
+      format = "markdown",digits = 2,col.names = cnames, caption = "Factor loadings")
+```
+
+```{r}
+#| label: Models by cohort
+
+mgeneral_cfa <- cfa(model = model_cfa, 
+                   data = db1, 
+                   estimator = "DWLS",
+                   ordered = T,
+                   std.lv = F)
+
+mbasica_cfa <- cfa(model = model_cfa, 
+                   data = subset(db1, curse_level == "Básica"), 
+                   estimator = "DWLS",
+                   ordered = T,
+                   std.lv = F)
+
+mmedia_cfa <- cfa(model = model_cfa, 
+                  data = subset(db1, curse_level == "Media"), 
+                  estimator = "DWLS",
+                  ordered = T,
+                  std.lv = F)
+```
+
+```{r}
+#| label: tbl-factorload
+#| echo: false
+#| message: false
+
+cnames <- c("Factor","Indicator","Loadings Básica","Loadings Media")
+kable(left_join(x = standardizedsolution(mbasica_cfa) %>%
+                  filter(op=="=~") %>%
+                  select(lhs,rhs,est.std),y = standardizedsolution(mmedia_cfa) %>%
+                  filter(op=="=~") %>%
+                  select(lhs,rhs,est.std),c("lhs","rhs")),
+      format = "markdown",digits = 2,col.names = cnames, caption = "Factor loadings")
+
+```
+
+Based on the four latent factor model, the analysis consisted of estimating and comparing the fit indicators of three models: a general model, one for elementary school students, and another for high school students.
+
+@tbl-factorload shows the standardized factor loadings, estimated with DWLS, for the models for primary and secondary education. The loadings vary greatly depending on the indicator. In the meritocratic preferences factor, the factor loading for preference for effort in the primary model is 0.45, while in the secondary model it is 0.83. This means that the factor in the secondary model is much stronger, explaining almost twice as much of the indicator as in the primary model. Within the same factor is the indicator of preferences for talent, which in primary education has a factor loading of 0.88, suffering a considerable decline in the secondary education model, scoring 0.37. In this sense, the item of preference for talent poorly measures the factor of meritocratic preferences in the secondary education model, but not in the primary education model. 
+
+A general case in both models is the high factor loading of the perception of contacts item in the non-meritocratic perceptions factor, with 0.94 in the basic model and 1.01 in the average model. It should be noted that this table reflects standardized loadings, so this loading in the average model is an anomalous result, which could cause problems in subsequent estimates.
+
+```{r}
+#| label: tbl-fitcohort
+#| tbl-cap: Summary fit indices of three models
+#| echo: false
+
+fit_measures <- rbind(
+  "General" = fitMeasures(mgeneral_cfa,
+                           c("chisq", "df", "pvalue", "cfi", "tli", "rmsea", "srmr")),
+  "Primary" = fitMeasures(mbasica_cfa,
+                         c("chisq", "df", "pvalue", "cfi", "tli", "rmsea", "srmr")),
+  "Secondary" = fitMeasures(mmedia_cfa,
+                        c("chisq", "df", "pvalue", "cfi", "tli", "rmsea", "srmr"))
+)
+
+knitr::kable(fit_measures, digits = 3, caption = "Fit indexes by model")
+
+```
+
+@tbl-fitcohort shows the fit indices for each of the three models. All models achieved a non-significant chi-square, which could be expected given their sensitivity to large samples, such as those used in this study. 
+
+The first model is the general model, i.e., the one that includes primary and secondary school students.  It can be seen that it has good fit indices (CFI=0.989, RMSEA=0.046, $\chi^2$(df=14)=39.183), so we can conclude that the four latent factor scale works well for students.
+
+The second model contains data from primary students. In this case, the adjustment indicators work excellently (CFI=0.996, RMSEA=0.025, $\chi^2$(df=14)=17. 430), making it the model with the best fit among those that can be seen.
+
+It is noteworthy that, for the secondary education model, most indicators have values that are close to perfect (CFI=1.0, TLI=1.003, RMSEA=0, $\chi^2$(df=14)=11.779). However, the results of this model could be overfitting, so they should be interpreted with caution.  
+
+
+```{r}
+#| label: Invariance models
+#| echo: false
+
+fit.conf <- cfa(model_cfa, data = db1, group = "curse_level")
+
+fit.metric <- cfa(model_cfa, data = db1, group = "curse_level",
+                  group.equal = c("loadings"))
+
+fit.strong <- cfa(model_cfa, data = db1, group = "curse_level",
+                  group.equal = c("loadings", "intercepts"))
+
+fit.strict <- cfa(model_cfa, data = db1, group = "curse_level",
+                  group.equal = c("loadings", "intercepts", "residuals"))
+
+```
+
+```{r}
+#| label: tbl-cohortinv
+#| echo: false
+
+# Crear la tabla de comparación de modelos
+tab01 <- lavaan::anova(fit.conf, fit.metric, fit.strong, fit.strict, SB.classic = TRUE) %>%
+  dplyr::as_tibble() %>%
+  dplyr::select("Chisq", "Df", "chisq_diff" = `Chisq diff`, "df_diff" = `Df diff`, "pvalue" = `Pr(>Chisq)`) %>%
+  dplyr::mutate(stars = gtools::stars.pval(pvalue),
+                chisqt = paste0(round(Chisq, 2), " (", Df, ") "),
+                decision = ifelse(pvalue > 0.05, yes = "Accept", no = "Reject"),
+                model = c("Configural", "Metric", "Strong", "Strict"))
+
+# Extraer medidas de ajuste para cada modelo
+fit.meas <- dplyr::bind_rows(
+  lavaan::fitmeasures(fit.conf, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
+  lavaan::fitmeasures(fit.metric, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
+  lavaan::fitmeasures(fit.strong, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
+  lavaan::fitmeasures(fit.strict, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ]
+)
+
+# Calcular diferencias en chisq, df, cfi y rmsea
+fit.meas <- fit.meas %>%
+  dplyr::mutate(
+    diff.chi2 = chisq - lag(chisq, default = dplyr::first(chisq)),
+    diff.df = df - lag(df, default = dplyr::first(df)),
+    diff.cfi = cfi - lag(cfi, default = dplyr::first(cfi)),
+    diff.rmsea = rmsea - lag(rmsea, default = dplyr::first(rmsea))
+  ) %>%
+  round(3) %>%
+  dplyr::mutate(rmsea.ci = paste0(rmsea, " \\n ", "(", rmsea.ci.lower, "-", rmsea.ci.upper, ")"))
+
+# Combinar tablas
+tab.inv <- dplyr::bind_cols(tab01, fit.meas) %>%
+  dplyr::select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
+  dplyr::mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
+  dplyr::select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
+
+# Limpiar valores
+tab.inv[tab.inv == "0 (0) "] <- NA
+tab.inv[tab.inv == 0] <- NA
+
+# Nombres de columnas
+col.nam <- c("Model", "χ² (df)", "CFI", "RMSEA (90% CI)",
+             "Δ χ² (Δ df)", "Δ CFI", "Δ RMSEA", "Decision")
+
+# Nota al pie con información del tamaño muestral
+nobs <- lavaan::lavInspect(fit.conf, what = "nobs")
+footnote <- paste0("N = ", sum(nobs), "; Group 1, n = ", nobs[1], "; Group 2, n = ", nobs[2])
+
+# Crear tabla HTML
+knitr::kable(tab.inv, col.names = col.nam, align = "l",
+             booktabs = TRUE, format = "html", escape = FALSE,
+             caption = "Measurement Invariance by Course Level") %>%
+  kableExtra::kable_styling(full_width = FALSE,
+                            latex_options = "HOLD_position",
+                            bootstrap_options = c("striped", "bordered"),
+                            font_size = 10) %>%
+  kableExtra::footnote(general = footnote, footnote_as_chunk = TRUE)
+
+```
+
+The results of the different invariance models are displayed at @tbl-cohortinv. To examine invariance across cohorts, the configural model was first estimated, which maintains the same factor structure for both baseline and midline. The configural model has good fit indices (CFI = 0.001, RMSEA = 0.027), so there is empirical evidence that the factor structure behaves stably in both groups.
+
+Looking at the metric model, it appears that when factor loadings are restricted to equality, the four-factor latent model is not equivalent across the different cohorts in the study, despite meeting the $\Delta$CFI criteria, which mean rejecting the model if > 0. 01, as well as the $\Delta$RMSEA being below the cutoff point ($\Delta$RMSEA > 0.015 is rejected). The problem is the p-value < 0.05, which indicates that there are significant differences between the two groups. In this sense, as the following models restrict more parameters, their fit becomes more complex, which is reflected in the fact that none of the following models are accepted. This means that the measurement of the meritocracy scale for students varies depending on the cohort.
 
 ## Longitudinal Invariance Test
 

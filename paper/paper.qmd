@@ -90,10 +90,7 @@ and it was last rendered at {{< now >}}.
 
 {{< include 03-methods.qmd >}}
 
-```{r}
-
-# {{< include 04-analisis.qmd >}}
-```
+{{< include 04-analisis.qmd >}}
 
 {{< include 05-discussion.qmd >}}
 

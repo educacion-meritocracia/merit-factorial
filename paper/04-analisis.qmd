@@ -279,6 +279,7 @@ Looking at the metric model, it appears that when factor loadings are restricted
 #| results: asis
 #| echo: false
 #| warning: false
+#| output: false
 
 db_invariance <-
   db_long %>%

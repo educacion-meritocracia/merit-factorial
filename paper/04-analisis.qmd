@@ -13,7 +13,11 @@ csl: "../input/bib/apa6.csl"
 #| warning: false
 
 library(knitr)
-knitr::opts_chunk$set(echo = TRUE, include = TRUE, warning = FALSE, message = FALSE)
+
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
 
 table_format <- if (is_html_output()) {
   "html"
@@ -70,8 +74,13 @@ dim(db_long)
 
 ```{r}
 #| label: cohort data
+#| echo: false
 
-load(file = here("output/data/db1_proc.RData"))
+db1 <- db_long %>% 
+  filter(ola == 1) %>% 
+  select(-c(ola, curse_level, p20, p21_ano, age)) %>% 
+  na.omit()
+
 ```
 
 
@@ -80,64 +89,41 @@ load(file = here("output/data/db1_proc.RData"))
 ```{r}
 #| label: Measurement model
 
-model_cfa <- '
+model_cfa <- ('
   perc_merit = ~ perc_effort + perc_talent
   perc_nmerit = ~ perc_rich_parents + perc_contact
   pref_merit = ~ pref_effort + pref_talent
   pref_nmerit = ~ pref_rich_parents + pref_contact
-  '
+  ') 
 
 ```
 
-```{r}
-#| include: false 
-
-m1_cfa <- cfa(model = model_cfa, 
-              data = db1,
-              estimator = "MLR", 
-              std.lv = F) # Continuous/ estimator ML Robust
-
-m2_cfa <- cfa(model = model_cfa, 
-              data = db1, 
-              estimator = "DWLS",
-              ordered = T,
-              std.lv = F)
-```
 
 ```{r}
-#| label: Factor loadings
-#| include: false 
-#| message: false
-
-cnames <- c("Factor","Indicator","Loading (MLR)","Loading (DWLS)")
-kable(left_join(x = standardizedsolution(m1_cfa) %>% 
-                  filter(op=="=~") %>% 
-                  select(lhs,rhs,est.std),y = standardizedsolution(m2_cfa) %>% 
-                  filter(op=="=~") %>%
-                  select(lhs,rhs,est.std),c("lhs","rhs")),
-      format = "markdown",digits = 2,col.names = cnames, caption = "Factor loadings")
-```
-
-```{r}
-#| label: Models by cohort
+#| label: Models by cohortç
+#| output: false
 
 mgeneral_cfa <- cfa(model = model_cfa, 
                    data = db1, 
-                   estimator = "DWLS",
+                   estimator = "WLSMV",
                    ordered = T,
                    std.lv = F)
 
 mbasica_cfa <- cfa(model = model_cfa, 
-                   data = subset(db1, curse_level == "Básica"), 
-                   estimator = "DWLS",
+                   data = subset(db1, cohort_level == "Primary"), 
+                   estimator = "WLSMV",
                    ordered = T,
                    std.lv = F)
 
 mmedia_cfa <- cfa(model = model_cfa, 
-                  data = subset(db1, curse_level == "Media"), 
-                  estimator = "DWLS",
+                  data = subset(db1, cohort_level == "Secondary"), 
+                  estimator = "WLSMV",
                   ordered = T,
                   std.lv = F)
+
+summary(mgeneral_cfa, fit.measures = T, standardized = T)
+summary(mbasica_cfa, fit.measures = T, standardized = T)
+summary(mmedia_cfa, fit.measures = T, standardized = T) # revisar especificaciones
 ```
 
 ```{r}
@@ -192,15 +178,15 @@ It is noteworthy that, for the secondary education model, most indicators have v
 #| label: Invariance models
 #| echo: false
 
-fit.conf <- cfa(model_cfa, data = db1, group = "curse_level")
+fit.conf <- cfa(model_cfa, data = db1, group = "cohort_level")
 
-fit.metric <- cfa(model_cfa, data = db1, group = "curse_level",
+fit.metric <- cfa(model_cfa, data = db1, group = "cohort_level",
                   group.equal = c("loadings"))
 
-fit.strong <- cfa(model_cfa, data = db1, group = "curse_level",
+fit.strong <- cfa(model_cfa, data = db1, group = "cohort_level",
                   group.equal = c("loadings", "intercepts"))
 
-fit.strict <- cfa(model_cfa, data = db1, group = "curse_level",
+fit.strict <- cfa(model_cfa, data = db1, group = "cohort_level",
                   group.equal = c("loadings", "intercepts", "residuals"))
 
 ```

@@ -47,7 +47,9 @@ db_long <- db_long %>%
          pref_effort = p1_5,
          pref_talent = p1_6,
          pref_rich_parents = p1_7,
-         pref_contact = p1_8)
+         pref_contact = p1_8,
+         p20,
+         p21_ano)
 
 
 
@@ -93,11 +95,17 @@ db_long <- db_long %>%
 db_long <- db_long %>% 
   mutate(
     across(
-      .cols = -c(id_estudiante,ola,curse_level, cohort_level),
+      .cols = -c(id_estudiante,ola,curse_level,cohort_level,p20,p21_ano),
       .fns = ~ set_na(., na = c(88,99))
     )
   )
 
+
+db_long$age <- NA
+
+db_long$age[db_long$ola==1] <- 2023 - db_long$p21_ano[db_long$ola==1]
+
+db_long$age[db_long$ola==2] <- 2024 - db_long$p21_ano[db_long$ola==2]
 
 # missings ----
 

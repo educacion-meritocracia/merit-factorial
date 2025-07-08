@@ -76,10 +76,7 @@ dim(db_long)
 #| label: cohort data
 #| echo: false
 
-db1 <- db_long %>% 
-  filter(ola == 1) %>% 
-  select(-c(ola, curse_level, p20, p21_ano, age)) %>% 
-  na.omit()
+load(file = here("output", "data", "db1_proc.RData"))
 
 ```
 
@@ -88,42 +85,92 @@ db1 <- db_long %>%
 ```{r}
 #| label: Measurement model
 
-model_cfa <- ('
+model_cfa <- '
   perc_merit = ~ perc_effort + perc_talent
   perc_nmerit = ~ perc_rich_parents + perc_contact
   pref_merit = ~ pref_effort + pref_talent
   pref_nmerit = ~ pref_rich_parents + pref_contact
-  ') 
+  ' 
 
+model_restricted <- '
+  perc_merit = ~ perc_effort + perc_talent
+  perc_nmerit = ~ a*perc_rich_parents + a*perc_contact
+  pref_merit = ~ pref_effort + pref_talent
+  pref_nmerit = ~ pref_rich_parents + pref_contact
+  '
 ```
 
 
 ```{r}
-#| label: Models by cohortç
+#| label: Models by cohort
 #| output: false
 
-mgeneral_cfa <- cfa(model = model_cfa, 
+mgeneral_cfa <- cfa(model = model_restricted, 
                    data = db1, 
                    estimator = "WLSMV",
                    ordered = T,
                    std.lv = F)
 
 mbasica_cfa <- cfa(model = model_cfa, 
-                   data = subset(db1, cohort_level == "Primary"), 
+                   data = subset(db1, curse_level == "Básica"), 
                    estimator = "WLSMV",
                    ordered = T,
                    std.lv = F)
 
 mmedia_cfa <- cfa(model = model_cfa, 
-                  data = subset(db1, cohort_level == "Secondary"), 
+                  data = subset(db1, curse_level == "Media"), 
                   estimator = "WLSMV",
                   ordered = T,
                   std.lv = F)
-
-summary(mgeneral_cfa, fit.measures = T, standardized = T)
-summary(mbasica_cfa, fit.measures = T, standardized = T)
-summary(mmedia_cfa, fit.measures = T, standardized = T) # revisar especificaciones
 ```
+
+```{r}
+summary(mmedia_cfa, standardized = TRUE, fit.measures = TRUE)
+summary(mbasica_cfa, standardized = TRUE, fit.measures = TRUE)
+```
+
+
+```{r}
+#| label: Westbrook estimation
+#| include: false 
+
+baseline <- measEq.syntax(
+  configural.model = model_cfa,
+  data = db1,
+  ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+  parameterization = "delta",
+  ID.fac = "std.lv",
+  ID.cat = "Wu.Estabrook.2016",
+  group = "curse_level",
+  group.equal = "configural"
+)
+
+model.baseline <- as.character(baseline)
+
+fit.baseline <- cfa(model.baseline, data = db1, group = "curse_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+summary(fit.baseline)
+```
+
+```{r}
+#| include: false 
+
+all.results <- data.frame(matrix(nrow = 1, ncol = 6))
+colnames(all.results) <- c("chisq", "df", "p", "rmsea", "cfi", "tli")
+
+# Calcular y guardar los índices de ajuste
+all.results[1, ] <- round(data.matrix(fitmeasures(
+  fit.baseline,
+  fit.measures = c("chisq.scaled", "df.scaled", "pvalue.scaled",
+                   "rmsea.scaled", "cfi.scaled", "tli.scaled")
+)), digits = 3)
+
+all.results
+```
+
 
 ```{r}
 #| label: tbl-factorload

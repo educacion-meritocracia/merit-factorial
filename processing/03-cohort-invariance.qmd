@@ -412,6 +412,12 @@ model_cfa <- '
   pref_nmerit = ~ pref_rich_parents + pref_contact
   '
 
+model_restricted <- '
+  perc_merit = ~ perc_effort + perc_talent
+  perc_nmerit = ~ a*perc_rich_parents + a*perc_contact
+  pref_merit = ~ pref_effort + pref_talent
+  pref_nmerit = ~ pref_rich_parents + pref_contact
+  '
 ```
 
 ```{r}
@@ -475,6 +481,15 @@ mmedia_cfa <- cfa(model = model_cfa,
                   estimator = "DWLS",
                   ordered = T,
                   std.lv = F)
+
+
+mmedia_cfa2 <- cfa(model = model_restricted, 
+                  data = subset(db1, curse_level == "Media"), 
+                  estimator = "DWLS",
+                  ordered = T,
+                  std.lv = F)
+
+summary(mmedia_cfa2, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
 ```
 
 
@@ -524,6 +539,9 @@ knitr::kable(fit_measures, digits = 3, caption = "Fit indexes by model")
 #| echo: false
 
 fit.conf <- cfa(model_cfa, data = db1, group = "curse_level")
+
+fitMeasures(fit.cong)
+standardizedSolution(fit.conf)
 
 fit.metric <- cfa(model_cfa, data = db1, group = "curse_level",
                   group.equal = c("loadings"))

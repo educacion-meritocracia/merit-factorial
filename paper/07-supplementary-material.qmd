@@ -27,7 +27,6 @@ load("input/data/data_rec.RData")
 load("input/data/mlm_models.RData")
 ```
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F,
                       warning = F,
@@ -36,7 +35,6 @@ knitr::opts_chunk$set(echo = F,
 ```
 
 ## Complete multilevel models
-
 
 ```{r echo=FALSE}
 
@@ -84,7 +82,6 @@ m5_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc +
 modelos_health <- list(m0_h, m1_h, m2_h, m3_h, m4_h, m5_h)
 
 ```
-
 
 ```{r echo=FALSE, results='asis'}
 #| tbl-cap: "Cumulative Link Multilevel Models for Justifying Differential Access to Health Care"
@@ -135,7 +132,6 @@ texreg::texreg(
                
 ```
 
-
 ```{r echo=FALSE}
 data_pension <- data_rec %>% 
     dplyr::select(-just_educ, -just_salud, -redistribucion)
@@ -174,7 +170,6 @@ modelos_pension <- list(m0_p, m1_p, m2_p, m3_p, m4_p, m5_p)
 
 ```
 
-
 ```{r echo=FALSE, results='asis'}
 #| tbl-cap: "Cumulative Link Multilevel Models for Justifying Differential Access to Pensions"
 #| label: tbl-ordinal-pension
@@ -200,7 +195,6 @@ texreg::texreg(
                        "Var: Schools (Intercept)"))
                
 ```
-
 
 ```{r echo=FALSE}
 data_educ <- data_rec %>% 
@@ -234,7 +228,6 @@ modelos_educ <- list(m0_e, m1_e, m2_e, m3_e, m4_e, m5_e)
 
 ```
 
-
 ```{r echo=FALSE, results='asis'}
 #| tbl-cap: "Cumulative Link Multilevel Models for Justifying Differential Access to Education"
 #| label: tbl-ordinal-educ
@@ -260,9 +253,6 @@ texreg::texreg(
                        "Var: Schools (Intercept)"))
                
 ```
-
-
-
 
 ```{r echo=FALSE, include=FALSE}
 
@@ -310,7 +300,6 @@ reg5_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc +
                          (1 | mrbd), data=data_bienestar)
 ```
 
-
 ```{r echo=FALSE, results='asis'}
 #| tbl-cap: "Linear mixed-effects models for meritocracy perception and market justice preferences"
 #| label: tbl-lineal-reg-complete
@@ -357,7 +346,6 @@ texreg::texreg(
 
 ```
 
-
 ```{r}
 
 load("input/data/data_rec.RData")
@@ -403,7 +391,6 @@ reg13_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia
 
 reg14_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2*inteligencia_esc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
 ```
-
 
 ```{r echo=FALSE, results='asis'}
 #| tbl-cap: "Linear mixed-effects models for meritocracy perception, parental education and market justice preferences"
@@ -470,9 +457,6 @@ texreg::texreg(l = list(reg10_bienestar, reg11_bienestar,
 
 ```
 
-
-
-
 ```{r}
 
 # meritocracia x ses familiar (libros)
@@ -483,8 +467,6 @@ reg17_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc
 reg18_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec*esfuerzo_esc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
 reg19_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec*inteligencia_esc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
 ```
-
-
 
 ```{r echo=FALSE, results='asis'}
 #| tbl-cap: "Linear mixed-effects models for meritocracy perception, books at home and market justice preferences"
@@ -543,7 +525,6 @@ texreg::texreg(l = list(reg15_bienestar, reg16_bienestar,
 
 ```
 
-
 ```{r}
 
 # meritocracia x ses escuela
@@ -554,8 +535,6 @@ reg22_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc
 reg23_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*esfuerzo_esc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
 reg24_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*inteligencia_esc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
 ```
-
-
 
 ```{r echo=FALSE, results='asis'}
 #| tbl-cap: "Linear mixed-effects models for meritocracy perception, school socioeconomic status and market justice preferences"
@@ -624,7 +603,6 @@ reg22.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_e
 reg23.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*esfuerzo_esc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
 reg24.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*inteligencia_esc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
 ```
-
 
 ```{r}
 # meritocracia x simce
@@ -702,4 +680,278 @@ texreg::texreg(l = list(reg25_bienestar, reg26_bienestar,
                                "Var: Residual"),
           custom.gof.rows = list("Controls"=rep("Yes",5)))
 
+```
+
+## Possible Error Sources on Longitudinal Invariance
+
+### Weak Invariance
+
+```{r}
+#| label: sources-weak
+#| tbl-cap: "Possible Error Sources on Weak Invariance"
+#| results: asis
+#| echo: false
+#| warning: false
+
+library(stringr)
+
+# STEP 1: Run lavTestScore on your model (e.g., weak or strong invariance)
+score_result <- lavTestScore(fit_loadinginv)
+
+# STEP 2: Extract univariate test results
+score_df <- score_result$uni
+
+# STEP 3: Retrieve parameter table with internal indices
+param_tab <- parameterEstimates(fit_loadinginv, standardized = FALSE) %>%
+  mutate(index = row_number())
+
+# STEP 4: Extract internal parameter indices from .pX. notation
+score_df <- score_df %>%
+  mutate(
+    lhs_index = as.numeric(str_extract(lhs, "\\d+")),
+    rhs_index = as.numeric(str_extract(rhs, "\\d+"))
+  )
+
+# STEP 5: Join lhs parameter metadata from parameter table
+lhs_info <- param_tab %>%
+  select(index, lhs, op, rhs) %>%
+  rename(lhs_index = index,
+         lhs_var = lhs,
+         lhs_op = op,
+         lhs_rhs = rhs)
+
+# STEP 6: Join rhs parameter metadata
+rhs_info <- param_tab %>%
+  select(index, lhs, op, rhs) %>%
+  rename(rhs_index = index,
+         rhs_var = lhs,
+         rhs_op = op,
+         rhs_rhs = rhs)
+
+# STEP 7: Merge metadata into score test table
+score_annotated <- score_df %>%
+  left_join(lhs_info, by = "lhs_index") %>%
+  left_join(rhs_info, by = "rhs_index")
+
+# STEP 8: Add readable labels and classify parameter type
+score_table <- score_annotated %>%
+  mutate(
+    parameter_type = case_when(
+      lhs_op == "=~" ~ "Loading",
+      lhs_op == "~1" ~ "Intercept",
+      lhs_op == "~~" ~ "Residual Variance",
+      TRUE ~ "Other"
+    ),
+    restriction = paste0(lhs_var, " ", lhs_op, " ", lhs_rhs,
+                         " == ",
+                         rhs_var, " ", rhs_op, " ", rhs_rhs),
+    evaluation = case_when(
+      p.value >= 0.05 ~ "No violation",
+      p.value >= 0.01 ~ "Possible violation",
+      TRUE ~ "Clear violation"
+    )
+  ) %>%
+  select(restriction, parameter_type, X2, df, p.value, evaluation)
+
+# STEP 9: Create publication-ready table
+col.nam <- c("Restriction Tested", "Parameter Type", "Chi-square", "df", "p-value", "Evaluation")
+
+score_table %>%
+  kable(format = "html",
+        align = "c",
+        booktabs = TRUE,
+        escape = FALSE,
+        caption = "Assessment of Metric Invariance Based on Score Test (Weak Invariance Model)",
+        col.names = col.nam,
+        digits = 3) %>%
+  kable_styling(
+    full_width = TRUE,
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    latex_options = "hold_position",
+    font_size = 18
+  ) %>%
+  column_spec(1, width = "6.5cm") %>%
+  column_spec(2, width = "4.5cm") %>%
+  column_spec(3:5, width = "3.5cm") %>%
+  column_spec(6, width = "4cm")
+```
+
+### Strong Invariance
+
+```{r}
+#| label: sources-strog
+#| tbl-cap: "Possible Error Sources on Strong Invariance"
+#| results: asis
+#| echo: false
+#| warning: false
+
+# Run lavTestScore
+score_result <- lavTestScore(fit_thresholdinv)
+
+# Extract univariate test results
+score_df <- score_result$uni
+
+# Retrieve parameter table with internal indices
+param_tab <- parameterEstimates(fit_thresholdinv, standardized = FALSE) %>%
+  mutate(index = row_number())
+
+# Extract internal parameter indices from .pX. notation
+score_df <- score_df %>%
+  mutate(
+    lhs_index = as.numeric(str_extract(lhs, "\\d+")),
+    rhs_index = as.numeric(str_extract(rhs, "\\d+"))
+  )
+
+# Join lhs parameter metadata from parameter table
+lhs_info <- param_tab %>%
+  select(index, lhs, op, rhs) %>%
+  rename(lhs_index = index,
+         lhs_var = lhs,
+         lhs_op = op,
+         lhs_rhs = rhs)
+
+# Join rhs parameter metadata
+rhs_info <- param_tab %>%
+  select(index, lhs, op, rhs) %>%
+  rename(rhs_index = index,
+         rhs_var = lhs,
+         rhs_op = op,
+         rhs_rhs = rhs)
+
+# Merge metadata into score test table
+score_annotated <- score_df %>%
+  left_join(lhs_info, by = "lhs_index") %>%
+  left_join(rhs_info, by = "rhs_index")
+
+# Add readable labels and classify parameter type
+score_table <- score_annotated %>%
+  mutate(
+    parameter_type = case_when(
+      lhs_op == "=~" ~ "Loading",
+      lhs_op == "~1" ~ "Intercept",
+      lhs_op == "~~" ~ "Residual Variance",
+      TRUE ~ "Other"
+    ),
+    restriction = paste0(lhs_var, " ", lhs_op, " ", lhs_rhs,
+                         " == ",
+                         rhs_var, " ", rhs_op, " ", rhs_rhs),
+    evaluation = case_when(
+      p.value >= 0.05 ~ "No violation",
+      p.value >= 0.01 ~ "Possible violation",
+      TRUE ~ "Clear violation"
+    )
+  ) %>%
+  select(restriction, parameter_type, X2, df, p.value, evaluation)
+
+# Create publication-ready table
+col.nam <- c("Restriction Tested", "Parameter Type", "Chi-square", "df", "p-value", "Evaluation")
+
+score_table %>%
+  kable(format = "html",
+        align = "c",
+        booktabs = TRUE,
+        escape = FALSE,
+        caption = "Assessment of Metric Invariance Based on Score Test (Weak Invariance Model)",
+        col.names = col.nam,
+        digits = 3) %>%
+  kable_styling(
+    full_width = TRUE,
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    latex_options = "hold_position",
+    font_size = 18
+  ) %>%
+  column_spec(1, width = "6.5cm") %>%
+  column_spec(2, width = "4.5cm") %>%
+  column_spec(3:5, width = "3.5cm") %>%
+  column_spec(6, width = "4cm")
+```
+
+### Strict Invariance
+
+```{r}
+#| label: sources-strict
+#| tbl-cap: "Possible Error Sources of Strict Invariance"
+#| results: asis
+#| echo: false
+#| warning: false
+
+# STEP 1: Run lavTestScore on your model (e.g., weak or strong invariance)
+score_result <- lavTestScore(fit_uniquenessinv)
+
+# STEP 2: Extract univariate test results
+score_df <- score_result$uni
+
+# STEP 3: Retrieve parameter table with internal indices
+param_tab <- parameterEstimates(fit_uniquenessinv, standardized = FALSE) %>%
+  mutate(index = row_number())
+
+# STEP 4: Extract internal parameter indices from .pX. notation
+score_df <- score_df %>%
+  mutate(
+    lhs_index = as.numeric(str_extract(lhs, "\\d+")),
+    rhs_index = as.numeric(str_extract(rhs, "\\d+"))
+  )
+
+# STEP 5: Join lhs parameter metadata from parameter table
+lhs_info <- param_tab %>%
+  select(index, lhs, op, rhs) %>%
+  rename(lhs_index = index,
+         lhs_var = lhs,
+         lhs_op = op,
+         lhs_rhs = rhs)
+
+# STEP 6: Join rhs parameter metadata
+rhs_info <- param_tab %>%
+  select(index, lhs, op, rhs) %>%
+  rename(rhs_index = index,
+         rhs_var = lhs,
+         rhs_op = op,
+         rhs_rhs = rhs)
+
+# STEP 7: Merge metadata into score test table
+score_annotated <- score_df %>%
+  left_join(lhs_info, by = "lhs_index") %>%
+  left_join(rhs_info, by = "rhs_index")
+
+# STEP 8: Add readable labels and classify parameter type
+score_table <- score_annotated %>%
+  mutate(
+    parameter_type = case_when(
+      lhs_op == "=~" ~ "Loading",
+      lhs_op == "~1" ~ "Intercept",
+      lhs_op == "~~" ~ "Residual Variance",
+      TRUE ~ "Other"
+    ),
+    restriction = paste0(lhs_var, " ", lhs_op, " ", lhs_rhs,
+                         " == ",
+                         rhs_var, " ", rhs_op, " ", rhs_rhs),
+    evaluation = case_when(
+      p.value >= 0.05 ~ "No violation",
+      p.value >= 0.01 ~ "Possible violation",
+      TRUE ~ "Clear violation"
+    )
+  ) %>%
+  select(restriction, parameter_type, X2, df, p.value, evaluation)
+
+# STEP 9: Create publication-ready table
+col.nam <- c("Restriction Tested", "Parameter Type", "Chi-square", "df", "p-value", "Evaluation")
+
+score_table %>%
+  kable(format = "html",
+        align = "c",
+        booktabs = TRUE,
+        escape = FALSE,
+        caption = "Assessment of Metric Invariance Based on Score Test (Weak Invariance Model)",
+        col.names = col.nam,
+        digits = 3) %>%
+  kable_styling(
+    full_width = TRUE,
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    latex_options = "hold_position",
+    font_size = 18
+  ) %>%
+  column_spec(1, width = "6.5cm") %>%
+  column_spec(2, width = "4.5cm") %>%
+  column_spec(3:5, width = "3.5cm") %>%
+  column_spec(6, width = "4cm")
 ```

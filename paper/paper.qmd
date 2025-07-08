@@ -44,6 +44,8 @@ author:
     email: kevin.carrasco@ug.uchile.cl
     affiliations:
   - name: René Canales
+    orcid: 0009-0002-4299-2725
+    email: renecanales@uc.cl
     affiliations:
       - ref: 1     
   - name: Tomás Urzúa

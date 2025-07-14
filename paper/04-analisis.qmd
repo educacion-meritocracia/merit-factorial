@@ -100,7 +100,6 @@ model_restricted <- '
   '
 ```
 
-
 ```{r}
 #| label: Models by cohort
 #| output: false
@@ -128,7 +127,6 @@ mmedia_cfa <- cfa(model = model_cfa,
 summary(mmedia_cfa, standardized = TRUE, fit.measures = TRUE)
 summary(mbasica_cfa, standardized = TRUE, fit.measures = TRUE)
 ```
-
 
 ```{r}
 #| label: Westbrook estimation
@@ -170,7 +168,6 @@ all.results[1, ] <- round(data.matrix(fitmeasures(
 
 all.results
 ```
-
 
 ```{r}
 #| label: tbl-factorload
@@ -801,7 +798,7 @@ tab.inv %>%
   kableExtra::column_spec(4, width = "5cm")
 ```
 
-A series of nested confirmatory factor analysis (CFA) models was estimated to assess the longitudinal measurement invariance of the constructs across different waves of the study. The evaluation began with the configural model, which allows all parameters (loadings, intercepts, and residuals) to vary freely across time. This model served as the baseline for subsequent comparisons and demonstrated good fit to the data, with χ²(68) = 117.7, a Comparative Fit Index (CFI) of 0.991, and a Root Mean Square Error of Approximation (RMSEA) of 0.035, with a 90% confidence interval ranging from 0.024 to 0.046. These indices suggest that the same factorial structure is replicated across time points, meaning that the general configuration of items and latent variables remains stable.
+A series of nested confirmatory factor analysis (CFA) models were estimated to assess the longitudinal measurement invariance of the constructs across both different waves of the study. The evaluation began with the configural model, which allows all parameters (loadings, intercepts, and residuals) to vary freely across time. This model served as the baseline for subsequent comparisons and demonstrated good fit to the data, with χ²(68) = 117.7, a Comparative Fit Index (CFI) of 0.991, and a Root Mean Square Error of Approximation (RMSEA) of 0.035, with a 90% confidence interval ranging from 0.024 to 0.046. These indices suggest that the same factorial structure is replicated across time points, meaning that the general configuration of items and latent variables remains stable.
 
 Subsequently, the weak invariance model was tested by constraining the factor loadings to be equal across waves. This model also showed excellent fit: χ²(72) = 122.51, CFI = 0.990, RMSEA = 0.034 (90% CI: 0.024–0.045). The comparison with the configural model revealed a negligible and non-significant change in model fit, with Δχ²(4) = 4.809, ΔCFI = 0.000, and ΔRMSEA = -0.001. These results support the assumption of weak invariance, indicating that the strength of the relationship between items and latent constructs is consistent over time.
 
@@ -1279,7 +1276,7 @@ tab.inv %>%
   kableExtra::column_spec(4, width = "5cm")
 ```
 
-To assess the robustness of longitudinal measurement invariance across time, we first estimated a series of nested models without controlling for cohort effects. All models exhibited excellent fit, with CFI values above .990 and RMSEA values below .035. The configural model (χ² = 117.70, df = 68, CFI = .991, RMSEA = .035 \[.024–.046\]) served as the baseline. Subsequent models imposing equality constraints on factor loadings (weak invariance), intercepts (strong invariance), and residual variances (strict invariance) all resulted in negligible changes in fit indices (e.g., ΔCFI = .000 across all steps), supporting full longitudinal measurement invariance.
+In parallel assess the robustness of longitudinal measurement invariance across time, a series of nested models controlled by cohort effects were added to the analysis. All models exhibited excellent fit, with CFI values above .990 and RMSEA values below .035. The configural model (χ² = 117.70, df = 68, CFI = .991, RMSEA = .035 \[.024–.046\]) served as the baseline. Subsequent models imposing equality constraints on factor loadings (weak invariance), intercepts (strong invariance), and residual variances (strict invariance) all resulted in negligible changes in fit indices (e.g., ΔCFI = .000 across all steps), supporting full longitudinal measurement invariance.
 
 To examine whether these results held when accounting for cohort-related heterogeneity, we re-estimated the models including a dummy variable for cohort as a covariate predicting each latent factor. Fit indices remained excellent (CFI ≥ .990, RMSEA \< .033), and again, the increasingly restrictive models showed minimal changes in model fit: ΔCFI never exceeded .001, and ΔRMSEA values were close to zero or even improved slightly at each step. For example, the strict invariance model with cohort control had χ² = 134.21 (df = 92), CFI = .991, and RMSEA = .028 \[.017–.038\], compared to χ² = 130.17 (df = 84), CFI = .991, and RMSEA = .031 \[.020–.040\] in the model without cohort control.
 
@@ -1287,7 +1284,7 @@ Substantively, these results suggest that the factor structure and measurement p
 
 # Possible Error Sources
 
-To detect potential sources of local misfit and evaluate the robustness of longitudinal measurement invariance, we applied univariate score tests at each level of the invariance hierarchy: configural, metric (weak), scalar (strong), and strict. Using the `lavTestScore()` function in *lavaan*, we tested whether specific equality constraints—such as equal loadings, thresholds, or residual variances across time—introduced statistically significant misfit. This method enables the identification of individual parameters that may violate invariance assumptions, even when global model fit remains acceptable.
+To detect potential sources of local misfit and evaluate the robustness of longitudinal measurement invariance, an univariate score tests was estimated at each level of the invariance hierarchy: configural, metric (weak), scalar (strong), and strict. Using the `lavTestScore()` function in *lavaan*, we tested whether specific equality constraints—such as equal loadings, thresholds, or residual variances across time—introduced statistically significant misfit. This method enables the identification of individual parameters that may violate invariance assumptions, even when global model fit remains acceptable.
 
 Across all three constrained models (metric, scalar, and strict), the score tests revealed no significant violations. At the metric level, all loading constraints were supported. In the scalar model, both loadings and thresholds showed stability over time, with no indication of misfit. Finally, under strict invariance, residual variances and thresholds were also found to be invariant across waves. The largest test statistic (χ² = 3.829, p = .050) was observed for a threshold in *preftalent*, yet this did not reach significance.
 

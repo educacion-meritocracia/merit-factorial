@@ -76,7 +76,10 @@ dim(db_long)
 #| label: cohort data
 #| echo: false
 
-load(file = here("output", "data", "db1_proc.RData"))
+db1 <- db_long %>%
+filter(ola == 1) %>%
+select(-c(ola, curse_level, p20, p21_ano, age)) %>%
+na.omit()
 
 ```
 
@@ -84,20 +87,23 @@ load(file = here("output", "data", "db1_proc.RData"))
 
 ```{r}
 #| label: Measurement model
+#| include: false 
 
 model_cfa <- '
-  perc_merit = ~ perc_effort + perc_talent
-  perc_nmerit = ~ perc_rich_parents + perc_contact
-  pref_merit = ~ pref_effort + pref_talent
-  pref_nmerit = ~ pref_rich_parents + pref_contact
-  ' 
+perc_merit = ~ perc_effort + perc_talent
+perc_nmerit = ~ perc_rich_parents + perc_contact
+pref_merit = ~ pref_effort + pref_talent
+pref_nmerit = ~ pref_rich_parents + pref_contact
+perc_effort ~~ pref_talent
+'
 
 model_restricted <- '
-  perc_merit = ~ perc_effort + perc_talent
-  perc_nmerit = ~ a*perc_rich_parents + a*perc_contact
-  pref_merit = ~ pref_effort + pref_talent
-  pref_nmerit = ~ pref_rich_parents + pref_contact
-  '
+perc_merit = ~ perc_effort + perc_talent
+perc_nmerit = ~ a*perc_rich_parents + a*perc_contact
+pref_merit = ~ pref_effort + pref_talent
+pref_nmerit = ~ pref_rich_parents + pref_contact
+perc_effort ~~ pref_talent
+'
 ```
 
 ```{r}
@@ -110,68 +116,29 @@ mgeneral_cfa <- cfa(model = model_restricted,
                    ordered = T,
                    std.lv = F)
 
-mbasica_cfa <- cfa(model = model_cfa, 
-                   data = subset(db1, curse_level == "Básica"), 
+mbasica_cfa <- cfa(model = model_restricted, 
+                   data = subset(db1, cohort_level == "Primary"), 
                    estimator = "WLSMV",
                    ordered = T,
                    std.lv = F)
 
-mmedia_cfa <- cfa(model = model_cfa, 
-                  data = subset(db1, curse_level == "Media"), 
+mmedia_cfa <- cfa(model = model_restricted, 
+                  data = subset(db1, cohort_level == "Secondary"), 
                   estimator = "WLSMV",
                   ordered = T,
                   std.lv = F)
 ```
 
 ```{r}
+#| include: false 
+
 summary(mmedia_cfa, standardized = TRUE, fit.measures = TRUE)
 summary(mbasica_cfa, standardized = TRUE, fit.measures = TRUE)
 ```
 
 ```{r}
-#| label: Westbrook estimation
-#| include: false 
-
-baseline <- measEq.syntax(
-  configural.model = model_cfa,
-  data = db1,
-  ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
-              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
-  parameterization = "delta",
-  ID.fac = "std.lv",
-  ID.cat = "Wu.Estabrook.2016",
-  group = "curse_level",
-  group.equal = "configural"
-)
-
-model.baseline <- as.character(baseline)
-
-fit.baseline <- cfa(model.baseline, data = db1, group = "curse_level",
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
-              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
-
-summary(fit.baseline)
-```
-
-```{r}
-#| include: false 
-
-all.results <- data.frame(matrix(nrow = 1, ncol = 6))
-colnames(all.results) <- c("chisq", "df", "p", "rmsea", "cfi", "tli")
-
-# Calcular y guardar los índices de ajuste
-all.results[1, ] <- round(data.matrix(fitmeasures(
-  fit.baseline,
-  fit.measures = c("chisq.scaled", "df.scaled", "pvalue.scaled",
-                   "rmsea.scaled", "cfi.scaled", "tli.scaled")
-)), digits = 3)
-
-all.results
-```
-
-```{r}
 #| label: tbl-factorload
-#| echo: false
+#| include: false
 #| message: false
 
 cnames <- c("Factor","Indicator","Loadings Básica","Loadings Media")
@@ -184,11 +151,13 @@ kable(left_join(x = standardizedsolution(mbasica_cfa) %>%
 
 ```
 
-Based on the four latent factor model, the analysis consisted of estimating and comparing the fit indicators of three models: a general model, one for elementary school students, and another for high school students.
+![](imagenes/esquema-basica.jpg)
 
-@tbl-factorload shows the standardized factor loadings, estimated with DWLS, for the models for primary and secondary education. The loadings vary greatly depending on the indicator. In the meritocratic preferences factor, the factor loading for preference for effort in the primary model is 0.45, while in the secondary model it is 0.83. This means that the factor in the secondary model is much stronger, explaining almost twice as much of the indicator as in the primary model. Within the same factor is the indicator of preferences for talent, which in primary education has a factor loading of 0.88, suffering a considerable decline in the secondary education model, scoring 0.37. In this sense, the item of preference for talent poorly measures the factor of meritocratic preferences in the secondary education model, but not in the primary education model.
+The diagram shows the standardized factor loadings estimated with WLSMV for the primary and secondary education models. One of the first findings is that within each cohort, the loadings vary depending on the factor. In the case of the primary education model, the loadings of both meritocratic perception indicators are quite similar, with perception of effort at .60 and perception of talent at .71. In contrast, in the non-meritocratic preferences factor, the loadings vary greatly, with preference for effort being .46 and preference for talent being .86. This suggests that the factor explains the second factor more than the first. Finally, the indicators of the non-meritocratic preferences factor vary, but not as strongly.
 
-A general case in both models is the high factor loading of the perception of contacts item in the non-meritocratic perceptions factor, with 0.94 in the basic model and 1.01 in the average model. It should be noted that this table reflects standardized loadings, so this loading in the average model is an anomalous result, which could cause problems in subsequent estimates.
+![](imagenes/esquema-media.jpg)
+
+In the secondary education model, some similarities can be seen in comparison to the primary model. The indicators of the meritocratic perception factor have slightly higher loadings than in the previous model, but they do not differ as much from each other. The difference in the indicators of meritocratic preference is reversed, with preference for effort becoming the highest (.76) and preference for talent the lowest (0.41). With regard to non-meritocratic preferences, the indicators have much more similar factor loadings than in the primary school model.
 
 ```{r}
 #| label: tbl-fitcohort
@@ -210,94 +179,119 @@ knitr::kable(fit_measures, digits = 3, caption = "Fit indexes by model")
 
 @tbl-fitcohort shows the fit indices for each of the three models. All models achieved a non-significant chi-square, which could be expected given their sensitivity to large samples, such as those used in this study.
 
-The first model is the general model, i.e., the one that includes primary and secondary school students. It can be seen that it has good fit indices (CFI=0.989, RMSEA=0.046, $\chi^2$(df=14)=39.183), so we can conclude that the four latent factor scale works well for students.
+The first model is the general model, i.e., the one that includes primary and secondary school students. It can be seen that it has good fit indices (CFI=0.989, RMSEA=0.048, $\chi^2$(df=14)=41.026), so we can conclude that the four latent factor scale works well for students.
 
-The second model contains data from primary students. In this case, the adjustment indicators work excellently (CFI=0.996, RMSEA=0.025, $\chi^2$(df=14)=17. 430), making it the model with the best fit among those that can be seen.
+The second model contains data from primary students. In this case, the fit indices work acceptable (CFI=0.975, RMSEA=0.063, $\chi^2$(df=14)=36. 295). In this case, the scale has less validation than for the previous model.
 
-It is noteworthy that, for the secondary education model, most indicators have values that are close to perfect (CFI=1.0, TLI=1.003, RMSEA=0, $\chi^2$(df=14)=11.779). However, the results of this model could be overfitting, so they should be interpreted with caution.
-
-```{r}
-#| label: Invariance models
-#| echo: false
-
-fit.conf <- cfa(model_cfa, data = db1, group = "cohort_level")
-
-fit.metric <- cfa(model_cfa, data = db1, group = "cohort_level",
-                  group.equal = c("loadings"))
-
-fit.strong <- cfa(model_cfa, data = db1, group = "cohort_level",
-                  group.equal = c("loadings", "intercepts"))
-
-fit.strict <- cfa(model_cfa, data = db1, group = "cohort_level",
-                  group.equal = c("loadings", "intercepts", "residuals"))
-
-```
+It is noteworthy that, for the secondary education model, most indicators have values that are close to perfect (CFI=1, RMSEA=0, $\chi^2$(df=14)=11.779). However, the results of this model could be overfitting, so they should be interpreted with caution.
 
 ```{r}
-#| label: tbl-cohortinv
-#| echo: false
+#| label: configural model
+#| include: false 
 
-# Crear la tabla de comparación de modelos
-tab01 <- lavaan::anova(fit.conf, fit.metric, fit.strong, fit.strict, SB.classic = TRUE) %>%
-  dplyr::as_tibble() %>%
-  dplyr::select("Chisq", "Df", "chisq_diff" = `Chisq diff`, "df_diff" = `Df diff`, "pvalue" = `Pr(>Chisq)`) %>%
-  dplyr::mutate(stars = gtools::stars.pval(pvalue),
-                chisqt = paste0(round(Chisq, 2), " (", Df, ") "),
-                decision = ifelse(pvalue > 0.05, yes = "Accept", no = "Reject"),
-                model = c("Configural", "Metric", "Strong", "Strict"))
-
-# Extraer medidas de ajuste para cada modelo
-fit.meas <- dplyr::bind_rows(
-  lavaan::fitmeasures(fit.conf, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
-  lavaan::fitmeasures(fit.metric, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
-  lavaan::fitmeasures(fit.strong, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
-  lavaan::fitmeasures(fit.strict, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ]
+baseline <- measEq.syntax(
+  configural.model = model_restricted,
+  data = db1,
+  ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+  parameterization = "delta",
+  ID.fac = "std.lv",
+  ID.cat = "Wu.Estabrook.2016",
+  group = "cohort_level",
+  group.equal = "configural"
 )
 
-# Calcular diferencias en chisq, df, cfi y rmsea
-fit.meas <- fit.meas %>%
-  dplyr::mutate(
-    diff.chi2 = chisq - lag(chisq, default = dplyr::first(chisq)),
-    diff.df = df - lag(df, default = dplyr::first(df)),
-    diff.cfi = cfi - lag(cfi, default = dplyr::first(cfi)),
-    diff.rmsea = rmsea - lag(rmsea, default = dplyr::first(rmsea))
-  ) %>%
-  round(3) %>%
-  dplyr::mutate(rmsea.ci = paste0(rmsea, " \\n ", "(", rmsea.ci.lower, "-", rmsea.ci.upper, ")"))
+model.baseline <- as.character(baseline)
 
-# Combinar tablas
-tab.inv <- dplyr::bind_cols(tab01, fit.meas) %>%
-  dplyr::select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
-  dplyr::mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
-  dplyr::select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
+fit.baseline <- cfa(model.baseline, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
 
-# Limpiar valores
-tab.inv[tab.inv == "0 (0) "] <- NA
-tab.inv[tab.inv == 0] <- NA
+summary(fit.baseline)
+```
 
-# Nombres de columnas
-col.nam <- c("Model", "χ² (df)", "CFI", "RMSEA (90% CI)",
-             "Δ χ² (Δ df)", "Δ CFI", "Δ RMSEA", "Decision")
+```{r}
+#| label: weak model
+#| include: false
 
-# Nota al pie con información del tamaño muestral
-nobs <- lavaan::lavInspect(fit.conf, what = "nobs")
-footnote <- paste0("N = ", sum(nobs), "; Group 1, n = ", nobs[1], "; Group 2, n = ", nobs[2])
+thresholds <- measEq.syntax(
+configural.model = model_restricted,
+data = db1,
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+parameterization = "delta",
+ID.fac = "std.lv",
+ID.cat = "Wu.Estabrook.2016",
+group = "cohort_level",
+group.equal = c("thresholds")
+)
 
-# Crear tabla HTML
-knitr::kable(tab.inv, col.names = col.nam, align = "l",
-             booktabs = TRUE, format = "html", escape = FALSE,
-             caption = "Measurement Invariance by Course Level") %>%
-  kableExtra::kable_styling(full_width = FALSE,
-                            latex_options = "HOLD_position",
-                            bootstrap_options = c("striped", "bordered"),
-                            font_size = 10) %>%
-  kableExtra::footnote(general = footnote, footnote_as_chunk = TRUE)
+model.thres <- as.character(thresholds)
+
+fit.thres <- cfa(model.thres, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+summary(fit.thres, fit.measures = TRUE)
+```
+
+```{r}
+#| label: loading-threshold model
+#| include: false
+
+strong <- measEq.syntax(
+configural.model = model_restricted,
+data = db1,
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+parameterization = "delta",
+ID.fac = "std.lv",
+ID.cat = "Wu.Estabrook.2016",
+group = "cohort_level",
+group.equal = c("thresholds", "loadings")
+)
+
+model.strong <- as.character(strong)
+
+fit.strong <- cfa(model.strong, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+summary(fit.strong, fit.measures = TRUE)
 
 ```
 
-The results of the different invariance models are displayed at @tbl-cohortinv. To examine invariance across cohorts, the configural model was first estimated, which maintains the same factor structure for both baseline and midline. The configural model has good fit indices (CFI = 0.001, RMSEA = 0.027), so there is empirical evidence that the factor structure behaves stably in both groups.
+```{r}
+#| echo: false 
 
-Looking at the metric model, it appears that when factor loadings are restricted to equality, the four-factor latent model is not equivalent across the different cohorts in the study, despite meeting the $\Delta$CFI criteria, which mean rejecting the model if \> 0. 01, as well as the $\Delta$RMSEA being below the cutoff point ($\Delta$RMSEA \> 0.015 is rejected). The problem is the p-value \< 0.05, which indicates that there are significant differences between the two groups. In this sense, as the following models restrict more parameters, their fit becomes more complex, which is reflected in the fact that none of the following models are accepted. This means that the measurement of the meritocracy scale for students varies depending on the cohort.
+all.results <- data.frame(matrix(nrow = 3, ncol = 6))
+colnames(all.results) <- c("chisq", "df", "p", "rmsea", "cfi", "tli")
+rownames(all.results) <- c("Configural", "Thresholds", "Strong")
+
+# Lista de modelos
+modelos <- list(fit.baseline, fit.thres, fit.strong)
+
+# Extraer los índices de ajuste
+for (i in 1:3) {
+  fm <- fitMeasures(modelos[[i]], c("chisq.scaled", "df.scaled", "pvalue.scaled",
+                                    "rmsea.scaled", "cfi.scaled", "tli.scaled"))
+  all.results[i, ] <- round(unlist(fm), 3)
+}
+
+# Mostrar tabla con formato kable
+kable(all.results, caption = "Cohort invariance")
+```
+
+
+The results of the different invariance models are displayed at the previous table. To examine invariance across cohorts the same steps in Dubravka et al. (2019) were followed, who propose the estimation of three models: the configural model, another restricting the thresholds, and finally restricting the thresholds and factor loadings.
+
+The configural model was first estimated, which maintains the same factor structure for both baseline and midline. The configural model has good fit indices (CFI = 0.993, RMSEA = 0.036), so there is empirical evidence that the factor structure behaves stably in both groups.
+
+Looking at the thresholds restricted model,  it appears that when thresholds are restricted to equality, the four-factor latent model is not equivalent across the different cohorts in the study in accordance with @chen_sensitivity_2007 ($\Delta$CFI -.014 < -. 01); $\Delta$RMSEA .019 > .015). This result implies that by restricting thresholds, the meritocracy scale varies between primary and secondary education. In this case, invariance is not satisfied.
+
+The level represented as strong restricts both thresholds and factor loadings. When compared with the previous level of invariance, it can be seen that the criteria for assuming that the meritocracy scale remains stable across cohorts are not met either. ($\Delta$CFI -.005 < -. 01); $\Delta$RMSEA .003 < .015), so invariance is rejected. 
+
+It is pertinent to ask to what extent these results are due to the instability of the secondary education model. An attempt was made to resolve its overfitting, but this was not possible, which may have had direct implications for this part of the analysis.
 
 ## Longitudinal Invariance Test
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,41 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="04-analisis_files/libs/clipboard/clipboard.min.js"></script>
@@ -69,15 +55,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="04-analisis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="04-analisis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script src="04-analisis_files/libs/kePrint-0.0.1/kePrint.js"></script>
-
 <link href="04-analisis_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
 <link href="04-analisis_files/libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
-
 <script src="04-analisis_files/libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -141,123 +123,21 @@ window.Quarto = {
 
 <section id="results" class="level1">
 <h1>Results</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">"output/data/db1_proc.RData"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="cohort-invariance-test" class="level2">
 <h2 class="anchored" data-anchor-id="cohort-invariance-test">Cohort Invariance Test</h2>
+<p><img src="imagenes/esquema-basica.jpg" class="img-fluid"></p>
+<p>The diagram shows the standardized factor loadings estimated with WLSMV for the primary and secondary education models. One of the first findings is that within each cohort, the loadings vary depending on the factor. In the case of the primary education model, the loadings of both meritocratic perception indicators are quite similar, with perception of effort at .60 and perception of talent at .71. In contrast, in the non-meritocratic preferences factor, the loadings vary greatly, with preference for effort being .46 and preference for talent being .86. This suggests that the factor explains the second factor more than the first. Finally, the indicators of the non-meritocratic preferences factor vary, but not as strongly.</p>
+<p><img src="imagenes/esquema-media.jpg" class="img-fluid"></p>
+<p>In the secondary education model, some similarities can be seen in comparison to the primary model. The indicators of the meritocratic perception factor have slightly higher loadings than in the previous model, but they do not differ as much from each other. The difference in the indicators of meritocratic preference is reversed, with preference for effort becoming the highest (.76) and preference for talent the lowest (0.41). With regard to non-meritocratic preferences, the indicators have much more similar factor loadings than in the primary school model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model_cfa <span class="ot">&lt;-</span> <span class="st">'</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">  perc_merit = ~ perc_effort + perc_talent</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">  perc_nmerit = ~ perc_rich_parents + perc_contact</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">  pref_merit = ~ pref_effort + pref_talent</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">  pref_nmerit = ~ pref_rich_parents + pref_contact</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">  '</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mgeneral_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> model_cfa, </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> db1, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">estimator =</span> <span class="st">"DWLS"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ordered =</span> T,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">std.lv =</span> F)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>mbasica_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> model_cfa, </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> <span class="fu">subset</span>(db1, curse_level <span class="sc">==</span> <span class="st">"Básica"</span>), </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">estimator =</span> <span class="st">"DWLS"</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ordered =</span> T,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">std.lv =</span> F)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>mmedia_cfa <span class="ot">&lt;-</span> <span class="fu">cfa</span>(<span class="at">model =</span> model_cfa, </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> <span class="fu">subset</span>(db1, curse_level <span class="sc">==</span> <span class="st">"Media"</span>), </span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">estimator =</span> <span class="st">"DWLS"</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ordered =</span> T,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">std.lv =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div id="tbl-factorload" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-factorload-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Factor loadings
-</figcaption>
-<div aria-describedby="tbl-factorload-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Factor</th>
-<th style="text-align: left;">Indicator</th>
-<th style="text-align: right;">Loadings Básica</th>
-<th style="text-align: right;">Loadings Media</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">perc_merit</td>
-<td style="text-align: left;">perc_effort</td>
-<td style="text-align: right;">0.56</td>
-<td style="text-align: right;">0.66</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">perc_merit</td>
-<td style="text-align: left;">perc_talent</td>
-<td style="text-align: right;">0.76</td>
-<td style="text-align: right;">0.92</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">perc_nmerit</td>
-<td style="text-align: left;">perc_rich_parents</td>
-<td style="text-align: right;">0.48</td>
-<td style="text-align: right;">0.69</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">perc_nmerit</td>
-<td style="text-align: left;">perc_contact</td>
-<td style="text-align: right;">0.94</td>
-<td style="text-align: right;">1.01</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">pref_merit</td>
-<td style="text-align: left;">pref_effort</td>
-<td style="text-align: right;">0.45</td>
-<td style="text-align: right;">0.83</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">pref_merit</td>
-<td style="text-align: left;">pref_talent</td>
-<td style="text-align: right;">0.88</td>
-<td style="text-align: right;">0.37</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">pref_nmerit</td>
-<td style="text-align: left;">pref_rich_parents</td>
-<td style="text-align: right;">0.64</td>
-<td style="text-align: right;">0.85</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">pref_nmerit</td>
-<td style="text-align: left;">pref_contact</td>
-<td style="text-align: right;">0.86</td>
-<td style="text-align: right;">0.81</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
-<p>Based on the four latent factor model, the analysis consisted of estimating and comparing the fit indicators of three models: a general model, one for elementary school students, and another for high school students.</p>
-<p><a href="#tbl-factorload" class="quarto-xref">Table&nbsp;1</a> shows the standardized factor loadings, estimated with DWLS, for the models for primary and secondary education. The loadings vary greatly depending on the indicator. In the meritocratic preferences factor, the factor loading for preference for effort in the primary model is 0.45, while in the secondary model it is 0.83. This means that the factor in the secondary model is much stronger, explaining almost twice as much of the indicator as in the primary model. Within the same factor is the indicator of preferences for talent, which in primary education has a factor loading of 0.88, suffering a considerable decline in the secondary education model, scoring 0.37. In this sense, the item of preference for talent poorly measures the factor of meritocratic preferences in the secondary education model, but not in the primary education model.</p>
-<p>A general case in both models is the high factor loading of the perception of contacts item in the non-meritocratic perceptions factor, with 0.94 in the basic model and 1.01 in the average model. It should be noted that this table reflects standardized loadings, so this loading in the average model is an anomalous result, which could cause problems in subsequent estimates.</p>
-<div class="cell">
-<div id="tbl-fitcohort" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-fitcohort" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fitcohort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Summary fit indices of three models
+Table&nbsp;1: Summary fit indices of three models
 </figcaption>
 <div aria-describedby="tbl-fitcohort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<table class="do-not-create-environment cell table table-sm table-striped small">
 <caption>Fit indexes by model</caption>
 <thead>
 <tr class="header">
@@ -274,31 +154,31 @@ Table&nbsp;2: Summary fit indices of three models
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">General</td>
-<td style="text-align: right;">39.183</td>
+<td style="text-align: right;">41.026</td>
 <td style="text-align: right;">14</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.989</td>
-<td style="text-align: right;">0.979</td>
-<td style="text-align: right;">0.046</td>
-<td style="text-align: right;">0.038</td>
+<td style="text-align: right;">0.978</td>
+<td style="text-align: right;">0.048</td>
+<td style="text-align: right;">0.039</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Primary</td>
-<td style="text-align: right;">17.430</td>
+<td style="text-align: right;">36.295</td>
 <td style="text-align: right;">14</td>
-<td style="text-align: right;">0.234</td>
-<td style="text-align: right;">0.996</td>
-<td style="text-align: right;">0.992</td>
-<td style="text-align: right;">0.025</td>
-<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">0.975</td>
+<td style="text-align: right;">0.951</td>
+<td style="text-align: right;">0.063</td>
+<td style="text-align: right;">0.049</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Secondary</td>
-<td style="text-align: right;">11.779</td>
+<td style="text-align: right;">10.877</td>
 <td style="text-align: right;">14</td>
-<td style="text-align: right;">0.624</td>
+<td style="text-align: right;">0.696</td>
 <td style="text-align: right;">1.000</td>
-<td style="text-align: right;">1.003</td>
+<td style="text-align: right;">1.004</td>
 <td style="text-align: right;">0.000</td>
 <td style="text-align: right;">0.029</td>
 </tr>
@@ -309,111 +189,76 @@ Table&nbsp;2: Summary fit indices of three models
 </figure>
 </div>
 </div>
-<p><a href="#tbl-fitcohort" class="quarto-xref">Table&nbsp;2</a> shows the fit indices for each of the three models. All models achieved a non-significant chi-square, which could be expected given their sensitivity to large samples, such as those used in this study.</p>
-<p>The first model is the general model, i.e., the one that includes primary and secondary school students. It can be seen that it has good fit indices (CFI=0.989, RMSEA=0.046, <span class="math inline">\(\chi^2\)</span>(df=14)=39.183), so we can conclude that the four latent factor scale works well for students.</p>
-<p>The second model contains data from primary students. In this case, the adjustment indicators work excellently (CFI=0.996, RMSEA=0.025, <span class="math inline">\(\chi^2\)</span>(df=14)=17. 430), making it the model with the best fit among those that can be seen.</p>
-<p>It is noteworthy that, for the secondary education model, most indicators have values that are close to perfect (CFI=1.0, TLI=1.003, RMSEA=0, <span class="math inline">\(\chi^2\)</span>(df=14)=11.779). However, the results of this model could be overfitting, so they should be interpreted with caution.</p>
+<p><a href="#tbl-fitcohort" class="quarto-xref">Table&nbsp;1</a> shows the fit indices for each of the three models. All models achieved a non-significant chi-square, which could be expected given their sensitivity to large samples, such as those used in this study.</p>
+<p>The first model is the general model, i.e., the one that includes primary and secondary school students. It can be seen that it has good fit indices (CFI=0.989, RMSEA=0.048, <span class="math inline">\(\chi^2\)</span>(df=14)=41.026), so we can conclude that the four latent factor scale works well for students.</p>
+<p>The second model contains data from primary students. In this case, the fit indices work acceptable (CFI=0.975, RMSEA=0.063, <span class="math inline">\(\chi^2\)</span>(df=14)=36. 295). In this case, the scale has less validation than for the previous model.</p>
+<p>It is noteworthy that, for the secondary education model, most indicators have values that are close to perfect (CFI=1, RMSEA=0, <span class="math inline">\(\chi^2\)</span>(df=14)=11.779). However, the results of this model could be overfitting, so they should be interpreted with caution.</p>
 <div class="cell">
-<div id="tbl-cohortinv" class="cell quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cohortinv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: Measurement Invariance by Course Level
-</figcaption>
-<div aria-describedby="tbl-cohortinv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped table-bordered do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-sm table-striped small">
+<caption>Cohort invariance</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">χ² (df)</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">CFI</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">RMSEA (90% CI)</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Δ χ² (Δ df)</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Δ CFI</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Δ RMSEA</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Decision</th>
+<th style="text-align: left;"></th>
+<th style="text-align: right;">chisq</th>
+<th style="text-align: right;">df</th>
+<th style="text-align: right;">p</th>
+<th style="text-align: right;">rmsea</th>
+<th style="text-align: right;">cfi</th>
+<th style="text-align: right;">tli</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Configural</td>
-<td style="text-align: left;">36.82 (28)</td>
-<td style="text-align: left;">0.991</td>
-<td style="text-align: left;">0.027 \n (0-0.049)</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td style="text-align: right;">40.192</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">0.037</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">0.993</td>
+<td style="text-align: right;">0.985</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Metric</td>
-<td style="text-align: left;">49.54 (32)</td>
-<td style="text-align: left;">0.982</td>
-<td style="text-align: left;">0.036 \n (0.013-0.055)</td>
-<td style="text-align: left;">12.721 (4) *</td>
-<td style="text-align: left;">-0.009</td>
-<td style="text-align: left;">0.009</td>
-<td style="text-align: left;">Reject</td>
+<td style="text-align: left;">Thresholds</td>
+<td style="text-align: right;">77.941</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.055</td>
+<td style="text-align: right;">0.979</td>
+<td style="text-align: right;">0.965</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Strong</td>
-<td style="text-align: left;">79.27 (36)</td>
-<td style="text-align: left;">0.955</td>
-<td style="text-align: left;">0.054 \n (0.038-0.07)</td>
-<td style="text-align: left;">29.728 (4) ***</td>
-<td style="text-align: left;">-0.027</td>
-<td style="text-align: left;">0.017</td>
-<td style="text-align: left;">Reject</td>
+<td style="text-align: right;">91.320</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.058</td>
+<td style="text-align: right;">0.974</td>
+<td style="text-align: right;">0.962</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Strict</td>
-<td style="text-align: left;">145.3 (44)</td>
-<td style="text-align: left;">0.894</td>
-<td style="text-align: left;">0.074 \n (0.061-0.088)</td>
-<td style="text-align: left;">66.025 (8) ***</td>
-<td style="text-align: left;">-0.061</td>
-<td style="text-align: left;">0.021</td>
-<td style="text-align: left;">Reject</td>
-</tr>
-</tbody><tfoot>
-<tr class="odd">
-<td style="text-align: left; padding: 0;"><span style="font-style: italic;">Note: </span> <sup></sup> N = 839; Group 1, n = 401; Group 2, n = 438</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-</tfoot>
-
+</tbody>
 </table>
-
-
 </div>
 </div>
-</figure>
-</div>
-</div>
-<p>The results of the different invariance models are displayed at <a href="#tbl-cohortinv" class="quarto-xref">Table&nbsp;3</a>. To examine invariance across cohorts, the configural model was first estimated, which maintains the same factor structure for both baseline and midline. The configural model has good fit indices (CFI = 0.001, RMSEA = 0.027), so there is empirical evidence that the factor structure behaves stably in both groups.</p>
-<p>Looking at the metric model, it appears that when factor loadings are restricted to equality, the four-factor latent model is not equivalent across the different cohorts in the study, despite meeting the <span class="math inline">\(\Delta\)</span>CFI criteria, which mean rejecting the model if &gt; 0. 01, as well as the <span class="math inline">\(\Delta\)</span>RMSEA being below the cutoff point (<span class="math inline">\(\Delta\)</span>RMSEA &gt; 0.015 is rejected). The problem is the p-value &lt; 0.05, which indicates that there are significant differences between the two groups. In this sense, as the following models restrict more parameters, their fit becomes more complex, which is reflected in the fact that none of the following models are accepted. This means that the measurement of the meritocracy scale for students varies depending on the cohort.</p>
+<p>The results of the different invariance models are displayed at the previous table. To examine invariance across cohorts the same steps in Dubravka et al.&nbsp;(2019) were followed, who propose the estimation of three models: the configural model, another restricting the thresholds, and finally restricting the thresholds and factor loadings.</p>
+<p>The configural model was first estimated, which maintains the same factor structure for both baseline and midline. The configural model has good fit indices (CFI = 0.993, RMSEA = 0.036), so there is empirical evidence that the factor structure behaves stably in both groups.</p>
+<p>Looking at the thresholds restricted model, it appears that when thresholds are restricted to equality, the four-factor latent model is not equivalent across the different cohorts in the study in accordance with <span class="citation" data-cites="chen_sensitivity_2007">Chen (<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">2007</a>)</span> (<span class="math inline">\(\Delta\)</span>CFI -.014 &lt; -. 01); <span class="math inline">\(\Delta\)</span>RMSEA .019 &gt; .015). This result implies that by restricting thresholds, the meritocracy scale varies between primary and secondary education. In this case, invariance is not satisfied.</p>
+<p>The level represented as strong restricts both thresholds and factor loadings. When compared with the previous level of invariance, it can be seen that the criteria for assuming that the meritocracy scale remains stable across cohorts are not met either. (<span class="math inline">\(\Delta\)</span>CFI -.005 &lt; -. 01); <span class="math inline">\(\Delta\)</span>RMSEA .003 &lt; .015), so invariance is rejected.</p>
+<p>It is pertinent to ask to what extent these results are due to the instability of the secondary education model. An attempt was made to resolve its overfitting, but this was not possible, which may have had direct implications for this part of the analysis.</p>
 </section>
-<section id="longitudinal-invariance-test" class="level2">
-<h2 class="anchored" data-anchor-id="longitudinal-invariance-test">Longitudinal Invariance Test</h2>
-<div class="cell" data-tbl-cap="Longitudinal Invariance Test Results 1">
-<p>[1] “idestudiante” “perceffort1” “perceffort2” “perctalent1”<br>
-[5] “perctalent2” “percrichparents1” “percrichparents2” “perccontact1”<br>
-[9] “perccontact2” “prefeffort1” “prefeffort2” “preftalent1”<br>
-[13] “preftalent2” “prefrichparents1” “prefrichparents2” “prefcontact1”<br>
-[17] “prefcontact2”<br>
-[1] “id_estudiante” “ola” “curse_level”<br>
-[4] “perc_effort” “perc_talent” “perc_rich_parents” [7] “perc_contact” “pref_effort” “pref_talent”<br>
-[10] “pref_rich_parents” “pref_contact” “cohort_level”</p>
-</div>
-<div class="cell">
-<table class="table table-striped table-bordered table-condensed caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Longitudinal Invariance Test Results 3</caption>
+<section id="longitudinal-invariance" class="level2">
+<h2 class="anchored" data-anchor-id="longitudinal-invariance">Longitudinal Invariance</h2>
+<p>A series of nested confirmatory factor analysis (CFA) models were estimated to assess the longitudinal measurement invariance of the constructs across the two waves of the study. The evaluation began with the configural model, which allows all parameters (loadings, intercepts, and residuals) to vary freely and just compare the same factor structure within individuals in time. This model served as the baseline for subsequent comparisons and demonstrated good fit to the data, with <span class="math inline">\(\chi^2\)</span>(68) = 117.7, a Comparative Fit Index (CFI) of 0.991, and a Root Mean Square Error of Approximation (RMSEA) of 0.035, with a 90% confidence interval ranging from 0.024 to 0.046. These indices suggest that the same factorial structure is replicated across time points, meaning that the general configuration of items and latent variables remains stable.</p>
+<div class="cell" data-tbl-cap-location="top">
+<div id="tbl-longinv" class="cell quarto-float anchored" data-tbl-cap-location="top">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-longinv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Longitudinal invariance results
+</figcaption>
+<div aria-describedby="tbl-longinv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<table class="table table-striped table-bordered table-condensed do-not-create-environment cell table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: center;" data-quarto-table-cell-role="th">Model</th>
@@ -472,389 +317,109 @@ Table&nbsp;3: Measurement Invariance by Course Level
 
 
 </div>
-<p>A series of nested confirmatory factor analysis (CFA) models was estimated to assess the longitudinal measurement invariance of the constructs across different waves of the study. The evaluation began with the configural model, which allows all parameters (loadings, intercepts, and residuals) to vary freely across time. This model served as the baseline for subsequent comparisons and demonstrated good fit to the data, with χ²(68) = 117.7, a Comparative Fit Index (CFI) of 0.991, and a Root Mean Square Error of Approximation (RMSEA) of 0.035, with a 90% confidence interval ranging from 0.024 to 0.046. These indices suggest that the same factorial structure is replicated across time points, meaning that the general configuration of items and latent variables remains stable.</p>
-<p>Subsequently, the weak invariance model was tested by constraining the factor loadings to be equal across waves. This model also showed excellent fit: χ²(72) = 122.51, CFI = 0.990, RMSEA = 0.034 (90% CI: 0.024–0.045). The comparison with the configural model revealed a negligible and non-significant change in model fit, with Δχ²(4) = 4.809, ΔCFI = 0.000, and ΔRMSEA = -0.001. These results support the assumption of weak invariance, indicating that the strength of the relationship between items and latent constructs is consistent over time.</p>
-<p>The strong invariance model introduced additional constraints by setting item intercepts equal across time points, in addition to the equality of factor loadings. This model yielded a χ²(80) = 128.53, CFI = 0.991, and RMSEA = 0.032 (90% CI: 0.021–0.042). The changes in fit statistics relative to the weak model were Δχ²(8) = 6.02, ΔCFI = 0.000, and ΔRMSEA = -0.002. These minimal differences suggest that the additional constraints did not significantly impair the model’s fit. Therefore, strong invariance is supported, meaning that individuals with the same latent trait level are expected to have the same observed item scores across waves.</p>
-<p>Finally, the strict invariance model imposed equality constraints on residual variances in addition to the loadings and intercepts. This model also showed good fit: χ²(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90% CI: 0.020–0.040). The comparison with the strong model revealed a Δχ²(4) = 1.635, ΔCFI = 0.000, and ΔRMSEA = -0.002. These changes are minimal and fall well within recommended thresholds for model comparison, indicating that strict invariance is also supported.</p>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Subsequently, the weak invariance model was tested by constraining the factor loadings to be equal across waves. This model also showed a fit that passes the acceptable standards indicated by the literature: <span class="math inline">\(\chi^2\)</span>(72) = 122.51, CFI = 0.990, RMSEA = 0.034 (90% CI: 0.024–0.045). The comparison with the configural model revealed a negligible and non-significant change in model fit, with <span class="math inline">\(\Delta \chi^2\)</span>(4) = 4.809, <span class="math inline">\(\Delta\)</span>CFI = 0.000, and <span class="math inline">\(\Delta\)</span>RMSEA = -0.001. These results support the assumption of weak invariance, indicating that the strength of the relationship between items and latent constructs is consistent over time, i.e., within students.</p>
+<p>The strong invariance model introduced additional constraints by setting item intercepts and loadings equal across time points, in addition to the equality of thresholds. Fixing thresholds is relevant to ensure that response categories represent equivalent levels of the latent construct across group or time. Whitout threshold invariance, comparisons of latent means may be biased due to differences in how caregories are interpreted rather than true differences in the construct <span class="citation" data-cites="liu_testing_2017">(<a href="#ref-liu_testing_2017" role="doc-biblioref">Liu et al., 2017</a>)</span>. This model yielded a <span class="math inline">\(\chi^2\)</span>(80) = 128.53, CFI = 0.991, and RMSEA = 0.032 (90% CI: 0.021–0.042). The changes in fit statistics relative to the weak model were <span class="math inline">\(\Delta \chi^2\)</span>(8) = 6.02, <span class="math inline">\(\Delta\)</span>CFI = 0.000, and <span class="math inline">\(\Delta\)</span>RMSEA = -0.002. These minimal differences suggest that the additional constraints did not significantly impair the model’s fit. Therefore, strong invariance is supported, meaning that individuals with the same latent trait level are expected to have the same observed item scores across waves.</p>
+<p>Finally, the strict invariance model imposed equality constraints on residual variances in addition to the loadings and intercepts. This model also showed good fit: <span class="math inline">\(\chi^2\)</span>(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90% CI: 0.020–0.040). The comparison with the strong model revealed a <span class="math inline">\(\Delta \chi^2\)</span>(4) = 1.635, <span class="math inline">\(\Delta\)</span>CFI = 0.000, and <span class="math inline">\(\Delta\)</span>RMSEA = -0.002. These changes are minimal and fall well within recommended thresholds for model comparison, indicating that strict invariance is also supported.</p>
 <p>In summary, the results support full longitudinal measurement invariance—configural, weak, strong, and strict—suggesting that the constructs are measured equivalently across time. This justifies meaningful comparisons of latent means, variances, and covariances over time, and provides strong evidence of the temporal stability and psychometric robustness of the measurement model. However, it remains important to explore possible sources of misfit or localized non-invariance that could inform refinements to further improve the model.</p>
+<p>In parallel, to detect potential sources of local misfit and evaluate the robustness of longitudinal measurement invariance, an univariate score tests was estimated at each level of the invariance hierarchy: configural, metric (weak), scalar (strong), and strict. Using the <code>lavTestScore()</code> function in <em>lavaan</em>, we tested whether specific equality constraints—such as equal loadings, thresholds, or residual variances across time—introduced statistically significant misfit. This method enables the identification of individual parameters that may violate invariance assumptions, even when global model fit remains acceptable.</p>
+<p>Across all three constrained models (metric, scalar, and strict), the score tests revealed no significant violations. At the metric level, all loading constraints were supported. In the scalar model, both loadings and thresholds showed stability over time, with no indication of misfit. Finally, under strict invariance, residual variances and thresholds were also found to be invariant across waves. The largest test statistic (<span class="math inline">\(\chi^2\)</span> = 3.829, p = .050) was observed for a threshold in <em>preference for talent indicator</em>, yet this did not reach significance.</p>
+<p>These results provide strong evidence that full longitudinal measurement invariance holds in the data. The measurement model is stable over time in terms, supporting meaningful comparison of latent variable means, variances, and structural relations across time. Full results of the score tests, including all tested constraints and their associated statistics, are presented in the supplementary materials.</p>
 </section>
-</section>
-<section id="possible-error-sources" class="level1">
-<h1>Possible Error Sources</h1>
-<div class="cell">
-<table class="table table-striped table-bordered table-condensed caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Longitudinal Invariance Sources</caption>
+<section id="conditional-longitudinal-invariance" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-longitudinal-invariance">Conditional Longitudinal Invariance</h2>
+<p>Although no evidence was found in favor of measurement invariance between cohorts, the analysis nevertheless explored the potential heterogeneity associated with cohort differences, given the plausible expectation of their impact on socialization processes. To evaluate the robustness of longitudinal measurement invariance over time while accounting for these effects, a series of nested models were estimated, both with and without controlling for cohort through a dummy variable predicting each latent factor.</p>
+<p>All models presented fit indices that exceed commonly accepted standards in the literature, with CFI values above .990 and RMSEA values below .035. The configural model (<span class="math inline">\(\chi^2\)</span> = 117.70, df = 68, CFI = .991, RMSEA = .035 [.024–.046]) served as the baseline, and subsequent models imposing equality constraints on factor loadings (weak invariance), intercepts (strong invariance), and residual variances (strict invariance) showed negligible changes in fit indices (e.g., <span class="math inline">\(\Delta\)</span>CFI ≤ .001 across all steps). This pattern held even after including cohort as a covariate: for instance, the strict invariance model with cohort control yielded <span class="math inline">\(\chi^2\)</span> = 134.21 (df = 92), CFI = .991, and RMSEA = .028 [.017–.038], closely resembling the model without cohort control (<span class="math inline">\(\chi^2\)</span> = 130.17, df = 84, CFI = .991, RMSEA = .031 [.020–.040]). These results support the conclusion that full longitudinal measurement invariance is maintained, regardless of cohort-related heterogeneity.</p>
+<div class="cell" data-tbl-cap-location="top">
+<div id="tbl-conditional" class="cell quarto-float anchored" data-tbl-cap-location="top">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-conditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Conditional longitudinal invariance by cohort level
+</figcaption>
+<div aria-describedby="tbl-conditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<table class="table table-striped table-bordered table-condensed do-not-create-environment cell table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th style="text-align: center;" data-quarto-table-cell-role="th">Restriction Tested</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Chi-square</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">df</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">p-value</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Evaluation</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Model</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">χ^2 (df)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">CFI</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">RMSEA (90 CI)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Δ χ^2 (Δ df)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Δ CFI</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Δ RMSEA</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Decision</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center; width: 5cm;">.p2. == .p4.</td>
-<td style="text-align: center; width: 3.5cm;">0.440</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.507</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
+<td style="text-align: center; width: 3.5cm;">Configural</td>
+<td style="text-align: center; width: 4cm;">122.27 (76)</td>
+<td style="text-align: center; width: 4cm;">0.990</td>
+<td style="text-align: center; width: 4cm; width: 5cm;">0.032 (0.021-0.042)</td>
+<td style="text-align: center; width: 4cm;">0 (0)</td>
+<td style="text-align: center; width: 4cm;">0.000</td>
+<td style="text-align: center; width: 4cm;">0.000</td>
+<td style="text-align: center; width: 3.5cm;">Reference</td>
 </tr>
 <tr class="even">
-<td style="text-align: center; width: 5cm;">.p6. == .p8.</td>
-<td style="text-align: center; width: 3.5cm;">0.501</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.479</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
+<td style="text-align: center; width: 3.5cm;">Weak</td>
+<td style="text-align: center; width: 4cm;">126.95 (80)</td>
+<td style="text-align: center; width: 4cm;">0.990</td>
+<td style="text-align: center; width: 4cm; width: 5cm;">0.032 (0.021-0.042)</td>
+<td style="text-align: center; width: 4cm;">4.684 (4)</td>
+<td style="text-align: center; width: 4cm;">0.000</td>
+<td style="text-align: center; width: 4cm;">-0.001</td>
+<td style="text-align: center; width: 3.5cm;">Accept</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center; width: 5cm;">.p10. == .p12.</td>
-<td style="text-align: center; width: 3.5cm;">2.659</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.103</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
+<td style="text-align: center; width: 3.5cm;">Strong</td>
+<td style="text-align: center; width: 4cm;">128.55 (88)</td>
+<td style="text-align: center; width: 4cm;">0.991</td>
+<td style="text-align: center; width: 4cm; width: 5cm;">0.028 (0.017-0.038)</td>
+<td style="text-align: center; width: 4cm;">1.598 (8)</td>
+<td style="text-align: center; width: 4cm;">0.001</td>
+<td style="text-align: center; width: 4cm;">-0.004</td>
+<td style="text-align: center; width: 3.5cm;">Accept</td>
 </tr>
 <tr class="even">
-<td style="text-align: center; width: 5cm;">.p14. == .p16.</td>
-<td style="text-align: center; width: 3.5cm;">0.661</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.416</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
+<td style="text-align: center; width: 3.5cm;">Strict</td>
+<td style="text-align: center; width: 4cm;">131.64 (92)</td>
+<td style="text-align: center; width: 4cm;">0.991</td>
+<td style="text-align: center; width: 4cm; width: 5cm;">0.027 (0.016-0.037)</td>
+<td style="text-align: center; width: 4cm;">3.086 (4)</td>
+<td style="text-align: center; width: 4cm;">0.000</td>
+<td style="text-align: center; width: 4cm;">-0.001</td>
+<td style="text-align: center; width: 3.5cm;">Accept</td>
 </tr>
 </tbody>
 </table>
 
 
 </div>
-<p>The results of the score test for the weak invariance model, which evaluates the equality of factor loadings across time points, indicate that all tested parameter constraints are supported by the data. Specifically, none of the tested restrictions—such as the equality between parameters <code>.p2.</code> and <code>.p4.</code>, <code>.p6.</code> and <code>.p8.</code>, <code>.p10.</code> and <code>.p12.</code>, and <code>.p14.</code> and <code>.p16.</code>—yielded statistically significant chi-square values. All p-values were well above the conventional threshold of 0.05, suggesting that constraining these loadings to be equal does not lead to a significant deterioration in model fit.</p>
-<p>These findings provide strong empirical support for metric (or weak) invariance, meaning that the strength of the relationship between the latent factors and their observed indicators is stable across waves. This level of invariance is a necessary condition for making valid comparisons of structural relationships—such as regression paths or covariances—between latent variables over time. The absence of any violation in the score test results implies that the measurement model functions consistently across the different time points examined.</p>
-<div class="cell">
-<table class="table table-striped table-bordered table-condensed caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Possible Violations of Invariance</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;" data-quarto-table-cell-role="th">Restriction Tested</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Chi-square</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">df</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">p-value</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Evaluation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p2. == .p4.</td>
-<td style="text-align: center; width: 3.5cm;">0.095</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.758</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p6. == .p8.</td>
-<td style="text-align: center; width: 3.5cm;">0.797</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.372</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p10. == .p12.</td>
-<td style="text-align: center; width: 3.5cm;">3.305</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.069</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p14. == .p16.</td>
-<td style="text-align: center; width: 3.5cm;">0.421</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.517</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p29. == .p31.</td>
-<td style="text-align: center; width: 3.5cm;">0.574</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.449</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p30. == .p32.</td>
-<td style="text-align: center; width: 3.5cm;">0.459</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.498</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p33. == .p35.</td>
-<td style="text-align: center; width: 3.5cm;">1.675</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.196</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p34. == .p36.</td>
-<td style="text-align: center; width: 3.5cm;">2.496</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.114</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p37. == .p39.</td>
-<td style="text-align: center; width: 3.5cm;">0.305</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.581</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p38. == .p40.</td>
-<td style="text-align: center; width: 3.5cm;">0.060</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.806</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p41. == .p43.</td>
-<td style="text-align: center; width: 3.5cm;">1.716</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.190</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p42. == .p44.</td>
-<td style="text-align: center; width: 3.5cm;">0.470</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.493</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p45. == .p47.</td>
-<td style="text-align: center; width: 3.5cm;">0.071</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.790</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p46. == .p48.</td>
-<td style="text-align: center; width: 3.5cm;">0.318</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.573</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p49. == .p51.</td>
-<td style="text-align: center; width: 3.5cm;">3.829</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.050</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p50. == .p52.</td>
-<td style="text-align: center; width: 3.5cm;">0.914</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.339</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p53. == .p55.</td>
-<td style="text-align: center; width: 3.5cm;">0.534</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.465</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p54. == .p56.</td>
-<td style="text-align: center; width: 3.5cm;">0.188</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.665</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p57. == .p59.</td>
-<td style="text-align: center; width: 3.5cm;">0.008</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.929</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p58. == .p60.</td>
-<td style="text-align: center; width: 3.5cm;">0.657</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.418</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-</tbody>
-</table>
-
-
 </div>
-<p>The table presents the results of score tests used to evaluate metric invariance under the <strong>strict invariance model</strong>, which imposes the strongest set of constraints in longitudinal measurement: equal factor loadings, intercepts, and residual variances across waves. Each row in the table corresponds to a test of the equality between two specific parameters across time points. The chi-square statistic, degrees of freedom (df), and p-value indicate whether that equality constraint significantly worsens model fit, which would suggest a violation of invariance.</p>
-<p>In this case, all tested restrictions yield <strong>non-significant</strong> p-values, with none falling below the conventional alpha threshold of 0.05. For example, the constraint <code>.p2. == .p4.</code> produces a chi-square of 0.108 and a p-value of 0.742, strongly suggesting that the two parameters are statistically indistinguishable and thus invariant. Other constraints, such as <code>.p14. == .p16.</code> (χ² = 0.060, p = 0.806) and <code>.p66. == .p68.</code> (χ² = 0.006, p = 0.937), similarly indicate no violation of invariance.</p>
-<p>A few parameters show slightly elevated chi-square values and marginal p-values—for instance, <code>.p49. == .p51.</code> yields a chi-square of 3.414 and a p-value of 0.065. While still non-significant, this result is relatively close to the threshold, and the associated parameters might merit further investigation for potential partial invariance or item-level idiosyncrasies.</p>
-<p>Overall, the evidence suggests that the model meets the criteria for strict invariance. That is, there is no statistical indication that any of the tested loadings, intercepts, or residuals differ meaningfully across waves. This supports the conclusion that the measurement properties of the constructs remain stable over time. Still, researchers should remain cautious and consider examining parameters close to significance thresholds, exploring possible sources of measurement error, or testing for partial invariance if theoretical or substantive justifications arise.</p>
-<div class="cell">
-<table class="table table-striped table-bordered table-condensed caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Possible Violations of Invariance</caption>
-<thead>
-<tr class="header">
-<th style="text-align: center;" data-quarto-table-cell-role="th">Restriction Tested</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Chi-square</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">df</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">p-value</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Evaluation</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p2. == .p4.</td>
-<td style="text-align: center; width: 3.5cm;">0.108</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.742</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p6. == .p8.</td>
-<td style="text-align: center; width: 3.5cm;">0.989</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.320</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p10. == .p12.</td>
-<td style="text-align: center; width: 3.5cm;">1.767</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.184</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p14. == .p16.</td>
-<td style="text-align: center; width: 3.5cm;">0.060</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.806</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p37. == .p39.</td>
-<td style="text-align: center; width: 3.5cm;">0.285</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.593</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p38. == .p40.</td>
-<td style="text-align: center; width: 3.5cm;">0.193</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.660</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p41. == .p43.</td>
-<td style="text-align: center; width: 3.5cm;">0.874</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.350</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p42. == .p44.</td>
-<td style="text-align: center; width: 3.5cm;">0.487</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.485</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p45. == .p47.</td>
-<td style="text-align: center; width: 3.5cm;">0.215</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.643</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p46. == .p48.</td>
-<td style="text-align: center; width: 3.5cm;">0.456</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.499</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p49. == .p51.</td>
-<td style="text-align: center; width: 3.5cm;">3.414</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.065</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p50. == .p52.</td>
-<td style="text-align: center; width: 3.5cm;">0.918</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.338</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p53. == .p55.</td>
-<td style="text-align: center; width: 3.5cm;">0.007</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.935</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p54. == .p56.</td>
-<td style="text-align: center; width: 3.5cm;">0.024</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.878</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p57. == .p59.</td>
-<td style="text-align: center; width: 3.5cm;">1.053</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.305</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p58. == .p60.</td>
-<td style="text-align: center; width: 3.5cm;">0.360</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.548</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p61. == .p63.</td>
-<td style="text-align: center; width: 3.5cm;">0.316</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.574</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p62. == .p64.</td>
-<td style="text-align: center; width: 3.5cm;">0.348</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.555</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 5cm;">.p65. == .p67.</td>
-<td style="text-align: center; width: 3.5cm;">0.073</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.787</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 5cm;">.p66. == .p68.</td>
-<td style="text-align: center; width: 3.5cm;">0.006</td>
-<td style="text-align: center; width: 3.5cm;">1</td>
-<td style="text-align: center; width: 3.5cm;">0.937</td>
-<td style="text-align: center; width: 4cm;">No violation</td>
-</tr>
-</tbody>
-</table>
-
-
 </div>
-<p>The results of score tests used to evaluate metric invariance under the <strong>strict invariance model</strong>, which imposes the strongest set of constraints in longitudinal measurement, all tested restrictions yield <strong>non-significant</strong> p-values, with none falling below the conventional alpha threshold of 0.05. For example, the constraint <code>.p2. == .p4.</code> produces a chi-square of 0.108 and a p-value of 0.742, strongly suggesting that the two parameters are statistically indistinguishable and thus invariant. Other constraints, such as <code>.p14. == .p16.</code> (χ² = 0.060, p = 0.806) and <code>.p66. == .p68.</code> (χ² = 0.006, p = 0.937), similarly indicate no violation of invariance.</p>
-<p>A few parameters show slightly elevated chi-square values and marginal p-values—for instance, <code>.p49. == .p51.</code> yields a chi-square of 3.414 and a p-value of 0.065. While still non-significant, this result is relatively close to the threshold, and the associated parameters might merit further investigation for potential partial invariance or item-level idiosyncrasies.</p>
-<p>Overall, the evidence suggests that the model meets the criteria for strict invariance. That is, there is no statistical indication that any of the tested loadings, intercepts, or residuals differ meaningfully across waves. This supports the conclusion that the measurement properties of the constructs remain stable over time. Still, researchers should remain cautious and consider examining parameters close to significance thresholds, exploring possible sources of measurement error, or testing for partial invariance if theoretical or substantive justifications arise.</p>
+</figure>
+</div>
+</div>
+<p>Substantively, these results suggest that the factor structure and measurement properties of the constructs are stable over time and are not significantly influenced by cohort membership. The consistency of the fit indices before and after controlling for cohort indicates that observed longitudinal invariance is not an artifact of generational differences. This strengthens the validity of our interpretations regarding temporal stability and change in the latent constructs under study.</p>
+
+</section>
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-chen_sensitivity_2007" class="csl-entry" role="listitem">
+Chen, F. F. (2007). Sensitivity of <span>Goodness</span> of <span>Fit Indexes</span> to <span>Lack</span> of <span>Measurement Invariance</span>. <em>Structural Equation Modeling: A Multidisciplinary Journal</em>, <em>14</em>(3), 464–504. <a href="https://doi.org/10.1080/10705510701301834">https://doi.org/10.1080/10705510701301834</a>
+</div>
+<div id="ref-liu_testing_2017" class="csl-entry" role="listitem">
+Liu, Y., Millsap, R. E., West, S. G., Tein, J.-Y., Tanaka, R., &amp; Grimm, K. J. (2017). Testing measurement invariance in longitudinal data with ordered-categorical measures. <em>Psychological Methods</em>, <em>22</em>(3), 486–506. <a href="https://doi.org/10.1037/met0000075">https://doi.org/10.1037/met0000075</a>
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -891,7 +456,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -923,29 +499,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -953,7 +507,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

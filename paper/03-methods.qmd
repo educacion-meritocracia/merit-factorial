@@ -31,6 +31,23 @@ db_long %>%
   na.omit() %>% 
   group_by(ola, p20) %>% 
   tally()
+
+db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level) %>% 
+  tally()
+
+db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level) %>% 
+  summarise(m = mean(age),
+            sd = sd(age))
+
+db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level, p20) %>% 
+  tally()
+
 ```
 
 # Method
@@ -72,6 +89,58 @@ This study draws on secondary data from the Panel Survey on Education and Merito
    kableExtra::column_spec(column = 2,width = "2 cm") %>%
    kableExtra::collapse_rows(columns = 1:2,valign = "middle")
 ```
+
+
+
+**Cohort level**: To differentiate students’ academic levels across waves for conditional and multigroup invariance analyses, we created a variable indicating whether each student belonged to the primary or secondary school cohort at the time of the survey. This classification allows us to account for developmental differences between and within students. The composition of the cohorts is detailed in @tbl-cohort.
+
+
+```{r}
+#| tbl-cap: Descriptive statistics for cohort level
+#| tbl-cap-location: top
+#| echo: false
+#| label: tbl-cohort
+#| message: false
+#| warning: false
+
+
+tot <- db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level) %>% 
+  tally() %>% 
+  rename(n_total = n)
+
+edad <- db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level) %>% 
+  summarise(m = round(mean(age),2),
+            sd = round(sd(age),2))
+
+gen <- db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level, p20) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  pivot_wider(id_cols = cohort_level,
+              names_from = p20,
+              values_from = n)
+
+left_join(tot, edad) %>% 
+  left_join(., gen) %>% 
+   knitr::kable(., table_format, 
+                booktabs = T, 
+                linesep = "",
+                col.names = c("Cohort level", "N", "Mean", "SD", "Man", "Women", "Others")) %>%
+    kableExtra::add_header_above(c(" " = 2, "Age" = 2, "Gender" = 3)) %>% 
+   kableExtra::kable_styling(
+     full_width = T,
+     latex_options = c("hold_position"),
+     position = "center",
+     font_size = 11,
+     bootstrap_options=c("striped", "bordered"))
+
+```
+
 
 ## Analytical strategy
 

@@ -262,29 +262,96 @@ summary(fit.strong, fit.measures = TRUE)
 ```
 
 ```{r}
-#| echo: false 
+#| label: cohort-table
+#| echo: false
 
-all.results <- data.frame(matrix(nrow = 3, ncol = 6))
-colnames(all.results) <- c("chisq", "df", "p", "rmsea", "cfi", "tli")
-rownames(all.results) <- c("Configural", "Thresholds", "Strong")
+# Comparaciones de Chi²
+an1 <- anova(fit.baseline, fit.thres)
+an2 <- anova(fit.thres, fit.strong)
 
-# Lista de modelos
-modelos <- list(fit.baseline, fit.thres, fit.strong)
+tab01 <- bind_rows(
+  as_tibble(an1)[2,],
+  as_tibble(an2)[2,]
+) %>%
+  select("Chisq", "Df", chisq.diff = `Chisq diff`, df.diff = `Df diff`, pvalue = `Pr(>Chisq)`) %>%
+  mutate(
+    stars = stars.pval(pvalue),
+    chisqt = paste0(round(Chisq, 2), " (", Df, ")"),
+    decision = ifelse(pvalue > 0.05, "Accept", "Reject"),
+    model = c("Weak", "Strong")
+  ) %>%
+  bind_rows(
+    tibble(
+      Chisq = an1$Chisq[1],
+      Df = an1$Df[1],
+      chisq.diff = NA,
+      df.diff = NA,
+      pvalue = NA,
+      stars = "",
+      chisqt = paste0(round(an1$Chisq[1], 2), " (", an1$Df[1], ")"),
+      decision = "Reference",
+      model = "Configural"
+    )
+  ) %>%
+  select(model, chisqt, chisq.diff, df.diff, pvalue, stars, decision) %>%
+  mutate(model = factor(model, levels = c("Configural", "Weak", "Strong"))) %>%
+  arrange(model)
 
-# Extraer los índices de ajuste
-for (i in 1:3) {
-  fm <- fitMeasures(modelos[[i]], c("chisq.scaled", "df.scaled", "pvalue.scaled",
-                                    "rmsea.scaled", "cfi.scaled", "tli.scaled"))
-  all.results[i, ] <- round(unlist(fm), 3)
-}
+# Medidas de ajuste
+fit.meas <- bind_rows(
+  fitMeasures(fit.baseline, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"),],
+  fitMeasures(fit.thres, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"),],
+  fitMeasures(fit.strong, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"),]
+)
 
-# Mostrar tabla con formato kable
-kable(all.results, caption = "Cohort invariance")
+fit.meas <- fit.meas %>%
+  mutate(
+    diff.chi2 = chisq - lag(chisq, default = first(chisq)),
+    diff.df = df - lag(df, default = first(df)),
+    diff.cfi = cfi - lag(cfi, default = first(cfi)),
+    diff.rmsea = rmsea - lag(rmsea, default = first(rmsea))
+  ) %>%
+  round(3) %>%
+  mutate(rmsea.ci = paste0(rmsea, " \n(", rmsea.ci.lower, "-", rmsea.ci.upper, ")"))
+
+# Tabla final (mantener diff.df hasta formatear)
+tab.inv <- bind_cols(tab01, fit.meas) %>%
+  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
+  mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
+  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
+
+# Encabezados de columna
+col.nam <- c(
+  "Model", "&chi;^2 (df)", "CFI", "RMSEA (90 CI)",
+  "&Delta; &chi;^2 (&Delta; df)", "&Delta; CFI", "&Delta; RMSEA", "Decision"
+)
+
+# Salida en kable
+tab.inv %>%
+  kableExtra::kable(
+    format = "html",
+    align = "c",
+    booktabs = TRUE,
+    escape = FALSE,
+    col.names = col.nam
+  ) %>%
+  kableExtra::kable_styling(
+    full_width = TRUE,
+    latex_options = "hold_position",
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    font_size = 23
+  ) %>%
+  kableExtra::column_spec(c(1, 8), width = "3.5cm") %>%
+  kableExtra::column_spec(2:7, width = "4cm") %>%
+  kableExtra::column_spec(4, width = "5cm")
+
+
+
 ```
 
 The results of the different invariance models are displayed at the previous table. To examine invariance across cohorts the same steps in Dubravka et al. (2019) were followed, who propose the estimation of three models: the configural model, another restricting the thresholds, and finally restricting the thresholds and factor loadings.
 
-The configural model was first estimated, which maintains the same factor structure for both baseline and midline. The configural model has good fit indices (CFI = 0.993, RMSEA = 0.036), so there is empirical evidence that the factor structure behaves stably in both groups.
+The configural model was first estimated, which maintains the same factor structure for both baseline and midline. The configural model has good fit indices (CFI = 0.992, RMSEA = 0.037), so there is empirical evidence that the factor structure behaves stably in both groups.
 
 Looking at the thresholds restricted model, it appears that when thresholds are restricted to equality, the four-factor latent model is not equivalent across the different cohorts in the study in accordance with @chen_sensitivity_2007 ($\Delta$CFI -.014 \< -. 01); $\Delta$RMSEA .019 \> .015). This result implies that by restricting thresholds, the meritocracy scale varies between primary and secondary education. In this case, invariance is not satisfied.
 
@@ -716,8 +783,6 @@ fit_uniquenessinv <- cfa(uniquenessinv_model_smt, data = db_invariance,
                          parameterization = "theta",
                          estimator = "WLSMV")
 ```
-
-
 
 A series of nested confirmatory factor analysis (CFA) models were estimated to assess the longitudinal measurement invariance of the constructs across the two waves of the study. The evaluation began with the configural model, which allows all parameters (loadings, intercepts, and residuals) to vary freely and just compare the same factor structure within individuals in time. This model served as the baseline for subsequent comparisons and demonstrated good fit to the data, with $\chi^2$(68) = 117.7, a Comparative Fit Index (CFI) of 0.991, and a Root Mean Square Error of Approximation (RMSEA) of 0.035, with a 90% confidence interval ranging from 0.024 to 0.046. These indices suggest that the same factorial structure is replicated across time points, meaning that the general configuration of items and latent variables remains stable.
 
@@ -1200,11 +1265,9 @@ fit_uniquenessinv_cohort <- sem(uniquenessinv_model_cohort, data = db_invariance
                          estimator = "WLSMV")
 ```
 
-
 Although no evidence was found in favor of measurement invariance between cohorts, the analysis nevertheless explored the potential heterogeneity associated with cohort differences, given the plausible expectation of their impact on socialization processes. To evaluate the robustness of longitudinal measurement invariance over time while accounting for these effects, a series of nested models were estimated, both with and without controlling for cohort through a dummy variable predicting each latent factor.
 
 All models presented fit indices that exceed commonly accepted standards in the literature, with CFI values above .990 and RMSEA values below .035. The configural model ($\chi^2$ = 117.70, df = 68, CFI = .991, RMSEA = .035 \[.024–.046\]) served as the baseline, and subsequent models imposing equality constraints on factor loadings (weak invariance), intercepts (strong invariance), and residual variances (strict invariance) showed negligible changes in fit indices (e.g., $\Delta$CFI ≤ .001 across all steps). This pattern held even after including cohort as a covariate: for instance, the strict invariance model with cohort control yielded $\chi^2$ = 134.21 (df = 92), CFI = .991, and RMSEA = .028 \[.017–.038\], closely resembling the model without cohort control ($\chi^2$ = 130.17, df = 84, CFI = .991, RMSEA = .031 \[.020–.040\]). These results support the conclusion that full longitudinal measurement invariance is maintained, regardless of cohort-related heterogeneity.
-
 
 ```{r}
 #| label: tbl-conditional
@@ -1278,6 +1341,5 @@ tab.inv %>%
   kableExtra::column_spec(2:7, width = "4cm") %>% 
   kableExtra::column_spec(4, width = "5cm")
 ```
-
 
 Substantively, these results suggest that the factor structure and measurement properties of the constructs are stable over time and are not significantly influenced by cohort membership. The consistency of the fit indices before and after controlling for cohort indicates that observed longitudinal invariance is not an artifact of generational differences. This strengthens the validity of our interpretations regarding temporal stability and change in the latent constructs under study.

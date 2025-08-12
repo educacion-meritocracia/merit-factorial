@@ -151,11 +151,11 @@ kable(left_join(x = standardizedsolution(mbasica_cfa) %>%
 
 ```
 
-![](imagenes/esquema-basica.jpg)
+![](imagenes/esquema-basica.png)
 
-The diagram shows the standardized factor loadings estimated with WLSMV for the primary and secondary education models. One of the first findings is that within each cohort, the loadings vary depending on the factor. In the case of the primary education model, the loadings of both meritocratic perception indicators are quite similar, with perception of effort at .60 and perception of talent at .71. In contrast, in the non-meritocratic preferences factor, the loadings vary greatly, with preference for effort being .46 and preference for talent being .86. This suggests that the factor explains the second factor more than the first. Finally, the indicators of the non-meritocratic preferences factor vary, but not as strongly.
+The diagram shows the standardized factor loadings estimated with WLSMV for the primary and secondary cohorts. One of the first findings is that within each cohort, the loadings vary depending on the factor. In the case of the primary education model, the loadings of both meritocratic perception indicators differ as perception of effort at .60 and perception of talent at .71, so the meritocratic perception factor explains talent more than effort. In contrast, in the meritocratic preferences factor, the loadings vary greatly, with preference for effort being .46 and preference for talent being .86. This suggests that the factor explains the second item more than the first. Finally, the indicators of the non-meritocratic preferences factor vary, but not as strongly.
 
-![](imagenes/esquema-media.jpg)
+![](imagenes/esquema-media.png)
 
 In the secondary education model, some similarities can be seen in comparison to the primary model. The indicators of the meritocratic perception factor have slightly higher loadings than in the previous model, but they do not differ as much from each other. The difference in the indicators of meritocratic preference is reversed, with preference for effort becoming the highest (.76) and preference for talent the lowest (0.41). With regard to non-meritocratic preferences, the indicators have much more similar factor loadings than in the primary school model.
 
@@ -353,7 +353,7 @@ The results of the different invariance models are displayed at the previous tab
 
 The configural model was first estimated, which maintains the same factor structure for both baseline and midline. The configural model has good fit indices (CFI = 0.992, RMSEA = 0.037), so there is empirical evidence that the factor structure behaves stably in both groups.
 
-Looking at the thresholds restricted model, it appears that when thresholds are restricted to equality, the four-factor latent model is not equivalent across the different cohorts in the study in accordance with @chen_sensitivity_2007 ($\Delta$CFI -.014 \< -. 01); $\Delta$RMSEA .019 \> .015). This result implies that by restricting thresholds, the meritocracy scale varies between primary and secondary education. In this case, invariance is not satisfied.
+Looking at the thresholds restricted model, it appears that when thresholds are restricted to equality, the four-factor latent model is not equivalent across the two cohorts in the study in accordance with @chen_sensitivity_2007 ($\Delta$CFI -.014 \< -. 01); $\Delta$RMSEA .019 \> .015). This result implies that by restricting thresholds, the meritocracy scale varies between primary and secondary education. In this case, invariance is not satisfied.
 
 The level represented as strong restricts both thresholds and factor loadings. When compared with the previous level of invariance, it can be seen that the criteria for assuming that the meritocracy scale remains stable across cohorts are not met either. ($\Delta$CFI -.005 \< -. 01); $\Delta$RMSEA .003 \< .015), so invariance is rejected.
 

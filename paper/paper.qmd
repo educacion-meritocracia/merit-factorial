@@ -48,9 +48,6 @@ author:
     email: renecanales@uc.cl
     affiliations:
       - ref: 1     
-  - name: Tomás Urzúa
-    affiliations:
-      - ref: 2     
 affiliations: 
   - id: 1
     name: Instituto de Sociología, Pontificia Universidad Católica de Chile
@@ -84,7 +81,11 @@ and it was last rendered at {{< now >}}.
 
 {{< include 03-methods.qmd >}}
 
-{{< include 04-analisis.qmd >}}
+{{< include 04-analisis-desc.qmd >}}
+
+{{< include 04-analisis-cohort.qmd >}}
+
+{{< include 04-analisis-longitudinal.qmd >}}
 
 {{< include 05-discussion.qmd >}}
 

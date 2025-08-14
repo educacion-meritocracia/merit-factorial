@@ -32,6 +32,8 @@ table_format2 <- if (is_html_output()) {
 
 options(kableExtra.html.bsTable = T)
 options(knitr.kable.NA = "")
+
+# funcion para exportar tablas en formato html o latex
 ```
 
 ```{r}
@@ -39,7 +41,7 @@ options(knitr.kable.NA = "")
 #| include: false
 #| echo: false
 
-if (!require("pacman")) install.packages("pacman")
+if (!require("pacman")) install.packages("pacman") #para instalar pacman en caso de no estar instalado
 
 pacman::p_load(
   tidyverse,
@@ -48,16 +50,14 @@ pacman::p_load(
   here,
   lavaan,
   psych,
-  corrplot,
   ggdist,
-  patchwork,
   semTools,
   gtools,
   kableExtra
 )
 
-options(scipen = 999)
-rm(list = ls())
+options(scipen = 999) # para eliminar la notación científica
+rm(list = ls()) # limpiar el ambiente 
 ```
 
 ```{r}
@@ -65,11 +65,11 @@ rm(list = ls())
 #| echo: false
 #| output: false
 
-load(file = here("output", "data", "db_long_proc.RData"))
+load(file = here("output", "data", "db_long_proc.RData")) #cargar base con las dos olas 
 
-names(db_long)
-glimpse(db_long)
-dim(db_long)
+names(db_long) #ver nombres de variables
+glimpse(db_long) # ver los primeros 15 casos de cada variable
+dim(db_long) # ver cantidad de filas y columnas 
 ```
 
 ```{r}
@@ -78,22 +78,25 @@ dim(db_long)
 
 db1 <- db_long %>%
 filter(ola == 1) %>% # quedarse con solo la ola 1
-select(-c(ola, curse_level, p20, p21_ano, age)) %>% # eliminar variables que no son parte del analisis
-na.omit() # listwise deletion
+select(-c(ola, curse_level, p20, p21_ano, age)) #%>% # eliminar variables que no son parte del analisis
+#na.omit() # listwise deletion
 
+```
+
+```{r}
+#| label: Initial model
+
+# model_restricted <- '
+#perc_merit = ~ perc_effort + perc_talent
+#perc_nmerit = ~ perc_rich_parents + perc_contact
+#pref_merit = ~ pref_effort + pref_talent
+#pref_nmerit = ~ pref_rich_parents + pref_contact
+#'
 ```
 
 ```{r}
 #| label: Measurement model
 #| include: false 
-
-model_cfa <- '
-perc_merit = ~ perc_effort + perc_talent
-perc_nmerit = ~ perc_rich_parents + perc_contact
-pref_merit = ~ pref_effort + pref_talent
-pref_nmerit = ~ pref_rich_parents + pref_contact
-perc_effort ~~ pref_talent
-'
 
 model_restricted <- '
 perc_merit = ~ perc_effort + perc_talent
@@ -102,6 +105,8 @@ pref_merit = ~ pref_effort + pref_talent
 pref_nmerit = ~ pref_rich_parents + pref_contact
 perc_effort ~~ pref_talent
 '
+
+# En este modelo se establece una restricción de igualdad a los indicadores de percepción no meritocrática ya que, en el primer modelo (chunk anterior), uno de ellos daba una carga estandarizada negativa. Además, los indicadores percepción esfuerzo y preferencia talento covariaban altamente en el modelo anterior, por lo que se decidió especificar su correlación
 ```
 
 ```{r}
@@ -125,6 +130,8 @@ mmedia_cfa <- cfa(model = model_restricted,
                   estimator = "WLSMV",
                   ordered = T,
                   std.lv = F)
+
+# se estiman 3 modelos CFA: uno con toda la muestra, un segundo modelo de la cohorte de básica y un tercer modelo de la cohorte de media
 ```
 
 ```{r}
@@ -147,6 +154,7 @@ kable(left_join(x = standardizedsolution(mbasica_cfa) %>%
                   select(lhs,rhs,est.std),c("lhs","rhs")),
       format = "markdown",digits = 2,col.names = cnames, caption = "Factor loadings")
 
+# tabla comparativa de las cargas factoriales estandarizadas de las dos cohortes para poder visualizar de manera clara las similitudes y diferencias entre básica y media
 ```
 
 ![](imagenes/esquema-basica.png)
@@ -173,6 +181,7 @@ fit_measures <- rbind(
 
 knitr::kable(fit_measures, digits = 3, caption = "Fit indexes by model")
 
+# tabla de los indices de ajuste de los tres modelos para comparar sus índices de ajuste en bruto
 ```
 
 @tbl-fitcohort shows the fit indices for each of the three models. All models achieved a non-significant chi-square, which could be expected given their sensitivity to large samples, such as those used in this study.
@@ -188,18 +197,18 @@ It is noteworthy that, for the secondary education model, most indicators have v
 #| include: false 
 
 baseline <- measEq.syntax(
-  configural.model = model_restricted,
+  configural.model = model_restricted, # se especifica el modelo que se usará
   data = db1,
-  ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
-              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
-  parameterization = "delta",
-  ID.fac = "std.lv",
-  ID.cat = "Wu.Estabrook.2016",
-  group = "cohort_level",
-  group.equal = "configural"
+  ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", # se explicita que las 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),# variables son ordinales 
+  parameterization = "delta", #parametrización ideal para indicadores ordinales
+  ID.fac = "std.lv", # identidica el factor con varianza 1
+  ID.cat = "Wu.Estabrook.2016", # tipo de estrategia ideal para indicadores ordinales
+  group = "cohort_level", # identificación de los grupos
+  group.equal = "configural" # nivel de invarianza 
 )
 
-model.baseline <- as.character(baseline)
+model.baseline <- as.character(baseline) # se crea un objeto con el modelo configural como caracter para que puedan visualizarse sus datos
 
 fit.baseline <- cfa(model.baseline, data = db1, group = "cohort_level",
 ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
@@ -212,6 +221,8 @@ summary(fit.baseline)
 #| label: weak model
 #| include: false
 
+# los siguientes dos modelos siguen los pasos de análisis de Dubravka et al, 2019.
+
 thresholds <- measEq.syntax(
 configural.model = model_restricted,
 data = db1,
@@ -221,7 +232,7 @@ parameterization = "delta",
 ID.fac = "std.lv",
 ID.cat = "Wu.Estabrook.2016",
 group = "cohort_level",
-group.equal = c("thresholds")
+group.equal = c("thresholds") # aquí se aplica lo mismo que el código anterior excepto que ahora se restringen los thresholds
 )
 
 model.thres <- as.character(thresholds)
@@ -246,7 +257,7 @@ parameterization = "delta",
 ID.fac = "std.lv",
 ID.cat = "Wu.Estabrook.2016",
 group = "cohort_level",
-group.equal = c("thresholds", "loadings")
+group.equal = c("thresholds", "loadings") # ahora se restringen los tresholds y las cargas factoriales
 )
 
 model.strong <- as.character(strong)
@@ -269,14 +280,14 @@ an2 <- anova(fit.thres, fit.strong)
 
 tab01 <- bind_rows(
   as_tibble(an1)[2,],
-  as_tibble(an2)[2,]
+  as_tibble(an2)[2,] # aqui se toma la segunda fila de comparación de cada anova
 ) %>%
   select("Chisq", "Df", chisq.diff = `Chisq diff`, df.diff = `Df diff`, pvalue = `Pr(>Chisq)`) %>%
   mutate(
     stars = stars.pval(pvalue),
     chisqt = paste0(round(Chisq, 2), " (", Df, ")"),
     decision = ifelse(pvalue > 0.05, "Accept", "Reject"),
-    model = c("Weak", "Strong")
+    model = c("Weak", "Strong") # etiqueta los modelos que se extraen de los anova
   ) %>%
   bind_rows(
     tibble(
@@ -288,22 +299,22 @@ tab01 <- bind_rows(
       stars = "",
       chisqt = paste0(round(an1$Chisq[1], 2), " (", an1$Df[1], ")"),
       decision = "Reference",
-      model = "Configural"
+      model = "Configural" # se añade el modelo configural como referencia para clarificar la comparación
     )
   ) %>%
   select(model, chisqt, chisq.diff, df.diff, pvalue, stars, decision) %>%
   mutate(model = factor(model, levels = c("Configural", "Weak", "Strong"))) %>%
   arrange(model)
 
-# Medidas de ajuste
+# se extraen los índices de ajuste para cada modelo
 fit.meas <- bind_rows(
   fitMeasures(fit.baseline, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"),],
   fitMeasures(fit.thres, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"),],
   fitMeasures(fit.strong, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"),]
 )
 
-fit.meas <- fit.meas %>%
-  mutate(
+fit.meas <- fit.meas %>% # se calculan las diferencias de cada modelo con el anterior para 
+  mutate(                # analizar si se cumplen criterios de invarianza 
     diff.chi2 = chisq - lag(chisq, default = first(chisq)),
     diff.df = df - lag(df, default = first(df)),
     diff.cfi = cfi - lag(cfi, default = first(cfi)),
@@ -324,7 +335,7 @@ col.nam <- c(
   "&Delta; &chi;^2 (&Delta; df)", "&Delta; CFI", "&Delta; RMSEA", "Decision"
 )
 
-# Salida en kable
+# Se formatea la tabla en kable
 tab.inv %>%
   kableExtra::kable(
     format = "html",

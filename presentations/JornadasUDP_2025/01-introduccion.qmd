@@ -1,0 +1,83 @@
+---
+author: "Equipo EDUMER"
+bibliography: "input/bib/merit-factorial.bib"
+csl: "input/bib/apa6.csl"
+---
+
+# Contexto y motivación {data-background-color="#5f5758"}
+
+## Contexto y motivación 
+
+
+
+::: {.column width="40%"}
+
+```{r}
+#| fig-align: left
+#| out-width: '70%'
+
+library(knitr)
+library(here)
+
+knitr::include_graphics(path = here("presentations/JornadasUDP_2025/images/edumer.png"))
+
+```
+
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- ANID/FONDECYT N°1210847 2021-2024 - Meritocracia en la escuela: Fundamentos morales del mercado educativo y sus implicancias para la formación ciudadana en Chile.
+ 
+:::
+:::
+
+::: {.column .column-right width="40%"}
+
+```{r}
+#| fig-align: right
+#| fig-width: 15
+#| out-width: '220%'
+
+knitr::include_graphics(path = here("presentations/JornadasUDP_2025/images/proyecto.png"))
+
+```
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- ANID/FONDECYT N°1210847 2021-2024 - Meritocracia en la escuela: Fundamentos morales del mercado educativo y sus implicancias para la formación ciudadana en Chile.
+ 
+:::
+:::
+
+## Dos columnas con imagen + texto
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/edumer.png){fig-align="center" width=90%}
+
+Texto explicativo debajo de la imagen izquierda.  
+Puedes poner párrafos, listas, etc.
+:::
+
+::: {.column width="50%"}
+![](images/jusmer.png){fig-align="center" width=90%}
+
+Texto explicativo debajo de la imagen derecha.  
+También puedes agregar enlaces o fórmulas.
+:::
+::::
+
+## El estudio de la meritocracia: agendas y medición
+
+# Este estudio {data-background-color="#5f5758"}
+
+
+
+::: {.incremental style="font-size: 200%; display: flex; justify-content: center; align-items: center"}
+</br>
+
+**<span style="color:darkorange">**</font>
+
+
+:::
+

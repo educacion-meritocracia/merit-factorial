@@ -1,0 +1,13 @@
+---
+author: "Equipo EDUMER"
+bibliography: "input/bib/merit-factorial.bib"
+csl: "input/bib/apa6.csl"
+---
+
+# Datos, variables y métodos {data-background-color="#5f5758"}
+
+## Datos
+
+## Variables
+
+## Métodos

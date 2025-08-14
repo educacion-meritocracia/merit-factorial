@@ -1,0 +1,101 @@
+---
+pagetitle: "Jornada UDP 2025"
+Author: Equipo EDUMER
+bibliography: "input/bib/merit-factorial.bib"
+csl: "input/bib/apa6.csl"
+lang: es
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      
+      knitr.graphics.auto_pdf: true
+format:
+  revealjs:
+    #logo: images/edumer.png
+    slide-number: true
+    theme: "libs/edumer.scss"
+    auto-stretch: false
+    title-slide-attributes:
+      visibility: false
+    transition: fade
+    transition-speed: slow
+# data-background-image: images/cover.jpg
+# data-background-size: cover
+    auto-play-media: true
+    mathjax: "default"
+  pdf:
+    format: beamer 
+    keep-tex: true  # Debug LaTeX output if needed
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(knitr)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+
+::: columns
+::: {.column width="20%"}
+
+
+![](images/coes.png)
+
+![](images/obde.jpeg)
+
+![](images/jusmer.png)
+
+![](images/qrcode.png)
+
+:::
+
+::: {.column .column-right width="80%"}
+
+# **Meritocracia en la escuela: evidencia de invarianza de medición**
+
+------------------------------------------------------------------------
+
+**Andreas Laffert, Juan Carlos Castillo, Kevin Carrasco & René Canales**
+
+
+::: {.red2 .medium}
+
+**Instituto de Sociología, Pontificia Universidad Católica de Chile**
+
+**Departamento de Sociología, Universidad de Chile**
+
+**Centro de Estudios de Conflicto y Cohesión Social - COES**
+
+:::
+
+VI Jornada de Investigadoras/es Jóvenes sobre Desigualdad y Cohesión Social
+
+22 Agosto 2025, Santiago
+
+:::
+:::
+
+{{< include 01-introduccion.qmd >}}
+
+{{< include 02-metodos.qmd >}}
+
+{{< include 03-resultados.qmd >}}
+
+{{< include 04-conclusiones.qmd >}}
+
+
+## Referencias
+
+::: {#refs}
+:::

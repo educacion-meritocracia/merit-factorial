@@ -4,10 +4,71 @@ bibliography: "input/bib/merit-factorial.bib"
 csl: "input/bib/apa6.csl"
 ---
 
-# Datos, variables y métodos {data-background-color="#5f5758"}
+## Participantes y procedimiento
 
-## Datos
+::: {.incremental .highlight-last style="font-size: 120%;"}
+
+- [Encuesta Panel Educación y Meritocracia (EDUMER)](https://github.com/educacion-meritocracia/edumer-data) en sus olas de 2023 y 2024 para estudiantes.
+
+- Aplicación de entrevistas CAWI a estudiantes de primaria y secundaria
+provenientes de 9 escuelas de la región Metropolitana y Valparaíso de Chile.
+
+- Muestra no probabilística
+
+- Primera ola (_N_ = 846) compuesta por 386 niñas, 421 niños, 39 que se identifican como otrosr; $M_{edad}$ = 13.4, $SD_{edad}$ = 1.6
+
+- Segunda ola (_N_ = 662) compuesta por 303 niñas, 338 niños, 21 que se identifican como otrosr; $M_{edad}$ = 14.4, $SD_{edad}$ = 1.6
+
+:::
+
+## Variables
+::: {.incremental .highlight-last style="font-size: 120%;"}
+
+
+**<span style="color:darkorange">Escala de percepciones y preferencias sobre meritocracia**</font>
+
+- Las variables incluidas en el modelo de medición se operacionalizan según los ítems propuestos por Castillo et al. [-@castillo_multidimensional_2023].
+
+- Escala de dos componentes, cuatro dimensiones y 8 ítems (2 x dimensión).
+
+- Cada ítem se contestó en una escala Likert de cuatro puntos que va desde “muy en desacuerdo” (1) hasta “muy de acuerdo” (4).
+
+::: 
 
 ## Variables
 
-## Métodos
+::: {style="font-size: 110%;"}
+
+```{r}
+#| label: fig-vars-ppms
+#| fig-cap-location: top
+#| fig-cap: "Items de Escala de Percepciones y Preferencias sobre Meritocracia"
+#| fig-align: center
+#| fig-width: 8
+#| out-width: '200%'
+
+
+knitr::include_graphics(path = here("presentations/images/tab_items.png"))
+
+```
+::: 
+
+
+## Estrategia analítica
+
+::: {.incremental .highlight-last style="font-size: 110%;"}
+
+1. Análisis Factorial Confirmatorio (CFA):
+
+    * Modelo de 4 factores latentes [@brown_confirmatory_2015].
+    * Estimador WLSMV por el carácter ordinal de los ítems [@kline_principles_2023]
+     * Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95;RMSEA< 0.06$; $\chi^2$  $p$ > 0.05 y $\chi^2$/df ratio < 3.
+  
+2. Invarianza de medición:
+
+    * Entre cohortes (básica vs media) --> @davidov_measurement_2014
+    * Longitudinal (dos olas; _dentro_ individuos) --> @liu_testing_2017
+    * Cuatro modelos anidados: configural (misma estructura factorial), métrico (+ cargas factoriales iguales), escalar (+ interceptos y umbrales iguales) y estricta (+ varianzas residuales iguales).
+    * Cuttof de ajuste [@chen_sensitivity_2007]: CFI ($\Delta \geq -0.010$) and RMSEA ($\Delta \geq 0.0$)
+
+:::

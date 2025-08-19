@@ -52,7 +52,6 @@ options(knitr.kable.NA = "")
 
 ![](images/coes.png)
 
-![](images/obde.jpeg)
 
 ![](images/jusmer.png)
 
@@ -62,24 +61,27 @@ options(knitr.kable.NA = "")
 
 ::: {.column .column-right width="80%"}
 
-# **Meritocracia en la escuela: evidencia de invarianza de medición**
+# **Creencias en meritocracia en etapa escolar**
+
+## **Conceptos, medición e invarianza**
 
 ------------------------------------------------------------------------
 
-**Andreas Laffert, Juan Carlos Castillo, Kevin Carrasco & René Canales**
+**Andreas Laffert^1^^,2^, René Canales^1^^,2^, Tomás Urzúa^2^^,3^** 
+</br>
+**Kevin Carrasco^2^^,3^ & Juan Carlos Castillo^2^^,3^**
 
 
 ::: {.red2 .medium}
 
-**Instituto de Sociología, Pontificia Universidad Católica de Chile**
+**^1^Instituto de Sociología, Pontificia Universidad Católica de Chile**
 
-**Departamento de Sociología, Universidad de Chile**
+**^2^Centro de Estudios de Conflicto y Cohesión Social - COES**
 
-**Centro de Estudios de Conflicto y Cohesión Social - COES**
-
+**^3^Departamento de Sociología, Universidad de Chile**
 :::
 
-VI Jornada de Investigadoras/es Jóvenes sobre Desigualdad y Cohesión Social
+VI Jornada de Investigadoras/es Jóvenes sobre Desigualdad y Cohesión Social - UDP
 
 22 Agosto 2025, Santiago
 

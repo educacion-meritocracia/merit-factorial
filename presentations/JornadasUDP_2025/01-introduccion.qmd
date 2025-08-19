@@ -7,69 +7,9 @@ csl: "input/bib/apa6.csl"
 
 ## Contexto y motivación 
 
-```{r}
-#| fig-align: left
-#| out-width: '120%'
-
-library(knitr)
-library(here)
-
-knitr::include_graphics(path = here("presentations/JornadasUDP_2025/images/tran1.jpg"))
-
-```
-
-::::: {.columns}
-:::: {.column width="50%"}
-
-::: {style="font-size: 95%;"}
-
-- ANID/FONDECYT N°1210847 2021-2024 - Meritocracia en la escuela: Fundamentos morales del mercado educativo y sus implicancias para la formación ciudadana en Chile.
-- Encuesta panel a estudiantes y apoderados, y experimentos de encuestas
-
-:::
-::::
-
-:::: {.column width="50%"}
-
-::::
-:::::
-
-## Contexto y motivación 
-
-```{r}
-#| fig-align: left
-#| out-width: '120%'
-
-library(knitr)
-library(here)
-
-knitr::include_graphics(path = here("presentations/JornadasUDP_2025/images/tran2.jpg"))
-
-```
-
-
-::::: {.columns}
-:::: {.column width="50%"}
-
-::::
-
-:::: {.column width="50%"}
-::: {style="font-size: 100%;"}
-
-- ANID/FONDECYT N°1250518 2025-2028 - Justicia de mercado y merecimiento del
-bienestar social
-- Estudios comparativos y caso chileno, con encuestas y experimentos online
-- Más información: [jc-castillo.com/proyectos/posts/fondecyt-jusmer/](https://jc-castillo.com/proyectos/posts/fondecyt-jusmer/)
-:::
-::::
-:::::
-
-
-## Investigación y medición sobre meritocracia
-
 ::: {.incremental .highlight-last style="font-size: 100%;"}
 
-- Pese al aumento de la desigualdad económica y la baja movilidad social, las creencias meritocráticas siguen siendo ampliamente compartidas entre la ciudadanía [@mijs_paradox_2019; @sandel_tyranny_2020]
+- Las creencias respecto a que las disparidades económicas se justifican por diferencias en elementos meritocraticos es un mecanismo clave para explicar la legitimación y persistencia de las desigualdades [@darnon_where_2018; @batruch_belief_2022; @mijs_unfulfillable_2016; @sandel_tyranny_2020]
 
 - Meritocracia: _sistema_ distributivo basado en el mérito (esfuerzo + talento) [@young_rise_1958]
 
@@ -77,43 +17,96 @@ bienestar social
 
     * Dimensión objetiva:  movilidad social y la igualdad de oportunidades efectivas [e.g. @goldthorpe_myth_2003a; @vandewerfhorst_meritocracy_2024]
     * Dimensión subjetiva: percepciones, preferencias y actitudes sobre meritocracia y sus efectos [e.g. @garcia-sierra_dark_2023; @castillo_meritocracia_2019; @mijs_paradox_2019; @newman_economic_2023]
-    
-- Contextos escolares fomentan creencias meritocráticas que funcionan como marcos normativos que justifican desigualdades, ocultando desventajas estructurales [e.g. @batruch_belief_2022; @wiederkehr_belief_2015; @darnon_where_2018]
-
 :::
 
-## Investigación y medición sobre meritocracia
+## Medición de meritocracia
 
-::: {.incremental .highlight-last style="font-size: 110%;"}
+::: {.incremental style="font-size: 110%;"}
 
-- Sin embargo, **la conceptualización y medición de meritocracia** en la investigación empírica sigue siendo **fragmentada**
+- Sin embargo, **la conceptualización y medición de las creencias meritocráticas** en la investigación empírica sigue siendo **fragmentada**
 
-- Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición minimalista para meritocracia en contextos de encuestas. 
-
+:::
+::: {.fragment}
 
 ```{r}
-#| label: fig-concep
+#| label: fig-esque1
 #| fig-cap-location: top
 #| fig-cap: "Modelo conceptual de Castillo et al. (2023)"
 #| fig-align: center
 #| fig-width: 8.5
 #| out-width: '100%'
+library(knitr)
+library(here)
+
+knitr::include_graphics(path = "images/esquema1.png")
+
+```
+
+:::
 
 
-knitr::include_graphics(path = here("presentations/images/modelo_con.png"))
+## Medición de meritocracia
+
+::: {style="font-size: 110%;"}
+
+- Sin embargo, **la conceptualización y medición de las creencias meritocráticas** en la investigación empírica sigue siendo **fragmentada**
+
+:::
+
+
+```{r}
+#| label: fig-esque2
+#| fig-cap-location: top
+#| fig-cap: "Modelo conceptual de Castillo et al. (2023)"
+#| fig-align: center
+#| fig-width: 8.5
+#| out-width: '100%'
+library(knitr)
+library(here)
+
+knitr::include_graphics(path = "images/esquema2.png")
 
 ```
 
 
-::: 
+
+
+## Medición de meritocracia
+
+::: {style="font-size: 110%;"}
+
+- Sin embargo, **la conceptualización y medición de las creencias meritocráticas** en la investigación empírica sigue siendo **fragmentada**
+
+:::
+
+
+```{r}
+#| label: fig-esque3
+#| fig-cap-location: top
+#| fig-cap: "Modelo conceptual de Castillo et al. (2023)"
+#| fig-align: center
+#| fig-width: 8.5
+#| out-width: '100%'
+library(knitr)
+library(here)
+
+knitr::include_graphics(path = "images/esquema3.png")
+
+```
+
+
 
 
 # Este estudio {data-background-color="#5f5758"}
 
 
-::: {.incremental style="font-size: 150%; display: flex; justify-content: center; align-items: center"}
-</br>
+:::: {.incremental style="font-size: 150%;"}
 
-**<span style="color:darkorange">Evaluar la aplicabilidad de esta escala en estudiantes chilenos, analizando la estabilidad de sus percepciones y preferencias sobre principios meritocráticos y no meritocráticos entre cohortes y a lo largo del tiempo**</font>
-:::
+
+**<span style="color:darkorange">1. Objetivo**: Analizar la estabilidad de las percepciones y preferencias sobre elementos meritocráticos y no meritocráticos en etapa escolar en Chile</font>
+
+
+**<span style="color:darkorange">2. Aproximación**: Invarianza de medición entre grupos y en el tiempo
+
+::::
 

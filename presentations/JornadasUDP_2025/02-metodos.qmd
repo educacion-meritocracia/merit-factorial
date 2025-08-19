@@ -12,25 +12,12 @@ csl: "input/bib/apa6.csl"
 
 - Aplicación de entrevistas CAWI a estudiantes de primaria y secundaria provenientes de 9 escuelas de la región Metropolitana y Valparaíso de Chile.
 
-- Primera ola (_N_ = 846) compuesta por 386 niñas, 421 niños, 39 que se identifican como otrosr; $M_{edad}$ = 13.4, $SD_{edad}$ = 1.6
+- Primera ola (_N_ = 846) compuesta por 386 niñas, 421 niños, 39 que se identifican como otros; $M_{edad}$ = 13.4, $SD_{edad}$ = 1.6
 
-- Segunda ola (_N_ = 662) compuesta por 303 niñas, 338 niños, 21 que se identifican como otrosr; $M_{edad}$ = 14.4, $SD_{edad}$ = 1.6
+- Segunda ola (_N_ = 662) compuesta por 303 niñas, 338 niños, 21 que se identifican como otros; $M_{edad}$ = 14.4, $SD_{edad}$ = 1.6
 
 :::
 
-## Variables
-::: {.incremental .highlight-last style="font-size: 120%;"}
-
-
-**<span style="color:darkorange">Escala de percepciones y preferencias sobre meritocracia**</font>
-
-- Las variables incluidas en el modelo de medición se operacionalizan según los ítems propuestos por Castillo et al. [-@castillo_multidimensional_2023].
-
-- Escala de dos componentes, cuatro dimensiones y 8 ítems (2 x dimensión).
-
-- Cada ítem se contestó en una escala Likert de cuatro puntos que va desde “muy en desacuerdo” (1) hasta “muy de acuerdo” (4).
-
-::: 
 
 ## Variables
 
@@ -51,20 +38,49 @@ knitr::include_graphics(path = here("presentations/images/tab_items.png"))
 ::: 
 
 
-## Estrategia analítica
+## Estrategia analítica 1
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- **Análisis Factorial Confirmatorio (CFA)**:
+
+    * Modelo de 4 factores latentes con estimador WLSMV [@kline_principles_2023]
+    * Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95;RMSEA< 0.06$; $\chi^2$  $p$ > 0.05 y $\chi^2$/df ratio < 3.
+
+::: 
+::: {.fragment style="margin-top:-2em;"}
+  
+  
+```{r}
+#| fig-align: center
+#| out-width: '80%'
+library(knitr)
+library(here)
+
+knitr::include_graphics(path = here("presentations/images/hipo5.png"))
+
+```
+
+
+:::
+
+## Estrategia analítica 2
 
 ::: {.incremental .highlight-last style="font-size: 110%;"}
 
-1. Análisis Factorial Confirmatorio (CFA):
+- **Invarianza de medición**: Conjunto de procedimientos destinados a estimar la comparabilidad de un modelo de medición [@beaujean_latent_2014]
 
-    * Modelo de 4 factores latentes con estimador WLSMV por carácter ordinal de los ítems [@kline_principles_2023]
-     * Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95;RMSEA< 0.06$; $\chi^2$  $p$ > 0.05 y $\chi^2$/df ratio < 3.
-  
-2. Invarianza de medición:
-
+- Dos tipos:
     * Entre cohortes (básica vs media) --> @davidov_measurement_2014
     * Longitudinal (dos olas; _dentro_ individuos) --> @liu_testing_2017
-    * Cuatro modelos anidados: configural (misma estructura factorial), métrico (+ cargas factoriales iguales), escalar (+ interceptos y umbrales iguales) y estricta (+ varianzas residuales iguales).
+    
+- Procedimiento:
+    * Cuatro modelos con restricciones secuenciales:configural (misma estructura factorial), métrico (+ cargas factoriales iguales), escalar (+ interceptos y umbrales iguales) y estricta (+ varianzas residuales iguales).
     * Cuttof de ajuste [@chen_sensitivity_2007]: CFI ($\Delta \geq -0.010$) and RMSEA ($\Delta \geq 0.0$)
 
 :::
+
+## Estrategia analítica 2
+
+## Estrategia analítica 2
+

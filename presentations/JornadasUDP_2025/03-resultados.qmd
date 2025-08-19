@@ -44,7 +44,61 @@ load(file = here("output", "results.RData"))
 
 # Resultados
 
+
+
 ## Descriptivos
+
+::: {style="font-size: 110%;"}
+
+```{r}
+#| label: fig-likerplot
+#| fig-align: center
+#| fig-cap: "Distribución de respuestas en escala de percepciones y preferencias sobre meritocracia (PPMS)"
+#| fig-cap-location: top
+#| fig-width: 7
+#| out-width: '80%'
+
+library(ggdist)
+library(RColorBrewer)
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+a <- db1 %>% 
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+b <- db1 %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1)[1],")"
+))
+
+likerplot
+```
+::: 
 
 ## Invarianza entre Cohortes
 
@@ -194,8 +248,11 @@ summary(fit.strong, fit.measures = TRUE)
 ```
 
 ```{r}
-#| label: cohort-table
+#| label: tbl-cohort
+#| tbl-cap: "Resultados invarianza entre cohortes"
+#| tbl-cap-location: top
 #| echo: false
+#| warning: false
 
 # Comparaciones de invarianza
 an1 <- anova(fit.baseline, fit.thres)
@@ -719,7 +776,7 @@ fit_uniquenessinv <- cfa(uniquenessinv_model_smt, data = db_invariance,
 ```
 
 ```{r}
-#| tbl-cap: "Longitudinal invariance results"
+#| tbl-cap: "Resultados invarianza longitudinal"
 #| tbl-cap-location: top
 #| echo: false
 #| warning: false
@@ -1185,7 +1242,7 @@ fit_uniquenessinv_cohort <- sem(uniquenessinv_model_cohort, data = db_invariance
 
 ```{r}
 #| label: tbl-conditional
-#| tbl-cap: "Conditional longitudinal invariance by cohort level"
+#| tbl-cap: "Resultados invarianza longitudinal condicional por cohorte"
 #| tbl-cap-location: top
 #| echo: false
 #| warning: false

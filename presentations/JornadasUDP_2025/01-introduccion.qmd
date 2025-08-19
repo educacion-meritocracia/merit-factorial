@@ -58,7 +58,8 @@ knitr::include_graphics(path = here("presentations/JornadasUDP_2025/images/tran2
 
 - ANID/FONDECYT N°1250518 2025-2028 - Justicia de mercado y merecimiento del
 bienestar social
-- Estudios comparados, estudios de caso Chileno, encuesta online y experimentos de encuesta
+- Estudios comparativos y caso chileno, con encuestas y experimentos online
+- Más información: [jc-castillo.com/proyectos/posts/fondecyt-jusmer/](https://jc-castillo.com/proyectos/posts/fondecyt-jusmer/)
 :::
 ::::
 :::::
@@ -100,24 +101,6 @@ bienestar social
 
 
 knitr::include_graphics(path = here("presentations/images/modelo_con.png"))
-
-```
-
-
-::: 
-
-## Modelo
-
-::: {style="font-size: 120%;"}
-
-```{r}
-#| fig-align: center
-#| fig-asp: 1.1
-#| fig-width: 15
-#| out-width: '150%'
-
-
-knitr::include_graphics(path = here("presentations/images/hipo5.png"))
 
 ```
 

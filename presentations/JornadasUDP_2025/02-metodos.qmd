@@ -10,10 +10,7 @@ csl: "input/bib/apa6.csl"
 
 - [Encuesta Panel Educación y Meritocracia (EDUMER)](https://github.com/educacion-meritocracia/edumer-data) en sus olas de 2023 y 2024 para estudiantes.
 
-- Aplicación de entrevistas CAWI a estudiantes de primaria y secundaria
-provenientes de 9 escuelas de la región Metropolitana y Valparaíso de Chile.
-
-- Muestra no probabilística
+- Aplicación de entrevistas CAWI a estudiantes de primaria y secundaria provenientes de 9 escuelas de la región Metropolitana y Valparaíso de Chile.
 
 - Primera ola (_N_ = 846) compuesta por 386 niñas, 421 niños, 39 que se identifican como otrosr; $M_{edad}$ = 13.4, $SD_{edad}$ = 1.6
 
@@ -60,8 +57,7 @@ knitr::include_graphics(path = here("presentations/images/tab_items.png"))
 
 1. Análisis Factorial Confirmatorio (CFA):
 
-    * Modelo de 4 factores latentes [@brown_confirmatory_2015].
-    * Estimador WLSMV por el carácter ordinal de los ítems [@kline_principles_2023]
+    * Modelo de 4 factores latentes con estimador WLSMV por carácter ordinal de los ítems [@kline_principles_2023]
      * Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95;RMSEA< 0.06$; $\chi^2$  $p$ > 0.05 y $\chi^2$/df ratio < 3.
   
 2. Invarianza de medición:

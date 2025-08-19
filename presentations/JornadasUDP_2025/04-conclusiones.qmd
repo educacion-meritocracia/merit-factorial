@@ -8,8 +8,13 @@ csl: "input/bib/apa6.csl"
 ## Discusión y conclusiones {data-background-color="#5f5758"}
 
 
-:::: {.incremental style="font-size: 115%;"}
+:::: {.incremental style="font-size: 125%;"}
 
+**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: escala no es invariante entre cohortes, pero sí lo es dentro de los mismos estudiantes en el tiempo → _aplicabilidad de una escala minimalista_
+
+**<span style="color:darkorange">2. Contexto escolar**: ya en una temprana edad, estudiantes _diferencian entre percepciones y preferencias, meritocracia y no meritocracia_ 
+
+**<span style="color:darkorange">3. Proyecciones**: (i) publicar artículo, (ii) profundizar en el rol del esfuerzo, talento y contactos, y (iii) evaluar la validez predictiva de la escala
 
 ::::
 

@@ -75,12 +75,119 @@ knitr::include_graphics(path = here("presentations/images/hipo5.png"))
     * Longitudinal (dos olas; _dentro_ individuos) --> @liu_testing_2017
     
 - Procedimiento:
-    * Cuatro modelos con restricciones secuenciales:configural (misma estructura factorial), métrico (+ cargas factoriales iguales), escalar (+ interceptos y umbrales iguales) y estricta (+ varianzas residuales iguales).
+    * Cuatro modelos con restricciones secuenciales o jerárquicos
     * Cuttof de ajuste [@chen_sensitivity_2007]: CFI ($\Delta \geq -0.010$) and RMSEA ($\Delta \geq 0.0$)
 
 :::
 
-## Estrategia analítica 2
+## Estrategia analítica 2: longitudinal
 
-## Estrategia analítica 2
+:::: columns
+::: {.column width="20%"}
+
+1) Configural (misma estructura factorial)
+
+:::
+
+::: {.column width="80%"}
+
+```{r}
+#| fig-align: center
+#| out-width: '100%'
+library(knitr)
+
+knitr::include_graphics(path = "images/config.png")
+
+```
+
+:::
+
+::::
+
+## Estrategia analítica 2: longitudinal
+
+:::: columns
+::: {.column width="20%"}
+
+2) Métrico (+ cargas factoriales iguales)
+
+:::
+
+::: {.column width="80%"}
+
+```{r}
+#| fig-align: center
+#| out-width: '100%'
+library(knitr)
+
+knitr::include_graphics(path = "images/weak.png")
+
+```
+
+:::
+
+::::
+
+
+## Estrategia analítica 2: longitudinal
+
+:::: columns
+::: {.column width="20%"}
+
+3) Escalar (+ interceptos y umbrales iguales)
+
+:::
+
+::: {.column width="80%"}
+
+```{r}
+#| fig-align: center
+#| out-width: '100%'
+library(knitr)
+
+knitr::include_graphics(path = "images/strong.png")
+
+```
+
+:::
+
+::::
+
+## Estrategia analítica 2: longitudinal
+
+:::: columns
+::: {.column width="20%"}
+
+4) Estricta (+ varianzas residuales iguales).
+
+:::
+
+::: {.column width="80%"}
+
+```{r}
+#| fig-align: center
+#| out-width: '100%'
+library(knitr)
+
+knitr::include_graphics(path = "images/strict.png")
+
+```
+
+:::
+
+::::
+
+
+## Estrategia analítica 2: cohortes
+
+```{r}
+#| fig-align: center
+#| out-width: '100%'
+library(knitr)
+
+knitr::include_graphics(path = "images/cohort.png")
+
+```
+
+
 

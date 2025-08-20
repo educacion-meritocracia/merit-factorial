@@ -9,7 +9,7 @@ csl: "input/bib/apa6.csl"
 
 ::: {.incremental .highlight-last style="font-size: 100%;"}
 
-- Las creencias respecto a que las disparidades económicas se justifican por diferencias en elementos meritocraticos es un mecanismo clave para explicar la legitimación y persistencia de las desigualdades [@darnon_where_2018; @batruch_belief_2022; @mijs_unfulfillable_2016; @sandel_tyranny_2020]
+- La creencia de que las disparidades económicas se justifican por diferencias en elementos meritocráticos se ha identificado como un mecanismo clave para explicar la persistencia de las desigualdades [@darnon_where_2018; @batruch_belief_2022; @mijs_unfulfillable_2016; @sandel_tyranny_2020]
 
 - Meritocracia: _sistema_ distributivo basado en el mérito (esfuerzo + talento) [@young_rise_1958]
 

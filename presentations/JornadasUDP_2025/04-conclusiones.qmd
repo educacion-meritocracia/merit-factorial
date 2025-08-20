@@ -14,7 +14,7 @@ csl: "input/bib/apa6.csl"
 
 **<span style="color:darkorange">2. Cohortes y etapas escolares**: no hay evidencia de invarianza entre cohortes → _diferencias en las maneras de comprender la meritocracia según etapa escolar_
 
-**<span style="color:darkorange">3. Implicancias y proyecciones**: (i) profundizar en el rol del esfuerzo, talento y contactos, y (ii) analizar determinantes y consecuencias de la escala de medición
+**<span style="color:darkorange">3. Implicancias y proyecciones**: (i) profundizar en el rol del talento, padres ricos y contactos, y (ii) analizar determinantes y consecuencias de la escala de medición
 
 ::::
 

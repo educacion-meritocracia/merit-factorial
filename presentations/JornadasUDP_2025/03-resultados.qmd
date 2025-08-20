@@ -847,4 +847,10 @@ tab.inv %>%
 
 ```
 
-Fuentes de invarianza: 
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- Se observa una fuente de invarianza asociada a los umbrales (thresholds) de los ítems **preferencia padres ricos y preferencia contactos** en el grupo de Básica.
+
+- **Sustantivamente**: Los estudiantes de Básica y Media interpretan y utilizan las escalas de respuesta de manera diferente cuando juzgan la aceptabilidad de "preferir a padres ricos" y "usar contactos".
+
+:::

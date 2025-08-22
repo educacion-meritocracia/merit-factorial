@@ -61,24 +61,26 @@ options(knitr.kable.NA = "")
 
 ::: {.column .column-right width="80%"}
 
-# **Creencias en meritocracia en etapa escolar**
+# **Creencias en meritocracia en la etapa escolar**
 
 ## **Conceptos, medición e invarianza**
 
 ------------------------------------------------------------------------
 
-**Andreas Laffert^1^^,2^, René Canales^1^^,2^, Tomás Urzúa^2^^,3^** 
+**Andreas Laffert^1^, René Canales^1^, Tomás Urzúa^2^** 
 </br>
-**Kevin Carrasco^2^^,3^ & Juan Carlos Castillo^2^^,3^**
+**Kevin Carrasco^2^ & Juan Carlos Castillo^2^**
 
 
 ::: {.red2 .medium}
 
+
 **^1^Instituto de Sociología, Pontificia Universidad Católica de Chile**
 
-**^2^Centro de Estudios de Conflicto y Cohesión Social - COES**
+**^2^Departamento de Sociología, Universidad de Chile**
 
-**^3^Departamento de Sociología, Universidad de Chile**
+**Centro de Estudios de Conflicto y Cohesión Social - COES**
+
 :::
 
 VI Jornada de Investigadoras/es Jóvenes sobre Desigualdad y Cohesión Social - UDP
@@ -96,6 +98,7 @@ VI Jornada de Investigadoras/es Jóvenes sobre Desigualdad y Cohesión Social - 
 
 {{< include 04-conclusiones.qmd >}}
 
+{{< include 05-anexo.qmd >}}
 
 ## Referencias
 

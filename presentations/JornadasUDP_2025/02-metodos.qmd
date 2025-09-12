@@ -1,0 +1,76 @@
+---
+author: "Equipo EDUMER"
+bibliography: "input/bib/merit-factorial.bib"
+csl: "input/bib/apa6.csl"
+---
+
+## Participantes y procedimiento
+
+::: {.incremental .highlight-last style="font-size: 120%;"}
+
+- [Encuesta Panel Educación y Meritocracia (EDUMER)](https://github.com/educacion-meritocracia/edumer-data) en sus olas de 2023 y 2024 para estudiantes.
+
+- Aplicación de entrevistas CAWI a estudiantes de básica y media provenientes de 9 escuelas de la región Metropolitana y Valparaíso de Chile.
+
+- Primera ola (_N_ = 846) compuesta por 386 niñas, 421 niños, 39 que se identifican como otros; $M_{edad}$ = 13.4, $SD_{edad}$ = 1.6
+
+- Segunda ola (_N_ = 662) compuesta por 303 niñas, 338 niños, 21 que se identifican como otros; $M_{edad}$ = 14.4, $SD_{edad}$ = 1.6
+
+:::
+
+
+## Variables
+
+::: {style="font-size: 110%;"}
+
+```{r}
+#| label: fig-vars-ppms
+#| fig-cap-location: top
+#| fig-cap: "Items de Escala de Percepciones y Preferencias sobre Meritocracia"
+#| fig-align: center
+#| fig-width: 8
+#| out-width: '200%'
+library(knitr)
+library(here)
+
+knitr::include_graphics(path = here("presentations/images/tab_items.png"))
+
+```
+::: 
+
+
+## Estrategia analítica 1
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- **Análisis Factorial Confirmatorio (CFA)**:
+
+    * Modelo de 4 factores latentes con estimador WLSMV [@kline_principles_2023]
+    * Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95;RMSEA< 0.06$; $\chi^2$  $p$ > 0.05 y $\chi^2$/df ratio < 3.
+
+::: 
+
+
+## Estrategia analítica 2
+
+::: {.incremental .highlight-last style="font-size: 110%;"}
+
+- **Invarianza de medición**: Conjunto de procedimientos destinados a estimar la comparabilidad de un modelo de medición [@beaujean_latent_2014]
+
+- Dos tipos:
+    * Entre cohortes (básica vs media) --> @davidov_measurement_2014
+    * Longitudinal (dos olas; _dentro_ individuos) --> @liu_testing_2017
+    
+- Procedimiento: Cuatro modelos con restricciones secuenciales o jerárquicos
+    - Configural (misma estructura factorial)
+    - Débil (+ mismas cargas factoriales)
+    - Fuerte (+ mismos interceptos)
+    - Estricto (+ mismas varianzas de error)
+    - Cuttof de ajuste [@chen_sensitivity_2007]: CFI ($\Delta \geq -0.010$) and RMSEA ($\Delta \geq 0.0$)
+
+:::
+
+
+
+
+

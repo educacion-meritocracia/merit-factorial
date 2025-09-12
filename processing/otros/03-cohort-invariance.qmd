@@ -1,0 +1,765 @@
+---
+title: "Measuring perceptions and preferences about meritocracy in school in Chile"
+subtitle: "Cohort analysis"
+author: "Tomás Urzúa, Research Helper"
+date: today
+lang: en
+fontsize: 14pt
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    toc-expand: 2
+    toc-title: Contenidos
+    number-sections: true
+    number-depth: 3
+    theme:
+      - cosmo
+      - edumer.scss
+    code-link: true
+    title-block-banner: true
+editor_options: 
+  chunk_output_type: console
+---
+
+<style>
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+</style>
+
+<img class="logo" src="edumer.png" width="250" height="190">
+
+<div style="text-align: justify">
+
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE, include = TRUE, warning = FALSE, message = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+
+# Libraries
+
+```{r}
+#| label: packages 
+#| results: hide 
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               sjPlot,
+               skimr,
+               here,
+               lavaan,
+               psych,
+               corrplot,
+               ggdist,
+               patchwork,
+               semTable,
+               semTools,
+               gtools,
+               kableExtra)
+
+options(scipen=999)
+rm(list = ls())
+```
+
+# Data
+
+```{r}
+load(file = here("output/data/db1_proc.RData"))
+
+names(db1)
+glimpse(db1)
+```
+
+
+# Analysis
+
+
+## Descriptives
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "General descriptives"
+#| tbl-cap-location: top
+
+general <- db1 %>% 
+  skim() %>% 
+  yank("numeric") %>% 
+  as_tibble() %>% 
+  mutate(range = paste0("(",p0,"-",p100,")")) %>% 
+  mutate_if(.predicate = is.numeric, .funs = ~ round(.,2)) %>% 
+  select("Variable" = skim_variable,"Mean"= mean, "SD"=sd, "Range" = range, "Histogram"=hist) 
+
+general %>% 
+  kableExtra::kable(format = "markdown")
+```
+
+
+```{r}
+#| label: tbl-summary2
+#| tbl-cap: "Básica descriptives"
+#| tbl-cap-location: top
+
+basica <- db1 %>% 
+  filter(curse_level == "Básica") %>% 
+  skim() %>% 
+  yank("numeric") %>% 
+  as_tibble() %>% 
+  mutate(range = paste0("(",p0,"-",p100,")")) %>% 
+  mutate_if(.predicate = is.numeric, .funs = ~ round(.,2)) %>% 
+  select("Variable" = skim_variable,"Mean"= mean, "SD"=sd, "Range" = range, "Histogram"=hist) 
+
+basica %>% 
+  kableExtra::kable(format = "markdown")
+```
+
+
+```{r}
+#| label: tbl-summary3
+#| tbl-cap: "Media descriptives"
+#| tbl-cap-location: top
+
+media <- db1 %>% 
+  filter(curse_level == "Media") %>% 
+  skim() %>% 
+  yank("numeric") %>% 
+  as_tibble() %>% 
+  mutate(range = paste0("(",p0,"-",p100,")")) %>% 
+  mutate_if(.predicate = is.numeric, .funs = ~ round(.,2)) %>% 
+  select("Variable" = skim_variable,"Mean"= mean, "SD"=sd, "Range" = range, "Histogram"=hist) 
+
+media %>% 
+  kableExtra::kable(format = "markdown")
+```
+
+
+```{r}
+#| label: fig-likert-perc
+#| echo: false
+#| fig-cap: Perceptions likerplot
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+ab <- db1 %>% 
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. General"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+cb <- db1 %>% 
+  filter(curse_level == "Básica") %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Básica"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+eb <- db1 %>% 
+  filter(curse_level == "Media") %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("c. Media"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot_perc <- ab / cb / eb
+
+likerplot_perc
+```
+
+```{r}
+#| label: fig-likert-pref
+#| echo: false
+#| fig-cap: Preferences likerplot
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+bb <- db1 %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. General"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "none")
+
+db <- db1 %>% 
+  filter(curse_level == "Básica") %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Básica"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "none")
+
+fb <- db1 %>% 
+  filter(curse_level == "Media") %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("c. Media"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot_pref <- bb / db / fb
+
+likerplot_pref 
+```
+
+
+## Bivariates
+
+```{r}
+#| label: fig-corr
+#| echo: false
+#| fig-cap: Basica correlations
+#| fig-cap-location: top
+
+M <- psych::polychoric(db1[db1$curse_level == "Básica",][c(2:9,13)])
+
+P <- cor(db1[db1$curse_level == "Básica",][c(2:9,13)], method = "pearson")
+
+diag(M$rho) <- NA
+
+diag(P) <- NA
+
+M$rho[9,] <- P[9,]
+
+rownames(M$rho) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencias Esfuerzo",
+                     "F. Preferencias Talento",
+                     "G. Preferencias Padres Ricos",
+                     "H. Preferencias Contactos",
+                     "I. Market Justice Preferences")
+
+#set Column names of the matrix
+colnames(M$rho) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                       "(H)","(I)")
+
+rownames(P) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencias Esfuerzo",
+                     "F. Preferencias Talento",
+                     "G. Preferencias Padres Ricos",
+                     "H. Preferencias Contactos",
+                     "I. Market Justice Preferences")
+
+#set Column names of the matrix
+colnames(P) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                    "(H)","(I)")
+
+testp <- cor.mtest(M$rho, conf.level = 0.95)
+
+#Plot the matrix using corrplot
+corrplot::corrplot(M$rho,
+                   method = "color",
+                   addCoef.col = "black",
+                   type = "upper",
+                   tl.col = "black",
+                   col = colorRampPalette(c("#E16462", "white", "#0D0887"))(12),
+                   bg = "white",
+                   na.label = "-") 
+```
+
+
+```{r}
+#| label: fig-corr2
+#| echo: false
+#| fig-cap: Media correlations
+#| fig-cap-location: top
+
+Mm <- psych::polychoric(db1[db1$curse_level == "Media",][c(2:9,13)])
+
+Pm <- cor(db1[db1$curse_level == "Media",][c(2:9,13)], method = "pearson")
+
+diag(Mm$rho) <- NA
+
+diag(Pm) <- NA
+
+Mm$rho[9,] <- Pm[9,]
+
+rownames(Mm$rho) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencias Esfuerzo",
+                     "F. Preferencias Talento",
+                     "G. Preferencias Padres Ricos",
+                     "H. Preferencias Contactos",
+                     "I. Market Justice Preferences")
+
+#set Column names of the matrix
+colnames(Mm$rho) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                       "(H)","(I)")
+
+rownames(Pm) <- c("A. Percepción Esfuerzo",
+                     "B. Percepción Talento",
+                     "C. Percepción Padres Ricos",
+                     "D. Percepción Contactos",
+                     "E. Preferencias Esfuerzo",
+                     "F. Preferencias Talento",
+                     "G. Preferencias Padres Ricos",
+                     "H. Preferencias Contactos",
+                     "I. Market Justice Preferences")
+
+#set Column names of the matrix
+colnames(Pm) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                    "(H)","(I)")
+
+testp <- cor.mtest(Mm$rho, conf.level = 0.95)
+
+#Plot the matrix using corrplot
+corrplot::corrplot(Mm$rho,
+                   method = "color",
+                   addCoef.col = "black",
+                   type = "upper",
+                   tl.col = "black",
+                   col = colorRampPalette(c("#E16462", "white", "#0D0887"))(12),
+                   bg = "white",
+                   na.label = "-") 
+```
+
+
+## Confirmatory factor analysis
+
+```{r}
+#| label: Measurement model
+
+model_cfa <- '
+  perc_merit = ~ perc_effort + perc_talent
+  perc_nmerit = ~ perc_rich_parents + perc_contact
+  pref_merit = ~ pref_effort + pref_talent
+  pref_nmerit = ~ pref_rich_parents + pref_contact
+  '
+
+model_restricted <- '
+  perc_merit = ~ perc_effort + perc_talent
+  perc_nmerit = ~ a*perc_rich_parents + a*perc_contact
+  pref_merit = ~ pref_effort + pref_talent
+  pref_nmerit = ~ pref_rich_parents + pref_contact
+  '
+```
+
+```{r}
+#| include: false 
+
+m1_cfa <- cfa(model = model_cfa, 
+              data = db1,
+              estimator = "MLR", 
+              std.lv = F) # Continuous/ estimator ML Robust
+
+m2_cfa <- cfa(model = model_cfa, 
+              data = db1, 
+              estimator = "DWLS",
+              ordered = T,
+              std.lv = F)
+```
+
+
+```{r}
+#| label: Factor loadings
+#| include: false 
+#| message: false
+
+cnames <- c("Factor","Indicator","Loading (MLR)","Loading (DWLS)")
+kable(left_join(x = standardizedsolution(m1_cfa) %>% 
+                  filter(op=="=~") %>% 
+                  select(lhs,rhs,est.std),y = standardizedsolution(m2_cfa) %>% 
+                  filter(op=="=~") %>%
+                  select(lhs,rhs,est.std),c("lhs","rhs")),
+      format = "markdown",digits = 2,col.names = cnames, caption = "Factor loadings")
+```
+
+```{r}
+#| include: false
+
+modin <- modificationIndices(m2_cfa)
+
+modin %>% 
+  filter(mi > 3.84)
+```
+
+## Models by cohort
+
+```{r}
+#| label: Models by cohort
+
+mgeneral_cfa <- cfa(model = model_cfa, 
+                   data = db1, 
+                   estimator = "DWLS",
+                   ordered = T,
+                   std.lv = F)
+
+mbasica_cfa <- cfa(model = model_cfa, 
+                   data = subset(db1, curse_level == "Básica"), 
+                   estimator = "DWLS",
+                   ordered = T,
+                   std.lv = F)
+
+mmedia_cfa <- cfa(model = model_cfa, 
+                  data = subset(db1, curse_level == "Media"), 
+                  estimator = "DWLS",
+                  ordered = T,
+                  std.lv = F)
+
+
+mmedia_cfa2 <- cfa(model = model_restricted, 
+                  data = subset(db1, curse_level == "Media"), 
+                  estimator = "DWLS",
+                  ordered = T,
+                  std.lv = F)
+
+summary(mmedia_cfa2, fit.measures = TRUE, standardized = TRUE, rsquare = TRUE)
+```
+
+
+This section describes the results of the confirmatory factor analysis estimation. The model estimated four latent factors, which were presented in the variables section: meritocratic perceptions, non-meritocratic perceptions, meritocratic preferences, and non-meritocratic preferences.
+
+```{r}
+#| label: tbl-factorload
+#| echo: false
+#| message: false
+
+cnames <- c("Factor","Indicator","Loadings Básica","Loadings Media")
+kable(left_join(x = standardizedsolution(mbasica_cfa) %>%
+                  filter(op=="=~") %>%
+                  select(lhs,rhs,est.std),y = standardizedsolution(mmedia_cfa) %>%
+                  filter(op=="=~") %>%
+                  select(lhs,rhs,est.std),c("lhs","rhs")),
+      format = "markdown",digits = 2,col.names = cnames, caption = "Factor loadings")
+
+```
+
+Based on the four latent factor model, the analysis consisted of estimating and comparing the fit indicators of three models: a general model, one for elementary school students, and another for high school students.
+
+@tbl-factorload shows the standardized factor loadings, estimated with DWLS, for the models for primary and secondary education. The loadings vary greatly depending on the indicator. In the meritocratic preferences factor, the factor loading for preference for effort in the primary model is 0.45, while in the secondary model it is 0.83. This means that the factor in the secondary model is much stronger, explaining almost twice as much of the indicator as in the primary model. Within the same factor is the indicator of preferences for talent, which in primary education has a factor loading of 0.88, suffering a considerable decline in the secondary education model, scoring 0.37. In this sense, the item of preference for talent poorly measures the factor of meritocratic preferences in the secondary education model, but not in the primary education model. A general case in both models is the high factor loading of the perception of contacts item in the non-meritocratic perceptions factor, with 0.94 in the basic model and 1.01 in the average model. It should be noted that this table reflects standardized loadings, so this loading in the average model is an anomalous result, which could cause problems in subsequent estimates.
+
+```{r}
+#| label: tbl-fitcohort
+#| tbl-cap: Summary fit indices of three models
+#| echo: false
+
+fit_measures <- rbind(
+  "Completo" = fitMeasures(mgeneral_cfa,
+                           c("chisq", "df", "pvalue", "cfi", "tli", "rmsea", "srmr")),
+  "Básica" = fitMeasures(mbasica_cfa,
+                         c("chisq", "df", "pvalue", "cfi", "tli", "rmsea", "srmr")),
+  "Media" = fitMeasures(mmedia_cfa,
+                        c("chisq", "df", "pvalue", "cfi", "tli", "rmsea", "srmr"))
+)
+
+knitr::kable(fit_measures, digits = 3, caption = "Fit indexes by model")
+
+```
+
+@tbl-fitcohort shows the fit indices for each of the three models. All models achieved a non-significant chi-square, which could be expected given their sensitivity to large samples, such as those used in this study. It is noteworthy that, for the secondary education model, most indicators have values that are close to perfect (CFI=1.0, TLI=1.003, RMSEA=0, $\chi^2$(df=14)=11.779). However, the results of this model could be overfitting, so they should be interpreted with caution. The model for primary education is the one with the best fit (CFI=0.996, RMSEA=0.025, $\chi^2$(df=14)=17. 430), while the model that addresses both school levels has comparatively lower fit measures, but acceptable within conventional criteria (CFI=0.989, RMSEA=0.046, $\chi^2$(df=14)=39.183).
+
+```{r}
+#| label: Invariance models
+#| echo: false
+
+fit.conf <- cfa(model_cfa, data = db1, group = "curse_level")
+
+fitMeasures(fit.cong)
+standardizedSolution(fit.conf)
+
+fit.metric <- cfa(model_cfa, data = db1, group = "curse_level",
+                  group.equal = c("loadings"))
+
+fit.strong <- cfa(model_cfa, data = db1, group = "curse_level",
+                  group.equal = c("loadings", "intercepts"))
+
+fit.strict <- cfa(model_cfa, data = db1, group = "curse_level",
+                  group.equal = c("loadings", "intercepts", "residuals"))
+
+```
+
+```{r}
+#| label: tbl-cohortinv
+#| echo: false
+
+# Crear la tabla de comparación de modelos
+tab01 <- lavaan::anova(fit.conf, fit.metric, fit.strong, fit.strict, SB.classic = TRUE) %>%
+  dplyr::as_tibble() %>%
+  dplyr::select("Chisq", "Df", "chisq_diff" = `Chisq diff`, "df_diff" = `Df diff`, "pvalue" = `Pr(>Chisq)`) %>%
+  dplyr::mutate(stars = gtools::stars.pval(pvalue),
+                chisqt = paste0(round(Chisq, 2), " (", Df, ") "),
+                decision = ifelse(pvalue > 0.05, yes = "Accept", no = "Reject"),
+                model = c("Configural", "Metric", "Strong", "Strict"))
+
+# Extraer medidas de ajuste para cada modelo
+fit.meas <- dplyr::bind_rows(
+  lavaan::fitmeasures(fit.conf, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
+  lavaan::fitmeasures(fit.metric, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
+  lavaan::fitmeasures(fit.strong, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ],
+  lavaan::fitmeasures(fit.strict, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"), ]
+)
+
+# Calcular diferencias en chisq, df, cfi y rmsea
+fit.meas <- fit.meas %>%
+  dplyr::mutate(
+    diff.chi2 = chisq - lag(chisq, default = dplyr::first(chisq)),
+    diff.df = df - lag(df, default = dplyr::first(df)),
+    diff.cfi = cfi - lag(cfi, default = dplyr::first(cfi)),
+    diff.rmsea = rmsea - lag(rmsea, default = dplyr::first(rmsea))
+  ) %>%
+  round(3) %>%
+  dplyr::mutate(rmsea.ci = paste0(rmsea, " \\n ", "(", rmsea.ci.lower, "-", rmsea.ci.upper, ")"))
+
+# Combinar tablas
+tab.inv <- dplyr::bind_cols(tab01, fit.meas) %>%
+  dplyr::select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
+  dplyr::mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
+  dplyr::select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
+
+# Limpiar valores
+tab.inv[tab.inv == "0 (0) "] <- NA
+tab.inv[tab.inv == 0] <- NA
+
+# Nombres de columnas
+col.nam <- c("Model", "χ² (df)", "CFI", "RMSEA (90% CI)",
+             "Δ χ² (Δ df)", "Δ CFI", "Δ RMSEA", "Decision")
+
+# Nota al pie con información del tamaño muestral
+nobs <- lavaan::lavInspect(fit.conf, what = "nobs")
+footnote <- paste0("N = ", sum(nobs), "; Group 1, n = ", nobs[1], "; Group 2, n = ", nobs[2])
+
+# Crear tabla HTML
+knitr::kable(tab.inv, col.names = col.nam, align = "l",
+             booktabs = TRUE, format = "html", escape = FALSE,
+             caption = "Measurement Invariance by Course Level") %>%
+  kableExtra::kable_styling(full_width = FALSE,
+                            latex_options = "HOLD_position",
+                            bootstrap_options = c("striped", "bordered"),
+                            font_size = 10) %>%
+  kableExtra::footnote(general = footnote, footnote_as_chunk = TRUE)
+
+```
+
+The results of the different invariance models are displayed at @tbl-cohortinv. The configurational model has good fit indices (CFI = 0.001, RMSEA = 0.027), although this is only the basis for the upcoming invariance estimates. Looking at the metric model, it appears that when factor loadings are restricted to equality, the four-factor latent model is not equivalent across the different cohorts in the study, despite meeting the $\Delta$CFI criteria, which mean rejecting the model if > 0. 01, as well as the $\Delta$RMSEA being below the cutoff point ($\Delta$RMSEA > 0.015 is rejected). The problem is the p-value < 0.05, which indicates that there are significant differences between the two groups. In this sense, as the following models restrict more parameters, their fit becomes more complex, which is reflected in the fact that none of the following models are accepted. This means that the measurement of the meritocracy scale for students varies depending on the cohort.
+
+
+## Others
+
+
+```{r}
+#| label: fig-likert
+#| echo: false
+#| fig-cap: Descriptivos general
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+a <- db1 %>% 
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+b <- db1 %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1)[1],")"
+))
+
+likerplot
+```
+
+
+```{r}
+#| label: fig-likert2
+#| echo: false 
+#| fig-cap: Descriptivos básica
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+c <- db1 %>% 
+  filter(curse_level == "Básica") %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+d <- db1 %>% 
+  filter(curse_level == "Básica") %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot2 <- c / d + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1[db1$curse_level == "Básica",])[1],")"
+))
+
+likerplot2
+```
+
+
+```{r}
+#| label: fig-likert3
+#| echo: false
+#| fig-cap: Descriptivos media
+#| fig-cap-location: top
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+e <- db1 %>% 
+  filter(curse_level == "Media") %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+f <- db1 %>% 
+  filter(curse_level == "Media") %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot3 <- e / f + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1[db1$curse_level == "Media",])[1],")"
+))
+
+likerplot3
+```
+

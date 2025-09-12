@@ -43,18 +43,11 @@ author:
     orcid: 0000-0002-9348-8361
     email: kevin.carrasco@ug.uchile.cl
     affiliations:
-      - ref: 3
-  - name: Gloria Jiménez-Moya
-    orcid: 0000-0002-5927-6437 
-    email: gjimenezm@uc.cl 
-    affiliations:
-      - ref: 5     
   - name: René Canales
+    orcid: 0009-0002-4299-2725
+    email: renecanales@uc.cl
     affiliations:
       - ref: 1     
-  - name: Tomás Urzúa
-    affiliations:
-      - ref: 2     
 affiliations: 
   - id: 1
     name: Instituto de Sociología, Pontificia Universidad Católica de Chile
@@ -64,8 +57,6 @@ affiliations:
     name: Centro de estudios del conflicto y cohesión social (COES)
   - id: 4
     name: Núcleo milenio de desigualdades y oportunidades digitales (NUDOS)
-  - id: 5
-    name: Escuela de Psicología, Pontificia Universidad Católica de Chile
 citeproc: true
 abstract: | 
   \newline
@@ -90,7 +81,11 @@ and it was last rendered at {{< now >}}.
 
 {{< include 03-methods.qmd >}}
 
-{{< include 04-analisis.qmd >}}
+{{< include 04-analisis-desc.qmd >}}
+
+{{< include 04-analisis-cohort.qmd >}}
+
+{{< include 04-analisis-longitudinal.qmd >}}
 
 {{< include 05-discussion.qmd >}}
 

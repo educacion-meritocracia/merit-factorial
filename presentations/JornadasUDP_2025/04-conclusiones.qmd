@@ -1,0 +1,26 @@
+---
+author: "Equipo EDUMER"
+bibliography: "input/bib/merit-factorial.bib"
+csl: "input/bib/apa6.csl"
+---
+
+
+## Discusión y conclusiones {data-background-color="#5f5758"}
+
+
+:::: {.incremental style="font-size: 125%;"}
+
+**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: primera evidencia respecto a una escala que permite evaluar la evolución de las creencias meritocraticas en estudiantes en el tiempo
+
+**<span style="color:darkorange">2. Cohortes y etapas escolares**: no hay evidencia de invarianza entre cohortes → _diferencias en las maneras de comprender la meritocracia según etapa escolar_
+
+**<span style="color:darkorange">3. Implicancias y proyecciones**: (i) profundizar en el rol del talento, padres ricos y contactos, y (ii) analizar determinantes y consecuencias de la escala de medición
+
+::::
+
+
+# ¡Gracias por su atención! 
+
+-   **Github del proyecto:** <https://github.com/educacion-meritocracia>
+
+

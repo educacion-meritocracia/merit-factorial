@@ -3,6 +3,7 @@ author: "Equipo EDUMER"
 bibliography: "../input/bib/merit-factorial.bib"
 csl: "../input/bib/apa6.csl"
 ---
+
 ```{r}
 #| label: packages
 #| include: false
@@ -156,3 +157,4 @@ Panel a shows that respondents widely recognize the importance of contacts (77.2
 The second wave replicates these patterns, though some shifts can be observed. In terms of perceptions (Panel a), recognition of effort as a determinant decreases slightly (61.6%), while talent (69.9%), rich parents (70.0%), and contacts (76.3%) remain widely acknowledged. In normative preferences (Panel b), endorsement of effort as the preferred criterion of success remains extremely high (88.1%), with little change from Wave 1. Meanwhile, support for talent (52.9%), rich parents (52.9%), and contacts (58.9%) remains moderate, but consistently below the support for effort.
 
 Across both waves, the data reveal a stable duality: students recognize the influence of social origin and resources (wealthy parents and contacts) as critical for actual success, but they strongly prefer a system where effort is the primary determinant. The persistence of this perception–preference gap highlights a normative commitment to meritocracy in principle, coexisting with skepticism about its realization in practice.
+

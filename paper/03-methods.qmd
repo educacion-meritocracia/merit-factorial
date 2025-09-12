@@ -4,15 +4,62 @@ bibliography: "../input/bib/merit-factorial.bib"
 csl: "../input/bib/apa6.csl"
 ---
 
+
+```{r}
+#| echo: false
+#| output: false
+#| include: false
+
+library(tidyverse)
+library(here)
+
+load(file = here("output", "data", "db_long_proc.RData"))
+
+
+db_long %>% 
+  na.omit() %>% 
+  group_by(ola) %>% 
+  tally()
+
+db_long %>% 
+  na.omit() %>% 
+  group_by(ola) %>% 
+  summarise(m = mean(age),
+            sd = sd(age))
+
+db_long %>% 
+  na.omit() %>% 
+  group_by(ola, p20) %>% 
+  tally()
+
+db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level) %>% 
+  tally()
+
+db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level) %>% 
+  summarise(m = mean(age),
+            sd = sd(age))
+
+db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level, p20) %>% 
+  tally()
+
+```
+
 # Method
 
 ## Participants and Procedure
 
-This study relies on information from the Panel Survey on Education and Meritocracy (EDUMER) database for its 2023 and 2024 waves for school-age students. This survey is based on the administration of web questionnaires to sixth-grade elementary and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The first wave included 839 students (411 girls, 446 boys, 45 identifying as other; $M_{age}$ = 13.1,  $SD_{age}$ = 1.6), and the second wave followed 612 of them (309 girls, 343 boys, 22 identifying as other; $M_{age}$ = 14.1, $SD_{age}$ = 1.6). 
+This study draws on secondary data from the Panel Survey on Education and Meritocracy (EDUMER) for its 2023 and 2024 waves for school-age students. The primary objective is to examine students’ beliefs, attitudes, and behaviors concerning meritocracy, inequality, and citizenship. Data collection was carried out by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires administered to sixth-grade and first-year secondary students from nine schools located in the Metropolitan and Valparaíso regions of Chile. The sampling strategy was non-probabilistic and lacked quota controls; however, a minimum sample size of 900 students was established to ensure adequate statistical power. All participants were provided with an informed consent form that was reviewed and validated by a parent or legal guardian. The final analytical sample comprises 846 students for the first wave (386 girls, 421 boys, 39 identifying as other; $M_{age}$ = 13.4, $SD_{age}$ = 1.6), and the second wave followed 662 of them (303 girls, 338 boys, 21 identifying as other; $M_{age}$ = 14.4, $SD_{age}$ = 1.6). 
+
 
 ## Measures
 
-**Scale of Perceptions and Preferences on Meritocracy**: The variables included in the measurement model for meritocratic and non-meritocratic perceptions and preferences are operationalized according to the items proposed by Castillo et al. [-@castillo_multidimensional_2023]. Perception of meritocracy is measured by two items that assess the level of agreement with the idea that effort and ability are rewarded in Chile, while non-meritocratic perception is measured by two items evaluating the agreement that success is linked to connections and family wealth. Preference for meritocracy is measured by two items that evaluate agreement with the idea that those who work harder or are more talented should be more rewarded. Preference for non-meritocratic aspects is measured by two indicators assessing agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success (see @tbl-merit). Each item is rated on a four-point Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4).   
+**Scale of Perceptions and Preferences on Meritocracy**: The variables included in the measurement model for meritocratic and non-meritocratic perceptions and preferences are operationalized according to the items proposed in the original scale. Perception of meritocracy is measured by two items that assess the level of agreement with the idea that effort and ability are rewarded in Chile, while non-meritocratic perception is measured by two items evaluating the agreement that success is linked to connections and family wealth. Preference for meritocracy is measured by two items that evaluate agreement with the idea that those who work harder or are more talented should be more rewarded. Preference for non-meritocratic aspects is measured by two indicators assessing agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success (see @tbl-merit). Each item is rated on a four-point Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4).   
 
 ```{r}
 #| tbl-cap: Items for perceptions and preferences for meritocracy scale
@@ -43,9 +90,61 @@ This study relies on information from the Panel Survey on Education and Meritocr
    kableExtra::collapse_rows(columns = 1:2,valign = "middle")
 ```
 
+
+
+**Cohort level**: To differentiate students’ academic levels across waves for conditional and multigroup invariance analyses, we created a variable indicating whether each student belonged to the primary or secondary school cohort at the time of the survey. This classification allows us to account for developmental differences between and within students. The composition of the cohorts is detailed in @tbl-cohort.
+
+
+```{r}
+#| tbl-cap: Descriptive statistics for cohort level
+#| tbl-cap-location: top
+#| echo: false
+#| label: tbl-cohort
+#| message: false
+#| warning: false
+
+
+tot <- db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level) %>% 
+  tally() %>% 
+  rename(n_total = n)
+
+edad <- db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level) %>% 
+  summarise(m = round(mean(age),2),
+            sd = round(sd(age),2))
+
+gen <- db_long %>% 
+  na.omit() %>% 
+  group_by(cohort_level, p20) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  pivot_wider(id_cols = cohort_level,
+              names_from = p20,
+              values_from = n)
+
+left_join(tot, edad) %>% 
+  left_join(., gen) %>% 
+   knitr::kable(., table_format, 
+                booktabs = T, 
+                linesep = "",
+                col.names = c("Cohort level", "N", "Mean", "SD", "Man", "Women", "Others")) %>%
+    kableExtra::add_header_above(c(" " = 2, "Age" = 2, "Gender" = 3)) %>% 
+   kableExtra::kable_styling(
+     full_width = T,
+     latex_options = c("hold_position"),
+     position = "center",
+     font_size = 11,
+     bootstrap_options=c("striped", "bordered"))
+
+```
+
+
 ## Analytical strategy
 
-To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, as proposed by Castillo et al. [-@castillo_multidimensional_2023], using Diagonally Weighted Least Squares with robust correction (WLSMV) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous [@kline_principles_2023].
+To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, using Diagonally Weighted Least Squares with robust correction (WLSMV) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous [@kline_principles_2023].
 
 Model fit was assessed following the guidelines of Brown [-@brown_confirmatory_2015], using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by $p$ > 0.05 and a Chi-square/df ratio < 3).
 

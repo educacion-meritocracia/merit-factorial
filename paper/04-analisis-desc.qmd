@@ -4,7 +4,157 @@ bibliography: "../input/bib/merit-factorial.bib"
 csl: "../input/bib/apa6.csl"
 ---
 
+```{r}
+#| label: packages
+#| include: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc, 
+               sjPlot,
+               here,
+               lavaan,
+               psych,
+               corrplot,
+               ggdist,
+               patchwork,
+               sjlabelled,
+               semTools,
+               gtools,
+               RColorBrewer,
+               skimr,
+               readxl)
+
+
+options(scipen=999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data
+#| include: false
+#| echo: false
+
+load(file = here("output", "data", "db1_proc.RData"))
+load(file = here("output", "data", "db_long_proc.RData"))
+load(file = here("output", "results.RData"))
+
+```
+
+
 # Results
 
 
 ## Descriptive statistics
+
+```{r}
+#| label: fig-likerplot
+#| fig-align: center
+#| fig-cap: "Distribution of responses on the Perceptions and Preferences on Meritocracy Scale (PPMS)"
+#| fig-cap-location: top
+#| fig-width: 7
+#| out-width: '80%'
+#| echo: false
+
+library(ggdist)
+library(RColorBrewer)
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+a <- db1 %>% 
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+b <- db1 %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1)[1],")"
+))
+
+likerplot
+```
+
+```{r}
+#| label: fig-likerplot
+#| fig-align: center
+#| fig-cap: "Distribution of responses on the Perceptions and Preferences on Meritocracy Scale (PPMS)"
+#| fig-cap-location: top
+#| fig-width: 7
+#| out-width: '80%'
+#| echo: false
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+a <- db_long %>% 
+  filter(ola == 2) %>%
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("a. Percepciones"),
+                      geom.size = 0.8,
+                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+
+b <- db_long %>% 
+  filter(ola == 2) %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("b. Preferencias"),
+                      geom.size = 0.8,
+                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db_long[db_long$ola==1,])[1],")"
+))
+
+likerplot
+
+
+```
+
+Figures 1 and 2 display the distribution of agreement levels regarding perceptions of what determines success in school (effort, talent, having wealthy parents, and social contacts), and preferences about what should matter, across two survey waves of the EDUMER Panel Survey.
+
+Panel a shows that respondents widely recognize the importance of contacts (77.2%), talent (73.4%), and having rich parents (71.5%) as determinants of school success, while effort also receives substantial recognition (67.1%). At the same time, Panel b indicates a strong normative preference for effort as the legitimate driver of success: 88% of respondents agree or strongly agree that effort should matter, whereas support for talent (54.6%) and having rich parents (54.7%) is considerably lower. Contacts receive the lowest normative support (61%). This suggests a clear tension between what respondents perceive as actually shaping outcomes and what they believe ought to matter.
+
+The second wave replicates these patterns, though some shifts can be observed. In terms of perceptions (Panel a), recognition of effort as a determinant decreases slightly (61.6%), while talent (69.9%), rich parents (70.0%), and contacts (76.3%) remain widely acknowledged. In normative preferences (Panel b), endorsement of effort as the preferred criterion of success remains extremely high (88.1%), with little change from Wave 1. Meanwhile, support for talent (52.9%), rich parents (52.9%), and contacts (58.9%) remains moderate, but consistently below the support for effort.
+
+Across both waves, the data reveal a stable duality: students recognize the influence of social origin and resources (wealthy parents and contacts) as critical for actual success, but they strongly prefer a system where effort is the primary determinant. The persistence of this perception–preference gap highlights a normative commitment to meritocracy in principle, coexisting with skepticism about its realization in practice.
+

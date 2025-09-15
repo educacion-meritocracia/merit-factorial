@@ -5,26 +5,18 @@ csl: "../input/bib/apa6.csl"
 ---
 
 ```{r}
-#| label: packages
 #| include: false
 
 if (! require("pacman")) install.packages("pacman")
 
 pacman::p_load(tidyverse,
                sjmisc, 
-               sjPlot,
                here,
-               lavaan,
-               psych,
                corrplot,
                ggdist,
                patchwork,
                sjlabelled,
-               semTools,
-               gtools,
-               RColorBrewer,
-               skimr,
-               readxl)
+               RColorBrewer)
 
 
 options(scipen=999)
@@ -32,13 +24,10 @@ rm(list = ls())
 ```
 
 ```{r}
-#| label: data
 #| include: false
 #| echo: false
 
-load(file = here("output", "data", "db1_proc.RData"))
 load(file = here("output", "data", "db_long_proc.RData"))
-load(file = here("output", "results.RData"))
 
 ```
 
@@ -48,26 +37,38 @@ load(file = here("output", "results.RData"))
 
 ## Descriptive statistics
 
+The distributions of responses for the meritocracy scale are shown in  @fig-likerplot1, distinguishing between perceptions (Panel A) and preferences (Panel B). In Wave 1, Panel A (perceptions of how meritocracy actually operates in society) reveals a strong concentration of agreement in all items, particularly regarding the influence of contacts (77.2%), talent (73.4%), and having rich parents (71.4%), while effort also receives considerable endorsement (67.1%). Nonetheless, a significant proportion of students expressed disagreement: 33.1% did not perceive effort is rewarded, 28.6% rejected the idea that having rich parents leads to success, and 26.6% disagreed that talent plays a decisive role. These results suggest a dual recognition: students acknowledge the strong presence of non-meritocratic factors (contacts and parental wealth) in shaping success, while within the meritocratic dimensions, talent is perceived as more influential than effort. Notably, effort is the dimension with the lowest perceived reward in society.
+
+
 ```{r}
-#| label: fig-likerplot
+#| label: fig-likerplot1
 #| fig-align: center
-#| fig-cap: "Distribution of responses on the Perceptions and Preferences on Meritocracy Scale (PPMS)"
+#| fig-cap: "Distribution of responses on the scale of perceptions and preferences regarding meritocracy for the first wave"
 #| fig-cap-location: top
 #| fig-width: 7
 #| out-width: '80%'
 #| echo: false
 
-library(ggdist)
-library(RColorBrewer)
+db_likert1 <- db_long %>%
+filter(ola == 1) %>% # quedarse con solo la ola 1
+select(-c(ola, curse_level, p20, p21_ano, age)) %>% 
+na.omit() %>% 
+mutate(
+  across(
+    .cols = c(starts_with(c("perc", "pref"))),
+    .fns = ~ sjlabelled::set_labels(., labels = c("Strongly disagree" = 1, "Disagree" = 2, "Agree" = 3, "Strongly agree" = 4))
+  )
+)
+
 theme_set(theme_ggdist())
 colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
 
-a <- db1 %>% 
+a <- db_likert1 %>% 
   select(starts_with("perc")) %>% 
   sjPlot::plot_likert(geom.colors = colors,
-                      title = c("a. Percepciones"),
+                      title = c("A. Perceptions"),
                       geom.size = 0.8,
-                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
                       catcount = 4,
                       values  =  "sum.outside",
                       reverse.colors = F,
@@ -77,12 +78,12 @@ a <- db1 %>%
                       ) +
   ggplot2::theme(legend.position = "none")
 
-b <- db1 %>% 
+b <- db_likert1 %>% 
   select(starts_with("pref")) %>% 
   sjPlot::plot_likert(geom.colors = colors,
-                      title = c("b. Preferencias"),
+                      title = c("B. Preferences"),
                       geom.size = 0.8,
-                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                     axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
                       catcount = 4,
                       values  =  "sum.outside",
                       reverse.colors = F,
@@ -92,31 +93,45 @@ b <- db1 %>%
   ) +
   ggplot2::theme(legend.position = "bottom")
 
-likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1)[1],")"
+likerplot <- a / b + plot_annotation(caption = paste0("Source: Own elaboration based on the EDUMER Wave 1 panel survey"," (n = ",dim(db_likert1)[1],")"
 ))
 
 likerplot
 ```
 
+
+In contrast, Panel B (preferences for how meritocracy should operate) displays a reversed pattern. A very large majority (87.9%) endorse effort as the most legitimate basis for reward, far exceeding its perceived importance in practice. Preferences regarding talent are more divided: 54% support rewarding it, while 45% disagree. Attitudes toward non-meritocratic factors are more negative, particularly regarding parental wealth, where responses are split nearly evenly between agreement and disagreement. For contacts, however, a relative majority (60.9%) still expressed that they should be rewarded, compared to 39.1% who disagreed. Overall, these findings highlight a strong normative preference for effort as the central criterion of meritocracy, while talent and parental wealth receive more ambivalent or critical evaluations. The relatively higher acceptance of contacts as a legitimate factor is noteworthy, suggesting that this element may not be viewed as inherently illegitimate in the ideal functioning of society.
+
+
 ```{r}
-#| label: fig-likerplot
+#| label: fig-likerplot2
 #| fig-align: center
-#| fig-cap: "Distribution of responses on the Perceptions and Preferences on Meritocracy Scale (PPMS)"
+#| fig-cap: "Distribution of responses on the scale of perceptions and preferences regarding meritocracy for the second wave"
 #| fig-cap-location: top
 #| fig-width: 7
 #| out-width: '80%'
 #| echo: false
 
+db_likert2 <- db_long %>%
+filter(ola == 2) %>% # quedarse con solo la ola 1
+select(-c(ola, curse_level, p20, p21_ano, age)) %>% 
+na.omit() %>% 
+mutate(
+  across(
+    .cols = c(starts_with(c("perc", "pref"))),
+    .fns = ~ sjlabelled::set_labels(., labels = c("Strongly disagree" = 1, "Disagree" = 2, "Agree" = 3, "Strongly agree" = 4))
+  )
+)
+
 theme_set(theme_ggdist())
 colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
 
-a <- db_long %>% 
-  filter(ola == 2) %>%
+a <- db_likert2 %>%
   select(starts_with("perc")) %>% 
   sjPlot::plot_likert(geom.colors = colors,
-                      title = c("a. Percepciones"),
+                      title = c("A. Perceptions"),
                       geom.size = 0.8,
-                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
                       catcount = 4,
                       values  =  "sum.outside",
                       reverse.colors = F,
@@ -126,13 +141,12 @@ a <- db_long %>%
                       ) +
   ggplot2::theme(legend.position = "none")
 
-b <- db_long %>% 
-  filter(ola == 2) %>% 
+b <- db_likert2 %>% 
   select(starts_with("pref")) %>% 
   sjPlot::plot_likert(geom.colors = colors,
-                      title = c("b. Preferencias"),
+                      title = c("B. Preferences"),
                       geom.size = 0.8,
-                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                     axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
                       catcount = 4,
                       values  =  "sum.outside",
                       reverse.colors = F,
@@ -142,19 +156,15 @@ b <- db_long %>%
   ) +
   ggplot2::theme(legend.position = "bottom")
 
-likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db_long[db_long$ola==1,])[1],")"
-))
+likerplot <- a / b + plot_annotation(caption = paste0("Source: Own elaboration based on the EDUMER Wave 2 panel survey"," (n = ",dim(db_likert2)[1],")"))
 
 likerplot
 
 
 ```
 
-Figures 1 and 2 display the distribution of agreement levels regarding perceptions of what determines success in school (effort, talent, having wealthy parents, and social contacts), and preferences about what should matter, across two survey waves of the EDUMER Panel Survey.
 
-Panel a shows that respondents widely recognize the importance of contacts (77.2%), talent (73.4%), and having rich parents (71.5%) as determinants of school success, while effort also receives substantial recognition (67.1%). At the same time, Panel b indicates a strong normative preference for effort as the legitimate driver of success: 88% of respondents agree or strongly agree that effort should matter, whereas support for talent (54.6%) and having rich parents (54.7%) is considerably lower. Contacts receive the lowest normative support (61%). This suggests a clear tension between what respondents perceive as actually shaping outcomes and what they believe ought to matter.
+The second wave (@fig-likerplot2) largely replicates these trends, with some shifts. In perceptions (Panel A), the recognition of effort as a determinant of success decreases slightly (61.5%), while the importance attributed to talent (69.9%), parental wealth (69.8%), and contacts (76.6%) remains consistently high. In preferences (Panel B), endorsement of effort as the central criterion of success remains extremely strong (88.2%), showing stability across waves. By contrast, support for talent declines, with disagreement rising to 50.5%. Attitudes toward parental wealth mirror those in Wave 1, remaining evenly divided, while the acceptance of contacts continues to be higher than rejection (59.1% vs. 39.1%), although still below the overwhelming support for effort.
 
-The second wave replicates these patterns, though some shifts can be observed. In terms of perceptions (Panel a), recognition of effort as a determinant decreases slightly (61.6%), while talent (69.9%), rich parents (70.0%), and contacts (76.3%) remain widely acknowledged. In normative preferences (Panel b), endorsement of effort as the preferred criterion of success remains extremely high (88.1%), with little change from Wave 1. Meanwhile, support for talent (52.9%), rich parents (52.9%), and contacts (58.9%) remains moderate, but consistently below the support for effort.
-
-Across both waves, the data reveal a stable duality: students recognize the influence of social origin and resources (wealthy parents and contacts) as critical for actual success, but they strongly prefer a system where effort is the primary determinant. The persistence of this perception–preference gap highlights a normative commitment to meritocracy in principle, coexisting with skepticism about its realization in practice.
+Taken together, both waves reveal a stable duality. Students acknowledge that actual social outcomes are strongly shaped by non-meritocratic factors such as family wealth and contacts, and, to a lesser degree, by talent. At the same time, they overwhelmingly prefer a meritocratic ideal where effort—more than talent or inherited advantage—should determine success. This persistent gap between perceptions of reality and normative preferences underscores a central paradox: students strongly value meritocracy as a principle, while remaining skeptical about its realization in practice.
 

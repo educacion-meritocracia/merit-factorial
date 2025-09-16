@@ -55,7 +55,7 @@ options(knitr.kable.NA = "")
 
 ![](images/jusmer.png)
 
-![](images/qrcode.png)
+![](images/qr.png)
 
 :::
 
@@ -85,7 +85,7 @@ options(knitr.kable.NA = "")
 
 VI Jornada de Investigadoras/es Jóvenes sobre Desigualdad y Cohesión Social - UDP
 
-22 Agosto 2025, Santiago
+26 Septiembre 2025, Santiago
 
 :::
 :::

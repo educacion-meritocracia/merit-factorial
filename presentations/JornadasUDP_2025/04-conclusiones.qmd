@@ -23,4 +23,16 @@ csl: "input/bib/apa6.csl"
 
 -   **Github del proyecto:** <https://github.com/educacion-meritocracia>
 
+```{r}
+#| fig-cap-location: top
+#| fig-align: center
+#| fig-asp: 1.1
+#| out-width: '30%'
+
+
+knitr::include_graphics(path = "images/qr.png")
+
+```
+
+
 

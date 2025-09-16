@@ -15,16 +15,13 @@ pacman::p_load(tidyverse,
                sjPlot,
                here,
                lavaan,
-               psych,
                corrplot,
                ggdist,
                patchwork,
                sjlabelled,
                semTools,
-               gtools,
                RColorBrewer,
-               skimr,
-               readxl)
+               gtools)
 
 
 options(scipen=999)
@@ -36,9 +33,7 @@ rm(list = ls())
 #| include: false
 #| echo: false
 
-load(file = here("output", "data", "db1_proc.RData"))
 load(file = here("output", "data", "db_long_proc.RData"))
-load(file = here("output", "results.RData"))
 
 ```
 
@@ -51,24 +46,34 @@ load(file = here("output", "results.RData"))
 ::: {style="font-size: 110%;"}
 
 ```{r}
-#| label: fig-likerplot
+#| label: fig-likerplot1
 #| fig-align: center
-#| fig-cap: "Distribución de respuestas en escala de percepciones y preferencias sobre meritocracia (PPMS)"
+#| fig-cap: "Distribución de respuestas en escala de percepciones y preferencias sobre meritocracia"
 #| fig-cap-location: top
 #| fig-width: 7
 #| out-width: '80%'
+#| echo: false
 
-library(ggdist)
-library(RColorBrewer)
+db_likert1 <- db_long %>%
+filter(ola == 1) %>% # quedarse con solo la ola 1
+select(-c(ola, curse_level, p20, p21_ano, age)) %>% 
+na.omit() %>% 
+mutate(
+  across(
+    .cols = c(starts_with(c("perc", "pref"))),
+    .fns = ~ sjlabelled::set_labels(., labels = c("Strongly disagree" = 1, "Disagree" = 2, "Agree" = 3, "Strongly agree" = 4))
+  )
+)
+
 theme_set(theme_ggdist())
 colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
 
-a <- db1 %>% 
+a <- db_likert1 %>% 
   select(starts_with("perc")) %>% 
   sjPlot::plot_likert(geom.colors = colors,
-                      title = c("a. Percepciones"),
+                      title = c("A. Perceptions"),
                       geom.size = 0.8,
-                      axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                      axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
                       catcount = 4,
                       values  =  "sum.outside",
                       reverse.colors = F,
@@ -78,12 +83,12 @@ a <- db1 %>%
                       ) +
   ggplot2::theme(legend.position = "none")
 
-b <- db1 %>% 
+b <- db_likert1 %>% 
   select(starts_with("pref")) %>% 
   sjPlot::plot_likert(geom.colors = colors,
-                      title = c("b. Preferencias"),
+                      title = c("B. Preferences"),
                       geom.size = 0.8,
-                     axis.labels = c("Esfuerzo", "Talento", "Padres ricos", "Contactos"),
+                     axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
                       catcount = 4,
                       values  =  "sum.outside",
                       reverse.colors = F,
@@ -93,11 +98,13 @@ b <- db1 %>%
   ) +
   ggplot2::theme(legend.position = "bottom")
 
-likerplot <- a / b + plot_annotation(caption = paste0("Fuente: Elaboración propia en base a Encuesta Panel EDUMER Ola 1"," (n = ",dim(db1)[1],")"
+likerplot <- a / b + plot_annotation(caption = paste0("Source: Own elaboration based on the EDUMER Wave 1 panel survey"," (n = ",dim(db_likert1)[1],")"
 ))
 
 likerplot
 ```
+
+
 ::: 
 
 

@@ -55,7 +55,7 @@ knitr::include_graphics(path = here("presentations/images/tab_items.png"))
 
 ::: {.incremental .highlight-last style="font-size: 110%;"}
 
-- **Invarianza de medición**: Conjunto de procedimientos destinados a estimar la comparabilidad de un modelo de medición [@beaujean_latent_2014]
+- **Invarianza de medición**: Conjunto de procedimientos destinados a estimar la comparabilidad de un modelo de medición [@schmitt_measurement_2008]
 
 - Dos tipos:
     * Entre cohortes (básica vs media) --> @davidov_measurement_2014

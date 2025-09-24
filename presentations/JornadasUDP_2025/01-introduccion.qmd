@@ -14,7 +14,7 @@ csl: "input/bib/apa6.csl"
 - Agenda de investigación sobre meritocracia
 
     * Dimensión objetiva:  movilidad social y la igualdad de oportunidades efectivas [e.g. @goldthorpe_myth_2003a; @vandewerfhorst_meritocracy_2024]
-    * Dimensión subjetiva: percepciones, preferencias y actitudes sobre meritocracia y sus efectos [e.g. @garcia-sierra_dark_2023; @castillo_meritocracia_2019; @mijs_paradox_2019; @newman_economic_2023]
+    * Dimensión subjetiva: percepciones, preferencias y actitudes sobre meritocracia y sus efectos [@garcia-sierra_dark_2023; @castillo_meritocracia_2019; @mijs_paradox_2019; @newman_economic_2023]
     
 - Meritocracia en contexto escolar: estas creencias a nivel escolar se asocian con una mayor justificación de diversas desigualdades sociales [@darnon_where_2018; @batruch_belief_2022; @wiederkehr_belief_2015]
 
@@ -26,7 +26,7 @@ csl: "input/bib/apa6.csl"
 
 - Sin embargo, **la conceptualización y medición de las creencias meritocráticas** en la investigación empírica sigue siendo **fragmentada**
 
-- Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición minimalista para meritocracia en contextos de encuestas. 
+- Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición minimalista para meritocracia en contextos de encuestas
 
 
 :::

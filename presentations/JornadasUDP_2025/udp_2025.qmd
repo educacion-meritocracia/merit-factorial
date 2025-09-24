@@ -53,7 +53,7 @@ options(knitr.kable.NA = "")
 ![](images/coes.png)
 
 
-![](images/jusmer.png)
+![](images/jusmer_trans.png)
 
 ![](images/qr.png)
 
@@ -61,7 +61,7 @@ options(knitr.kable.NA = "")
 
 ::: {.column .column-right width="80%"}
 
-# **Creencias en meritocracia en la etapa escolar**
+# **Creencias en la meritocracia en la etapa escolar**
 
 ## **Conceptos, medición e invarianza**
 

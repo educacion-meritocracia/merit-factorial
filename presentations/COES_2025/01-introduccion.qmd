@@ -1,0 +1,142 @@
+---
+author: "Equipo EDUMER"
+bibliography: "input/bib/merit-factorial.bib"
+csl: "input/bib/apa6.csl"
+---
+
+
+## Contexto y motivación 
+
+::: {.incremental .highlight-last style="font-size: 110%;"}
+
+- Meritocracia: _sistema_ distributivo basado en el mérito (esfuerzo + talento) [@young_rise_1958] → justificación y legitimación de desigualdades [@mijs_unfulfillable_2016; @sandel_tyranny_2020]
+
+- Agenda de investigación sobre meritocracia
+
+    * Dimensión objetiva:  movilidad social y la igualdad de oportunidades efectivas [e.g. @goldthorpe_myth_2003a; @vandewerfhorst_meritocracy_2024]
+    * Dimensión subjetiva: percepciones, preferencias y actitudes sobre meritocracia y sus efectos [@garcia-sierra_dark_2023; @castillo_meritocracia_2019; @mijs_paradox_2019; @newman_economic_2023]
+    
+- Meritocracia en contexto escolar: estas creencias a nivel escolar se asocian con una mayor justificación de diversas desigualdades sociales [@darnon_where_2018; @batruch_belief_2022; @wiederkehr_belief_2015]
+
+:::
+
+## Medición de meritocracia
+
+::: {.incremental style="font-size: 110%;"}
+
+- Sin embargo, **la conceptualización y medición de las creencias meritocráticas** en la investigación empírica sigue siendo **fragmentada**
+
+- Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición minimalista para meritocracia en contextos de encuestas
+
+
+:::
+
+## Medición de meritocracia
+
+::: {.fragment}
+
+```{r}
+#| label: fig-esque1
+#| fig-cap-location: top
+#| fig-cap: "Modelo conceptual de Castillo et al. (2023)"
+#| fig-align: center
+#| out-width: '100%'
+library(knitr)
+library(here)
+
+knitr::include_graphics(path = "images/esquema1.png")
+
+```
+
+:::
+
+
+## Medición de meritocracia
+
+
+
+```{r}
+#| label: fig-esque2
+#| fig-cap-location: top
+#| fig-cap: "Modelo conceptual de Castillo et al. (2023)"
+#| fig-align: center
+#| fig-width: 8.5
+#| out-width: '100%'
+
+
+knitr::include_graphics(path = "images/esquema2.png")
+
+```
+
+
+
+
+## Medición de meritocracia
+
+
+```{r}
+#| label: fig-esque3
+#| fig-cap-location: top
+#| fig-cap: "Modelo conceptual de Castillo et al. (2023)"
+#| fig-align: center
+#| fig-width: 8.5
+#| out-width: '100%'
+library(knitr)
+library(here)
+
+knitr::include_graphics(path = "images/esquema3.png")
+
+```
+
+## Medición de meritocracia
+
+
+
+```{r}
+#| label: fig-esque4
+#| fig-cap-location: top
+#| fig-cap: "Modelo conceptual de Castillo et al. (2023)"
+#| fig-align: center
+#| fig-width: 8.5
+#| out-width: '100%'
+
+
+knitr::include_graphics(path = "images/esquema4.png")
+
+```
+
+
+## Medición de meritocracia
+
+
+
+```{r}
+#| label: fig-esque5
+#| fig-cap-location: top
+#| fig-cap: "Modelo conceptual de Castillo et al. (2023)"
+#| fig-align: center
+#| fig-width: 8.5
+#| out-width: '100%'
+
+
+knitr::include_graphics(path = "images/esquema5.png")
+
+```
+
+
+
+# Este estudio {data-background-color="#5f5758"}
+
+
+:::: {.incremental style="font-size: 150%;"}
+
+
+**<span style="color:darkorange">1. Objetivo**: Analizar la estabilidad de las percepciones y preferencias sobre elementos meritocráticos y no meritocráticos en etapa escolar en Chile</font>
+
+
+**<span style="color:darkorange">2. Aproximación**: Invarianza de medición entre grupos y en el tiempo
+
+**<span style="color:darkorange">3. Hipótesis**: El modelo de medición es estable entre cohortes y en el tiempo
+
+::::
+

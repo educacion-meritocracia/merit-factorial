@@ -37,26 +37,25 @@ author:
     email: juancastillov@uchile.cl
     affiliations:
       - ref: 2
-      - ref: 3
-      - ref: 4
-  - name: Kevin Carrasco
-    orcid: 0000-0002-9348-8361
-    email: kevin.carrasco@ug.uchile.cl
-    affiliations:
   - name: René Canales
     orcid: 0009-0002-4299-2725
     email: renecanales@uc.cl
     affiliations:
-      - ref: 1     
+      - ref: 1    
+  - name: Tomás Urzúa
+    orcid: 0009-0008-3167-6819
+    email: tomas.urzua@ug.chile.cl
+    affiliations:
+      - ref: 2    
+  - name: Kevin Carrasco
+    orcid: 0000-0002-9348-8361
+    email: kevin.carrasco@ug.uchile.cl
+    affiliations: 
 affiliations: 
   - id: 1
-    name: Instituto de Sociología, Pontificia Universidad Católica de Chile
+    name: Institute of Sociology, Pontifical Catholic University of Chile
   - id: 2
-    name: Departamento de Sociología, Universidad de Chile
-  - id: 3
-    name: Centro de estudios del conflicto y cohesión social (COES)
-  - id: 4
-    name: Núcleo milenio de desigualdades y oportunidades digitales (NUDOS)
+    name: Department of Sociology, University of Chile
 citeproc: true
 abstract: | 
   \newline

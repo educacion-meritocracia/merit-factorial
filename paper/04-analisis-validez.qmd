@@ -4,7 +4,7 @@ bibliography: "../input/bib/merit-factorial.bib"
 csl: "../input/bib/apa6.csl"
 ---
 
-## Validity evidence: latent correlations between meritocratic beliefs and market justice preferences
+## Validity evidence: Latent correlations between meritocratic beliefs and market justice preferences
 
 ```{r}
 #| echo: false
@@ -85,7 +85,11 @@ fit_tab %>%
   kableExtra::add_footnote("N = 583", notation = "none")
 ```
 
-We next examined within-wave latent correlations between market justice preferences and each meritocracy dimension (see @tbl-latent-cor). Market justice preferences were weakly but positively associated with preferred meritocracy in both waves (Wave 1: $r$ = 0.185, p < .05; Wave 2: $r$ = 0.192, p < .05). At the same time, they were more strongly and consistently related to preferred non-meritocratic principles—such as viewing personal contacts or wealthy family background as legitimate bases for reward—with correlations noticeably larger than those for meritocratic preferences (Wave 1: $r$ = 0.441, p < .05; Wave 2: $r$ = 0.468, p < .05). Overall, this pattern provides convergent and nomological validity evidence by situating market justice preferences within a broader set of distributive principles that legitimate market-based differentiation.
+The superior fit of the equal-correlations model indicates that the associations between market justice preferences and meritocracy dimensions remained stable across waves, supporting the temporal consistency of these relationships. We next examined the within-wave latent correlations to assess construct validity (see @tbl-latent-cor). The pattern of associations revealed theoretically meaningful distinctions. Market justice preferences showed modest positive correlations with preferred meritocracy in both waves (Wave 1: $r$ = 0.185, p < .05; Wave 2: $r$ = 0.192, p < .05), suggesting that support for market-based allocation aligns with, but is not reducible to, meritocratic ideals. 
+
+More strikingly, market justice preferences exhibited substantially stronger associations with preferred non-meritocratic principles—specifically, endorsement of personal contacts or wealthy family background as legitimate bases for reward—with correlations more than twice as large as those for meritocratic preferences (Wave 1: $r$ = 0.441, p < .05; Wave 2: $r$ = 0.468, p < .05). 
+
+This asymmetric pattern provides both convergent and discriminant validity evidence: while market justice preferences relate positively to meritocratic principles, they are more strongly characterized by acceptance of market-generated inequalities that extend beyond merit, encompassing advantages derived from social networks and inherited wealth. These findings situate market justice preferences within a broader ideological framework that legitimates market-based differentiation through multiple distributive principles, not solely meritocratic ones.
 
 
 ```{r}
@@ -141,4 +145,14 @@ tab_mat %>%
 
 ```
 
-Finally, we tested whether these latent correlations were stable over time by comparing a model in which correlations were freely estimated across waves to a model constraining the corresponding within-wave correlations to equality across waves. The constraint did not significantly worsen model fit (see Supplementary Material for complete model), indicating that the associations between market justice preferences and the meritocracy dimensions were stable across the two measurement occasions.
+To evaluate the temporal stability of these associations, we compared the model with freely estimated correlations across waves to a model constraining corresponding within-wave correlations to equality. The constrained model demonstrated superior fit (as shown in @tbl-fit-validity), indicating that the equality constraints were supported overall. However, inspection of the point estimates reveals some noteworthy patterns. 
+
+The associations with meritocratic and non-meritocratic preferences remained highly consistent across waves (meritocratic: $r$ = 0.185 to 0.192; non-meritocratic: $r$ = 0.441 to 0.468), reinforcing their robustness. In contrast, correlations with the perception dimensions showed more descriptive variability: the association with meritocratic perceptions weakened from Wave 1 ($r$ = 0.233, p < .05) to Wave 2 ($r$ = 0.126, ns), while the correlation with non-meritocratic perceptions shifted from near-zero ($r$ = 0.006) to negative ($r$ = -0.112, p < .05). 
+
+Despite this descriptive variation, the superior fit of the constrained model suggests these differences do not represent substantively meaningful change, but rather reflect sampling variability around stable underlying parameters. Overall, the evidence supports temporal stability in the structural relationships between market justice preferences and meritocratic belief dimensions, particularly for the theoretically central preference constructs.
+
+Taken together, these validity findings illuminate the core purpose of the meritocracy scale: to provide a multidimensional assessment that distinguishes between what individuals perceive as actual operating principles in society (perceptions) versus what they believe should guide distribution (preferences), while simultaneously differentiating between meritocratic and non-meritocratic criteria within each domain. 
+
+The differential patterns of association with market justice preferences—particularly the stronger links to non-meritocratic dimensions—demonstrate that the scale captures theoretically meaningful variation that would be obscured by unidimensional measures. 
+
+This measurement structure enables researchers to identify whether endorsement of market-based allocation systems stems primarily from genuine meritocratic ideals or from broader acceptance of market-generated advantages, including those derived from social connections and inherited privilege. Such differentiation is essential for understanding the ideological foundations of inequality attitudes and the conditions under which meritocratic discourse legitimates versus challenges distributive inequalities.

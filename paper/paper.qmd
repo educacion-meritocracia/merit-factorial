@@ -27,12 +27,12 @@ bibliography: "input/bib/merit-factorial.bib"
 csl: "input/bib/apa6.csl"
 author:
   - name: Andreas Laffert
+    corresponding: true
     orcid: 0000-0002-9008-2454
     email: alaffertt@estudiante.uc.cl 
     affiliations:
       - ref: 1
   - name: Juan Carlos Castillo
-    corresponding: true
     orcid: 0000-0003-1265-7854
     email: juancastillov@uchile.cl
     affiliations:
@@ -85,6 +85,8 @@ and it was last rendered at {{< now >}}.
 {{< include 04-analisis-cohort.qmd >}}
 
 {{< include 04-analisis-longitudinal.qmd >}}
+
+{{< include 04-analisis-validez.qmd >}}
 
 {{< include 05-discussion.qmd >}}
 

@@ -30,7 +30,6 @@ pacman::p_load(
 )
 
 
-
 # 2. Data -----------------------------------------------------------------
 
 load(file = here("output", "data", "db_long_proc2.RData"))
@@ -477,21 +476,21 @@ tab.inv <- dplyr::bind_cols(tab01,fit.meas) %>%
 col.nam <- c("Model","&chi;^2 (df)","CFI","RMSEA (90 CI)",
              "&Delta; &chi;^2 (&Delta; df)","&Delta; CFI","&Delta; RMSEA","Decision")
 
-tab.inv %>% 
-  kableExtra::kable(format = "html",
-                    align = "c",
-                    booktabs = T,
-                    escape = F,
-                    caption = NULL,
-                    col.names = col.nam) %>%
-  kableExtra::kable_styling(full_width = T,
-                            latex_options = "hold_position",
-                            bootstrap_options=c("striped", "bordered", "condensed"),
-                            font_size = 23) %>%
-  kableExtra::column_spec(c(1,8), width = "3.5cm") %>% 
-  kableExtra::column_spec(2:7, width = "4cm") %>% 
-  kableExtra::column_spec(4, width = "5cm")
-
+#tab.inv %>% 
+#  kableExtra::kable(format = "html",
+#                    align = "c",
+#                    booktabs = T,
+#                    escape = F,
+#                    caption = NULL,
+#                    col.names = col.nam) %>%
+#  kableExtra::kable_styling(full_width = T,
+#                            latex_options = "hold_position",
+#                            bootstrap_options=c("striped", "bordered", "condensed"),
+#                            font_size = 23) %>%
+#  kableExtra::column_spec(c(1,8), width = "3.5cm") %>% 
+#  kableExtra::column_spec(2:7, width = "4cm") %>% 
+#  kableExtra::column_spec(4, width = "5cm")
+#
 
 
 # 5. EFA Market justice preferences ---------------------------------------
@@ -854,17 +853,17 @@ tab.inv2 <- dplyr::bind_cols(tab02,fit.meas2) %>%
 col.nam <- c("Model","df","CFI","RMSEA (90 CI)",
              "&Delta; CFI","&Delta; RMSEA","Decision")
 
-tab.inv2 %>% 
-  kableExtra::kable(format = "html",
-                    align = "c",
-                    booktabs = T,
-                    escape = F,
-                    caption = NULL,
-                    col.names = col.nam) %>%
-  kableExtra::kable_styling(full_width = T,
-                            latex_options = "hold_position",
-                            bootstrap_options=c("striped", "bordered", "condensed"),
-                            font_size = 23) 
+#tab.inv2 %>% 
+#  kableExtra::kable(format = "html",
+#                    align = "c",
+#                    booktabs = T,
+#                    escape = F,
+#                    caption = NULL,
+#                    col.names = col.nam) %>%
+#  kableExtra::kable_styling(full_width = T,
+#                            latex_options = "hold_position",
+#                            bootstrap_options=c("striped", "bordered", "condensed"),
+#                            font_size = 23) 
 
 
 # 8. Latent correlations --------------------------------------------------
@@ -955,47 +954,8 @@ summary(fit_validity_equal, standardized = TRUE, fit.measures = TRUE)
 lavTestLRT(fit_validity_free, fit_validity_equal)
 # Si p > .05 → no hay evidencia de que imponer igualdad empeore: correlaciones estables.
 
-pe1 <- parameterEstimates(fit_validity_free, standardized = TRUE)
 
-mjp_vars   <- c("mjp1","mjp2")
-merit_vars <- c("percmerit1","percmerit2","percnmerit1","percnmerit2",
-                "prefmerit1","prefmerit2","prefnmerit1","prefnmerit2")
 
-tab_mat <- pe1 %>%
-  filter(
-    op == "~~",
-    (lhs %in% mjp_vars & rhs %in% merit_vars) | (rhs %in% mjp_vars & lhs %in% merit_vars)
-  ) %>%
-  mutate(
-    mjp_raw   = if_else(lhs %in% mjp_vars, lhs, rhs),
-    merit_raw = if_else(lhs %in% mjp_vars, rhs, lhs),
-    mjp_w     = str_extract(mjp_raw,   "[12]$"),
-    merit_w   = str_extract(merit_raw, "[12]$")
-  ) %>%
-  filter(mjp_w == merit_w) %>%
-  mutate(
-    mjp_col = if_else(mjp_w == "1", "MJP (Wave 1)", "MJP (Wave 2)"),
-    merit   = str_remove(merit_raw, "[12]$"),
-    star    = if_else(!is.na(pvalue) & pvalue < .05, "*", ""),
-    cell    = paste0(sprintf("%.3f", std.all), star)
-  ) %>%
-  select(merit, mjp_col, cell) %>%
-  distinct() %>%
-  pivot_wider(names_from = mjp_col, values_from = cell) %>%
-  mutate(merit = recode(
-    merit,
-    percmerit  = "Perceived meritocracy",
-    percnmerit = "Perceived non-meritocracy",
-    prefmerit  = "Preferred meritocracy",
-    prefnmerit = "Preferred non-meritocracy",
-    .default = merit
-  )) %>%
-  rename(Construct = merit)
 
-tab_mat %>%
-  kableExtra::kable("html", escape = TRUE,
-        caption = "Standardized latent correlations between market justice preferences and meritocracy dimensions (within-wave only)") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped","condensed"), full_width = FALSE) %>% 
-  kableExtra::add_footnote("* p < .05.", "none")
   
  

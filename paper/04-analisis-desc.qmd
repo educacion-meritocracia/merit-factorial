@@ -48,6 +48,8 @@ The distributions of responses for the meritocracy scale are shown in  @fig-like
 #| fig-width: 7
 #| out-width: '80%'
 #| echo: false
+#| warning: false
+#| message: false
 
 db_likert1 <- db_long %>%
 filter(ola == 1) %>% # quedarse con solo la ola 1
@@ -111,6 +113,8 @@ In contrast, Panel B (preferences for how meritocracy should operate) displays a
 #| fig-width: 7
 #| out-width: '80%'
 #| echo: false
+#| warning: false
+#| message: false
 
 db_likert2 <- db_long %>%
 filter(ola == 2) %>% # quedarse con solo la ola 1

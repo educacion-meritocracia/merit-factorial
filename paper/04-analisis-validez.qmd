@@ -1,0 +1,144 @@
+---
+author: "Equipo EDUMER"
+bibliography: "../input/bib/merit-factorial.bib"
+csl: "../input/bib/apa6.csl"
+---
+
+## Validity evidence: latent correlations between meritocratic beliefs and market justice preferences
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+library(here)
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+
+table_format <- if (is_html_output()) {
+  "html"
+} else if (is_latex_output()) {
+  "latex"
+}
+table_format2 <- if (is_html_output()) {
+  T
+} else if (is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+
+```{r}
+#| include: false
+#| echo: false
+#| results: false
+
+source(here("processing/prod_analysis_validez.R"))
+```
+
+Market justice preferences were modeled as a single latent factor in each wave, indicated by three ordinal items capturing attitudes toward education, healthcare, and pensions. The one-factor structure showed satisfactory fit, and longitudinal measurement invariance was supported across waves (configural, metric, threshold, and strict). Full invariance results are reported in the Supplementary Material.
+
+To provide construct-validity evidence, we estimated a joint CFA model combining the longitudinally invariant meritocracy factors with the longitudinally invariant market-justice-preferences factor. Given the ordinal nature of the indicators, models were estimated using WLSMV with theta parameterization. As reported in @tbl-fit-validity, the model with freely estimated correlations across waves showed good fit ($\chi^2$(170)=534.699, CFI = 0.940, TLI = 0.918, RMSEA = 0.061). Imposing equality constraints on the corresponding correlations across waves yielded a slightly better-fitting model ($\chi^2$(174)=509.218, CFI = 0.945, TLI = 0.927, RMSEA = 0.058).
+
+
+```{r}
+#| tbl-cap: "Model fit for latent-correlation validity models"
+#| tbl-cap-location: top
+#| echo: false
+#| warning: false
+#| label: tbl-fit-validity
+
+get_fit <- function(fit, label){
+
+  fm <- fitMeasures(
+    fit,
+    c("chisq.scaled","df","pvalue.scaled","cfi.scaled","tli.scaled","rmsea.scaled")
+  )
+
+  tibble(
+    Model = label,
+    `χ²` = round(fm["chisq.scaled"], 3),
+    df = as.integer(fm["df"]),
+    `p value` = ifelse(fm["pvalue.scaled"] < .001, "<.001", sprintf("%.3f", fm["pvalue.scaled"])),
+    `CFI` = round(fm["cfi.scaled"], 3),
+    `TLI` = round(fm["tli.scaled"], 3),
+    `RMSEA` = round(fm["rmsea.scaled"], 3))
+}
+
+fit_tab <- bind_rows(
+  get_fit(fit_validity_free,  "Free correlations (by wave)"),
+  get_fit(fit_validity_equal, "Equal correlations (stable across waves)")
+)
+
+fit_tab %>%
+  kableExtra::kable("html",
+        caption = NULL) %>%
+  kableExtra::kable_styling(latex_options = "hold_position",
+                            bootstrap_options=c("striped", "bordered", "condensed"),
+                full_width = FALSE) %>% 
+  kableExtra::add_footnote("N = 583", notation = "none")
+```
+
+We next examined within-wave latent correlations between market justice preferences and each meritocracy dimension (see @tbl-latent-cor). Market justice preferences were weakly but positively associated with preferred meritocracy in both waves (Wave 1: $r$ = 0.185, p < .05; Wave 2: $r$ = 0.192, p < .05). At the same time, they were more strongly and consistently related to preferred non-meritocratic principles—such as viewing personal contacts or wealthy family background as legitimate bases for reward—with correlations noticeably larger than those for meritocratic preferences (Wave 1: $r$ = 0.441, p < .05; Wave 2: $r$ = 0.468, p < .05). Overall, this pattern provides convergent and nomological validity evidence by situating market justice preferences within a broader set of distributive principles that legitimate market-based differentiation.
+
+
+```{r}
+#| tbl-cap: Standardized latent correlations between market justice preferences and meritocracy dimensions (within-wave only)"
+#| tbl-cap-location: top
+#| echo: false
+#| warning: false
+#| label: tbl-latent-cor
+
+pe1 <- parameterEstimates(fit_validity_free, standardized = TRUE)
+
+mjp_vars   <- c("mjp1","mjp2")
+merit_vars <- c("percmerit1","percmerit2","percnmerit1","percnmerit2",
+                "prefmerit1","prefmerit2","prefnmerit1","prefnmerit2")
+
+tab_mat <- pe1 %>%
+  filter(
+    op == "~~",
+    (lhs %in% mjp_vars & rhs %in% merit_vars) | (rhs %in% mjp_vars & lhs %in% merit_vars)
+  ) %>%
+  mutate(
+    mjp_raw   = if_else(lhs %in% mjp_vars, lhs, rhs),
+    merit_raw = if_else(lhs %in% mjp_vars, rhs, lhs),
+    mjp_w     = str_extract(mjp_raw,   "[12]$"),
+    merit_w   = str_extract(merit_raw, "[12]$")
+  ) %>%
+  filter(mjp_w == merit_w) %>%
+  mutate(
+    mjp_col = if_else(mjp_w == "1", "MJP (Wave 1)", "MJP (Wave 2)"),
+    merit   = str_remove(merit_raw, "[12]$"),
+    star    = if_else(!is.na(pvalue) & pvalue < .05, "*", ""),
+    cell    = paste0(sprintf("%.3f", std.all), star)
+  ) %>%
+  select(merit, mjp_col, cell) %>%
+  distinct() %>%
+  pivot_wider(names_from = mjp_col, values_from = cell) %>%
+  mutate(merit = recode(
+    merit,
+    percmerit  = "Meritocratic perception",
+    percnmerit = "Non-meritocratic perception",
+    prefmerit  = "Meritocratic preferences",
+    prefnmerit = "Non-meritocratic preferences",
+    .default = merit
+  )) %>%
+  rename(Construct = merit)
+tab_mat %>%
+  kableExtra::kable("html", escape = TRUE,
+        caption = NULL) %>%
+  kableExtra::kable_styling(latex_options = "hold_position",
+                            bootstrap_options=c("striped", "bordered", "condensed"), 
+                            full_width = FALSE) %>% 
+  kableExtra::add_footnote(c("N = 583","*p < .05."), "none")
+
+```
+
+Finally, we tested whether these latent correlations were stable over time by comparing a model in which correlations were freely estimated across waves to a model constraining the corresponding within-wave correlations to equality across waves. The constraint did not significantly worsen model fit (see Supplementary Material for complete model), indicating that the associations between market justice preferences and the meritocracy dimensions were stable across the two measurement occasions.

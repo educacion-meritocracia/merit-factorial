@@ -955,3 +955,31 @@ score_table %>%
   column_spec(3:5, width = "3.5cm") %>%
   column_spec(6, width = "4cm")
 ```
+
+
+### Longitudinal invariance for market justice preferences
+
+```{r}
+#| tbl-cap: "Longitudinal invariance results for market justice preferences"
+#| tbl-cap-location: top
+#| echo: false
+#| warning: false
+#| label: tbl-longinv-mjp
+
+
+col.nam <- c("Model","df","CFI","RMSEA (90 CI)",
+             "&Delta; CFI","&Delta; RMSEA","Decision")
+
+tab.inv2 %>% 
+  kableExtra::kable(format = "html",
+                    align = "c",
+                    booktabs = T,
+                    escape = F,
+                    caption = NULL,
+                    col.names = col.nam) %>%
+  kableExtra::kable_styling(full_width = T,
+                            latex_options = "hold_position",
+                            bootstrap_options=c("striped", "bordered", "condensed"),
+                            font_size = 23) 
+
+```

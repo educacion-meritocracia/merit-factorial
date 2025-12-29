@@ -4,6 +4,8 @@ bibliography: "../input/bib/merit-factorial.bib"
 csl: "../input/bib/apa6.csl"
 ---
 
+# Theoretical and empirical background
+
 ## Meritocratic perceptions and preferences
 
 Meritocracy is often understood as a normative principle that justifies the allocation of rewards and opportunities based on effort and talent. Originally proposed by @young_rise_1958 in his dystopian novel, the concept was intended to critique a social order in which power is justified by achievement and social mobility mainly drive by merit. Despite this critical origin, meritocracy has been widely accepted as a principle of equity: the idea that people should be rewarded based on their effort and talent, rather than inherited privileges [@vandewerfhorst_meritocracy_2024]. However, as @sandel_tyranny_2020 argues, the promise of meritocracy often becomes a source of inequality, as those who succeed are encouraged to believe they deserve it, while those who fail are forced to internalize the blame. Rather than mitigating inequality, meritocratic ideals can reinforce it by disguising structural disadvantage as a personal deficiency [@mijs_unfulfillable_2016].
@@ -41,3 +43,4 @@ Understanding how the Chilean educational context shapes these attitudes require
 
 
 
+# This study

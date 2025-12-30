@@ -157,13 +157,23 @@ kable(left_join(x = standardizedsolution(mbasica_cfa) %>%
 # tabla comparativa de las cargas factoriales estandarizadas de las dos cohortes para poder visualizar de manera clara las similitudes y diferencias entre básica y media
 ```
 
-![](imagenes/esquema-basica.png)
+```{r}
+#| label: fig-cohortes
+#| fig-cap: Multigroup model diagram
+#| fig-cap-location: bottom
+#| echo: false
+#| out.width: 100%
+#| out.height: "auto" 
 
-The diagram shows the standardized factor loadings estimated with WLSMV for the primary and secondary cohorts. One of the first findings is that within each cohort, the loadings vary depending on the factor. In the case of the primary education model, the loadings of both meritocratic perception indicators differ as perception of effort at .60 and perception of talent at .71, so the meritocratic perception factor explains talent more than effort. In contrast, in the meritocratic preferences factor, the loadings vary greatly, with preference for effort being .46 and preference for talent being .86. This suggests that the factor explains the second item more than the first. Finally, the indicators of the non-meritocratic preferences factor vary, but not as strongly.
+knitr::include_graphics('imagenes/esquema-cohortes.png')
+```
 
-![](imagenes/esquema-media.png)
 
-In the secondary education model, some similarities can be seen in comparison to the primary model. The indicators of the meritocratic perception factor have slightly higher loadings than in the previous model, but they do not differ as much from each other. The difference in the indicators of meritocratic preference is reversed, with preference for effort becoming the highest (.76) and preference for talent the lowest (0.41). With regard to non-meritocratic preferences, the indicators have much more similar factor loadings than in the primary school model.
+@fig-cohortes presents the standardized factor loadings estimated using the WLSMV estimator for the primary and secondary cohorts. The text highlighted in red corresponds to the primary education model, while the text in black refers to the secondary education model. A general result is that, within each cohort, the magnitude of the loadings differs across latent factors. 
+
+In the primary education model, meritocratic perception indicators show unequal loadings: the perception of effort has a loading of 0.60, while the perception of talent reaches 0.71. This pattern indicates that the latent factor is more strongly associated with perceptions of talent than with those of effort. A more pronounced discrepancy is observed in the meritocratic preferences factor, where the preference for effort shows a relatively low loading (0.46), in contrast to a substantially higher factor loading for the preference for talent (0.86), suggesting that the factor is mainly driven by the latter indicator. In comparison, the indicators of non-meritocratic preferences also vary greatly, with the indicator of preference for contacts exceeding preferences for wealthy families by 0.2. Finally, the non-meritocratic perceptions factor does not show variability since its indicators were subject to an equality constraint in the model specification. This decision was made because without this constraint, the perception of contacts yielded a negative loading. 
+
+The secondary education model shows both continuities and contrasts with the primary model. Meritocratic perception indicators follow the same pattern as the previous model, where talent carries more weight than effort. In the case of meritocratic preferences, the pattern observed in the primary education cohort is reversed: the preference for effort has the highest weight (0.76), while the preference for talent has the lowest (0.41). With regard to the factor of non-meritocratic perceptions, both indicators have the same weight due to the aforementioned equality restriction. Finally, the loadings of the non-meritocratic preference indicators are slightly higher overall and more homogeneous, indicating a more balanced contribution of preferences for wealthy families and contacts to the latent construct.
 
 ```{r}
 #| label: tbl-fitcohort
@@ -179,18 +189,16 @@ fit_measures <- rbind(
                         c("chisq", "df", "pvalue", "cfi", "tli", "rmsea", "srmr"))
 )
 
-knitr::kable(fit_measures, digits = 3, caption = "Fit indexes by model")
+knitr::kable(fit_measures, digits = 3)
 
 # tabla de los indices de ajuste de los tres modelos para comparar sus índices de ajuste en bruto
 ```
 
-@tbl-fitcohort shows the fit indices for each of the three models. All models achieved a non-significant chi-square, which could be expected given their sensitivity to large samples, such as those used in this study.
+@tbl-fitcohort presents the goodness-of-fit indices for each of the three estimated models. In all three cases, the chi-square statistic is not significant, which is to be expected given its known sensitivity to large sample sizes, such as those used in this study; therefore, the overall goodness-of-fit assessment is based mainly on incremental and parsimony indices.
 
-The first model is the general model, i.e., the one that includes primary and secondary school students. It can be seen that it has good fit indices (CFI=0.989, RMSEA=0.048, $\chi^2$(df=14)=41.026), so we can conclude that the four latent factor scale works well for students.
+The first model corresponds to the general model, which simultaneously incorporates primary and secondary school students. This model has adequate fit indices (CFI = 0.989; RMSEA = 0.048; $\chi²$(14) = 41.026), suggesting that the four-factor latent structure provides an empirically satisfactory representation of the construct in the total sample. Consequently, there is preliminary evidence in favor of the structural validity of the factorial model in the student group. Second model was estimated exclusively with data from primary school students. In this case, the fit indices remain within acceptable ranges, although with a lower performance than the general model (CFI = 0.975; RMSEA = 0.063; $\chi²$(14) = 36.295), suggesting a moderate fit and a lower adequacy of the factorial model in this specific subgroup. Finally, the model estimated for secondary school students shows virtually perfect fit indices (CFI = 1.00; RMSEA = 0.00; $\chi²$(14) = 11.779). However, this extreme fit pattern is indicative of a possible overfitting of the model to the data, so the results should be interpreted with caution from a psychometric perspective.
 
-The second model contains data from primary students. In this case, the fit indices work acceptable (CFI=0.975, RMSEA=0.063, $\chi^2$(df=14)=36. 295). In this case, the scale has less validation than for the previous model.
-
-It is noteworthy that, for the secondary education model, most indicators have values that are close to perfect (CFI=1, RMSEA=0, $\chi^2$(df=14)=11.779). However, the results of this model could be overfitting, so they should be interpreted with caution.
+Taken together, these findings suggest that, although the proposed factor structure is adequate at the global level, its performance varies across educational cohorts, reinforcing the need to formally assess measurement invariance before making substantive comparisons between groups.
 
 ```{r}
 #| label: configural model
@@ -271,8 +279,10 @@ summary(fit.strong, fit.measures = TRUE)
 ```
 
 ```{r}
-#| label: cohort-table
 #| echo: false
+#| label: tbl-cohort-table
+#| tbl-cap: Comparative table of multi-group invariance
+#| tbl-cap-location: top
 
 # Comparaciones de Chi²
 an1 <- anova(fit.baseline, fit.thres)
@@ -287,7 +297,7 @@ tab01 <- bind_rows(
     stars = stars.pval(pvalue),
     chisqt = paste0(round(Chisq, 2), " (", Df, ")"),
     decision = ifelse(pvalue > 0.05, "Accept", "Reject"),
-    model = c("Weak", "Strong") # etiqueta los modelos que se extraen de los anova
+    model = c("Tresholds", "Tresholds + Loadings") # etiqueta los modelos que se extraen de los anova
   ) %>%
   bind_rows(
     tibble(
@@ -303,7 +313,7 @@ tab01 <- bind_rows(
     )
   ) %>%
   select(model, chisqt, chisq.diff, df.diff, pvalue, stars, decision) %>%
-  mutate(model = factor(model, levels = c("Configural", "Weak", "Strong"))) %>%
+  mutate(model = factor(model, levels = c("Configural", "Tresholds", "Tresholds + Loadings"))) %>%
   arrange(model)
 
 # se extraen los índices de ajuste para cada modelo
@@ -354,17 +364,14 @@ tab.inv %>%
   kableExtra::column_spec(2:7, width = "4cm") %>%
   kableExtra::column_spec(4, width = "5cm")
 
-
-
 ```
 
-The results of the different invariance models are displayed at the previous table. To examine invariance across cohorts the same steps in Dubravka et al. (2019) were followed, who propose the estimation of three models: the configural model, another restricting the thresholds, and finally restricting the thresholds and factor loadings.
 
-The configural model was first estimated, which maintains the same factor structure for both baseline and midline. The configural model has good fit indices (CFI = 0.992, RMSEA = 0.037), so there is empirical evidence that the factor structure behaves stably in both groups.
+The results of the different invariance models are presented in the @tbl-cohort-table. To assess invariance between cohorts, the sequential procedure proposed by @svetina_multiplegroup_2020 was followed, which involves estimating three hierarchical models: (1) a configural model, (2) a model with threshold restrictions, and (3) a final model that simultaneously imposes equality of thresholds and factor loadings between groups.
 
-Looking at the thresholds restricted model, it appears that when thresholds are restricted to equality, the four-factor latent model is not equivalent across the two cohorts in the study in accordance with @chen_sensitivity_2007 ($\Delta$CFI -.014 \< -. 01); $\Delta$RMSEA .019 \> .015). This result implies that by restricting thresholds, the meritocracy scale varies between primary and secondary education. In this case, invariance is not satisfied.
+First, the configural model was estimated, which assumes an identical factor structure in both cohorts (primary and secondary education), without imposing equality restrictions on the parameters. This model presented excessively high fit indices (CFI = 1.00; RMSEA = 0.00), suggesting overfitting and, therefore, insufficient empirical evidence to support the stability of the factor structure between the compared groups.
 
-The level represented as strong restricts both thresholds and factor loadings. When compared with the previous level of invariance, it can be seen that the criteria for assuming that the meritocracy scale remains stable across cohorts are not met either. ($\Delta$CFI -.005 \< -. 01); $\Delta$RMSEA .003 \< .015), so invariance is rejected.
+In a second stage, the model was estimated with restricted thresholds. According to the sample size sensitivity criteria proposed by @chen_sensitivity_2007, the four-latent-factor model does not achieve equivalence between cohorts ($\Delta$CFI = −.014 < −.01; $\Delta$RMSEA = .019 > .015). This result indicates that, when imposing equality of thresholds, the meritocracy scale does not show invariance between primary and secondary school students, suggesting systematic differences in the location of response categories between the two groups.
 
-It is pertinent to ask to what extent these results are due to the instability of the secondary education model. An attempt was made to resolve its overfitting, but this was not possible, which may have had direct implications for this part of the analysis.
+Finally, the third model was evaluated with simultaneous restrictions on thresholds and factor loadings. The changes observed in the fit indices ($\Delta$CFI = −.003; $\Delta$RMSEA = .006) also do not meet the criteria established for assuming metric and scalar invariance. Consequently, this model must also be considered non-invariant. Overall, the results indicate that the meritocracy scale does not present measurement invariance between the cohorts analyzed, which limits the direct comparability of latent scores between educational levels.
 

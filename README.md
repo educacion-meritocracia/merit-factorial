@@ -23,3 +23,5 @@ Measuring and applying a scale of perceptions and preferences about meritocracy.
 [Presentación VI Jornada de Investigadoras/es Jóvenes sobre Desigualdad y Cohesión Social](https://educacion-meritocracia.github.io/merit-factorial/presentations/JornadasUDP_2025/udp_2025.html)
 
 [Presentación COES 2025](https://educacion-meritocracia.github.io/merit-factorial/presentations/JornadasUDP_2025/coes_2025.html)
+
+[Presentación  Segundo Congreso Internacional de la Asociación Chilena de Metodología, Medición y Evaluación – 2026](https://educacion-meritocracia.github.io/merit-factorial/presentations/ACMME_2026/acmme_2026.html)

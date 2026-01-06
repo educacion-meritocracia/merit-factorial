@@ -6,17 +6,6 @@ csl: "input/bib/apa6.csl"
 
 # Anexo
 
-## Estrategia analítica 2: longitudinal
-
-
-```{r}
-#| fig-align: center
-#| out-width: '100%'
-library(knitr)
-
-knitr::include_graphics(path = "images/long_inv.png")
-
-```
 
 
 
@@ -31,6 +20,17 @@ knitr::include_graphics(path = "images/cohort.png")
 
 ```
 
+## Estrategia analítica 2: longitudinal
+
+
+```{r}
+#| fig-align: center
+#| out-width: '100%'
+library(knitr)
+
+knitr::include_graphics(path = "images/long_inv.png")
+
+```
 
 ```{r}
 #| label: packages6
@@ -590,3 +590,84 @@ tab.inv %>%
 ```
 
 
+## Preferencias por justicia de mercado
+
+```{r}
+#| include: false
+#| echo: false
+#| results: false
+
+source(here("processing/prod_analysis_validez.R"))
+```
+
+::: {style="font-size: 110%;"}
+
+- **EFA Ola 1**: adecuación aceptable (KMO = .68, Bartlett $\chi^2$ (3)=753.17, p<.001); 1 factor (paralelo/Kaiser) explica 54% de la varianza común (cargas = .65–.87).
+
+- **CFA Ola 1**: $\chi^2$ = 2477.735; df = 3; CFI = 1.000; TLI = 1.000; RMSEA = 0.000; $\alpha$ = 0.77
+
+- **Invarianza**:
+
+```{r}
+#| tbl-cap: "Resultados invarianza longitudinal preferencias justicia mercado"
+#| tbl-cap-location: top
+#| echo: false
+#| warning: false
+#| label: tbl-longinv-mjp
+
+
+tab.inv2 %>% 
+  kableExtra::kable(format = "html",
+                    align = "c",
+                    booktabs = T,
+                    escape = F,
+                    caption = NULL,
+                    col.names = col.nam) %>%
+  kableExtra::kable_styling(full_width = T,
+                            latex_options = "hold_position",
+                           bootstrap_options=c("striped", "bordered", "condensed"),
+                         font_size = 23) 
+```
+
+
+:::
+
+## Ajuste modelos de correlaciones latentes
+
+```{r}
+#| tbl-cap: "Ajuste para modelos de validez de correlación latente"
+#| tbl-cap-location: top
+#| echo: false
+#| warning: false
+#| label: tbl-fit-validity
+
+get_fit <- function(fit, label){
+
+  fm <- fitMeasures(
+    fit,
+    c("chisq.scaled","df","pvalue.scaled","cfi.scaled","tli.scaled","rmsea.scaled")
+  )
+
+  tibble(
+    Model = label,
+    `χ²` = round(fm["chisq.scaled"], 3),
+    df = as.integer(fm["df"]),
+    `p value` = ifelse(fm["pvalue.scaled"] < .001, "<.001", sprintf("%.3f", fm["pvalue.scaled"])),
+    `CFI` = round(fm["cfi.scaled"], 3),
+    `TLI` = round(fm["tli.scaled"], 3),
+    `RMSEA` = round(fm["rmsea.scaled"], 3))
+}
+
+fit_tab <- bind_rows(
+  get_fit(fit_validity_free,  "Free correlations (by wave)"),
+  get_fit(fit_validity_equal, "Equal correlations (stable across waves)")
+)
+
+fit_tab %>%
+  kableExtra::kable("html",
+        caption = NULL) %>%
+  kableExtra::kable_styling(latex_options = "hold_position",
+                            bootstrap_options=c("striped", "bordered", "condensed"),
+                full_width = FALSE) %>% 
+  kableExtra::add_footnote("N = 583", notation = "none")
+```

@@ -16,17 +16,19 @@ csl: "input/bib/apa6.csl"
 
 - Segunda ola (_N_ = 662) compuesta por 303 niñas, 338 niños, 21 que se identifican como otros; $M_{edad}$ = 14.4, $SD_{edad}$ = 1.6
 
+- Atrición 22% (78% retención) debido a ausentismo escolar y cambios de mátricula.
+
 :::
 
 
-## Variables
+## Medidas
 
 ::: {style="font-size: 110%;"}
 
 ```{r}
 #| label: fig-vars-ppms
 #| fig-cap-location: top
-#| fig-cap: "Items de Escala de Percepciones y Preferencias sobre Meritocracia"
+#| fig-cap: Escala de Percepciones y Preferencias sobre Meritocracia
 #| fig-align: center
 #| fig-width: 8
 #| out-width: '200%'
@@ -38,15 +40,29 @@ knitr::include_graphics(path = here("presentations/images/tab_items.png"))
 ```
 ::: 
 
+## Medidas
+
+::: {.incremental .highlight-last style="font-size: 120%;"}
+
+- **Cohortes**:
+
+    * Para diferenciar el nivel educacional entre olas en los análisis de invarianza, se utiliza un indicador de cohorte (6º básico vs 1º medio) definido en cada ola.
+
+- **Justicia de mercado**: 
+
+    * 3 ítems sobre cuán justo es que, en Chile, mayores ingresos impliquen mejor acceso a salud, pensiones y educación; respuesta en escala Likert 1–4 (totalmente en desacuerdo–totalmente de acuerdo)
+    * EFA sugiere un solo factor y CFA confirma buen ajuste para esta solución 
+:::
+
 
 ## Estrategia analítica 1
 
-::: {.incremental .highlight-last style="font-size: 100%;"}
+::: {.incremental .highlight-last style="font-size: 120%;"}
 
 - **Análisis Factorial Confirmatorio (CFA)**:
 
     * Modelo de 4 factores latentes con estimador WLSMV [@kline_principles_2023]
-    * Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95;RMSEA< 0.06$; $\chi^2$  $p$ > 0.05 y $\chi^2$/df ratio < 3.
+    * Cuttof de ajuste [@brown_confirmatory_2015]: $\text{CFI o TLI} > 0.95; RMSEA< 0.06$; $\chi^2$  $p$ > 0.05 y $\chi^2$/df ratio < 3.
 
 ::: 
 
@@ -71,6 +87,14 @@ knitr::include_graphics(path = here("presentations/images/tab_items.png"))
 :::
 
 
+## Estrategia analítica 3
 
+::: {.incremental .highlight-last style="font-size: 120%;"}
 
+- **Correlaciones latentes**: 
+
+    * Con invarianza longitudinal establecida, estimamos correlaciones latentes entre escala de meritocracia y justicia de mercado.
+    * Interpretamos dirección/magnitud esperada (convergente) y descartamos correlaciones excesivas (discriminante) [@brown_confirmatory_2015; @kline_principles_2023].
+
+:::
 

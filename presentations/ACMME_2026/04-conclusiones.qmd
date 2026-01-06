@@ -5,16 +5,21 @@ csl: "input/bib/apa6.csl"
 ---
 
 
-## Discusión y conclusiones {data-background-color="#5f5758"}
+## Discusión y conclusiones 
 
 
-:::: {.incremental style="font-size: 125%;"}
+:::: {.incremental .highlight-last style="font-size: 110%;"}
 
-**<span style="color:darkorange">1. Agenda de medición sobre meritocracia**: primera evidencia respecto a una escala que permite evaluar la evolución de las creencias meritocraticas en estudiantes en el tiempo
+- **Meritocracia en la escuela (medición)**: en una etapa temprana, estudiantes distinguen percepciones vs. preferencias y elementos meritocráticos vs. no meritocráticos ($H_1$) → escuela como agente socializador [@mijs_inequality_2018; @tang_meritocratic_2025; @batruch_belief_2022].
 
-**<span style="color:darkorange">2. Cohortes y etapas escolares**: no hay evidencia de invarianza entre cohortes → _diferencias en las maneras de comprender la meritocracia según etapa escolar_
+- **Invarianza**: 
 
-**<span style="color:darkorange">3. Implicancias y proyecciones**: (i) profundizar en el rol del talento, padres ricos y contactos, y (ii) analizar determinantes y consecuencias de la escala de medición
+    * Entre cohortes: sin evidencia ($H_2$) → comprensión de la meritocracia varía por etapa escolar
+    * Longitudinal: evidencia favorable ($H_3$) → estructura estable dentro de individuos
+
+- **Validez y uso de la escala**: las cuatro dimensiones se asocian con justicia de mercado en la dirección esperada (convergente) y sin redundancia (discriminante) ($H_4$) [@castillo_socialization_2024].
+    
+- **Implicancias y proyecciones**: profundizar en talento / riqueza familiar / contactos y examinar determinantes y consecuencias de estas creencias
 
 ::::
 
@@ -30,7 +35,7 @@ csl: "input/bib/apa6.csl"
 #| out-width: '30%'
 
 
-knitr::include_graphics(path = "images/qr.png")
+knitr::include_graphics(path = "images/qr.jpg")
 
 ```
 

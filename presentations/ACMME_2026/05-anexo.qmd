@@ -7,31 +7,6 @@ csl: "input/bib/apa6.csl"
 # Anexo
 
 
-
-
-## Estrategia analítica 2: cohortes
-
-```{r}
-#| fig-align: center
-#| out-width: '100%'
-library(knitr)
-
-knitr::include_graphics(path = "images/cohort.png")
-
-```
-
-## Estrategia analítica 2: longitudinal
-
-
-```{r}
-#| fig-align: center
-#| out-width: '100%'
-library(knitr)
-
-knitr::include_graphics(path = "images/long_inv.png")
-
-```
-
 ```{r}
 #| label: packages6
 #| include: false
@@ -67,6 +42,162 @@ rm(list = ls())
 load(file = here("output", "data", "db1_proc.RData"))
 load(file = here("output", "data", "db_long_proc.RData"))
 load(file = here("output", "results.RData"))
+
+```
+
+
+## Descriptivos: Básica
+
+::: {style="font-size: 110%;"}
+
+```{r}
+#| label: fig-likerplot3
+#| fig-align: center
+#| fig-cap: "Distribución de respuestas en escala de percepciones y preferencias sobre meritocracia"
+#| fig-cap-location: top
+#| fig-width: 7
+#| out-width: '80%'
+#| echo: false
+
+db_likert1 <- db_long %>%
+  filter(cohort_level == "Primary") %>% # quedarse con solo la ola 1
+  select(id_estudiante, starts_with(c("perc", "pref"))) %>% 
+  na.omit() %>% 
+  mutate(
+    across(
+      .cols = c(starts_with(c("perc", "pref"))),
+      .fns = ~ sjlabelled::set_labels(., labels = c("Strongly disagree" = 1, "Disagree" = 2, "Agree" = 3, "Strongly agree" = 4))
+    )
+  )
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+e <- db_likert1 %>% 
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("A. Perceptions"),
+                      geom.size = 0.8,
+                      axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "none")
+
+f <- db_likert1 %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("B. Preferences"),
+                      geom.size = 0.8,
+                      axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot <- e / f + plot_annotation(caption = paste0("Source: Own elaboration based on the EDUMER panel survey"," (n = ",dim(db_likert1)[1],")"
+))
+
+likerplot
+```
+
+
+::: 
+
+
+## Descriptivos: Media
+
+::: {style="font-size: 110%;"}
+
+```{r}
+#| label: fig-likerplot4
+#| fig-align: center
+#| fig-cap: "Distribución de respuestas en escala de percepciones y preferencias sobre meritocracia"
+#| fig-cap-location: top
+#| fig-width: 7
+#| out-width: '80%'
+#| echo: false
+
+db_likert1 <- db_long %>%
+  filter(cohort_level == "Secondary") %>% # quedarse con solo la ola 1
+  select(id_estudiante, starts_with(c("perc", "pref"))) %>% 
+  na.omit() %>% 
+  mutate(
+    across(
+      .cols = c(starts_with(c("perc", "pref"))),
+      .fns = ~ sjlabelled::set_labels(., labels = c("Strongly disagree" = 1, "Disagree" = 2, "Agree" = 3, "Strongly agree" = 4))
+    )
+  )
+
+theme_set(theme_ggdist())
+colors <- RColorBrewer::brewer.pal(n = 4, name = "RdBu")
+
+g <- db_likert1 %>% 
+  select(starts_with("perc")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("A. Perceptions"),
+                      geom.size = 0.8,
+                      axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "none")
+
+h <- db_likert1 %>% 
+  select(starts_with("pref")) %>% 
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("B. Preferences"),
+                      geom.size = 0.8,
+                      axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+
+likerplot <- g / h + plot_annotation(caption = paste0("Source: Own elaboration based on the EDUMER panel survey"," (n = ",dim(db_likert1)[1],")"
+))
+
+likerplot
+```
+
+
+::: 
+## Estrategia analítica 2: cohortes
+
+```{r}
+#| fig-align: center
+#| out-width: '100%'
+library(knitr)
+
+knitr::include_graphics(path = "images/cohort.png")
+
+```
+
+## Estrategia analítica 2: longitudinal
+
+
+```{r}
+#| fig-align: center
+#| out-width: '100%'
+library(knitr)
+
+knitr::include_graphics(path = "images/long_inv.png")
 
 ```
 
@@ -604,31 +735,11 @@ source(here("processing/prod_analysis_validez.R"))
 
 - **EFA Ola 1**: adecuación aceptable (KMO = .68, Bartlett $\chi^2$ (3)=753.17, p<.001); 1 factor (paralelo/Kaiser) explica 54% de la varianza común (cargas = .65–.87).
 
-- **CFA Ola 1**: $\chi^2$ = 2477.735; df = 3; CFI = 1.000; TLI = 1.000; RMSEA = 0.000; $\alpha$ = 0.77
+- **Alpha cronbach Ola 1**: $\alpha$ = 0.77
 
-- **Invarianza**:
+- **EFA Ola 2**: adecuación aceptable (KMO = .66, Bartlett $\chi^2$ (3)=757.62, p<.001); 1 factor (paralelo/Kaiser) explica 54% de la varianza común (cargas = .59–.89).
 
-```{r}
-#| tbl-cap: "Resultados invarianza longitudinal preferencias justicia mercado"
-#| tbl-cap-location: top
-#| echo: false
-#| warning: false
-#| label: tbl-longinv-mjp
-
-
-tab.inv2 %>% 
-  kableExtra::kable(format = "html",
-                    align = "c",
-                    booktabs = T,
-                    escape = F,
-                    caption = NULL,
-                    col.names = col.nam) %>%
-  kableExtra::kable_styling(full_width = T,
-                            latex_options = "hold_position",
-                           bootstrap_options=c("striped", "bordered", "condensed"),
-                         font_size = 23) 
-```
-
+- **Alpha cronbach Ola 2**: $\alpha$ = 0.76
 
 :::
 

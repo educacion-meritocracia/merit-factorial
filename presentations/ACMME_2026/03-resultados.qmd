@@ -68,7 +68,7 @@ load(file = here("output", "data", "db_long_proc2.RData"))
 
 # Resultados
 
-## Descriptivos
+## Descriptivos: Ola 1
 
 ::: {style="font-size: 110%;"}
 
@@ -135,7 +135,7 @@ likerplot
 ::: 
 
 
-## Descriptivos
+## Descriptivos: Ola 2
 
 ::: {style="font-size: 110%;"}
 
@@ -200,23 +200,33 @@ likerplot2
 
 ## Modelo de medición
 
-::: {style="font-size: 110%;"}
-
 ```{r}
 #| label: fig-modelo
 #| fig-cap-location: top
-#| fig-cap: Modelo de medición por grupo
+#| fig-cap: Modelo de medición cohorte básica para Ola 1
 #| fig-align: center
 #| fig-width: 8
 #| out-width: '200%'
 library(knitr)
 library(here)
 
-knitr::include_graphics(path = here("presentations/ACMME_2026/images/modelo_med.png"))
+knitr::include_graphics(path = here("presentations/ACMME_2026/images/modelo_med_b.png"))
 
 ```
-::: 
 
+## Modelo de medición
+
+```{r}
+#| label: fig-modelo2
+#| fig-cap-location: top
+#| fig-cap: Modelo de medición cohorte media para Ola 1
+#| fig-align: center
+#| fig-width: 8
+#| out-width: '200%'
+
+knitr::include_graphics(path = here("presentations/ACMME_2026/images/modelo_med_m.png"))
+
+```
 
 ## Invarianza entre cohortes
 
@@ -964,6 +974,7 @@ source(here("processing/prod_analysis_validez.R"))
 
 
 
+
 ```{r}
 #| tbl-cap: Correlaciones latentes estandarizadas entre las preferencias de justicia de mercado y las dimensiones de la meritocracia (within)
 #| tbl-cap-location: top
@@ -1016,3 +1027,10 @@ tab_mat %>%
   kableExtra::add_footnote(c("N = 583","*p < .05."), "none")
 
 ```
+
+
+::: {.incremental style="font-size: 90%;"}
+
+Preferencias por justicia de mercado (MJP): indican el grado en que las personas consideran justo que mayores ingresos impliquen mejor acceso a salud, pensiones y educación en Chile.
+
+:::

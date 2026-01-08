@@ -26,7 +26,12 @@ csl: "input/bib/apa6.csl"
 
 - Sin embargo, **la conceptualización y medición de las creencias meritocráticas** en la investigación empírica sigue siendo **fragmentada**
 
-- Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición minimalista para meritocracia en contextos de encuestas
+- Investigaciones recientes en meritocracia y educación suelen unidimensionalizar y forzar un continuo cero-suma entre mérito y no-mérito, mezclando percepciones y preferencias [@liu_does_2025; @tang_meritocratic_2025; @reynolds_perceptions_2014]
+
+- Castillo et al. [-@castillo_multidimensional_2023]:
+
+    * Proponen un marco conceptual y de medición minimalista para meritocracia en contextos de encuestas
+    * Trade-off: distingue entre percepciones vs. preferencias y entre elementos meritocráticos vs. no meritocráticos, usando 2 ítems por factor 
 
 
 :::
@@ -125,18 +130,22 @@ knitr::include_graphics(path = "images/esquema5.png")
 
 
 
-# Este estudio {data-background-color="#5f5758"}
+## Este estudio 
 
 
-:::: {.incremental style="font-size: 150%;"}
+:::: {.incremental style="font-size: 100%;"}
 
 
-**<span style="color:darkorange">1. Objetivo**: Analizar la estabilidad de las percepciones y preferencias sobre elementos meritocráticos y no meritocráticos en etapa escolar en Chile</font>
+- **Objetivo**: Describir y medir la meritocracia en estudiantes (percepciones vs. preferencias; mérito vs. no-mérito) y evaluar su comparabilidad.
 
+- **Aproximación**: CFA del modelo 4F + pruebas de invarianza (cohortes/tiempo) + validez convergente con justicia de mercado (salud/educación/pensiones).
 
-**<span style="color:darkorange">2. Aproximación**: Invarianza de medición entre grupos y en el tiempo
+- **Hipótesis**: 
 
-**<span style="color:darkorange">3. Hipótesis**: El modelo de medición es estable entre cohortes y en el tiempo
+    * $H1$ (Medición): 4 factores—percepciones/preferencias × mérito/no-mérito.
+    * $H2$ (Invarianza cohortes): el modelo 4F es equivalente entre cohortes.
+    * $H3$ (Invarianza longitudinal): el modelo 4F es estable entre olas dentro de estudiantes.
+    * $H4$ (Validez): justicia de mercado (+) con mérito percibido y preferencias; (–) con no-mérito percibido.
 
 ::::
 

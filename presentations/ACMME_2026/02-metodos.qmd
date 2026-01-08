@@ -51,7 +51,7 @@ knitr::include_graphics(path = here("presentations/images/tab_items.png"))
 - **Justicia de mercado**: 
 
     * 3 ítems sobre cuán justo es que, en Chile, mayores ingresos impliquen mejor acceso a salud, pensiones y educación; respuesta en escala Likert 1–4 (totalmente en desacuerdo–totalmente de acuerdo)
-    * EFA sugiere un solo factor y CFA confirma buen ajuste para esta solución 
+    * EFA sugiere un solo factor con un $\alpha$ = 0.77
 :::
 
 

@@ -4,6 +4,9 @@ bibliography: "input/bib/merit-factorial.bib"
 csl: "input/bib/apa6.csl"
 ---
 
+# Método {.xlarge data-background-color="#5f5758"}
+
+
 ## Participantes y procedimiento
 
 ::: {.incremental .highlight-last style="font-size: 120%;"}
@@ -46,7 +49,7 @@ knitr::include_graphics(path = here("presentations/images/tab_items.png"))
 
 - **Cohortes**:
 
-    * Para diferenciar el nivel educacional entre olas en los análisis de invarianza, se utiliza un indicador de cohorte (6º básico vs 1º medio) definido en cada ola.
+    * Para diferenciar el nivel educacional entre olas en los análisis de invarianza, se utiliza un indicador de cohorte (básica vs media) definido en cada ola.
 
 - **Justicia de mercado**: 
 
@@ -93,8 +96,8 @@ knitr::include_graphics(path = here("presentations/images/tab_items.png"))
 
 - **Correlaciones latentes**: 
 
-    * Con invarianza longitudinal establecida, estimamos correlaciones latentes entre escala de meritocracia y justicia de mercado.
-    * Interpretamos dirección/magnitud esperada (convergente) y descartamos correlaciones excesivas (discriminante) [@brown_confirmatory_2015; @kline_principles_2023].
+    * Con invarianza establecida, estimamos correlaciones latentes entre escala de meritocracia y justicia de mercado.
+    * Interpretamos dirección/magnitud esperada (convergente) [@brown_confirmatory_2015; @kline_principles_2023].
 
 :::
 

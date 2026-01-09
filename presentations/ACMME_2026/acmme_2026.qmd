@@ -95,9 +95,11 @@ Segundo Congreso Internacional de la Asociación Chilena de Metodología, Medici
 
 {{< include 04-conclusiones.qmd >}}
 
-{{< include 05-anexo.qmd >}}
 
 ## Referencias
 
 ::: {#refs}
 :::
+
+{{< include 05-anexo.qmd >}}
+

@@ -66,7 +66,7 @@ load(file = here("output", "data", "db_long_proc2.RData"))
 
 ```
 
-# Resultados
+# Resultados {.xlarge data-background-color="#5f5758"}
 
 ## Descriptivos: Ola 1
 
@@ -131,14 +131,10 @@ likerplot <- a / b + plot_annotation(caption = paste0("Source: Own elaboration b
 likerplot
 ```
 
-
-::: 
-
+:::
 
 ## Descriptivos: Ola 2
-
 ::: {style="font-size: 110%;"}
-
 ```{r}
 #| label: fig-likerplot2
 #| fig-align: center
@@ -147,20 +143,18 @@ likerplot
 #| fig-width: 7
 #| out-width: '80%'
 #| echo: false
-
 db_likert2 <- db_long %>%
 filter(ola == 2) %>% # quedarse con solo la ola 1
-select(id_estudiante, starts_with(c("perc", "pref"))) %>% 
-na.omit() %>% 
+select(id_estudiante, starts_with(c("perc", "pref"))) %>%
+na.omit() %>%
 mutate(
   across(
     .cols = c(starts_with(c("perc", "pref"))),
     .fns = ~ sjlabelled::set_labels(., labels = c("Strongly disagree" = 1, "Disagree" = 2, "Agree" = 3, "Strongly agree" = 4))
   )
 )
-
-c <- db_likert2 %>% 
-  select(starts_with("perc")) %>% 
+c <- db_likert2 %>%
+  select(starts_with("perc")) %>%
   sjPlot::plot_likert(geom.colors = colors,
                       title = c("A. Perceptions"),
                       geom.size = 0.8,
@@ -173,9 +167,8 @@ c <- db_likert2 %>%
                       show.prc.sign = T
                       ) +
   ggplot2::theme(legend.position = "none")
-
-d <- db_likert2 %>% 
-  select(starts_with("pref")) %>% 
+d <- db_likert2 %>%
+  select(starts_with("pref")) %>%
   sjPlot::plot_likert(geom.colors = colors,
                       title = c("B. Preferences"),
                       geom.size = 0.8,
@@ -188,14 +181,10 @@ d <- db_likert2 %>%
                       show.prc.sign = T
   ) +
   ggplot2::theme(legend.position = "bottom")
-
 likerplot2 <- c / d + plot_annotation(caption = paste0("Source: Own elaboration based on the EDUMER Wave 2 panel survey"," (n = ",dim(db_likert2)[1],")"
 ))
-
 likerplot2
 ```
-
-
 :::
 
 ## Modelo de medición

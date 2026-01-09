@@ -4,7 +4,7 @@ bibliography: "input/bib/merit-factorial.bib"
 csl: "input/bib/apa6.csl"
 ---
 
-# Anexo
+# Anexo {.xlarge data-background-color="#5f5758"}
 
 
 ```{r}

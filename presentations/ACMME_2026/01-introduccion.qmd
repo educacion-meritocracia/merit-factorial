@@ -4,6 +4,45 @@ bibliography: "input/bib/merit-factorial.bib"
 csl: "input/bib/apa6.csl"
 ---
 
+## Equipo
+
+:::{=html}
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; justify-items: center; align-items: center;">
+
+<div style="text-align: center;">
+  <img src="images/jc.png" style="width:200px; border-radius: 50%;" />
+  <div>JC</div>
+</div>
+
+<div style="text-align: center;">
+  <img src="images/andreas.jpg" style="width:200px; border-radius: 50%;" />
+  <div>Andreas</div>
+</div>
+</div>
+:::
+
+:::{=html}
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; justify-items: center; align-items: center;">
+
+<div style="text-align: center;">
+  <img src="images/tomas.png" style="width:200px; border-radius: 50%;" />
+  <div>Tomás</div>
+</div>
+
+<div style="text-align: center;">
+  <img src="images/rene.png" style="width:200px; border-radius: 50%;" />
+  <div>René</div>
+</div>
+
+</div>
+
+:::
+
+
+
+
 # Problema de investigación {.xlarge data-background-color="#5f5758"}
 
 ## Contexto y motivación 

@@ -2,7 +2,36 @@
 author: "Equipo EDUMER"
 bibliography: "../input/bib/merit-factorial.bib"
 csl: "../input/bib/apa6.csl"
+editor_options: 
+  chunk_output_type: console
 ---
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+
+table_format <- if (is_html_output()) {
+  "html"
+} else if (is_latex_output()) {
+  "latex"
+}
+table_format2 <- if (is_html_output()) {
+  T
+} else if (is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
 
 ```{r}
 #| label: packages
@@ -33,22 +62,20 @@ rm(list = ls())
 #| include: false
 #| echo: false
 
-load(file = here("output", "data", "db_long_proc.RData"))
+load(file = here("output", "data", "db_long_proc2.RData"))
 
 ```
 
-# Resultados
+# Resultados {.xlarge data-background-color="#5f5758"}
 
-
-
-## Descriptivos
+## Descriptivos: Ola 1
 
 ::: {style="font-size: 110%;"}
 
 ```{r}
 #| label: fig-likerplot1
 #| fig-align: center
-#| fig-cap: "Distribución de respuestas en escala de percepciones y preferencias sobre meritocracia"
+#| fig-cap: "Distribución de respuestas en escala de percepciones y preferencias sobre meritocracia Ola 1"
 #| fig-cap-location: top
 #| fig-width: 7
 #| out-width: '80%'
@@ -56,7 +83,7 @@ load(file = here("output", "data", "db_long_proc.RData"))
 
 db_likert1 <- db_long %>%
 filter(ola == 1) %>% # quedarse con solo la ola 1
-select(-c(ola, curse_level, p20, p21_ano, age)) %>% 
+select(id_estudiante, starts_with(c("perc", "pref"))) %>% 
 na.omit() %>% 
 mutate(
   across(
@@ -104,11 +131,323 @@ likerplot <- a / b + plot_annotation(caption = paste0("Source: Own elaboration b
 likerplot
 ```
 
+:::
 
-::: 
+## Descriptivos: Ola 2
+::: {style="font-size: 110%;"}
+```{r}
+#| label: fig-likerplot2
+#| fig-align: center
+#| fig-cap: "Distribución de respuestas en escala de percepciones y preferencias sobre meritocracia Ola 2"
+#| fig-cap-location: top
+#| fig-width: 7
+#| out-width: '80%'
+#| echo: false
+db_likert2 <- db_long %>%
+filter(ola == 2) %>% # quedarse con solo la ola 1
+select(id_estudiante, starts_with(c("perc", "pref"))) %>%
+na.omit() %>%
+mutate(
+  across(
+    .cols = c(starts_with(c("perc", "pref"))),
+    .fns = ~ sjlabelled::set_labels(., labels = c("Strongly disagree" = 1, "Disagree" = 2, "Agree" = 3, "Strongly agree" = 4))
+  )
+)
+c <- db_likert2 %>%
+  select(starts_with("perc")) %>%
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("A. Perceptions"),
+                      geom.size = 0.8,
+                      axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+                      ) +
+  ggplot2::theme(legend.position = "none")
+d <- db_likert2 %>%
+  select(starts_with("pref")) %>%
+  sjPlot::plot_likert(geom.colors = colors,
+                      title = c("B. Preferences"),
+                      geom.size = 0.8,
+                     axis.labels = c("Effort", "Talent", "Rich parents", "Contacts"),
+                      catcount = 4,
+                      values  =  "sum.outside",
+                      reverse.colors = F,
+                      reverse.scale = T,
+                      show.n = FALSE,
+                      show.prc.sign = T
+  ) +
+  ggplot2::theme(legend.position = "bottom")
+likerplot2 <- c / d + plot_annotation(caption = paste0("Source: Own elaboration based on the EDUMER Wave 2 panel survey"," (n = ",dim(db_likert2)[1],")"
+))
+likerplot2
+```
+:::
+
+## Modelo de medición
+
+```{r}
+#| label: fig-modelo
+#| fig-cap-location: top
+#| fig-cap: Modelo de medición cohorte básica para Ola 1
+#| fig-align: center
+#| fig-width: 8
+#| out-width: '200%'
+library(knitr)
+library(here)
+
+knitr::include_graphics(path = here("presentations/ACMME_2026/images/modelo_med_b.png"))
+
+```
+
+## Modelo de medición
+
+```{r}
+#| label: fig-modelo2
+#| fig-cap-location: top
+#| fig-cap: Modelo de medición cohorte media para Ola 1
+#| fig-align: center
+#| fig-width: 8
+#| out-width: '200%'
+
+knitr::include_graphics(path = here("presentations/ACMME_2026/images/modelo_med_m.png"))
+
+```
+
+## Invarianza entre cohortes
 
 
-## Invarianza Longitudinal
+```{r}
+#| label: cohort data
+#| echo: false
+
+db1 <- db_long %>%
+filter(ola == 1) %>% # quedarse con solo la ola 1
+select(starts_with(c("perc", "pref")), cohort_level) %>% # eliminar variables que no son parte del analisis
+na.omit() # listwise deletion
+
+```
+
+```{r}
+#| label: Measurement models
+#| include: false 
+
+model_cfa <- '
+perc_merit =~ perc_effort + perc_talent
+perc_nmerit =~ perc_rich_parents + perc_contact
+pref_merit =~ pref_effort + pref_talent
+pref_nmerit =~ pref_rich_parents + pref_contact
+perc_effort ~~ pref_talent
+'
+```
+
+```{r}
+#| label: Models by cohort
+#| output: false
+
+mbasica_cfa <- cfa(model = model_cfa, 
+                   data = subset(db1, cohort_level == "Primary"), 
+                   estimator = "WLSMV",
+                   ordered = T,
+                   std.lv = F)
+
+mmedia_cfa <- cfa(model = model_cfa, 
+                  data = subset(db1, cohort_level == "Secondary"), 
+                  estimator = "WLSMV",
+                  ordered = T,
+                  std.lv = F)
+```
+
+```{r}
+#| label: configural model
+#| include: false 
+
+baseline <- measEq.syntax(
+  configural.model = model_cfa,
+  data = db1,
+  ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+  parameterization = "delta",
+  ID.fac = "std.lv",
+  ID.cat = "Wu.Estabrook.2016",
+  group = "cohort_level",
+  group.equal = "configural"
+)
+
+model.baseline <- as.character(baseline)
+
+fit.baseline <- cfa(model.baseline, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+summary(fit.baseline)
+```
+
+```{r}
+#| label: weak model
+#| include: false
+
+thresholds <- measEq.syntax(
+configural.model = model_cfa,
+data = db1,
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+parameterization = "delta",
+ID.fac = "std.lv",
+ID.cat = "Wu.Estabrook.2016",
+group = "cohort_level",
+group.equal = c("thresholds")
+)
+
+model.thres <- as.character(thresholds)
+
+fit.thres <- cfa(model.thres, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+summary(fit.thres, fit.measures = TRUE)
+```
+
+```{r}
+#| label: loading-threshold model
+#| include: false
+
+strong <- measEq.syntax(
+configural.model = model_cfa,
+data = db1,
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+parameterization = "delta",
+ID.fac = "std.lv",
+ID.cat = "Wu.Estabrook.2016",
+group = "cohort_level",
+group.equal = c("thresholds", "loadings")
+)
+
+model.strong <- as.character(strong)
+
+fit.strong <- cfa(model.strong, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+summary(fit.strong, fit.measures = TRUE)
+
+```
+
+```{r}
+#| label: tbl-cohort
+#| tbl-cap: "Resultados invarianza entre cohortes"
+#| tbl-cap-location: top
+#| echo: false
+#| warning: false
+
+# Comparaciones de invarianza
+an1 <- anova(fit.baseline, fit.thres)
+an2 <- anova(fit.thres, fit.strong)
+
+tab01 <- bind_rows(
+  as_tibble(an1)[2,],
+  as_tibble(an2)[2,]
+) %>%
+  select("Chisq", "Df", chisq.diff = `Chisq diff`, df.diff = `Df diff`, pvalue = `Pr(>Chisq)`) %>%
+  mutate(
+    stars = stars.pval(pvalue),
+    chisqt = paste0(round(Chisq, 2), " (", Df, ")"),
+    decision = ifelse(pvalue > 0.05, "Accept", "Reject"),
+    model = c("Weak", "Strong")
+  ) %>%
+  bind_rows(
+    tibble(
+      Chisq = an1$Chisq[1],
+      Df = an1$Df[1],
+      chisq.diff = NA,
+      df.diff = NA,
+      pvalue = NA,
+      stars = "",
+      chisqt = paste0(round(an1$Chisq[1], 2), " (", an1$Df[1], ")"),
+      decision = "Reference",
+      model = "Configural"
+    )
+  ) %>%
+  select(model, chisqt, chisq.diff, df.diff, pvalue, stars, decision) %>%
+  mutate(model = factor(model, levels = c("Configural", "Weak", "Strong"))) %>%
+  arrange(model)
+
+# Medidas de ajuste (usando escaladas)
+fit.meas <- bind_rows(
+  fitMeasures(fit.baseline, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", 
+                                                 "rmsea.scaled", "rmsea.ci.lower", "rmsea.ci.upper"),],
+  fitMeasures(fit.thres, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", 
+                                              "rmsea.scaled", "rmsea.ci.lower", "rmsea.ci.upper"),],
+  fitMeasures(fit.strong, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", 
+                                               "rmsea.scaled", "rmsea.ci.lower", "rmsea.ci.upper"),]
+)
+
+# Renombrar columnas y calcular diferencias
+fit.meas <- fit.meas %>%
+  as_tibble() %>%
+  rename(
+    chisq = chisq.scaled,
+    df = df.scaled,
+    cfi = cfi.scaled,
+    rmsea = rmsea.scaled
+  ) %>%
+  mutate(
+    diff.chi2 = chisq - lag(chisq, default = first(chisq)),
+    diff.df = df - lag(df, default = first(df)),
+    diff.cfi = cfi - lag(cfi, default = first(cfi)),
+    diff.rmsea = rmsea - lag(rmsea, default = first(rmsea))
+  ) %>%
+  round(3) %>%
+  mutate(
+    rmsea.ci = paste0(rmsea, " \n(", rmsea.ci.lower, "-", rmsea.ci.upper, ")")
+  )
+
+# Tabla final
+tab.inv <- bind_cols(tab01, fit.meas) %>%
+  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
+  mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
+  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
+
+# Encabezados
+col.nam <- c(
+  "Model", "&chi;^2 (df)", "CFI", "RMSEA (90% CI)",
+  "&Delta; &chi;^2 (&Delta; df)", "&Delta; CFI", "&Delta; RMSEA", "Decision"
+)
+
+# Salida con kable
+tab.inv %>%
+  kableExtra::kable(
+    format = "html",
+    align = "c",
+    booktabs = TRUE,
+    escape = FALSE,
+    col.names = col.nam
+  ) %>%
+  kableExtra::kable_styling(
+    full_width = TRUE,
+    latex_options = "hold_position",
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    font_size = 23
+  ) %>%
+  kableExtra::column_spec(c(1, 8), width = "3.5cm") %>%
+  kableExtra::column_spec(2:7, width = "4cm") %>%
+  kableExtra::column_spec(4, width = "5cm")
+
+```
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- Se observa una fuente de invarianza asociada a los umbrales (thresholds) de los ítems **preferencia padres ricos y preferencia contactos** en el grupo de Básica.
+
+- **Sustantivamente**: Los estudiantes de Básica y Media interpretan y utilizan las escalas de respuesta de manera diferente cuando juzgan la aceptabilidad de "preferir a padres ricos" y "usar contactos".
+
+:::
+
+## Invarianza longitudinal
 ```{r}
 #| label: data 2
 #| results: asis
@@ -605,259 +944,82 @@ tab.inv %>%
   kableExtra::column_spec(4, width = "5cm")
 ```
 
-## Invarianza entre Cohortes
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- Existe evidencia a favor de que el modelo de medición es invariante dentro de los mismos estudiantes en ambos puntos de tiempo.
+
+:::
+
+## Correlaciones latentes
+
 
 ```{r}
-#| label: set
-#| echo: false
-#| message: false
-#| warning: false
-
-library(knitr)
-
-knitr::opts_chunk$set(echo = F,
-                      warning = F,
-                      error = F, 
-                      message = F) 
-
-table_format <- if (is_html_output()) {
-  "html"
-} else if (is_latex_output()) {
-  "latex"
-}
-table_format2 <- if (is_html_output()) {
-  T
-} else if (is_latex_output()) {
-  F
-}
-
-options(kableExtra.html.bsTable = T)
-options(knitr.kable.NA = "")
-```
-
-```{r}
-#| label: cohort data
-#| echo: false
-
-db1 <- db_long %>%
-filter(ola == 1) %>% # quedarse con solo la ola 1
-select(-c(ola, curse_level, p20, p21_ano, age)) %>% # eliminar variables que no son parte del analisis
-na.omit() # listwise deletion
-
-```
-
-```{r}
-#| label: Measurement models
-#| include: false 
-
-model_cfa <- '
-perc_merit =~ perc_effort + perc_talent
-perc_nmerit =~ perc_rich_parents + perc_contact
-pref_merit =~ pref_effort + pref_talent
-pref_nmerit =~ pref_rich_parents + pref_contact
-perc_effort ~~ pref_talent
-'
-```
-
-```{r}
-#| label: Models by cohort
-#| output: false
-
-mbasica_cfa <- cfa(model = model_cfa, 
-                   data = subset(db1, cohort_level == "Primary"), 
-                   estimator = "WLSMV",
-                   ordered = T,
-                   std.lv = F)
-
-mmedia_cfa <- cfa(model = model_cfa, 
-                  data = subset(db1, cohort_level == "Secondary"), 
-                  estimator = "WLSMV",
-                  ordered = T,
-                  std.lv = F)
-```
-
-```{r}
-#| label: configural model
-#| include: false 
-
-baseline <- measEq.syntax(
-  configural.model = model_cfa,
-  data = db1,
-  ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
-              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
-  parameterization = "delta",
-  ID.fac = "std.lv",
-  ID.cat = "Wu.Estabrook.2016",
-  group = "cohort_level",
-  group.equal = "configural"
-)
-
-model.baseline <- as.character(baseline)
-
-fit.baseline <- cfa(model.baseline, data = db1, group = "cohort_level",
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
-              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
-
-summary(fit.baseline)
-```
-
-```{r}
-#| label: weak model
 #| include: false
+#| echo: false
+#| results: false
 
-thresholds <- measEq.syntax(
-configural.model = model_cfa,
-data = db1,
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
-"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
-parameterization = "delta",
-ID.fac = "std.lv",
-ID.cat = "Wu.Estabrook.2016",
-group = "cohort_level",
-group.equal = c("thresholds")
-)
-
-model.thres <- as.character(thresholds)
-
-fit.thres <- cfa(model.thres, data = db1, group = "cohort_level",
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
-"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
-
-summary(fit.thres, fit.measures = TRUE)
+source(here("processing/prod_analysis_validez.R"))
 ```
 
-```{r}
-#| label: loading-threshold model
-#| include: false
 
-strong <- measEq.syntax(
-configural.model = model_cfa,
-data = db1,
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
-"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
-parameterization = "delta",
-ID.fac = "std.lv",
-ID.cat = "Wu.Estabrook.2016",
-group = "cohort_level",
-group.equal = c("thresholds", "loadings")
-)
 
-model.strong <- as.character(strong)
-
-fit.strong <- cfa(model.strong, data = db1, group = "cohort_level",
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
-"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
-
-summary(fit.strong, fit.measures = TRUE)
-
-```
 
 ```{r}
-#| label: tbl-cohort
-#| tbl-cap: "Resultados invarianza entre cohortes"
+#| tbl-cap: Correlaciones latentes estandarizadas entre las preferencias de justicia de mercado y las dimensiones de la meritocracia (within)
 #| tbl-cap-location: top
 #| echo: false
 #| warning: false
+#| label: tbl-latent-cor
 
-# Comparaciones de invarianza
-an1 <- anova(fit.baseline, fit.thres)
-an2 <- anova(fit.thres, fit.strong)
+pe1 <- parameterEstimates(fit_validity_free, standardized = TRUE)
 
-tab01 <- bind_rows(
-  as_tibble(an1)[2,],
-  as_tibble(an2)[2,]
-) %>%
-  select("Chisq", "Df", chisq.diff = `Chisq diff`, df.diff = `Df diff`, pvalue = `Pr(>Chisq)`) %>%
-  mutate(
-    stars = stars.pval(pvalue),
-    chisqt = paste0(round(Chisq, 2), " (", Df, ")"),
-    decision = ifelse(pvalue > 0.05, "Accept", "Reject"),
-    model = c("Weak", "Strong")
-  ) %>%
-  bind_rows(
-    tibble(
-      Chisq = an1$Chisq[1],
-      Df = an1$Df[1],
-      chisq.diff = NA,
-      df.diff = NA,
-      pvalue = NA,
-      stars = "",
-      chisqt = paste0(round(an1$Chisq[1], 2), " (", an1$Df[1], ")"),
-      decision = "Reference",
-      model = "Configural"
-    )
-  ) %>%
-  select(model, chisqt, chisq.diff, df.diff, pvalue, stars, decision) %>%
-  mutate(model = factor(model, levels = c("Configural", "Weak", "Strong"))) %>%
-  arrange(model)
+mjp_vars   <- c("mjp1","mjp2")
+merit_vars <- c("percmerit1","percmerit2","percnmerit1","percnmerit2",
+                "prefmerit1","prefmerit2","prefnmerit1","prefnmerit2")
 
-# Medidas de ajuste (usando escaladas)
-fit.meas <- bind_rows(
-  fitMeasures(fit.baseline, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", 
-                                                 "rmsea.scaled", "rmsea.ci.lower", "rmsea.ci.upper"),],
-  fitMeasures(fit.thres, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", 
-                                              "rmsea.scaled", "rmsea.ci.lower", "rmsea.ci.upper"),],
-  fitMeasures(fit.strong, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", 
-                                               "rmsea.scaled", "rmsea.ci.lower", "rmsea.ci.upper"),]
-)
-
-# Renombrar columnas y calcular diferencias
-fit.meas <- fit.meas %>%
-  as_tibble() %>%
-  rename(
-    chisq = chisq.scaled,
-    df = df.scaled,
-    cfi = cfi.scaled,
-    rmsea = rmsea.scaled
+tab_mat <- pe1 %>%
+  filter(
+    op == "~~",
+    (lhs %in% mjp_vars & rhs %in% merit_vars) | (rhs %in% mjp_vars & lhs %in% merit_vars)
   ) %>%
   mutate(
-    diff.chi2 = chisq - lag(chisq, default = first(chisq)),
-    diff.df = df - lag(df, default = first(df)),
-    diff.cfi = cfi - lag(cfi, default = first(cfi)),
-    diff.rmsea = rmsea - lag(rmsea, default = first(rmsea))
+    mjp_raw   = if_else(lhs %in% mjp_vars, lhs, rhs),
+    merit_raw = if_else(lhs %in% mjp_vars, rhs, lhs),
+    mjp_w     = str_extract(mjp_raw,   "[12]$"),
+    merit_w   = str_extract(merit_raw, "[12]$")
   ) %>%
-  round(3) %>%
+  filter(mjp_w == merit_w) %>%
   mutate(
-    rmsea.ci = paste0(rmsea, " \n(", rmsea.ci.lower, "-", rmsea.ci.upper, ")")
-  )
-
-# Tabla final
-tab.inv <- bind_cols(tab01, fit.meas) %>%
-  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
-  mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
-  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
-
-# Encabezados
-col.nam <- c(
-  "Model", "&chi;^2 (df)", "CFI", "RMSEA (90% CI)",
-  "&Delta; &chi;^2 (&Delta; df)", "&Delta; CFI", "&Delta; RMSEA", "Decision"
-)
-
-# Salida con kable
-tab.inv %>%
-  kableExtra::kable(
-    format = "html",
-    align = "c",
-    booktabs = TRUE,
-    escape = FALSE,
-    col.names = col.nam
+    mjp_col = if_else(mjp_w == "1", "MJP (Wave 1)", "MJP (Wave 2)"),
+    merit   = str_remove(merit_raw, "[12]$"),
+    star    = if_else(!is.na(pvalue) & pvalue < .05, "*", ""),
+    cell    = paste0(sprintf("%.3f", std.all), star)
   ) %>%
-  kableExtra::kable_styling(
-    full_width = TRUE,
-    latex_options = "hold_position",
-    bootstrap_options = c("striped", "bordered", "condensed"),
-    font_size = 23
-  ) %>%
-  kableExtra::column_spec(c(1, 8), width = "3.5cm") %>%
-  kableExtra::column_spec(2:7, width = "4cm") %>%
-  kableExtra::column_spec(4, width = "5cm")
+  select(merit, mjp_col, cell) %>%
+  distinct() %>%
+  pivot_wider(names_from = mjp_col, values_from = cell) %>%
+  mutate(merit = recode(
+    merit,
+    percmerit  = "Meritocratic perception",
+    percnmerit = "Non-meritocratic perception",
+    prefmerit  = "Meritocratic preferences",
+    prefnmerit = "Non-meritocratic preferences",
+    .default = merit
+  )) %>%
+  rename(Construct = merit)
+tab_mat %>%
+  kableExtra::kable("html", escape = TRUE,
+        caption = NULL) %>%
+  kableExtra::kable_styling(latex_options = "hold_position",
+                            bootstrap_options=c("striped", "bordered", "condensed"), 
+                            full_width = FALSE) %>% 
+  kableExtra::add_footnote(c("N = 583","*p < .05."), "none")
 
 ```
 
-::: {.incremental .highlight-last style="font-size: 100%;"}
 
-- Se observa una fuente de invarianza asociada a los umbrales (thresholds) de los ítems **preferencia padres ricos y preferencia contactos** en el grupo de Básica.
+::: {.incremental style="font-size: 90%;"}
 
-- **Sustantivamente**: Los estudiantes de Básica y Media interpretan y utilizan las escalas de respuesta de manera diferente cuando juzgan la aceptabilidad de "preferir a padres ricos" y "usar contactos".
+Preferencias por justicia de mercado (MJP): indican el grado en que las personas consideran justo que mayores ingresos impliquen mejor acceso a salud, pensiones y educación en Chile.
 
 :::

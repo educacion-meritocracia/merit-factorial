@@ -4,6 +4,46 @@ bibliography: "input/bib/merit-factorial.bib"
 csl: "input/bib/apa6.csl"
 ---
 
+## Equipo
+
+:::{=html}
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; justify-items: center; align-items: center;">
+
+<div style="text-align: center;">
+  <img src="images/jc.png" style="width:200px; border-radius: 50%;" />
+  <div>JC</div>
+</div>
+
+<div style="text-align: center;">
+  <img src="images/andreas.jpg" style="width:200px; border-radius: 50%;" />
+  <div>Andreas</div>
+</div>
+</div>
+:::
+
+:::{=html}
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; justify-items: center; align-items: center;">
+
+<div style="text-align: center;">
+  <img src="images/tomas.png" style="width:200px; border-radius: 50%;" />
+  <div>Tomás</div>
+</div>
+
+<div style="text-align: center;">
+  <img src="images/rene.png" style="width:200px; border-radius: 50%;" />
+  <div>René</div>
+</div>
+
+</div>
+
+:::
+
+
+
+
+# Problema de investigación {.xlarge data-background-color="#5f5758"}
 
 ## Contexto y motivación 
 
@@ -16,7 +56,7 @@ csl: "input/bib/apa6.csl"
     * Dimensión objetiva:  movilidad social y la igualdad de oportunidades efectivas [e.g. @goldthorpe_myth_2003a; @vandewerfhorst_meritocracy_2024]
     * Dimensión subjetiva: percepciones, preferencias y actitudes sobre meritocracia y sus efectos [@garcia-sierra_dark_2023; @castillo_meritocracia_2019; @mijs_paradox_2019; @newman_economic_2023]
     
-- Meritocracia en contexto escolar: estas creencias a nivel escolar se asocian con una mayor justificación de diversas desigualdades sociales [@darnon_where_2018; @batruch_belief_2022; @wiederkehr_belief_2015]
+- Meritocracia en contexto escolar: estas creencias a nivel escolar se asocian con una mayor justificación de diversas desigualdades sociales [@darnon_where_2018; @batruch_belief_2022; @wiederkehr_belief_2015; @castillo_socialization_2024]
 
 :::
 
@@ -26,10 +66,37 @@ csl: "input/bib/apa6.csl"
 
 - Sin embargo, **la conceptualización y medición de las creencias meritocráticas** en la investigación empírica sigue siendo **fragmentada**
 
-- Castillo et al. [-@castillo_multidimensional_2023] proponen un marco conceptual y de medición minimalista para meritocracia en contextos de encuestas
+- Investigaciones recientes en meritocracia y educación suelen unidimensionalizar y forzar un continuo entre mérito y no-mérito, mezclando percepciones y preferencias [@liu_does_2025; @tang_meritocratic_2025; @reynolds_perceptions_2014]
+
+:::
+
+
+## Medición de meritocracia
+
+::::: columns
+::: {.column width="50%"}
+::: {.fragment}
+
+
+
+![](images/paper.jpeg)
+
+:::
 
 
 :::
+
+::: {.column width="50%" .incremental .highlight-last style="font-size: 110%;"}
+
+- Castillo et al. [-@castillo_multidimensional_2023]:
+
+    * Proponen un marco conceptual y de medición minimalista para meritocracia en contextos de encuestas
+    * Distingue entre percepciones vs. preferencias y entre elementos meritocráticos vs. no meritocráticos, usando 2 ítems por factor (trade-off)
+
+:::
+:::::
+
+
 
 ## Medición de meritocracia
 
@@ -67,8 +134,6 @@ knitr::include_graphics(path = "images/esquema1.png")
 knitr::include_graphics(path = "images/esquema2.png")
 
 ```
-
-
 
 
 ## Medición de meritocracia
@@ -125,18 +190,22 @@ knitr::include_graphics(path = "images/esquema5.png")
 
 
 
-# Este estudio {data-background-color="#5f5758"}
+## Este estudio 
 
 
-:::: {.incremental style="font-size: 150%;"}
+:::: {.incremental style="font-size: 100%;"}
 
 
-**<span style="color:darkorange">1. Objetivo**: Analizar la estabilidad de las percepciones y preferencias sobre elementos meritocráticos y no meritocráticos en etapa escolar en Chile</font>
+- **Objetivo**: Describir y medir la meritocracia en estudiantes (percepciones vs. preferencias; mérito vs. no-mérito) y evaluar su comparabilidad.
 
+- **Aproximación**: CFA del modelo 4F + pruebas de invarianza (cohortes/tiempo) + validez convergente con justicia de mercado (salud/educación/pensiones).
 
-**<span style="color:darkorange">2. Aproximación**: Invarianza de medición entre grupos y en el tiempo
+- **Hipótesis**: 
 
-**<span style="color:darkorange">3. Hipótesis**: El modelo de medición es estable entre cohortes y en el tiempo
+    * $H1$ (Medición): 4 factores—percepciones/preferencias × mérito/no-mérito.
+    * $H2$ (Invarianza cohortes): el modelo 4F es equivalente entre cohortes.
+    * $H3$ (Invarianza longitudinal): el modelo 4F es estable entre olas dentro de estudiantes.
+    * $H4$ (Validez): justicia de mercado (+) con mérito percibido y preferencias; (–) con no-mérito percibido.
 
 ::::
 

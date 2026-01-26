@@ -1,5 +1,5 @@
 ---
-pagetitle: "Jornada UDP 2025"
+pagetitle: "ACMME 2026"
 Author: Equipo EDUMER
 bibliography: "input/bib/merit-factorial.bib"
 csl: "input/bib/apa6.csl"
@@ -51,9 +51,9 @@ options(knitr.kable.NA = "")
 
 
 
-![](images/jusmer_trans.png)
+![](images/jusmer-logo-vert.png)
 
-![](images/qr.png)
+![](images/qr.jpg)
 
 :::
 
@@ -95,9 +95,11 @@ Segundo Congreso Internacional de la Asociación Chilena de Metodología, Medici
 
 {{< include 04-conclusiones.qmd >}}
 
-{{< include 05-anexo.qmd >}}
 
 ## Referencias
 
 ::: {#refs}
 :::
+
+{{< include 05-anexo.qmd >}}
+

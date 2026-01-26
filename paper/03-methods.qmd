@@ -52,14 +52,22 @@ db_long %>%
 
 # Method
 
-## Participants and Procedure
+## Participants
 
-This study draws on secondary data from the Panel Survey on Education and Meritocracy (EDUMER) for its 2023 and 2024 waves for school-age students. The primary objective is to examine students’ beliefs, attitudes, and behaviors concerning meritocracy, inequality, and citizenship. Data collection was carried out by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires administered to sixth-grade and first-year secondary students from nine schools located in the Metropolitan and Valparaíso regions of Chile. The sampling strategy was non-probabilistic and lacked quota controls; however, a minimum sample size of 900 students was established to ensure adequate statistical power. All participants were provided with an informed consent form that was reviewed and validated by a parent or legal guardian. The final analytical sample comprises 846 students for the first wave (386 girls, 421 boys, 39 identifying as other; $M_{age}$ = 13.4, $SD_{age}$ = 1.6), and the second wave followed 662 of them (303 girls, 338 boys, 21 identifying as other; $M_{age}$ = 14.4, $SD_{age}$ = 1.6). 
+This study draws on secondary data from the Panel Survey on Education and Meritocracy (EDUMER) for the 2023 and 2024 waves, covering school-age students[^1]. The primary objective of the survey was to examine students’ beliefs, attitudes, and behaviors concerning meritocracy, inequality, and citizenship. Data collection was conducted by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires administered to sixth-grade and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The sampling strategy was non-probabilistic and lacked quota controls; however, a minimum sample size of 900 students was established to ensure adequate statistical power. After data processing and the elimination of missing cases (listwise deletion), the final analytical sample comprises 846 students for the first wave (386 girls, 421 boys, 39 identifying as other; $M_{age}$ = 13.4, $SD_{age}$ = 1.6), and the second wave followed 662 of them (303 girls, 338 boys, 21 identifying as other; $M_{age}$ = 14.4, $SD_{age}$ = 1.6), corresponding to a retention rate of 78.3% (attrition 21.7%). The primary causes of attrition were school transfers between academic years and student absenteeism, which was reported to be high in several establishments. 
+
+[^1]: The survey was collected within the research project “Meritocracy in schools: Moral foundations of the education market and its implications for civic education in Chile” (FONDECYT Regular 2021 Nº 1210847).
+
+## Procedure
+
+A professional research firm (Datavoz) collected data via online questionnaires (CAWI). All participants received an informed consent form that was reviewed and validated by a parent or legal guardian before participation. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student; no directly identifying information (e.g., names) was collected for students or their guardians in the analytic files. The study received ethical approval from the Research Ethics Committee at the Faculty of Social Sciences, University of Chile. The committee determined that the project posed minimal risk and approved the consent and confidentiality procedures described in the ethical assessment report.
 
 
 ## Measures
 
-**Scale of Perceptions and Preferences on Meritocracy**: The variables included in the measurement model for meritocratic and non-meritocratic perceptions and preferences are operationalized according to the items proposed in the original scale. Perception of meritocracy is measured by two items that assess the level of agreement with the idea that effort and ability are rewarded in Chile, while non-meritocratic perception is measured by two items evaluating the agreement that success is linked to connections and family wealth. Preference for meritocracy is measured by two items that evaluate agreement with the idea that those who work harder or are more talented should be more rewarded. Preference for non-meritocratic aspects is measured by two indicators assessing agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success (see @tbl-merit). Each item is rated on a four-point Likert scale ranging from "strongly disagree" (1) to "strongly agree" (4).   
+### Scale of Perceptions and Preferences on Meritocracy
+
+Meritocratic and non-meritocratic perceptions and preferences were measured using the same items proposed in the original scale [@castillo_multidimensional_2023]. Perceived meritocracy is measured by two items assessing the extent to which effort and ability are rewarded in Chile. In contrast, non-meritocratic perception is measured by two items assessing the extent to which success is perceived as linked to connections and family wealth. Preference for meritocracy is measured by two items assessing agreement that those who work harder or are more talented should be better rewarded. Preference for non-meritocratic aspects is measured by two indicators assessing agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success  (see @tbl-merit). Each item is rated on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference. 
 
 ```{r}
 #| tbl-cap: Items for perceptions and preferences for meritocracy scale
@@ -92,7 +100,12 @@ This study draws on secondary data from the Panel Survey on Education and Merito
 
 
 
-**Cohort level**: To differentiate students’ academic levels across waves for conditional and multigroup invariance analyses, we created a variable indicating whether each student belonged to the primary or secondary school cohort at the time of the survey. This classification allows us to account for developmental differences between and within students. The composition of the cohorts is detailed in @tbl-cohort.
+### Cohort level
+
+
+To distinguish students’ academic level across waves for conditional and multi-group invariance analyses, we created a cohort indicator capturing whether the respondent belonged to the primary (sixth grade) or secondary (first-year secondary) cohort at the time of each survey wave. Descriptive statistics[^2] by cohort are reported in @tbl-cohort. 
+
+[^2]: @tbl-cohort totals (N = 1,508) correspond to the sum of person-wave observations (846 at T1 + 662 at T2), rather than unique individuals.
 
 
 ```{r}
@@ -142,14 +155,31 @@ left_join(tot, edad) %>%
 ```
 
 
+
+### Preferences for market justice
+
+Preferences for market justice were operationalized using three items that capture how strongly individuals justify conditioning access to core services—healthcare, pensions, and education— basen on individual income. Each item asks whether it is fair in Chile that people with higher incomes can access better [healthcare/pensions/education] than people with lower incomes. In all cases, respondents indicate their level of agreement
+on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4).
+
+As evidence of unidimensionality, an exploratory factor analysis indicated a single-factor structure, and a subsequent confirmatory factor analysis showed good model fit for a one-factor solution (details reported in the Supplementary Materials).
+
+
 ## Analytical strategy
+
+### Measurement model and estimation
 
 To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, using Diagonally Weighted Least Squares with robust correction (WLSMV) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous [@kline_principles_2023].
 
 Model fit was assessed following the guidelines of Brown [-@brown_confirmatory_2015], using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by $p$ > 0.05 and a Chi-square/df ratio < 3).
 
-A key contribution of this study lies in assessing the metric stability of the measurement model through factorial invariance testing [@davidov_measurement_2014]. We implemented two complementary strategies: invariance across cohorts (primary vs. secondary school students) and longitudinal invariance using two panel waves. Given the ordinal nature of the items, we estimated measurement invariance using methods appropriate for ordered categorical measures, following Liu et al. [-@liu_testing_2017] analysis. Setting a hierarchical approach, we tested four nested models: configural (equal factorial structure), metric (equal factor loadings), scalar (equal intercepts and thresholds), and strict invariance (equal residual variances). 
+### Measurement invariance
+
+A key contribution of this study is the assessment of the metric stability of the measurement model using factorial invariance testing [@davidov_measurement_2014]. We implemented two complementary strategies: invariance across cohorts (primary vs. secondary school students) and longitudinal invariance using two panel waves. Given the ordinal nature of the items, we estimated measurement invariance using methods appropriate for ordered categorical measures, following the analysis by Liu et al. [-@liu_testing_2017]. Setting a hierarchical approach, we tested four nested models: configural (equal factorial structure), metric (equal factor loadings), scalar (equal intercepts and thresholds), and strict invariance (equal residual variances).
 
 In addition to the traditional Chi-square difference test for model comparisons, we used changes in fit indices to assess invariance: a change in CFI ($\Delta \geq -0.010$) and RMSEA ($\Delta \geq 0.0$) were adopted as more robust and sample-size-independent criteria, following Chen's recommendations [-@chen_sensitivity_2007].
 
-All analyses were performed using the lavaan package in R version 4.2.2. The hypotheses of this research were [pre-registered](https://osf.io/hjat2/) on the Open Science Framework (OSF), hosted by the Center of Open Science.
+### Construct validity via latent correlations
+
+After establishing the supported level of longitudinal measurement invariance for the four-factor meritocracy scale, we evaluated construct validity by estimating latent correlations between each meritocracy dimension and a separate latent factor capturing preferences for market justice (healthcare, pensions, and education). Latent correlations—estimated at the factor level within CFA/SEM—reflect associations between constructs net of measurement error, and are commonly used as evidence of convergent and discriminant validity in measurement models. We interpreted stronger (vs. weaker) associations with market-justice preferences as supportive of convergent validity when theoretically expected, and we checked that correlations were not so large as to suggest poor discriminant validity or empirical redundancy between constructs [@kline_principles_2023; @brown_confirmatory_2015].
+
+All analyses were performed using the *lavaan* package in R version 4.2.2. The hypotheses of this research were [pre-registered](https://osf.io/hjat2/) on the Open Science Framework (OSF).

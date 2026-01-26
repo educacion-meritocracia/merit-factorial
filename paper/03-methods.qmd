@@ -158,10 +158,7 @@ left_join(tot, edad) %>%
 
 ### Preferences for market justice
 
-Preferences for market justice were operationalized using three items that capture how strongly individuals justify conditioning access to core services—healthcare, pensions, and education— basen on individual income. Each item asks whether it is fair in Chile that people with higher incomes can access better [healthcare/pensions/education] than people with lower incomes. In all cases, respondents indicate their level of agreement
-on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4).
-
-As evidence of unidimensionality, an exploratory factor analysis indicated a single-factor structure, and a subsequent confirmatory factor analysis showed good model fit for a one-factor solution (details reported in the Supplementary Materials).
+Preferences for market justice were measured with three items capturing the extent to which respondents justify conditioning access to core services—healthcare, pensions, and education—on individual income. Each item asks whether it is fair in Chile that people with higher incomes can access better healthcare, pensions, or education than people with lower incomes. Responses were recorded on a four-point Likert scale ranging from strongly disagree (1) to strongly agree (4). We combined the three items intoa composite measure of“market justice preferences," calculated as the average of these three items, which we use to assess the convergent validity of the meritocracy scale. This operationalization follows prior work to facilitate comparability with the existing literature [@castillo_perceptions_2025; @castillo_socialization_2024; @lindh_public_2015]. Supporting the measure's unidimensionality, an exploratory factor analysis indicated a single-factor structure, and the index showed acceptable internal consistency (Cronbach’s $\alpha$ = 0.77; details reported in the Supplementary Materials). 
 
 
 ## Analytical strategy

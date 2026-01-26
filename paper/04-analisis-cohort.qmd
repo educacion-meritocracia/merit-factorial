@@ -184,7 +184,7 @@ Taken together, these findings suggest that, although the proposed factor struct
 ## Cohort Invariance Test
 
 
-The results of the different invariance models are presented in the @tbl-cohort-table. To assess invariance between cohorts, the sequential procedure proposed by @svetina_multiplegroup_2020 was followed, which involves estimating three hierarchical models: (1) a configural model, (2) a model with threshold restrictions, and (3) a final model that simultaneously imposes equality of thresholds and factor loadings between groups.
+The results of the different invariance models are presented in the @tbl-cohort-table. To assess invariance between cohorts, the sequential procedure proposed by @svetina_multiplegroup_2020a was followed, which involves estimating three hierarchical models: (1) a configural model, (2) a model with threshold restrictions, and (3) a final model that simultaneously imposes equality of thresholds and factor loadings between groups.
 
 First, the configural model was estimated, which assumes an identical factor structure in both cohorts (primary and secondary education), without imposing equality restrictions on the parameters. This model presented excessively high fit indices (CFI = 1.00; RMSEA = 0.00), suggesting overfitting and, therefore, insufficient empirical evidence to support the stability of the factor structure between the compared groups.
 

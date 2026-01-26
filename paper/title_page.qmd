@@ -1,0 +1,67 @@
+---
+title: "Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts"
+subtitle: "Cover Letter"
+format:
+  pdf: 
+    indent: false
+    keep-tex: true
+link-citations: true
+linestretch: 1.15       
+mainfont: Times New Roman
+fontsize: 12pt          
+geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
+papersize: letter
+colorlinks: true
+fig-height: 4
+fig-width: 7.5
+header-includes:
+  - \usepackage{threeparttable}
+---
+
+## Authors Identification
+
+Andreas Laffert[^*], Institute of Sociology, Pontifical Catholic University of Chile, Santiago de Chile.
+ORCID: 0000-0002-9008-2454
+
+Juan Carlos Castillo, Departament of Sociology, University of Chile, Santiago de Chile.  
+ORCID: 0000-0003-1265-7854
+    
+René Canales, Institute of Sociology, Pontifical Catholic University of Chile, Santiago de Chile.
+ORCID: 0009-0002-4299-2725
+
+Tomás Urzúa, Departament of Sociology, University of Chile, Santiago de Chile.
+ORCID: 0009-0008-3167-6819
+
+Kevin Carrasco
+ORCID: 0000-0002-9348-8361
+
+## Exclusive Submission Statement
+
+The authors confirm that this article has been submitted exclusively to this journal. 
+
+## Acknowledgments
+
+The authors recognize the support of the National Research and Development Agency (ANID) through the grant from the National Fund for Scientific and Technological Development (FONDECYT) N°1250518.
+
+## Authors' Contributions
+
+Author roles were classified using the Contributor Role Taxonomy [CRediT](https://credit.niso.org/) as follows: Andreas Laffert: Conceptualization, Supervision, Methodology, Writing - review and editing; Juan Carlos Castillo: Methodology, Formal analysis, Writing - review and editing; René Canales: Conceptualization, Methodology, Formal analysis, Software, Visualization, Writing - review and editing; Tomás Urzúa: Conceptualization, Writing - review and editing. 
+
+
+## Conflict of Interest
+
+The authors declare no conflict of interest.
+
+## Funding
+
+This research received funding from ANID/FONDECYT grant N°1250518.
+
+
+## Data Avaibility Statement
+
+The original data presented in the study are openly available in <https://github.com/educacion-meritocracia>
+
+Access to the data, code, and analysis presented in the study are openly available in <https://github.com/educacion-meritocracia/merit-factorial>.
+
+
+[^*]: Corresponding author (andreas.laffert@uchile.cl - Ignacio Carrera Pinto 1045 Ñuñoa, Santiago de Chile). 

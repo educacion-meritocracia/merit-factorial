@@ -54,20 +54,29 @@ db_long %>%
 
 ## Participants
 
-This study draws on secondary data from the Panel Survey on Education and Meritocracy (EDUMER) for the 2023 and 2024 waves, covering school-age students[^1]. The primary objective of the survey was to examine students’ beliefs, attitudes, and behaviors concerning meritocracy, inequality, and citizenship. Data collection was conducted by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires administered to sixth-grade and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The sampling strategy was non-probabilistic and lacked quota controls; however, a minimum sample size of 900 students was established to ensure adequate statistical power. After data processing and the elimination of missing cases (listwise deletion), the final analytical sample comprises 846 students for the first wave (386 girls, 421 boys, 39 identifying as other; $M_{age}$ = 13.4, $SD_{age}$ = 1.6), and the second wave followed 662 of them (303 girls, 338 boys, 21 identifying as other; $M_{age}$ = 14.4, $SD_{age}$ = 1.6), corresponding to a retention rate of 78.3% (attrition 21.7%). The primary causes of attrition were school transfers between academic years and student absenteeism, which was reported to be high in several establishments. 
+This study draws on secondary data from the Panel Survey on Education and Meritocracy (EDUMER) for the 2023 and 2024 waves, covering school-age students[^1]. The primary objective of the survey was to examine students’ beliefs, attitudes, and behaviors concerning meritocracy, inequality, and citizenship. The questionnaire was administered to sixth-grade and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The sampling strategy was non-probabilistic and lacked quota controls; however, a minimum sample size of 900 students was established to ensure adequate statistical power. After data processing and the elimination of missing cases (listwise deletion), the final analytical sample comprises 846 students for the first wave (386 girls, 421 boys, 39 identifying as other; $M_{age}$ = 13.4, $SD_{age}$ = 1.6), and the second wave followed 662 of them (303 girls, 338 boys, 21 identifying as other; $M_{age}$ = 14.4, $SD_{age}$ = 1.6), corresponding to a retention rate of 78.3% (attrition 21.7%). The primary causes of attrition were school transfers between academic years and student absenteeism, which was reported to be high in several establishments. 
 
 [^1]: The survey was collected within the research project “Meritocracy in schools: Moral foundations of the education market and its implications for civic education in Chile” (FONDECYT Regular 2021 Nº 1210847).
 
 ## Procedure
 
-A professional research firm (Datavoz) collected data via online questionnaires (CAWI). All participants received an informed consent form that was reviewed and validated by a parent or legal guardian before participation. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student; no directly identifying information (e.g., names) was collected for students or their guardians in the analytic files. The study received ethical approval from the Research Ethics Committee at the Faculty of Social Sciences, University of Chile. The committee determined that the project posed minimal risk and approved the consent and confidentiality procedures described in the ethical assessment report.
-
+Data collection was conducted by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires. All participants received an informed consent form that was reviewed and validated by a parent or legal guardian before participation. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student; no directly identifying information (e.g., names) was collected for students or their guardians in the analytic files. The study received ethical approval from the Research Ethics Committee at the Faculty of Social Sciences, University of Chile. The committee determined that the project posed minimal risk and approved the consent and confidentiality procedures described in the ethical assessment report.
 
 ## Measures
 
 ### Scale of Perceptions and Preferences on Meritocracy
 
-Meritocratic and non-meritocratic perceptions and preferences were measured using the same items proposed in the original scale [@castillo_multidimensional_2023]. Perceived meritocracy is measured by two items assessing the extent to which effort and ability are rewarded in Chile. In contrast, non-meritocratic perception is measured by two items assessing the extent to which success is perceived as linked to connections and family wealth. Preference for meritocracy is measured by two items assessing agreement that those who work harder or are more talented should be better rewarded. Preference for non-meritocratic aspects is measured by two indicators assessing agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success  (see @tbl-merit). Each item is rated on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference. 
+Meritocratic and non-meritocratic perceptions and preferences were measured using the same items proposed in the original scale [@castillo_multidimensional_2023]. Each of the four dimensions of the scale is measured by two items. The dimensions are:
+
+- Perceived meritocracy: the extent to which effort and ability are rewarded in Chile,
+
+- Perceived non-meritocracy: the extent to which success is perceived as linked to connections and family wealth.
+
+- Preference for meritocracy: agreement with that those who work harder or are more talented should be better rewarded. 
+
+- Preference for non-meritocracy: agreement with that it is acceptable for individuals with better connections or wealthy parents to achieve greater success  (see @tbl-merit). 
+ 
+Each item is rated on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference. 
 
 ```{r}
 #| tbl-cap: Items for perceptions and preferences for meritocracy scale
@@ -101,7 +110,6 @@ Meritocratic and non-meritocratic perceptions and preferences were measured usin
 
 
 ### Cohort level
-
 
 To distinguish students’ academic level across waves for conditional and multi-group invariance analyses, we created a cohort indicator capturing whether the respondent belonged to the primary (sixth grade) or secondary (first-year secondary) cohort at the time of each survey wave. Descriptive statistics[^2] by cohort are reported in @tbl-cohort. 
 
@@ -158,7 +166,7 @@ left_join(tot, edad) %>%
 
 ### Preferences for market justice
 
-Preferences for market justice were measured with three items capturing the extent to which respondents justify conditioning access to core services—healthcare, pensions, and education—on individual income. Each item asks whether it is fair in Chile that people with higher incomes can access better healthcare, pensions, or education than people with lower incomes. Responses were recorded on a four-point Likert scale ranging from strongly disagree (1) to strongly agree (4). We combined the three items intoa composite measure of“market justice preferences," calculated as the average of these three items, which we use to assess the convergent validity of the meritocracy scale. This operationalization follows prior work to facilitate comparability with the existing literature [@castillo_perceptions_2025; @castillo_socialization_2024; @lindh_public_2015]. Supporting the measure's unidimensionality, an exploratory factor analysis indicated a single-factor structure, and the index showed acceptable internal consistency (Cronbach’s $\alpha$ = 0.77; details reported in the Supplementary Materials). 
+We included in ths research measures of preferences for market justice in order to assess the convergent validity of the scale. They were measured with three items capturing the extent to which respondents justify conditioning access to core services—healthcare, pensions, and education—on individual income. Each item asks whether it is fair in Chile that people with higher incomes can access better healthcare, pensions, or education than people with lower incomes. Responses were recorded on a four-point Likert scale ranging from strongly disagree (1) to strongly agree (4). We combined the three items into a composite measure of “market justice preferences," calculated as the average of these three items. This operationalization follows prior work to facilitate comparability with the existing literature [@castillo_perceptions_2025; @castillo_socialization_2024; @lindh_public_2015]. Supporting the measure's unidimensionality, an exploratory factor analysis indicated a single-factor structure, and the index showed acceptable internal consistency (Cronbach’s $\alpha$ = 0.77; details reported in the Supplementary Materials). 
 
 
 ## Analytical strategy

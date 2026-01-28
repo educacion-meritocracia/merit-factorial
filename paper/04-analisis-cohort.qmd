@@ -137,6 +137,7 @@ mmedia_cfa <- cfa(model = model_restricted,
 ```{r}
 #| include: false 
 
+summary(mgeneral_cfa, standardized = TRUE, fit.measures = TRUE)
 summary(mmedia_cfa, standardized = TRUE, fit.measures = TRUE)
 summary(mbasica_cfa, standardized = TRUE, fit.measures = TRUE)
 ```
@@ -165,7 +166,7 @@ kable(left_join(x = standardizedsolution(mbasica_cfa) %>%
 #| out.width: 100%
 #| out.height: "auto" 
 
-knitr::include_graphics('imagenes/esquema-cohortes.png')
+knitr::include_graphics('imagenes/esquema-general.png')
 ```
 
 

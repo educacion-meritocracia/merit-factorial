@@ -49,8 +49,9 @@ author:
       - ref: 2    
   - name: Kevin Carrasco
     orcid: 0000-0002-9348-8361
-    email: kevin.carrasco@ug.uchile.cl
-    affiliations: 
+    email: kevin.carrasco@uchile.cl
+    affiliations:
+      - ref: 2 
 affiliations: 
   - id: 1
     name: Institute of Sociology, Pontifical Catholic University of Chile
@@ -80,13 +81,9 @@ and it was last rendered at {{< now >}}.
 
 {{< include 03-methods.qmd >}}
 
-{{< include 04-analisis-desc.qmd >}}
+{{< include 04-measurement-model.qmd >}}
 
-{{< include 04-analisis-cohort.qmd >}}
-
-{{< include 04-analisis-longitudinal.qmd >}}
-
-{{< include 04-analisis-validez.qmd >}}
+{{< include 04-invariance.qmd >}}
 
 {{< include 05-discussion.qmd >}}
 

@@ -1,0 +1,165 @@
+---
+author: "Equipo EDUMER"
+bibliography: "../input/bib/merit-factorial.bib"
+csl: "../input/bib/apa6.csl"
+editor_options: 
+  chunk_output_type: console
+---
+# Results
+
+## Measurement model
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+
+table_format <- if (is_html_output()) {
+  "html"
+} else if (is_latex_output()) {
+  "latex"
+}
+table_format2 <- if (is_html_output()) {
+  T
+} else if (is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+
+# funcion para exportar tablas en formato html o latex
+```
+
+```{r}
+#| label: packages
+#| include: false
+#| echo: false
+
+if (!require("pacman")) install.packages("pacman") #para instalar pacman en caso de no estar instalado
+
+pacman::p_load(
+  tidyverse,
+  sjmisc,
+  sjPlot,
+  here,
+  lavaan,
+  psych,
+  ggdist,
+  semTools,
+  gtools,
+  kableExtra
+)
+
+options(scipen = 999) # para eliminar la notación científica
+rm(list = ls()) # limpiar el ambiente 
+```
+
+```{r}
+#| label: longitudinal data 
+#| echo: false
+#| output: false
+
+load(file = here("output", "data", "db_long_proc.RData")) #cargar base con las dos olas 
+
+names(db_long) #ver nombres de variables
+glimpse(db_long) # ver los primeros 15 casos de cada variable
+dim(db_long) # ver cantidad de filas y columnas 
+```
+
+```{r}
+#| label: cohort data
+#| echo: false
+
+db1 <- db_long %>%
+select(id_estudiante, starts_with(c("perc", "pref"))) %>% 
+  drop_na()#%>% # eliminar variables que no son parte del analisis
+#na.omit() # listwise deletion
+
+```
+
+```{r}
+#| label: Initial model
+
+# model_restricted <- '
+#perc_merit = ~ perc_effort + perc_talent
+#perc_nmerit = ~ perc_rich_parents + perc_contact
+#pref_merit = ~ pref_effort + pref_talent
+#pref_nmerit = ~ pref_rich_parents + pref_contact
+#'
+```
+
+```{r}
+#| label: Measurement model
+#| include: false 
+
+model_base <- ('
+perc_merit =~ perc_effort + perc_talent
+perc_nmerit =~ perc_rich_parents + perc_contact
+pref_merit =~ pref_effort + pref_talent
+pref_nmerit =~ pref_rich_parents + pref_contact
+')
+
+```
+
+```{r}
+#| label: Models by cohort
+#| output: false
+
+mgeneral_cfa <- cfa(model = model_base, 
+                   data = db1, 
+                   estimator = "WLSMV",
+                   ordered = T,
+                   std.lv = F,
+                   parameterization = "theta")
+
+#mbasica_cfa <- cfa(model = model_restricted, 
+#                   data = subset(db1, cohort_level == "Primary"), 
+#                   estimator = "WLSMV",
+#                   ordered = T,
+#                   std.lv = F)
+#
+#mmedia_cfa <- cfa(model = model_restricted, 
+#                  data = subset(db1, cohort_level == "Secondary"), 
+#                  estimator = "WLSMV",
+#                  ordered = T,
+#                  std.lv = F)
+#
+# se estiman 3 modelos CFA: uno con toda la muestra, un segundo modelo de la cohorte de básica y un tercer modelo de la cohorte de media
+```
+
+```{r}
+#| include: false 
+
+summary(mgeneral_cfa, standardized = TRUE, fit.measures = TRUE)
+#summary(mmedia_cfa, standardized = TRUE, fit.measures = TRUE)
+#summary(mbasica_cfa, standardized = TRUE, fit.measures = TRUE)
+```
+
+@fig-general presents the standardized factor loadings and the overall fit of the general measurement model that pooled together the entire analytical sample (cohorts and waves). The model shows acceptable fit according to conventional benchmarks (CFI = 0.937; TLI = 0.873; RMSEA = 0.069), indicating that the proposed four-factor structure provides a reasonable summary of the covariance pattern in the combined sample.
+
+```{r}
+#| label: fig-general
+#| fig-cap: Multigroup model diagram
+#| fig-cap-location: top
+#| echo: false
+#| out.width: 100%
+#| out.height: "auto" 
+
+knitr::include_graphics(here('paper/imagenes/esquema-general.png'))
+```
+
+
+Standardized loadings are generally moderate to strong and vary across dimensions. For meritocratic perceptions, both items load positively, with effort showing a particularly strong loading ($\beta$ = 0.88) and talent a moderate one ($\beta$ = 0.62). Meritocratic preferences display more balanced—and somewhat weaker—loadings for effort ($\beta$ = 0.59) and talent ($\beta$ = 0.55). For non-meritocratic perceptions, both indicators load strongly, especially contacts ($\beta$ = 0.88) and, to a lesser extent, coming from a rich family ($\beta$ = 0.72). Non-meritocratic preferences show similarly strong and balanced loadings, with contacts ($\beta$ = 0.84) and rich family ($\beta$ = 0.72), suggesting that both items capture this latent dimension to a comparable degree.
+
+The latent correlations indicate a differentiated structure. Meritocratic perceptions and meritocratic preferences are positively correlated ($r$ = 0.14), consistent with some alignment between what students think is rewarded and what they think should be rewarded. Meritocratic and non-meritocratic perceptions are negatively correlated ($r$ = −0.21), suggesting that students who perceive greater meritocracy in society tend to view a weaker role for connections and family wealth. At the same time, non-meritocratic perceptions are positively related to meritocratic preferences, suggesting that perceiving society as rewarding contacts and wealth may coincide with stronger endorsement of meritocratic ideals. Finally, meritocratic and non-meritocratic preferences are modestly positively correlated ($r$ = 0.15), and non-meritocratic perceptions and preferences are also positively associated ($r$ = 0.22), indicating that recognizing non-meritocratic mechanisms in practice is linked to greater acceptance of them as legitimate, albeit to a moderate extent.
+
+

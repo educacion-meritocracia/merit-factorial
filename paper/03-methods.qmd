@@ -164,10 +164,6 @@ left_join(tot, edad) %>%
 
 
 
-### Preferences for market justice
-
-We included in ths research measures of preferences for market justice in order to assess the convergent validity of the scale. They were measured with three items capturing the extent to which respondents justify conditioning access to core services—healthcare, pensions, and education—on individual income. Each item asks whether it is fair in Chile that people with higher incomes can access better healthcare, pensions, or education than people with lower incomes. Responses were recorded on a four-point Likert scale ranging from strongly disagree (1) to strongly agree (4). We combined the three items into a composite measure of “market justice preferences," calculated as the average of these three items. This operationalization follows prior work to facilitate comparability with the existing literature [@castillo_perceptions_2025; @castillo_socialization_2024; @lindh_public_2015]. Supporting the measure's unidimensionality, an exploratory factor analysis indicated a single-factor structure, and the index showed acceptable internal consistency (Cronbach’s $\alpha$ = 0.77; details reported in the Supplementary Materials). 
-
 
 ## Analytical strategy
 
@@ -182,9 +178,5 @@ Model fit was assessed following the guidelines of Brown [-@brown_confirmatory_2
 A key contribution of this study is the assessment of the metric stability of the measurement model using factorial invariance testing [@davidov_measurement_2014]. We implemented two complementary strategies: invariance across cohorts (primary vs. secondary school students) and longitudinal invariance using two panel waves. Given the ordinal nature of the items, we estimated measurement invariance using methods appropriate for ordered categorical measures, following the analysis by Liu et al. [-@liu_testing_2017]. Setting a hierarchical approach, we tested four nested models: configural (equal factorial structure), metric (equal factor loadings), scalar (equal intercepts and thresholds), and strict invariance (equal residual variances).
 
 In addition to the traditional Chi-square difference test for model comparisons, we used changes in fit indices to assess invariance: a change in CFI ($\Delta \geq -0.010$) and RMSEA ($\Delta \geq 0.0$) were adopted as more robust and sample-size-independent criteria, following Chen's recommendations [-@chen_sensitivity_2007].
-
-### Construct validity via latent correlations
-
-After establishing the supported level of longitudinal measurement invariance for the four-factor meritocracy scale, we evaluated construct validity by estimating latent correlations between each meritocracy dimension and a separate latent factor capturing preferences for market justice (healthcare, pensions, and education). Latent correlations—estimated at the factor level within CFA/SEM—reflect associations between constructs net of measurement error, and are commonly used as evidence of convergent and discriminant validity in measurement models. We interpreted stronger (vs. weaker) associations with market-justice preferences as supportive of convergent validity when theoretically expected, and we checked that correlations were not so large as to suggest poor discriminant validity or empirical redundancy between constructs [@kline_principles_2023; @brown_confirmatory_2015].
 
 All analyses were performed using the *lavaan* package in R version 4.2.2. The hypotheses of this research were [pre-registered](https://osf.io/hjat2/) on the Open Science Framework (OSF).

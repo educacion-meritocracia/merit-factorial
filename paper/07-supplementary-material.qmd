@@ -1,977 +1,692 @@
----
-author: "Equipo EDUMER"
-bibliography: "input/bib/just-ineq-merit.bib"
-csl: "input/bib/multidisciplinary-digital-publishing-institute.csl"
----
 
-# Supplementary material
+# Supplementary material {#anexo}
 
-```{r load, include=FALSE}
-pacman::p_load(tidyverse,
-               ggpubr, 
-               lme4,
-               ordinal,
-               sjPlot, 
-               texreg,
-               kableExtra,
-               easystats,
-               ggeffects,
-               knitr,
-               webshot2)
+This section presents the supplementary material for this study. 
 
-options(scipen=999)
-rm(list = ls())
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
 
-load("input/data/data_index.RData")
-load("input/data/data_rec.RData")
-load("input/data/mlm_models.RData")
-```
+library(knitr)
 
-```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = F,
                       warning = F,
                       error = F, 
                       message = F) 
-```
 
-## Complete multilevel models
+table_format <- if (knitr::is_html_output()) {
+   #conditional instructions for kable
+   "html" #if html set "html" in format
+ } else if (knitr::is_latex_output()) {
+   "latex"#if latex set "latex" in format
+ }
 
-```{r echo=FALSE}
-
-data_rec <- data_rec %>% mutate(universitario = case_when(educacion_rec=="Ed Basica"~"No",
-                                                          educacion_rec=="Ed Media"~"No",
-                                                          educacion_rec=="Ed Tecnica"~"No",
-                                                          educacion_rec=="Universidad o posgrado"~"Si",
-                                                          educacion_rec=="Ns/Nr"~"Ns/Nr"))
-data_rec$universitario <- factor(data_rec$universitario, levels = c("No", "Si", "Ns/Nr"))
-
-data_rec <- data_rec %>% mutate(school_nse = case_when(cod_grupo=="Bajo"~"Bajo",
-                                                          cod_grupo=="Medio bajo"~"Medio",
-                                                          cod_grupo=="Medio"~"Medio",
-                                                          cod_grupo=="Medio alto"~"Medio",
-                                                          cod_grupo=="Alto"~"Alto"))
-data_rec$school_nse <- factor(data_rec$school_nse, levels = c("Bajo", "Medio", "Alto"))
-
-data_salud <- data_rec %>% 
-    dplyr::select(-just_pension, -just_educ, -redistribucion)
-data_salud <- na.omit(data_salud)
-data_salud$just_salud_fact <- as_factor(data_salud$just_salud)
-
-m0_h <- clmm(just_salud_fact ~ 1 + (1 | mrbd), data=data_salud)
-
-m1_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
-    inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_salud) 
-
-m2_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
-    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
-    libros_rec + (1 | mrbd), data=data_salud) 
-
-m3_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
-    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
-    libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_salud) 
-
-m4_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
-    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
-    libros_rec + acc_tec + internet_rec + school_nse + simce + (1 | mrbd), data=data_salud) 
-
-m5_h <- clmm(just_salud_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
-    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
-    libros_rec + acc_tec + internet_rec + school_nse + simce +
-    mean_educ + cod_depe2 +(1 | mrbd), data=data_salud) 
-
-modelos_health <- list(m0_h, m1_h, m2_h, m3_h, m4_h, m5_h)
-
-```
-
-```{r echo=FALSE, results='asis'}
-#| tbl-cap: "Cumulative Link Multilevel Models for Justifying Differential Access to Health Care"
-#| label: tbl-ordinal-health
-
-ccoef <- list(
-  "1|2" = "Strongly Disagree|Disagree",
-  "2|3" = "Disagree|Agree",
-  "3|4" = "Agree|Strongly Agree",
-  inteligencia_esc = "School talent",
-  esfuerzo_esc = "School effort",
-  inteligencia_soc = "Social talent",
-  esfuerzo_soc = "Social effort",
-  merito_soc = "Deservingness",
-  universitarioSi = "University or posgraduate",
-  "universitarioNs/Nr" = "Missing",
-  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
-  acc_tec = "Technology acces",
-  internet_rec2 = "No internet connectivity (Ref.= Internet connectivity)",
-  school_nseMedio = "SES Medium",
-  school_nseAlto = "SES High",
-  simceMedio = "Simce Medium",
-  simceAlto = "Simce High",
-  mean_educ = "Prop. university level at school",
-  "cod_depe2Part. subvencionado" = "Subsidized Private",
-  "cod_depe2Part. privado" = "Private")
-
-texreg::texreg(
-  l = modelos_health,
-  caption = NULL,
-  stars = c(0.05, 0.01, 0.001),
-  custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
-  threeparttable = T,
-  custom.model.names = paste0(rep("Model ",6), seq(0,5)),
-  custom.coef.map = ccoef,
-  leading.zero = TRUE,
-  use.packages = FALSE,
-  booktabs = TRUE,
-  scalebox = 0.7,
-  groups = list("Parental education (Ref.= Non-university)" = 9:10, "Socioeconomic level (Ref.= Low)" = 14:15, "Achievement score (Ref.= Low)" = 16:17, "School dependence (Ref.= Public)" = 19:20),
-  custom.gof.names = c("Log Likelihood",
-                       "AIC", 
-                       "BIC", 
-                       "Num.obs",
-                       "Num. groups: Schools",
-                       "Var: Schools (Intercept)"))
-
-               
-```
-
-```{r echo=FALSE}
-data_pension <- data_rec %>% 
-    dplyr::select(-just_educ, -just_salud, -redistribucion)
-data_pension <- na.omit(data_pension)
-data_pension$just_pension_fact <- as_factor(data_pension$just_pension)
-
-m0_p <- clmm(just_pension_fact ~ 1 + (1 | mrbd), data=data_pension)
-
-m1_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc +
-             esfuerzo_esc + inteligencia_soc + esfuerzo_soc +
-             merito_soc + (1 | mrbd), data=data_pension) 
-
-m2_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc +
-             esfuerzo_esc + inteligencia_soc + esfuerzo_soc +
-             merito_soc + universitario + libros_rec +
-             (1 | mrbd), data=data_pension) 
-
-m3_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc +
-             esfuerzo_esc + inteligencia_soc + esfuerzo_soc +
-             merito_soc + universitario + libros_rec + acc_tec +
-             internet_rec + (1 | mrbd), data=data_pension) 
-
-m4_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc +
-             esfuerzo_esc + inteligencia_soc + esfuerzo_soc +
-             merito_soc + universitario + libros_rec + acc_tec + 
-             internet_rec + school_nse + simce + (1 | mrbd),
-             data=data_pension) 
-
-m5_p <- clmm(just_pension_fact ~ 1 + inteligencia_esc +
-             esfuerzo_esc + inteligencia_soc + esfuerzo_soc +
-             merito_soc + universitario + libros_rec + acc_tec + 
-             internet_rec + school_nse + simce + mean_educ + 
-             cod_depe2 + (1 | mrbd), data=data_pension) 
-
-modelos_pension <- list(m0_p, m1_p, m2_p, m3_p, m4_p, m5_p)
-
-```
-
-```{r echo=FALSE, results='asis'}
-#| tbl-cap: "Cumulative Link Multilevel Models for Justifying Differential Access to Pensions"
-#| label: tbl-ordinal-pension
-
-texreg::texreg(
-  l = modelos_pension,
-  caption = NULL,
-  stars = c(0.05, 0.01, 0.001),
-  custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
-  threeparttable = T,
-  custom.model.names = paste0(rep("Model ",6), seq(0,5)),
-  custom.coef.map = ccoef,
-  leading.zero = TRUE,
-  use.packages = FALSE,
-  booktabs = TRUE,
-  scalebox = 0.7,
-  groups = list("Parental education (Ref.= Non-university)" = 9:10, "Socioeconomic level (Ref.= Low)" = 14:15, "Achievement score (Ref.= Low)" = 16:17, "School dependence (Ref.= Public)" = 19:20),
-  custom.gof.names = c("Log Likelihood",
-                       "AIC", 
-                       "BIC", 
-                       "Num.obs",
-                       "Num. groups: Schools",
-                       "Var: Schools (Intercept)"))
-               
-```
-
-```{r echo=FALSE}
-data_educ <- data_rec %>% 
-    dplyr::select(-just_pension, -just_salud, -redistribucion)
-data_educ <- na.omit(data_educ)
-data_educ$just_educ_fact <- as_factor(data_educ$just_educ)
-
-m0_e <- clmm(just_educ_fact ~ 1 + (1 | mrbd), data=data_educ)
-
-m1_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
-    inteligencia_soc + esfuerzo_soc + merito_soc + (1 | mrbd), data=data_educ) 
-
-m2_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
-    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
-    libros_rec + (1 | mrbd), data=data_educ) 
-
-m3_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
-    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
-    libros_rec + acc_tec + internet_rec + (1 | mrbd), data=data_educ) 
-
-m4_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
-    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
-    libros_rec + acc_tec + internet_rec + school_nse + simce + (1 | mrbd), data=data_educ) 
-
-m5_e <- clmm(just_educ_fact ~ 1 + inteligencia_esc + esfuerzo_esc + 
-    inteligencia_soc + esfuerzo_soc + merito_soc + universitario + 
-    libros_rec + acc_tec + internet_rec + school_nse + simce +
-    mean_educ + cod_depe2 + (1 | mrbd), data=data_educ) 
-
-modelos_educ <- list(m0_e, m1_e, m2_e, m3_e, m4_e, m5_e)
-
-```
-
-```{r echo=FALSE, results='asis'}
-#| tbl-cap: "Cumulative Link Multilevel Models for Justifying Differential Access to Education"
-#| label: tbl-ordinal-educ
-
-texreg::texreg(
-  l = modelos_educ,
-  caption = NULL,
-  stars = c(0.05, 0.01, 0.001),
-  custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
-  threeparttable = T,
-  custom.model.names = paste0(rep("Model ",6), seq(0,5)),
-  custom.coef.map = ccoef,
-  leading.zero = TRUE,
-  use.packages = FALSE,
-  booktabs = TRUE,
-  scalebox = 0.7,
-  groups = list("Parental education (Ref.= Non-university)" = 9:10, "Socioeconomic level (Ref.= Low)" = 14:15, "Achievement score (Ref.= Low)" = 16:17, "School dependence (Ref.= Public)" = 19:20),
-  custom.gof.names = c("Log Likelihood",
-                       "AIC", 
-                       "BIC", 
-                       "Num.obs",
-                       "Num. groups: Schools",
-                       "Var: Schools (Intercept)"))
-               
-```
-
-```{r echo=FALSE, include=FALSE}
-
-data_bienestar <- data_bienestar %>% mutate(universitario = case_when(educacion_rec=="Ed Basica"~"No",
-                                                          educacion_rec=="Ed Media"~"No",
-                                                          educacion_rec=="Ed Tecnica"~"No",
-                                                          educacion_rec=="Universidad o posgrado"~"Si",
-                                                          educacion_rec=="Ns/Nr"~"Ns/Nr"))
-data_bienestar$universitario <- factor(data_bienestar$universitario, levels = c("No", "Si", "Ns/Nr"))
-
-data_bienestar <- data_bienestar %>% mutate(school_nse = case_when(cod_grupo=="Bajo"~"Bajo",
-                                                          cod_grupo=="Medio bajo"~"Medio",
-                                                          cod_grupo=="Medio"~"Medio",
-                                                          cod_grupo=="Medio alto"~"Medio",
-                                                          cod_grupo=="Alto"~"Alto"))
-data_bienestar$school_nse <- factor(data_bienestar$school_nse, levels = c("Bajo", "Medio", "Alto"))
-
-
-reg0_bienestar <- lmer(bienestar ~ 1 + (1 | mrbd), data = data_bienestar)
-
-reg1_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
-                         inteligencia_soc + esfuerzo_soc + merito_soc + 
-                         (1 | mrbd), data=data_bienestar)
-
-reg2_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
-                         inteligencia_soc + esfuerzo_soc + merito_soc + 
-                         universitario + libros_rec + (1 | mrbd), data=data_bienestar)
-
-reg3_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
-                         inteligencia_soc + esfuerzo_soc + merito_soc + 
-                         universitario + libros_rec + acc_tec + 
-                         internet_rec +  (1 | mrbd), data=data_bienestar)
-
-reg4_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
-                         inteligencia_soc + esfuerzo_soc + merito_soc + 
-                         universitario + libros_rec + acc_tec + 
-                         internet_rec +  school_nse + simce + 
-                         (1 | mrbd), data=data_bienestar)
-
-reg5_bienestar <- lmer(bienestar ~ 1 + inteligencia_esc + esfuerzo_esc + 
-                         inteligencia_soc + esfuerzo_soc + merito_soc + 
-                         universitario + libros_rec + acc_tec + 
-                         internet_rec +  school_nse + simce + 
-                         mean_educ + cod_depe2 + 
-                         (1 | mrbd), data=data_bienestar)
-```
-
-```{r echo=FALSE, results='asis'}
-#| tbl-cap: "Linear mixed-effects models for meritocracy perception and market justice preferences"
-#| label: tbl-lineal-reg-complete
-ccoef <- list(
- "(Intercept)" = "Constant",
-  inteligencia_esc = "School talent",
-  esfuerzo_esc = "School effort",
-  inteligencia_soc = "Social talent",
-  esfuerzo_soc = "Social effort",
-  merito_soc = "Deservingness",
-  universitarioSi = "University or posgraduate",
-  "universitarioNs/Nr" = "Missing",
-  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
-  acc_tec = "Technology acces",
-  internet_rec2 = "No internet connectivity (Ref.= Internet connectivity)",
-  school_nseMedio = "SES Medium",
-  school_nseAlto = "SES High",
-  simceMedio = "Simce Medium",
-  simceAlto = "Simce High",
-  mean_educ = "Prop. university level at school",
-  "cod_depe2Part. subvencionado" = "Subsidized Private",
-  "cod_depe2Part. privado" = "Private")
-
-texreg::texreg(
-  l = list(reg0_bienestar, reg1_bienestar, reg2_bienestar, reg3_bienestar, reg4_bienestar, reg5_bienestar),
-  caption = NULL,
-  stars = c(0.05, 0.01, 0.001),
-  custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
-  threeparttable = T,
-  custom.model.names = paste0(rep("Model ",6), seq(0,5)),
-  custom.coef.map = ccoef,
-  leading.zero = TRUE,
-  use.packages = FALSE,
-  booktabs = TRUE,
-  scalebox = 0.7,
-  groups = list("Parental education (Ref.= Non-university)" = 7:8, "Socioeconomic level (Ref.= Low)" = 12:13, "Achievement score (Ref.= Low)" = 14:15, "School dependence (Ref.= Public)" = 16:18),
-   custom.gof.names = c("AIC", 
-                               "BIC", 
-                               "Log Likelihood", 
-                               "Num.obs",
-                               "Num. groups: Schools",
-                               "Var: Schools (Intercept)",
-                               "Var: Residual"))
-
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
 ```
 
 ```{r}
-
-load("input/data/data_rec.RData")
-
-data_rec <- data_rec %>% rowwise() %>%  mutate(educacion_rec2 = case_when(educacion_rec=="Ed Basica"~"Low level",
-                                                 educacion_rec=="Ed Media"~"Low level",
-                                                 educacion_rec=="Ed Tecnica"~"Low level",
-                                                 educacion_rec=="Universidad o posgrado"~"University or Postgraduate",
-                                                 educacion_rec=="Ns/Nr"~"Missing"
-                                                 ))
-data_rec$educacion_rec2 <- factor(data_rec$educacion_rec2, levels = c("Low level", "University or Postgraduate", "Missing"))
-
-
-data_rec <- data_rec %>% rowwise() %>%  mutate(cod_grupo2  = case_when(cod_grupo=="Bajo"~"Bajo",
-                                                                       cod_grupo=="Medio bajo"~"Bajo",
-                                                                       cod_grupo=="Medio"~"Bajo",
-                                                                       cod_grupo=="Medio alto"~"Alto",
-                                                                       cod_grupo=="Alto"~"Alto"))
-data_rec$cod_grupo2 <- factor(data_rec$cod_grupo2, levels = c("Bajo", "Alto"))
-data_rec$simce <- factor(data_rec$simce, labels = c("Low", "Medium", "High"))
-
-
-data_bienestar <- na.omit(data_rec)
-#data_bienestar <- data_bienestar %>% mutate(pension_rec = 5-just_pension,
-#                                            educ_rec = 5-just_educ,
-#                                            salud_rec = 5-just_salud)
-data_bienestar <- data_bienestar %>% rowwise() %>% dplyr::mutate(bienestar = mean(c(just_educ, just_salud, just_pension), na.omit=TRUE))
-data_bienestar$bienestar <- round(data_bienestar$bienestar, 2)
-
-
-```
-
-```{r}
-
-# meritocracia x ses familiar (educacion)
-reg10_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*esfuerzo_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
-
-reg11_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*merito_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
-
-reg12_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2*inteligencia_soc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
-
-reg13_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2*esfuerzo_esc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
-
-reg14_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2*inteligencia_esc + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + educacion_rec2 | mrbd), data=data_bienestar)
-```
-
-```{r echo=FALSE, results='asis'}
-#| tbl-cap: "Linear mixed-effects models for meritocracy perception, parental education and market justice preferences"
-#| label: tbl-interac-educparent
-
-
-ccoef <- list(
-  "(Intercept)" = "Constant",
-  inteligencia_esc = "School talent",
-  esfuerzo_esc = "School effort",
-  inteligencia_soc = "Social talent",
-  esfuerzo_soc = "Social effort",
-  merito_soc = "Deservingness",
-  "educacion_rec2University or Postgraduate" = "University or posgraduate",
-  "educacion_rec2Missing" = "Missing",
-  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
-  cod_grupo2Alto = "SES High (Ref.= Low)",
-  simceMedium = "Simce Medium",
-  simceHigh = "Simce High",
-  "educacion_rec2University or Postgraduate:esfuerzo_soc" = "University or posgraduate * Social effort",
-  "educacion_rec2Missing:esfuerzo_soc" = "Missing * Social effort",
-  "educacion_rec2University or Postgraduate:merito_soc" = "University or posgraduate * Deservingness",
-  "educacion_rec2Missing:merito_soc" = "Missing * Deservingness",
-  "educacion_rec2University or Postgraduate:inteligencia_soc" = "University or posgraduate * Social talent",
-  "educacion_rec2Missing:inteligencia_soc" = "Missing * Social talent",
-  "educacion_rec2University or Postgraduate:esfuerzo_esc" = "University or posgraduate * School effort",
-  "educacion_rec2Missing:esfuerzo_esc" = "Missing * School effort",
-  "educacion_rec2University or Postgraduate:inteligencia_esc" = "University or posgraduate * School talent",
-  "educacion_rec2Missing:inteligencia_esc" = "Missing * School talent"
-  )
-
-
-# meritocracia x ses familiar (educacion)
-
-texreg::texreg(l = list(reg10_bienestar, reg11_bienestar,
-                   reg12_bienestar, reg13_bienestar,
-                   reg14_bienestar),
-          caption = NULL,
-          stars = c(0.05, 0.01, 0.001),
-          custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
-          threeparttable = T,
-          custom.model.names = paste0(rep("Model ",5), seq(1,5)),
-          custom.coef.map = ccoef,
-          leading.zero = TRUE,
-          use.packages = FALSE,
-          booktabs = TRUE,
-          scalebox = 0.7,
-          groups = list("Parental education (Ref.= Non-university)" = 7:8,
-                        "Achievement score (Ref.= Low)" = 11:12,
-                        "Parental education x Meritocracy" = 13:22),
-          custom.gof.names = c("AIC", 
-                               "BIC", 
-                               "Log Likelihood", 
-                               "Num.obs",
-                               "Num. groups: Schools",
-                               "Var: Schools (Intercept)",
-                               "Var: Schools University or Postgraduate",
-                               "Var: Schools Missing",
-                               "Cov: Schools (Intercept) University or Postgraduate",
-                               "Cov: Schools (Intercept) Missing",
-                               "Cov: Schools University or Postgraduate, Missing",
-                               "Var: Residual"),
-          custom.gof.rows = list("Controls"=rep("Yes",5)))
-
-```
-
-```{r}
-
-# meritocracia x ses familiar (libros)
-
-reg15_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*esfuerzo_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
-reg16_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*merito_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
-reg17_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec*inteligencia_soc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
-reg18_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec*esfuerzo_esc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
-reg19_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec*inteligencia_esc + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + libros_rec | mrbd), data=data_bienestar)
-```
-
-```{r echo=FALSE, results='asis'}
-#| tbl-cap: "Linear mixed-effects models for meritocracy perception, books at home and market justice preferences"
-#| label: tbl-interac-books
-
-
-ccoef <- list(
-  "(Intercept)" = "Constant",
-  inteligencia_esc = "School talent",
-  esfuerzo_esc = "School effort",
-  inteligencia_soc = "Social talent",
-  esfuerzo_soc = "Social effort",
-  merito_soc = "Deservingness",
-  "educacion_rec2University or Postgraduate" = "University or posgraduate",
-  "educacion_rec2Missing" = "Missing",
-  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
-  cod_grupo2Alto = "SES High (Ref.= Low)",
-  simceMedium = "Simce Medium",
-  simceHigh = "Simce High",
-  "libros_recMás de 25:esfuerzo_soc" = "More than 25 books * Social effort",
-  "libros_recMás de 25:merito_soc" = "More than 25 books * Deservingness",
-  "libros_recMás de 25:inteligencia_soc" = "More than 25 books * Social talent",
-  "libros_recMás de 25:esfuerzo_esc" = "More than 25 books * School effort",
-  "libros_recMás de 25:inteligencia_esc" = "More than 25 books * School talent"
-  )
-
-
-# meritocracia x ses familiar (libros)
-
-texreg::texreg(l = list(reg15_bienestar, reg16_bienestar,
-                   reg17_bienestar, reg18_bienestar,
-                   reg19_bienestar),
-          caption = NULL,
-          stars = c(0.05, 0.01, 0.001),
-          custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
-          threeparttable = T,
-          custom.model.names = paste0(rep("Model ",5), seq(1,5)),
-          custom.coef.map = ccoef,
-          leading.zero = TRUE,
-          use.packages = FALSE,
-          booktabs = TRUE,
-          scalebox = 0.7,
-          groups = list("Parental education (Ref.= Non-university)" = 7:8,
-                        "Achievement score (Ref.= Low)" = 11:12,
-                        "Books at home x Meritocracy" = 13:17),
-          custom.gof.names = c("AIC", 
-                               "BIC", 
-                               "Log Likelihood", 
-                               "Num.obs",
-                               "Num. groups: Schools",
-                               "Var: Schools (Intercept)",
-                               "Var: Schools More than 25 books",
-                               "Cov: Schools (Intercept) More than 25 books",
-                               "Var: Residual"),
-          custom.gof.rows = list("Controls"=rep("Yes",5)))
-
-```
-
-```{r}
-
-# meritocracia x ses escuela
-
-reg20_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*esfuerzo_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
-reg21_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*merito_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
-reg22_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*inteligencia_soc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
-reg23_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*esfuerzo_esc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
-reg24_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2*inteligencia_esc + simce + internet_rec + (1 + cod_grupo2 | mrbd), data=data_bienestar)
-```
-
-```{r echo=FALSE, results='asis'}
-#| tbl-cap: "Linear mixed-effects models for meritocracy perception, school socioeconomic status and market justice preferences"
-#| label: tbl-interac-schoolses
-
-
-ccoef <- list(
-  "(Intercept)" = "Constant",
-  inteligencia_esc = "School talent",
-  esfuerzo_esc = "School effort",
-  inteligencia_soc = "Social talent",
-  esfuerzo_soc = "Social effort",
-  merito_soc = "Deservingness",
-  "educacion_rec2University or Postgraduate" = "University or posgraduate",
-  "educacion_rec2Missing" = "Missing",
-  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
-  cod_grupo2Alto = "SES High (Ref.= Low)",
-  simceMedium = "Simce Medium",
-  simceHigh = "Simce High",
-  "cod_grupo2Alto:esfuerzo_soc" = "SES High * Social effort",
-  "cod_grupo2Alto:merito_soc" = "SES High * Deservingness",
-  "cod_grupo2Alto:inteligencia_soc" = "SES High * Social talent",
-  "cod_grupo2Alto:esfuerzo_esc" = "SES High * School effort",
-  "cod_grupo2Alto:inteligencia_esc" = "SES High * School talent"
-  )
-
-
-# meritocracia x ses escuela
-
-texreg::texreg(l = list(reg20_bienestar, reg21_bienestar,
-                   reg22_bienestar, reg23_bienestar,
-                   reg24_bienestar),
-          caption = NULL,
-          stars = c(0.05, 0.01, 0.001),
-          custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
-          threeparttable = T,
-          custom.model.names = paste0(rep("Model ",5), seq(1,5)),
-          custom.coef.map = ccoef,
-          leading.zero = TRUE,
-          use.packages = FALSE,
-          booktabs = TRUE,
-          scalebox = 0.7,
-          groups = list("Parental education (Ref.= Non-university)" = 7:8,
-                        "Achievement score (Ref.= Low)" = 11:12,
-                        "School SES x Meritocracy" = 13:17),
-          custom.gof.names = c("AIC", 
-                               "BIC", 
-                               "Log Likelihood", 
-                               "Num.obs",
-                               "Num. groups: Schools",
-                               "Var: Schools (Intercept)",
-                               "Var: Schools SES High",
-                               "Cov: Schools (Intercept) SES High",
-                               "Var: Residual"),
-          custom.gof.rows = list("Controls"=rep("Yes",5)))
-
-```
-
-```{r}
-
-#meritocracia x prop. educacion universitaria por escuela
-
-reg20.1_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*esfuerzo_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
-reg21.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*merito_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
-reg22.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*inteligencia_soc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
-reg23.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*esfuerzo_esc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
-reg24.1_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ*inteligencia_esc + cod_depe2 + cod_grupo2 + simce + internet_rec + (1 + mean_educ | mrbd), data=data_bienestar)
-```
-
-```{r}
-# meritocracia x simce
-
-reg25_bienestar <- lmer(bienestar ~ 1 + merito_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*esfuerzo_soc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
-
-reg26_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + inteligencia_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*merito_soc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
-
-reg27_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + esfuerzo_esc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*inteligencia_soc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
-
-reg28_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + inteligencia_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*esfuerzo_esc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
-
-reg29_bienestar <- lmer(bienestar ~ 1 + esfuerzo_soc + merito_soc + inteligencia_soc + esfuerzo_esc + educacion_rec2 + libros_rec + acc_tec + mean_educ + cod_depe2 + cod_grupo2 + simce*inteligencia_esc + internet_rec + (1 + simce | mrbd), data=data_bienestar)
-```
-
-```{r echo=FALSE, results='asis'}
-#| tbl-cap: "Linear mixed-effects models for meritocracy perception, school perfomance status and market justice preferences"
-#| label: tbl-interac-schoolperfo
-
-ccoef <- list(
-  "(Intercept)" = "Constant",
-  inteligencia_esc = "School talent",
-  esfuerzo_esc = "School effort",
-  inteligencia_soc = "Social talent",
-  esfuerzo_soc = "Social effort",
-  merito_soc = "Deservingness",
-  "educacion_rec2University or Postgraduate" = "University or posgraduate",
-  "educacion_rec2Missing" = "Missing",
-  "libros_recMás de 25" = "More than 25 books (Ref.= Less than 25)",
-  cod_grupo2Alto = "SES High (Ref.= Low)",
-  simceMedium = "Simce Medium",
-  simceHigh = "Simce High",
-  "simceMedium:esfuerzo_soc" = "Simce Medium * Social effort",
-  "simceHigh:esfuerzo_soc" = "Simce High * Social effort",
-  "simceMedium:merito_soc" = "Simce Medium * Deservingness",
-  "simceHigh:merito_soc" = "Simce High * Deservingness",
-  "simceMedium:inteligencia_soc" = "Simce Medium * Social talent",
-  "simceHigh:inteligencia_soc" = "Simce High * Social talent",
-  "simceMedium:esfuerzo_esc" = "Simce Medium * School effort",
-  "simceHigh:esfuerzo_esc" = "Simce High * School effort",
-  "simceMedium:inteligencia_esc" = "Simce Medium * School talent",
-  "simceHigh:inteligencia_esc" = "Simce High * School talent"
-  )
-
-
-# meritocracia x perfomance escuela
-
-texreg::texreg(l = list(reg25_bienestar, reg26_bienestar,
-                   reg27_bienestar, reg28_bienestar,
-                   reg29_bienestar),
-          caption = NULL,
-          stars = c(0.05, 0.01, 0.001),
-          custom.note = "\\item Note: Cells contain regression coefficients with standard errors in parentheses. Control variables are included. %stars \\\\ \\item Source: own elaboration based on First Study of Civic Education 2017.",
-          threeparttable = T,
-          custom.model.names = paste0(rep("Model ",5), seq(1,5)),
-          custom.coef.map = ccoef,
-          leading.zero = TRUE,
-          use.packages = FALSE,
-          booktabs = TRUE,
-          scalebox = 0.7,
-          groups = list("Parental education (Ref.= Non-university)" = 7:8,
-                        "Achievement score (Ref.= Low)" = 11:12,
-                        "School perfomance (SIMCE) x Meritocracy" = 13:22),
-          custom.gof.names = c("AIC", 
-                               "BIC", 
-                               "Log Likelihood", 
-                               "Num.obs",
-                               "Num. groups: Schools",
-                               "Var: Schools (Intercept)",
-                               "Var: Schools Simce Medium",
-                               "Var: Schools Simce High",
-                               "Cov: Schools (Intercept) Simce Medium",
-                               "Cov: Schools (Intercept) Simce High",
-                               "Cov: Schools Simce Medium, Simce High",
-                               "Var: Residual"),
-          custom.gof.rows = list("Controls"=rep("Yes",5)))
-
-```
-
-## Possible Error Sources on Longitudinal Invariance
-
-### Weak Invariance
-
-```{r}
-#| label: sources-weak
-#| tbl-cap: "Possible Error Sources on Weak Invariance"
-#| results: asis
+#| include: false
 #| echo: false
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(
+  tidyverse,
+  sjmisc,
+  sjPlot,
+  here,
+  lavaan,
+  psych,
+  corrplot,
+  ggdist,
+  patchwork,
+  semTools,
+  gtools,
+  kableExtra,
+  scales
+)
+
+options(scipen = 999)
+rm(list = ls())
+```
+
+```{r}
+#| echo: false
+#| output: false
+
+load(file = here("output", "data", "db_long_proc.RData"))
+
+names(db_long)
+glimpse(db_long)
+dim(db_long)
+```
+
+# Confirmatory factor analysis of the meritocracy scale
+
+```{r}
+#| echo: false
+#| results: false
+#| message: false
 #| warning: false
+#| include: false
 
-library(stringr)
+db_long <- db_long %>%
+select(id_estudiante, ola, starts_with(c("perc", "pref")), cohort_level) %>% 
+  drop_na()
 
-# STEP 1: Run lavTestScore on your model (e.g., weak or strong invariance)
-score_result <- lavTestScore(fit_loadinginv)
+model_base <- ('
+perc_merit =~ perc_effort + perc_talent
+perc_nmerit =~ perc_rich_parents + perc_contact
+pref_merit =~ pref_effort + pref_talent
+pref_nmerit =~ pref_rich_parents + pref_contact
+')
 
-# STEP 2: Extract univariate test results
-score_df <- score_result$uni
+mgeneral_cfa <- cfa(model = model_base, 
+                   data = db_long, 
+                   estimator = "WLSMV",
+                   ordered = T,
+                   std.lv = T,
+                   parameterization = "theta")
 
-# STEP 3: Retrieve parameter table with internal indices
-param_tab <- parameterEstimates(fit_loadinginv, standardized = FALSE) %>%
-  mutate(index = row_number())
+mw1_cfa <- cfa(model = model_base, 
+                   data = subset(db_long, ola == 1), 
+                   estimator = "WLSMV",
+                   ordered = T,
+                   std.lv = T,
+                   parameterization = "theta")
 
-# STEP 4: Extract internal parameter indices from .pX. notation
-score_df <- score_df %>%
+mw2_cfa <- cfa(model = model_base, 
+                   data = subset(db_long, ola == 2), 
+                   estimator = "WLSMV",
+                   ordered = T,
+                   std.lv = T,
+                   parameterization = "theta")
+
+mbasica_cfa <- cfa(model = model_base, 
+                   data = subset(db_long, cohort_level == "Primary"), 
+                   estimator = "WLSMV",
+                   ordered = T,
+                   std.lv = T,
+                   parameterization = "theta")
+
+mmedia_cfa <- cfa(model = model_base, 
+                   data = subset(db_long, cohort_level == "Secondary"), 
+                   estimator = "WLSMV",
+                   ordered = T,
+                   std.lv = T,
+                   parameterization = "theta")
+
+summary(mw1_cfa, standardized = TRUE, fit.measures = TRUE)
+
+#modificationIndices(mmedia_cfa) %>% 
+  #filter(mi > 3.84)
+
+```
+
+
+```{r}
+#| label: fig-w1
+#| fig-cap: CFA model for the first wave
+#| fig-cap-location: top
+#| echo: false
+#| out.width: 80%
+#| out.height: "auto" 
+
+knitr::include_graphics(here('paper/imagenes/w1.png'))
+```
+
+
+```{r}
+#| label: fig-w2
+#| fig-cap: CFA model for the second wave
+#| fig-cap-location: top
+#| echo: false
+#| out.width: 80%
+#| out.height: "auto" 
+
+knitr::include_graphics(here('paper/imagenes/w2.png'))
+```
+
+
+```{r}
+#| label: fig-basica
+#| fig-cap: CFA model for the primary cohort
+#| fig-cap-location: top
+#| echo: false
+#| out.width: 80%
+#| out.height: "auto" 
+
+knitr::include_graphics(here('paper/imagenes/basica.png'))
+```
+
+
+```{r}
+#| label: fig-media
+#| fig-cap: CFA model for the secondary cohort
+#| fig-cap-location: top
+#| echo: false
+#| out.width: 80%
+#| out.height: "auto" 
+
+knitr::include_graphics(here('paper/imagenes/media.png'))
+```
+# Sources of misfit in longitudinal invariance
+
+```{r}
+#| include: false
+#| results: asis
+
+# Crear base en formato wide con dummy de cohorte (0 = primaria, 1 = secundaria)
+db_invariance <- db_long %>%
+  group_by(id_estudiante) %>%
   mutate(
-    lhs_index = as.numeric(str_extract(lhs, "\\d+")),
-    rhs_index = as.numeric(str_extract(rhs, "\\d+"))
-  )
-
-# STEP 5: Join lhs parameter metadata from parameter table
-lhs_info <- param_tab %>%
-  select(index, lhs, op, rhs) %>%
-  rename(lhs_index = index,
-         lhs_var = lhs,
-         lhs_op = op,
-         lhs_rhs = rhs)
-
-# STEP 6: Join rhs parameter metadata
-rhs_info <- param_tab %>%
-  select(index, lhs, op, rhs) %>%
-  rename(rhs_index = index,
-         rhs_var = lhs,
-         rhs_op = op,
-         rhs_rhs = rhs)
-
-# STEP 7: Merge metadata into score test table
-score_annotated <- score_df %>%
-  left_join(lhs_info, by = "lhs_index") %>%
-  left_join(rhs_info, by = "rhs_index")
-
-# STEP 8: Add readable labels and classify parameter type
-score_table <- score_annotated %>%
-  mutate(
-    parameter_type = case_when(
-      lhs_op == "=~" ~ "Loading",
-      lhs_op == "~1" ~ "Intercept",
-      lhs_op == "~~" ~ "Residual Variance",
-      TRUE ~ "Other"
-    ),
-    restriction = paste0(lhs_var, " ", lhs_op, " ", lhs_rhs,
-                         " == ",
-                         rhs_var, " ", rhs_op, " ", rhs_rhs),
-    evaluation = case_when(
-      p.value >= 0.05 ~ "No violation",
-      p.value >= 0.01 ~ "Possible violation",
-      TRUE ~ "Clear violation"
+    cohort_level = first(cohort_level),
+    cohort_dummy = case_when(
+      cohort_level == "Primary" ~ 0,
+      cohort_level == "Secondary" ~ 1,
+      TRUE ~ NA_real_
     )
   ) %>%
-  select(restriction, parameter_type, X2, df, p.value, evaluation)
-
-# STEP 9: Create publication-ready table
-col.nam <- c("Restriction Tested", "Parameter Type", "Chi-square", "df", "p-value", "Evaluation")
-
-score_table %>%
-  kable(format = "html",
-        align = "c",
-        booktabs = TRUE,
-        escape = FALSE,
-        caption = "Assessment of Metric Invariance Based on Score Test (Weak Invariance Model)",
-        col.names = col.nam,
-        digits = 3) %>%
-  kable_styling(
-    full_width = TRUE,
-    bootstrap_options = c("striped", "bordered", "condensed"),
-    latex_options = "hold_position",
-    font_size = 18
-  ) %>%
-  column_spec(1, width = "6.5cm") %>%
-  column_spec(2, width = "4.5cm") %>%
-  column_spec(3:5, width = "3.5cm") %>%
-  column_spec(6, width = "4cm")
-```
-
-### Strong Invariance
-
-```{r}
-#| label: sources-strog
-#| tbl-cap: "Possible Error Sources on Strong Invariance"
-#| results: asis
-#| echo: false
-#| warning: false
-
-# Run lavTestScore
-score_result <- lavTestScore(fit_thresholdinv)
-
-# Extract univariate test results
-score_df <- score_result$uni
-
-# Retrieve parameter table with internal indices
-param_tab <- parameterEstimates(fit_thresholdinv, standardized = FALSE) %>%
-  mutate(index = row_number())
-
-# Extract internal parameter indices from .pX. notation
-score_df <- score_df %>%
-  mutate(
-    lhs_index = as.numeric(str_extract(lhs, "\\d+")),
-    rhs_index = as.numeric(str_extract(rhs, "\\d+"))
-  )
-
-# Join lhs parameter metadata from parameter table
-lhs_info <- param_tab %>%
-  select(index, lhs, op, rhs) %>%
-  rename(lhs_index = index,
-         lhs_var = lhs,
-         lhs_op = op,
-         lhs_rhs = rhs)
-
-# Join rhs parameter metadata
-rhs_info <- param_tab %>%
-  select(index, lhs, op, rhs) %>%
-  rename(rhs_index = index,
-         rhs_var = lhs,
-         rhs_op = op,
-         rhs_rhs = rhs)
-
-# Merge metadata into score test table
-score_annotated <- score_df %>%
-  left_join(lhs_info, by = "lhs_index") %>%
-  left_join(rhs_info, by = "rhs_index")
-
-# Add readable labels and classify parameter type
-score_table <- score_annotated %>%
-  mutate(
-    parameter_type = case_when(
-      lhs_op == "=~" ~ "Loading",
-      lhs_op == "~1" ~ "Intercept",
-      lhs_op == "~~" ~ "Residual Variance",
-      TRUE ~ "Other"
-    ),
-    restriction = paste0(lhs_var, " ", lhs_op, " ", lhs_rhs,
-                         " == ",
-                         rhs_var, " ", rhs_op, " ", rhs_rhs),
-    evaluation = case_when(
-      p.value >= 0.05 ~ "No violation",
-      p.value >= 0.01 ~ "Possible violation",
-      TRUE ~ "Clear violation"
+  ungroup() %>%
+  select(id_estudiante, cohort_dummy, ola, starts_with(c("perc", "pref"))) %>%
+  pivot_wider(
+    id_cols = c(id_estudiante, cohort_dummy),
+    names_from = ola,
+    names_glue = "{.value}{ola}",
+    values_from = c(
+      perc_effort, perc_talent,
+      perc_rich_parents, perc_contact,
+      pref_effort, pref_talent,
+      pref_rich_parents, pref_contact
     )
   ) %>%
-  select(restriction, parameter_type, X2, df, p.value, evaluation)
+  na.omit() %>%
+  rename_with(~ str_replace_all(., "_", ""))
 
-# Create publication-ready table
-col.nam <- c("Restriction Tested", "Parameter Type", "Chi-square", "df", "p-value", "Evaluation")
-
-score_table %>%
-  kable(format = "html",
-        align = "c",
-        booktabs = TRUE,
-        escape = FALSE,
-        caption = "Assessment of Metric Invariance Based on Score Test (Weak Invariance Model)",
-        col.names = col.nam,
-        digits = 3) %>%
-  kable_styling(
-    full_width = TRUE,
-    bootstrap_options = c("striped", "bordered", "condensed"),
-    latex_options = "hold_position",
-    font_size = 18
-  ) %>%
-  column_spec(1, width = "6.5cm") %>%
-  column_spec(2, width = "4.5cm") %>%
-  column_spec(3:5, width = "3.5cm") %>%
-  column_spec(6, width = "4cm")
-```
-
-### Strict Invariance
-
-```{r}
-#| label: sources-strict
-#| tbl-cap: "Possible Error Sources of Strict Invariance"
-#| results: asis
-#| echo: false
-#| warning: false
-
-# STEP 1: Run lavTestScore on your model (e.g., weak or strong invariance)
-score_result <- lavTestScore(fit_uniquenessinv)
-
-# STEP 2: Extract univariate test results
-score_df <- score_result$uni
-
-# STEP 3: Retrieve parameter table with internal indices
-param_tab <- parameterEstimates(fit_uniquenessinv, standardized = FALSE) %>%
-  mutate(index = row_number())
-
-# STEP 4: Extract internal parameter indices from .pX. notation
-score_df <- score_df %>%
+# Reescalar variables y convertir a ordinales
+db_invariance <- db_invariance %>% 
   mutate(
-    lhs_index = as.numeric(str_extract(lhs, "\\d+")),
-    rhs_index = as.numeric(str_extract(rhs, "\\d+"))
-  )
-
-# STEP 5: Join lhs parameter metadata from parameter table
-lhs_info <- param_tab %>%
-  select(index, lhs, op, rhs) %>%
-  rename(lhs_index = index,
-         lhs_var = lhs,
-         lhs_op = op,
-         lhs_rhs = rhs)
-
-# STEP 6: Join rhs parameter metadata
-rhs_info <- param_tab %>%
-  select(index, lhs, op, rhs) %>%
-  rename(rhs_index = index,
-         rhs_var = lhs,
-         rhs_op = op,
-         rhs_rhs = rhs)
-
-# STEP 7: Merge metadata into score test table
-score_annotated <- score_df %>%
-  left_join(lhs_info, by = "lhs_index") %>%
-  left_join(rhs_info, by = "rhs_index")
-
-# STEP 8: Add readable labels and classify parameter type
-score_table <- score_annotated %>%
-  mutate(
-    parameter_type = case_when(
-      lhs_op == "=~" ~ "Loading",
-      lhs_op == "~1" ~ "Intercept",
-      lhs_op == "~~" ~ "Residual Variance",
-      TRUE ~ "Other"
-    ),
-    restriction = paste0(lhs_var, " ", lhs_op, " ", lhs_rhs,
-                         " == ",
-                         rhs_var, " ", rhs_op, " ", rhs_rhs),
-    evaluation = case_when(
-      p.value >= 0.05 ~ "No violation",
-      p.value >= 0.01 ~ "Possible violation",
-      TRUE ~ "Clear violation"
+    across(
+      .cols = -c(idestudiante, cohortdummy),
+      .fns = ~ case_when(. == 1 ~ 0,
+                         . == 2 ~ 1,
+                         . == 3 ~ 2,
+                         . == 4 ~ 3)
     )
   ) %>%
-  select(restriction, parameter_type, X2, df, p.value, evaluation)
+  mutate(
+    across(
+      .cols = -c(idestudiante),
+      .fns = ~ ordered(.)
+    )
+  )
 
-# STEP 9: Create publication-ready table
-col.nam <- c("Restriction Tested", "Parameter Type", "Chi-square", "df", "p-value", "Evaluation")
+# Estimation
 
-score_table %>%
-  kable(format = "html",
-        align = "c",
-        booktabs = TRUE,
-        escape = FALSE,
-        caption = "Assessment of Metric Invariance Based on Score Test (Weak Invariance Model)",
-        col.names = col.nam,
-        digits = 3) %>%
-  kable_styling(
-    full_width = TRUE,
-    bootstrap_options = c("striped", "bordered", "condensed"),
-    latex_options = "hold_position",
-    font_size = 18
-  ) %>%
-  column_spec(1, width = "6.5cm") %>%
-  column_spec(2, width = "4.5cm") %>%
-  column_spec(3:5, width = "3.5cm") %>%
-  column_spec(6, width = "4cm")
+# First, define the configural model, using the repeated measures factors and
+# indicators
+baseline_model_smt <- ('
+
+###########################################
+# Definición de factores (1 marcador por factor)
+###########################################
+
+percmerit1  =~ 1*perceffort1     + perctalent1
+percmerit2  =~ 1*perceffort2     + perctalent2
+
+percnmerit1 =~ 1*percrichparents1 + perccontact1
+percnmerit2 =~ 1*percrichparents2 + perccontact2
+
+prefmerit1  =~ 1*prefeffort1     + preftalent1
+prefmerit2  =~ 1*prefeffort2     + preftalent2
+
+prefnmerit1 =~ 1*prefrichparents1 + prefcontact1
+prefnmerit2 =~ 1*prefrichparents2 + prefcontact2
+
+
+###########################################
+# Covarianzas entre errores (mismo ítem, distintas olas)
+###########################################
+
+perceffort1 ~~ perceffort2
+perctalent1 ~~ perctalent2
+
+percrichparents1 ~~ percrichparents2
+perccontact1     ~~ perccontact2
+
+prefeffort1 ~~ prefeffort2
+preftalent1 ~~ preftalent2
+
+prefrichparents1 ~~ prefrichparents2
+prefcontact1     ~~ prefcontact2
+')
+
+
+
+# Model Estimation
+fit_baseline <- cfa(baseline_model_smt, data = db_invariance,
+                    ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
+                                "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
+                                "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
+                                "prefrichparents1", "prefcontact1", "prefrichparents2", "prefcontact2"),
+                    parameterization = "theta",
+                    estimator = "WLSMV")
+
+loadinginv_model_smt <- ('
+
+# Igualación de cargas (invarianza débil)
+
+percmerit1  =~ 1*perceffort1 + pe_loading*perctalent1
+percmerit2  =~ 1*perceffort2 + pe_loading*perctalent2
+
+percnmerit1 =~ 1*percrichparents1 + prc_loading*perccontact1
+percnmerit2 =~ 1*percrichparents2 + prc_loading*perccontact2
+
+prefmerit1  =~ 1*prefeffort1 + pfe_loading*preftalent1
+prefmerit2  =~ 1*prefeffort2 + pfe_loading*preftalent2
+
+prefnmerit1 =~ 1*prefrichparents1 + pfrc_loading*prefcontact1
+prefnmerit2 =~ 1*prefrichparents2 + pfrc_loading*prefcontact2
+
+
+# Varianzas y covarianzas latentes
+
+percmerit1  ~~ percmerit1 + percmerit2
+percmerit2  ~~ percmerit2
+percnmerit1 ~~ percnmerit1 + percnmerit2
+percnmerit2 ~~ percnmerit2
+prefmerit1  ~~ prefmerit1 + prefmerit2
+prefmerit2  ~~ prefmerit2
+prefnmerit1 ~~ prefnmerit1 + prefnmerit2
+prefnmerit2 ~~ prefnmerit2
+
+
+# Umbrales (uno igualado por ítem)
+
+# perceffort1 | pe1t1*t1 + pe1t2*t2
+# perceffort2 | pe2t1*t1 + pe2t2*t2
+# perctalent1 | pt1t1*t1 + pt1t2*t2
+# perctalent2 | pt2t1*t1 + pt2t2*t2
+# percrichparents1 | prp1t1*t1 + prp1t2*t2
+# percrichparents2 | prp2t1*t1 + prp2t2*t2
+# perccontact1 | pc1t1*t1 + pc1t2*t2
+# perccontact2 | pc2t1*t1 + pc2t2*t2
+# prefeffort1 | pre1t1*t1 + pre1t2*t2
+# prefeffort2 | pre2t1*t1 + pre2t2*t2
+# preftalent1 | prt1t1*t1 + prt1t2*t2
+# preftalent2 | prt2t1*t1 + prt2t2*t2
+# prefrichparents1 | pfrp1t1*t1 + pfrp1t2*t2
+# prefrichparents2 | pfrp2t1*t1 + pfrp2t2*t2
+# prefcontact1 | pfc1t1*t1 + pfc1t2*t2
+# prefcontact2 | pfc2t1*t1 + pfc2t2*t2
+ 
+
+# Covarianzas entre errores
+
+perceffort1 ~~ perceffort2
+perctalent1 ~~ perctalent2
+percrichparents1 ~~ percrichparents2
+perccontact1 ~~ perccontact2
+prefeffort1 ~~ prefeffort2
+preftalent1 ~~ preftalent2
+prefrichparents1 ~~ prefrichparents2
+prefcontact1 ~~ prefcontact2
+')
+
+
+fit_loadinginv <- cfa(loadinginv_model_smt, data = db_invariance,
+                      ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
+                                  "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
+                                  "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
+                                  "prefrichparents1", "prefcontact1", "prefrichparents2", "prefcontact2"),
+                      parameterization = "theta",
+                      estimator = "WLSMV")
+
+thresholdinv_model_smt <- ('
+
+# Igualación de cargas (como en el modelo débil)
+
+percmerit1  =~ 1*perceffort1 + pe_loading*perctalent1
+percmerit2  =~ 1*perceffort2 + pe_loading*perctalent2
+
+percnmerit1 =~ 1*percrichparents1 + prc_loading*perccontact1
+percnmerit2 =~ 1*percrichparents2 + prc_loading*perccontact2
+
+prefmerit1  =~ 1*prefeffort1 + pfe_loading*preftalent1
+prefmerit2  =~ 1*prefeffort2 + pfe_loading*preftalent2
+
+prefnmerit1 =~ 1*prefrichparents1 + pfrc_loading*prefcontact1
+prefnmerit2 =~ 1*prefrichparents2 + pfrc_loading*prefcontact2
+
+
+# Varianzas y covarianzas latentes
+
+percmerit1  ~~ percmerit1 + percmerit2
+percmerit2  ~~ percmerit2
+percnmerit1 ~~ percnmerit1 + percnmerit2
+percnmerit2 ~~ percnmerit2
+prefmerit1  ~~ prefmerit1 + prefmerit2
+prefmerit2  ~~ prefmerit2
+prefnmerit1 ~~ prefnmerit1 + prefnmerit2
+prefnmerit2 ~~ prefnmerit2
+
+
+# Thresholds iguales entre olas (invarianza fuerte)
+
+perceffort1     | pe_t1*t1 + pe_t2*t2
+perceffort2     | pe_t1*t1 + pe_t2*t2
+perctalent1     | pt_t1*t1 + pt_t2*t2
+perctalent2     | pt_t1*t1 + pt_t2*t2
+percrichparents1| prp_t1*t1 + prp_t2*t2
+percrichparents2| prp_t1*t1 + prp_t2*t2
+perccontact1    | pc_t1*t1 + pc_t2*t2
+perccontact2    | pc_t1*t1 + pc_t2*t2
+prefeffort1     | pre_t1*t1 + pre_t2*t2
+prefeffort2     | pre_t1*t1 + pre_t2*t2
+preftalent1     | prt_t1*t1 + prt_t2*t2
+preftalent2     | prt_t1*t1 + prt_t2*t2
+prefrichparents1| pfrp_t1*t1 + pfrp_t2*t2
+prefrichparents2| pfrp_t1*t1 + pfrp_t2*t2
+prefcontact1    | pfc_t1*t1 + pfc_t2*t2
+prefcontact2    | pfc_t1*t1 + pfc_t2*t2
+
+
+# Interceptos fijos
+
+perceffort1 + perctalent1 ~ 0*1
+perceffort2 + perctalent2 ~ 0*1
+percrichparents1 + perccontact1 ~ 0*1
+percrichparents2 + perccontact2 ~ 0*1
+prefeffort1 + preftalent1 ~ 0*1
+prefeffort2 + preftalent2 ~ 0*1
+prefrichparents1 + prefcontact1 ~ 0*1
+prefrichparents2 + prefcontact2 ~ 0*1
+
+
+# Varianzas únicas
+
+perceffort1 ~~ 1*perceffort1
+perctalent1 ~~ 1*perctalent1
+percrichparents1 ~~ 1*percrichparents1
+perccontact1 ~~ 1*perccontact1
+prefeffort1 ~~ 1*prefeffort1
+preftalent1 ~~ 1*preftalent1
+prefrichparents1 ~~ 1*prefrichparents1
+prefcontact1 ~~ 1*prefcontact1
+
+perceffort2 ~~ NA*perceffort2
+perctalent2 ~~ NA*perctalent2
+percrichparents2 ~~ NA*percrichparents2
+perccontact2 ~~ NA*perccontact2
+prefeffort2 ~~ NA*prefeffort2
+preftalent2 ~~ NA*preftalent2
+prefrichparents2 ~~ NA*prefrichparents2
+prefcontact2 ~~ NA*prefcontact2
+
+
+# Covarianzas entre errores longitudinales
+
+perceffort1 ~~ perceffort2
+perctalent1 ~~ perctalent2
+percrichparents1 ~~ percrichparents2
+perccontact1 ~~ perccontact2
+prefeffort1 ~~ prefeffort2
+preftalent1 ~~ preftalent2
+prefrichparents1 ~~ prefrichparents2
+prefcontact1 ~~ prefcontact2
+')
+
+fit_thresholdinv <- cfa(thresholdinv_model_smt, data = db_invariance,
+                        ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
+                                    "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
+                                    "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
+                                    "prefrichparents1", "prefcontact1", "prefrichparents2", "prefcontact2"),
+                        parameterization = "theta",
+                        estimator = "WLSMV")
+
+uniquenessinv_model_smt <- ('
+
+# Cargas factoriales (invarianza débil)
+
+percmerit1  =~ 1*perceffort1 + pe_loading*perctalent1
+percmerit2  =~ 1*perceffort2 + pe_loading*perctalent2
+
+percnmerit1 =~ 1*percrichparents1 + prc_loading*perccontact1
+percnmerit2 =~ 1*percrichparents2 + prc_loading*perccontact2
+
+prefmerit1  =~ 1*prefeffort1 + pfe_loading*preftalent1
+prefmerit2  =~ 1*prefeffort2 + pfe_loading*preftalent2
+
+prefnmerit1 =~ 1*prefrichparents1 + pfrc_loading*prefcontact1
+prefnmerit2 =~ 1*prefrichparents2 + pfrc_loading*prefcontact2
+
+
+# Varianzas y covarianzas de factores latentes
+
+percmerit1  ~~ percmerit1 + percmerit2
+percmerit2  ~~ percmerit2
+percnmerit1 ~~ percnmerit1 + percnmerit2
+percnmerit2 ~~ percnmerit2
+prefmerit1  ~~ prefmerit1 + prefmerit2
+prefmerit2  ~~ prefmerit2
+prefnmerit1 ~~ prefnmerit1 + prefnmerit2
+prefnmerit2 ~~ prefnmerit2
+
+
+# Medias latentes
+
+percmerit1  ~ 0*1
+percmerit2  ~ 1
+percnmerit1 ~ 0*1
+percnmerit2 ~ 1
+prefmerit1  ~ 0*1
+prefmerit2  ~ 1
+prefnmerit1 ~ 0*1
+prefnmerit2 ~ 1
+
+
+# Umbrales (invarianza fuerte)
+
+perceffort1     | pe_t1*t1 + pe_t2*t2
+perceffort2     | pe_t1*t1 + pe_t2*t2
+perctalent1     | pt_t1*t1 + pt_t2*t2
+perctalent2     | pt_t1*t1 + pt_t2*t2
+percrichparents1| prp_t1*t1 + prp_t2*t2
+percrichparents2| prp_t1*t1 + prp_t2*t2
+perccontact1    | pc_t1*t1 + pc_t2*t2
+perccontact2    | pc_t1*t1 + pc_t2*t2
+prefeffort1     | pre_t1*t1 + pre_t2*t2
+prefeffort2     | pre_t1*t1 + pre_t2*t2
+preftalent1     | prt_t1*t1 + prt_t2*t2
+preftalent2     | prt_t1*t1 + prt_t2*t2
+prefrichparents1| pfrp_t1*t1 + pfrp_t2*t2
+prefrichparents2| pfrp_t1*t1 + pfrp_t2*t2
+prefcontact1    | pfc_t1*t1 + pfc_t2*t2
+prefcontact2    | pfc_t1*t1 + pfc_t2*t2
+
+
+# Interceptos fijos
+
+perceffort1 + perctalent1 ~ 0*1
+perceffort2 + perctalent2 ~ 0*1
+percrichparents1 + perccontact1 ~ 0*1
+percrichparents2 + perccontact2 ~ 0*1
+prefeffort1 + preftalent1 ~ 0*1
+prefeffort2 + preftalent2 ~ 0*1
+prefrichparents1 + prefcontact1 ~ 0*1
+prefrichparents2 + prefcontact2 ~ 0*1
+
+
+# Varianzas únicas (invarianza estricta)
+# Fijadas a 1 en todas las olas
+
+perceffort1 ~~ 1*perceffort1
+perceffort2 ~~ 1*perceffort2
+perctalent1 ~~ 1*perctalent1
+perctalent2 ~~ 1*perctalent2
+
+percrichparents1 ~~ 1*percrichparents1
+percrichparents2 ~~ 1*percrichparents2
+perccontact1 ~~ 1*perccontact1
+perccontact2 ~~ 1*perccontact2
+
+prefeffort1 ~~ 1*prefeffort1
+prefeffort2 ~~ 1*prefeffort2
+preftalent1 ~~ 1*preftalent1
+preftalent2 ~~ 1*preftalent2
+
+prefrichparents1 ~~ 1*prefrichparents1
+prefrichparents2 ~~ 1*prefrichparents2
+prefcontact1 ~~ 1*prefcontact1
+prefcontact2 ~~ 1*prefcontact2
+
+
+# Covarianzas entre errores (mismo ítem, diferente ola)
+
+perceffort1 ~~ perceffort2
+perctalent1 ~~ perctalent2
+percrichparents1 ~~ percrichparents2
+perccontact1 ~~ perccontact2
+prefeffort1 ~~ prefeffort2
+preftalent1 ~~ preftalent2
+prefrichparents1 ~~ prefrichparents2
+prefcontact1 ~~ prefcontact2
+')
+
+fit_uniquenessinv <- cfa(uniquenessinv_model_smt, data = db_invariance,
+                         ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
+                                     "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
+                                     "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
+                                     "prefrichparents1", "prefcontact1", "prefrichparents2", "prefcontact2"),
+                         parameterization = "theta",
+                         estimator = "WLSMV")
+
+lavTestScore(fit_uniquenessinv)
+
 ```
 
+For the longitudinal strict invariance model (the more strict model), score tests provided no evidence of localized misfit. The global score test was non-significant, $\chi^2 (20)=11.93, p=.918$, and none of the univariate score tests for equality constraints was significant (all $p>.05$; smallest $p=.065$). This indicates that no single equality constraint notably contributed to the misfit. There are also no indicators of possible sources of misfit in the previous nested models (weak and strong). 
 
-### Longitudinal invariance for market justice preferences
+# Sources of misfit between cohort invariance
+
 
 ```{r}
-#| tbl-cap: "Longitudinal invariance results for market justice preferences"
+#| label: tbl-lavtestcohort
+#| tbl-cap: "Effects of intergenerational occupational mobility on preferences for pension commodification, with covariates and wave fixed effects."
 #| tbl-cap-location: top
+#| results: asis
 #| echo: false
-#| warning: false
-#| label: tbl-longinv-mjp
 
 
-col.nam <- c("Model","df","CFI","RMSEA (90 CI)",
-             "&Delta; CFI","&Delta; RMSEA","Decision")
+db1 <- db_long %>%
+filter(ola == 1) %>% # quedarse con solo la ola 1
+select(id_estudiante, starts_with(c("perc", "pref")), cohort_level)
 
-tab.inv2 %>% 
-  kableExtra::kable(format = "html",
+model_restricted <- ('
+perc_merit =~ perc_effort + perc_talent
+perc_nmerit =~ a*perc_rich_parents + a*perc_contact
+pref_merit =~ pref_effort + pref_talent
+pref_nmerit =~ pref_rich_parents + pref_contact
+perc_effort ~~ pref_talent
+')
+
+baseline <- measEq.syntax(
+  configural.model = model_restricted, # se especifica el modelo que se usará
+  data = db1,
+  ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", # se explicita que las 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),# variables son ordinales 
+  parameterization = "theta", #parametrización ideal para indicadores ordinales
+  ID.fac = "std.lv", # identidica el factor con varianza 1
+  ID.cat = "Wu.Estabrook.2016", # tipo de estrategia ideal para indicadores ordinales
+  group = "cohort_level", # identificación de los grupos
+  group.equal = "configural" # nivel de invarianza 
+)
+
+model.baseline <- as.character(baseline) # se crea un objeto con el modelo configural como caracter para que puedan visualizarse sus datos
+
+fit.baseline <- cfa(model.baseline, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+#summary(fit.baseline, fit.measures = T, standardized = T)
+#modificationIndices(fit.baseline) %>% 
+  #filter(mi > 3.84)
+
+thresholds <- measEq.syntax(
+configural.model = model_restricted,
+data = db1,
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+parameterization = "theta",
+ID.fac = "std.lv",
+ID.cat = "Wu.Estabrook.2016",
+group = "cohort_level",
+group.equal = c("thresholds") # aquí se aplica lo mismo que el código anterior excepto que ahora se restringen los thresholds
+)
+
+model.thres <- as.character(thresholds)
+
+fit.thres <- cfa(model.thres, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+strong <- measEq.syntax(
+configural.model = model_restricted,
+data = db1,
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+parameterization = "theta",
+ID.fac = "std.lv",
+ID.cat = "Wu.Estabrook.2016",
+group = "cohort_level",
+group.equal = c("thresholds", "loadings") # ahora se restringen los tresholds y las cargas factoriales
+)
+
+model.strong <- as.character(strong)
+
+fit.strong <- cfa(model.strong, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+score_tab_thres <- lavTestScore(fit.thres)
+
+uni_top <- score_tab_thres$uni %>%
+  as_tibble() %>%
+  arrange(p.value) %>%
+  mutate(p.adj = p.adjust(p.value, method = "BH")) %>%
+  slice_head(n = 10)
+
+pt <- lavaan::parTable(fit.thres) %>%
+  as_tibble() %>%
+  select(plabel, group, lhs, op, rhs, label)
+
+map_plabel <- function(x) pt %>% filter(plabel == x)
+
+mapped <- uni_top %>%
+  rowwise() %>%
+  mutate(
+    lhs_lhs = map_plabel(lhs)$lhs %>% first(),
+    lhs_op  = map_plabel(lhs)$op  %>% first(),
+    lhs_rhs = map_plabel(lhs)$rhs %>% first(),
+    rhs_lhs = map_plabel(rhs)$lhs %>% first(),
+    rhs_op  = map_plabel(rhs)$op  %>% first(),
+    rhs_rhs = map_plabel(rhs)$rhs %>% first()
+  ) %>%
+  ungroup()
+
+table_Sx <- mapped %>%
+  transmute(
+    item = lhs_lhs,
+    threshold = lhs_rhs,
+    X2, df, p.value, p.adj
+  )
+
+col.nam <- c("Item","Threshold", "&chi;^2","df","p-value", "p-value adjustement BH")
+
+table_Sx %>% 
+  kableExtra::kable(format = table_format,
                     align = "c",
                     booktabs = T,
                     escape = F,
@@ -980,6 +695,8 @@ tab.inv2 %>%
   kableExtra::kable_styling(full_width = T,
                             latex_options = "hold_position",
                             bootstrap_options=c("striped", "bordered", "condensed"),
-                            font_size = 23) 
-
+                            font_size = 23)
 ```
+
+In contrast, score tests for the cross-cohort invariance constraints indicated localized misfit. The largest modification indices/score contributions clustered in the perceived effort, suggesting that equality constraints on thresholds/loadings for these items are not supported across school levels. @tbl-lavtestcohort lists the ten constraints with the largest score statistics.
+

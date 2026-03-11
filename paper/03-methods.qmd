@@ -70,13 +70,13 @@ Meritocratic and non-meritocratic perceptions and preferences were measured usin
 
 - Perceived meritocracy: the extent to which effort and ability are rewarded in Chile,
 
-- Perceived non-meritocracy: the extent to which success is perceived as linked to connections and family wealth.
+- Perceived non-meritocracy: the extent to which success is perceived as linked to connections and family wealth,
 
-- Preference for meritocracy: agreement with that those who work harder or are more talented should be better rewarded. 
+- Preference for meritocracy: agreement with that those who work harder or are more talented should be better rewarded,
 
-- Preference for non-meritocracy: agreement with that it is acceptable for individuals with better connections or wealthy parents to achieve greater success  (see @tbl-merit). 
+- Preference for non-meritocracy: agreement with that it is acceptable for individuals with better connections or wealthy parents to achieve greater success  (see @tbl-merit).
  
-Each item is rated on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference. 
+Each item is rated on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference.
 
 ```{r}
 #| tbl-cap: Items for perceptions and preferences for meritocracy scale
@@ -175,8 +175,9 @@ Model fit was assessed following the guidelines of Brown [-@brown_confirmatory_2
 
 ### Measurement invariance
 
-A key contribution of this study is the assessment of the metric stability of the measurement model using factorial invariance testing [@davidov_measurement_2014]. We implemented two complementary strategies: invariance across cohorts (primary vs. secondary school students) and longitudinal invariance using two panel waves. Given the ordinal nature of the items, we estimated measurement invariance using methods appropriate for ordered categorical measures, following the analysis by Liu et al. [-@liu_testing_2017]. Setting a hierarchical approach, we tested four nested models: configural (equal factorial structure), metric (equal factor loadings), scalar (equal intercepts and thresholds), and strict invariance (equal residual variances).
+A key contribution of this study is its assessment of measurement stability through factorial invariance testing [@davidov_measurement_2014]. We implemented two complementary strategies: cross-group invariance across school levels (primary vs. secondary students) and longitudinal invariance across two panel waves. Given the ordinal nature of the items, we used estimation procedures appropriate for ordered categorical indicators, following Liu et al. [-@liu_testing_2017] for longitudinal invariance and @svetina_multiplegroup_2020 for cross-group tests. For the longitudinal analyses, we adopted the standard hierarchical sequence of four nested models—configural (same factor structure), metric (equal loadings), scalar (equal thresholds/intercepts), and strict (equal residual variances). For the cross-group analyses, we estimated a configural model, then a threshold-invariant model, and finally a model jointly constraining thresholds and factor loadings across groups.
 
-In addition to the traditional Chi-square difference test for model comparisons, we used changes in fit indices to assess invariance: a change in CFI ($\Delta \geq -0.010$) and RMSEA ($\Delta \geq 0.0$) were adopted as more robust and sample-size-independent criteria, following Chen's recommendations [-@chen_sensitivity_2007].
+In addition to the traditional chi-square difference test, we assessed invariance using changes in approximate fit indices. Following Chen’s [-@chen_sensitivity_2007] recommendations for adequate sample sizes, we treated $\Delta$CFI as the primary criterion and $\Delta$RMSEA as a supplementary criterion. Noninvariance was indicated by a decrease in CFI of at least .010 (i.e., $\Delta$CFI $\leq$ −0.010), together with an increase in RMSEA of at least .015 (i.e., $\Delta$RMSEA $\geq$ 0.015).
 
-All analyses were performed using the *lavaan* package in R version 4.2.2. The hypotheses of this research were [pre-registered](https://osf.io/hjat2/) on the Open Science Framework (OSF).
+
+All analyses were performed using the *lavaan* package in R version 4.5.2. The hypotheses of this research were [pre-registered](https://osf.io/hjat2/) on the Open Science Framework (OSF).

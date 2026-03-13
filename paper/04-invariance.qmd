@@ -792,8 +792,7 @@ tab.inv %>%
 ```
 
 
-Taken together, the results support full longitudinal measurement invariance—configural, metric, scalar, and strict—suggesting that the constructs are measured equivalently across waves. This provides a strong basis for comparing latent means as well as variances, covariances, and structural relations over time. As an additional diagnostic, we examined potential sources of localized misfit using univariate score tests at each step of the invariance hierarchy (configural, metric, scalar, and strict) via `lavTestScore` in `lavaan`. Across steps, the score tests provided no evidence of meaningful violations of the imposed equality constraints, indicating that a small subset of parameters did not drive the constraints. Accordingly, we do not tabulate the full set of univariate tests for the longitudinal models; instead, the supplementary materials report the global score tests and the smallest p-values observed at each step.
-
+As an additional diagnostic, we examined potential sources of localized misfit using univariate score tests showing the increase of misfit at each step of the invariance hierarchy (configural, metric, scalar, and strict). Across steps, the score tests provided no evidence of meaningful violations of the imposed equality constraints, indicating that a small subset of parameters did not drive the constraints. The supplementary materials report the global score tests and the smallest p-values observed at each step.
 
 ### Cohort invariance
 

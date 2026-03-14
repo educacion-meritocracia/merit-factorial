@@ -1,0 +1,14 @@
+---
+bibliography: "../input/bib/merit-factorial.bib"
+csl: "../input/bib/apa6.csl"
+---
+
+# Conclusion
+
+Meritocratic beliefs remain central to how inequality is interpreted, and schools are key settings in which they are socially produced and reinforced [@mijs_paradox_2021; @sandel_tyranny_2020; @mijs_unfulfillable_2016; @resh_sense_2014; @traini_climbing_2025]. Yet empirical research has often conflated perceptions with preferences and treated merit and non-merit as opposite poles, obscuring dual configurations [@reynolds_perceptions_2014a; @wiesner_effort_2026]. Extending Castillo et al.’s [-@castillo_multidimensional_2023] framework to adolescents, this study shows that students distinguish between perceived and preferred meritocracy and non-meritocracy, and that endorsement of merit can coexist with recognition of non-meritocratic advantage.
+
+Methodologically, these findings support modeling school meritocracy as distinct yet related dimensions rather than collapsing them into a single score. The scale is strictly invariant over time for individual students, providing a robust basis for longitudinal analysis, but it does not achieve cross-level equivalence, indicating that comparisons across educational stages should be made with caution. More broadly, what is often interpreted as a change in belief in meritocracy may partly reflect increasing recognition of non-meritocratic constraints rather than declining endorsement of merit, consistent with recent accounts of dual consciousness [@tang_meritocratic_2025; @liu_does_2025; @zhu_meritocratic_2025].
+
+Despite its contributions, this study has limitations that point to clear avenues for future research. The scale is deliberately minimalist, with two items per factor, which constrains content coverage and reliability. The design includes only two waves and two school levels, limiting the analysis of longer developmental trajectories. In addition, cross-level non-invariance suggests the need to refine perceived-meritocracy items and test differential item functioning. Future research should expand the item pool, include additional waves and age groups, more fully distinguish types of non-meritocratic beliefs, and examine how these dimensions relate to inequality legitimation across school contexts. Overall, the study provides a stronger foundation for analyzing how school-based meritocratic socialization shapes interpretations of fairness and inequality.
+
+

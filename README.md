@@ -1,6 +1,12 @@
-# merit-factorial
+# Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts
 
-Measuring and applying a scale of perceptions and preferences about meritocracy.
+## Paper files
+
+[Paper Long](https://educacion-meritocracia.github.io/merit-factorial/paper/paper.pdf)
+
+[Paper Short](https://educacion-meritocracia.github.io/merit-factorial/paper_short/paper.pdf)
+
+## Conferences
 
 [Abstract COES 2024 HTML Version](https://educacion-meritocracia.github.io/merit-factorial/conferences/coes/extended-abstract.html)
 
@@ -9,16 +15,6 @@ Measuring and applying a scale of perceptions and preferences about meritocracy.
 [Abstract DEMOSAL 2025 HTML Version](https://educacion-meritocracia.github.io/merit-factorial/conferences/demosal/extended-abstract-demosal2025.html)
 
 [Presentación VIII Seminario Internacional DEMOSAL 2025](https://educacion-meritocracia.github.io/merit-factorial/presentations/demosal_2025.html)
-
-[Analysis](https://educacion-meritocracia.github.io/merit-factorial/processing/avances.html)
-
-[Paper](https://educacion-meritocracia.github.io/merit-factorial/paper/paper.pdf)
-
-[Cohort invariance](https://educacion-meritocracia.github.io/merit-factorial/processing/03-cohort-invariance.html)
-
-[Longitudinal invariance](https://educacion-meritocracia.github.io/merit-factorial/processing/04-longitudinal-invariance.html)
-
-[Methods](https://educacion-meritocracia.github.io/merit-factorial/paper/03-methods.html)
 
 [Presentación VI Jornada de Investigadoras/es Jóvenes sobre Desigualdad y Cohesión Social](https://educacion-meritocracia.github.io/merit-factorial/presentations/JornadasUDP_2025/udp_2025.html)
 

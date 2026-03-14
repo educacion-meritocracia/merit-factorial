@@ -1,7 +1,8 @@
 ---
-author: "Equipo EDUMER"
 bibliography: "../input/bib/merit-factorial.bib"
 csl: "../input/bib/apa6.csl"
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -60,11 +61,11 @@ This study draws on secondary data from the Panel Survey on Education and Merito
 
 ## Procedure
 
-Data collection was conducted by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires. All participants received an informed consent form that was reviewed and validated by a parent or legal guardian before participation. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student; no directly identifying information (e.g., names) was collected for students or their guardians in the analytic files. The study received ethical approval from the Research Ethics Committee at the Faculty of Social Sciences, University of Chile. The committee determined that the project posed minimal risk and approved the consent and confidentiality procedures described in the ethical assessment report.
+Data collection was conducted by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires. All participants received an informed consent form that was reviewed and validated by a parent or legal guardian before participation. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student; no directly identifying information (e.g., names) was collected for students or their guardians in the analytic files.
 
 ## Measures
 
-### Scale of Perceptions and Preferences on Meritocracy
+### Scale of perceptions and preferences of meritocracy
 
 Meritocratic and non-meritocratic perceptions and preferences were measured using the same items proposed in the original scale [@castillo_multidimensional_2023]. Each of the four dimensions of the scale is measured by two items. The dimensions are:
 
@@ -95,14 +96,14 @@ Each item is rated on a four-point Likert scale ranging from “strongly disagre
  tabitems <- read.csv(file = "../input/tables/table-01.csv",header = 1,sep = ",",encoding = "UTF-8") # call file  generated externally for the table
  cnames <- c("Components", "Dimensions","Item (English)" , "Item original (Spanish)")
 
- knitr::kable(tabitems, table_format, booktabs = T, linesep = "",col.names = cnames) %>%
+ knitr::kable(tabitems, "latex", booktabs = T, linesep = "",col.names = cnames) %>%
    kableExtra::kable_styling(
      full_width = T,
      latex_options = c("hold_position"),
      position = "center",
-     font_size = 10,
+     font_size = 9.5,
      bootstrap_options=c("striped", "bordered")) %>%
-   kableExtra::column_spec(column = 1, width = "1.5cm", ) %>%
+   kableExtra::column_spec(column = 1, width = "2cm", ) %>%
    kableExtra::column_spec(column = 2,width = "2 cm") %>%
    kableExtra::collapse_rows(columns = 1:2,valign = "middle")
 ```
@@ -127,38 +128,85 @@ To distinguish students’ academic level across waves for conditional and multi
 
 tot <- db_long %>% 
   na.omit() %>% 
-  group_by(cohort_level) %>% 
+  group_by(ola, cohort_level) %>% 
   tally() %>% 
-  rename(n_total = n)
+  rename(n_total = n) %>% 
+  mutate(ola = if_else(ola == "1", "Wave 1", "Wave 2")) %>% 
+  ungroup()
+
+tot <- tot %>% 
+    add_row(
+      ola = "Wave 1",
+      cohort_level = "Total",
+      n_total = sum(tot[c(1,2),3])
+    ) %>% 
+  add_row(
+      ola = "Wave 2",
+      cohort_level = "Total",
+      n_total = sum(tot[c(3,4),3]))
+
 
 edad <- db_long %>% 
   na.omit() %>% 
-  group_by(cohort_level) %>% 
+  group_by(ola, cohort_level) %>% 
   summarise(m = round(mean(age),2),
-            sd = round(sd(age),2))
+            sd = round(sd(age),2),
+            .groups = "drop_last") %>% 
+  mutate(ola = if_else(ola == "1", "Wave 1", "Wave 2")) %>% 
+  ungroup()
+
+edad_ola <- db_long %>% 
+  na.omit() %>% 
+  group_by(ola) %>% 
+  summarise(m = round(mean(age),2),
+            sd = round(sd(age),2),
+            .groups = "drop_last") %>% 
+  mutate(ola = if_else(ola == "1", "Wave 1", "Wave 2"),
+         cohort_level = "Total") %>% 
+  select(ola, cohort_level, m, sd)
+
+
+edad <- bind_rows(edad, edad_ola)
 
 gen <- db_long %>% 
   na.omit() %>% 
-  group_by(cohort_level, p20) %>% 
+  group_by(ola, cohort_level, p20) %>% 
   tally() %>% 
   ungroup() %>% 
-  pivot_wider(id_cols = cohort_level,
+  pivot_wider(id_cols = c(ola, cohort_level),
               names_from = p20,
-              values_from = n)
+              values_from = n) %>% 
+  mutate(ola = if_else(ola == "1", "Wave 1", "Wave 2"))
+
+gen_ola <- db_long %>% 
+  na.omit() %>% 
+  group_by(ola, p20) %>% 
+  tally() %>% 
+  ungroup() %>% 
+  pivot_wider(id_cols = c(ola),
+              names_from = p20,
+              values_from = n) %>% 
+  mutate(ola = if_else(ola == "1", "Wave 1", "Wave 2"),
+         cohort_level = "Total") %>% 
+  select(ola, cohort_level, H, M, O)
+
+gen <- bind_rows(gen, gen_ola)
 
 left_join(tot, edad) %>% 
   left_join(., gen) %>% 
-   knitr::kable(., table_format, 
+  arrange(ola) %>% 
+   knitr::kable(., "latex", escape = T,
                 booktabs = T, 
                 linesep = "",
-                col.names = c("Cohort level", "N", "Mean", "SD", "Man", "Women", "Others")) %>%
-    kableExtra::add_header_above(c(" " = 2, "Age" = 2, "Gender" = 3)) %>% 
+                col.names = c("Wave", "Cohort level", "N", "Mean", "SD", "Man", "Women", "Others")) %>%
+    kableExtra::add_header_above(c(" " = 3, "Age" = 2, "Gender" = 3)) %>% 
    kableExtra::kable_styling(
      full_width = T,
      latex_options = c("hold_position"),
      position = "center",
-     font_size = 11,
-     bootstrap_options=c("striped", "bordered"))
+     font_size = 9.5,
+     bootstrap_options=c("striped", "bordered")) %>% 
+  kableExtra::collapse_rows(1)
 
 ```
 

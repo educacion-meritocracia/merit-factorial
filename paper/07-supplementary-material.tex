@@ -6,13 +6,11 @@
 %
 \documentclass[
   12pt,
-  letterpaper,
-  DIV=11,
-  numbers=noendperiod]{scrartcl}
+]{article}
 \usepackage{xcolor}
-\usepackage[left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm]{geometry}
+\usepackage[margin=2cm]{geometry}
 \usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -34,7 +32,6 @@
   \usepackage[]{microtype}
   \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\usepackage{setspace}
 \makeatletter
 \@ifundefined{KOMAClassName}{% if non-KOMA class
   \IfFileExists{parskip.sty}{%
@@ -110,8 +107,20 @@
  
 
 
-\KOMAoption{captions}{tableheading}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
 \usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -157,7 +166,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts},
+  pdftitle={Supplementary material},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -166,83 +175,139 @@
   pdfcreator={LaTeX via pandoc}}
 
 
-\title{Stability and comparability of meritocratic beliefs in school-age
-students: A measurement invariance approach across time and cohorts}
-\author{}
+\title{Supplementary material}
+
+
+
 \date{}
 \begin{document}
 \maketitle
 
 
-\setstretch{1.15}
-\subsection{Authors Identification}\label{authors-identification}
+\section{Correlation matrix}\label{correlation-matrix}
 
-Andreas Laffert, Institute of Sociology, Pontifical Catholic University
-of Chile, Santiago de Chile. ORCID: 0000-0002-9008-2454
+\begin{figure}
 
-Juan Carlos Castillo\footnote{Corresponding author
-  (juancastillov@uchile.cl - Ignacio Carrera Pinto 1045 Ñuñoa, Santiago
-  de Chile).}, Departament of Sociology, University of Chile, Santiago
-de Chile.\\
-ORCID: 0000-0003-1265-7854
+\caption{\label{fig-cr}Correlation matrix for the pooled sample}
 
-René Canales, Institute of Sociology, Pontifical Catholic University of
-Chile, Santiago de Chile. ORCID: 0009-0002-4299-2725
+\centering{
 
-Tomás Urzúa, Departament of Sociology, University of Chile, Santiago de
-Chile. ORCID: 0009-0008-3167-6819
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{07-supplementary-material_files/figure-pdf/fig-cr-1.pdf}
 
-Kevin Carrasco, Departament of Sociology, University of Chile, Santiago
-de Chile. ORCID: 0000-0002-9348-8361
+}
 
-\subsection{Exclusive Submission
-Statement}\label{exclusive-submission-statement}
+\end{figure}%
 
-The authors confirm that this article has been submitted exclusively to
-this journal.
+\newpage{}
 
-\subsection{Acknowledgments}\label{acknowledgments}
+\section{Confirmatory factor analysis of the meritocracy
+scale}\label{confirmatory-factor-analysis-of-the-meritocracy-scale}
 
-The authors recognize the support of the National Research and
-Development Agency (ANID) through the grant from the National Fund for
-Scientific and Technological Development (FONDECYT) N°1250518.
+\begin{figure}
 
-\subsection{Authors' Contributions}\label{authors-contributions}
+\caption{\label{fig-w1}CFA model for the first wave}
 
-Author roles were classified using the Contributor Role Taxonomy
-\href{https://credit.niso.org/}{CRediT} as follows: Andreas Laffert:
-Conceptualization, Methodology, Formal Analysis, Writing - review and
-editing, Supervision; Juan Carlos Castillo: Methodology, Writing -
-review and editing, Supervision; René Canales: Formal analysis,
-Visualization, Writing - review and editing; Tomás Urzúa: Formal
-analysis, Visualization, Writing - review and editing; Kevin Carrasco:
-Writing - review and editing.
+\centering{
 
-\subsection{Conflict of Interest}\label{conflict-of-interest}
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{imagenes/w1.png}
 
-The authors declare no conflict of interest.
+}
 
-\subsection{Funding}\label{funding}
+\end{figure}%
 
-This research received funding from ANID/FONDECYT grant N°1250518.
+\begin{figure}
 
-\subsection{Ethical approval and informed consent
-statements}\label{ethical-approval-and-informed-consent-statements}
+\caption{\label{fig-w2}CFA model for the second wave}
 
-The study received ethical approval from the Research Ethics Committee
-at the Faculty of Social Sciences, University of Chile. The committee
-determined that the project posed minimal risk and approved the consent
-and confidentiality procedures described in the ethical assessment
-report
+\centering{
 
-\subsection{Data Avaibility Statement}\label{data-avaibility-statement}
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{imagenes/w2.png}
 
-The original data presented in the study are openly available in
-\url{https://github.com/educacion-meritocracia}
+}
 
-Access to the data, code, and analysis presented in the study are openly
-available in
-\url{https://github.com/educacion-meritocracia/merit-factorial}.
+\end{figure}%
+
+\begin{figure}
+
+\caption{\label{fig-basica}CFA model for the primary cohort}
+
+\centering{
+
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{imagenes/basica.png}
+
+}
+
+\end{figure}%
+
+\begin{figure}
+
+\caption{\label{fig-media}CFA model for the secondary cohort}
+
+\centering{
+
+\includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{imagenes/media.png}
+
+}
+
+\end{figure}%
+
+\newpage{}
+
+\section{Sources of misfit in longitudinal
+invariance}\label{sources-of-misfit-in-longitudinal-invariance}
+
+For the longitudinal strict invariance model (the more strict model),
+score tests provided no evidence of localized misfit. The global score
+test was non-significant, \(\chi^2 (20)=11.93, p=.918\), and none of the
+univariate score tests for equality constraints was significant (all
+\(p>.05\); smallest \(p=.065\)). This indicates that no single equality
+constraint notably contributed to the misfit. There are also no
+indicators of possible sources of misfit in the previous nested models
+(weak and strong).
+
+\newpage{}
+
+\section{Sources of misfit between cohort
+invariance}\label{sources-of-misfit-between-cohort-invariance}
+
+In contrast, score tests for the cross-cohort invariance constraints
+indicated localized misfit. The largest modification indices/score
+contributions clustered in the perceived effort, suggesting that
+equality constraints on thresholds/loadings for these items are not
+supported across school levels. Table~\ref{tbl-lavtestcohort} lists the
+ten constraints with the largest score statistics.
+
+\begin{table}
+
+\caption{\label{tbl-lavtestcohort}Sources of misfit in longitudinal
+invariance}
+
+\centering{
+
+\begingroup\fontsize{10}{12}\selectfont
+
+\begin{tabu} to \linewidth {>{\centering}X>{\centering}X>{\centering}X>{\centering}X>{\centering}X>{\centering}X}
+\toprule
+Item & Threshold & $\chi^2$ & df & p-value & p-value adjustement BH\\
+\midrule
+Perception effort & t2 & 10.115134 & 1 & 0.0014706 & 0.0352936\\
+Perception effort & t1 & 7.546618 & 1 & 0.0060123 & 0.0721474\\
+Perception contact & t1 & 5.179947 & 1 & 0.0228490 & 0.1464457\\
+Preference effort & t2 & 5.012861 & 1 & 0.0251597 & 0.1464457\\
+Perception talent & t1 & 4.680351 & 1 & 0.0305095 & 0.1464457\\
+\addlinespace
+Perception rich parents & t1 & 3.516226 & 1 & 0.0607707 & 0.2430828\\
+Preference effort & t3 & 2.177777 & 1 & 0.1400165 & 0.4800567\\
+Perception rich parents & t2 & 1.697639 & 1 & 0.1925971 & 0.5332262\\
+Perception talent & t3 & 1.642668 & 1 & 0.1999598 & 0.5332262\\
+Perception effort & t3 & 1.026312 & 1 & 0.3110265 & 0.7233287\\
+\bottomrule
+\end{tabu}
+\endgroup{}
+
+}
+
+\end{table}%
 
 
 

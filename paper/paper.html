@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,35 +47,18 @@ div.csl-indent {
 <script src="paper_files/libs/clipboard/clipboard.min.js"></script>
 <script src="paper_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="paper_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="paper_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="paper_files/libs/quarto-html/popper.min.js"></script>
 <script src="paper_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="paper_files/libs/quarto-html/anchor.min.js"></script>
 <link href="paper_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="paper_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="paper_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="paper_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="paper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="paper_files/libs/bootstrap/bootstrap-e8585f3656c86b01693e47614f1ad040.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="paper_files/libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="paper_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<link href="paper_files/libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
-<script src="paper_files/libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<link href="paper_files/libs/bootstrap/bootstrap-37cbfe24e4cc4da2ff2620a0d11d775b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -88,7 +71,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -108,90 +91,90 @@ window.Quarto = {
 
 <body class="quarto-light">
 
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts</h1>
-                      </div>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="paper.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts</h1>
+<p class="subtitle lead">9482 words</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Andreas Laffert <a href="mailto:alaffertt@estudiante.uc.cl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-9008-2454" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
   </div>
-    
-  <div class="quarto-title-meta-author">
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-heading">Affiliations</div>
-    
-      <div class="quarto-title-meta-contents">
-      <p class="author">Andreas Laffert <a href="mailto:alaffertt@estudiante.uc.cl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-9008-2454" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-    </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Institute of Sociology, Pontifical Catholic University of Chile
+          </p>
+      </div>
     <div class="quarto-title-meta-contents">
-          <p class="affiliation">
-              Institute of Sociology, Pontifical Catholic University of Chile
-            </p>
-        </div>
-      <div class="quarto-title-meta-contents">
-      <p class="author">Juan Carlos Castillo <a href="mailto:juancastillov@uchile.cl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0003-1265-7854" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-    </div>
+    <p class="author">Juan Carlos Castillo <a href="mailto:juancastillov@uchile.cl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0003-1265-7854" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Sociology, University of Chile
+          </p>
+      </div>
     <div class="quarto-title-meta-contents">
-          <p class="affiliation">
-              Department of Sociology, University of Chile
-            </p>
-        </div>
-      <div class="quarto-title-meta-contents">
-      <p class="author">René Canales <a href="mailto:renecanales@uc.cl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0009-0002-4299-2725" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-    </div>
+    <p class="author">René Canales <a href="mailto:renecanales@uc.cl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0009-0002-4299-2725" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Institute of Sociology, Pontifical Catholic University of Chile
+          </p>
+      </div>
     <div class="quarto-title-meta-contents">
-          <p class="affiliation">
-              Institute of Sociology, Pontifical Catholic University of Chile
-            </p>
-        </div>
-      <div class="quarto-title-meta-contents">
-      <p class="author">Tomás Urzúa <a href="mailto:tomas.urzua@ug.chile.cl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0009-0008-3167-6819" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-    </div>
+    <p class="author">Tomás Urzúa <a href="mailto:tomas.urzua@ug.chile.cl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0009-0008-3167-6819" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Sociology, University of Chile
+          </p>
+      </div>
     <div class="quarto-title-meta-contents">
-          <p class="affiliation">
-              Department of Sociology, University of Chile
-            </p>
-        </div>
-      <div class="quarto-title-meta-contents">
-      <p class="author">Kevin Carrasco <a href="mailto:kevin.carrasco@uchile.cl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-9348-8361" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-    </div>
-    <div class="quarto-title-meta-contents">
-          <p class="affiliation">
-              Department of Sociology, University of Chile
-            </p>
-        </div>
-    </div>
+    <p class="author">Kevin Carrasco <a href="mailto:kevin.carrasco@uchile.cl" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-9348-8361" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Department of Sociology, University of Chile
+          </p>
+      </div>
+  </div>
 
-  <div class="quarto-title-meta">
+<div class="quarto-title-meta">
 
-        
-    
       
-    </div>
+  
     
-  <div>
-    <div class="abstract">
-      <div class="block-title">Abstract</div>
-      <p><strong>Keywords</strong>:</p>
-    </div>
   </div>
   
-  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="../paper.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    <p>Meritocracy is a central ideal in many societies, shaping how individuals understand social hierarchies and evaluate inequality. Schools are key agencies of meritocratic socialization, framing achievement as a pathway to mobility through routine grading, tracking, and selection. Adolescence is therefore a crucial period for the formation of meritocratic beliefs, as young people are developing their understanding of how society works while increasingly recognizing the influence of family resources and social connections on life chances. Yet research on adolescents’ meritocratic beliefs has often relied on unidimensional measures that blur analytically distinct orientations, conflating perceptions of how allocation works with preferences about how it should work, and treating meritocratic and non-meritocratic principles as opposites. This study addresses these limitations by testing a multidimensional model of adolescents’ meritocratic beliefs that distinguishes perceived and preferred meritocracy and non-meritocracy. Using two-wave panel survey data from Chilean students in 8th and 10th grade (Wave 1: N = 846; Wave 2: N = 662), we examine whether these dimensions can be empirically distinguished, compared across school stages, and measured equivalently over time. Results support a four-factor structure, indicating that adolescents differentiate between perceptions and preferences, and between merit and non-merit, while endorsement of merit can coexist with recognition of non-meritocratic advantage. The scale achieves strict longitudinal invariance within students, but not metric invariance across school levels. These findings underscore the multidimensional nature of adolescents’ meritocratic beliefs, support longitudinal analysis, and call for caution in cross-stage comparisons. <strong>Keywords</strong>: Meritocracy · Schools · Measurement invariance · Socialization · Chile</p>
+  </div>
+</div>
 
 
+</header>
 
 
-
-<p>This document was last modified at 2026-03-13 10:17:28 and it was last rendered at 2026-03-13 10:17:28.</p>
+<p>This document was last modified at 2026-03-14 15:43:58 and it was last rendered at 2026-03-14 15:43:58.</p>
 <div class="justify">
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<p>Despite rising economic inequality and limited social mobility in contemporary societies <span class="citation" data-cites="chancel_world_2025 lopez-roldan_comparative_2021">(<a href="#ref-chancel_world_2025" role="doc-biblioref">Chancel et al., 2025</a>; <a href="#ref-lopez-roldan_comparative_2021" role="doc-biblioref">López-Roldán &amp; Fachelli, 2021</a>)</span>, the belief that inequalities reflect disparities in effort and talent instead of opportunities remains remarkably widespread among citizens <span class="citation" data-cites="mijs_paradox_2021">(<a href="#ref-mijs_paradox_2021" role="doc-biblioref">Mijs, 2021</a>)</span>. This idea refers to meritocracy, the notion that social rewards are, and should be, allocated according to individual effort and ability rather than social origins or personal connections <span class="citation" data-cites="young_rise_1958">(<a href="#ref-young_rise_1958" role="doc-biblioref">Young, 1958</a>)</span>. Therefore, the persistence of meritocratic beliefs is sociologically consequential for maintaining inequality, as they shape how people interpret inequality and fairness in unequal societies <span class="citation" data-cites="madeira_primes_2019 sandel_tyranny_2020">(<a href="#ref-madeira_primes_2019" role="doc-biblioref">Madeira et al., 2019</a>; <a href="#ref-sandel_tyranny_2020" role="doc-biblioref">Sandel, 2020</a>)</span>.</p>
-<p>The idea of meritocracy is particularly salient in school settings, where it operates not only as a cultural ideal but also as a central organizing principle of institutional life. Schools promote meritocracy as a normative standard by presenting education as a legitimate pathway to upward mobility and by framing individual effort and achievement as the proper basis of social rewards <span class="citation" data-cites="vandewerfhorst_meritocracy_2024 Lampert">(<a href="#ref-vandewerfhorst_meritocracy_2024" role="doc-biblioref">Van De Werfhorst, 2024</a>; <a href="#ref-Lampert" role="doc-biblioref"><strong>Lampert?</strong></a>)</span>. In this environment, students encounter meritocracy not only as discourse but also as a lived experience through grading, selection, and tracking, which make merit visible and consequential <span class="citation" data-cites="traini_stratification_2022 darnon_where_2018 resh_sense_2014 tang_meritocratic_2025">(<a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>; <a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>; <a href="#ref-traini_stratification_2022" role="doc-biblioref">Traini, 2022</a>)</span>. In this same socialization process, students are also exposed to non-meritocratic factors, such as family background, social connections, and structural barriers, which may coexist with or undermine the meritocratic ideal <span class="citation" data-cites="bourdieu_reproduction_1990 goudeau_hidden_2017a zhou_equalization_2019">(<a href="#ref-bourdieu_reproduction_1990" role="doc-biblioref">Bourdieu &amp; Passeron, 1990</a>; <a href="#ref-goudeau_hidden_2017a" role="doc-biblioref">Goudeau &amp; Croizet, 2017</a>; <a href="#ref-zhou_equalization_2019" role="doc-biblioref">Zhou, 2019</a>)</span>. In this line, extant research shows that a stronger endorsement of meritocratic beliefs in school is associated with greater justification of inequality <span class="citation" data-cites="batruch_belief_2022 wiederkehr_belief_2015 lampert_meritocratic_2013">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-lampert_meritocratic_2013" role="doc-biblioref">Lampert, 2013</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>, even when students may simultaneously recognize structural constraints, reflecting a form of dual consciousness <span class="citation" data-cites="liu_does_2025">(<a href="#ref-liu_does_2025" role="doc-biblioref">C. Liu &amp; Wang, 2025</a>)</span>. Taken together, these tensions make schools a crucial setting for examining how adolescents understand meritocracy, non-meritocratic constraints, and the fairness of unequal outcomes.</p>
-<p>The present paper contributes to this line of research by examining how school-aged students perceive and endorse meritocracy. We identify two main contributions of this study. The first one is the conceptualization and measurement of meritocratic beliefs in school settings. Most of the research in this area has focused on the consequences of meritocratic beliefs, while less attention has been paid to their conceptualization and measurement. This is a crucial gap, as how meritocratic beliefs are conceptualized and measured can have important implications for the validity of research findings and their interpretation. Addressing this gap, we build upon the multidimensional framework proposed by Castillo et al. <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span>. This framework distinguishes between perceptions (descriptive beliefs about how meritocracy works) and preferences (normative beliefs about how it should work), as well as between meritocratic principles (e.g., effort and ability) and non-meritocratic principles (e.g., family background and social connections). By adopting this multidimensional approach, we can better capture the complexity of adolescents’ beliefs about meritocracy and the role schools play in fostering them.</p>
-<p>A second contribution of this study is to examine the stability and comparability of meritocratic beliefs across school stages and over time. Most research on meritocratic beliefs remains cross-sectional, limiting what we can infer about how these orientations develop through school-based socialization during adolescence. This matters because adolescence is precisely when reasoning about justice and inequality becomes more sophisticated and when school-based sorting mechanisms become increasingly salient <span class="citation" data-cites="resh_sense_2014 henry_development_2006">(<a href="#ref-henry_development_2006" role="doc-biblioref">Henry &amp; Saul, 2006</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>)</span>, potentially reshaping how students interpret meritocratic narratives in light of lived constraints <span class="citation" data-cites="allen_top_2016">(<a href="#ref-allen_top_2016" role="doc-biblioref">Allen, 2016</a>)</span>. To address this, we test measurement invariance across two cohorts of Chilean secondary students (8th and 10th graders) and longitudinally within the same students across two waves (2023–2024). Establishing invariance is essential for valid comparisons: without it, observed differences across cohorts or over time may reflect changes in how items are understood and used rather than substantive change in the underlying constructs <span class="citation" data-cites="putnick_measurement_2016 vandenberg_review_2000">(<a href="#ref-putnick_measurement_2016" role="doc-biblioref"><strong>putnick_measurement_2016?</strong></a>; <a href="#ref-vandenberg_review_2000" role="doc-biblioref"><strong>vandenberg_review_2000?</strong></a>)</span>. By providing this measurement foundation, the study clarifies whether apparent differences in meritocratic beliefs reflect genuine developmental change or measurement non-equivalence, and it strengthens subsequent analyses of how these beliefs relate to different attitudes toward inequality and social mobility.</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Despite rising economic inequality and limited social mobility in contemporary societies <span class="citation" data-cites="chancel_world_2025 lopez-roldan_comparative_2021">(<a href="#ref-chancel_world_2025" role="doc-biblioref">Chancel et al., 2025</a>; <a href="#ref-lopez-roldan_comparative_2021" role="doc-biblioref">López-Roldán &amp; Fachelli, 2021</a>)</span>, the belief that inequalities reflect disparities in effort and talent instead of opportunities remains remarkably widespread among citizens <span class="citation" data-cites="mijs_paradox_2021">(<a href="#ref-mijs_paradox_2021" role="doc-biblioref">Mijs, 2021</a>)</span>. This idea refers to meritocracy, the notion that social rewards are, and should be, allocated according to individual effort and ability rather than social origins or personal connections <span class="citation" data-cites="young_rise_1958">(<a href="#ref-young_rise_1958" role="doc-biblioref">Young, 1958</a>)</span>. Although the term “meritocracy” was originally coined as a critique of a future society where meritocratic principles would be taken to an extreme <span class="citation" data-cites="young_rise_1958">(<a href="#ref-young_rise_1958" role="doc-biblioref">Young, 1958</a>)</span>, it has since been widely adopted as a normative ideal that justifies existing social arrangements and motivates individual striving <span class="citation" data-cites="sandel_tyranny_2020 mijs_paradox_2021">(<a href="#ref-mijs_paradox_2021" role="doc-biblioref">Mijs, 2021</a>; <a href="#ref-sandel_tyranny_2020" role="doc-biblioref">Sandel, 2020</a>)</span>. On the one hand, meritocracy can be seen as a powerful narrative that promotes social cohesion and motivates individuals to work hard and pursue their goals. On the other hand, it can also be criticized for obscuring structural inequalities and legitimizing the status quo <span class="citation" data-cites="sandel_tyranny_2020 mijs_paradox_2021">(<a href="#ref-mijs_paradox_2021" role="doc-biblioref">Mijs, 2021</a>; <a href="#ref-sandel_tyranny_2020" role="doc-biblioref">Sandel, 2020</a>)</span>. Therefore, the persistence of meritocratic beliefs could have important implications for how people understand and respond to inequality, as well as for the legitimacy of social institutions <span class="citation" data-cites="madeira_primes_2019 sandel_tyranny_2020">(<a href="#ref-madeira_primes_2019" role="doc-biblioref">Madeira et al., 2019</a>; <a href="#ref-sandel_tyranny_2020" role="doc-biblioref">Sandel, 2020</a>)</span>.</p>
+<p>The idea of meritocracy is particularly salient in school settings, where it operates not only as a cultural ideal but also as a central organizing principle of institutional life. Schools promote meritocracy as a normative standard by presenting education as a legitimate pathway to upward mobility and by framing individual effort and achievement as the proper basis of social rewards <span class="citation" data-cites="vandewerfhorst_meritocracy_2024 lampert_meritocratic_2013">(<a href="#ref-lampert_meritocratic_2013" role="doc-biblioref">Lampert, 2013</a>; <a href="#ref-vandewerfhorst_meritocracy_2024" role="doc-biblioref">Van De Werfhorst, 2024</a>)</span>. In this environment, students encounter meritocracy not only as discourse but also as a lived experience through grading, selection, and tracking, which make merit visible and consequential <span class="citation" data-cites="traini_stratification_2022 darnon_where_2018 resh_sense_2014 tang_meritocratic_2025">(<a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>; <a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>; <a href="#ref-traini_stratification_2022" role="doc-biblioref">Traini, 2022</a>)</span>. In this same socialization process, students are also exposed to non-meritocratic factors, such as the influence of family background, social connections, and structural barriers, which may coexist with or undermine the meritocratic ideal <span class="citation" data-cites="bourdieu_reproduction_1990 goudeau_hidden_2017a zhou_equalization_2019">(<a href="#ref-bourdieu_reproduction_1990" role="doc-biblioref">Bourdieu &amp; Passeron, 1990</a>; <a href="#ref-goudeau_hidden_2017a" role="doc-biblioref">Goudeau &amp; Croizet, 2017</a>; <a href="#ref-zhou_equalization_2019" role="doc-biblioref">Zhou, 2019</a>)</span>. In this line, extant research shows that a stronger endorsement of meritocratic beliefs in school is associated with greater justification of inequality <span class="citation" data-cites="batruch_belief_2022 wiederkehr_belief_2015 lampert_meritocratic_2013">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-lampert_meritocratic_2013" role="doc-biblioref">Lampert, 2013</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>, even when students may simultaneously recognize structural constraints, reflecting a form of dual consciousness <span class="citation" data-cites="liu_does_2025">(<a href="#ref-liu_does_2025" role="doc-biblioref">C. Liu &amp; Wang, 2025</a>)</span>. Taken together, these tensions make schools a crucial setting for examining how adolescents understand meritocracy, non-meritocratic constraints, and the fairness of unequal outcomes.</p>
+<p>The present paper contributes to this line of research by examining how school-aged students perceive and endorse meritocracy. We identify two main contributions of this study. The first one is the conceptualization and measurement of meritocratic beliefs in school settings. Most of the research in this area has focused on the consequences of meritocratic beliefs, while less attention has been paid to their conceptualization and measurement. This is a crucial gap in the extant literature, as how meritocratic beliefs are conceptualized and measured can have important implications for the validity of research findings and their interpretation. Addressing this point, we approach the study of meritocratic beliefs at school from a multidimensional approach <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">Castillo et al., 2023</a>)</span>, which distinguishes between perceptions (descriptive beliefs about how meritocracy works) and preferences (normative beliefs about how it should work), as well as between meritocratic principles (e.g., effort and ability) and non-meritocratic principles (e.g., family background and social connections). By adopting this perspective, we can better capture the complexity of adolescents’ beliefs about meritocracy and the role schools play in fostering them.</p>
+<p>A second contribution of this study is to examine the stability and comparability of meritocratic beliefs across school stages and over time. Most research on meritocratic beliefs remains cross-sectional, limiting what we can infer about how these orientations develop through school-based socialization during adolescence. This matters because adolescence is precisely when reasoning about justice and inequality becomes more sophisticated and when school-based sorting mechanisms become increasingly salient <span class="citation" data-cites="resh_sense_2014 henry_development_2006">(<a href="#ref-henry_development_2006" role="doc-biblioref">Henry &amp; Saul, 2006</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>)</span>, potentially reshaping how students interpret meritocratic narratives in light of lived constraints <span class="citation" data-cites="allen_top_2016">(<a href="#ref-allen_top_2016" role="doc-biblioref">Allen, 2016</a>)</span>. To address this, we test measurement invariance across two cohorts of Chilean secondary students (8th and 10th graders) and longitudinally within the same students across two waves (2023–2024). Establishing invariance is essential for valid comparisons: without it, observed differences across cohorts or over time may reflect changes in how items are understood and used rather than substantive change in the underlying constructs <span class="citation" data-cites="putnick_measurement_2016 vandeschoot_editorial_2015 vandeschoot_checklist_2012">(<a href="#ref-putnick_measurement_2016" role="doc-biblioref">Putnick &amp; Bornstein, 2016</a>; <a href="#ref-vandeschoot_checklist_2012" role="doc-biblioref">Van De Schoot et al., 2012</a>; <a href="#ref-vandeschoot_editorial_2015" role="doc-biblioref">Van De Schoot et al., 2015</a>)</span>. By providing this measurement foundation, the study clarifies whether apparent differences in meritocratic beliefs reflect genuine developmental change or measurement non-equivalence, and it strengthens subsequent analyses of how these beliefs relate to different attitudes toward inequality and social mobility.</p>
 <p>According to these two contributions, the research questions guiding this study are as follows:</p>
 <ol type="1">
 <li><p>Do school-aged students distinguish between meritocratic and non-meritocratic principles, as well as between perceptions (“what is”) and preferences (“what should be”)?</p></li>
@@ -199,10 +182,10 @@ window.Quarto = {
 </ol>
 <p>We argue that a multidimensional conception of meritocratic beliefs clarifies what adolescents actually endorse—descriptions, ideals, or both—and provides a stronger basis for valid developmental and longitudinal analysis. In the following sections, we first review the literature on meritocratic beliefs in school settings, highlighting the conceptual and methodological gaps that this study aims to address. Then, we present the methodology of our study, including the sample, measures, and analytical strategy. Finally, we discuss the implications of our findings for understanding adolescents’ beliefs about meritocracy and the consequences of these beliefs for attitudes toward inequality.</p>
 </section>
-<section id="theoretical-and-empirical-background" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Theoretical and empirical background</h1>
-<section id="what-is-meritocracy-and-how-is-it-measured" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="what-is-meritocracy-and-how-is-it-measured"><span class="header-section-number">2.1</span> What is meritocracy and how is it measured?</h2>
+<section id="theoretical-and-empirical-background" class="level1">
+<h1>Theoretical and empirical background</h1>
+<section id="what-is-meritocracy-and-how-is-it-measured" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-meritocracy-and-how-is-it-measured">What is meritocracy and how is it measured?</h2>
 <p>Meritocracy refers to a distributive system in which individual merit—typically defined as effort and personal ability—is treated as the primary criterion for allocating resources and rewards, rather than social origins or inherited privilege <span class="citation" data-cites="young_rise_1958 bell_equality_1972">(<a href="#ref-bell_equality_1972" role="doc-biblioref">Bell, 1972</a>; <a href="#ref-young_rise_1958" role="doc-biblioref">Young, 1958</a>)</span>. While <span class="citation" data-cites="young_rise_1958">Young (<a href="#ref-young_rise_1958" role="doc-biblioref">1958</a>)</span> coined the term as a dystopian critique of a society that justifies power and status only through “achievement,” it has since been re-appropriated as a positive ideal of fairness, especially in liberal and market-oriented societies <span class="citation" data-cites="mijs_paradox_2021 vandewerfhorst_meritocracy_2024">(<a href="#ref-mijs_paradox_2021" role="doc-biblioref">Mijs, 2021</a>; <a href="#ref-vandewerfhorst_meritocracy_2024" role="doc-biblioref">Van De Werfhorst, 2024</a>)</span>. From a sociological standpoint, meritocracy is, on the one hand, a cognitive judgment about how inequality works and, on the other hand, a moral lens through which people evaluate inequality in relation to merit <span class="citation" data-cites="castillo_meritocracia_2019 heuer_legitimizing_2020">(<a href="#ref-castillo_meritocracia_2019" role="doc-biblioref">Castillo et al., 2019</a>; <a href="#ref-heuer_legitimizing_2020" role="doc-biblioref">Heuer et al., 2020</a>)</span>. Precisely because it frames outcomes as earned, meritocratic ideals can end up reinforcing inequality: “winners” are encouraged to see their position as deserved, while “losers” are pushed toward self-blame rather than structural critique <span class="citation" data-cites="garcia-sierra_dark_2023 mijs_stratified_2016 sandel_tyranny_2020">(<a href="#ref-garcia-sierra_dark_2023" role="doc-biblioref">García-Sierra, 2023</a>; <a href="#ref-mijs_stratified_2016" role="doc-biblioref">Mijs, 2016a</a>; <a href="#ref-sandel_tyranny_2020" role="doc-biblioref">Sandel, 2020</a>)</span>. The key point is that meritocracy often promises to mitigate inherited advantage, but in practice, it can legitimize unequal structures by translating social privilege into individualized narratives of deservingness.</p>
 <p>Research in adult populations has mapped both the determinants and consequences of meritocratic perceptions. On the “causes” side, higher-status individuals —those with more education, income, and occupational prestige—and upward mobile individuals are consistently more likely to endorse merit-based explanations for social outcomes <span class="citation" data-cites="duru-bellat_whos_2012 garcia-sanchez_perceptions_2018 mijs_belief_2022 traini_climbing_2025">(<a href="#ref-duru-bellat_whos_2012" role="doc-biblioref">Duru-Bellat &amp; Tenret, 2012</a>; <a href="#ref-garcia-sanchez_perceptions_2018" role="doc-biblioref">García-Sánchez et al., 2018</a>; <a href="#ref-mijs_belief_2022" role="doc-biblioref">Mijs et al., 2022</a>; <a href="#ref-traini_climbing_2025" role="doc-biblioref">Traini et al., 2025</a>)</span>. On the “consequences” side, perceiving one’s society as meritocratic is associated with lower support for redistribution and egalitarian policies <span class="citation" data-cites="hoyt_mindsets_2023 tejero-peregrina_perceived_2025 paneda-fernandez_relevance_2026">(<a href="#ref-hoyt_mindsets_2023" role="doc-biblioref">Hoyt et al., 2023</a>; <a href="#ref-paneda-fernandez_relevance_2026" role="doc-biblioref">Pañeda-Fernández et al., 2026</a>; <a href="#ref-tejero-peregrina_perceived_2025" role="doc-biblioref">Tejero-Peregrina et al., 2025</a>)</span>, as well as greater acceptance of inequality and market-based allocation logics <span class="citation" data-cites="castillo_meritocracia_2019 castillo_perceptions_2025">(<a href="#ref-castillo_perceptions_2025" role="doc-biblioref">Castillo et al., 2025</a>, <a href="#ref-castillo_meritocracia_2019" role="doc-biblioref">2019</a>)</span>. Experimental evidence is consistent with a causal pathway in which exposure to upward-mobility information or “self-made” narratives reduces redistributive support and increases tolerance of inequality and system-justifying orientations, whereas exposure to low or downward mobility produces the opposite pattern—effects that are often partly mediated by strengthened meritocratic perceptions <span class="citation" data-cites="deng_its_2025 matamoros-lima_social_2025">(<a href="#ref-deng_its_2025" role="doc-biblioref">Deng &amp; Wang, 2025</a>; <a href="#ref-matamoros-lima_social_2025" role="doc-biblioref">Matamoros-Lima et al., 2025</a>)</span>. Taken together, this literature suggests that meritocratic perceptions are systematically associated with social position and redistributive attitudes. In particular, they are associated with whether inequality is interpreted primarily as the outcome of individual performance or as a condition that warrants collective intervention.</p>
 <p>The research agenda on meritocratic beliefs has faced some challenges regarding the way in which meritocracy is conceptualized and measured. Some studies have relied on narrow operationalizations that equate meritocracy with the social valuation of effort <span class="citation" data-cites="mijs_paradox_2021 wiederkehr_belief_2015">(<a href="#ref-mijs_paradox_2021" role="doc-biblioref">Mijs, 2021</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>, often reflecting simplified readings of Young’s <span class="citation" data-cites="young_rise_1958">(<a href="#ref-young_rise_1958" role="doc-biblioref">1958</a>)</span> formulation (Merit = Effort + Intelligence), whereas others treat “meritocracy” as interchangeable with broader constructs such as system justification <span class="citation" data-cites="day_movin_2017 jost_decade_2004a">(<a href="#ref-day_movin_2017" role="doc-biblioref">Day &amp; Fiske, 2017</a>; <a href="#ref-jost_decade_2004a" role="doc-biblioref">Jost et al., 2004</a>)</span>, beliefs about social mobility <span class="citation" data-cites="deng_its_2025 mccoy_priming_2007">(<a href="#ref-deng_its_2025" role="doc-biblioref">Deng &amp; Wang, 2025</a>; <a href="#ref-mccoy_priming_2007" role="doc-biblioref">McCoy &amp; Major, 2007</a>)</span>, or generalized support for equal opportunity <span class="citation" data-cites="batruch_belief_2022 darnon_where_2018">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>)</span>. As a result, conceptually distinct orientations are frequently collapsed into a single indicator, and the distinction between descriptive perceptions of how rewards are allocated and normative preferences about how they should be allocated is often acknowledged but rarely implemented analytically.</p>
@@ -211,41 +194,41 @@ window.Quarto = {
 <p>Evidence in adult population using confirmatory factor analysis methods suggests that respondents are capable of differentiating among the four meritocratic dimensions. Besides, the dimensions show systematic associations. For instance, stronger perceptions that non-meritocratic factors are rewarded tend to co-occur with stronger preferences for meritocratic allocation. This configuration aligns with Zhu’s <span class="citation" data-cites="zhu_meritocratic_2025">(<a href="#ref-zhu_meritocratic_2025" role="doc-biblioref">2025</a>)</span> “dual consciousness,” here specified as the coexistence of (a) meritocratic and non-meritocratic beliefs and (b) legitimacy judgments (“should”) alongside descriptive assessments (“is”).</p>
 <p>Regarding research in the school context, the challenges identified in measuring meritocratic beliefs have been barely tackled. An recent exception is a study by <span class="citation" data-cites="chauvin_school_2026">Chauvin et al. (<a href="#ref-chauvin_school_2026" role="doc-biblioref">2026</a>)</span> who proposes multidimensional measure of school meritocracy that differentiates equity and ability from a general factor, although it refers only to teachers and remains restricted to perceived meritocracy. Another study in this from <span class="citation" data-cites="castillo_socialization_2024">Castillo et al. (<a href="#ref-castillo_socialization_2024" role="doc-biblioref">2024</a>)</span> applies the multidimensional framework referred above to a sample of Chilean 10th graders. The results show that students can differentiate between perceptions and preferences, as well as between meritocratic and non-meritocratic principles. However, the study does not test whether these dimensions are stable across age cohorts or over time, which limits our understanding of their developmental trajectory and comparability.</p>
 </section>
-<section id="the-socialization-of-meritocracy-at-school" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="the-socialization-of-meritocracy-at-school"><span class="header-section-number">2.2</span> The socialization of meritocracy at school</h2>
+<section id="the-socialization-of-meritocracy-at-school" class="level2">
+<h2 class="anchored" data-anchor-id="the-socialization-of-meritocracy-at-school">The socialization of meritocracy at school</h2>
 <p>Socialization refers to the process by which individuals internalize social norms, values, and practices, thereby acquiring the dispositions necessary to function in society. Far from being neutral, this process is rooted in structures of power and inequality. From a sociological perspective, <span class="citation" data-cites="bourdieu_sentido_2007">Bourdieu (<a href="#ref-bourdieu_sentido_2007" role="doc-biblioref">2007</a>)</span> conceptualizes socialization as an orientation that shapes individuals’ perceptions and actions, often unconsciously. In a complementary manner, <span class="citation" data-cites="bandura_sociallearning_1969">Bandura (<a href="#ref-bandura_sociallearning_1969" role="doc-biblioref">1969</a>)</span> emphasizes the role of social learning, through which children adopt patterns of behavior and value systems modeled by their families. Therefore, the internalization of meritocratic beliefs—such as the idea that effort and talent are the primary determinants of success—is not simply a rational decision, but the result of deep, structured, and class-dependent socialization processes.</p>
 <p>During primary socialization, families play a foundational role in shaping attitudes and values, including early meritocratic orientations. Parenting often reflects class-based strategies of status reproduction <span class="citation" data-cites="bourdieu_reproduction_1990 bernstein_theoretical_2005">(<a href="#ref-bernstein_theoretical_2005" role="doc-biblioref">Bernstein, 2005</a>; <a href="#ref-bourdieu_reproduction_1990" role="doc-biblioref">Bourdieu &amp; Passeron, 1990</a>)</span>. Higher-status families tend to promote autonomy and personal responsibility, while disadvantaged families more often emphasize discipline, effort, and obedience. Although both can sustain meritocratic beliefs, they differ in their connection to the resources that support upward mobility <span class="citation" data-cites="santanderramirez_preferencias_2020">(<a href="#ref-santanderramirez_preferencias_2020" role="doc-biblioref">Santander Ramírez et al., 2020</a>)</span>. As a result, children often internalize parental views of success, fairness, and responsibility through everyday family life <span class="citation" data-cites="bandura_sociallearning_1969">(<a href="#ref-bandura_sociallearning_1969" role="doc-biblioref">Bandura, 1969</a>)</span>. Importantly, socialization may also work in the opposite direction: children’s educational trajectories can reinforce parental orientations, as when children’s achievement predicts subsequent increases in parental meritocratic beliefs <span class="citation" data-cites="olivos_motivation_2021a">(<a href="#ref-olivos_motivation_2021a" role="doc-biblioref">Olivos, 2021</a>)</span>. Even so, while families provide an initial frame of interpretation, schools constitute a particularly consequential institutional arena in which such beliefs are further shaped, reinforced, and contested.</p>
 <p>Schools are central to the socialization of meritocracy because they promote it both culturally and institutionally. On the one hand, schools advance meritocratic ideals through narratives of effort, achievement, self-improvement, and education as a legitimate route to mobility and reward <span class="citation" data-cites="batruch_belief_2022 mijs_paradox_2021 chauvin_school_2026 darnon_where_2018 wiederkehr_belief_2015">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-chauvin_school_2026" role="doc-biblioref">Chauvin et al., 2026</a>; <a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>; <a href="#ref-mijs_paradox_2021" role="doc-biblioref">Mijs, 2021</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>. On the other hand, they embed these ideals in routine practices of evaluation and classification: grades, tracking, selection, awards, and credentials operate as institutional markers of worth, making merit visible and consequential in ways that are immediate and socially meaningful <span class="citation" data-cites="resh_sense_2014 traini_stratification_2022">(<a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>; <a href="#ref-traini_stratification_2022" role="doc-biblioref">Traini, 2022</a>)</span>. At the same time, schools remain settings in which non-meritocratic advantages—such as family resources, cultural capital, peer environments, and unequal school quality—are also visible and consequential <span class="citation" data-cites="batruch_belief_2022 resh_sense_2014">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>)</span>. This duality makes educational settings especially important for understanding how meritocratic beliefs are formed.</p>
 <p>A growing body of research shows that this duality can give rise to ambivalent or internally differentiated orientations. Students may endorse meritocracy as a normative ideal while simultaneously recognizing structural constraints, reflecting a form of “dual consciousness” <span class="citation" data-cites="tang_meritocratic_2025 liu_does_2025">(<a href="#ref-liu_does_2025" role="doc-biblioref">C. Liu &amp; Wang, 2025</a>; <a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>)</span>. <span class="citation" data-cites="tang_meritocratic_2025">Tang et al. (<a href="#ref-tang_meritocratic_2025" role="doc-biblioref">2025</a>)</span>, for instance, show longitudinally that educational trajectories can coincide with increasing recognition of non-meritocratic barriers, even when meritocratic ideals remain salient; similarly, <span class="citation" data-cites="liu_does_2025">C. Liu &amp; Wang (<a href="#ref-liu_does_2025" role="doc-biblioref">2025</a>)</span> argue that education can operate as either legitimation or “enlightenment” depending on the broader inequality context. More broadly, meritocratic framing encourages students across social backgrounds to interpret success and failure in individual terms, reinforcing personal responsibility while limiting attention to structural constraints <span class="citation" data-cites="darnon_where_2018">(<a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>)</span>. As <span class="citation" data-cites="lampert_meritocratic_2013">Lampert (<a href="#ref-lampert_meritocratic_2013" role="doc-biblioref">2013</a>)</span> argues, meritocratic schooling can reward a minority while leading many others to internalize failure as personal deficiency. Even students from disadvantaged backgrounds often adopt meritocratic narratives, suggesting that prolonged exposure to school-based evaluative environments is a powerful mechanism shaping beliefs about justice and inequality <span class="citation" data-cites="henry_development_2006">(<a href="#ref-henry_development_2006" role="doc-biblioref">Henry &amp; Saul, 2006</a>)</span>.</p>
 <p>The consequences of the youngest beliefs in meritocracy extend beyond school contexts. Perceiving schools as highly meritocratic—particularly believing that effort and talent are fairly rewarded—has been linked to the legitimation of broader forms of inequality. Students who hold such beliefs are more likely to justify unequal access to key social services, perceive class inequalities as less unjust, express weaker support for redistribution, and endorse stronger system-justifying beliefs <span class="citation" data-cites="castillo_socialization_2024 batruch_belief_2022 wiederkehr_belief_2015">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-castillo_socialization_2024" role="doc-biblioref">Castillo et al., 2024</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>. Taken together, this evidence suggests that schools do not merely shape academic trajectories; they also play a central role in the early formation of distributive beliefs that can normalize and legitimize social inequality.</p>
 </section>
-<section id="this-study" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="this-study"><span class="header-section-number">2.3</span> This study</h2>
+<section id="this-study" class="level2">
+<h2 class="anchored" data-anchor-id="this-study">This study</h2>
 <p>This study examines how students understand meritocracy during a formative stage of socialization—schooling—and whether these understandings can be measured reliably and comparably. Building on Castillo et al.’s <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span> conceptual and measurement framework, we test whether students differentiate between (i) perceptions about how meritocracy operates in society (“what is”) and (ii) preferences about how it should operate (“what ought to be”), and whether these judgments distinguish meritocratic elements (effort, talent) from non-meritocratic elements (family wealth, personal contacts). Empirically, beyond assessing factorial validity, the paper focuses on measurement stability—whether the same latent constructs are captured comparably across school stages and across time within the same students.</p>
-<p>Establishing measurement invariance is essential because it provides the empirical foundation for valid comparisons. Without it, observed differences between groups or across time could reflect changes in how the instrument functions rather than substantive differences in the underlying constructs <span class="citation" data-cites="widaman_method_2010 putnick_measurement_2016">(<a href="#ref-widaman_method_2010" role="doc-biblioref"><strong>widaman_method_2010?</strong></a>; <a href="#ref-putnick_measurement_2016" role="doc-biblioref"><strong>putnick_measurement_2016?</strong></a>)</span>. In other words, measurement invariance tests whether students at different ages, or at different time points, interpret and respond to the items in the same way—ensuring that a given latent score carries the same meaning regardless of when or to whom it is administered <span class="citation" data-cites="vandenberg_review_2000">(<a href="#ref-vandenberg_review_2000" role="doc-biblioref"><strong>vandenberg_review_2000?</strong></a>)</span>. This is particularly important in developmental research: if the measurement model differs between cohorts or waves, comparisons of means, variances, or covariances become uninterpretable, as they conflate measurement artifacts with true developmental or contextual variation <span class="citation" data-cites="meredith_measurement_1993">(<a href="#ref-meredith_measurement_1993" role="doc-biblioref"><strong>meredith_measurement_1993?</strong></a>)</span>.</p>
-<p>The study leverages longitudinal data from two cohorts of Chilean secondary students: 8th graders (approximately 12–13 years old) and 10th graders (approximately 15–16 years old) at baseline, followed across two waves. These cohorts are theoretically strategic because they capture distinct stages of adolescence, when abstract reasoning about justice and inequality becomes more sophisticated and school-based sorting mechanisms (grades, tracking, peer comparisons) become increasingly salient <span class="citation" data-cites="resh_sense_2014 henry_development_2006">(<a href="#ref-henry_development_2006" role="doc-biblioref">Henry &amp; Saul, 2006</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>)</span>. Developmental research further suggests that by around age 10, children can already articulate judgments about social differences, typically emphasizing individual, merit-based explanations while beginning to incorporate opportunity-based accounts, especially those involving discrimination <span class="citation" data-cites="sigelman_age_2013 imhoff_nociones_2015">(<a href="#ref-sigelman_age_2013" role="doc-biblioref"><strong>sigelman_age_2013?</strong></a>; <a href="#ref-imhoff_nociones_2015" role="doc-biblioref"><strong>imhoff_nociones_2015?</strong></a>)</span>. As students move through the school system, cumulative exposure to evaluation and selection can make the limits of effort as a sufficient explanation for success more visible, generating a potential “reality shock” as meritocratic discourse clashes with experienced inequality and constraints <span class="citation" data-cites="allen_top_2016">(<a href="#ref-allen_top_2016" role="doc-biblioref">Allen, 2016</a>)</span>. Both cohorts are embedded within the same highly stratified educational system, yet differ in their cumulative exposure to schooling and to the meritocratic narratives the system promotes. Accordingly, we test measurement invariance across the two cohorts and across waves to ensure that any observed differences or changes can be interpreted substantively rather than as artifacts of measurement non-equivalence.</p>
-<section id="hypotheses" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="hypotheses"><span class="header-section-number">2.3.1</span> Hypotheses</h3>
-<p><strong><span class="math inline">H_1</span> (Dimensional differentiation)</strong>. Students’ meritocratic beliefs are best represented by four distinct factors: perceived meritocracy, perceived non-meritocracy, preferred meritocracy, and preferred non-meritocracy.</p>
-<p><strong><span class="math inline">H_2</span> (Between-cohort measurement invariance)</strong>. The four-factor model of meritocratic beliefs is invariant across age cohorts.</p>
-<p><strong><span class="math inline">H_3</span> (Longitudinal measurement invariance)</strong>. The four-factor model of meritocratic beliefs is invariant across waves within students.</p>
+<p>Establishing measurement invariance is essential because it provides the empirical foundation for valid comparisons <span class="citation" data-cites="chen_sensitivity_2007 putnick_measurement_2016">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">Chen, 2007</a>; <a href="#ref-putnick_measurement_2016" role="doc-biblioref">Putnick &amp; Bornstein, 2016</a>)</span>. Without it, observed differences between groups or across time could reflect changes in how the instrument functions rather than substantive differences in the underlying constructs <span class="citation" data-cites="vandeschoot_editorial_2015 putnick_measurement_2016">(<a href="#ref-putnick_measurement_2016" role="doc-biblioref">Putnick &amp; Bornstein, 2016</a>; <a href="#ref-vandeschoot_editorial_2015" role="doc-biblioref">Van De Schoot et al., 2015</a>)</span>. In other words, measurement invariance tests whether students at different ages, or at different time points, interpret and respond to the items in the same way—ensuring that a given latent score carries the same meaning regardless of when or to whom it is administered <span class="citation" data-cites="vandeschoot_checklist_2012">(<a href="#ref-vandeschoot_checklist_2012" role="doc-biblioref">Van De Schoot et al., 2012</a>)</span>. This is particularly important in developmental research: if the measurement model differs between cohorts or waves, comparisons of means, variances, or covariances become uninterpretable, as they conflate measurement artifacts with true developmental or contextual variation <span class="citation" data-cites="putnick_measurement_2016 liu_testing_2017">(<a href="#ref-liu_testing_2017" role="doc-biblioref">Y. Liu et al., 2017</a>; <a href="#ref-putnick_measurement_2016" role="doc-biblioref">Putnick &amp; Bornstein, 2016</a>)</span>.</p>
+<p>The study leverages longitudinal data from two cohorts of Chilean secondary students: 8th graders (approximately 12–13 years old) and 10th graders (approximately 15–16 years old) at baseline, followed across two waves. These cohorts are theoretically strategic because they capture distinct stages of adolescence, when abstract reasoning about justice and inequality becomes more sophisticated and school-based sorting mechanisms (grades, tracking, peer comparisons) become increasingly salient <span class="citation" data-cites="resh_sense_2014 henry_development_2006">(<a href="#ref-henry_development_2006" role="doc-biblioref">Henry &amp; Saul, 2006</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>)</span>. Developmental research further suggests that by around age 10, children can already articulate judgments about social differences, typically emphasizing individual, merit-based explanations while beginning to incorporate opportunity-based accounts, especially those involving discrimination <span class="citation" data-cites="sigelman_age_2013a imhoff_nociones_2025">(<a href="#ref-imhoff_nociones_2025" role="doc-biblioref">Imhoff &amp; Brussino, 2025</a>; <a href="#ref-sigelman_age_2013a" role="doc-biblioref">Sigelman, 2013</a>)</span>. As students move through the school system, cumulative exposure to evaluation and selection can make the limits of effort as a sufficient explanation for success more visible, generating a potential “reality shock” as meritocratic discourse clashes with experienced inequality and constraints <span class="citation" data-cites="allen_top_2016">(<a href="#ref-allen_top_2016" role="doc-biblioref">Allen, 2016</a>)</span>. Both cohorts are embedded within the same highly stratified educational system, yet differ in their cumulative exposure to schooling and to the meritocratic narratives the system promotes. Accordingly, we test measurement invariance across the two cohorts and across waves to ensure that any observed differences or changes can be interpreted substantively rather than as artifacts of measurement non-equivalence.</p>
+<section id="hypotheses" class="level3">
+<h3 class="anchored" data-anchor-id="hypotheses">Hypotheses</h3>
+<p><strong><span class="math inline">\(H_1\)</span> (Dimensional differentiation)</strong>. Students’ meritocratic beliefs are best represented by four distinct factors: perceived meritocracy, perceived non-meritocracy, preferred meritocracy, and preferred non-meritocracy.</p>
+<p><strong><span class="math inline">\(H_2\)</span> (Between-cohort measurement invariance)</strong>. The four-factor model of meritocratic beliefs is invariant across age cohorts.</p>
+<p><strong><span class="math inline">\(H_3\)</span> (Longitudinal measurement invariance)</strong>. The four-factor model of meritocratic beliefs is invariant across waves within students.</p>
 </section>
 </section>
 </section>
-<section id="method" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Method</h1>
-<section id="participants" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="participants"><span class="header-section-number">3.1</span> Participants</h2>
-<p>This study draws on secondary data from the Panel Survey on Education and Meritocracy (EDUMER) for the 2023 and 2024 waves, covering school-age students<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The primary objective of the survey was to examine students’ beliefs, attitudes, and behaviors concerning meritocracy, inequality, and citizenship. The questionnaire was administered to sixth-grade and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The sampling strategy was non-probabilistic and lacked quota controls; however, a minimum sample size of 900 students was established to ensure adequate statistical power. After data processing and the elimination of missing cases (listwise deletion), the final analytical sample comprises 846 students for the first wave (386 girls, 421 boys, 39 identifying as other; <span class="math inline">M_{age}</span> = 13.4, <span class="math inline">SD_{age}</span> = 1.6), and the second wave followed 662 of them (303 girls, 338 boys, 21 identifying as other; <span class="math inline">M_{age}</span> = 14.4, <span class="math inline">SD_{age}</span> = 1.6), corresponding to a retention rate of 78.3% (attrition 21.7%). The primary causes of attrition were school transfers between academic years and student absenteeism, which was reported to be high in several establishments.</p>
+<section id="method" class="level1">
+<h1>Method</h1>
+<section id="participants" class="level2">
+<h2 class="anchored" data-anchor-id="participants">Participants</h2>
+<p>This study draws on secondary data from the Panel Survey on Education and Meritocracy (EDUMER) for the 2023 and 2024 waves, covering school-age students<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The primary objective of the survey was to examine students’ beliefs, attitudes, and behaviors concerning meritocracy, inequality, and citizenship. The questionnaire was administered to sixth-grade and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The sampling strategy was non-probabilistic and lacked quota controls; however, a minimum sample size of 900 students was established to ensure adequate statistical power. After data processing and the elimination of missing cases (listwise deletion), the final analytical sample comprises 846 students for the first wave (386 girls, 421 boys, 39 identifying as other; <span class="math inline">\(M_{age}\)</span> = 13.4, <span class="math inline">\(SD_{age}\)</span> = 1.6), and the second wave followed 662 of them (303 girls, 338 boys, 21 identifying as other; <span class="math inline">\(M_{age}\)</span> = 14.4, <span class="math inline">\(SD_{age}\)</span> = 1.6), corresponding to a retention rate of 78.3% (attrition 21.7%). The primary causes of attrition were school transfers between academic years and student absenteeism, which was reported to be high in several establishments.</p>
 </section>
-<section id="procedure" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="procedure"><span class="header-section-number">3.2</span> Procedure</h2>
+<section id="procedure" class="level2">
+<h2 class="anchored" data-anchor-id="procedure">Procedure</h2>
 <p>Data collection was conducted by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires. All participants received an informed consent form that was reviewed and validated by a parent or legal guardian before participation. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student; no directly identifying information (e.g., names) was collected for students or their guardians in the analytic files. The study received ethical approval from the Research Ethics Committee at the Faculty of Social Sciences, University of Chile. The committee determined that the project posed minimal risk and approved the consent and confidentiality procedures described in the ethical assessment report.</p>
 </section>
-<section id="measures" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="measures"><span class="header-section-number">3.3</span> Measures</h2>
-<section id="scale-of-perceptions-and-preferences-on-meritocracy" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="scale-of-perceptions-and-preferences-on-meritocracy"><span class="header-section-number">3.3.1</span> Scale of Perceptions and Preferences on Meritocracy</h3>
+<section id="measures" class="level2">
+<h2 class="anchored" data-anchor-id="measures">Measures</h2>
+<section id="scale-of-perceptions-and-preferences-on-meritocracy" class="level3">
+<h3 class="anchored" data-anchor-id="scale-of-perceptions-and-preferences-on-meritocracy">Scale of Perceptions and Preferences on Meritocracy</h3>
 <p>Meritocratic and non-meritocratic perceptions and preferences were measured using the same items proposed in the original scale <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">Castillo et al., 2023</a>)</span>. Each of the four dimensions of the scale is measured by two items. The dimensions are:</p>
 <ul>
 <li><p>Perceived meritocracy: the extent to which effort and ability are rewarded in Chile,</p></li>
@@ -262,64 +245,15 @@ Table&nbsp;1: Items for perceptions and preferences for meritocracy scale
 </figcaption>
 <div aria-describedby="tbl-merit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped table-bordered do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Components</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Dimensions</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Item (English)</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Item original (Spanish)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td rowspan="4" style="text-align: left; width: 1.5cm; vertical-align: middle !important;">Perception</td>
-<td rowspan="2" style="text-align: left; width: 2 cm; vertical-align: middle !important;">Meritocratic</td>
-<td style="text-align: left;">In Chile people are rewarded for their efforts</td>
-<td style="text-align: left;">En Chile las personas son recompensadas por sus esfuerzos</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">In Chile people are rewarded for their intelligence and ability</td>
-<td style="text-align: left;">En Chile las personas son recompensadas por su inteligencia y habilidad</td>
-</tr>
-<tr class="odd">
-<td rowspan="2" style="text-align: left; width: 2 cm; vertical-align: middle !important;">Non meritocratic</td>
-<td style="text-align: left;">In Chile those with wealthy parents do much better in life</td>
-<td style="text-align: left;">En Chile a quienes tienen padres ricos les va mucho mejor en la vida</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">In Chile those with good contacts do much better in life</td>
-<td style="text-align: left;">En Chile a quienes tienen buenos contactos les va mejor en la vida</td>
-</tr>
-<tr class="odd">
-<td rowspan="4" style="text-align: left; width: 1.5cm; vertical-align: middle !important;">Preference</td>
-<td rowspan="2" style="text-align: left; width: 2 cm; vertical-align: middle !important;">Meritocratic</td>
-<td style="text-align: left;">Those who work harder should reap greater rewards than those who work less hard</td>
-<td style="text-align: left;">Quienes más se esfuerzan deberían obtener mayores recompensas que quienes se esfuerzan menos</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Those with more talent should reap greater rewards than those with less talent</td>
-<td style="text-align: left;">Quienes poseen más talento deberían obtener mayores recompensas que quienes poseen menos talento</td>
-</tr>
-<tr class="odd">
-<td rowspan="2" style="text-align: left; width: 2 cm; vertical-align: middle !important;">Non meritocratic</td>
-<td style="text-align: left;">It is good that those who have rich parents do better in life</td>
-<td style="text-align: left;">Está bien que quienes tengan padres ricos les vaya mejor en la vida</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">It is good that those who have good contacts do better in life</td>
-<td style="text-align: left;">Está bien que quienes tengan buenos contactos les vaya mejor en la vida</td>
-</tr>
-</tbody>
-</table>
+
 </div>
 </div>
 </figure>
 </div>
 </div>
 </section>
-<section id="cohort-level" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="cohort-level"><span class="header-section-number">3.3.2</span> Cohort level</h3>
+<section id="cohort-level" class="level3">
+<h3 class="anchored" data-anchor-id="cohort-level">Cohort level</h3>
 <p>To distinguish students’ academic level across waves for conditional and multi-group invariance analyses, we created a cohort indicator capturing whether the respondent belonged to the primary (sixth grade) or secondary (first-year secondary) cohort at the time of each survey wave. Descriptive statistics<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> by cohort are reported in <a href="#tbl-cohort" class="quarto-xref">Table&nbsp;2</a>.</p>
 <div class="cell" data-tbl-cap-location="top">
 <div id="tbl-cohort" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
@@ -329,57 +263,7 @@ Table&nbsp;2: Descriptive statistics for cohort level
 </figcaption>
 <div aria-describedby="tbl-cohort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped table-bordered do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-</colgroup>
-<thead>
-<tr class="header">
-<th colspan="2" data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
-<th colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Age
-</div></th>
-<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Gender
-</div></th>
-</tr>
-<tr class="even">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Cohort level</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">N</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Mean</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">SD</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Man</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Women</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Others</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Primary</td>
-<td style="text-align: right;">725</td>
-<td style="text-align: right;">12.28</td>
-<td style="text-align: right;">0.74</td>
-<td style="text-align: right;">356</td>
-<td style="text-align: right;">336</td>
-<td style="text-align: right;">33</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Secondary</td>
-<td style="text-align: right;">783</td>
-<td style="text-align: right;">15.22</td>
-<td style="text-align: right;">0.92</td>
-<td style="text-align: right;">403</td>
-<td style="text-align: right;">353</td>
-<td style="text-align: right;">27</td>
-</tr>
-</tbody>
-</table>
+
 </div>
 </div>
 </figure>
@@ -387,25 +271,25 @@ Gender
 </div>
 </section>
 </section>
-<section id="analytical-strategy" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="analytical-strategy"><span class="header-section-number">3.4</span> Analytical strategy</h2>
-<section id="measurement-model-and-estimation" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="measurement-model-and-estimation"><span class="header-section-number">3.4.1</span> Measurement model and estimation</h3>
+<section id="analytical-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="analytical-strategy">Analytical strategy</h2>
+<section id="measurement-model-and-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="measurement-model-and-estimation">Measurement model and estimation</h3>
 <p>To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, using Diagonally Weighted Least Squares with robust correction (WLSMV) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous <span class="citation" data-cites="kline_principles_2023">(<a href="#ref-kline_principles_2023" role="doc-biblioref">Kline, 2023</a>)</span>.</p>
-<p>Model fit was assessed following the guidelines of Brown <span class="citation" data-cites="brown_confirmatory_2015">(<a href="#ref-brown_confirmatory_2015" role="doc-biblioref">2015</a>)</span>, using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by <span class="math inline">p</span> &gt; 0.05 and a Chi-square/df ratio &lt; 3).</p>
+<p>Model fit was assessed following the guidelines of Brown <span class="citation" data-cites="brown_confirmatory_2015">(<a href="#ref-brown_confirmatory_2015" role="doc-biblioref">2015</a>)</span>, using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by <span class="math inline">\(p\)</span> &gt; 0.05 and a Chi-square/df ratio &lt; 3).</p>
 </section>
-<section id="measurement-invariance" class="level3" data-number="3.4.2">
-<h3 data-number="3.4.2" class="anchored" data-anchor-id="measurement-invariance"><span class="header-section-number">3.4.2</span> Measurement invariance</h3>
+<section id="measurement-invariance" class="level3">
+<h3 class="anchored" data-anchor-id="measurement-invariance">Measurement invariance</h3>
 <p>A key contribution of this study is its assessment of measurement stability through factorial invariance testing <span class="citation" data-cites="davidov_measurement_2014">(<a href="#ref-davidov_measurement_2014" role="doc-biblioref">Davidov et al., 2014</a>)</span>. We implemented two complementary strategies: cross-group invariance across school levels (primary vs.&nbsp;secondary students) and longitudinal invariance across two panel waves. Given the ordinal nature of the items, we used estimation procedures appropriate for ordered categorical indicators, following Liu et al. <span class="citation" data-cites="liu_testing_2017">(<a href="#ref-liu_testing_2017" role="doc-biblioref">2017</a>)</span> for longitudinal invariance and <span class="citation" data-cites="svetina_multiplegroup_2020">Svetina et al. (<a href="#ref-svetina_multiplegroup_2020" role="doc-biblioref">2020</a>)</span> for cross-group tests. For the longitudinal analyses, we adopted the standard hierarchical sequence of four nested models—configural (same factor structure), metric (equal loadings), scalar (equal thresholds/intercepts), and strict (equal residual variances). For the cross-group analyses, we estimated a configural model, then a threshold-invariant model, and finally a model jointly constraining thresholds and factor loadings across groups.</p>
-<p>In addition to the traditional chi-square difference test, we assessed invariance using changes in approximate fit indices. Following Chen’s <span class="citation" data-cites="chen_sensitivity_2007">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">2007</a>)</span> recommendations for adequate sample sizes, we treated <span class="math inline">\Delta</span>CFI as the primary criterion and <span class="math inline">\Delta</span>RMSEA as a supplementary criterion. Noninvariance was indicated by a decrease in CFI of at least .010 (i.e., <span class="math inline">\Delta</span>CFI <span class="math inline">\leq</span> −0.010), together with an increase in RMSEA of at least .015 (i.e., <span class="math inline">\Delta</span>RMSEA <span class="math inline">\geq</span> 0.015).</p>
+<p>In addition to the traditional chi-square difference test, we assessed invariance using changes in approximate fit indices. Following Chen’s <span class="citation" data-cites="chen_sensitivity_2007">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">2007</a>)</span> recommendations for adequate sample sizes, we treated <span class="math inline">\(\Delta\)</span>CFI as the primary criterion and <span class="math inline">\(\Delta\)</span>RMSEA as a supplementary criterion. Noninvariance was indicated by a decrease in CFI of at least .010 (i.e., <span class="math inline">\(\Delta\)</span>CFI <span class="math inline">\(\leq\)</span> −0.010), together with an increase in RMSEA of at least .015 (i.e., <span class="math inline">\(\Delta\)</span>RMSEA <span class="math inline">\(\geq\)</span> 0.015).</p>
 <p>All analyses were performed using the <em>lavaan</em> package in R version 4.5.2. The hypotheses of this research were <a href="https://osf.io/hjat2/">pre-registered</a> on the Open Science Framework (OSF).</p>
 </section>
 </section>
 </section>
-<section id="results" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Results</h1>
-<section id="measurement-model" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="measurement-model"><span class="header-section-number">4.1</span> Measurement model</h2>
+<section id="results" class="level1">
+<h1>Results</h1>
+<section id="measurement-model" class="level2">
+<h2 class="anchored" data-anchor-id="measurement-model">Measurement model</h2>
 <p><a href="#fig-general" class="quarto-xref">Figure&nbsp;1</a> presents the standardized factor loadings and the overall fit indices of the general measurement model estimated on the pooled analytical sample across cohorts and waves. The model shows a reasonable, though not fully satisfactory, fit to the data (CFI = 0.97; TLI = 0.94; RMSEA = 0.07). Although the CFI and RMSEA fall within commonly used acceptable ranges, the TLI remains below conventional thresholds, indicating that fit is acceptable in some respects but not uniformly strong across indices. Overall, these results suggest that the proposed four-factor structure captures the main covariance pattern in the combined sample reasonably well.</p>
 <div class="cell fig-cap-location-top">
 <div class="cell-output-display">
@@ -421,19 +305,19 @@ Figure&nbsp;1: Multigroup model diagram
 </div>
 </div>
 </div>
-<p>All standardized factor loadings are statistically significant and generally moderate to strong, though their magnitude varies across dimensions. For meritocratic perceptions, both indicators load positively on the latent factor, with effort showing a particularly strong loading (<span class="math inline">\beta</span> = 0.88) and talent a moderately strong loading (<span class="math inline">\beta</span> = 0.62). Meritocratic preferences exhibit more even, but somewhat weaker, loadings for effort (<span class="math inline">\beta</span> = 0.59) and talent (<span class="math inline">\beta</span> = 0.55). For non-meritocratic perceptions, both indicators load strongly, especially contacts (<span class="math inline">\beta</span> = 0.88), followed by coming from a rich family (<span class="math inline">\beta</span> = 0.72). Non-meritocratic preferences also show strong and relatively balanced loadings, with contacts (<span class="math inline">\beta</span> = 0.84) and rich family (<span class="math inline">\beta</span> = 0.72), indicating that both indicators are similarly representative of this latent dimension.</p>
-<p>The latent correlations reveal a differentiated structure among the four dimensions. Meritocratic perceptions and meritocratic preferences are positively correlated (<span class="math inline">r</span> = 0.14), consistent with some alignment between what students perceive is rewarded and what they believe should be rewarded. Meritocratic and non-meritocratic perceptions are negatively correlated (<span class="math inline">r</span> = −0.21), suggesting that students who perceive greater meritocracy in society tend to view a weaker role for connections and family wealth. At the same time, non-meritocratic perceptions are positively related to meritocratic preferences (<span class="math inline">r</span> = 0.48, strongest correlation), suggesting that perceiving society as rewarding contacts and wealth may coincide with stronger endorsement of meritocratic ideals. Finally, meritocratic and non-meritocratic preferences are modestly positively correlated (<span class="math inline">r</span> = 0.15), and non-meritocratic perceptions and preferences are also positively associated (<span class="math inline">r</span> = 0.22), indicating that recognizing non-meritocratic mechanisms in practice is linked to a greater acceptance of their legitimacy, albeit to a moderate extent.</p>
+<p>All standardized factor loadings are statistically significant and generally moderate to strong, though their magnitude varies across dimensions. For meritocratic perceptions, both indicators load positively on the latent factor, with effort showing a particularly strong loading (<span class="math inline">\(\beta\)</span> = 0.88) and talent a moderately strong loading (<span class="math inline">\(\beta\)</span> = 0.62). Meritocratic preferences exhibit more even, but somewhat weaker, loadings for effort (<span class="math inline">\(\beta\)</span> = 0.59) and talent (<span class="math inline">\(\beta\)</span> = 0.55). For non-meritocratic perceptions, both indicators load strongly, especially contacts (<span class="math inline">\(\beta\)</span> = 0.88), followed by coming from a rich family (<span class="math inline">\(\beta\)</span> = 0.72). Non-meritocratic preferences also show strong and relatively balanced loadings, with contacts (<span class="math inline">\(\beta\)</span> = 0.84) and rich family (<span class="math inline">\(\beta\)</span> = 0.72), indicating that both indicators are similarly representative of this latent dimension.</p>
+<p>The latent correlations reveal a differentiated structure among the four dimensions. Meritocratic perceptions and meritocratic preferences are positively correlated (<span class="math inline">\(r\)</span> = 0.14), consistent with some alignment between what students perceive is rewarded and what they believe should be rewarded. Meritocratic and non-meritocratic perceptions are negatively correlated (<span class="math inline">\(r\)</span> = −0.21), suggesting that students who perceive greater meritocracy in society tend to view a weaker role for connections and family wealth. At the same time, non-meritocratic perceptions are positively related to meritocratic preferences (<span class="math inline">\(r\)</span> = 0.48, strongest correlation), suggesting that perceiving society as rewarding contacts and wealth may coincide with stronger endorsement of meritocratic ideals. Finally, meritocratic and non-meritocratic preferences are modestly positively correlated (<span class="math inline">\(r\)</span> = 0.15), and non-meritocratic perceptions and preferences are also positively associated (<span class="math inline">\(r\)</span> = 0.22), indicating that recognizing non-meritocratic mechanisms in practice is linked to a greater acceptance of their legitimacy, albeit to a moderate extent.</p>
 </section>
-<section id="invariance-analysis" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="invariance-analysis"><span class="header-section-number">4.2</span> Invariance analysis</h2>
+<section id="invariance-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="invariance-analysis">Invariance analysis</h2>
 <p>We assessed measurement invariance through a hierarchical sequence of nested confirmatory factor analysis models, imposing progressively stricter equality constraints to evaluate whether the measurement model was comparable across time and cohorts. For longitudinal invariance, we followed the approach in <span class="citation" data-cites="liu_testing_2017">Y. Liu et al. (<a href="#ref-liu_testing_2017" role="doc-biblioref">2017</a>)</span> and estimated the model simultaneously across the two waves. We began with a configural model that specified the same factor structure at each wave while allowing item parameters (factor loadings, thresholds/intercepts, and residual variances) to vary freely; this model served as the baseline for subsequent comparisons. We then tested metric (weak) invariance by constraining factor loadings to equality across waves, followed by scalar (strong) invariance by additionally constraining item thresholds (and, where applicable, intercepts) to equality over time—an essential step with ordered-categorical indicators to ensure that response categories map onto equivalent points on the latent continuum and thus permit meaningful comparisons of latent means. Finally, we evaluated strict invariance by further constraining residual variances to equality across waves. To assess invariance between cohorts, we followed the sequential procedure proposed by <span class="citation" data-cites="svetina_multiplegroup_2020">Svetina et al. (<a href="#ref-svetina_multiplegroup_2020" role="doc-biblioref">2020</a>)</span> for ordinal indicators: we estimated a configural model, then a threshold-invariant model, and finally a model that jointly constrained thresholds and factor loadings across groups.</p>
 <p>In the following sections, we proceed as follows. First, we present descriptive statistics for the meritocracy scale among the comparison groups. Second, we report the results of the measurement invariance analyses, emphasizing the highest level of invariance achieved in each comparison. Finally, we examine potential sources of non-invariance to identify which items or parameters are responsible for the lack of equivalence.</p>
-<section id="longitudinal-invariance" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="longitudinal-invariance"><span class="header-section-number">4.2.1</span> Longitudinal invariance</h3>
+<section id="longitudinal-invariance" class="level3">
+<h3 class="anchored" data-anchor-id="longitudinal-invariance">Longitudinal invariance</h3>
 <p><a href="#fig-likerplot1" class="quarto-xref">Figure&nbsp;2</a> displays the response distributions for the meritocracy scale, distinguishing perceptions (Panel A) from preferences (Panel B) across waves. In Wave 1, perceptions show high levels of agreement across all items, especially for contacts (77%), talent (74%), and having rich parents (71%), with effort also widely endorsed (67%); at the same time, sizeable minorities disagree (33% for effort, 29% for rich parents, and 27% for talent), indicating a dual recognition in which students strongly acknowledge non-meritocratic determinants (contacts and parental wealth), while within the meritocratic dimension they view talent as more influential than effort, which is perceived as the least rewarded. Wave 1 preferences show the inverse pattern: effort is overwhelmingly endorsed as the legitimate basis for rewards (87%), far exceeding its perceived role in practice; views on talent are split (54% agree, 45% disagree); parental wealth remains nearly evenly divided; and contacts are relatively more accepted than rejected (61% vs.&nbsp;39%), suggesting that this factor is not uniformly considered illegitimate in the “ideal” society.</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-likerplot1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-likerplot1" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-likerplot1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Distribution of responses on the scale of perceptions and preferences regarding meritocracy by wave
@@ -446,7 +330,7 @@ Figure&nbsp;2: Distribution of responses on the scale of perceptions and prefere
 </div>
 </div>
 <p>Wave 2 largely replicates these patterns with modest shifts. In perceptions, endorsement of effort declines (62%), whereas contacts (76%), talent (70%), and parental wealth (70%) remain consistently high. In preferences, support for effort remains highly stable (88%), while support for talent declines, with disagreement rising to 51%. Attitudes toward parental wealth remain evenly divided, and contacts continue to be more accepted than rejected (59% vs.&nbsp;41%), albeit far below the near-consensus around effort. Overall, both waves reveal a stable gap: students perceive social outcomes as strongly shaped by non-meritocratic factors (especially contacts and family wealth) and, to a lesser extent, talent, yet they overwhelmingly endorse an effort-centered meritocratic ideal. This persistent divergence between perceived reality and normative preferences highlights a key paradox—strong support for meritocracy as a principle alongside skepticism about its realization in practice.</p>
-<p><a href="#tbl-longinv" class="quarto-xref">Table&nbsp;3</a> reports the results of the longitudinal invariance tests. Overall, the scale achieved the strongest level of invariance (strict invariance) across the two waves. The strict model showed good fit, <span class="math inline">\chi^2</span>(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90% CI: 0.020–0.040). Moreover, compared with the strong (scalar) model, the deterioration in fit was negligible: <span class="math inline">\Delta \chi^2</span>(4) = 1.635, <span class="math inline">\Delta</span>CFI = 0.000, and <span class="math inline">\Delta</span>RMSEA = -0.002. These differences fall well within commonly used cutoffs for invariance evaluation <span class="citation" data-cites="chen_sensitivity_2007">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">Chen, 2007</a>)</span>, indicating that constraining residual variances in addition to loadings and thresholds/intercepts is tenable. Substantively, this implies that the item–factor relations are stable over time (metric invariance) and that, for a given level of the latent trait, respondents are expected to endorse the same response categories across waves (scalar invariance), supporting the comparability of scores and latent parameters within students over time.</p>
+<p><a href="#tbl-longinv" class="quarto-xref">Table&nbsp;3</a> reports the results of the longitudinal invariance tests. Overall, the scale achieved the strongest level of invariance (strict invariance) across the two waves. The strict model showed good fit, <span class="math inline">\(\chi^2\)</span>(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90% CI: 0.020–0.040). Moreover, compared with the strong (scalar) model, the deterioration in fit was negligible: <span class="math inline">\(\Delta \chi^2\)</span>(4) = 1.635, <span class="math inline">\(\Delta\)</span>CFI = 0.000, and <span class="math inline">\(\Delta\)</span>RMSEA = -0.002. These differences fall well within commonly used cutoffs for invariance evaluation <span class="citation" data-cites="chen_sensitivity_2007">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">Chen, 2007</a>)</span>, indicating that constraining residual variances in addition to loadings and thresholds/intercepts is tenable. Substantively, this implies that the item–factor relations are stable over time (metric invariance) and that, for a given level of the latent trait, respondents are expected to endorse the same response categories across waves (scalar invariance), supporting the comparability of scores and latent parameters within students over time.</p>
 <div class="cell" data-tbl-cap-location="top">
 <div id="tbl-longinv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -455,75 +339,20 @@ Table&nbsp;3: Longitudinal invariance results
 </figcaption>
 <div aria-describedby="tbl-longinv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped table-bordered table-condensed do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: center;" data-quarto-table-cell-role="th">Model</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">χ^2 (df)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">CFI</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">RMSEA (90 CI)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Δ χ^2 (Δ df)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Δ CFI</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Δ RMSEA</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Decision</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center; width: 3.5cm;">Configural</td>
-<td style="text-align: center; width: 4cm;">117.7 (68)</td>
-<td style="text-align: center; width: 4cm;">0.991</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.035 (0.024-0.046)</td>
-<td style="text-align: center; width: 4cm;">0 (0)</td>
-<td style="text-align: center; width: 4cm;">0</td>
-<td style="text-align: center; width: 4cm;">0.000</td>
-<td style="text-align: center; width: 3.5cm;">Reference</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 3.5cm;">Weak</td>
-<td style="text-align: center; width: 4cm;">122.51 (72)</td>
-<td style="text-align: center; width: 4cm;">0.990</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.034 (0.024-0.045)</td>
-<td style="text-align: center; width: 4cm;">4.809 (4)</td>
-<td style="text-align: center; width: 4cm;">0</td>
-<td style="text-align: center; width: 4cm;">-0.001</td>
-<td style="text-align: center; width: 3.5cm;">Accept</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 3.5cm;">Strong</td>
-<td style="text-align: center; width: 4cm;">128.53 (80)</td>
-<td style="text-align: center; width: 4cm;">0.991</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.032 (0.021-0.042)</td>
-<td style="text-align: center; width: 4cm;">6.02 (8)</td>
-<td style="text-align: center; width: 4cm;">0</td>
-<td style="text-align: center; width: 4cm;">-0.002</td>
-<td style="text-align: center; width: 3.5cm;">Accept</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 3.5cm;">Strict</td>
-<td style="text-align: center; width: 4cm;">130.17 (84)</td>
-<td style="text-align: center; width: 4cm;">0.991</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.031 (0.02-0.04)</td>
-<td style="text-align: center; width: 4cm;">1.635 (4)</td>
-<td style="text-align: center; width: 4cm;">0</td>
-<td style="text-align: center; width: 4cm;">-0.002</td>
-<td style="text-align: center; width: 3.5cm;">Accept</td>
-</tr>
-</tbody>
-</table>
+
 </div>
 </div>
 </figure>
 </div>
 </div>
-<p>Taken together, the results support full longitudinal measurement invariance—configural, metric, scalar, and strict—suggesting that the constructs are measured equivalently across waves. This provides a strong basis for comparing latent means as well as variances, covariances, and structural relations over time. As an additional diagnostic, we examined potential sources of localized misfit using univariate score tests at each step of the invariance hierarchy (configural, metric, scalar, and strict) via <code>lavTestScore</code> in <code>lavaan</code>. Across steps, the score tests provided no evidence of meaningful violations of the imposed equality constraints, indicating that a small subset of parameters did not drive the constraints. Accordingly, we do not tabulate the full set of univariate tests for the longitudinal models; instead, the supplementary materials report the global score tests and the smallest p-values observed at each step.</p>
+<p>As an additional diagnostic, we examined potential sources of localized misfit using univariate score tests showing the increase of misfit at each step of the invariance hierarchy (configural, metric, scalar, and strict). Across steps, the score tests provided no evidence of meaningful violations of the imposed equality constraints, indicating that a small subset of parameters did not drive the constraints. The supplementary materials report the global score tests and the smallest p-values observed at each step.</p>
 </section>
-<section id="cohort-invariance" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="cohort-invariance"><span class="header-section-number">4.2.2</span> Cohort invariance</h3>
+<section id="cohort-invariance" class="level3">
+<h3 class="anchored" data-anchor-id="cohort-invariance">Cohort invariance</h3>
 <p><a href="#fig-likerplot2" class="quarto-xref">Figure&nbsp;3</a> shows response distributions by cohort, separating perceptions and preferences. In primary education, perceived rewards are similar for effort and talent (both 76% agree). Contacts (67%) and a rich-family background (59%) are also seen as rewarded, and these non-meritocratic factors elicit the most disagreement within the cohort (41% disagree with rich-family background; 33% with contacts). In preferences, effort is clearly dominant (84% agree), whereas talent and a rich family background split evenly. Notably, 62% consider it as good that those who have good contacts do better in life (39% disagree).</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-likerplot2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-likerplot2" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-likerplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Distribution of responses on the scale of perceptions and preferences regarding meritocracy by cohort
@@ -544,63 +373,18 @@ Table&nbsp;4: Cohort (multigroup) invariance results
 </figcaption>
 <div aria-describedby="tbl-cohort2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped table-bordered table-condensed do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: center;" data-quarto-table-cell-role="th">Model</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">χ^2 (df)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">CFI</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">RMSEA (90 CI)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Δ χ^2 (Δ df)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Δ CFI</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Δ RMSEA</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Decision</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center; width: 3.5cm;">Configural</td>
-<td style="text-align: center; width: 4cm;">24.95 (26)</td>
-<td style="text-align: center; width: 4cm;">0.993</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.036 (0.009-0.057)</td>
-<td style="text-align: center; width: 4cm;">0 (0)</td>
-<td style="text-align: center; width: 4cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">0.000</td>
-<td style="text-align: center; width: 3.5cm;">Reference</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 3.5cm;">Tresholds</td>
-<td style="text-align: center; width: 4cm;">57.56 (42)</td>
-<td style="text-align: center; width: 4cm;">0.980</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.049 (0.033-0.064)</td>
-<td style="text-align: center; width: 4cm;">43.875 (16) ***</td>
-<td style="text-align: center; width: 4cm;">-0.013</td>
-<td style="text-align: center; width: 4cm;">0.013</td>
-<td style="text-align: center; width: 3.5cm;">Reject</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 3.5cm;">Tresholds + Loadings</td>
-<td style="text-align: center; width: 4cm;">72.35 (46)</td>
-<td style="text-align: center; width: 4cm;">0.973</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.053 (0.039-0.067)</td>
-<td style="text-align: center; width: 4cm;">17.075 (4) **</td>
-<td style="text-align: center; width: 4cm;">-0.006</td>
-<td style="text-align: center; width: 4cm;">0.005</td>
-<td style="text-align: center; width: 3.5cm;">Reject</td>
-</tr>
-</tbody>
-</table>
+
 </div>
 </div>
 </figure>
 </div>
 </div>
-<p><a href="#tbl-cohort2" class="quarto-xref">Table&nbsp;4</a> summarizes the cross-cohort invariance tests. The scale achieves configural invariance between primary and secondary students, indicating the same four-factor structure across groups, but does not support threshold invariance and therefore also fails to meet the prerequisites for metric or scalar invariance. Imposing equality constraints on thresholds led to a deterioration in model fit (<span class="math inline">\Delta</span>CFI = −.013; <span class="math inline">\Delta</span>RMSEA = .013) that exceeds Chen’s recommended cutoffs for threshold/intercept invariance <span class="citation" data-cites="chen_sensitivity_2007">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">Chen, 2007</a>)</span>. This pattern indicates systematic differences in how response categories relate to the underlying latent constructs across cohorts. Substantively, primary and secondary students do not use the response scale equivalently when evaluating meritocratic and non-meritocratic criteria, which limits the interpretability of direct cross-level comparisons of latent means or other latent-score differences.</p>
-<p>To locate the source of cross-cohort non-invariance, we inspected univariate score tests from <code>lavTestScore</code> for the threshold-invariant model. The largest localized violations were concentrated in the thresholds of the perceived-effort item, especially the second threshold (<span class="math inline">\chi^2=10.12, p=.001; BH-adjusted p=.035</span>), with the first threshold also among the top contributors (<span class="math inline">\chi^2=7.55, p=.006; BH-adjusted p=.072</span>). Substantively, the younger and older cohorts appear to use the response options differently when judging whether effort is rewarded in society, consistent with socialization processes through which older students may adopt a more critical view of how far effort translates into success.</p>
+<p><a href="#tbl-cohort2" class="quarto-xref">Table&nbsp;4</a> summarizes the cross-cohort invariance tests. The scale achieves configural invariance between primary and secondary students, indicating the same four-factor structure across groups, but does not support threshold invariance and therefore also fails to meet the prerequisites for metric or scalar invariance. Following the indications by <span class="citation" data-cites="wu_identification_2016a">Wu &amp; Estabrook (<a href="#ref-wu_identification_2016a" role="doc-biblioref">2016</a>)</span> and <span class="citation" data-cites="svetina_multiplegroup_2020">Svetina et al. (<a href="#ref-svetina_multiplegroup_2020" role="doc-biblioref">2020</a>)</span> for group invariance testing, we estimate a first invariance level restricting the tresholds, and further a second invariance level with tresholds and loadings restricted. Imposing equality constraints on thresholds led to a deterioration in model fit (<span class="math inline">\(\Delta\)</span>CFI = −.013; <span class="math inline">\(\Delta\)</span>RMSEA = .013) that exceeds Chen’s <span class="citation" data-cites="chen_sensitivity_2007">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">2007</a>)</span> recommended cutoffs for threshold/intercept invariance. This pattern indicates systematic differences in how response categories relate to the underlying latent constructs across cohorts. Substantively, primary and secondary students do not use the response scale equivalently when evaluating meritocratic and non-meritocratic criteria, which limits the interpretability of direct cross-level comparisons of latent means or other latent-score differences.</p>
+<p>To locate the source of cross-cohort non-invariance, we inspected univariate score tests from <code>lavTestScore</code> for the threshold-invariant model. The largest localized violations were concentrated in the thresholds of the perceived-effort item, especially the second threshold (<span class="math inline">\(\chi^2=10.12, p=.001\)</span>), with the first threshold also among the top contributors (<span class="math inline">\(\chi^2=7.55, p=.006\)</span>). Substantively, the younger and older cohorts appear to use the response options differently when judging whether effort is rewarded in society, consistent with socialization processes through which older students may adopt a more critical view of how far effort translates into success.</p>
 </section>
-<section id="conditional-longitudinal-invariance-by-cohort" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="conditional-longitudinal-invariance-by-cohort"><span class="header-section-number">4.2.3</span> Conditional longitudinal invariance by cohort</h3>
-<p>Despite the lack of cohort measurement invariance, we examined whether plausible cohort-related heterogeneity could compromise longitudinal invariance by re-estimating the longitudinal invariance sequence while controlling for cohort (dummy-coded) as a covariate predicting each latent factor. Model fit remained good across all steps—from the configural baseline to the strict model—and consistently met conventional standards; for instance, the strict invariance model with cohort control showed <span class="math inline">\chi^2</span>(92) = 131.64, CFI = .991, and RMSEA = .027. Importantly, including cohort as a predictor did not materially alter model fit or the invariance conclusions, suggesting that the equality constraints over time are tenable even after accounting for cohort differences in average latent factor levels.</p>
+<section id="conditional-longitudinal-invariance-by-cohort" class="level3">
+<h3 class="anchored" data-anchor-id="conditional-longitudinal-invariance-by-cohort">Conditional longitudinal invariance by cohort</h3>
+<p>Despite the lack of cohort measurement invariance, we examined whether plausible cohort-related heterogeneity could compromise longitudinal invariance by re-estimating the longitudinal invariance sequence while controlling for cohort (dummy-coded) as a covariate predicting each latent factor. Model fit remained good across all steps—from the configural baseline to the strict model—and consistently met conventional standards; for instance, the strict invariance model with cohort control showed <span class="math inline">\(\chi^2\)</span>(92) = 131.64, CFI = .991, and RMSEA = .027. Importantly, including cohort as a predictor did not materially alter model fit or the invariance conclusions, suggesting that the equality constraints over time are tenable even after accounting for cohort differences in average latent factor levels.</p>
 <div class="cell" data-tbl-cap-location="top">
 <div id="tbl-conditional" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -609,62 +393,7 @@ Table&nbsp;5: Conditional longitudinal invariance by cohort level
 </figcaption>
 <div aria-describedby="tbl-conditional-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped table-bordered table-condensed do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: center;" data-quarto-table-cell-role="th">Model</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">χ^2 (df)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">CFI</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">RMSEA (90 CI)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Δ χ^2 (Δ df)</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Δ CFI</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Δ RMSEA</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Decision</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center; width: 3.5cm;">Configural</td>
-<td style="text-align: center; width: 4cm;">122.27 (76)</td>
-<td style="text-align: center; width: 4cm;">0.990</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.032 (0.021-0.042)</td>
-<td style="text-align: center; width: 4cm;">0 (0)</td>
-<td style="text-align: center; width: 4cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">0.000</td>
-<td style="text-align: center; width: 3.5cm;">Reference</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 3.5cm;">Weak</td>
-<td style="text-align: center; width: 4cm;">126.95 (80)</td>
-<td style="text-align: center; width: 4cm;">0.990</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.032 (0.021-0.042)</td>
-<td style="text-align: center; width: 4cm;">4.684 (4)</td>
-<td style="text-align: center; width: 4cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">-0.001</td>
-<td style="text-align: center; width: 3.5cm;">Accept</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center; width: 3.5cm;">Strong</td>
-<td style="text-align: center; width: 4cm;">128.55 (88)</td>
-<td style="text-align: center; width: 4cm;">0.991</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.028 (0.017-0.038)</td>
-<td style="text-align: center; width: 4cm;">1.598 (8)</td>
-<td style="text-align: center; width: 4cm;">0.001</td>
-<td style="text-align: center; width: 4cm;">-0.004</td>
-<td style="text-align: center; width: 3.5cm;">Accept</td>
-</tr>
-<tr class="even">
-<td style="text-align: center; width: 3.5cm;">Strict</td>
-<td style="text-align: center; width: 4cm;">131.64 (92)</td>
-<td style="text-align: center; width: 4cm;">0.991</td>
-<td style="text-align: center; width: 4cm; width: 5cm;">0.027 (0.016-0.037)</td>
-<td style="text-align: center; width: 4cm;">3.086 (4)</td>
-<td style="text-align: center; width: 4cm;">0.000</td>
-<td style="text-align: center; width: 4cm;">-0.001</td>
-<td style="text-align: center; width: 3.5cm;">Accept</td>
-</tr>
-</tbody>
-</table>
+
 </div>
 </div>
 </figure>
@@ -674,23 +403,23 @@ Table&nbsp;5: Conditional longitudinal invariance by cohort level
 </section>
 </section>
 </section>
-<section id="discussion" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Discussion</h1>
-<p>The first hypothesis proposed that students’ meritocratic beliefs would be best represented by four distinct factors: perceived meritocracy, perceived non-meritocracy, preferred meritocracy, and preferred non-meritocracy. The confirmatory factor analyses support this expectation. Overall, the scale performs well in the school-aged population, with satisfactory model fit, strong factor loadings, and meaningful correlations among factors. Together, these results indicate that even at an early stage of school socialization, students distinguish between perceptions and preferences, and between meritocratic and non-meritocratic principles.</p>
-<p>These findings contribute to ongoing debates about how meritocratic beliefs should be conceptualized and measured <span class="citation" data-cites="kwon_multidimensionality_2024 mijs_visualizing_2026 zhu_meritocratic_2025">(<a href="#ref-kwon_multidimensionality_2024" role="doc-biblioref">Kwon &amp; Pandian, 2024</a>; <a href="#ref-mijs_visualizing_2026" role="doc-biblioref">Mijs, 2026</a>; <a href="#ref-zhu_meritocratic_2025" role="doc-biblioref">Zhu, 2025</a>)</span>. Consistent with the distinction between “what is” and “what should be,” and with earlier attempts to operationalize this split <span class="citation" data-cites="castillo_multidimensional_2023 duru-bellat_whos_2012">(e.g., <a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">Castillo et al., 2023</a>; <a href="#ref-duru-bellat_whos_2012" role="doc-biblioref">Duru-Bellat &amp; Tenret, 2012</a>)</span>, perceived and preferred meritocracy are empirically separable already among school-aged students. Substantively, this matters because the same normative endorsement of merit can carry different meanings depending on perceived reality: under high perceived meritocracy, it is more compatible with affirming existing arrangements, whereas under low perceived meritocracy, it can reflect dissatisfaction and a demand for greater fairness. At the same time, our results show that meritocratic and non-meritocratic principles coexist rather than forming opposite poles of a single continuum. This directly challenges zero-sum measurement strategies—such as subtraction scores or single indices based on ratings of effort, talent, family background, and networks—that presuppose endorsing merit entails rejecting privilege <span class="citation" data-cites="reynolds_perceptions_2014a wiesner_effort_2026">(<a href="#ref-reynolds_perceptions_2014a" role="doc-biblioref">Reynolds &amp; Xian, 2014</a>; <a href="#ref-wiesner_effort_2026" role="doc-biblioref">Wiesner &amp; Sachweh, 2026</a>)</span>. Instead, the evidence is consistent with accounts in which merit endorsement may remain stable as recognition of constraints increases <span class="citation" data-cites="liu_does_2025">(<a href="#ref-liu_does_2025" role="doc-biblioref">C. Liu &amp; Wang, 2025</a>)</span>, and with the idea that change may occur primarily through rising salience of non-merit factors rather than displacement of merit ideals <span class="citation" data-cites="tang_meritocratic_2025">(<a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>)</span>. The correlational pattern in our data reinforces this interpretation: perceived non-meritocracy is positively associated with stronger meritocratic preferences, suggesting a normative-reactive response to perceived unfairness <span class="citation" data-cites="castillo_multidimensional_2023">(cf. <a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">Castillo et al., 2023</a>)</span>. Importantly, this kind of configuration is precisely what zero-sum indices can obscure by collapsing qualitatively different profiles into the same “middle” value, thereby risking misinterpretation of apparent “declines” in meritocracy as weaker merit endorsement rather than increased recognition of non-meritocratic constraints <span class="citation" data-cites="zhu_meritocratic_2025">(<a href="#ref-zhu_meritocratic_2025" role="doc-biblioref">Zhu, 2025</a>)</span>.</p>
-<p>These results also align with the broader literature on meritocracy in educational settings. Schools circulate meritocratic beliefs as a culturally legitimate narrative of mobility while institutionalizing merit through grading, selection, tracking, and curricular practices that make it visible and consequential <span class="citation" data-cites="mijs_unfulfillable_2016 resh_sense_2014 traini_climbing_2025 tang_meritocratic_2025">(<a href="#ref-mijs_unfulfillable_2016" role="doc-biblioref">Mijs, 2016b</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>; <a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>; <a href="#ref-traini_climbing_2025" role="doc-biblioref">Traini et al., 2025</a>)</span>. <span class="citation" data-cites="chauvin_school_2026">Chauvin et al. (<a href="#ref-chauvin_school_2026" role="doc-biblioref">2026</a>)</span> similarly highlights multidimensionality by distinguishing ability and equity, but their measure remains confined to perceived meritocracy and combines school-specific dimensions with a broader factor. Our findings extend this line of work by showing that students also differentiate preferences and incorporate non-meritocratic considerations, rather than fitting them into a single continuum. Given that school-based meritocracy is linked to inequality legitimation and systematic differences in students’ attitudes <span class="citation" data-cites="batruch_belief_2022 castillo_socialization_2024 darnon_where_2018 wiederkehr_belief_2015">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-castillo_socialization_2024" role="doc-biblioref">Castillo et al., 2024</a>; <a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>, a key implication is that reported “meritocracy effects” are likely dimension-specific: perceptions are not equivalent to preferences, and meritocratic preferences need not have the same implications as non-meritocratic ones. Distinguishing these dimensions is therefore essential both for conceptual clarity and for identifying potentially distinct social and attitudinal consequences.</p>
-<p>The second hypothesis stated that the measurement model would be stable over time (i.e., longitudinally invariant within the same students), and the results support this expectation. Achieving strict longitudinal invariance indicates that the scale functions equivalently across waves, meaning it measures the same latent constructs in the same way at each time point. This is crucial in developmental and school-based research because, without invariance, apparent change can be ambiguous: it may reflect shifts in how students interpret items, use response categories, or update their reference frames rather than genuine change in meritocratic beliefs. With strict invariance in place, observed differences over time can be interpreted more confidently as substantive within-student change (or stability) rather than a measurement artifact. Methodologically, this strengthens longitudinal inference and supports models such as latent mean comparisons or growth models under a consistent measurement structure. Substantively, the results suggest continuity in how students organize the underlying dimensions of meritocracy across the study period, providing a firmer basis for interpreting developmental patterns than is typical in much of the meritocracy literature <span class="citation" data-cites="chauvin_school_2026 liu_does_2025 tang_meritocratic_2025">(e.g., <a href="#ref-chauvin_school_2026" role="doc-biblioref">Chauvin et al., 2026</a>; <a href="#ref-liu_does_2025" role="doc-biblioref">C. Liu &amp; Wang, 2025</a>; <a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>)</span>, where longitudinal invariance is rarely tested.</p>
-<p>The third hypothesis proposed invariance across educational levels (primary vs.&nbsp;secondary), but results did not support this expectation: the model fails to achieve metric invariance (or higher) across levels. Non-invariance appears concentrated in perceived meritocracy, suggesting that students at different school stages interpret that dimension differently. Substantively, they use the response scale differently when judging whether effort is rewarded in society: primary students perceive a stronger reward for effort, whereas secondary students perceive it less. A plausible explanation is that perceptions shift as students progress through school and face cumulative exposure to grading, selection, and tracking, as well as broader social realities, producing a “reality shock” in which effort appears less sufficient for success <span class="citation" data-cites="tang_meritocratic_2025">(<a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>)</span>. More broadly, this lack of cross-level invariance is itself meaningful: developmental and institutional differences shape not only levels of belief, but also the meaning students attach to whether effort is rewarded.</p>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+<p>The first hypothesis proposed that students’ meritocratic beliefs would be best represented by four distinct factors: perceived meritocracy, perceived non-meritocracy, preferred meritocracy, and preferred non-meritocracy. The confirmatory factor analyses support this expectation: overall, the scale performs well in the school-aged population, with satisfactory model fit, strong factor loadings, and meaningful correlations among factors. Consistent with evidence for adult population <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">Castillo et al., 2023</a>)</span>, these results indicate that even at an early stage of school socialization, students distinguish between perceptions and preferences, and between meritocratic and non-meritocratic principles.</p>
+<p>These findings contribute to ongoing debates about how meritocratic beliefs should be conceptualized and measured <span class="citation" data-cites="kwon_multidimensionality_2024 mijs_visualizing_2026 zhu_meritocratic_2025">(<a href="#ref-kwon_multidimensionality_2024" role="doc-biblioref">Kwon &amp; Pandian, 2024</a>; <a href="#ref-mijs_visualizing_2026" role="doc-biblioref">Mijs, 2026</a>; <a href="#ref-zhu_meritocratic_2025" role="doc-biblioref">Zhu, 2025</a>)</span>. Consistent with the distinction between “what is” and “what should be,” and with earlier attempts to operationalize this split <span class="citation" data-cites="castillo_multidimensional_2023 duru-bellat_whos_2012">(e.g., <a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">Castillo et al., 2023</a>; <a href="#ref-duru-bellat_whos_2012" role="doc-biblioref">Duru-Bellat &amp; Tenret, 2012</a>)</span>, perceived and preferred meritocracy are empirically separable already among school-aged students. Substantively, this matters because the same normative endorsement of merit can carry different meanings depending on perceived reality: high perceived meritocracy is more compatible with affirming existing arrangements, whereas low perceived meritocracy can reflect dissatisfaction and a demand for greater fairness. At the same time, our results show that meritocratic and non-meritocratic principles coexist rather than forming opposite poles of a single continuum. This directly challenges zero-sum measurement strategies—such as subtraction scores or single indices based on ratings of effort, talent, family background, and networks—that presuppose endorsing merit entails rejecting privilege <span class="citation" data-cites="reynolds_perceptions_2014a wiesner_effort_2026">(<a href="#ref-reynolds_perceptions_2014a" role="doc-biblioref">Reynolds &amp; Xian, 2014</a>; <a href="#ref-wiesner_effort_2026" role="doc-biblioref">Wiesner &amp; Sachweh, 2026</a>)</span>. Instead, the evidence is consistent with accounts in which merit endorsement may remain stable as recognition of constraints increases <span class="citation" data-cites="liu_does_2025">(<a href="#ref-liu_does_2025" role="doc-biblioref">C. Liu &amp; Wang, 2025</a>)</span>, and with the idea that change may occur primarily through rising salience of non-merit factors rather than displacement of merit ideals <span class="citation" data-cites="tang_meritocratic_2025">(<a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>)</span>. The correlational pattern in our data reinforces this interpretation: perceived non-meritocracy is positively associated with stronger meritocratic preferences, suggesting a normative-reactive response to perceived unfairness <span class="citation" data-cites="castillo_multidimensional_2023">(cf. <a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">Castillo et al., 2023</a>)</span>. Importantly, this kind of configuration is precisely what zero-sum indices can obscure by collapsing qualitatively different profiles into the same “middle” value, thereby risking misinterpretation of apparent “declines” in meritocracy as weaker merit endorsement rather than increased recognition of non-meritocratic constraints <span class="citation" data-cites="zhu_meritocratic_2025">(<a href="#ref-zhu_meritocratic_2025" role="doc-biblioref">Zhu, 2025</a>)</span>.</p>
+<p>These results also align with the broader literature on meritocracy in educational settings. Schools circulate meritocratic beliefs as a culturally legitimate narrative of mobility while institutionalizing merit through grading, selection, tracking, and curricular practices that make it visible and consequential <span class="citation" data-cites="mijs_unfulfillable_2016 resh_sense_2014 traini_climbing_2025 tang_meritocratic_2025">(<a href="#ref-mijs_unfulfillable_2016" role="doc-biblioref">Mijs, 2016b</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>; <a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>; <a href="#ref-traini_climbing_2025" role="doc-biblioref">Traini et al., 2025</a>)</span>. <span class="citation" data-cites="chauvin_school_2026">Chauvin et al. (<a href="#ref-chauvin_school_2026" role="doc-biblioref">2026</a>)</span> similarly highlights multidimensionality by distinguishing ability and equity, but their measure remains confined to perceived meritocracy and combines school-specific dimensions with a broader factor. Our findings extend this line of work by showing that students also differentiate preferences and incorporate non-meritocratic considerations, rather than fitting them into a single continuum. Given that school-based meritocracy is could be associated to inequality legitimation and systematic differences in students’ attitudes <span class="citation" data-cites="batruch_belief_2022 castillo_socialization_2024 darnon_where_2018 wiederkehr_belief_2015">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-castillo_socialization_2024" role="doc-biblioref">Castillo et al., 2024</a>; <a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>, a key implication is that reported “meritocracy effects” are likely dimension-specific: perceptions are not equivalent to preferences, and meritocratic preferences need not have the same implications as non-meritocratic ones. Distinguishing these dimensions is therefore essential both for conceptual clarity and for identifying potentially distinct social and attitudinal consequences.</p>
+<p>The second hypothesis stated that the measurement model would be stable over time (i.e., longitudinally invariant within the same students), and the results support this expectation. Achieving strict longitudinal invariance indicates that the scale functions equivalently across waves, meaning it measures the latent constructs in the same way at each time point. This is crucial in developmental and school-based research because, without invariance, apparent change can be ambiguous: it may reflect shifts in how students interpret items, use response categories, or update their reference frames rather than genuine change in meritocratic beliefs <span class="citation" data-cites="liu_testing_2017 putnick_measurement_2016 vandeschoot_editorial_2015">(<a href="#ref-liu_testing_2017" role="doc-biblioref">Y. Liu et al., 2017</a>; <a href="#ref-putnick_measurement_2016" role="doc-biblioref">Putnick &amp; Bornstein, 2016</a>; <a href="#ref-vandeschoot_editorial_2015" role="doc-biblioref">Van De Schoot et al., 2015</a>)</span>. With strict invariance in place, observed differences over time can be interpreted more confidently as substantive within-student change rather than a measurement artifact. Methodologically, this strengthens longitudinal inference and supports models such as latent mean comparisons or growth models under a consistent measurement structure <span class="citation" data-cites="putnick_measurement_2016">(<a href="#ref-putnick_measurement_2016" role="doc-biblioref">Putnick &amp; Bornstein, 2016</a>)</span>. Substantively, the results suggest continuity in how students organize the underlying dimensions of meritocracy across the study period, providing a firmer basis for interpreting developmental patterns than is typical in much of the meritocracy literature <span class="citation" data-cites="chauvin_school_2026 liu_does_2025 tang_meritocratic_2025">(e.g., <a href="#ref-chauvin_school_2026" role="doc-biblioref">Chauvin et al., 2026</a>; <a href="#ref-liu_does_2025" role="doc-biblioref">C. Liu &amp; Wang, 2025</a>; <a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>)</span>, where longitudinal invariance is rarely tested.</p>
+<p>The third hypothesis proposed invariance across educational levels (primary vs.&nbsp;secondary). The results did not support this expectation: the model fails to achieve metric invariance (or higher) across levels. Non-invariance appears concentrated in perceived meritocracy, suggesting that students at different school stages interpret that dimension differently <span class="citation" data-cites="putnick_measurement_2016 vandeschoot_checklist_2012">(<a href="#ref-putnick_measurement_2016" role="doc-biblioref">Putnick &amp; Bornstein, 2016</a>; <a href="#ref-vandeschoot_checklist_2012" role="doc-biblioref">Van De Schoot et al., 2012</a>)</span>. Substantively, they use the response scale differently when judging whether effort is rewarded in society: primary students perceive a stronger reward for effort, whereas secondary students perceive it less. A plausible explanation is that perceptions shift as students progress through school and face cumulative exposure to grading, selection, and tracking, as well as broader social realities, producing a “reality shock” in which effort appears less sufficient for success <span class="citation" data-cites="tang_meritocratic_2025">(<a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>)</span>. More broadly, this lack of cross-level invariance is itself meaningful: developmental and institutional differences could shape not only levels of the belief in meritocracy, but also the meaning students attach to whether effort is rewarded.</p>
 </section>
-<section id="conclusion" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Conclusion</h1>
-<p>Meritocratic beliefs remain widespread despite rising inequality and limited mobility, shaping how people interpret inequality <span class="citation" data-cites="mijs_paradox_2021 sandel_tyranny_2020">(<a href="#ref-mijs_paradox_2021" role="doc-biblioref">Mijs, 2021</a>; <a href="#ref-sandel_tyranny_2020" role="doc-biblioref">Sandel, 2020</a>)</span>. Schools are central to this process because they promote meritocracy culturally and institutionalize it through evaluation, tracking, and selection that make merit consequential in everyday school life <span class="citation" data-cites="mijs_unfulfillable_2016 resh_sense_2014 traini_climbing_2025">(<a href="#ref-mijs_unfulfillable_2016" role="doc-biblioref">Mijs, 2016b</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>; <a href="#ref-traini_climbing_2025" role="doc-biblioref">Traini et al., 2025</a>)</span>. Consistent with this, stronger endorsement of school meritocracy is linked to greater legitimation of inequality and broader distributive orientations beyond education <span class="citation" data-cites="batruch_belief_2022 darnon_where_2018 wiederkehr_belief_2015">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>. Yet empirical work has lagged conceptually and operationally: studies often conflate perceptions with preferences and force merit and non-merit into opposition—sometimes via zero-sum indices—thereby obscuring dual configurations <span class="citation" data-cites="reynolds_perceptions_2014a wiesner_effort_2026">(<a href="#ref-reynolds_perceptions_2014a" role="doc-biblioref">Reynolds &amp; Xian, 2014</a>; <a href="#ref-wiesner_effort_2026" role="doc-biblioref">Wiesner &amp; Sachweh, 2026</a>)</span>. Extending Castillo et al.’s <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span> multidimensional framework to adolescents, we use panel survey data from two Chilean cohorts (8th and 10th graders) across two waves (2023–2024) to test whether students distinguish merit from non-merit and perceptions (“what is”) from preferences (“what should be”), and whether these dimensions are stable over time and comparable across cohorts/school levels. Our contribution is to clarify what adolescents actually endorse—ideals, descriptions, or both—and to strengthen the basis for developmental and longitudinal inference about meritocratic socialization.</p>
-<p>Our results support a four-factor structure—perceived meritocracy, perceived non-meritocracy, preferred meritocracy, and preferred non-meritocracy—showing that Chilean adolescents differentiate perceptions from preferences and merit from non-merit, and that merit endorsement can coexist with recognition of non-meritocratic advantage. This multidimensionality has a direct methodological implication for research on school meritocracy: these beliefs should be modeled as distinct but related dimensions rather than collapsed into single scores, especially zero-sum indices. Consistent with this, perceived non-meritocracy is positively associated with stronger meritocratic preferences, suggesting that recognizing unfair advantages can intensify demands that rewards should follow merit. Importantly, the measurement structure is strictly longitudinally invariant within students, providing a robust basis for interpreting change (or stability) over time as substantive rather than as a measurement artifact. At the same time, the lack of metric invariance across school levels—concentrated in perceived meritocracy—indicates that comparisons across educational stages require caution, because “effort is rewarded” does not carry the same meaning across stages. Taken together, a parsimonious yet invariant multidimensional instrument offers a stronger foundation for developmental research and for assessing how distinct facets of school meritocracy relate to inequality legitimation and other distributive outcomes.</p>
-<p>More broadly, these findings sharpen how the literature should interpret meritocracy effects in educational contexts. When measures conflate perceptions with preferences or collapse merit and non-merit into a single continuum, they can blur substantively different belief profiles and, in turn, yield ambiguous conclusions about whether meritocracy is high, low, or declining <span class="citation" data-cites="reynolds_perceptions_2014a zhu_meritocratic_2025">(<a href="#ref-reynolds_perceptions_2014a" role="doc-biblioref">Reynolds &amp; Xian, 2014</a>; <a href="#ref-zhu_meritocratic_2025" role="doc-biblioref">Zhu, 2025</a>)</span>. Our results suggest that part of what is often interpreted as change in “belief in meritocracy” may reflect shifting recognition of non-meritocratic constraints rather than a straightforward decline in merit endorsement—an interpretation consistent with recent education-focused accounts of dual consciousness <span class="citation" data-cites="tang_meritocratic_2025 liu_does_2025">(<a href="#ref-liu_does_2025" role="doc-biblioref">C. Liu &amp; Wang, 2025</a>; <a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>)</span>. Relatedly, while typological and person-centered approaches have documented coexistence in educational settings <span class="citation" data-cites="kwon_multidimensionality_2024 zhu_meritocratic_2025">(<a href="#ref-kwon_multidimensionality_2024" role="doc-biblioref">Kwon &amp; Pandian, 2024</a>; <a href="#ref-zhu_meritocratic_2025" role="doc-biblioref">Zhu, 2025</a>)</span>, the present study shows how that coexistence can be represented within a coherent measurement model that supports longitudinal inference. Finally, the combination of strict longitudinal invariance and cross-level non-invariance clarifies a key boundary condition: within-student comparisons over time are warranted, whereas comparisons across school stages must account for the fact that the meaning of perceived meritocracy shifts with educational experience.</p>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Meritocratic beliefs remain widespread despite rising inequality and limited mobility, shaping how people interpret achievements in society <span class="citation" data-cites="mijs_paradox_2021 sandel_tyranny_2020">(<a href="#ref-mijs_paradox_2021" role="doc-biblioref">Mijs, 2021</a>; <a href="#ref-sandel_tyranny_2020" role="doc-biblioref">Sandel, 2020</a>)</span>. Schools are central to this process because they promote meritocracy culturally and institutionalize it through evaluation, tracking, and selection that make merit consequential in everyday school life <span class="citation" data-cites="mijs_unfulfillable_2016 resh_sense_2014 traini_climbing_2025">(<a href="#ref-mijs_unfulfillable_2016" role="doc-biblioref">Mijs, 2016b</a>; <a href="#ref-resh_sense_2014" role="doc-biblioref">Resh &amp; Sabbagh, 2014</a>; <a href="#ref-traini_climbing_2025" role="doc-biblioref">Traini et al., 2025</a>)</span>. Consistent with this, stronger endorsement of school meritocracy is linked to greater legitimation of inequality and broader distributive orientations beyond education <span class="citation" data-cites="batruch_belief_2022 darnon_where_2018 wiederkehr_belief_2015">(<a href="#ref-batruch_belief_2022" role="doc-biblioref">Batruch et al., 2022</a>; <a href="#ref-darnon_where_2018" role="doc-biblioref">Darnon et al., 2018</a>; <a href="#ref-wiederkehr_belief_2015" role="doc-biblioref">Wiederkehr et al., 2015</a>)</span>. Yet empirical work has lagged conceptually and operationally: studies often conflate perceptions with preferences and force merit and non-merit into opposition—sometimes via zero-sum indices—thereby obscuring dual configurations <span class="citation" data-cites="reynolds_perceptions_2014a wiesner_effort_2026">(<a href="#ref-reynolds_perceptions_2014a" role="doc-biblioref">Reynolds &amp; Xian, 2014</a>; <a href="#ref-wiesner_effort_2026" role="doc-biblioref">Wiesner &amp; Sachweh, 2026</a>)</span>. Extending Castillo et al.’s <span class="citation" data-cites="castillo_multidimensional_2023">(<a href="#ref-castillo_multidimensional_2023" role="doc-biblioref">2023</a>)</span> multidimensional framework to adolescents, we use panel survey data from two Chilean cohorts (8th and 10th graders) across two waves (2023–2024) to test whether students distinguish merit from non-merit and perceptions (“what is”) from preferences (“what should be”), and whether these dimensions are stable over time and comparable across cohorts/school levels. Our contribution seeks to clarify what adolescents actually endorse—ideals, descriptions, or both—and to strengthen the basis for developmental and longitudinal inference about meritocratic socialization.</p>
+<p>Our results support a four-factor structure—perceived meritocracy, perceived non-meritocracy, preferred meritocracy, and preferred non-meritocracy—showing that Chilean adolescents differentiate perceptions from preferences and merit from non-merit, and that merit endorsement can coexist with recognition of non-meritocratic advantage. This multidimensionality has a direct methodological implication for research on school meritocracy: these beliefs should be modeled as distinct but related dimensions rather than collapsed into single scores, especially zero-sum indices. Consistent with this, perceived non-meritocracy is positively associated with stronger meritocratic preferences, suggesting that recognizing unfair advantages can intensify demands that rewards should follow merit. Importantly, the measurement structure is longitudinally invariant within students, providing a robust basis for interpreting change (or stability) over time as substantive rather than as a measurement artifact. At the same time, the lack of metric invariance across students cohorts indicates that comparisons across educational stages require caution, because the perception that “effort is rewarded” would not carry the same meaning across stages. Taken together, a parsimonious yet invariant multidimensional instrument offers a stronger foundation for developmental research and for assessing how distinct facets of school meritocracy relate to inequality legitimation and other distributive outcomes.</p>
+<p>More broadly, these findings sharpen how the literature should interpret meritocracy effects in educational contexts. When measures conflate perceptions with preferences or collapse merit and non-merit into a single continuum, they can blur substantively different belief profiles and, in turn, yield ambiguous conclusions about whether meritocracy is high, low, or declining <span class="citation" data-cites="reynolds_perceptions_2014a zhu_meritocratic_2025">(<a href="#ref-reynolds_perceptions_2014a" role="doc-biblioref">Reynolds &amp; Xian, 2014</a>; <a href="#ref-zhu_meritocratic_2025" role="doc-biblioref">Zhu, 2025</a>)</span>. Our results suggest that part of what is often interpreted as change in “belief in meritocracy” may reflect shifting recognition of non-meritocratic constraints rather than a straightforward decline in merit endorsement—an interpretation consistent with recent education-focused accounts of dual consciousness <span class="citation" data-cites="tang_meritocratic_2025 liu_does_2025">(<a href="#ref-liu_does_2025" role="doc-biblioref">C. Liu &amp; Wang, 2025</a>; <a href="#ref-tang_meritocratic_2025" role="doc-biblioref">Tang et al., 2025</a>)</span>. Relatedly, while typological and person-centered approaches have documented coexistence of apparently contrasting beliefs in educational settings <span class="citation" data-cites="kwon_multidimensionality_2024 zhu_meritocratic_2025">(<a href="#ref-kwon_multidimensionality_2024" role="doc-biblioref">Kwon &amp; Pandian, 2024</a>; <a href="#ref-zhu_meritocratic_2025" role="doc-biblioref">Zhu, 2025</a>)</span>, the present study shows how that coexistence can be represented within a coherent measurement model that supports longitudinal inference. Finally, the combination of strict longitudinal invariance and cross-level non-invariance clarifies a key boundary condition: within-student comparisons over time are warranted, whereas comparisons across school stages must account for the fact that the meaning of perceived meritocracy shifts with educational experience.</p>
 <p>Despite its contributions, this study has limitations that point to clear avenues for future research. First, the scale is deliberately minimalist (two items per factor), which constrains content coverage and reliability; the trade-off is a parsimonious survey instrument that captures four central dimensions. Future work could improve precision by expanding and refining the item pool (e.g., adding more items per dimension, improving wording). Second, with only two waves and two school levels, additional waves and broader age coverage are needed to better trace developmental trajectories and pinpoint when perceived meritocracy shifts. Third, cross-level non-invariance calls for differential item functioning analyses and refinement of perceived-meritocracy items (or stage-specific modules) to support comparability across educational stages. Fourth, future research should unpack heterogeneity within non-meritocratic principles (e.g., wealth versus connections). Finally, linking these dimensions to inequality-related attitudes and testing moderation by school contexts would clarify whether distinct facets of meritocratic belief have different consequences and under what conditions they contribute to inequality legitimation. Overall, by providing an empirically supported and longitudinally invariant multidimensional measure for adolescents, this study offers a more reliable foundation for studying how school-based meritocratic socialization shapes interpretations of fairness and inequality.</p>
 </section>
-<section id="references" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> References</h1>
+<section id="references" class="level1">
+<h1>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-allen_top_2016" class="csl-entry" role="listitem">
 Allen, K. (2016). Top girls navigating austere times: Interrogating youth transitions since the <span>“crisis.”</span> <em>Journal of Youth Studies</em>, <em>19</em>(6), 805–820. <a href="https://doi.org/10.1080/13676261.2015.1112885">https://doi.org/10.1080/13676261.2015.1112885</a>
@@ -770,6 +499,9 @@ Heuer, J.-O., Lux, T., Mau, S., &amp; Zimmermann, K. (2020). Legitimizing <span>
 <div id="ref-hoyt_mindsets_2023" class="csl-entry" role="listitem">
 Hoyt, C. L., Burnette, J. L., Billingsley, J., Becker, W., &amp; Babij, A. D. (2023). Mindsets of poverty: <span>Implications</span> for redistributive policy support. <em>Analyses of Social Issues and Public Policy</em>, <em>23</em>(3), 668–693. <a href="https://doi.org/10.1111/asap.12367">https://doi.org/10.1111/asap.12367</a>
 </div>
+<div id="ref-imhoff_nociones_2025" class="csl-entry" role="listitem">
+Imhoff, D., &amp; Brussino, S. (2025). <span>Nociones infantiles sobre desigualdad social: atravesamientos ideológicos y procesos de socialización política</span>. <em>Revista Latinoamericana de Ciencias Sociales, Niñez y Juventud</em>, <em>13</em>(2). <a href="https://doi.org/10.11600/1692715x.1329071114">https://doi.org/10.11600/1692715x.1329071114</a>
+</div>
 <div id="ref-janmaat_subjective_2013" class="csl-entry" role="listitem">
 Janmaat, J. G. (2013). Subjective <span>Inequality</span>: A <span>Review</span> of <span>International Comparative Studies</span> on <span>People</span>’s <span>Views</span> about <span>Inequality</span>. <em>European Journal of Sociology</em>, <em>54</em>(3), 357–389. <a href="https://doi.org/10.1017/S0003975613000209">https://doi.org/10.1017/S0003975613000209</a>
 </div>
@@ -824,6 +556,9 @@ Olivos, F. (2021). Motivation, <span>Legitimation</span>, or <span>Both</span>? 
 <div id="ref-paneda-fernandez_relevance_2026" class="csl-entry" role="listitem">
 Pañeda-Fernández, I., Kamphorst, J., Van De Rijt, A., &amp; Battu, B. (2026). The relevance of meritocratic beliefs for redistributive preferences increases with income. <em>Social Science Research</em>, <em>134</em>, 103294. <a href="https://doi.org/10.1016/j.ssresearch.2025.103294">https://doi.org/10.1016/j.ssresearch.2025.103294</a>
 </div>
+<div id="ref-putnick_measurement_2016" class="csl-entry" role="listitem">
+Putnick, D. L., &amp; Bornstein, M. H. (2016). Measurement invariance conventions and reporting: <span>The</span> state of the art and future directions for psychological research. <em>Developmental Review</em>, <em>41</em>, 71–90. <a href="https://doi.org/10.1016/j.dr.2016.06.004">https://doi.org/10.1016/j.dr.2016.06.004</a>
+</div>
 <div id="ref-resh_sense_2014" class="csl-entry" role="listitem">
 Resh, N., &amp; Sabbagh, C. (2014). Sense of justice in school and civic attitudes. <em>Social Psychology of Education</em>, <em>17</em>(1), 51–72. <a href="https://doi.org/10.1007/s11218-013-9240-8">https://doi.org/10.1007/s11218-013-9240-8</a>
 </div>
@@ -835,6 +570,9 @@ Sandel, M. J. (2020). <em>The tyranny of merit: <span>What</span>’s become of 
 </div>
 <div id="ref-santanderramirez_preferencias_2020" class="csl-entry" role="listitem">
 Santander Ramírez, E., Berríos, L., Soto de la Cruz, P., &amp; Avendaño Cassasa, M. (2020). Preferencias parentales de socialización valórica en el <span>Chile</span> contemporáneo, cómo influyen la clase social y la religión de los padres en la manera en que quieren criar a sus hijos? <em>Apuntes: Revista de Ciencias Sociales</em>, <em>47</em>(87), 65–86. <a href="https://doi.org/10.21678/apuntes.87.1027">https://doi.org/10.21678/apuntes.87.1027</a>
+</div>
+<div id="ref-sigelman_age_2013a" class="csl-entry" role="listitem">
+Sigelman, C. K. (2013). Age <span>Differences</span> in <span>Perceptions</span> of <span>Rich</span> and <span>Poor People</span>: <span>Is It Skill</span> or <span>Luck</span>? <em>Social Development</em>, <em>22</em>(1), 1–18. <a href="https://doi.org/10.1111/sode.12000">https://doi.org/10.1111/sode.12000</a>
 </div>
 <div id="ref-svetina_multiplegroup_2020" class="csl-entry" role="listitem">
 Svetina, D., Rutkowski, L., &amp; Rutkowski, D. (2020). Multiple-<span>Group Invariance</span> with <span>Categorical Outcomes Using Updated Guidelines</span>: <span>An Illustration Using M</span> <span><em>plus</em></span> and the lavaan/<span class="nocase">semTools Packages</span>. <em>Structural Equation Modeling: A Multidisciplinary Journal</em>, <em>27</em>(1), 111–130. <a href="https://doi.org/10.1080/10705511.2019.1602776">https://doi.org/10.1080/10705511.2019.1602776</a>
@@ -851,6 +589,12 @@ Traini, C. (2022). The stratification of education systems and social background
 <div id="ref-traini_climbing_2025" class="csl-entry" role="listitem">
 Traini, C., Ehmes, S., &amp; Gangl, M. (2025). Climbing the ladder or falling behind: <span>How</span> social mobility shapes perceptions of meritocracy in the wake of rising inequality. <em>PO- LAR Working Paper #7. Frankfurt: Goethe University. Retrieved from Www.polar-Project.org, Version Dated 12 September 2025</em>.
 </div>
+<div id="ref-vandeschoot_checklist_2012" class="csl-entry" role="listitem">
+Van De Schoot, R., Lugtig, P., &amp; Hox, J. (2012). A checklist for testing measurement invariance. <em>European Journal of Developmental Psychology</em>, <em>9</em>(4), 486–492. <a href="https://doi.org/10.1080/17405629.2012.686740">https://doi.org/10.1080/17405629.2012.686740</a>
+</div>
+<div id="ref-vandeschoot_editorial_2015" class="csl-entry" role="listitem">
+Van De Schoot, R., Schmidt, P., De Beuckelaer, A., Lek, K., &amp; Zondervan-Zwijnenburg, M. (2015). Editorial: <span>Measurement Invariance</span>. <em>Frontiers in Psychology</em>, <em>6</em>. <a href="https://doi.org/10.3389/fpsyg.2015.01064">https://doi.org/10.3389/fpsyg.2015.01064</a>
+</div>
 <div id="ref-vandewerfhorst_meritocracy_2024" class="csl-entry" role="listitem">
 Van De Werfhorst, H. G. (2024). Is <span>Meritocracy Not So Bad After All</span>? <span>Educational Expansion</span> and <span>Intergenerational Mobility</span> in 40 <span>Countries</span>. <em>American Sociological Review</em>, <em>89</em>(6), 1181–1213. <a href="https://doi.org/10.1177/00031224241292352">https://doi.org/10.1177/00031224241292352</a>
 </div>
@@ -859,6 +603,204 @@ Wiederkehr, V., Bonnot, V., Krauth-Gruber, S., &amp; Darnon, C. (2015). Belief i
 </div>
 <div id="ref-wiesner_effort_2026" class="csl-entry" role="listitem">
 Wiesner, T., &amp; Sachweh, P. (2026). Effort versus <span>Advantage</span>: <span>Visualizing</span> (<span>Relative</span>) <span>Belief</span> in <span>Meritocracy</span>, 1930 to 2022—<span>A Comment</span> on <span>Mijs</span> (2018), <em>12</em>. <a href="https://doi.org/10.1177/23780231261425841">https://doi.org/10.1177/23780231261425841</a>
+</div>
+<div id="ref-wu_identification_2016a" class="csl-entry" role="listitem">
+Wu, H., &amp; Estabrook, R. (2016). Identification of <span>Confirmatory Factor Analysis Models</span> of <span>Different Levels</span> of <span>Invariance</span> for <span>Ordered Categorical Outcomes</span>. <em>Psychometrika</em>, <em>81</em>(4), 1014–1045. <a href="https://doi.org/10.1007/s11336-016-9506-0">https://doi.org/10.1007/s11336-016-9506-0</a>
+</div>
+<div id="ref-young_rise_1958" class="csl-entry" role="listitem">
+Young, M. (1958). <em>The rise of the meritocracy</em>. New Brunswick, N.J., U.S.A: Transaction Publishers.
+</div>
+<div id="ref-zhou_equalization_2019" class="csl-entry" role="listitem">
+Zhou, X. (2019). Equalization or <span>Selection</span>? <span>Reassessing</span> the <span>“<span>Meritocratic Power</span>”</span> of a <span>College Degree</span> in <span>Intergenerational Income Mobility</span>. <em>American Sociological Review</em>, <em>84</em>(3), 459–485. <a href="https://doi.org/10.1177/0003122419844992">https://doi.org/10.1177/0003122419844992</a>
+</div>
+<div id="ref-zhu_meritocratic_2025" class="csl-entry" role="listitem">
+Zhu, L. (2025). Meritocratic beliefs in the <span>United States</span>, <span>Finland</span>, and <span>China</span>: <span>A</span> multidimensional approach using latent class analysis. <em>The British Journal of Sociology</em>, <em>76</em>(1), 153–172. <a href="https://doi.org/10.1111/1468-4446.13152">https://doi.org/10.1111/1468-4446.13152</a>
+</div>
+<div id="ref-allen_top_2016" class="csl-entry" role="listitem">
+Allen, K. (2016). Top girls navigating austere times: Interrogating youth transitions since the <span>“crisis.”</span> <em>Journal of Youth Studies</em>, <em>19</em>(6), 805–820. <a href="https://doi.org/10.1080/13676261.2015.1112885">https://doi.org/10.1080/13676261.2015.1112885</a>
+</div>
+<div id="ref-bandura_sociallearning_1969" class="csl-entry" role="listitem">
+Bandura, A. (1969). Social-learning theory of identificatory processes. In <em>Handbook of socialization theory and research</em> (pp. 213–262).
+</div>
+<div id="ref-batruch_belief_2022" class="csl-entry" role="listitem">
+Batruch, A., Jetten, J., Van de Werfhorst, H., Darnon, C., &amp; Butera, F. (2022). Belief in <span>School Meritocracy</span> and the <span>Legitimization</span> of <span>Social</span> and <span>Income Inequality</span>. <em>Social Psychological and Personality Science</em>, 194855062211110. <a href="https://doi.org/10.1177/19485506221111017">https://doi.org/10.1177/19485506221111017</a>
+</div>
+<div id="ref-bell_equality_1972" class="csl-entry" role="listitem">
+Bell, D. (1972). On equality: <span>I</span>. <span>Meritocracy</span> and equality. <em>The Public Interest</em>, <em>29</em>, 29–68.
+</div>
+<div id="ref-bernstein_theoretical_2005" class="csl-entry" role="listitem">
+Bernstein, B. (2005). <em>Theoretical <span>Studies Towards</span> a <span>Sociology</span> of <span>Language</span></em>.
+</div>
+<div id="ref-bourdieu_sentido_2007" class="csl-entry" role="listitem">
+Bourdieu, P. (2007). <em><span>El sentido práctico</span></em>. Buenos Aires: Siglo Veintiuno Argentina.
+</div>
+<div id="ref-bourdieu_reproduction_1990" class="csl-entry" role="listitem">
+Bourdieu, P., &amp; Passeron, J. C. (1990). <em>Reproduction in <span>Education</span>, <span>Society</span> and <span>Culture</span></em> (Second Edition). Sage Publications Ltd.
+</div>
+<div id="ref-brown_confirmatory_2015" class="csl-entry" role="listitem">
+Brown, T. A. (2015). <em>Confirmatory factor analysis for applied research</em> (Second edition). New York London: The Guilford Press.
+</div>
+<div id="ref-castillo_multidimensional_2023" class="csl-entry" role="listitem">
+Castillo, J. C., Iturra, J., Maldonado, L., Atria, J., &amp; Meneses, F. (2023). A <span>Multidimensional Approach</span> for <span>Measuring Meritocratic Beliefs</span>: <span>Advantages</span>, <span>Limitations</span> and <span>Alternatives</span> to the <span>ISSP Social Inequality Survey</span>. <em>International Journal of Sociology</em>, <em>53</em>(6), 448–472. <a href="https://doi.org/10.1080/00207659.2023.2274712">https://doi.org/10.1080/00207659.2023.2274712</a>
+</div>
+<div id="ref-castillo_perceptions_2025" class="csl-entry" role="listitem">
+Castillo, J. C., Laffert, A., Carrasco, K., &amp; Iturra-Sanhueza, J. (2025). Perceptions of inequality and meritocracy: Their interplay in shaping preferences for market justice in <span>Chile</span> (2016–2023). <em>Frontiers in Sociology</em>, <em>10</em>, 1634219. <a href="https://doi.org/10.3389/fsoc.2025.1634219">https://doi.org/10.3389/fsoc.2025.1634219</a>
+</div>
+<div id="ref-castillo_socialization_2024" class="csl-entry" role="listitem">
+Castillo, J. C., Salgado, M., Carrasco, K., &amp; Laffert, A. (2024). The <span>Socialization</span> of <span>Meritocracy</span> and <span>Market Justice Preferences</span> at <span>School</span>. <em>Societies</em>, <em>14</em>(11), 214. <a href="https://doi.org/10.3390/soc14110214">https://doi.org/10.3390/soc14110214</a>
+</div>
+<div id="ref-castillo_meritocracia_2019" class="csl-entry" role="listitem">
+Castillo, J. C., Torres, A., Atria, J., &amp; Maldonado, L. (2019). Meritocracia y desigualdad económica: <span>Percepciones</span>, preferencias e implicancias. <em>Revista Internacional de Sociología</em>, <em>77</em>(1), 117. <a href="https://doi.org/10.3989/ris.2019.77.1.17.114">https://doi.org/10.3989/ris.2019.77.1.17.114</a>
+</div>
+<div id="ref-chancel_world_2025" class="csl-entry" role="listitem">
+Chancel, L., Gómez-Carrera, R., Moshrif, R., &amp; Piketty, T. (2025). World <span>Inequality Report</span> 2026. <em>World Inequality Lab</em>, <em>wir2026.wid.world</em>.
+</div>
+<div id="ref-chauvin_school_2026" class="csl-entry" role="listitem">
+Chauvin, B., Rauscher, C., Saidah, B., &amp; Louvet, E. (2026). School meritocracy: A multidimensional construct? <span>Evidence</span> from the development of a school meritocracy scale by exploratory and confirmatory bifactor modeling. <em>Current Psychology</em>, <em>45</em>(5), 519. <a href="https://doi.org/10.1007/s12144-026-09134-1">https://doi.org/10.1007/s12144-026-09134-1</a>
+</div>
+<div id="ref-chen_sensitivity_2007" class="csl-entry" role="listitem">
+Chen, F. F. (2007). Sensitivity of <span>Goodness</span> of <span>Fit Indexes</span> to <span>Lack</span> of <span>Measurement Invariance</span>. <em>Structural Equation Modeling: A Multidisciplinary Journal</em>, <em>14</em>(3), 464–504. <a href="https://doi.org/10.1080/10705510701301834">https://doi.org/10.1080/10705510701301834</a>
+</div>
+<div id="ref-darnon_where_2018" class="csl-entry" role="listitem">
+Darnon, C., Wiederkehr, V., Dompnier, B., &amp; Martinot, D. (2018). <span>“<span>Where</span> there is a will, there is a way”</span>: <span>Belief</span> in school meritocracy and the social-class achievement gap. <em>British Journal of Social Psychology</em>, <em>57</em>(1), 250–262. <a href="https://doi.org/10.1111/bjso.12214">https://doi.org/10.1111/bjso.12214</a>
+</div>
+<div id="ref-davidov_measurement_2014" class="csl-entry" role="listitem">
+Davidov, E., Meuleman, B., Cieciuch, J., Schmidt, P., &amp; Billiet, J. (2014). Measurement <span>Equivalence</span> in <span>Cross-National Research</span>. <em>Annual Review of Sociology</em>, <em>40</em>(Volume 40, 2014), 55–75. <a href="https://doi.org/10.1146/annurev-soc-071913-043137">https://doi.org/10.1146/annurev-soc-071913-043137</a>
+</div>
+<div id="ref-day_movin_2017" class="csl-entry" role="listitem">
+Day, M. V., &amp; Fiske, S. T. (2017). Movin’ on <span>Up</span>? <span>How Perceptions</span> of <span>Social Mobility Affect Our Willingness</span> to <span>Defend</span> the <span>System</span>. <em>Social Psychological and Personality Science</em>, <em>8</em>(3), 267–274. <a href="https://doi.org/10.1177/1948550616678454">https://doi.org/10.1177/1948550616678454</a>
+</div>
+<div id="ref-deng_its_2025" class="csl-entry" role="listitem">
+Deng, Y., &amp; Wang, F. (2025). It’s my fault, <span>I</span> should try harder! <span>The</span> narratives of self-made upward mobility sustain belief in meritocracy in low social mobility context. <em>British Journal of Psychology</em>, bjop.70015. <a href="https://doi.org/10.1111/bjop.70015">https://doi.org/10.1111/bjop.70015</a>
+</div>
+<div id="ref-duru-bellat_whos_2012" class="csl-entry" role="listitem">
+Duru-Bellat, M., &amp; Tenret, E. (2012). Who’s for <span>Meritocracy</span>? <span>Individual</span> and <span>Contextual Variations</span> in the <span>Faith</span>. <em>Comparative Education Review</em>, <em>56</em>(2), 223–247. <a href="https://doi.org/10.1086/661290">https://doi.org/10.1086/661290</a>
+</div>
+<div id="ref-garcia-sanchez_perceptions_2018" class="csl-entry" role="listitem">
+García-Sánchez, E., Willis, G. B., Rodríguez-Bailón, R., Palacio Sañudo, J., David Polo, J., &amp; Rentería Pérez, E. (2018). Perceptions of <span>Economic Inequality</span> and <span>Support</span> for <span>Redistribution</span>: <span>The</span> role of <span>Existential</span> and <span>Utopian Standards</span>. <em>Social Justice Research</em>, <em>31</em>(4), 335–354. <a href="https://doi.org/10.1007/s11211-018-0317-6">https://doi.org/10.1007/s11211-018-0317-6</a>
+</div>
+<div id="ref-garcia-sierra_dark_2023" class="csl-entry" role="listitem">
+García-Sierra, A. (2023). The dark side of meritocratic beliefs: <span>Is</span> believing in meritocracy detrimental to individuals from low socioeconomic backgrounds? <em>Social Justice Research</em>, <em>36</em>(4), 385–409. <a href="https://doi.org/10.1007/s11211-023-00413-x">https://doi.org/10.1007/s11211-023-00413-x</a>
+</div>
+<div id="ref-goudeau_hidden_2017a" class="csl-entry" role="listitem">
+Goudeau, S., &amp; Croizet, J.-C. (2017). Hidden <span>Advantages</span> and <span>Disadvantages</span> of <span>Social Class</span>: <span>How Classroom Settings Reproduce Social Inequality</span> by <span>Staging Unfair Comparison</span>. <em>Psychological Science</em>, <em>28</em>(2), 162–170. <a href="https://doi.org/10.1177/0956797616676600">https://doi.org/10.1177/0956797616676600</a>
+</div>
+<div id="ref-henry_development_2006" class="csl-entry" role="listitem">
+Henry, P. J., &amp; Saul, A. (2006). The <span>Development</span> of <span>System Justification</span> in the <span>Developing World</span>. <em>Social Justice Research</em>, <em>19</em>(3), 365–378. <a href="https://doi.org/10.1007/s11211-006-0012-x">https://doi.org/10.1007/s11211-006-0012-x</a>
+</div>
+<div id="ref-heuer_legitimizing_2020" class="csl-entry" role="listitem">
+Heuer, J.-O., Lux, T., Mau, S., &amp; Zimmermann, K. (2020). Legitimizing <span>Inequality</span>: <span>The Moral Repertoires</span> of <span>Meritocracy</span> in <span>Four Countries</span>. <em>Comparative Sociology</em>, <em>19</em>(4-5), 542–584. <a href="https://doi.org/10.1163/15691330-BJA10017">https://doi.org/10.1163/15691330-BJA10017</a>
+</div>
+<div id="ref-hoyt_mindsets_2023" class="csl-entry" role="listitem">
+Hoyt, C. L., Burnette, J. L., Billingsley, J., Becker, W., &amp; Babij, A. D. (2023). Mindsets of poverty: <span>Implications</span> for redistributive policy support. <em>Analyses of Social Issues and Public Policy</em>, <em>23</em>(3), 668–693. <a href="https://doi.org/10.1111/asap.12367">https://doi.org/10.1111/asap.12367</a>
+</div>
+<div id="ref-imhoff_nociones_2025" class="csl-entry" role="listitem">
+Imhoff, D., &amp; Brussino, S. (2025). <span>Nociones infantiles sobre desigualdad social: atravesamientos ideológicos y procesos de socialización política</span>. <em>Revista Latinoamericana de Ciencias Sociales, Niñez y Juventud</em>, <em>13</em>(2). <a href="https://doi.org/10.11600/1692715x.1329071114">https://doi.org/10.11600/1692715x.1329071114</a>
+</div>
+<div id="ref-janmaat_subjective_2013" class="csl-entry" role="listitem">
+Janmaat, J. G. (2013). Subjective <span>Inequality</span>: A <span>Review</span> of <span>International Comparative Studies</span> on <span>People</span>’s <span>Views</span> about <span>Inequality</span>. <em>European Journal of Sociology</em>, <em>54</em>(3), 357–389. <a href="https://doi.org/10.1017/S0003975613000209">https://doi.org/10.1017/S0003975613000209</a>
+</div>
+<div id="ref-jost_decade_2004a" class="csl-entry" role="listitem">
+Jost, J. T., Banaji, M. R., &amp; Nosek, B. A. (2004). A <span>Decade</span> of <span>System Justification Theory</span>: <span>Accumulated Evidence</span> of <span>Conscious</span> and <span>Unconscious Bolstering</span> of the <span>Status Quo</span>. <em>Political Psychology</em>, <em>25</em>(6), 881–919. <a href="https://doi.org/10.1111/j.1467-9221.2004.00402.x">https://doi.org/10.1111/j.1467-9221.2004.00402.x</a>
+</div>
+<div id="ref-kline_principles_2023" class="csl-entry" role="listitem">
+Kline, R. B. (2023). <em>Principles and <span>Practice</span> of <span>Structural Equation Modeling</span></em>. Guilford Publications.
+</div>
+<div id="ref-kwon_multidimensionality_2024" class="csl-entry" role="listitem">
+Kwon, R., &amp; Pandian, R. K. (2024). Multidimensionality in merit attitudes: <span>The</span> role of hard work, skills, and social connections in <span>Europe</span>. <em>Social Science Research</em>, <em>122</em>, 103056. <a href="https://doi.org/10.1016/j.ssresearch.2024.103056">https://doi.org/10.1016/j.ssresearch.2024.103056</a>
+</div>
+<div id="ref-lampert_meritocratic_2013" class="csl-entry" role="listitem">
+Lampert, K. (2013). <em>Meritocratic <span>Education</span> and <span>Social Worthlessness</span></em>. London: Palgrave Macmillan UK. <a href="https://doi.org/10.1057/9781137324894">https://doi.org/10.1057/9781137324894</a>
+</div>
+<div id="ref-liu_does_2025" class="csl-entry" role="listitem">
+Liu, C., &amp; Wang, J. (2025). Does <span>Education Legitimise Inequality</span>? <span>Comparative Analysis</span> of <span>Income Inequality</span>, <span>Education</span>, and <span>Meritocratic Beliefs</span>. <em>The British Journal of Sociology</em>, 1468–4446.70029. <a href="https://doi.org/10.1111/1468-4446.70029">https://doi.org/10.1111/1468-4446.70029</a>
+</div>
+<div id="ref-liu_testing_2017" class="csl-entry" role="listitem">
+Liu, Y., Millsap, R. E., West, S. G., Tein, J.-Y., Tanaka, R., &amp; Grimm, K. J. (2017). Testing measurement invariance in longitudinal data with ordered-categorical measures. <em>Psychological Methods</em>, <em>22</em>(3), 486–506. <a href="https://doi.org/10.1037/met0000075">https://doi.org/10.1037/met0000075</a>
+</div>
+<div id="ref-lopez-roldan_comparative_2021" class="csl-entry" role="listitem">
+López-Roldán, P., &amp; Fachelli, S. (Eds.). (2021). <em>Towards a <span>Comparative Analysis</span> of <span>Social Inequalities</span> between <span>Europe</span> and <span>Latin America</span></em>. Cham: Springer International Publishing. <a href="https://doi.org/10.1007/978-3-030-48442-2">https://doi.org/10.1007/978-3-030-48442-2</a>
+</div>
+<div id="ref-madeira_primes_2019" class="csl-entry" role="listitem">
+Madeira, A. F., Costa-Lopes, R., Dovidio, J. F., Freitas, G., &amp; Mascarenhas, M. F. (2019). Primes and <span>Consequences</span>: <span>A Systematic Review</span> of <span>Meritocracy</span> in <span>Intergroup Relations</span>. <em>Frontiers in Psychology</em>, <em>10</em>, 2007. <a href="https://doi.org/10.3389/fpsyg.2019.02007">https://doi.org/10.3389/fpsyg.2019.02007</a>
+</div>
+<div id="ref-matamoros-lima_social_2025" class="csl-entry" role="listitem">
+Matamoros-Lima, J., Galdi, S., Moya, M., &amp; Willis, G. B. (2025). Social mobility beliefs and attitudes toward redistribution: <span>Potential</span> explanatory mechanisms. <em>Political Psychology</em>, <em>46</em>(4), 884–902. <a href="https://doi.org/10.1111/pops.13042">https://doi.org/10.1111/pops.13042</a>
+</div>
+<div id="ref-mccoy_priming_2007" class="csl-entry" role="listitem">
+McCoy, S. K., &amp; Major, B. (2007). Priming meritocracy and the psychological justification of inequality. <em>Journal of Experimental Social Psychology</em>, <em>43</em>(3), 341–351. <a href="https://doi.org/10.1016/j.jesp.2006.04.009">https://doi.org/10.1016/j.jesp.2006.04.009</a>
+</div>
+<div id="ref-mijs_stratified_2016" class="csl-entry" role="listitem">
+Mijs, J. (2016a). Stratified <span>Failure</span>: <span>Educational Stratification</span> and <span>Students</span>’ <span>Attributions</span> of <span>Their Mathematics Performance</span> in 24 <span>Countries</span>. <em>Sociology of Education</em>, <em>89</em>(2), 137–153. <a href="https://doi.org/10.1177/0038040716636434">https://doi.org/10.1177/0038040716636434</a>
+</div>
+<div id="ref-mijs_unfulfillable_2016" class="csl-entry" role="listitem">
+Mijs, J. (2016b). The <span>Unfulfillable Promise</span> of <span>Meritocracy</span>: <span>Three Lessons</span> and <span>Their Implications</span> for <span>Justice</span> in <span>Education</span>. <em>Social Justice Research</em>, <em>29</em>(1), 14–34. <a href="https://doi.org/10.1007/s11211-014-0228-0">https://doi.org/10.1007/s11211-014-0228-0</a>
+</div>
+<div id="ref-mijs_paradox_2021" class="csl-entry" role="listitem">
+Mijs, J. (2021). The paradox of inequality: Income inequality and belief in meritocracy go hand in hand. <em>Socio-Economic Review</em>, <em>19</em>(1), 7–35. <a href="https://doi.org/10.1093/ser/mwy051">https://doi.org/10.1093/ser/mwy051</a>
+</div>
+<div id="ref-mijs_visualizing_2026" class="csl-entry" role="listitem">
+Mijs, J. (2026). Visualizing <span>Belief</span> in <span>Merit</span> and <span>Privilege</span>, 1930 to 2020: <span>Rejoinder</span>. <em>Socius: Sociological Research for a Dynamic World</em>, <em>12</em>, 23780231261426413. <a href="https://doi.org/10.1177/23780231261426413">https://doi.org/10.1177/23780231261426413</a>
+</div>
+<div id="ref-mijs_belief_2022" class="csl-entry" role="listitem">
+Mijs, J., Daenekindt, S., De Koster, W., &amp; Van Der Waal, J. (2022). Belief in <span>Meritocracy Reexamined</span>: <span>Scrutinizing</span> the <span>Role</span> of <span>Subjective Social Mobility</span>. <em>Social Psychology Quarterly</em>, <em>85</em>(2), 131–141. <a href="https://doi.org/10.1177/01902725211063818">https://doi.org/10.1177/01902725211063818</a>
+</div>
+<div id="ref-olivos_motivation_2021a" class="csl-entry" role="listitem">
+Olivos, F. (2021). Motivation, <span>Legitimation</span>, or <span>Both</span>? <span>Reciprocal Effects</span> of <span>Parental Meritocratic Beliefs</span> and <span>Children</span>’s <span>Educational Performance</span> in <span>China</span>. <em>Social Psychology Quarterly</em>, <em>84</em>(2), 110–131. <a href="https://doi.org/10.1177/0190272520984730">https://doi.org/10.1177/0190272520984730</a>
+</div>
+<div id="ref-paneda-fernandez_relevance_2026" class="csl-entry" role="listitem">
+Pañeda-Fernández, I., Kamphorst, J., Van De Rijt, A., &amp; Battu, B. (2026). The relevance of meritocratic beliefs for redistributive preferences increases with income. <em>Social Science Research</em>, <em>134</em>, 103294. <a href="https://doi.org/10.1016/j.ssresearch.2025.103294">https://doi.org/10.1016/j.ssresearch.2025.103294</a>
+</div>
+<div id="ref-putnick_measurement_2016" class="csl-entry" role="listitem">
+Putnick, D. L., &amp; Bornstein, M. H. (2016). Measurement invariance conventions and reporting: <span>The</span> state of the art and future directions for psychological research. <em>Developmental Review</em>, <em>41</em>, 71–90. <a href="https://doi.org/10.1016/j.dr.2016.06.004">https://doi.org/10.1016/j.dr.2016.06.004</a>
+</div>
+<div id="ref-resh_sense_2014" class="csl-entry" role="listitem">
+Resh, N., &amp; Sabbagh, C. (2014). Sense of justice in school and civic attitudes. <em>Social Psychology of Education</em>, <em>17</em>(1), 51–72. <a href="https://doi.org/10.1007/s11218-013-9240-8">https://doi.org/10.1007/s11218-013-9240-8</a>
+</div>
+<div id="ref-reynolds_perceptions_2014a" class="csl-entry" role="listitem">
+Reynolds, J., &amp; Xian, H. (2014). Perceptions of meritocracy in the land of opportunity. <em>Research in Social Stratification and Mobility</em>, <em>36</em>, 121–137. <a href="https://doi.org/10.1016/j.rssm.2014.03.001">https://doi.org/10.1016/j.rssm.2014.03.001</a>
+</div>
+<div id="ref-sandel_tyranny_2020" class="csl-entry" role="listitem">
+Sandel, M. J. (2020). <em>The tyranny of merit: <span>What</span>’s become of the common good?</em> (First edition). New York: <span>Farrar, Straus and Giroux</span>.
+</div>
+<div id="ref-santanderramirez_preferencias_2020" class="csl-entry" role="listitem">
+Santander Ramírez, E., Berríos, L., Soto de la Cruz, P., &amp; Avendaño Cassasa, M. (2020). Preferencias parentales de socialización valórica en el <span>Chile</span> contemporáneo, cómo influyen la clase social y la religión de los padres en la manera en que quieren criar a sus hijos? <em>Apuntes: Revista de Ciencias Sociales</em>, <em>47</em>(87), 65–86. <a href="https://doi.org/10.21678/apuntes.87.1027">https://doi.org/10.21678/apuntes.87.1027</a>
+</div>
+<div id="ref-sigelman_age_2013a" class="csl-entry" role="listitem">
+Sigelman, C. K. (2013). Age <span>Differences</span> in <span>Perceptions</span> of <span>Rich</span> and <span>Poor People</span>: <span>Is It Skill</span> or <span>Luck</span>? <em>Social Development</em>, <em>22</em>(1), 1–18. <a href="https://doi.org/10.1111/sode.12000">https://doi.org/10.1111/sode.12000</a>
+</div>
+<div id="ref-svetina_multiplegroup_2020" class="csl-entry" role="listitem">
+Svetina, D., Rutkowski, L., &amp; Rutkowski, D. (2020). Multiple-<span>Group Invariance</span> with <span>Categorical Outcomes Using Updated Guidelines</span>: <span>An Illustration Using M</span> <span><em>plus</em></span> and the lavaan/<span class="nocase">semTools Packages</span>. <em>Structural Equation Modeling: A Multidisciplinary Journal</em>, <em>27</em>(1), 111–130. <a href="https://doi.org/10.1080/10705511.2019.1602776">https://doi.org/10.1080/10705511.2019.1602776</a>
+</div>
+<div id="ref-tang_meritocratic_2025" class="csl-entry" role="listitem">
+Tang, M., Li, A., &amp; Wu, X. (2025). Meritocratic <span>Myth</span> in <span>Mind</span>? <span>Socioeconomic Backgrounds</span> and <span>Shifting Beliefs</span> about <span>Meritocracy</span> among <span>College Students</span> in <span>China</span>. <em>Sociology of Education</em>, 00380407251360432. <a href="https://doi.org/10.1177/00380407251360432">https://doi.org/10.1177/00380407251360432</a>
+</div>
+<div id="ref-tejero-peregrina_perceived_2025" class="csl-entry" role="listitem">
+Tejero-Peregrina, L., Willis, G., Sánchez-Rodríguez, Á., &amp; Rodríguez-Bailón, R. (2025). From <span>Perceived Economic Inequality</span> to <span>Support</span> for <span>Redistribution</span>: <span>The Role</span> of <span>Meritocracy Perception</span>. <em>International Review of Social Psychology</em>, <em>38</em>(1), 4. <a href="https://doi.org/10.5334/irsp.1013">https://doi.org/10.5334/irsp.1013</a>
+</div>
+<div id="ref-traini_stratification_2022" class="csl-entry" role="listitem">
+Traini, C. (2022). The stratification of education systems and social background inequality of educational opportunity. <em>International Journal of Comparative Sociology</em>, <em>63</em>(1-2), 10–29. <a href="https://doi.org/10.1177/00207152211033015">https://doi.org/10.1177/00207152211033015</a>
+</div>
+<div id="ref-traini_climbing_2025" class="csl-entry" role="listitem">
+Traini, C., Ehmes, S., &amp; Gangl, M. (2025). Climbing the ladder or falling behind: <span>How</span> social mobility shapes perceptions of meritocracy in the wake of rising inequality. <em>PO- LAR Working Paper #7. Frankfurt: Goethe University. Retrieved from Www.polar-Project.org, Version Dated 12 September 2025</em>.
+</div>
+<div id="ref-vandeschoot_checklist_2012" class="csl-entry" role="listitem">
+Van De Schoot, R., Lugtig, P., &amp; Hox, J. (2012). A checklist for testing measurement invariance. <em>European Journal of Developmental Psychology</em>, <em>9</em>(4), 486–492. <a href="https://doi.org/10.1080/17405629.2012.686740">https://doi.org/10.1080/17405629.2012.686740</a>
+</div>
+<div id="ref-vandeschoot_editorial_2015" class="csl-entry" role="listitem">
+Van De Schoot, R., Schmidt, P., De Beuckelaer, A., Lek, K., &amp; Zondervan-Zwijnenburg, M. (2015). Editorial: <span>Measurement Invariance</span>. <em>Frontiers in Psychology</em>, <em>6</em>. <a href="https://doi.org/10.3389/fpsyg.2015.01064">https://doi.org/10.3389/fpsyg.2015.01064</a>
+</div>
+<div id="ref-vandewerfhorst_meritocracy_2024" class="csl-entry" role="listitem">
+Van De Werfhorst, H. G. (2024). Is <span>Meritocracy Not So Bad After All</span>? <span>Educational Expansion</span> and <span>Intergenerational Mobility</span> in 40 <span>Countries</span>. <em>American Sociological Review</em>, <em>89</em>(6), 1181–1213. <a href="https://doi.org/10.1177/00031224241292352">https://doi.org/10.1177/00031224241292352</a>
+</div>
+<div id="ref-wiederkehr_belief_2015" class="csl-entry" role="listitem">
+Wiederkehr, V., Bonnot, V., Krauth-Gruber, S., &amp; Darnon, C. (2015). Belief in school meritocracy as a system-justifying tool for low status students. <em>Frontiers in Psychology</em>, <em>6</em>.
+</div>
+<div id="ref-wiesner_effort_2026" class="csl-entry" role="listitem">
+Wiesner, T., &amp; Sachweh, P. (2026). Effort versus <span>Advantage</span>: <span>Visualizing</span> (<span>Relative</span>) <span>Belief</span> in <span>Meritocracy</span>, 1930 to 2022—<span>A Comment</span> on <span>Mijs</span> (2018), <em>12</em>. <a href="https://doi.org/10.1177/23780231261425841">https://doi.org/10.1177/23780231261425841</a>
+</div>
+<div id="ref-wu_identification_2016a" class="csl-entry" role="listitem">
+Wu, H., &amp; Estabrook, R. (2016). Identification of <span>Confirmatory Factor Analysis Models</span> of <span>Different Levels</span> of <span>Invariance</span> for <span>Ordered Categorical Outcomes</span>. <em>Psychometrika</em>, <em>81</em>(4), 1014–1045. <a href="https://doi.org/10.1007/s11336-016-9506-0">https://doi.org/10.1007/s11336-016-9506-0</a>
 </div>
 <div id="ref-young_rise_1958" class="csl-entry" role="listitem">
 Young, M. (1958). <em>The rise of the meritocracy</em>. New Brunswick, N.J., U.S.A: Transaction Publishers.
@@ -933,13 +875,14 @@ Zhu, L. (2025). Meritocratic beliefs in the <span>United States</span>, <span>Fi
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

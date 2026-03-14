@@ -12,7 +12,7 @@ Measuring and applying a scale of perceptions and preferences about meritocracy.
 
 [Analysis](https://educacion-meritocracia.github.io/merit-factorial/processing/avances.html)
 
-[Paper](https://educacion-meritocracia.github.io/merit-factorial/paper/paper.html)
+[Paper](https://educacion-meritocracia.github.io/merit-factorial/paper/paper.pdf)
 
 [Cohort invariance](https://educacion-meritocracia.github.io/merit-factorial/processing/03-cohort-invariance.html)
 

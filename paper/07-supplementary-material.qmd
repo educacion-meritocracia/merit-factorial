@@ -1,7 +1,28 @@
-
-# Supplementary material {#anexo}
-
-This section presents the supplementary material for this study. 
+---
+title: "Supplementary material"
+format:
+  html: 
+    code-fold: true
+    html-math-method: katex
+    number-sections: true
+  docx:
+    number-sections: true
+  pdf: 
+    geometry: margin=2cm
+    template-partials: 
+      - title.tex
+    keep-tex: true
+    number-sections: true
+editor: source
+link-citations: true
+mainfont: Times New Roman
+fontsize: 12pt          
+colorlinks: true
+fig-height: 4
+fig-width: 7.5
+editor_options: 
+  chunk_output_type: console
+--- 
 
 ```{r}
 #| echo: false
@@ -63,6 +84,57 @@ glimpse(db_long)
 dim(db_long)
 ```
 
+
+# Correlation matrix
+```{r}
+#| label: fig-cr
+#| fig-cap: Correlation matrix for the pooled sample
+#| fig-cap-location: top
+#| echo: false
+#| out.width: 80%
+#| out.height: "auto" 
+
+db_long <- db_long %>%
+select(id_estudiante, ola, starts_with(c("perc", "pref")), cohort_level) %>% 
+  drop_na()
+
+df <- db_long %>% 
+  select(starts_with(c("perc", "pref")))
+
+M <- df %>% 
+  psych::polychoric()
+
+diag(M$rho) <- NA
+
+rownames(M$rho) <- c("A. Perception Effort",
+                     "B. Perception Talent",
+                     "C. Perception Rich parents",
+                     "D. Perception Contacts",
+                     "E. Preference Effort",
+                     "F. Preference Talent",
+                     "G. Preference Rich parents",
+                     "H. Preference Contacts")
+
+#set Column names of the matrix
+colnames(M$rho) <-c("(A)", "(B)","(C)","(D)","(E)","(F)","(G)",
+                    "(H)")
+
+testp <- cor.mtest(M$rho, conf.level = 0.95)
+
+#Plot the matrix using corrplot
+corrplot::corrplot(M$rho,
+                   method = "color",
+                   addCoef.col = "black",
+                   type = "upper",
+                   tl.col = "black",
+                   col = colorRampPalette(c("#E16462", "white", "#0D0887"))(12),
+                   bg = "white",
+                   na.label = "-") 
+
+```
+
+{{< pagebreak >}}
+
 # Confirmatory factor analysis of the meritocracy scale
 
 ```{r}
@@ -72,9 +144,7 @@ dim(db_long)
 #| warning: false
 #| include: false
 
-db_long <- db_long %>%
-select(id_estudiante, ola, starts_with(c("perc", "pref")), cohort_level) %>% 
-  drop_na()
+
 
 model_base <- ('
 perc_merit =~ perc_effort + perc_talent
@@ -172,6 +242,9 @@ knitr::include_graphics(here('paper/imagenes/basica.png'))
 
 knitr::include_graphics(here('paper/imagenes/media.png'))
 ```
+
+{{< pagebreak >}}
+
 # Sources of misfit in longitudinal invariance
 
 ```{r}
@@ -569,12 +642,16 @@ lavTestScore(fit_uniquenessinv)
 
 For the longitudinal strict invariance model (the more strict model), score tests provided no evidence of localized misfit. The global score test was non-significant, $\chi^2 (20)=11.93, p=.918$, and none of the univariate score tests for equality constraints was significant (all $p>.05$; smallest $p=.065$). This indicates that no single equality constraint notably contributed to the misfit. There are also no indicators of possible sources of misfit in the previous nested models (weak and strong). 
 
+{{< pagebreak >}}
+
 # Sources of misfit between cohort invariance
+
+In contrast, score tests for the cross-cohort invariance constraints indicated localized misfit. The largest modification indices/score contributions clustered in the perceived effort, suggesting that equality constraints on thresholds/loadings for these items are not supported across school levels. @tbl-lavtestcohort lists the ten constraints with the largest score statistics.
 
 
 ```{r}
 #| label: tbl-lavtestcohort
-#| tbl-cap: "Effects of intergenerational occupational mobility on preferences for pension commodification, with covariates and wave fixed effects."
+#| tbl-cap: "Sources of misfit in longitudinal invariance"
 #| tbl-cap-location: top
 #| results: asis
 #| echo: false
@@ -683,20 +760,25 @@ table_Sx <- mapped %>%
     X2, df, p.value, p.adj
   )
 
-col.nam <- c("Item","Threshold", "&chi;^2","df","p-value", "p-value adjustement BH")
+col.nam <- c("Item","Threshold", "$\\chi^2$","df","p-value", "p-value adjustement BH")
+
+table_Sx <- table_Sx %>%
+  mutate(
+    item = str_replace_all(item, "_", " "),
+    item = str_replace_all(item, "perc", "Perception"),
+    item = str_replace_all(item, "pref", "Preference")
+  )
 
 table_Sx %>% 
-  kableExtra::kable(format = table_format,
-                    align = "c",
-                    booktabs = T,
-                    escape = F,
-                    caption = NULL,
-                    col.names = col.nam) %>%
+  kableExtra::kable(format = "latex",
+    align = "c",
+    booktabs = TRUE,
+    escape = F,
+    col.names = col.nam) %>%
   kableExtra::kable_styling(full_width = T,
                             latex_options = "hold_position",
                             bootstrap_options=c("striped", "bordered", "condensed"),
-                            font_size = 23)
+                            font_size = 10)
 ```
 
-In contrast, score tests for the cross-cohort invariance constraints indicated localized misfit. The largest modification indices/score contributions clustered in the perceived effort, suggesting that equality constraints on thresholds/loadings for these items are not supported across school levels. @tbl-lavtestcohort lists the ten constraints with the largest score statistics.
 

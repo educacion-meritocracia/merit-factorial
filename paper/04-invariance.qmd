@@ -1,5 +1,4 @@
 ---
-author: "Equipo EDUMER"
 bibliography: "../input/bib/merit-factorial.bib"
 csl: "../input/bib/apa6.csl"
 editor_options: 
@@ -772,11 +771,19 @@ tab.inv <- dplyr::bind_cols(tab01,fit.meas) %>%
   dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.cfi,diff.rmsea,decision)
 
 
-col.nam <- c("Model","&chi;^2 (df)","CFI","RMSEA (90 CI)",
-             "&Delta; &chi;^2 (&Delta; df)","&Delta; CFI","&Delta; RMSEA","Decision")
+col.nam <- c(
+  "Model",
+  "$\\chi^2$ (df)",
+  "CFI",
+  "RMSEA (90\\% CI)",
+  "$\\Delta \\chi^2$ ($\\Delta$df)",
+  "$\\Delta$CFI",
+  "$\\Delta$RMSEA",
+  "Decision"
+)
 
 tab.inv %>% 
-  kableExtra::kable(format = "html",
+  kableExtra::kable(format = "latex",
                     align = "c",
                     booktabs = T,
                     escape = F,
@@ -785,10 +792,9 @@ tab.inv %>%
   kableExtra::kable_styling(full_width = T,
                             latex_options = "hold_position",
                             bootstrap_options=c("striped", "bordered", "condensed"),
-                            font_size = 23) %>%
-  kableExtra::column_spec(c(1,8), width = "3.5cm") %>% 
-  kableExtra::column_spec(2:7, width = "4cm") %>% 
-  kableExtra::column_spec(4, width = "5cm")
+                           font_size = 9.5) %>% 
+  kableExtra::column_spec(column = 1, width = "2cm") %>%
+   kableExtra::column_spec(column = 4,width = "2 cm")
 ```
 
 
@@ -1192,34 +1198,37 @@ tab.inv <- bind_cols(tab01, fit.meas) %>%
 
 # Encabezados de columna
 col.nam <- c(
-  "Model", "&chi;^2 (df)", "CFI", "RMSEA (90 CI)",
-  "&Delta; &chi;^2 (&Delta; df)", "&Delta; CFI", "&Delta; RMSEA", "Decision"
+  "Model",
+  "$\\chi^2$ (df)",
+  "CFI",
+  "RMSEA (90\\% CI)",
+  "$\\Delta \\chi^2$ ($\\Delta$df)",
+  "$\\Delta$CFI",
+  "$\\Delta$RMSEA",
+  "Decision"
 )
-
 # Se formatea la tabla en kable
 tab.inv %>%
   kableExtra::kable(
-    format = "html",
+    format = "latex",
     align = "c",
     booktabs = TRUE,
-    escape = FALSE,
+    escape = F,
     col.names = col.nam
   ) %>%
   kableExtra::kable_styling(
-    full_width = TRUE,
+    full_width = TRUE, 
     latex_options = "hold_position",
     bootstrap_options = c("striped", "bordered", "condensed"),
-    font_size = 23
-  ) %>%
-  kableExtra::column_spec(c(1, 8), width = "3.5cm") %>%
-  kableExtra::column_spec(2:7, width = "4cm") %>%
-  kableExtra::column_spec(4, width = "5cm")
+   font_size = 9.5) %>% 
+  kableExtra::column_spec(column = 1, width = "2cm") %>%
+   kableExtra::column_spec(column = c(4:5),width = "2 cm")
 
 ```
 
-@tbl-cohort2 summarizes the cross-cohort invariance tests. The scale achieves configural invariance between primary and secondary students, indicating the same four-factor structure across groups, but does not support threshold invariance and therefore also fails to meet the prerequisites for metric or scalar invariance. Following the indications by @wu_identification_2016 and @svetina_multiplegroup_2020 for group invariance testing, we estimate a first invariance level restricting the tresholds, and further a second invariance level with tresholds and loadings restricted. Imposing equality constraints on thresholds led to a deterioration in model fit ($\Delta$CFI = −.013; $\Delta$RMSEA = .013) that exceeds Chen’s recommended cutoffs for threshold/intercept invariance [@chen_sensitivity_2007]. This pattern indicates systematic differences in how response categories relate to the underlying latent constructs across cohorts. Substantively, primary and secondary students do not use the response scale equivalently when evaluating meritocratic and non-meritocratic criteria, which limits the interpretability of direct cross-level comparisons of latent means or other latent-score differences.
+@tbl-cohort2 summarizes the cross-cohort invariance tests. The scale achieves configural invariance between primary and secondary students, indicating the same four-factor structure across groups, but does not support threshold invariance and therefore also fails to meet the prerequisites for metric or scalar invariance. Following the indications by @wu_identification_2016a and @svetina_multiplegroup_2020 for group invariance testing, we estimate a first invariance level restricting the tresholds, and further a second invariance level with tresholds and loadings restricted. Imposing equality constraints on thresholds led to a deterioration in model fit ($\Delta$CFI = −.013; $\Delta$RMSEA = .013) that exceeds Chen’s [-@chen_sensitivity_2007] recommended cutoffs for threshold/intercept invariance. This pattern indicates systematic differences in how response categories relate to the underlying latent constructs across cohorts. Substantively, primary and secondary students do not use the response scale equivalently when evaluating meritocratic and non-meritocratic criteria, which limits the interpretability of direct cross-level comparisons of latent means or other latent-score differences.
 
-To locate the source of cross-cohort non-invariance, we inspected univariate score tests from `lavTestScore` for the threshold-invariant model. The largest localized violations were concentrated in the thresholds of the perceived-effort item, especially the second threshold ($\chi^2=10.12, p=.001; BH-adjusted p=.035$), with the first threshold also among the top contributors ($\chi^2=7.55, p=.006; BH-adjusted p=.072$). Substantively, the younger and older cohorts appear to use the response options differently when judging whether effort is rewarded in society, consistent with socialization processes through which older students may adopt a more critical view of how far effort translates into success.
+To locate the source of cross-cohort non-invariance, we inspected univariate score tests from `lavTestScore` for the threshold-invariant model. The largest localized violations were concentrated in the thresholds of the perceived-effort item, especially the second threshold ($\chi^2=10.12, p=.001$), with the first threshold also among the top contributors ($\chi^2=7.55, p=.006$). Substantively, the younger and older cohorts appear to use the response options differently when judging whether effort is rewarded in society, consistent with socialization processes through which older students may adopt a more critical view of how far effort translates into success.
 
 ### Conditional longitudinal invariance by cohort
 
@@ -1676,11 +1685,19 @@ tab.inv <- dplyr::bind_cols(tab01,fit.meas) %>%
   dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.cfi,diff.rmsea,decision)
 
 
-col.nam <- c("Model","&chi;^2 (df)","CFI","RMSEA (90 CI)",
-             "&Delta; &chi;^2 (&Delta; df)","&Delta; CFI","&Delta; RMSEA","Decision")
+col.nam <- c(
+  "Model",
+  "$\\chi^2$ (df)",
+  "CFI",
+  "RMSEA (90\\% CI)",
+  "$\\Delta \\chi^2$ ($\\Delta$df)",
+  "$\\Delta$CFI",
+  "$\\Delta$RMSEA",
+  "Decision"
+)
 
 tab.inv %>% 
-  kableExtra::kable(format = "html",
+  kableExtra::kable(format = "latex",
                     align = "c",
                     booktabs = T,
                     escape = F,
@@ -1689,10 +1706,9 @@ tab.inv %>%
   kableExtra::kable_styling(full_width = T,
                             latex_options = "hold_position",
                             bootstrap_options=c("striped", "bordered", "condensed"),
-                            font_size = 23) %>%
-  kableExtra::column_spec(c(1,8), width = "3.5cm") %>% 
-  kableExtra::column_spec(2:7, width = "4cm") %>% 
-  kableExtra::column_spec(4, width = "5cm")
+                            font_size = 9.5) %>% 
+  kableExtra::column_spec(column = 1, width = "2cm") %>%
+   kableExtra::column_spec(column = 4,width = "2 cm") 
 ```
 
 This result has two main implications. First, it strengthens the claim that the measurement properties of the scale are temporally stable within individuals: observed over-time comparisons are not driven by shifts in how primary versus secondary students use the response categories, but reflect stability (or change) in the underlying latent constructs. Second, it clarifies the scope of the cohort non-invariance finding. Non-invariance across cohorts appears to be primarily a cross-sectional comparability problem—limiting direct comparisons of latent means or observed scores between educational levels at a given wave—rather than a threat to longitudinal analyses pooling both cohorts. Therefore, analyses of within-person change and over-time associations can be interpreted with greater confidence, while cohort contrasts should be treated cautiously (or handled via partial invariance, alignment, or cohort-specific models).

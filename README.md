@@ -4,7 +4,7 @@
 
 [Paper Long](https://educacion-meritocracia.github.io/merit-factorial/paper/paper.pdf)
 
-[Paper Short](https://educacion-meritocracia.github.io/merit-factorial/paper_short/paper.pdf)
+[Paper Short](https://educacion-meritocracia.github.io/merit-factorial/paper_short/paper_short.pdf)
 
 ## Conferences
 

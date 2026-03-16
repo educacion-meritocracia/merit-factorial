@@ -792,7 +792,7 @@ tab.inv %>%
    kableExtra::column_spec(column = 4,width = "2 cm")
 ```
 
-As an additional diagnostic, we used univariate score tests to identify potential sources of localized misfit at each step of the invariance hierarchy. The tests revealed no meaningful violations of the imposed equality constraints, suggesting that model fit was not driven by a small subset of parameters. Global score tests and the smallest p-values at each step are reported in the supplementary materials.
+As an additional diagnostic, we used univariate score tests to identify potential sources of localized misfit at each step of the invariance hierarchy. The tests revealed no meaningful violations of the imposed equality constraints, suggesting that model fit was not driven by a small subset of parameters. Global score tests and the smallest p-values at each step are reported in the Supplementary Material.
 
 ### Cohort invariance
 
@@ -1220,4 +1220,7 @@ tab.inv %>%
 
 @tbl-cohort2 summarizes the cross-cohort invariance tests. The scale achieves configural invariance between primary and secondary students, but not threshold invariance, and therefore does not meet the prerequisites for stronger forms of invariance [@wu_identification_2016a; @svetina_multiplegroup_2020]. Constraining thresholds worsened model fit ($\Delta$CFI = −.013; $\Delta$RMSEA = .013), exceeding recommended cutoffs [@chen_sensitivity_2007]. This indicates that response categories do not map equivalently onto the latent constructs across cohorts, limiting direct comparisons of latent means or other latent differences.
 
-To locate the source of cross-cohort non-invariance, we inspected localized misfit in the threshold-invariant model. The largest violations concerned the perceived-effort item, especially the second threshold ($\chi^2=10.12, p=.001$) and, to a lesser extent, the first ($\chi^2=7.55, p=.006$), suggesting that older students may apply a more critical standard when judging whether effort is rewarded in society.
+To locate the source of cross-cohort non-invariance, we inspected localized misfit in the threshold-invariant model. The largest violations concerned the perceived-effort item, especially the second threshold ($\chi^2=10.12, p=.001$) and, to a lesser extent, the first ($\chi^2=7.55, p=.006$), suggesting that older students may apply a more critical standard when judging whether effort is rewarded in society[^2].
+
+[^2]:Despite the lack of cohort invariance, re-estimating the longitudinal invariance models with cohort as a covariate predicting each latent factor did not materially change model fit or conclusions, suggesting that invariance over time remains tenable. These robustness checks are reported in the Supplementary Material.
+

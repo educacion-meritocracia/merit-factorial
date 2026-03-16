@@ -143,8 +143,9 @@ summary(mgeneral_cfa, standardized = TRUE, fit.measures = TRUE)
 #summary(mbasica_cfa, standardized = TRUE, fit.measures = TRUE)
 ```
 
-@fig-general presents the standardized factor loadings and the overall fit indices of the general measurement model estimated on the pooled analytical sample across cohorts and waves. The model shows a reasonable, though not fully satisfactory, fit to the data (CFI = 0.97; TLI = 0.94; RMSEA = 0.07). Although the CFI and RMSEA fall within commonly used acceptable ranges, the TLI remains below conventional thresholds, indicating that fit is acceptable in some respects but not uniformly strong across indices. Overall, these results suggest that the proposed four-factor structure captures the main covariance pattern in the combined sample reasonably well.
+@fig-general presents the standardized factor loadings and the overall fit indices of the general measurement model estimated on the pooled analytical sample across cohorts and waves. The model shows a reasonable, though not fully satisfactory, fit to the data (CFI = 0.97; TLI = 0.94; RMSEA = 0.07). Although the CFI falls within commonly accepted ranges, the RMSEA and TLI remain below conventional thresholds, indicating that fit is acceptable in some respects but not uniformly strong across indices. Overall, these results suggest that the proposed four-factor structure captures the main covariance pattern in the combined sample reasonably well [^1].
 
+[^1]: Factor loadings and fit indices for the separate analytical samples (i.e., per wave and cohort level) are available in the Supplementary Material.
 ```{r}
 #| label: fig-general
 #| fig-cap: Multigroup model diagram

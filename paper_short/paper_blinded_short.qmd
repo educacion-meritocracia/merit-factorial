@@ -30,7 +30,7 @@ format:
 #    <strong>{{< words-sum body-note-ref >}} total #words</strong>: {{< words-body >}} in the body • {{< #words-ref >}} in the references • {{< words-note >}} #in the notes
 editor: source
 bibliography: "input/bib/merit-factorial.bib"
-csl: "input/bib/sage-harvard.csl"
+csl: "input/bib/apa6.csl"
 #author:
 #  - name: Andreas Laffert
 #    corresponding: true

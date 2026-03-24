@@ -1,7 +1,7 @@
 ---
 title: "Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts"
 #subtitle: "{{< words-sum body-note >}} words"
-date: 2026-06-26
+date: 2026-03-24
 format:
   html: 
     code-fold: true

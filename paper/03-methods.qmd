@@ -55,7 +55,10 @@ db_long %>%
 
 ## Participants
 
-This study draws on secondary data from the Panel Survey on Education and Meritocracy (EDUMER) for the 2023 and 2024 waves, covering school-age students[^1]. The primary objective of the survey was to examine students’ beliefs, attitudes, and behaviors concerning meritocracy, inequality, and citizenship. The questionnaire was administered to sixth-grade and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The sampling strategy was non-probabilistic and lacked quota controls; however, a minimum sample size of 900 students was established to ensure adequate statistical power. After data processing and the elimination of missing cases (listwise deletion), the final analytical sample comprises 846 students for the first wave (386 girls, 421 boys, 39 identifying as other; $M_{age}$ = 13.4, $SD_{age}$ = 1.6), and the second wave followed 662 of them (303 girls, 338 boys, 21 identifying as other; $M_{age}$ = 14.4, $SD_{age}$ = 1.6), corresponding to a retention rate of 78.3% (attrition 21.7%). The primary causes of attrition were school transfers between academic years and student absenteeism, which was reported to be high in several establishments. 
+This study draws on secondary data from the Panel Survey on Education and Meritocracy (EDUMER) for the 2023 and 2024 waves, covering school-age students[^1]. The primary objective of the survey was to examine students’ beliefs, attitudes, and behaviors concerning meritocracy, inequality, and citizenship. The questionnaire was administered to sixth-grade and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The sampling strategy was non-probabilistic and lacked quota controls; however, a minimum sample size of 900 students was established to ensure adequate statistical power. After data processing, the final analytical sample comprises 846 students for Wave 1 (386 girls, 421 boys, 39 identifying as other), and the second wave followed 662 of them (303 girls, 338 boys, 21 identifying as other), yielding a retention rate of 78.3% (attrition = 21.7%). The primary causes of attrition were school transfers between academic years and student absenteeism, reported to be high in several schools. Missing data within waves were handled via listwise deletion. To assess whether attrition introduced systematic bias, we compared retained and non-retained students on all Wave 1 scale items and cohort membership using independent-samples t-tests and chi-square tests. No statistically significant differences were found between groups on any of the meritocracy dimensions or on cohort distribution (all pp
+p > .05), suggesting that attrition was largely non-systematic with respect to the constructs under study. Results of these comparisons are reported in the Supplementary Material.
+
+Chile provides a theoretically productive setting for this investigation that extends beyond its national boundaries. Its educational system combines high stratification, an active school market with competitive selection mechanisms, and persistent socioeconomic inequality—features shared, to varying degrees, by many Latin American countries and increasingly present in European and East Asian systems undergoing marketization [@vandewerfhorst_meritocracy_2024; @traini_stratification_2022]. At the same time, Chile's meritocratic discourse is particularly explicit in school culture, making it a strong case for detecting how students internalize, question, or reconcile meritocratic and non-meritocratic beliefs. Findings on the dimensional structure and longitudinal stability of these beliefs are therefore likely to travel to other highly stratified systems, while findings on cross-cohort meaning shifts may be especially relevant where school-based sorting is intense and cumulative. 
 
 [^1]: The survey was collected within the research project “Meritocracy in schools: Moral foundations of the education market and its implications for civic education in Chile” (FONDECYT Regular 2021 Nº 1210847).
 
@@ -108,7 +111,7 @@ Each item is rated on a four-point Likert scale ranging from “strongly disagre
    kableExtra::collapse_rows(columns = 1:2,valign = "middle")
 ```
 
-
+It should be noted that each factor is measured by only two indicators, which is the minimum required for identification in a CFA framework. This is a deliberate trade-off in the original scale design [@castillo_multidimensional_2023], prioritizing parsimony for large-scale survey use over content breadth and reliability. As a consequence, factor-level estimates should be interpreted with appropriate caution: internal consistency cannot be computed in the conventional sense, and the two items per dimension may not fully capture the construct's theoretical range. This constraint is acknowledged throughout the interpretation of results. 
 
 ### Cohort level
 
@@ -211,15 +214,13 @@ left_join(tot, edad) %>%
 ```
 
 
-
-
 ## Analytical strategy
 
 ### Measurement model and estimation
 
 To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, using Diagonally Weighted Least Squares with robust correction (WLSMV) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous [@kline_principles_2023].
 
-Model fit was assessed following the guidelines of Brown [-@brown_confirmatory_2015], using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by $p$ > 0.05 and a Chi-square/df ratio < 3).
+Model fit was assessed following the guidelines of Brown [-@brown_confirmatory_2015] using a triangulated approach that considers multiple indices jointly rather than applying fixed pass/fail cutoffs. The Comparative Fit Index (CFI) and Tucker-Lewis Index (TLI) values above 0.95 indicate good fit, with values between 0.90 and 0.95 considered acceptable; the Root Mean Square Error of Approximation (RMSEA) indicates good fit below 0.06 and acceptable fit below 0.08; and the Chi-square statistic provides an additional reference, with p > 0.05 and a ratio of Chi-square to degrees of freedom below 3 suggesting adequate fit. Because these indices capture different aspects of model-data correspondence and can diverge in practice, fit evaluation follows the overall pattern across indices rather than any single criterion [@kline_principles_2023].
 
 ### Measurement invariance
 

@@ -1,0 +1,55 @@
+---
+title: "Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts"
+format:
+  pdf: 
+    indent: false
+    keep-tex: true
+link-citations: true
+linestretch: 1.15       
+mainfont: Times New Roman
+fontsize: 12pt          
+geometry: "left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm"
+papersize: letter
+colorlinks: true
+fig-height: 4
+fig-width: 7.5
+header-includes:
+  - \usepackage{threeparttable}
+---
+
+## Authors Contact Information
+
+Andreas Laffert, Institute of Sociology, Pontifical Catholic University of Chile, Santiago de Chile.
+ORCID: 0000-0002-9008-2454
+Email: andreas.laffert@uchile.cl
+Address: Ignacio Carrera Pinto 1045 Ñuñoa, Santiago de Chile
+
+Juan Carlos Castillo[^*], Departament of Sociology, University of Chile, Santiago de Chile.  
+ORCID: 0000-0003-1265-7854
+Email: juancastillov@uchile.cl
+Address: Ignacio Carrera Pinto 1045 Ñuñoa, Santiago de Chile
+Phone: +56 9 79712541
+    
+René Canales, Institute of Sociology, Pontifical Catholic University of Chile, Santiago de Chile.
+ORCID: 0009-0002-4299-2725
+Email: renecanales@uc.cl
+Address: Ignacio Carrera Pinto 1045 Ñuñoa, Santiago de Chile
+
+
+Tomás Urzúa, Departament of Sociology, University of Chile, Santiago de Chile.
+ORCID: 0009-0008-3167-6819
+Email: tomas.urzua@ug.uchile.cl
+Address: Ignacio Carrera Pinto 1045 Ñuñoa, Santiago de Chile
+
+
+Kevin Carrasco, Departament of Sociology, University of Chile, Santiago de Chile.
+ORCID: 0000-0002-9348-8361
+Email: kevin.carrasco@uchile.cl
+Address: Ignacio Carrera Pinto 1045 Ñuñoa, Santiago de Chile
+
+
+## Authors' Contributions
+
+Author roles were classified using the Contributor Role Taxonomy [CRediT](https://credit.niso.org/) as follows: Andreas Laffert: Conceptualization, Methodology, Formal Analysis, Writing - review and editing, Supervision; Juan Carlos Castillo: Methodology, Writing - review and editing, Supervision; René Canales: Formal analysis, Visualization, Writing - review and editing; Tomás Urzúa: Formal analysis, Visualization, Writing - review and editing; Kevin Carrasco: Writing - review and editing.
+
+[^*]: Corresponding author. 

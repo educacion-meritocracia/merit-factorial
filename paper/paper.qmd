@@ -1,5 +1,5 @@
 ---
-title: "Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts"
+title: "Changes in meritocratic beliefs among school-age students over time and across cohorts"
 #subtitle: "{{< words-sum body-note >}} words"
 format:
   html: 
@@ -30,7 +30,7 @@ format:
 #    <strong>{{< words-sum body-note-ref >}} total #words</strong>: {{< words-body >}} in the body • {{< #words-ref >}} in the references • {{< words-note >}} #in the notes
 editor: source
 bibliography: "input/bib/merit-factorial.bib"
-csl: "input/bib/sage-harvard.csl"
+csl: "input/bib/apa6.csl"
 author:
   - name: Andreas Laffert
     corresponding: true
@@ -65,7 +65,7 @@ affiliations:
     name: Department of Sociology, University of Chile
 citeproc: true
 abstract: | 
- Meritocratic beliefs shape how adolescents understand inequality and the legitimacy of social arrangements. Schools are key sites of meritocratic socialization, making adolescence a crucial period for studying how these beliefs are formed. However, research on adolescents’ meritocratic beliefs has often relied on unidimensional measures that conflate perceptions of how allocation works with preferences about how it should work and treat meritocratic and non-meritocratic principles as opposites. This study tests a multidimensional model that distinguishes between perceived and preferred meritocracy and non-meritocracy. Using two-wave panel survey data from Chilean students in 8th and 10th grade (Wave 1: N = 846; Wave 2: N = 662), we assess whether these dimensions can be distinguished, compared across school stages, and measured equivalently over time. Results support a four-factor structure and show that endorsement of merit can coexist with recognition of non-meritocratic advantage. The scale achieves strict longitudinal invariance within students but not across school levels.
+ Besides transmitting academic knowledge, schools are key sites of meritocratic socialization. They actively shape students' understanding of whether success is earned or inherited. However, despite the centrality of meritocracy in educational research, the measurement of students' meritocratic beliefs remains underdeveloped: most instruments conflate perceptions of how rewards are allocated with normative preferences for how they should be allocated, and treat meritocratic and non-meritocratic factors as mutually exclusive. This study tests a multidimensional model that distinguishes between perceived and preferred meritocracy and non-meritocracy among school-aged students. Using two-wave panel survey data from Chilean students in 8th and 10th grade (Wave 1: N = 846; Wave 2: N = 662), we assess whether these dimensions can be distinguished, compared across school stages, and measured equivalently over time using confirmatory factor analysis and measurement invariance testing. Results support a four-factor structure, showing that endorsement of merit can coexist with recognition of non-meritocratic advantage, a pattern with direct implications for how schools address inequality. The scale achieves strict longitudinal invariance within students, enabling valid developmental comparisons, but not across school levels, indicating that older students apply a qualitatively different frame when evaluating whether effort is rewarded. These findings provide a methodologically validated instrument for studying meritocratic socialization in educational settings. For school practice and policy, they further indicate that meritocratic discourse functions differently across educational stages, and that distinguishing what students perceive from what they prefer is essential for designing curricula, assessments, and interventions that respond to students' actual beliefs about fairness and opportunity.
   \newline
  **Keywords**: Meritocracy · Schools · Measurement invariance · Socialization · Chile
 link-citations: true

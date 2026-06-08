@@ -58,13 +58,11 @@ db_long %>%
 This study draws on secondary data from the Panel Survey on Education and Meritocracy (EDUMER) for the 2023 and 2024 waves, covering school-age students[^1]. The primary objective of the survey was to examine students’ beliefs, attitudes, and behaviors concerning meritocracy, inequality, and citizenship. The questionnaire was administered to sixth-grade and first-year secondary students from nine schools in the Metropolitan and Valparaíso regions of Chile. The sampling strategy was non-probabilistic and lacked quota controls; however, a minimum sample size of 900 students was established to ensure adequate statistical power. After data processing, the final analytical sample comprises 846 students for Wave 1 (386 girls, 421 boys, 39 identifying as other), and the second wave followed 662 of them (303 girls, 338 boys, 21 identifying as other), yielding a retention rate of 78.3% (attrition = 21.7%). The primary causes of attrition were school transfers between academic years and student absenteeism, reported to be high in several schools. Missing data within waves were handled via listwise deletion. To assess whether attrition introduced systematic bias, we compared retained and non-retained students on all Wave 1 scale items and cohort membership using independent-samples t-tests and chi-square tests. No statistically significant differences were found between groups on any of the meritocracy dimensions or on cohort distribution (all pp
 p > .05), suggesting that attrition was largely non-systematic with respect to the constructs under study. Results of these comparisons are reported in the Supplementary Material.
 
-Chile provides a theoretically productive setting for this investigation that extends beyond its national boundaries. Its educational system combines high stratification, an active school market with competitive selection mechanisms, and persistent socioeconomic inequality—features shared, to varying degrees, by many Latin American countries and increasingly present in European and East Asian systems undergoing marketization [@vandewerfhorst_meritocracy_2024; @traini_stratification_2022]. At the same time, Chile's meritocratic discourse is particularly explicit in school culture, making it a strong case for detecting how students internalize, question, or reconcile meritocratic and non-meritocratic beliefs. Findings on the dimensional structure and longitudinal stability of these beliefs are therefore likely to travel to other highly stratified systems, while findings on cross-cohort meaning shifts may be especially relevant where school-based sorting is intense and cumulative. 
-
 [^1]: The survey was collected within the research project “Meritocracy in schools: Moral foundations of the education market and its implications for civic education in Chile” (FONDECYT Regular 2021 Nº 1210847).
 
 ## Procedure
 
-Data collection was conducted by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires. All participants received an informed consent form that was reviewed and validated by a parent or legal guardian before participation. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student; no directly identifying information (e.g., names) was collected for students or their guardians in the analytic files.
+Data collection was conducted by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires. All participants received an informed consent form that was reviewed and validated by a parent or legal guardian before participation. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student; no directly identifying information was collected for students or their guardians in the analytic files.
 
 ## Measures
 
@@ -74,11 +72,11 @@ Meritocratic and non-meritocratic perceptions and preferences were measured usin
 
 - Perceived meritocracy: the extent to which effort and ability are rewarded in Chile,
 
-- Perceived non-meritocracy: the extent to which success is perceived as linked to connections and family wealth,
+- Perceived privilege: the extent to which success is perceived as linked to connections and family wealth,
 
 - Preference for meritocracy: agreement with that those who work harder or are more talented should be better rewarded,
 
-- Preference for non-meritocracy: agreement with that it is acceptable for individuals with better connections or wealthy parents to achieve greater success  (see @tbl-merit).
+- Acceptance of privilege: agreement with that it is acceptable for individuals with better connections or wealthy parents to achieve greater success  (see @tbl-merit).
  
 Each item is rated on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference.
 
@@ -111,7 +109,7 @@ Each item is rated on a four-point Likert scale ranging from “strongly disagre
    kableExtra::collapse_rows(columns = 1:2,valign = "middle")
 ```
 
-It should be noted that each factor is measured by only two indicators, which is the minimum required for identification in a CFA framework. This is a deliberate trade-off in the original scale design [@castillo_multidimensional_2023], prioritizing parsimony for large-scale survey use over content breadth and reliability. As a consequence, factor-level estimates should be interpreted with appropriate caution: internal consistency cannot be computed in the conventional sense, and the two items per dimension may not fully capture the construct's theoretical range. This constraint is acknowledged throughout the interpretation of results. 
+Each factor is measured by only two indicators, the minimum required for identification in a Confirmatory Factor Analysis framework. This is a deliberate trade-off in the original scale design [@castillo_multidimensional_2023], which prioritizes parsimony for large-scale survey use over content breadth and reliability. As a consequence, internal consistency cannot be computed in the conventional sense, and the two items per dimension may not fully capture the construct's full theoretical range. Factor-level estimates should therefore be interpreted with appropriate caution throughout the results and discussion.
 
 ### Cohort level
 

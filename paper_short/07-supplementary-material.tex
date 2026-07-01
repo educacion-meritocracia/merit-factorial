@@ -277,16 +277,17 @@ equality constraints on thresholds/loadings for these items are not
 supported across school levels. Table~\ref{tbl-lavtestcohort} lists the
 ten constraints with the largest score statistics.
 
-\begin{table}
+\begin{table}[H]
 
 \caption{\label{tbl-lavtestcohort}Sources of misfit in longitudinal
 invariance}
 
 \centering{
 
-\begingroup\fontsize{10}{12}\selectfont
+\centering\begingroup\fontsize{10}{12}\selectfont
 
-\begin{tabu} to \linewidth {>{\centering}X>{\centering}X>{\centering}X>{\centering}X>{\centering}X>{\centering}X}
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}{>{\centering\arraybackslash}p{4.3cm}>{\centering\arraybackslash}p{2.3cm}>{\centering\arraybackslash}p{1.7cm}>{\centering\arraybackslash}p{1.3cm}>{\centering\arraybackslash}p{2.3cm}>{\centering\arraybackslash}p{3.4cm}}
 \toprule
 Item & Threshold & $\chi^2$ & df & p-value & p-value adjustement BH\\
 \midrule
@@ -302,75 +303,12 @@ Perception rich parents & t2 & 1.697639 & 1 & 0.1925971 & 0.5332262\\
 Perception talent & t3 & 1.642668 & 1 & 0.1999598 & 0.5332262\\
 Perception effort & t3 & 1.026312 & 1 & 0.3110265 & 0.7233287\\
 \bottomrule
-\end{tabu}
+\end{tabular}}
 \endgroup{}
 
 }
 
 \end{table}%
-
-\newpage{}
-
-\section{Conditional longitudinal invariance by
-cohort}\label{conditional-longitudinal-invariance-by-cohort}
-
-Despite the lack of cohort measurement invariance, we examined whether
-plausible cohort-related heterogeneity could compromise longitudinal
-invariance by re-estimating the longitudinal invariance sequence while
-controlling for cohort (dummy-coded) as a covariate predicting each
-latent factor (see Table~\ref{tbl-conditional}). Model fit remained good
-across all steps---from the configural baseline to the strict
-model---and consistently met conventional standards; for instance, the
-strict invariance model with cohort control showed \(\chi^2\)(92) =
-131.64, CFI = .991, and RMSEA = .027. Importantly, including cohort as a
-predictor did not materially alter model fit or the invariance
-conclusions, suggesting that the equality constraints over time are
-tenable even after accounting for cohort differences in average latent
-factor levels.
-
-\begin{table}
-
-\caption{\label{tbl-conditional}Conditional longitudinal invariance by
-cohort level}
-
-\centering{
-
-\begingroup\fontsize{9.5}{11.5}\selectfont
-
-\begin{tabu} to \linewidth {>{\centering\arraybackslash}p{2cm}>{\centering}X>{\centering}X>{\centering\arraybackslash}p{2 cm}>{\centering}X>{\centering}X>{\centering}X>{\centering}X}
-\toprule
-Model & $\chi^2$ (df) & CFI & RMSEA (90\% CI) & $\Delta \chi^2$ ($\Delta$df) & $\Delta$CFI & $\Delta$RMSEA & Decision\\
-\midrule
-Configural & 122.27 (76) & 0.990 & 0.032 
- (0.021-0.042) & 0 (0) & 0.000 & 0.000 & Reference\\
-Weak & 126.95 (80) & 0.990 & 0.032 
- (0.021-0.042) & 4.684 (4) & 0.000 & -0.001 & Accept\\
-Strong & 128.55 (88) & 0.991 & 0.028 
- (0.017-0.038) & 1.598 (8) & 0.001 & -0.004 & Accept\\
-Strict & 131.64 (92) & 0.991 & 0.027 
- (0.016-0.037) & 3.086 (4) & 0.000 & -0.001 & Accept\\
-\bottomrule
-\end{tabu}
-\endgroup{}
-
-}
-
-\end{table}%
-
-This result has two main implications. First, it strengthens the claim
-that the measurement properties of the scale are temporally stable
-within individuals: observed over-time comparisons are not driven by
-shifts in how primary versus secondary students use the response
-categories, but reflect stability (or change) in the underlying latent
-constructs. Second, it clarifies the scope of the cohort non-invariance
-finding. Non-invariance across cohorts appears to be primarily a
-cross-sectional comparability problem---limiting direct comparisons of
-latent means or observed scores between educational levels at a given
-wave---rather than a threat to longitudinal analyses pooling both
-cohorts. Therefore, analyses of within-person change and over-time
-associations can be interpreted with greater confidence, while cohort
-contrasts should be treated cautiously (or handled via partial
-invariance, alignment, or cohort-specific models).
 
 
 

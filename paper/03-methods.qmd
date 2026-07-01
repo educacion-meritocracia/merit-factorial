@@ -68,15 +68,15 @@ Data collection was conducted by a professional research firm using a Computer-A
 
 ### Scale of perceptions and preferences of meritocracy
 
-Meritocratic and non-meritocratic perceptions and preferences were measured using the same items proposed in the original scale [@castillo_multidimensional_2023]. Each of the four dimensions of the scale is measured by two items. The dimensions are:
+Meritocratic and privilege-based perceptions and preferences were measured using the same items proposed in the original scale [@castillo_multidimensional_2023]. Each of the four dimensions of the scale is measured by two items. The dimensions are:
 
-- Perceived meritocracy: the extent to which effort and ability are rewarded in Chile,
+- Meritocratic perceptions: the extent to which effort and ability are rewarded in Chile,
 
-- Perceived privilege: the extent to which success is perceived as linked to connections and family wealth,
+- Privilege perceptions: the extent to which success is perceived as linked to connections and family wealth,
 
-- Preference for meritocracy: agreement with that those who work harder or are more talented should be better rewarded,
+- Meritocratic preferences: agreement with that those who work harder or are more talented should be better rewarded,
 
-- Acceptance of privilege: agreement with that it is acceptable for individuals with better connections or wealthy parents to achieve greater success  (see @tbl-merit).
+- Privilege acceptance: agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success (see @tbl-merit).
  
 Each item is rated on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference.
 
@@ -99,13 +99,15 @@ Each item is rated on a four-point Likert scale ranging from “strongly disagre
 
  knitr::kable(tabitems, "latex", booktabs = T, linesep = "",col.names = cnames) %>%
    kableExtra::kable_styling(
-     full_width = T,
+     full_width = F,
      latex_options = c("hold_position"),
      position = "center",
      font_size = 9.5,
      bootstrap_options=c("striped", "bordered")) %>%
    kableExtra::column_spec(column = 1, width = "2cm", ) %>%
    kableExtra::column_spec(column = 2,width = "2 cm") %>%
+   kableExtra::column_spec(column = 3, width = "6.5cm") %>%
+   kableExtra::column_spec(column = 4, width = "6.5cm") %>%
    kableExtra::collapse_rows(columns = 1:2,valign = "middle")
 ```
 
@@ -200,9 +202,9 @@ left_join(tot, edad) %>%
                 booktabs = T, 
                 linesep = "",
                 col.names = c("Wave", "Cohort level", "N", "Mean", "SD", "Man", "Women", "Others")) %>%
-    kableExtra::add_header_above(c(" " = 3, "Age" = 2, "Gender" = 3)) %>% 
+    kableExtra::add_header_above(c(" " = 3, "Age" = 2, "Gender" = 3)) %>%
    kableExtra::kable_styling(
-     full_width = T,
+     full_width = F,
      latex_options = c("hold_position"),
      position = "center",
      font_size = 9.5,

@@ -1,0 +1,359 @@
+---
+author: "Equipo EDUMER"
+bibliography: "../input/bib/merit-factorial.bib"
+csl: "../input/bib/apa6.csl"
+---
+
+## Measurement model
+
+```{r}
+#| label: set
+#| echo: false
+#| message: false
+#| warning: false
+
+library(knitr)
+
+knitr::opts_chunk$set(echo = F,
+                      warning = F,
+                      error = F, 
+                      message = F) 
+
+table_format <- if (is_html_output()) {
+  "html"
+} else if (is_latex_output()) {
+  "latex"
+}
+table_format2 <- if (is_html_output()) {
+  T
+} else if (is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+
+# funcion para exportar tablas en formato html o latex
+```
+
+```{r}
+#| label: packages
+#| include: false
+#| echo: false
+
+if (!require("pacman")) install.packages("pacman") #para instalar pacman en caso de no estar instalado
+
+pacman::p_load(
+  tidyverse,
+  sjmisc,
+  sjPlot,
+  here,
+  lavaan,
+  psych,
+  ggdist,
+  semTools,
+  gtools,
+  kableExtra
+)
+
+options(scipen = 999) # para eliminar la notación científica
+rm(list = ls()) # limpiar el ambiente 
+```
+
+```{r}
+#| label: longitudinal data 
+#| echo: false
+#| output: false
+
+load(file = here("output", "data", "db_long_proc.RData")) #cargar base con las dos olas 
+
+names(db_long) #ver nombres de variables
+glimpse(db_long) # ver los primeros 15 casos de cada variable
+dim(db_long) # ver cantidad de filas y columnas 
+```
+
+```{r}
+#| label: cohort data
+#| echo: false
+
+db1 <- db_long %>%
+filter(ola == 1) %>% # quedarse con solo la ola 1
+select(-c(ola, curse_level, p20, p21_ano, age)) #%>% # eliminar variables que no son parte del analisis
+#na.omit() # listwise deletion
+
+```
+
+```{r}
+#| label: Initial model
+
+# model_restricted <- '
+#perc_merit = ~ perc_effort + perc_talent
+#perc_nmerit = ~ perc_rich_parents + perc_contact
+#pref_merit = ~ pref_effort + pref_talent
+#pref_nmerit = ~ pref_rich_parents + pref_contact
+#'
+```
+
+```{r}
+#| label: Measurement model
+#| include: false 
+
+model_restricted <- '
+perc_merit = ~ perc_effort + perc_talent
+perc_nmerit = ~ a*perc_rich_parents + a*perc_contact
+pref_merit = ~ pref_effort + pref_talent
+pref_nmerit = ~ pref_rich_parents + pref_contact
+perc_effort ~~ pref_talent
+'
+
+# En este modelo se establece una restricción de igualdad a los indicadores de percepción no meritocrática ya que, en el primer modelo (chunk anterior), uno de ellos daba una carga estandarizada negativa. Además, los indicadores percepción esfuerzo y preferencia talento covariaban altamente en el modelo anterior, por lo que se decidió especificar su correlación
+```
+
+```{r}
+#| label: Models by cohort
+#| output: false
+
+mgeneral_cfa <- cfa(model = model_restricted, 
+                   data = db1, 
+                   estimator = "WLSMV",
+                   ordered = T,
+                   std.lv = F)
+
+mbasica_cfa <- cfa(model = model_restricted, 
+                   data = subset(db1, cohort_level == "Primary"), 
+                   estimator = "WLSMV",
+                   ordered = T,
+                   std.lv = F)
+
+mmedia_cfa <- cfa(model = model_restricted, 
+                  data = subset(db1, cohort_level == "Secondary"), 
+                  estimator = "WLSMV",
+                  ordered = T,
+                  std.lv = F)
+
+# se estiman 3 modelos CFA: uno con toda la muestra, un segundo modelo de la cohorte de básica y un tercer modelo de la cohorte de media
+```
+
+```{r}
+#| include: false 
+
+summary(mgeneral_cfa, standardized = TRUE, fit.measures = TRUE)
+summary(mmedia_cfa, standardized = TRUE, fit.measures = TRUE)
+summary(mbasica_cfa, standardized = TRUE, fit.measures = TRUE)
+```
+
+```{r}
+#| label: tbl-factorload
+#| include: false
+#| message: false
+
+cnames <- c("Factor","Indicator","Loadings Básica","Loadings Media")
+kable(left_join(x = standardizedsolution(mbasica_cfa) %>%
+                  filter(op=="=~") %>%
+                  select(lhs,rhs,est.std),y = standardizedsolution(mmedia_cfa) %>%
+                  filter(op=="=~") %>%
+                  select(lhs,rhs,est.std),c("lhs","rhs")),
+      format = "markdown",digits = 2,col.names = cnames, caption = "Factor loadings")
+
+# tabla comparativa de las cargas factoriales estandarizadas de las dos cohortes para poder visualizar de manera clara las similitudes y diferencias entre básica y media
+```
+
+```{r}
+#| label: fig-general
+#| fig-cap: Multigroup model diagram
+#| fig-cap-location: bottom
+#| echo: false
+#| out.width: 100%
+#| out.height: "auto" 
+
+knitr::include_graphics('imagenes/esquema-general.png')
+```
+
+
+@fig-general displays the standardized factor loadings and fit indices for the general measurement model estimated with the full sample (N = 846). The model was estimated using DWLS (Diagonally Weighted Least Squares) estimation with completely standardized solutions. The fit indices show acceptable performance for some indicators but suggest areas for improvement (CFI = 0.943; TLI = 0.887; RMSEA = 0.082).
+
+The factor loadings reveal variation across the latent dimensions. Meritocratic perceptions are strongly associated with both talent (0.62) and effort (0.85), with effort showing a particularly robust contribution to the latent factor. In contrast, meritocratic preferences show greater variability, with effort being the dominant indicator (0.59) compared to talent, though still exhibiting a substantial loading. Non-meritocratic perceptions are strongly and equally driven by both indicators of rich family (0.78) and contacts (0.78), suggesting a balanced contribution due to an equality constraint imposed to avoid negative loadings. Non-meritocratic preferences also display strong loadings across both wealth (0.75) and contacts (0.86), with contacts being particularly influential.
+
+Regarding the latent correlations between factors, several noteworthy patterns emerge. The correlation between meritocratic and non-meritocratic perceptions is negative and significant (-0.149), indicating that as individuals perceive more meritocratic functioning in society, they are less likely to perceive privileges based on wealth or connections. Conversely, there are positive correlations between non-meritocratic perceptions and meritocratic preferences (0.473), suggesting that those who observe non-meritocratic rewards tend to express stronger meritocratic preferences. The correlation between meritocratic and non-meritocratic preferences is positive (0.187), while meritocratic perceptions and preferences show a modest positive association (0.157). Finally, non-meritocratic perceptions and preferences are positively correlated (0.279), and the strongest positive correlation is observed between meritocratic preferences and non-meritocratic preferences (0.152).
+
+These findings demonstrate that the proposed four-factor structure provides a reasonable representation of meritocracy-related beliefs in the pooled sample, although the fit indices suggest there is room for model refinement. The pattern of correlations reveals a complex interplay between perceptions and preferences regarding meritocratic and non-meritocratic dimensions, which warrants further investigation at the cohort level to assess measurement invariance.
+
+
+## Cohort Invariance Test
+
+
+The results of the different invariance models are presented in the @tbl-cohort-table. To assess invariance between cohorts, the sequential procedure proposed by @svetina_multiplegroup_2020a was followed, which involves estimating three hierarchical models: (1) a configural model, (2) a model with threshold restrictions, and (3) a final model that simultaneously imposes equality of thresholds and factor loadings between groups.
+
+First, the configural model was estimated, which assumes an identical factor structure in both cohorts (primary and secondary education), without imposing equality restrictions on the parameters. This model presented excessively high fit indices (CFI = 1.00; RMSEA = 0.00), suggesting overfitting and, therefore, insufficient empirical evidence to support the stability of the factor structure between the compared groups.
+
+```{r}
+#| label: configural model
+#| include: false 
+
+baseline <- measEq.syntax(
+  configural.model = model_restricted, # se especifica el modelo que se usará
+  data = db1,
+  ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", # se explicita que las 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),# variables son ordinales 
+  parameterization = "delta", #parametrización ideal para indicadores ordinales
+  ID.fac = "std.lv", # identidica el factor con varianza 1
+  ID.cat = "Wu.Estabrook.2016", # tipo de estrategia ideal para indicadores ordinales
+  group = "cohort_level", # identificación de los grupos
+  group.equal = "configural" # nivel de invarianza 
+)
+
+model.baseline <- as.character(baseline) # se crea un objeto con el modelo configural como caracter para que puedan visualizarse sus datos
+
+fit.baseline <- cfa(model.baseline, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
+              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+summary(fit.baseline)
+```
+
+```{r}
+#| label: weak model
+#| include: false
+
+# los siguientes dos modelos siguen los pasos de análisis de Dubravka et al, 2019.
+
+thresholds <- measEq.syntax(
+configural.model = model_restricted,
+data = db1,
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+parameterization = "delta",
+ID.fac = "std.lv",
+ID.cat = "Wu.Estabrook.2016",
+group = "cohort_level",
+group.equal = c("thresholds") # aquí se aplica lo mismo que el código anterior excepto que ahora se restringen los thresholds
+)
+
+model.thres <- as.character(thresholds)
+
+fit.thres <- cfa(model.thres, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+summary(fit.thres, fit.measures = TRUE)
+```
+
+```{r}
+#| label: loading-threshold model
+#| include: false
+
+strong <- measEq.syntax(
+configural.model = model_restricted,
+data = db1,
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
+parameterization = "delta",
+ID.fac = "std.lv",
+ID.cat = "Wu.Estabrook.2016",
+group = "cohort_level",
+group.equal = c("thresholds", "loadings") # ahora se restringen los tresholds y las cargas factoriales
+)
+
+model.strong <- as.character(strong)
+
+fit.strong <- cfa(model.strong, data = db1, group = "cohort_level",
+ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
+
+summary(fit.strong, fit.measures = TRUE)
+
+```
+
+```{r}
+#| echo: false
+#| label: tbl-cohort-table
+#| tbl-cap: Comparative table of multi-group invariance
+#| tbl-cap-location: top
+
+# Comparaciones de Chi²
+an1 <- anova(fit.baseline, fit.thres)
+an2 <- anova(fit.thres, fit.strong)
+
+tab01 <- bind_rows(
+  as_tibble(an1)[2,],
+  as_tibble(an2)[2,] # aqui se toma la segunda fila de comparación de cada anova
+) %>%
+  select("Chisq", "Df", chisq.diff = `Chisq diff`, df.diff = `Df diff`, pvalue = `Pr(>Chisq)`) %>%
+  mutate(
+    stars = stars.pval(pvalue),
+    chisqt = paste0(round(Chisq, 2), " (", Df, ")"),
+    decision = ifelse(pvalue > 0.05, "Accept", "Reject"),
+    model = c("Tresholds", "Tresholds + Loadings") # etiqueta los modelos que se extraen de los anova
+  ) %>%
+  bind_rows(
+    tibble(
+      Chisq = an1$Chisq[1],
+      Df = an1$Df[1],
+      chisq.diff = NA,
+      df.diff = NA,
+      pvalue = NA,
+      stars = "",
+      chisqt = paste0(round(an1$Chisq[1], 2), " (", an1$Df[1], ")"),
+      decision = "Reference",
+      model = "Configural" # se añade el modelo configural como referencia para clarificar la comparación
+    )
+  ) %>%
+  select(model, chisqt, chisq.diff, df.diff, pvalue, stars, decision) %>%
+  mutate(model = factor(model, levels = c("Configural", "Tresholds", "Tresholds + Loadings"))) %>%
+  arrange(model)
+
+# se extraen los índices de ajuste para cada modelo
+fit.meas <- bind_rows(
+  fitMeasures(fit.baseline, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"),],
+  fitMeasures(fit.thres, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"),],
+  fitMeasures(fit.strong, output = "matrix")[c("chisq", "df", "cfi", "rmsea", "rmsea.ci.lower", "rmsea.ci.upper"),]
+)
+
+fit.meas <- fit.meas %>% # se calculan las diferencias de cada modelo con el anterior para 
+  mutate(                # analizar si se cumplen criterios de invarianza 
+    diff.chi2 = chisq - lag(chisq, default = first(chisq)),
+    diff.df = df - lag(df, default = first(df)),
+    diff.cfi = cfi - lag(cfi, default = first(cfi)),
+    diff.rmsea = rmsea - lag(rmsea, default = first(rmsea))
+  ) %>%
+  round(3) %>%
+  mutate(rmsea.ci = paste0(rmsea, " \n(", rmsea.ci.lower, "-", rmsea.ci.upper, ")"))
+
+# Tabla final (mantener diff.df hasta formatear)
+tab.inv <- bind_cols(tab01, fit.meas) %>%
+  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
+  mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
+  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
+
+# Encabezados de columna
+col.nam <- c(
+  "Model", "&chi;^2 (df)", "CFI", "RMSEA (90 CI)",
+  "&Delta; &chi;^2 (&Delta; df)", "&Delta; CFI", "&Delta; RMSEA", "Decision"
+)
+
+# Se formatea la tabla en kable
+tab.inv %>%
+  kableExtra::kable(
+    format = "html",
+    align = "c",
+    booktabs = TRUE,
+    escape = FALSE,
+    col.names = col.nam
+  ) %>%
+  kableExtra::kable_styling(
+    full_width = TRUE,
+    latex_options = "hold_position",
+    bootstrap_options = c("striped", "bordered", "condensed"),
+    font_size = 23
+  ) %>%
+  kableExtra::column_spec(c(1, 8), width = "3.5cm") %>%
+  kableExtra::column_spec(2:7, width = "4cm") %>%
+  kableExtra::column_spec(4, width = "5cm")
+
+```
+
+
+In a second stage, the model was estimated with restricted thresholds. According to the sample size sensitivity criteria proposed by @chen_sensitivity_2007, the four-latent-factor model does not achieve equivalence between cohorts ($\Delta$CFI = −.014 < −.01; $\Delta$RMSEA = .019 > .015). This result indicates that, when imposing equality of thresholds, the meritocracy scale does not show invariance between primary and secondary school students, suggesting systematic differences in the location of response categories between the two groups.
+
+Finally, the third model was evaluated with simultaneous restrictions on thresholds and factor loadings. The changes observed in the fit indices ($\Delta$CFI = −.003; $\Delta$RMSEA = .006) also do not meet the criteria established for assuming metric and scalar invariance. Consequently, this model must also be considered non-invariant. Overall, the results indicate that the meritocracy scale does not present measurement invariance between the cohorts analyzed, which limits the direct comparability of latent scores between educational levels.
+

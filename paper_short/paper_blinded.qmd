@@ -1,0 +1,106 @@
+---
+title: "Changes in meritocratic beliefs among school-age students over time and across cohorts"
+#subtitle: "{{< words-body >}} words"
+author: ""
+format:
+  html: 
+    code-fold: true
+    html-math-method: katex
+    number-sections: true
+    code-link: true
+    title-block-banner: true
+    theme:
+      - pretty.scss
+  pdf: 
+    geometry: margin=2cm
+    template-partials: 
+      - title.tex
+    keep-tex: true
+    include-in-header:
+      text: |
+        \usepackage[noblocks]{authblk}
+        \renewcommand*{\Authsep}{, }
+        \renewcommand*{\Authand}{, }
+        \renewcommand*{\Authands}{, }
+        \renewcommand\Affilfont{\small}
+    number-sections: true
+#  wordcount-pdf: 
+#    wordcount-banner: true
+#params:
+#  wordcount: |
+#    <strong>{{< words-sum body >}} total words</ strong>: {{< # words-body >}} in the body
+editor: source
+bibliography: "input/bib/merit-factorial.bib"
+csl: "input/bib/apa6.csl"
+#author:
+#  - name: Andreas Laffert
+#    corresponding: true
+#    orcid: 0000-0002-9008-2454
+#    email: alaffertt@estudiante.uc.cl 
+#    affiliations:
+#      - ref: 1
+#  - name: Juan Carlos Castillo
+#    orcid: 0000-0003-1265-7854
+#    email: juancastillov@uchile.cl
+#    affiliations:
+#      - ref: 2
+#  - name: René Canales
+#    orcid: 0009-0002-4299-2725
+#    email: renecanales@uc.cl
+#    affiliations:
+#      - ref: 1    
+#  - name: Tomás Urzúa
+#    orcid: 0009-0008-3167-6819
+#    email: tomas.urzua@ug.chile.cl
+#    affiliations:
+#      - ref: 2    
+#  - name: Kevin Carrasco
+#    orcid: 0000-0002-9348-8361
+#    email: kevin.carrasco@uchile.cl
+#    affiliations:
+#      - ref: 2 
+#affiliations: 
+#  - id: 1
+#    name: Institute of Sociology, #Pontifical Catholic University of Chile
+#  - id: 2
+#    name: Department of Sociology, #University of Chile
+citeproc: true
+abstract: | 
+ Besides transmitting academic knowledge, schools are key sites of meritocratic socialization, actively shaping students' understanding of whether success is earned or inherited. Yet the measurement of students' meritocratic beliefs remains underdeveloped: most instruments conflate perceptions of how rewards are allocated with normative preferences for how they should be allocated, and treat merit and privilege as mutually exclusive. This study tests a multidimensional model that distinguishes four dimensions among school-aged students: perceived meritocracy and meritocratic preferences (whether effort and talent are, and should be, rewarded), and perceived privilege and privilege acceptance (whether family wealth and connections shape outcomes, and whether this is seen as legitimate). Using two-wave panel survey data from Chilean students in 8th and 10th grade (Wave 1: N = 846; Wave 2: N = 662), we assess whether these dimensions can be distinguished, compared across school stages, and measured equivalently over time using confirmatory factor analysis and measurement invariance testing. Results support a four-factor structure, showing that endorsement of merit coexists with recognition of privilege rather than displacing it. The scale achieves strict longitudinal invariance within students, enabling valid developmental comparisons, but not across school levels, indicating that older students apply a more critical frame when judging whether effort is rewarded. These findings provide a validated instrument for tracking how meritocratic beliefs develop through schooling. They are relevant for civic education, school climate, and equity-oriented policy, where students' sense of fairness is central: because students can demand merit-based fairness precisely when they perceive its absence, interpreting their beliefs requires distinguishing what students perceive from what they endorse, and merit from privilege, rather than treating belief in meritocracy as a single attitude to reinforce or counter.
+ \newline
+ **Keywords**: Meritocracy · Schools · Measurement invariance · Socialization · Chile
+link-citations: true
+linestretch: 1.5       
+mainfont: Times New Roman
+fontsize: 13pt          
+colorlinks: true
+fig-height: 4
+fig-width: 7.5
+---
+
+:::: {.justify}
+
+{{< include 01-introduction.qmd >}}
+
+{{< include 02-antecedentes.qmd >}}
+
+{{< include 03-methods.qmd >}}
+
+{{< include 04-measurement-model.qmd >}}
+
+{{< include 04-invariance.qmd >}}
+
+{{< include 05-discussion.qmd >}}
+
+{{< include 06-conclusion.qmd >}}
+
+
+# Declaration of generative AI and AI-assisted technologies in the writing process
+
+During the preparation of this work, the authors used Claude (Anthropic) to assist with language editing, restructuring, and condensing of the manuscript text. After using this tool, the authors reviewed and edited the content as needed and take full responsibility for the content of the published article.
+
+# References
+
+::: {#refs}
+:::
+::::

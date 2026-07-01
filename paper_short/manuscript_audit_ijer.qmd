@@ -1,0 +1,216 @@
+---
+title: "Manuscript Audit for IJER Submission"
+subtitle: "Critical conceptual and methodological review"
+author: "Internal review memo"
+date: "2026-05-05"
+format:
+  html:
+    toc: true
+    number-sections: true
+  pdf:
+    toc: true
+    number-sections: true
+---
+
+# Executive assessment
+
+This manuscript is promising and close to publishable quality for the *International Journal of Educational Research* (IJER), but it still requires targeted revisions before submission. Its strongest contribution is the multidimensional conceptualization of meritocratic beliefs and the longitudinal invariance testing. The main vulnerabilities are the current framing of cross-cohort comparability, limited external validity arguments for international readership, and underdeveloped robustness checks for missingness and attrition.
+
+Verdict at this stage: **Revise before submission**.
+
+# Alignment with IJER aims and scope
+
+## Strong alignment
+
+- Clear and explicit research questions are stated.
+- The paper engages contemporary theory and measurement debates on meritocracy.
+- It uses rigorous quantitative methods and preregistration.
+- It addresses inequality, fairness, and school socialization, topics with broad educational relevance.
+
+## Partial alignment that needs strengthening
+
+- International relevance is currently implied more than demonstrated.
+- Policy and practice implications beyond the Chilean case need sharper articulation.
+- Ethical reporting is present but could be strengthened with explicit ethics approval details.
+
+# Critical findings (prioritized)
+
+## 1. Cross-cohort comparability claim is currently too broad
+
+Severity: High
+
+The manuscript asks whether dimensions are comparable across age cohorts and stable over time, but results show only temporal stability within students. Cross-cohort invariance fails at threshold level (and therefore metric/scalar are not supported).
+
+Implication:
+
+- You should avoid claims that imply direct latent mean comparability across school stages.
+- Frame the contribution as strong **longitudinal within-student comparability** plus informative evidence of **cross-cohort non-equivalence**.
+
+Key manuscript locations:
+
+- paper/01-introduction.qmd:20
+- paper/04-invariance.qmd:1229
+- paper/05-discussion.qmd:16
+- paper/06-conclusion.qmd:10
+
+## 2. International relevance needs to be made explicit for IJER
+
+Severity: High
+
+The study is single-country and non-probabilistic, which is acceptable for IJER only if transferability is argued explicitly. The current text provides limited guidance on what should generalize across educational systems and under which boundary conditions.
+
+Implication:
+
+- Add a short dedicated subsection in Discussion on international transferability.
+- Specify which findings likely travel (conceptual distinction, coexistence patterns, invariance logic) and which may depend on system features (tracking intensity, stratification, school market dynamics).
+
+Key manuscript locations:
+
+- paper/03-methods.qmd:58
+- paper/06-conclusion.qmd:8
+
+## 3. Missing-data and attrition handling is a major review risk
+
+Severity: High
+
+Given listwise deletion and nontrivial attrition, reviewers may question whether selection processes bias estimates.
+
+Implication:
+
+- Add attrition diagnostics (retained vs lost at baseline).
+- Include at least one sensitivity analysis and report whether substantive conclusions change.
+
+Key manuscript locations:
+
+- paper/03-methods.qmd:58
+- paper/04-measurement-model.qmd:84
+
+## 4. Two-item factors limit measurement precision
+
+Severity: Medium
+
+The minimalist scale is pragmatic but constrains reliability and domain coverage. You acknowledge this, but the limitation should be discussed earlier and linked to interpretation boundaries in the Results/Discussion.
+
+Implication:
+
+- Keep claims modest when interpreting factor-level nuance.
+- Add planned scale-expansion strategy in future work.
+
+Key manuscript locations:
+
+- paper/03-methods.qmd:70
+- paper/06-conclusion.qmd:14
+
+## 5. Fit reporting and interpretation can be tightened
+
+Severity: Medium
+
+The methods section uses strict cutoff framing, while baseline model fit is mixed (for example TLI below ideal). The narrative is mostly careful, but could be more explicitly balanced.
+
+Implication:
+
+- Use triangulated fit interpretation rather than pass/fail framing.
+- State that baseline fit is acceptable but imperfect, and show why conclusions remain tenable.
+
+Key manuscript locations:
+
+- paper/03-methods.qmd:222
+- paper/04-measurement-model.qmd:146
+
+## 6. Ethics reporting can be strengthened
+
+Severity: Medium
+
+Consent and anonymization are reported, but explicit committee approval details are not visible in the core text.
+
+Implication:
+
+- Add ethics board name/reference code (if available) in Methods.
+
+Key manuscript location:
+
+- paper/03-methods.qmd:64
+
+## 7. Language and technical-label polish needed
+
+Severity: Low to Medium
+
+There are several grammar/terminology issues that may reduce reviewer confidence despite strong analytics.
+
+Examples:
+
+- "An recent exception..."
+- "Another study in this from..."
+- "is could be associated..."
+- "students cohorts"
+- "Tresholds" / "tresholds"
+
+Key manuscript locations:
+
+- paper/02-antecedentes.qmd:22
+- paper/05-discussion.qmd:12
+- paper/06-conclusion.qmd:10
+- paper/04-invariance.qmd:1156
+- paper/04-invariance.qmd:1229
+
+# Conceptual review summary
+
+The manuscript is conceptually strong where it distinguishes:
+
+- descriptive perceptions versus normative preferences,
+- meritocratic versus non-meritocratic principles,
+- coexistence rather than forced zero-sum tradeoff.
+
+This framing is timely and relevant to current debates on legitimacy, inequality narratives, and school socialization. It should be retained as the central theoretical contribution.
+
+Main conceptual recommendation:
+
+- Recast non-invariance across cohorts as a substantive result about developmental meaning shifts, not only as a technical limitation.
+
+# Methodological review summary
+
+Strengths:
+
+- Appropriate use of CFA with ordinal indicators and WLSMV.
+- Invariance testing follows an explicit hierarchy.
+- Longitudinal strict invariance is an important added value.
+
+Main methodological upgrades needed before submission:
+
+- Attrition bias diagnostics and missing-data sensitivity checks.
+- Clearer handling of the implications of failed cohort invariance.
+- Slightly more conservative interpretation language for model fit.
+
+# Suggested revision roadmap (fast track)
+
+## Priority 1 (must do)
+
+1. Reframe claims about comparability across cohorts.
+2. Add attrition and missingness robustness checks.
+3. Strengthen international relevance and transferability section.
+
+## Priority 2 (should do)
+
+1. Add explicit ethics approval information.
+2. Tighten fit-interpretation language.
+3. Improve the limitation paragraph on two-item factors.
+
+## Priority 3 (polish)
+
+1. Correct grammar and terminology inconsistencies.
+2. Standardize wording in invariance tables and section text.
+
+# Submission readiness estimate
+
+Current readiness for IJER: **moderate**.
+
+Estimated readiness after Priority 1 and Priority 2 revisions: **high**.
+
+# Optional add-on for cover letter
+
+You can preempt likely reviewer concerns by stating that:
+
+- The study offers robust within-student longitudinal comparability.
+- Cross-cohort non-invariance is interpreted as theoretically meaningful developmental heterogeneity.
+- Additional robustness checks were conducted to assess attrition and missing-data sensitivity.
+

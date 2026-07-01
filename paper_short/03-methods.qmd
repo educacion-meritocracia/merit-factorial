@@ -62,26 +62,26 @@ This study uses secondary data from the 2023 and 2024 waves of the Panel Survey 
 
 Data were collected by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires. All participants received informed consent, which was reviewed and approved by a parent or legal guardian. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student, and no directly identifying information was included in the analytic files.
 
-
 ## Measures
 
 ### Scale of perceptions and preferences of meritocracy
 
-Meritocratic and non-meritocratic perceptions and preferences were measured using the same items proposed in the original scale [@castillo_multidimensional_2023]. Each of the four dimensions of the scale is measured by two items. The dimensions are:
+Meritocratic and privilege-based perceptions and preferences were measured using the same items proposed in the original scale [@castillo_multidimensional_2023]. Each of the four dimensions of the scale is measured by two items. The dimensions are:
 
-- Perceived meritocracy: the extent to which effort and ability are rewarded in Chile,
+- Meritocratic perceptions: the extent to which effort and ability are rewarded in Chile,
 
-- Perceived non-meritocracy: the extent to which success is perceived as linked to connections and family wealth,
+- Privilege perceptions: the extent to which success is perceived as linked to connections and family wealth,
 
-- Preference for meritocracy: agreement with that those who work harder or are more talented should be better rewarded,
+- Meritocratic preferences: agreement with that those who work harder or are more talented should be better rewarded,
 
-- Preference for non-meritocracy: agreement with that it is acceptable for individuals with better connections or wealthy parents to achieve greater success  (see @tbl-merit).
+- Privilege acceptance: agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success (see @tbl-merit).
  
 Each item is rated on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference.
 
 ```{r}
 #| tbl-cap: Items for perceptions and preferences for meritocracy scale
 #| tbl-cap-location: top
+#| tbl-pos: H
 #| echo: false
 #| label: tbl-merit
 
@@ -98,17 +98,17 @@ Each item is rated on a four-point Likert scale ranging from “strongly disagre
 
  knitr::kable(tabitems, "latex", booktabs = T, linesep = "",col.names = cnames) %>%
    kableExtra::kable_styling(
-     full_width = T,
-     latex_options = c("hold_position"),
+     full_width = F,
+     latex_options = c("HOLD_position", "scale_down"),
      position = "center",
      font_size = 9.5,
      bootstrap_options=c("striped", "bordered")) %>%
    kableExtra::column_spec(column = 1, width = "2cm", ) %>%
    kableExtra::column_spec(column = 2,width = "2 cm") %>%
+   kableExtra::column_spec(column = 3, width = "6.5cm") %>%
+   kableExtra::column_spec(column = 4, width = "6.5cm") %>%
    kableExtra::collapse_rows(columns = 1:2,valign = "middle")
 ```
-
-
 
 ### Cohort level
 
@@ -120,6 +120,7 @@ To distinguish students’ academic level across waves for conditional and multi
 ```{r}
 #| tbl-cap: Descriptive statistics for cohort level
 #| tbl-cap-location: top
+#| tbl-pos: H
 #| echo: false
 #| label: tbl-cohort
 #| message: false
@@ -199,18 +200,24 @@ left_join(tot, edad) %>%
                 booktabs = T, 
                 linesep = "",
                 col.names = c("Wave", "Cohort level", "N", "Mean", "SD", "Man", "Women", "Others")) %>%
-    kableExtra::add_header_above(c(" " = 3, "Age" = 2, "Gender" = 3)) %>% 
+    kableExtra::add_header_above(c(" " = 3, "Age" = 2, "Gender" = 3)) %>%
    kableExtra::kable_styling(
-     full_width = T,
-     latex_options = c("hold_position"),
+     full_width = F,
+     latex_options = c("HOLD_position", "scale_down"),
      position = "center",
      font_size = 9.5,
-     bootstrap_options=c("striped", "bordered")) %>% 
+     bootstrap_options=c("striped", "bordered")) %>%
+  kableExtra::column_spec(column = 1, width = "1.8cm") %>%
+  kableExtra::column_spec(column = 2, width = "2.2cm") %>%
+  kableExtra::column_spec(column = 3, width = "1.6cm") %>%
+  kableExtra::column_spec(column = 4, width = "1.6cm") %>%
+  kableExtra::column_spec(column = 5, width = "1.6cm") %>%
+  kableExtra::column_spec(column = 6, width = "1.9cm") %>%
+  kableExtra::column_spec(column = 7, width = "1.9cm") %>%
+  kableExtra::column_spec(column = 8, width = "1.9cm") %>%
   kableExtra::collapse_rows(1)
 
 ```
-
-
 
 
 ## Analytical strategy
@@ -226,5 +233,6 @@ Model fit was assessed following the guidelines of Brown [-@brown_confirmatory_2
 A key contribution of this study is its assessment of measurement stability through factorial invariance testing [@putnick_measurement_2016]. We implemented two complementary strategies: longitudinal invariance across two panel waves and cross-group invariance across school levels (primary vs. secondary students). Because the items are ordinal, we followed recent recommendations for ordered categorical indicators, specifically the longitudinal approach of @liu_testing_2017 and the cross-group procedure of @svetina_multiplegroup_2020. In the longitudinal analyses, we estimated the conventional hierarchy of configural, metric, scalar, and strict models, progressively constraining factor loadings, thresholds/intercepts, and residual variances over time. In the cross-group analyses, however, we followed the more appropriate three-step sequence for ordinal indicators proposed by @svetina_multiplegroup_2020, estimating a configural model, then a threshold-invariant model, and finally a model jointly constraining thresholds and factor loadings across groups.
 
 In addition to the chi-square difference test, we assessed invariance using changes in approximate fit indices. Following @chen_sensitivity_2007, we treated $\Delta$CFI as the primary criterion and $\Delta$RMSEA as supplementary, indicating noninvariance when $\Delta$CFI $\geq$ −0.010 and $\Delta$RMSEA $\geq$ 0.015.
+
 
 All analyses were performed using the *lavaan* package in R version 4.5.2. The hypotheses of this research were [pre-registered](https://osf.io/hjat2/) on the Open Science Framework (OSF).

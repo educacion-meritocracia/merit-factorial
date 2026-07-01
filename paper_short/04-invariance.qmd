@@ -494,13 +494,10 @@ fit_uniquenessinv <- cfa(uniquenessinv_model_smt, data = db_invariance,
                          estimator = "WLSMV")
 ```
 
+
 ### Longitudinal invariance
 
-@fig-likerplot1 displays the response distributions for the meritocracy scale, distinguishing perceptions (Panel A) from preferences (Panel B) across waves. Across both waves, a clear and stable gap emerges between how students perceive social rewards to operate and how they think they should operate. In the perception items, agreement is consistently high for contacts, parental wealth, and talent, whereas effort is also widely endorsed but to a lesser extent, indicating that students recognize both meritocratic and non-meritocratic determinants of success and view talent as more influential than effort. In the preference items, by contrast, effort is overwhelmingly endorsed as the legitimate basis for rewards, far exceeding its perceived role in practice. Talent occupies a more ambivalent normative position, parental wealth remains evenly divided, and contacts are more often accepted than rejected, suggesting that non-meritocratic criteria are not uniformly seen as illegitimate. Wave 2 closely replicates these patterns, with only modest shifts. Overall, the descriptive results reveal a persistent paradox: strong endorsement of effort-centered meritocratic ideals alongside skepticism about their realization in practice.
-
-
-
-
+@fig-likerplot1 displays the response distributions for the meritocracy scale, distinguishing perceptions (Panel A) from preferences (Panel B) across waves. Across both waves, a clear and stable gap emerges between how students perceive social rewards to operate and how they think they should operate. In the perception items, agreement is consistently high for contacts, parental wealth, and talent, whereas effort is also widely endorsed but to a lesser extent, indicating that students recognize both meritocratic and privilege determinants of success and view talent as more influential than effort. In the preference items, by contrast, effort is overwhelmingly endorsed as the legitimate basis for rewards, far exceeding its perceived role in practice. Talent occupies a more ambivalent normative position, parental wealth remains evenly divided, and contacts are more often accepted than rejected, suggesting that privilege criteria are not uniformly seen as illegitimate. Wave 2 closely replicates these patterns, with only modest shifts. Overall, the descriptive results reveal a persistent paradox: strong endorsement of effort-centered meritocratic ideals alongside skepticism about their realization in practice.
 
 
 ```{r}
@@ -715,6 +712,7 @@ final +
 ```{r}
 #| tbl-cap: "Longitudinal invariance results"
 #| tbl-cap-location: top
+#| tbl-pos: H
 #| echo: false
 #| warning: false
 #| label: tbl-longinv
@@ -784,19 +782,28 @@ tab.inv %>%
                     escape = F,
                     caption = NULL,
                     col.names = col.nam) %>%
-  kableExtra::kable_styling(full_width = T,
-                            latex_options = "hold_position",
+  kableExtra::kable_styling(full_width = F,
+                            latex_options = c("HOLD_position", "scale_down"),
                             bootstrap_options=c("striped", "bordered", "condensed"),
-                           font_size = 9.5) %>% 
+                           font_size = 9.5) %>%
   kableExtra::column_spec(column = 1, width = "2cm") %>%
-   kableExtra::column_spec(column = 4,width = "2 cm")
+  kableExtra::column_spec(column = 2, width = "2.1cm") %>%
+  kableExtra::column_spec(column = 3, width = "1.3cm") %>%
+  kableExtra::column_spec(column = 4, width = "2.2cm") %>%
+  kableExtra::column_spec(column = 5, width = "2.4cm") %>%
+  kableExtra::column_spec(column = 6, width = "1.3cm") %>%
+  kableExtra::column_spec(column = 7, width = "1.4cm") %>%
+  kableExtra::column_spec(column = 8, width = "2cm")
 ```
+
 
 As an additional diagnostic, we used univariate score tests to identify potential sources of localized misfit at each step of the invariance hierarchy. The tests revealed no meaningful violations of the imposed equality constraints, suggesting that model fit was not driven by a small subset of parameters. Global score tests and the smallest p-values at each step are reported in the Supplementary Material.
 
 ### Cohort invariance
 
-@fig-likerplot2 shows response distributions by cohort, separating perceptions and preferences. In primary education, effort and talent are perceived as similarly rewarded, while contacts and family wealth are also seen as advantageous, though with more disagreement. In secondary education, perceptions become less meritocratic: agreement that effort is rewarded declines, whereas contacts and family wealth are seen as more strongly shaping success. Preferences are more stable across cohorts. In both groups, effort is the most strongly endorsed legitimate basis for reward, while talent, family wealth, and especially contacts remain more ambivalent. Notably, contacts are more often accepted than rejected in both cohorts. Overall, the cohort comparison reveals a widening gap between an effort-centered meritocratic ideal and the perceived importance of non-meritocratic advantages in practice.
+@fig-likerplot2 shows response distributions by cohort, separating perceptions and preferences. In primary education, effort and talent are perceived as similarly rewarded, while contacts and family wealth are also seen as advantageous, though with more disagreement. In secondary education, perceptions become less meritocratic: agreement that effort is rewarded declines, whereas contacts and family wealth are seen as more strongly shaping success. Preferences are more stable across cohorts. In both groups, effort is the most strongly endorsed legitimate basis for reward, while talent, family wealth, and especially contacts remain more ambivalent. Notably, contacts are more often accepted than rejected in both cohorts. Overall, the cohort comparison reveals a widening gap between an effort-centered meritocratic ideal and the perceived importance of privilege advantages in practice.
+
+
 
 ```{r}
 #| label: fig-likerplot2
@@ -1130,6 +1137,7 @@ summary(fit.strong, fit.measures = TRUE)
 #| label: tbl-cohort2
 #| tbl-cap: Cohort (multigroup) invariance results
 #| tbl-cap-location: top
+#| tbl-pos: H
 
 # Comparaciones de Chi²
 an1 <- anova(fit.baseline, fit.thres)
@@ -1208,15 +1216,20 @@ tab.inv %>%
     col.names = col.nam
   ) %>%
   kableExtra::kable_styling(
-    full_width = TRUE, 
-    latex_options = "hold_position",
+    full_width = FALSE,
+    latex_options = c("HOLD_position", "scale_down"),
     bootstrap_options = c("striped", "bordered", "condensed"),
-   font_size = 9.5) %>% 
-  kableExtra::column_spec(column = 1, width = "2cm") %>%
-   kableExtra::column_spec(column = c(4:5),width = "2 cm")
+   font_size = 9.5) %>%
+  kableExtra::column_spec(column = 1, width = "2.6cm") %>%
+  kableExtra::column_spec(column = 2, width = "2cm") %>%
+  kableExtra::column_spec(column = 3, width = "1.3cm") %>%
+  kableExtra::column_spec(column = 4, width = "2.2cm") %>%
+  kableExtra::column_spec(column = 5, width = "2.3cm") %>%
+  kableExtra::column_spec(column = 6, width = "1.3cm") %>%
+  kableExtra::column_spec(column = 7, width = "1.3cm") %>%
+  kableExtra::column_spec(column = 8, width = "1.7cm")
 
 ```
-
 
 @tbl-cohort2 summarizes the cross-cohort invariance tests. The scale achieves configural invariance between primary and secondary students, but not threshold invariance, and therefore does not meet the prerequisites for stronger forms of invariance [@wu_identification_2016a; @svetina_multiplegroup_2020]. Constraining thresholds worsened model fit ($\Delta$CFI = −.013; $\Delta$RMSEA = .013), exceeding recommended cutoffs [@chen_sensitivity_2007]. This indicates that response categories do not map equivalently onto the latent constructs across cohorts, limiting direct comparisons of latent means or other latent differences.
 

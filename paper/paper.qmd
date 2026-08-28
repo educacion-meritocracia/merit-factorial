@@ -1,5 +1,5 @@
 ---
-title: "Beliefs about meritocracy and privilege among school-age students: Stability and changes over time and across cohorts"
+title: "Perceptions and preferences about meritocracy and privilege among school-age students: Changes over time and across cohorts"
 #subtitle: "{{< words-body >}} words"
 format:
   html: 

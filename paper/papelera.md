@@ -14,7 +14,14 @@ As research on the causes and consequences of meritocratic beliefs has expanded,
 
 ## Antecedentes
 
+*** This body of evidence collectively indicates that meritocratic beliefs in school settings are multidimensional. Whether a student endorses effort and talent as legitimate bases for reward, recognizes that wealth and contacts shape outcomes in practice, prefers a meritocratic ideal, or accepts privilege-based advantage as legitimate are empirically distinct orientations that may develop at different rates, respond to different school experiences, and carry different consequences for academic motivation, civic behavior, and student wellbeing. Measuring them as a single score, or forcing merit and privilege into a zero-sum trade-off, obscures the very complexity that makes these beliefs consequential. A necessary step toward understanding how distinct dimensions of meritocratic belief relate to these outcomes is to establish that they can be measured reliably and equivalently across school stages; something the existing literature has not yet demonstrated. That is the more modest but foundational contribution this study aims to make.
+
+
+
 The Chilean educational system offers a unique setting for examining the school-based socialization of meritocratic beliefs. As one of the most market-driven educational systems in the world, Chile has experienced decades of neoliberal reform that reshaped its educational landscape around principles of privatization, competition, and individual responsibility [@madariaga_three_2020; @boccardo_30_2020]. Introduced during the military dictatorship (1973-1989) and consolidated under democratic governments, this model relies on public subsidies to families, a strong presence of private providers, and mechanisms that stratify access based on socioeconomic background [@bellei_estudio_2013; @valenzuela_socioeconomic_2013]. In this context, schools are not merely sites of learning but also institutional spaces where students are exposed to—and absorb—norms of competition, performance, and accountability. These conditions not only entrench structural inequalities but also foster a cultural environment in which individual success is interpreted as the outcome of merit, obscuring the influence of unequal starting points [@dubet_repensar_2011].
+
+
+
 
 
 ## The Chilean Educational Context: Marketization and Segregation

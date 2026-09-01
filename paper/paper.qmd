@@ -1,5 +1,5 @@
 ---
-title: "Perceptions and preferences about meritocracy and privilege among school-age students: Changes over time and across cohorts"
+title: "Do meritocratic beliefs undermine the acceptance of privilege at school-age? Evidence from a panel survey across students cohorts"
 #subtitle: "{{< words-body >}} words"
 format:
   html: 

@@ -274,7 +274,6 @@ fit_tbl <- data.frame(
 fit_tbl
 ```
 
-We estimated latent class models with one to five classes. Model fit improved monotonically as the number of classes increased, as indicated by decreasing AIC and BIC values and statistically significant likelihood-ratio tests at each step (@tbl-fit).
 
 ```{r}
 #| label: tbl-fit
@@ -396,7 +395,47 @@ ggplot(delta_long, aes(x = K, y = value, group = delta)) +
   geom_line() +
   geom_point() +
   facet_wrap(~delta, scales = "free_y") +
-  labs(x = "K", y = "Change vs K-1 (negative = better)") 
+  labs(x = "K", y = "Change vs K-1 (negative = better)")
+```
+
+```{r}
+#| label: tbl-entropy
+#| tbl-cap: "Classification quality by number of classes"
+#| tbl-cap-location: top
+
+entropy_tbl <- bind_rows(
+  lapply(seq_along(fits), function(i) {
+    K <- get_K(fits[[i]])
+    if (K == 1) return(tibble(K = 1, entropy = NA, mean_max_p = NA,
+                               p10_max_p = NA, avg_diag_min = NA, avg_diag_mean = NA))
+    entropy_stats(fits[[i]]) %>% mutate(K = K, .before = 1)
+  })
+)
+
+entropy_tbl %>%
+  mutate(across(-K, ~round(., 3))) %>%
+  kableExtra::kable(format = "html",
+                     align = "c",
+                     booktabs = TRUE,
+                     caption = NULL) %>%
+  kableExtra::kable_styling(full_width = TRUE,
+                             latex_options = "hold_position",
+                             bootstrap_options = c("striped", "bordered", "condensed"),
+                             font_size = 23)
+```
+
+```{r}
+#| label: fig-entropy
+#| out-width: '80%'
+#| fig-asp: 0.6
+#| fig-cap: "Relative entropy by K (higher = better class separation)"
+#| fig-cap-location: top
+
+ggplot(filter(entropy_tbl, K > 1), aes(x = K, y = entropy)) +
+  geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = entropy_tbl$K) +
+  labs(x = "Number of classes (K)", y = "Relative entropy")
 ```
 
 ```{r}

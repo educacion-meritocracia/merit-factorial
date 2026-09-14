@@ -8,11 +8,11 @@ toc: true
 
 ## Processing
 
-Cargar paquetes
+Load libraries
 
 ```{r}
 pacman::p_load(tidyverse,
-               sjmisc, 
+               sjmisc,
                here,
                lavaan,
                psych,
@@ -23,19 +23,20 @@ pacman::p_load(tidyverse,
                RColorBrewer,
                poLCA,
                reshape,
-               summarytools)
+               summarytools,
+               plotly)
 
 options(scipen=999)
 rm(list = ls())
 ```
 
-Cargar base de datos
+Load database
 
 ```{r}
 load("../output/data/db_proc.RData")
 ```
 
-Dicotomización de items
+Items dichotomization
 
 ```{r}
 #| warning: false
@@ -89,7 +90,7 @@ db <- db %>%
    
 ```
 
-Label de items
+Items labels
 
 ```{r}
 db$perc_effort <- sjlabelled::set_label(db$perc_effort, 
@@ -150,6 +151,8 @@ db$pref_contact_d <- sjlabelled::set_label(db$pref_contact_d,
 
 
 ## Latent class analysis (dichotomized items)
+
+### Estimation
 
 ```{r}
 #| include: false
@@ -371,7 +374,7 @@ ggplot(fit_long, aes(x = K, y = value, group = criterion)) +
   geom_line() +
   geom_point() +
   facet_wrap(~criterion, scales = "free_y") +
-  labs(x = "Number of classes (K)", y = "Value") 
+  labs(x = "Number of classes (K)", y = "Value")
 
 
 ```
@@ -398,10 +401,17 @@ ggplot(delta_long, aes(x = K, y = value, group = delta)) +
   labs(x = "K", y = "Change vs K-1 (negative = better)")
 ```
 
+We observe that @tbl-fit shows the latent class model estimates for one to five classes, while @fig-visaic presents both the Akaike Information Criterion (AIC) and the Bayesian Information Criterion (BIC) in a figure to aid understanding of the fit criteria.
+
+The AIC shows a constant decreasing across the whole range tested (8003.9 → 7523.2) and therefore does not by itself identify a maximum at K = 5, but the size of the improvement shrinks sharply with each additional class (dAIC = -259.7, -115.1, -72.6, -33.3 for K = 2 through 5): most of the gain in fit is already captured by K = 3-4, and each class added beyond that buys comparatively little. On the other hand, the BIC is minimized at K = 4 (7722.1), after falling steadily from K = 1 (8041.7) through K = 4 and then rising again at K = 5 (7731.4, dBIC = +9.3), visualizing a U-shape that marks the BIC-optimal model. Taken together, the BIC minimum together with the diminishing AIC returns favor the 4-class model as the most parsimonious solution.
+
+
+
 ```{r}
 #| label: tbl-entropy
 #| tbl-cap: "Classification quality by number of classes"
 #| tbl-cap-location: top
+#| include: false
 
 entropy_tbl <- bind_rows(
   lapply(seq_along(fits), function(i) {
@@ -438,13 +448,21 @@ ggplot(filter(entropy_tbl, K > 1), aes(x = K, y = entropy)) +
   labs(x = "Number of classes (K)", y = "Relative entropy")
 ```
 
+
+To support this result, we estimated the relative entropy for the class solutions previously tested. @fig-entropy shows the relative entropy rises from 0.657 (K=2) to 0.716 (K=3) to 0.809 (K=4) — crossing the conventional 0.8 threshold usually taken as "good" separation — and then falls back to 0.782 at K=5. These results suggest adding a fifth class does not sharpen the typology further; it makes assignment noisier, which is consistent with K=5 overfitting the data (as already suggested by its shrinking AIC gains and its BIC increase). Thus, the 4-class solution combines the best statistical fit with the cleanest, most confidently separated classes, reinforcing its status as the optimal model.
+
+### Four-classes solution
+
+The @tbl-prevalence shows the conditional probabilities for each item associated with a latent class, along with their respective counts. The four-class solution suggests that respondents are not primarily differentiated along a simple continuum from “more meritocratic” to “less meritocratic.” Instead, the latent classes are organized by distinct combinations of: (1) perceptions of meritocracy, (2) perceptions of non-meritocratic advantage, and (3) normative preferences regarding whether merit or privilege should determine success. As such, the results reveal heterogeneity not only in empirical diagnoses of how society works, but also in normative evaluations of whether these mechanisms are considered acceptable. This interpretation is consistent with the item-response profiles across classes.
+
 ```{r}
-#| label: fig-prob
-#| out-width: '100%'
-#| fig-asp: 0.8
-#| fig-cap: "P(endorsement | class) for each item"
-#| fig-cap-location: top
-#| warning: false
+
+class_colors <- c(
+  "1" = "#961010",
+  "2" = "#ffbb00",
+  "3" = "#1e358a",
+  "4" = "#78c99a"
+)
 
 fit4 <- fits[[4]]
 
@@ -495,15 +513,33 @@ p_endorse <- p_endorse %>%
                                  "pref_talent",
                                  "pref_rich_parents",
                                  "pref_contacts")))
+```
+
+```{r}
+#| label: fig-prob
+#| out-width: '100%'
+#| fig-asp: 0.8
+#| fig-cap: "P(endorsement | class) for each item"
+#| fig-cap-location: top
+#| warning: false
 
 p_endorse <- p_endorse %>% 
   mutate(class = factor(class),
          p = round(p,2))
 
-g_class <- ggplot(p_endorse, aes(x = variable, y = p, group = class, colour = class)) +
+p_endorse_reordered <- p_endorse %>%
+  mutate(class = as.character(class)) %>%
+  mutate(class = recode(class,
+                        "3" = "1",
+                        "4" = "2",
+                        "2" = "3",
+                        "1" = "4")) %>%
+  mutate(class = factor(class, levels = c("1","2","3","4")))
+
+g_class <- ggplot(p_endorse_reordered, aes(x = variable, y = p, group = class, colour = class)) +
   geom_line(linewidth = 0.7) +
   geom_point(size = 2) +  
-  MetBrewer::scale_color_met_d("VanGogh2") +
+  scale_color_manual(values = class_colors) +
   coord_cartesian(ylim = c(0, 1)) +
   labs(x = "Item", y = paste0("P(Y = ", "High", " | class)"), group = "Class", colour = "Class") +
   theme(legend.position = "top",
@@ -511,11 +547,9 @@ g_class <- ggplot(p_endorse, aes(x = variable, y = p, group = class, colour = cl
         axis.text.x = element_text(angle = 70, vjust = 1, hjust = 1))
 
 
-library(plotly)
 
 ggplotly(g_class)
 ```
-
 
 ```{r}
 #| label: tbl-prevalence
@@ -523,19 +557,30 @@ ggplotly(g_class)
 #| tbl-cap-location: top
 
 # 7) Report table (wide): items x classes with probabilities
+# Classes recoded/ordered the same way as in fig-prob, so columns line up
+# with the legend order shown there.
 class_prev <- tibble(
   class = 1:length(fit4$P),
   pi = as.numeric(fit4$P)
 ) %>%
-  mutate(pi_pct = 100 * pi)
+  mutate(pi_pct = 100 * pi) %>%
+  mutate(class = as.character(class)) %>%
+  mutate(class = recode(class,
+                        "3" = "1",
+                        "4" = "2",
+                        "2" = "3",
+                        "1" = "4")) %>%
+  mutate(class = factor(class, levels = c("1","2","3","4"))) %>%
+  arrange(class)
 
-report_probs <- p_endorse %>%
-  mutate(class = paste0("Class_", class)) %>%
+report_probs <- p_endorse_reordered %>%
+  mutate(class = paste0("Class_", as.character(class))) %>%
   pivot_wider(names_from = class, values_from = p) %>%
-  mutate(across(starts_with("Class_"), ~ round(.x, 3)))
+  mutate(across(starts_with("Class_"), ~ round(.x, 3))) %>%
+  dplyr::select(item, variable, paste0("Class_", 1:4))
 
 prev_lab <- class_prev %>%
-  transmute(class = paste0("Class_", class),
+  transmute(class = paste0("Class_", as.character(class)),
             lab = paste0(class, " (", round(pi_pct, 1), "%)"))
 
 report_probs2 <- report_probs
@@ -556,3 +601,36 @@ report_probs2[,-c(1)] %>%
                             bootstrap_options=c("striped", "bordered", "condensed"),
                             font_size = 23)
 ```
+
+**Class 1 (%15.1)**
+
+The first class combines a medium-level perception of meritocracy with a high perception of privilege's influence. Its members believe that success does not depend on effort and talent, but rather on factors such as social background and networks. However, at the normative level, they strongly support meritocracy, especially the effort, while rejecting the legitimacy of privilege advantages.
+
+This class is particularly important because it captures a configuration in which meritocracy is upheld as a moral ideal while privilege is recognized as an empirical reality. In this sense, respondents in this group clearly distinguish between how society works and how it should work. It does not consider the current system meritocratic, but it strongly advocates that it be so.
+
+
+**Class 2 (%19.6)**
+
+The second class follows a similar descriptive framework to the first, showing high levels of privilege indicators but low levels of meritocratic functions, with effort almost imperceptible for this group. However, the substantial difference is that this class accepts that society operates according to norms based on family background and social capital.
+
+In this way, this profile combines a realistic diagnosis of a socially stratified system with a normative legitimation of privilege. These respondents do not merely recognize that success is shaped by inherited or relational advantages; they also appear to accept that this is appropriate, without overlooking the role of effort. Importantly, their endorsement of meritocratic rewards does not operate as a moral alternative to privilege, but rather coexists with it.
+
+
+**Class 3 (%44.5)**
+
+The third class displays high levels of both perceived meritocracy and perceived non-meritocracy. Respondents in this group strongly believe that effort and talent are rewarded in society, while also recognizing the importance of wealthy parents and social contacts. Normatively, they express very strong support for effort as the predominant factor of rewards distribution, but only moderate acceptance of privilege advantages.
+
+This class suggests a belief system in which merit and privilege are understood as operating simultaneously. These respondents do not deny the role of structural advantage, yet neither do they reject the view that effort and talent matter. In the normative dimension, they strongly endorse effort, whereas talent receives less consideration; both privilege indicators are supported as legitimate mechanisms for rewards. Compared to Class 2, this group shows a similar willingness to legitimize both effort and merit-based advantage, but it still perceives that meritocratic factors operate actively in society.
+
+
+**Class 4 (%20.7)**
+
+The fourth class perceives high levels of meritocracy in society, while it views the influence of family background and connections on success as low. Regarding their preferences, people in this group strongly favor effort as the criterion for the distribution of rewards in society, while talent ranks low on their list of preferences, on par with factors of privilege.
+
+This profile reflects a worldview that denies the role of hereditary factors in life trajectories, holding that only individual characteristics such as effort and talent enable one to achieve success. Consistent with their perceptions, the respondents’ normative preferences show support only for effort, drawing a striking distinction between indicators of talent and privilege. Thus, this class holds a naive view of social reality, insisting that effort is the sole criterion governing social stratification, even though it is well known that hereditary factors play a fundamental role.
+
+**Summary**
+
+Taken together, the latent class solution suggests that meritocratic beliefs are best understood as multidimensional and internally heterogeneous. The main contrast is not between those who believe in meritocracy and those who do not, but between different ways of combining empirical perceptions of inequality with normative judgments about its legitimacy. Put differently, the classes vary across two central axes: first, whether respondents perceive success as driven by merit or by privilege; and second, whether they consider these mechanisms normatively acceptable.
+
+This framework helps clarify the broader structure of the results. Class 1 exhibits one of the most intuitive patterns: a perception of moderate meritocracy and a strong influence of privilege, leading to a preference for a greater role for effort and talent and a lesser role for privilege. Class 2 shows only a slight influence of merit but demonstrates that a preference for effort and privilege can coexist, with both factors viewed as legitimate. Class 3 is the most numerous in the population and exhibits, on the one hand, a structural understanding of how society functions, recognizing that both merit and privilege play a role; but, like class two, they consider it legitimate for effort and privilege to contribute to success. Class 4 shows a predominance of effort in both the descriptive and normative dimensions, revealing a certain degree of naivety among respondents in failing to recognize the role that hereditary circumstances play in society. Overall, the results show that support for meritocracy does not necessarily imply denial of privilege, and that recognition of privilege does not necessarily entail its rejection, thereby enabling us to better understand how beliefs about meritocracy and privilege take shape in people's minds.

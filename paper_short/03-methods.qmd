@@ -64,7 +64,7 @@ Data were collected by a professional research firm using a Computer-Assisted We
 
 ## Measures
 
-### Scale of perceptions and preferences of meritocracy
+### Perceptions and preferences of meritocracy
 
 Meritocratic and privilege-based perceptions and preferences were measured using the same items proposed in the original scale [@castillo_multidimensional_2023]. Each of the four dimensions of the scale is measured by two items. The dimensions are:
 
@@ -76,7 +76,7 @@ Meritocratic and privilege-based perceptions and preferences were measured using
 
 - Privilege acceptance: agreement that it is acceptable for individuals with better connections or wealthy parents to achieve greater success (see @tbl-merit).
  
-Each item is rated on a four-point Likert scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference.
+Each item is rated on a four-point scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference.
 
 ```{r}
 #| tbl-cap: Items for perceptions and preferences for meritocracy scale
@@ -224,15 +224,18 @@ left_join(tot, edad) %>%
 
 ### Measurement model and estimation
 
-To evaluate the underlying structure of the scale, we employed Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors, using Diagonally Weighted Least Squares with robust correction (WLSMV) estimation. This estimator is particularly suitable for ordinal data, such as four-point Likert-type scales, as it avoids the bias associated with treating categorical data as continuous [@kline_principles_2023].
+To address the multidimensional nature of meritocracy conceptual framework,  we estimated a Confirmatory Factor Analysis (CFA) based on a measurement model with four latent factors. The estimation is performed using Diagonally Weighted Least Squares with robust correction (WLSMV) which is suitable for ordinal items. [@kline_principles_2023].
 
 Model fit was assessed following the guidelines of Brown [-@brown_confirmatory_2015], using several indices: the Comparative Fit Index (CFI) and the Tucker-Lewis Index (TLI), with acceptable values above 0.95; the Root Mean Square Error of Approximation (RMSEA), with values below 0.06 indicating good fit; and the Chi-square statistic (acceptable fit indicated by $p$ > 0.05 and a Chi-square/df ratio < 3).
 
-### Measurement invariance
+### Measurement equivalence across time and groups
 
-A key contribution of this study is its assessment of measurement stability through factorial invariance testing [@putnick_measurement_2016]. We implemented two complementary strategies: longitudinal invariance across two panel waves and cross-group invariance across school levels (primary vs. secondary students). Because the items are ordinal, we followed recent recommendations for ordered categorical indicators, specifically the longitudinal approach of @liu_testing_2017 and the cross-group procedure of @svetina_multiplegroup_2020. In the longitudinal analyses, we estimated the conventional hierarchy of configural, metric, scalar, and strict models, progressively constraining factor loadings, thresholds/intercepts, and residual variances over time. In the cross-group analyses, however, we followed the more appropriate three-step sequence for ordinal indicators proposed by @svetina_multiplegroup_2020, estimating a configural model, then a threshold-invariant model, and finally a model jointly constraining thresholds and factor loadings across groups.
+A key contribution of this study is its assessment of measurement stability through factorial invariance testing [@putnick_measurement_2016]. The logic of factorial invariance is that the same latent construct should be measured in the same way across time and groups, so that any observed differences in the latent construct can be attributed to true differences rather than measurement artifacts. In this study, we tested for factorial invariance across two panel waves (longitudinal invariance) and across school levels (comparing primary vs. secondary students cohorts). The logic of factorial invariance testing is to compare a series of nested models with increasing constraints, starting from a configural model (same factor structure across time or groups) to more restrictive models that constrain factor loadings, thresholds/intercepts, and residual variances .
+
+We followed recent recommendations for ordered categorical indicators, specifically the longitudinal approach of @liu_testing_2017 and the cross-group procedure of @svetina_multiplegroup_2020. In the cross-group analyses, however, we followed the more appropriate three-step sequence for ordinal indicators proposed by @svetina_multiplegroup_2020, estimating a configural model, then a threshold-invariant model, and finally a model jointly constraining thresholds and factor loadings across groups.
 
 In addition to the chi-square difference test, we assessed invariance using changes in approximate fit indices. Following @chen_sensitivity_2007, we treated $\Delta$CFI as the primary criterion and $\Delta$RMSEA as supplementary, indicating noninvariance when $\Delta$CFI $\geq$ −0.010 and $\Delta$RMSEA $\geq$ 0.015.
 
-
 All analyses were performed using the *lavaan* package in R version 4.5.2. The hypotheses of this research were [pre-registered](https://osf.io/hjat2/) on the Open Science Framework (OSF).
+
+### Latent class analysis (@tomas)

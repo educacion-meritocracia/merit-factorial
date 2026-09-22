@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -51,15 +51,14 @@ div.csl-indent {
 <script src="paper_files/libs/clipboard/clipboard.min.js"></script>
 <script src="paper_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="paper_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="paper_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="paper_files/libs/quarto-html/popper.min.js"></script>
 <script src="paper_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="paper_files/libs/quarto-html/anchor.min.js"></script>
 <link href="paper_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="paper_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="paper_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="paper_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="paper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="paper_files/libs/bootstrap/bootstrap-544450b80f293d95e2219f89f09bd0c6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="paper_files/libs/bootstrap/bootstrap-e8585f3656c86b01693e47614f1ad040.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -89,7 +88,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -336,7 +335,7 @@ Figure&nbsp;1: Multigroup model diagram
 <p><a href="#fig-likerplot1" class="quarto-xref">Figure&nbsp;2</a> displays the response distributions for the meritocracy scale, distinguishing perceptions (Panel A) from preferences (Panel B) across waves. In Wave 1, perceptions show high levels of agreement across all items, especially for contacts (77%), talent (74%), and having rich parents (71%), with effort also widely endorsed (67%); at the same time, sizeable minorities disagree (33% for effort, 29% for rich parents, and 27% for talent), indicating a dual recognition in which students strongly acknowledge privilege-based determinants (contacts and parental wealth), while within the meritocratic dimension they view talent as more influential than effort, which is perceived as the least rewarded. Wave 1 preferences show the inverse pattern: effort is overwhelmingly endorsed as the legitimate basis for rewards (87%), far exceeding its perceived role in practice; views on talent are split (54% agree, 45% disagree); parental wealth remains nearly evenly divided; and contacts are relatively more accepted than rejected (61% vs.&nbsp;39%), suggesting that this factor is not uniformly considered illegitimate in the “ideal” society.</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-likerplot1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-likerplot1" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-likerplot1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Distribution of responses on the scale of perceptions and preferences regarding meritocracy by wave
@@ -371,7 +370,7 @@ Table&nbsp;3: Longitudinal invariance results
 <p><a href="#fig-likerplot2" class="quarto-xref">Figure&nbsp;3</a> shows response distributions by cohort, separating perceptions and preferences. In primary education, perceived rewards are similar for effort and talent (both 76% agree). Contacts (67%) and a rich-family background (59%) are also seen as rewarded, and these privilege-based factors elicit the most disagreement within the cohort (41% disagree with rich-family background; 33% with contacts). In preferences, effort is clearly dominant (84% agree), whereas talent and a rich family background split evenly. Notably, 62% consider it as good that those who have good contacts do better in life (39% disagree).</p>
 <div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-likerplot2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-cap-location="top">
+<div id="fig-likerplot2" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-likerplot2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Distribution of responses on the scale of perceptions and preferences regarding meritocracy by cohort
@@ -697,14 +696,13 @@ Zhu, L. (2025). Meritocratic beliefs in the <span>United States</span>, <span>Fi
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

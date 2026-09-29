@@ -29,6 +29,8 @@ format:
 #  wordcount: |
 #    <strong>{{< words-sum body >}} total words</# strong>: {{< words-body >}} in the body
 editor: source
+execute:
+  cache: true
 bibliography: "input/bib/merit-factorial.bib"
 csl: "input/bib/apa6.csl"
 author:
@@ -86,9 +88,7 @@ fig-width: 7.5
 
 {{< include 03-methods.qmd >}}
 
-{{< include 04-measurement-model.qmd >}}
-
-{{< include 04-invariance.qmd >}}
+{{< include 04-results.qmd >}}
 
 {{< include 05-discussion.qmd >}}
 

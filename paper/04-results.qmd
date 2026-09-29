@@ -1139,6 +1139,7 @@ To locate the source of cross-cohort non-invariance, we inspected localized misf
 ```{r}
 #| echo: false
 #| include: false
+#| results: false
 
 
 db1 <- db_long %>%

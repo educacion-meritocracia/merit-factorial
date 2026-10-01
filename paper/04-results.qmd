@@ -12,7 +12,7 @@ bib:
 
 # Results
 
-This section is organized into three parts. First, we present descriptive statistics and visualizations of the survey items measuring meritocratic perceptions and preferences, as well as perceived privilege and its acceptance. Second, we report the results of the confirmatory factor analysis (CFA) conducted to evaluate the proposed four-factor structure of meritocratic perceptions, meritocratic preferences, perceived privilege, and privilege acceptance. Finally, we present the results of multigroup analyses to assess measurement invariance across cohorts and waves.
+This section is organized into three parts, each one referred to corresponding three research questions and hypotheses. First, we present descriptive statistics and visualizations of the survey items measuring meritocratic perceptions and preferences, as well as perceived privilege and its acceptance. Second, we report the results of the confirmatory factor analysis (CFA) conducted to evaluate the proposed four-factor structure of meritocratic perceptions, meritocratic preferences, perceived privilege, and privilege acceptance. Based on in these results we analyze the associations between the different dimensions of meritocracy and privilege, which is at the core of our investigation. Finally, we present the results of multigroup analyses to assess measurement invariance across cohorts and waves.
 
 ## Descriptives
 
@@ -61,7 +61,6 @@ pacman::p_load(
 )
 
 options(scipen = 999)
-rm(list = ls())
 ```
 
 ```{r setup-data-db-long, include=FALSE}
@@ -76,17 +75,15 @@ dim(db_long)
 ```
 
 
-@fig-likerplot1 displays the response distributions for the meritocracy and privilege items by each survey wave, distinguishing perceptions from preferences. A clear and stable gap emerges between how students perceive social rewards to operate and how they think they should operate. In the perception items, agreement is consistently high for contacts, parental wealth, and talent, whereas effort displays the lowest perception.  In the preference items, by contrast, effort is overwhelmingly endorsed as the legitimate basis for rewards, far exceeding its perceived role in practice. Noticeably, in terms of preferences is the talent item the one showing the lower frequency, being the use of contacts and family resources more preferred than this meritocratic stance. Roughly, more that half of respondents in both waves support the influence of rich parents and contacs, revealing that such privilege criteria are not uniformly seen as illegitimate way to get ahead. 
+@fig-likerplot1 displays the response distributions for the meritocracy and privilege items by each survey wave, distinguishing perceptions from preferences. A clear and stable gap emerges between how students perceive social rewards to operate and how they think they should operate. In the perception items, agreement is consistently high for contacts, parental wealth, and talent, whereas effort displays the lowest perception.  In the preference items, by contrast, effort is overwhelmingly endorsed as the legitimate basis for rewards, exceeding by far its perceived role in practice. Noticeably, in terms of preferences, is the talent item the one showing the lower frequency, being the use of contacts and family resources more preferred than this meritocratic stance. Roughly, more that half of respondents in both waves express an acceptance of the influence of rich parents and contacts, revealing that such privilege criteria are not uniformly seen as illegitimate way to get ahead. 
 
 
-```{r likertplot1, echo=FALSE} 
-#| label: fig-likerplot1
+```{r fig-likerplot1, echo=FALSE}
 #| fig-align: center
 #| fig-cap: "Distribution of responses on the scale of perceptions and preferences regarding meritocracy by wave"
 #| fig-cap-location: top
 #| fig-asp: 0.9
 #| out-width: '100%'
-#| echo: false
 #| warning: false
 #| message: false
 
@@ -289,16 +286,14 @@ final +
 ```
 
 
-Regarding the primary and secondary education cohorts, some contrasts emerge as seen in @fig-likerplot2. In terms of perception, the meritocratic items (effort and talent) are the ones with the highest agreement in the youngest cohort and the lowest in the oldest one. At the same time, the privilege perceptual items (contacts and family wealth) are the ones with the lowest agreement in the youngest cohort and the highest in the oldest one. This pattern is consistent with evidence on a "disillusionment" with meritocracy as students progress through the educational system [@fan_disillusionment_2026; @tang_meritocratic_2025]. In terms of preferences, the pattern is more stable across cohorts, with effort being the most endorsed legitimate basis for reward, while talent, family wealth, and especially contacts remain more ambivalent. Notably, contacts are more often accepted than rejected in both cohorts. Overall, the cohort comparison reveals a widening gap between an effort-centered meritocratic ideal and the perceived importance of privilege advantages in practice.    
+Regarding the primary and secondary education cohorts, some contrasts emerge as seen in @fig-likerplot2. In terms of perception, the meritocratic items (effort and talent) are the ones with the highest agreement in the youngest cohort and the lowest in the oldest one. At the same time, the privilege perceptual items (contacts and family wealth) are the ones with the lowest agreement in the youngest cohort and the highest in the oldest one. This pattern is consistent with evidence on a "disillusionment" with meritocracy as students progress through the educational system [@fan_disillusionment_2026; @tang_meritocratic_2025]. In terms of preferences, the pattern is more stable across cohorts, with effort being the most endorsed legitimate basis for reward, while talent, family wealth, and especially contacts remain more ambivalent. As in the previous descriprive analysis by wave, contacts are more often accepted than rejected in both cohorts. Overall, the cohort comparison reveals a widening gap between an effort-centered meritocratic ideal and the perceived importance of privilege advantages in practice.    
 
-```{r likerplot2, echo=FALSE}
-#| label: fig-likerplot2
+```{r fig-likerplot2, echo=FALSE}
 #| fig-align: center
 #| fig-cap: "Distribution of responses on the scale of perceptions and preferences regarding meritocracy by cohort"
 #| fig-cap-location: top
 #| fig-asp: 0.9
 #| out-width: '100%'
-#| echo: false
 #| warning: false
 #| message: false
 cols  <- RColorBrewer::brewer.pal(4, "RdBu")
@@ -498,8 +493,7 @@ final +
 
 ## Multidimensional measurement of meritocracy and privilege
 
-```{r setup}
-#| label: set
+```{r setup-measurement}
 #| echo: false
 #| message: false
 #| warning: false
@@ -541,6 +535,19 @@ pacman::p_load(
   kableExtra
 )
 
+# Silence only the known Heywood warning from lavaan while preserving all others
+quiet_heywood <- function(expr) {
+  withCallingHandlers(
+    expr,
+    warning = function(w) {
+      if (grepl("some estimated ov variances are negative", conditionMessage(w), fixed = TRUE)) {
+        invokeRestart("muffleWarning")
+      }
+    }
+  )
+}
+run_cfa <- function(...) quiet_heywood(cfa(...))
+
 options(scipen = 999) # para eliminar la notación científica
 
 load(file = here("output", "data", "db_long_proc.RData")) #cargar base con las dos olas 
@@ -551,7 +558,6 @@ dim(db_long) # ver cantidad de filas y columnas
 ```
 
 ```{r generate-data}
-#| label: cohort data
 #| echo: false
 #| results: false
 
@@ -564,7 +570,6 @@ select(id_estudiante, starts_with(c("perc", "pref"))) %>%
 
 
 ```{r pooled-model}
-#| label: Measurement model
 #| include: false 
 
 model_base <- ('
@@ -574,7 +579,7 @@ pref_merit =~ pref_effort + pref_talent
 pref_nmerit =~ pref_rich_parents + pref_contact
 ')
 
-mgeneral_cfa <- cfa(model = model_base, 
+mgeneral_cfa <- run_cfa(model = model_base, 
                    data = db1, 
                    estimator = "WLSMV",
                    ordered = T,
@@ -587,10 +592,6 @@ summary(mgeneral_cfa, standardized = TRUE, fit.measures = TRUE)
 The eitgh items described in the previous section are conceptually organized into four latent dimensions: meritocratic perceptions, meritocratic preferences, perceived privilege, and privilege acceptance. Previous research in adult population has shown that these dimensions are empirically distinguishable and can be measured with a four-factor structure [@castillo_multidimensional_2023]. In this study, we extend this line of research to the adolescent population, examining whether the same four-factor structure holds in our sample of students from primary and secondary education cohorts ($H_1$).
 
 @fig-general presents a diagram of the general measurement model. The hypothesized four latent dimensions are represented by circles in the middle, each correspondig to two observed indicators (rectangles) that are expected to load on the corresponding latent factor. The arrows indicate the direction of the hypothesized relationships, with factor loadings representing the strength of the association between each indicator and its latent construct. The model also allows for correlations among the four latent factors, reflecting the potential interrelationships between meritocratic perceptions, meritocratic preferences, perceived privilege, and privilege acceptance. The model shows a reasonable --though not fully satisfactory-- fit to the data (CFI = 0.97; TLI = 0.94; RMSEA = 0.07). Although the CFI falls within commonly accepted ranges, the RMSEA and TLI remain below conventional thresholds, indicating that fit is acceptable in some respects but not uniformly strong across indices. As we will see later on, part of the misfit relates to some differences across cohorts, which are explored in the subsequent multigroup analyses.
-
-All standardized factor loadings are statistically significant and generally moderate to strong, though their magnitude varies across dimensions. For meritocratic perceptions, the effort item shows a particularly strong loading ($\beta$ = 0.88) and talent a moderately strong loading ($\beta$ = 0.62). Meritocratic preferences exhibit more even, but somewhat weaker, loadings for effort ($\beta$ = 0.59) and talent ($\beta$ = 0.55). For perceived privilege, both indicators load strongly, especially contacts ($\beta$ = 0.88), followed by coming from a rich family ($\beta$ = 0.72). Privilege acceptance also shows strong and relatively balanced loadings, with contacts ($\beta$ = 0.84) and rich family ($\beta$ = 0.72), indicating that both indicators are similarly representative of this latent dimension. In general, the factor loadings suggest that the observed indicators are reasonably good measures of their respective latent constructs, with some variation in strength across dimensions.
-
-The analysis of latent correlations gives us important insights into the relationships among the four dimensions ($H_2$). As stated befor, to allow these for dimensions to correlate it opens de black-box of meritocracy and privilege beliefs, which both in the common sense as well as in the literature are often treated as the oposite poles of a single continuum. The results show that the four dimensions are indeed interrelated, but not perfectly aligned, indicating that students' beliefs about meritocracy and privilege are complex and multifaceted. To begin with, all the correlations but one are actually positive. The only negative correlation is between meritocratic perceptions and privilege perceptions, which is consistent with the idea that perceiving society as more meritocratic is associated with a lower recognition of the role of privilege (and vice versa). Some positive associations also show a more consistent pattern, such as the positive correlation between meritocratic perceptions and meritocratic preferences, suggesting that students who perceive society as more meritocratic also tend to endorse meritocratic ideals. The strongest association is between privilege perceptions and meritocratic preferences, indicating that students who recognize the role of privilege in society are also more likely to endorse meritocratic ideals. However, other correlations suggest relationships that are less straightforward, as for instance the positive correlation between meritocratic preferences and privilege acceptance, which may indicate that despite perceiving meritocracy, students may still accept the legitimacy of privilege advantages. Something similar occurs with positive association between meritocratic and privilege preferences, which may suggest that students who endorse meritocratic ideals may also recognize the legitimacy of privilege advantages. Although these last correlations are modest in size, they highlight the complexity of students' beliefs about meritocracy and privilege, suggesting that these dimensions are not simply opposites but rather can coexist in students minds.    
 
 
 ```{r}
@@ -608,14 +609,19 @@ source(here::here("processing", "plot_cfa_diagram.R"))
 plot_cfa_diagram(mgeneral_cfa)
 ```
 
+
+All standardized factor loadings are statistically significant and generally moderate to strong, though their magnitude varies across dimensions. For meritocratic perceptions, the effort item shows a particularly strong loading ($\beta$ = 0.88) and talent a moderately strong loading ($\beta$ = 0.62). Meritocratic preferences exhibit more even, but somewhat weaker, loadings for effort ($\beta$ = 0.59) and talent ($\beta$ = 0.55). For perceived privilege, both indicators load strongly, especially contacts ($\beta$ = 0.88), followed by coming from a rich family ($\beta$ = 0.72). Privilege acceptance also shows strong and relatively balanced loadings, with contacts ($\beta$ = 0.84) and rich family ($\beta$ = 0.72), indicating that both indicators are similarly representative of this latent dimension. In general, the factor loadings suggest that the observed indicators are reasonably good measures of their respective latent constructs, with some variation in strength across dimensions.
+
+The analysis of latent correlations gives us important insights into the relationships among the four dimensions ($H_2$). As stated before, allowing these for dimensions to correlate pertmit us to open the black-box of meritocracy and privilege beliefs, which both in the common sense as well as in the literature are often treated as the oposite poles of a single continuum. The results show that the four dimensions are indeed interrelated, but not perfectly aligned, indicating that students' beliefs about meritocracy and privilege are complex and multifaceted. To begin with, all the correlations but one are actually positive. The only negative correlation is between meritocratic perceptions and privilege perceptions, which is consistent with the idea that perceiving society as more meritocratic is associated with a lower recognition of the role of privilege (and vice versa). Some positive associations also show a more intuitive pattern, such as the positive correlation between meritocratic perceptions and meritocratic preferences, suggesting that students who perceive society as more meritocratic also tend to endorse meritocratic ideals. The strongest association is between privilege perceptions and meritocratic preferences, indicating that students who recognize the role of privilege in society are also more likely to endorse meritocratic ideals. However, other correlations suggest relationships that are less straightforward, as for instance the positive correlation between meritocratic preferences and privilege acceptance, which may indicate that despite perceiving meritocracy, students may still accept the legitimacy of privilege advantages. Something similar occurs with positive association between meritocratic and privilege preferences, which may suggest that students who endorse meritocratic ideals may also recognize the legitimacy of privilege advantages. Although these last correlations are modest in size, they highlight the complexity of students' beliefs about meritocracy and privilege, suggesting that these dimensions are not simply opposites but rather can coexist in students minds without necessarily undermining one another.    
+
+
 ## Stability of meritocracy and privilege beliefs 
 
-This section objective is twofold. On the one hand, we aim at testing the validity of the measurement model through an assessment of it stability over time and cohorts. As we count with panel data for two students cohorts, we can test how stable is the measurement model described in the previous section. For this, we perform an assessment of model equivalence or _invariance_, which is a form of robustness check that allows us to determine whether the same latent constructs are being measured in the same way across different groups or time points. Such evidence is crucial for ensuring that any observed differences in the latent constructs are not due to measurement artifacts but rather reflect true differences in the underlying constructs. The test of equivalence follows a hierarchical approach, starting with configural invariance (same factor structure across groups or time points), then weak invariance (equal factor loadings), strong invariance (equal intercepts), and finally strict invariance (equal residual variances). Each level of invariance provides increasingly stringent evidence that the measurement model is stable across groups or time points. In this study, we first test for longitudinal invariance across the two waves of data collection, and then we test for cohort invariance between primary and secondary education students.
+This section objective is twofold. On the one hand, we aim at testing the validity of the measurement model through an assessment of it stability over time and cohorts. For this, we perform an assessment of model equivalence or _invariance_, which is a form of robustness check that allows us to determine whether the latent constructs are being measured in the same way across different groups or time points. Such evidence is crucial for ensuring that any observed differences in the latent constructs are not due to measurement artifacts but rather reflect valid differences[@putnick_measurement_2016] . The test of the equivalence of parameters in a confirmatory factor analysis follows a hierarchical approach, starting with configural invariance (same factor structure across groups or time points), then weak invariance (equal factor loadings), strong invariance (equal intercepts), and finally strict invariance (equal residual variances). Each level of invariance provides increasingly stringent evidence that the measurement model is stable across groups or time points. In this study, we first test for longitudinal invariance across the two waves of data collection, and then we test for cohort invariance between primary and secondary education students.
 
 ### Longitudinal invariance
 
-```{r, include=FALSE}
-#| label: data 2
+```{r longitudinal-data, include=FALSE}
 #| results: asis
 #| echo: false
 #| warning: false
@@ -715,7 +721,7 @@ prefcontact1     ~~ prefcontact2
 
 
 # Model Estimation
-fit_baseline <- cfa(baseline_model_smt, data = db_invariance,
+fit_baseline <- run_cfa(baseline_model_smt, data = db_invariance,
                     ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
                                 "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
                                 "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
@@ -793,7 +799,7 @@ prefcontact1 ~~ prefcontact2
 ')
 
 
-fit_loadinginv <- cfa(loadinginv_model_smt, data = db_invariance,
+fit_loadinginv <- run_cfa(loadinginv_model_smt, data = db_invariance,
                       ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
                                   "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
                                   "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
@@ -903,7 +909,7 @@ prefrichparents1 ~~ prefrichparents2
 prefcontact1 ~~ prefcontact2
 ')
 
-fit_thresholdinv <- cfa(thresholdinv_model_smt, data = db_invariance,
+fit_thresholdinv <- run_cfa(thresholdinv_model_smt, data = db_invariance,
                         ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
                                     "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
                                     "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
@@ -1028,7 +1034,7 @@ prefrichparents1 ~~ prefrichparents2
 prefcontact1 ~~ prefcontact2
 ')
 
-fit_uniquenessinv <- cfa(uniquenessinv_model_smt, data = db_invariance,
+fit_uniquenessinv <- run_cfa(uniquenessinv_model_smt, data = db_invariance,
                          ordered = c("perceffort1", "perctalent1", "perceffort2", "perctalent2",
                                      "percrichparents1", "perccontact1", "percrichparents2", "perccontact2",
                                      "prefeffort1", "preftalent1", "prefeffort2", "preftalent2",
@@ -1037,9 +1043,7 @@ fit_uniquenessinv <- cfa(uniquenessinv_model_smt, data = db_invariance,
                          estimator = "WLSMV")
 ```
 
-@tbl-longinv reports the results of the longitudinal invariance tests. The table shows the fit indices for the configural, weak (metric), strong (scalar), and strict invariance models, along with the chi-square difference tests comparing each nested model. The configural model, which allows all parameters to vary across waves, serves as the baseline for comparison. The weak invariance model constrains factor loadings to be equal across waves, while the strong invariance model additionally constrains item thresholds/intercepts. Finally, the strict invariance model further constrains residual variances to be equal across waves.
-
-Overall, the scale achieved the strongest level of invariance (strict invariance) across the two waves. The strict model showed good fit, $\chi^2$(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90% CI: 0.020–0.040). Moreover, compared with the strong (scalar) model, the deterioration in fit was negligible: $\Delta \chi^2$(4) = 1.635, $\Delta$CFI = 0.000, and $\Delta$RMSEA = -0.002. These differences fall well within commonly used cutoffs for invariance evaluation [@chen_sensitivity_2007], indicating that constraining residual variances in addition to loadings and thresholds/intercepts is tenable. Substantively, this implies that the item–factor relations are stable over time (metric invariance) and that, for a given level of the latent trait, respondents are expected to endorse the same response categories across waves (scalar invariance), supporting the comparability of scores and latent parameters within students over time.
+@tbl-longinv reports the results of the longitudinal invariance tests. The logic of longitudinal invariance is to apply senquential constraints to the model parameters across time, in order to check to what extent the parameters are invariant across time. This is basically takign the two measurement points as two comparing groups, but in this case, the groups are the same individuals measured at two different time points, which is incorporated in the model by correlating the unique item variances. The table shows the fit indices for the configural, weak (metric), strong (scalar), and strict invariance models, along with the chi-square difference tests comparing each nested model. Overall, the scale achieved the strongest level of invariance (strict invariance) across the two waves. The strict model showed good fit, $\chi^2$(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90% CI: 0.020–0.040). Moreover, compared with the strong (scalar) model, the deterioration in fit was negligible: $\Delta \chi^2$(4) = 1.635, $\Delta$CFI = 0.000, and $\Delta$RMSEA = -0.002. These differences fall well within commonly used cutoffs for invariance evaluation [@chen_sensitivity_2007], indicating that constraining residual variances in addition to loadings and thresholds/intercepts is tenable. Substantively, this implies that the item–factor relations are stable over time (metric invariance) and that, for a given level of the latent trait, respondents are expected to endorse the same response categories across waves (scalar invariance), supporting the comparability of scores and latent parameters within students over time.
 
 ```{r}
 #| tbl-cap: "Longitudinal invariance results"
@@ -1096,16 +1100,13 @@ tab.inv <- dplyr::bind_cols(tab01,fit.meas) %>%
   dplyr::select(model,chisqt,cfi,rmsea.ci,diff.chi2,diff.cfi,diff.rmsea,decision)
 
 
-col.nam <- c(
-  "Model",
-  "$\\chi^2$ (df)",
-  "CFI",
-  "RMSEA (90\\% CI)",
-  "$\\Delta \\chi^2$ ($\\Delta$df)",
-  "$\\Delta$CFI",
-  "$\\Delta$RMSEA",
-  "Decision"
-)
+col.nam <- if (is_html_output()) {
+  c("Model", "&chi;<sup>2</sup> (df)", "CFI", "RMSEA (90% CI)",
+    "&Delta;&chi;<sup>2</sup> (&Delta;df)", "&Delta;CFI", "&Delta;RMSEA", "Decision")
+} else {
+  c("Model", "$\\chi^2$ (df)", "CFI", "RMSEA (90\\% CI)",
+    "$\\Delta \\chi^2$ ($\\Delta$df)", "$\\Delta$CFI", "$\\Delta$RMSEA", "Decision")
+}
 
 tab.inv %>%
   kableExtra::kable(format = table_format,
@@ -1127,234 +1128,212 @@ tab.inv %>%
   kableExtra::column_spec(column = 7, width = "1.4cm") %>%
   kableExtra::column_spec(column = 8, width = "2cm")
 ```
-As an additional diagnostic, we used univariate score tests to identify potential sources of localized misfit at each step of the invariance hierarchy. The tests revealed no meaningful violations of the imposed equality constraints, suggesting that model fit was not driven by a small subset of parameters. Global score tests and the smallest p-values at each step are reported in the Supplementary Material.
+As an additional diagnostic, we used univariate score tests to identify potential sources of localized misfit at each step of the invariance hierarchy. The tests revealed no meaningful violations of the imposed equality constraints, suggesting that model fit was not driven by a small subset of parameters. Global score tests and the smallest p-values at each step are reported in the Supplementary Material. Based on these results, we conclude that the measurement model is stable over time, and that the latent constructs are being measured in the same way across the two waves of data collection.
 
 ## Cohorts comparability
 
-@tbl-cohort2 summarizes the cross-cohort invariance tests.Here we follow a slightly different approach for groups comparisons as suggested by Svetina et al [-@svetina_multiplegroup_2020], where after first configural model is followed by equivalence of intercepts/thresholds. In this case, the scale achieves configural invariance between primary and secondary students, but not threshold invariance, and therefore does not meet the prerequisites for stronger forms of invariance [@wu_identification_2016a; @svetina_multiplegroup_2020]. Constraining thresholds worsened model fit ($\Delta$CFI = −.013; $\Delta$RMSEA = .013), exceeding recommended cutoffs [@chen_sensitivity_2007]. This indicates that response categories do not map equivalently onto the latent constructs across cohorts, limiting direct comparisons of latent means or other latent differences.
-
-To locate the source of cross-cohort non-invariance, we inspected localized misfit in the threshold-invariant model. The largest violations concerned the perceived-effort item, especially the second threshold ($\chi^2=10.12, p=.001$) and, to a lesser extent, the first ($\chi^2=7.55, p=.006$), suggesting that older students may apply a more critical standard when judging whether effort is rewarded in society. This is something that we already observed in the descriptive statistics, where secondary students were more likely to endorse the lowest response category for this item (see @fig-likerplot2). 
-
 
 ```{r}
-#| echo: false
+#| label: trad-cohort-invariance
 #| include: false
-#| results: false
 
+# Traditional multigroup invariance with native lavaan (wave 1, primary vs secondary)
+# For ordinal indicators: configural -> loadings -> loadings + thresholds
 
-db1 <- db_long %>%
-filter(ola == 1) %>% # quedarse con solo la ola 1
-select(id_estudiante, starts_with(c("perc", "pref")), cohort_level)
+db_trad <- db_long %>%
+  filter(ola == 1) %>%
+  select(id_estudiante, starts_with(c("perc", "pref")), cohort_level) %>%
+  drop_na()
 
-model_restricted <- ('
+model_cohort <- '
 perc_merit =~ perc_effort + perc_talent
-perc_nmerit =~ a*perc_rich_parents + a*perc_contact
+perc_nmerit =~ perc_rich_parents + perc_contact
 pref_merit =~ pref_effort + pref_talent
 pref_nmerit =~ pref_rich_parents + pref_contact
-perc_effort ~~ pref_talent
-')
+'
 
+ord_items <- c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
+               "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact")
 
-mbasica_cfa <- cfa(model = model_restricted, 
-                   data = subset(db1, cohort_level == "Primary"), 
-                   estimator = "WLSMV",
-                   ordered = T,
-                   std.lv = F)
+trad_configural <- cfa(model_cohort, data = db_trad, group = "cohort_level",
+                       ordered = ord_items, estimator = "WLSMV")
 
-mmedia_cfa <- cfa(model = model_restricted, 
-                  data = subset(db1, cohort_level == "Secondary"), 
-                  estimator = "WLSMV",
-                  ordered = T,
-                  std.lv = F)
+trad_loadings <- cfa(model_cohort, data = db_trad, group = "cohort_level",
+                     ordered = ord_items, estimator = "WLSMV",
+                     group.equal = "loadings")
 
-summary(mmedia_cfa, standardized = TRUE, fit.measures = TRUE)
-summary(mbasica_cfa, standardized = TRUE, fit.measures = TRUE)
+trad_thresholds <- cfa(model_cohort, data = db_trad, group = "cohort_level",
+                       ordered = ord_items, estimator = "WLSMV",
+                       group.equal = c("loadings", "thresholds"))
 
-modificationIndices(mmedia_cfa) %>% 
-  filter(mi > 3.84)
+# chi-square difference tests and fit indices
+lavTestLRT(trad_configural, trad_loadings, trad_thresholds)
+
+sapply(list(configural = trad_configural, loadings = trad_loadings, thresholds = trad_thresholds),
+       fitMeasures, fit.measures = c("chisq.scaled", "df.scaled", "cfi.scaled", "rmsea.scaled"))
+
+#                 Df AIC BIC  Chisq Chisq diff    RMSEA Df diff Pr(>Chisq)    
+# trad_configural 28         30.368                                           
+# trad_loadings   32         48.890     20.769 0.092642       4  0.0003518 ***
+# trad_thresholds 40         68.130     35.890 0.057633       8  1.839e-05 ***
+
+# No invariance
+
+# --- Sources of non-invariance ---------------------------------------------
+# 1) Score tests on the loadings-constrained model: one test per equality constraint
+score_loadings <- lavTestScore(trad_loadings)
+score_loadings$test                 # joint test of all constraints
+
+pt <- parTable(trad_loadings)       # map constraint labels (.pN.) to parameters
+score_loadings$uni %>%
+  left_join(pt %>% filter(group == 1) %>% select(plabel, lhs.par = lhs, rhs.par = rhs),
+            by = c("lhs" = "plabel")) %>%
+  mutate(p.holm = p.adjust(p.value, "holm")) %>%
+  arrange(p.value)
+
+# 2) Group-specific loadings in the configural model (where do they differ?)
+parameterEstimates(trad_configural, standardized = TRUE) %>%
+  filter(op == "=~") %>%
+  select(lhs, rhs, group, est, std.all)
+
+# 3) Partial invariance: free the offending loading (pref_talent), keep the rest equal
+trad_partial_load <- cfa(model_cohort, data = db_trad, group = "cohort_level",
+                         ordered = ord_items, estimator = "WLSMV",
+                         group.equal = "loadings",
+                         group.partial = "pref_merit =~ pref_talent")
+
+trad_partial_thres <- cfa(model_cohort, data = db_trad, group = "cohort_level",
+                          ordered = ord_items, estimator = "WLSMV",
+                          group.equal = c("loadings", "thresholds"),
+                          group.partial = "pref_merit =~ pref_talent")
+
+lavTestLRT(trad_configural, trad_partial_load, trad_partial_thres)
+
+sapply(list(configural = trad_configural, partial_loadings = trad_partial_load,
+            partial_thresholds = trad_partial_thres),
+       fitMeasures, fit.measures = c("chisq.scaled", "df.scaled", "cfi.scaled", "rmsea.scaled"))
+
+lavTestScore(trad_partial_thres)$test   # joint test of the remaining constraints
+
+# 4) Which thresholds drive the misfit? Univariate score tests by item
+score_thres <- lavTestScore(trad_partial_thres)
+lab_thres <- parTable(trad_partial_thres) %>%
+  filter(group == 1) %>%
+  transmute(plabel, item = lhs, threshold = rhs)
+
+score_thres$uni %>%
+  left_join(lab_thres, by = c("lhs" = "plabel")) %>%
+  mutate(p.holm = p.adjust(p.value, "holm")) %>%
+  arrange(p.value) %>%
+  select(item, threshold, X2, p.value, p.holm)
 ```
 
-```{r}
-#| label: configural model
-#| include: false 
+@tbl-cohortinv reports the results of the cross-cohort (multigroup) invariance tests comparing primary and secondary students. As in the longitudinal case, the sequence starts from a configural model, which imposes the same four-factor structure in both cohorts but lets all parameters vary freely, and then adds equality constraints on factor loadings (weak invariance) and on loadings and item thresholds (strong invariance). Since the indicators are ordinal, thresholds play the role that intercepts play for continuous items. The configural model shows a good fit, $\chi^2$(28) = 47.65, CFI = 0.991, RMSEA = 0.041, indicating that the same four-factor structure holds in both cohorts. However, the scale did not achieve weak invariance: constraining the factor loadings to be equal significantly worsened fit, $\Delta \chi^2$(4) = 20.77, $p$ < .001. This means that the relationship between the latent factors and their indicators differs between primary and secondary students, which could be due to developmental differences or differences in how the items are interpreted across cohorts. An additional analysis following the alternative sequence proposed by Svetina et al. [-@svetina_multiplegroup_2020], which tests the equivalence of thresholds before loadings, led to the same conclusion: invariance between primary and secondary students was not achieved either (see supplementary materials).
 
-baseline <- measEq.syntax(
-  configural.model = model_restricted, # se especifica el modelo que se usará
-  data = db1,
-  ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", # se explicita que las 
-              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),# variables son ordinales 
-  parameterization = "theta", #parametrización ideal para indicadores ordinales
-  ID.fac = "std.lv", # identidica el factor con varianza 1
-  ID.cat = "Wu.Estabrook.2016", # tipo de estrategia ideal para indicadores ordinales
-  group = "cohort_level", # identificación de los grupos
-  group.equal = "configural" # nivel de invarianza 
-)
-
-model.baseline <- as.character(baseline) # se crea un objeto con el modelo configural como caracter para que puedan visualizarse sus datos
-
-fit.baseline <- cfa(model.baseline, data = db1, group = "cohort_level",
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact", 
-              "pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
-
-summary(fit.baseline, fit.measures = T, standardized = T)
-modificationIndices(fit.baseline) %>% 
-  filter(mi > 3.84)
-```
+The changes in CFI ($\Delta$CFI = −0.009) and RMSEA ($\Delta$RMSEA = 0.013) are close to, though still within, the conventional cutoffs [@chen_sensitivity_2007], so at the global level the evidence against loading invariance is not overwhelming. Adding the threshold constraints worsened fit further, $\Delta \chi^2$(8) = 35.89, $p$ < .001, with $\Delta$CFI = −0.011, which exceeds the recommended cutoff.
 
 ```{r}
-#| label: weak model
-#| include: false
-
-# los siguientes dos modelos siguen los pasos de análisis de Dubravka et al, 2019.
-
-thresholds <- measEq.syntax(
-configural.model = model_restricted,
-data = db1,
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
-"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
-parameterization = "theta",
-ID.fac = "std.lv",
-ID.cat = "Wu.Estabrook.2016",
-group = "cohort_level",
-group.equal = c("thresholds") # aquí se aplica lo mismo que el código anterior excepto que ahora se restringen los thresholds
-)
-
-model.thres <- as.character(thresholds)
-
-fit.thres <- cfa(model.thres, data = db1, group = "cohort_level",
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
-"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
-
-summary(fit.thres, fit.measures = TRUE)
-lavTestScore(fit.thres)
-pt <- lavaan::parTable(fit.thres)
-
-pt[pt$plabel %in% c(".p9.", ".p10.", ".p80.", ".p81."),
-   c("id","group","lhs","op","rhs","label","plabel","free","ustart","est")]
-```
-
-```{r}
-#| label: loading-threshold model
-#| include: false
-
-strong <- measEq.syntax(
-configural.model = model_restricted,
-data = db1,
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
-"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"),
-parameterization = "theta",
-ID.fac = "std.lv",
-ID.cat = "Wu.Estabrook.2016",
-group = "cohort_level",
-group.equal = c("thresholds", "loadings") # ahora se restringen los tresholds y las cargas factoriales
-)
-
-model.strong <- as.character(strong)
-
-fit.strong <- cfa(model.strong, data = db1, group = "cohort_level",
-ordered = c("perc_effort", "perc_talent", "perc_rich_parents", "perc_contact",
-"pref_effort", "pref_talent", "pref_rich_parents", "pref_contact"))
-
-summary(fit.strong, fit.measures = TRUE)
-
-```
-
-```{r}
-#| echo: false
-#| label: tbl-cohort2
-#| tbl-cap: Cohort (multigroup) invariance results
+#| tbl-cap: "Cohort (multigroup) invariance results"
 #| tbl-cap-location: top
 #| tbl-pos: H
+#| echo: false
+#| warning: false
+#| label: tbl-cohortinv
 
-# Comparaciones de Chi²
-an1 <- anova(fit.baseline, fit.thres)
-an2 <- anova(fit.thres, fit.strong)
-
-tab01 <- bind_rows(
-  as_tibble(an1)[2,],
-  as_tibble(an2)[2,] # aqui se toma la segunda fila de comparación de cada anova
-) %>%
-  select("Chisq", "Df", chisq.diff = `Chisq diff`, df.diff = `Df diff`, pvalue = `Pr(>Chisq)`) %>%
-  mutate(
-    stars = stars.pval(pvalue),
-    chisqt = paste0(round(Chisq, 2), " (", Df, ")"),
-    decision = ifelse(pvalue > 0.05, "Accept", "Reject"),
-    model = c("Tresholds", "Tresholds + Loadings") # etiqueta los modelos que se extraen de los anova
-  ) %>%
-  bind_rows(
-    tibble(
-      Chisq = an1$Chisq[1],
-      Df = an1$Df[1],
-      chisq.diff = NA,
-      df.diff = NA,
-      pvalue = NA,
-      stars = "",
-      chisqt = paste0(round(an1$Chisq[1], 2), " (", an1$Df[1], ")"),
-      decision = "Reference",
-      model = "Configural" # se añade el modelo configural como referencia para clarificar la comparación
-    )
-  ) %>%
-  select(model, chisqt, chisq.diff, df.diff, pvalue, stars, decision) %>%
-  mutate(model = factor(model, levels = c("Configural", "Tresholds", "Tresholds + Loadings"))) %>%
-  arrange(model)
-
-# se extraen los índices de ajuste para cada modelo
-fit.meas <- bind_rows(
-  fitMeasures(fit.baseline, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", "rmsea.scaled", "rmsea.ci.lower.scaled", "rmsea.ci.upper.scaled"),],
-  fitMeasures(fit.thres, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", "rmsea.scaled", "rmsea.ci.lower.scaled", "rmsea.ci.upper.scaled"),],
-  fitMeasures(fit.strong, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", "rmsea.scaled", "rmsea.ci.lower.scaled", "rmsea.ci.upper.scaled"),]
+# Models and the model each one is compared against (NA = reference)
+fit_coh <- list(
+  "Configural"                     = trad_configural,
+  "Loadings"                       = trad_loadings,
+  "Loadings + Thresholds"          = trad_thresholds,
+  "Loadings (partial)"             = trad_partial_load,
+  "Loadings (partial) + Thresholds" = trad_partial_thres
 )
+ref_coh <- c(NA, 1, 2, 1, 4)
 
-fit.meas <- fit.meas %>% # se calculan las diferencias de cada modelo con el anterior para 
-  rename_with(~str_remove(., ".scaled")) %>% 
-  mutate(                # analizar si se cumplen criterios de invarianza 
-    diff.chi2 = chisq - lag(chisq, default = first(chisq)),
-    diff.df = df - lag(df, default = first(df)),
-    diff.cfi = cfi - lag(cfi, default = first(cfi)),
-    diff.rmsea = rmsea - lag(rmsea, default = first(rmsea))
+fi_coh <- c("chisq.scaled", "df.scaled", "cfi.scaled", "rmsea.scaled",
+            "rmsea.ci.lower.scaled", "rmsea.ci.upper.scaled")
+
+fm_coh <- t(sapply(fit_coh, fitMeasures, fit.measures = fi_coh)) %>%
+  as.data.frame() %>%
+  rename_with(~ str_remove(., ".scaled"))
+
+# scaled chi-square difference tests against the reference model of each row
+lrt_coh <- purrr::map_dfr(seq_along(fit_coh), function(i) {
+  if (is.na(ref_coh[i])) return(tibble(dchi = NA_real_, ddf = NA_real_, pvalue = NA_real_))
+  a <- suppressMessages(suppressWarnings(
+    lavTestLRT(fit_coh[[ref_coh[i]]], fit_coh[[i]])[2, ]
+  ))
+  tibble(dchi = a$`Chisq diff`, ddf = a$`Df diff`, pvalue = a$`Pr(>Chisq)`)
+})
+
+tab_coh <- bind_cols(model = names(fit_coh), fm_coh, lrt_coh) %>%
+  mutate(
+    diff.cfi   = cfi - cfi[ref_coh],
+    diff.rmsea = rmsea - rmsea[ref_coh],
+    chisqt     = paste0(round(chisq, 2), " (", df, ")"),
+    rmsea.ci   = paste0(round(rmsea, 3), " (", round(rmsea.ci.lower, 3), "-", round(rmsea.ci.upper, 3), ")"),
+    diff.chi2  = ifelse(is.na(dchi), "",
+                        paste0(round(dchi, 2), " (", ddf, ") ", stars.pval(pvalue))),
+    decision   = case_when(is.na(pvalue) ~ "Reference",
+                           pvalue > 0.05 ~ "Accept",
+                           TRUE ~ "Reject"),
+    cfi        = round(cfi, 3),
+    diff.cfi   = ifelse(is.na(dchi), "", format(round(diff.cfi, 3), nsmall = 3)),
+    diff.rmsea = ifelse(is.na(dchi), "", format(round(diff.rmsea, 3), nsmall = 3))
   ) %>%
-  round(3) %>%
-  mutate(rmsea.ci = paste0(rmsea, " \n(", rmsea.ci.lower, "-", rmsea.ci.upper, ")"))
-
-# Tabla final (mantener diff.df hasta formatear)
-tab.inv <- bind_cols(tab01, fit.meas) %>%
-  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
-  mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
   select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
 
-# Encabezados de columna
-col.nam <- c(
-  "Model",
-  "$\\chi^2$ (df)",
-  "CFI",
-  "RMSEA (90\\% CI)",
-  "$\\Delta \\chi^2$ ($\\Delta$df)",
-  "$\\Delta$CFI",
-  "$\\Delta$RMSEA",
-  "Decision"
-)
-# Se formatea la tabla en kable
-tab.inv %>%
-  kableExtra::kable(
-    format = table_format,
-    align = "c",
-    booktabs = TRUE,
-    escape = F,
-    col.names = col.nam
-  ) %>%
-  kableExtra::kable_styling(
-    full_width = FALSE,
-    latex_options = c("HOLD_position", "scale_down"),
-    bootstrap_options = c("striped", "bordered", "condensed"),
-   font_size = 9.5) %>%
-  kableExtra::column_spec(column = 1, width = "2.6cm") %>%
-  kableExtra::column_spec(column = 2, width = "2cm") %>%
+col.nam <- if (is_html_output()) {
+  c("Model", "&chi;<sup>2</sup> (df)", "CFI", "RMSEA (90% CI)",
+    "&Delta;&chi;<sup>2</sup> (&Delta;df)", "&Delta;CFI", "&Delta;RMSEA", "Decision")
+} else {
+  c("Model", "$\\chi^2$ (df)", "CFI", "RMSEA (90\\% CI)",
+    "$\\Delta \\chi^2$ ($\\Delta$df)", "$\\Delta$CFI", "$\\Delta$RMSEA", "Decision")
+}
+
+tab_coh_kbl <- tab_coh %>%
+  kableExtra::kable(format = table_format,
+                    align = "c",
+                    booktabs = T,
+                    escape = F,
+                    caption = NULL,
+                    col.names = col.nam) %>%
+  kableExtra::kable_styling(full_width = F,
+                            latex_options = c("HOLD_position", "scale_down"),
+                            bootstrap_options = c("striped", "bordered", "condensed"),
+                            font_size = 9.5) %>%
+  kableExtra::pack_rows("Full invariance sequence", 1, 3) %>%
+  kableExtra::pack_rows("Partial invariance (loading of preferences for talent freed)", 4, 5) %>%
+  kableExtra::column_spec(column = 1, width = "3.6cm") %>%
+  kableExtra::column_spec(column = 2, width = "2.1cm") %>%
   kableExtra::column_spec(column = 3, width = "1.3cm") %>%
   kableExtra::column_spec(column = 4, width = "2.2cm") %>%
-  kableExtra::column_spec(column = 5, width = "2.3cm") %>%
+  kableExtra::column_spec(column = 5, width = "2.4cm") %>%
   kableExtra::column_spec(column = 6, width = "1.3cm") %>%
-  kableExtra::column_spec(column = 7, width = "1.3cm") %>%
-  kableExtra::column_spec(column = 8, width = "1.7cm")
+  kableExtra::column_spec(column = 7, width = "1.4cm") %>%
+  kableExtra::column_spec(column = 8, width = "2cm")
 
+tab_note <- "Scaled WLSMV statistics. Each model is compared with the preceding one in its block (partial loadings: vs. configural)."
+
+# note below the table, outside the cells, in a smaller font than the table (9.5pt)
+if (is_html_output()) {
+  knitr::asis_output(paste0(
+    tab_coh_kbl,
+    "<div style='font-size: 0.75em; text-align: left; margin-top: -0.9em;'><em>Note.</em> ",
+    tab_note, "</div>"
+  ))
+} else {
+  knitr::asis_output(paste0(
+    tab_coh_kbl,
+    "\n\\vspace{-1.2em}\n\\begingroup\\fontsize{8}{9.5}\\selectfont\\raggedright ",
+    "\\textit{Note.} ", tab_note, "\\par\\endgroup\n"
+  ))
+}
 ```
+
+To identify the source of non-invariance, we inspected univariate score tests for each equality constraint on the loadings. Unlike in the longitudinal case, the misfit was concentrated in a single parameter: the loading of the talent preference item on the meritocratic preferences factor ($\chi^2$(1) = 16.87, Holm-adjusted $p$ < .001). The remaining loadings were fully consistent with invariance (all $p$ > .36). In line with this, freeing that single loading is enough to restore weak invariance, with a fit indistinguishable from the configural model, $\Delta \chi^2$(3) = 1.82, $p$ = .61, CFI = 0.992, RMSEA = 0.037.
+
+The cohort-specific loadings show what this means substantively, as revealed when observing the factor models separately for each cohort (see supplementary materialss). In primary school the meritocratic preferences factor is defined mainly by the preference for talent as a criterion of reward (standardized loading = 0.87) and much less by the preference for effort (0.45). In secondary school the pattern reverses: effort becomes the core of the factor (0.83) whereas talent is only weakly related to it (0.37). Thus, younger students seem to treat effort and talent as two sides of the same meritocratic ideal, whereas older students distinguish them, with effort remaining the central meritocratic criterion and talent becoming a more separate consideration, plausibly as inherited or unearned advantages become more salient with age. This means that the meritocratic preferences factor does not have exactly the same meaning in both cohorts, and comparisons of its levels across cohorts should be interpreted with caution. In contrast, the loadings for the perceptions of meritocracy and for both privilege factors are equivalent across cohorts.
+
+Even after freeing this loading, adding the threshold constraints significantly worsened fit ($\Delta \chi^2$(8) = 42.72, $p$ < .001; $\Delta$CFI = −0.014), so strong invariance was not achieved. In this case, the source is different: univariate score tests point to the thresholds of the perceived effort item, for which all three constraints are violated ($\chi^2$(1) between 11.6 and 11.9; Holm-adjusted $p$ between .015 and .017), whereas no threshold of any other item shows meaningful misfit (adjusted $p$ > .99). Substantively, students in the two cohorts use the response categories of this item differently for a given level of perceived meritocracy, which is consistent with the descriptive differences reported above (see @fig-likerplot2): secondary students are more likely to endorse the lowest response category when judging whether effort is rewarded in society, suggesting that they apply a more critical standard. Taken together, only partial weak invariance holds, and comparisons of latent means across cohorts, in particular for meritocratic perceptions, should be interpreted with caution.
 

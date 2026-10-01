@@ -782,3 +782,122 @@ table_Sx %>%
 ```
 
 
+# Cohort invariance: alternative sequence
+
+@tbl-cohort2 summarizes the cross-cohort invariance tests following an alternative sequence. Here we follow a slightly different approach for groups comparisons as suggested by Svetina et al [-@svetina_multiplegroup_2020], where after first configural model is followed by equivalence of intercepts/thresholds. In this case, the scale achieves configural invariance between primary and secondary students, but not threshold invariance, and therefore does not meet the prerequisites for stronger forms of invariance [@wu_identification_2016a; @svetina_multiplegroup_2020]. Constraining thresholds worsened model fit ($\Delta$CFI = −.013; $\Delta$RMSEA = .013), exceeding recommended cutoffs [@chen_sensitivity_2007]. This indicates that response categories do not map equivalently onto the latent constructs across cohorts, limiting direct comparisons of latent means or other latent differences.
+
+To locate the source of cross-cohort non-invariance, we inspected localized misfit in the threshold-invariant model (@tbl-lavtestcohort). The largest violations concerned the perceived-effort item, especially the second threshold ($\chi^2=10.12, p=.001$) and, to a lesser extent, the first ($\chi^2=7.55, p=.006$), suggesting that older students may apply a more critical standard when judging whether effort is rewarded in society. This is something that we already observed in the descriptive statistics, where secondary students were more likely to endorse the lowest response category for this item (see the descriptive results in the main text). 
+
+```{r setup-cohorts}
+#| echo: false
+#| include: false
+#| results: false
+
+db1 <- db_long %>%
+filter(ola == 1) %>% # quedarse con solo la ola 1
+select(id_estudiante, starts_with(c("perc", "pref")), cohort_level)
+
+pacman::p_load(lavaan,semTools)
+```
+
+
+<!-- 
+Tomás
+ -->
+
+```{r}
+#| echo: false
+#| label: tbl-cohort2
+#| warning: false
+#| tbl-cap: Cohort (multigroup) invariance results
+#| tbl-cap-location: top
+#| tbl-pos: H
+
+# Comparaciones de Chi²
+an1 <- anova(fit.baseline, fit.thres)
+an2 <- anova(fit.thres, fit.strong)
+
+tab01 <- bind_rows(
+  as_tibble(an1)[2,],
+  as_tibble(an2)[2,] # aqui se toma la segunda fila de comparación de cada anova
+) %>%
+  select("Chisq", "Df", chisq.diff = `Chisq diff`, df.diff = `Df diff`, pvalue = `Pr(>Chisq)`) %>%
+  mutate(
+    stars = stars.pval(pvalue),
+    chisqt = paste0(round(Chisq, 2), " (", Df, ")"),
+    decision = ifelse(pvalue > 0.05, "Accept", "Reject"),
+    model = c("Tresholds", "Tresholds + Loadings") # etiqueta los modelos que se extraen de los anova
+  ) %>%
+  bind_rows(
+    tibble(
+      Chisq = an1$Chisq[1],
+      Df = an1$Df[1],
+      chisq.diff = NA,
+      df.diff = NA,
+      pvalue = NA,
+      stars = "",
+      chisqt = paste0(round(an1$Chisq[1], 2), " (", an1$Df[1], ")"),
+      decision = "Reference",
+      model = "Configural" # se añade el modelo configural como referencia para clarificar la comparación
+    )
+  ) %>%
+  select(model, chisqt, chisq.diff, df.diff, pvalue, stars, decision) %>%
+  mutate(model = factor(model, levels = c("Configural", "Tresholds", "Tresholds + Loadings"))) %>%
+  arrange(model)
+
+# se extraen los índices de ajuste para cada modelo
+fit.meas <- bind_rows(
+  fitMeasures(fit.baseline, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", "rmsea.scaled", "rmsea.ci.lower.scaled", "rmsea.ci.upper.scaled"),],
+  fitMeasures(fit.thres, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", "rmsea.scaled", "rmsea.ci.lower.scaled", "rmsea.ci.upper.scaled"),],
+  fitMeasures(fit.strong, output = "matrix")[c("chisq.scaled", "df.scaled", "cfi.scaled", "rmsea.scaled", "rmsea.ci.lower.scaled", "rmsea.ci.upper.scaled"),]
+)
+
+fit.meas <- fit.meas %>% # se calculan las diferencias de cada modelo con el anterior para 
+  rename_with(~str_remove(., ".scaled")) %>% 
+  mutate(                # analizar si se cumplen criterios de invarianza 
+    diff.chi2 = chisq - lag(chisq, default = first(chisq)),
+    diff.df = df - lag(df, default = first(df)),
+    diff.cfi = cfi - lag(cfi, default = first(cfi)),
+    diff.rmsea = rmsea - lag(rmsea, default = first(rmsea))
+  ) %>%
+  round(3) %>%
+  mutate(rmsea.ci = paste0(rmsea, " \n(", rmsea.ci.lower, "-", rmsea.ci.upper, ")"))
+
+# Tabla final (mantener diff.df hasta formatear)
+tab.inv <- bind_cols(tab01, fit.meas) %>%
+  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.df, diff.cfi, diff.rmsea, stars, decision) %>%
+  mutate(diff.chi2 = paste0(diff.chi2, " (", diff.df, ") ", stars)) %>%
+  select(model, chisqt, cfi, rmsea.ci, diff.chi2, diff.cfi, diff.rmsea, decision)
+
+# Encabezados de columna
+col.nam <- if (is_html_output()) {
+  c("Model", "&chi;<sup>2</sup> (df)", "CFI", "RMSEA (90% CI)",
+    "&Delta;&chi;<sup>2</sup> (&Delta;df)", "&Delta;CFI", "&Delta;RMSEA", "Decision")
+} else {
+  c("Model", "$\\chi^2$ (df)", "CFI", "RMSEA (90\\% CI)",
+    "$\\Delta \\chi^2$ ($\\Delta$df)", "$\\Delta$CFI", "$\\Delta$RMSEA", "Decision")
+}
+# Se formatea la tabla en kable
+tab.inv %>%
+  kableExtra::kable(
+    format = table_format,
+    align = "c",
+    booktabs = TRUE,
+    escape = F,
+    col.names = col.nam
+  ) %>%
+  kableExtra::kable_styling(
+    full_width = FALSE,
+    latex_options = c("HOLD_position", "scale_down"),
+    bootstrap_options = c("striped", "bordered", "condensed"),
+   font_size = 9.5) %>%
+  kableExtra::column_spec(column = 1, width = "2.6cm") %>%
+  kableExtra::column_spec(column = 2, width = "2cm") %>%
+  kableExtra::column_spec(column = 3, width = "1.3cm") %>%
+  kableExtra::column_spec(column = 4, width = "2.2cm") %>%
+  kableExtra::column_spec(column = 5, width = "2.3cm") %>%
+  kableExtra::column_spec(column = 6, width = "1.3cm") %>%
+  kableExtra::column_spec(column = 7, width = "1.3cm") %>%
+  kableExtra::column_spec(column = 8, width = "1.7cm")
+
+```

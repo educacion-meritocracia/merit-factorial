@@ -11,8 +11,14 @@ editor_options:
 #| output: false
 #| include: false
 
-library(tidyverse)
-library(here)
+ # remotes::install_github('haozhu233/kableExtra@a6af5c0')  # for problems with collapse_rows()
+ pacman::p_load(knitr, kableExtra, dplyr, tidyverse, here)
+ table_format = if (knitr::is_html_output()) {
+   #conditional instructions for kable
+   "html" #if html set "html" in format
+ } else if (knitr::is_latex_output()) {
+   "latex"#if latex set "latex" in format
+ }
 
 load(file = here("output", "data", "db_long_proc.RData"))
 
@@ -143,7 +149,7 @@ left_join(tot, edad) %>%
    knitr::kable(., format = table_format, escape = T,
                 booktabs = T, 
                 linesep = "",
-                col.names = c("Wave", "{==Cohort==}{>>renecanales: Definir si es que vamos a hablar de invarianza entre cohortes o invarianza entre grupos.<<} level", "N", "Mean", "SD", "Man", "Women", "Others")) %>%
+                col.names = c("Wave", "level", "N", "Mean", "SD", "Man", "Women", "Others")) %>%
     kableExtra::add_header_above(c(" " = 3, "Age" = 2, "Gender" = 3)) %>%
    kableExtra::kable_styling(
      full_width = F,
@@ -191,14 +197,7 @@ Each item is rated on a four-point scale ranging from “strongly disagree” (1
 #| echo: false
 #| label: tbl-merit
 
- # remotes::install_github('haozhu233/kableExtra@a6af5c0')  # for problems with collapse_rows()
- pacman::p_load(knitr, kableExtra, dplyr)
- table_format = if (knitr::is_html_output()) {
-   #conditional instructions for kable
-   "html" #if html set "html" in format
- } else if (knitr::is_latex_output()) {
-   "latex"#if latex set "latex" in format
- }
+
  tabitems <- read.csv(file = "../input/tables/table-01.csv",header = 1,sep = ",",encoding = "UTF-8") # call file  generated externally for the table
  cnames <- c("Components", "Dimensions","Item (English)" , "Item original (Spanish)")
 

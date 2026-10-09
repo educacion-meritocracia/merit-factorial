@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -51,15 +51,14 @@ div.csl-indent {
 <script src="paper_files/libs/clipboard/clipboard.min.js"></script>
 <script src="paper_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="paper_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="paper_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="paper_files/libs/quarto-html/popper.min.js"></script>
 <script src="paper_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="paper_files/libs/quarto-html/anchor.min.js"></script>
 <link href="paper_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="paper_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="paper_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="paper_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="paper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="paper_files/libs/bootstrap/bootstrap-544450b80f293d95e2219f89f09bd0c6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="paper_files/libs/bootstrap/bootstrap-e8585f3656c86b01693e47614f1ad040.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="paper_files/libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="paper_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 <link href="paper_files/libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet">
@@ -93,7 +92,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -238,14 +237,14 @@ window.Quarto = {
 <p>This study uses secondary data from the 2023 and 2024 waves of the Panel Survey on Education and Meritocracy (EDUMER), which examines school-age students’ beliefs, attitudes, and behaviors regarding meritocracy, inequality, and citizenship. The questionnaire was administered to sixth-grade and first-year secondary students in nine schools in Chile’s Metropolitan and Valparaíso regions. Although the sample was non-probabilistic and lacked quota controls, a minimum target of 900 students was set to ensure adequate statistical power. After data processing and listwise deletion, the analytical sample included 846 students in Wave 1 (386 girls, 421 boys, 39 identifying as other; <span class="math inline">M_{age}</span> = 13.4, <span class="math inline">SD_{age}</span> = 1.6) and 662 in Wave 2 (303 girls, 338 boys, 21 identifying as other; <span class="math inline">M_{age}</span> = 14.4, <span class="math inline">SD_{age}</span> = 1.6), yielding a retention rate of 78.3% (attrition = 21.7%). The main sources of attrition were school transfers between academic years and high absenteeism in several schools.</p>
 <p>To distinguish students’ academic level across waves for multi-group invariance analyses, we created a cohort indicator capturing whether the respondent belonged to the primary (sixth grade) or secondary (first-year secondary) cohort at the time of each survey wave. Descriptive statistics by cohort and wave are reported in <a href="#tbl-cohort" class="quarto-xref">Table&nbsp;1</a>.</p>
 <div class="cell" data-tbl-pos="H" data-tbl-cap-location="top">
-<div id="tbl-cohort" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-pos="H" data-tbl-cap-location="top">
+<div id="tbl-cohort" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top" data-tbl-pos="H">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cohort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Descriptive statistics for cohort level
 </figcaption>
 <div aria-describedby="tbl-cohort-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped table-bordered do-not-create-environment cell caption-top table-sm small">
+<table class="table table-striped table-bordered do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 12%">
 <col style="width: 12%">
@@ -359,14 +358,14 @@ Gender
 </ul>
 <p>Each item is rated on a four-point scale ranging from “strongly disagree” (1) to “strongly agree” (4), therefore higher scores indicate stronger endorsement of the corresponding perception or preference.</p>
 <div class="cell" data-tbl-pos="H" data-tbl-cap-location="top">
-<div id="tbl-merit" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-pos="H" data-tbl-cap-location="top">
+<div id="tbl-merit" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top" data-tbl-pos="H">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-merit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Items for perceptions and preferences for meritocracy scale
 </figcaption>
 <div aria-describedby="tbl-merit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped table-bordered do-not-create-environment cell caption-top table-sm small">
+<table class="table table-striped table-bordered do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Components</th>
@@ -501,14 +500,14 @@ Figure&nbsp;3: Measurement model diagram (pooled sample)
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="longitudinal-invariance"><span class="header-section-number">4.3.1</span> Longitudinal invariance</h3>
 <p><a href="#tbl-longinv" class="quarto-xref">Table&nbsp;3</a> reports the results of the longitudinal invariance tests. The logic of longitudinal invariance is to apply sequential constraints to the model parameters across time, in order to check to what extent the parameters are invariant across time. This is basically taking the two measurement points as two comparing groups, but in this case, the groups are the same individuals measured at two different time points, which is incorporated in the model by correlating the unique item variances. The table shows the fit indices for the configural, weak (metric), strong (scalar), and strict invariance models, along with the chi-square difference tests comparing each nested model. Overall, the scale achieved the strongest level of invariance (strict invariance) across the two waves. The strict model showed good fit, <span class="math inline">\chi^2</span>(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90% CI: 0.020–0.040). Moreover, compared with the strong (scalar) model, the deterioration in fit was negligible: <span class="math inline">\Delta \chi^2</span>(4) = 1.635, <span class="math inline">\Delta</span>CFI = 0.000, and <span class="math inline">\Delta</span>RMSEA = -0.002. These differences fall well within commonly used cutoffs for invariance evaluation <span class="citation" data-cites="chen_sensitivity_2007">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">Chen, 2007</a>)</span>, indicating that constraining residual variances in addition to loadings and thresholds/intercepts is tenable. Substantively, this implies that the item–factor relations are stable over time (metric invariance) and that, for a given level of the latent trait, respondents are expected to endorse the same response categories across waves (scalar invariance), supporting the comparability of scores and latent parameters within students over time.</p>
 <div class="cell" data-tbl-pos="H" data-tbl-cap-location="top">
-<div id="tbl-longinv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-pos="H" data-tbl-cap-location="top">
+<div id="tbl-longinv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top" data-tbl-pos="H">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-longinv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Longitudinal invariance results
 </figcaption>
 <div aria-describedby="tbl-longinv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped table-bordered table-condensed do-not-create-environment cell caption-top table-sm small">
+<table class="table table-striped table-bordered table-condensed do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: center;" data-quarto-table-cell-role="th">Model</th>
@@ -577,14 +576,14 @@ Table&nbsp;3: Longitudinal invariance results
 <p><a href="#tbl-cohortinv" class="quarto-xref">Table&nbsp;4</a> reports the results of the cross-cohort (multigroup) invariance tests comparing primary and secondary students. As in the longitudinal case, the sequence starts from a configural model, which imposes the same four-factor structure in both cohorts but lets all parameters vary freely, and then adds equality constraints on factor loadings (weak invariance) and on loadings and item thresholds (strong invariance). Since the indicators are ordinal, thresholds play the role that intercepts play for continuous items. The configural model shows a good fit, <span class="math inline">\chi^2</span>(28) = 47.65, CFI = 0.991, RMSEA = 0.041, indicating that the same four-factor structure holds in both cohorts. However, the scale did not achieve weak invariance: constraining the factor loadings to be equal significantly worsened fit, <span class="math inline">\Delta \chi^2</span>(4) = 20.77, <span class="math inline">p</span> &lt; .001. This means that the relationship between the latent factors and their indicators differs between primary and secondary students, which could be due to developmental differences or differences in how the items are interpreted across cohorts. An additional analysis following the alternative sequence proposed by Svetina et al. <span class="citation" data-cites="svetina_multiplegroup_2020">(<a href="#ref-svetina_multiplegroup_2020" role="doc-biblioref">2020</a>)</span>, which tests the equivalence of thresholds before loadings, led to the same conclusion: invariance between primary and secondary students was not achieved either (see supplementary materials).</p>
 <p>The changes in CFI (<span class="math inline">\Delta</span>CFI = −0.009) and RMSEA (<span class="math inline">\Delta</span>RMSEA = 0.013) are close to, though still within, the conventional cutoffs <span class="citation" data-cites="chen_sensitivity_2007">(<a href="#ref-chen_sensitivity_2007" role="doc-biblioref">Chen, 2007</a>)</span>, so at the global level the evidence against loading invariance is not overwhelming. Adding the threshold constraints worsened fit further, <span class="math inline">\Delta \chi^2</span>(8) = 35.89, <span class="math inline">p</span> &lt; .001, with <span class="math inline">\Delta</span>CFI = −0.011, which exceeds the recommended cutoff.</p>
 <div class="cell" data-tbl-pos="H" data-tbl-cap-location="top">
-<div id="tbl-cohortinv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-pos="H" data-tbl-cap-location="top">
+<div id="tbl-cohortinv" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top" data-tbl-pos="H">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cohortinv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4: Cohort (multigroup) invariance results
 </figcaption>
 <div aria-describedby="tbl-cohortinv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped table-bordered table-condensed do-not-create-environment cell caption-top table-sm small">
+<table class="table table-striped table-bordered table-condensed do-not-create-environment cell caption-top table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: center;" data-quarto-table-cell-role="th">Model</th>
@@ -953,14 +952,13 @@ Zhu, L. (2025). Meritocratic beliefs in the united states, finland, and china: A
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

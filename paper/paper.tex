@@ -143,6 +143,7 @@
 
 \usepackage[noblocks]{authblk}
 % packages needed by kableExtra tables (not recorded when chunks are cached)
+\usepackage{float}
 \usepackage{multirow}
 \usepackage{colortbl}
 \renewcommand*{\Authsep}{, }
@@ -194,7 +195,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Do meritocratic beliefs undermine the acceptance of privilege at school-age? Evidence from a panel survey across students cohorts},
+  pdftitle={Do meritocratic beliefs undermine the acceptance of privilege at school-age? A longitudinal equivalence approach},
   pdfauthor={Juan Carlos Castillo; Tomás Urzúa; Andreas Laffert; René Canales; Kevin Carrasco},
   colorlinks=true,
   linkcolor={blue},
@@ -205,7 +206,7 @@
 
 
 \title{Do meritocratic beliefs undermine the acceptance of privilege at
-school-age? Evidence from a panel survey across students cohorts}
+school-age? A longitudinal equivalence approach}
 
 
   \author{Juan Carlos Castillo}
@@ -235,27 +236,21 @@ school-age? Evidence from a panel survey across students cohorts}
 \begin{document}
 \maketitle
 \begin{abstract}
-Schools are key spaces of meritocratic socialization, actively shaping
-students' understanding of whether success is earned or inherited. Such
-beliefs are central to students' sense of fairness, as they inform how
-they interpret their own and others' outcomes, and whether they perceive
-them as legitimate. Yet, there is still little knowledge about how
-students conceive meritocracy and the way in which such conceptions
-challenge the role of privilege in society. This study analyzes to what
-extent perceptions and preferences about meritocracy and privilege
-constitute distinct and related dimensions of students' beliefs, and how
-they change over time and across school stages. Using a novel instrument
-previously applied in adult population, we surveyed Chilean students in
-6th and 9th grade (Wave 1: N = 846) and then in 7th and 10th grade (Wave
-2: N = 662). Results support a multidimensional organization of
-meritocratic and privilege beliefs, showing that endorsement to
-meritocratic criteria can coexist with the acceptance of privilege
-rather than displacing it. Besides, older students apply a more critical
-frame when judging whether effort is rewarded in society. Taking into
-account previous evidence in adult populations, these findings suggest
-that youth meritocratic and privilege beliefs are shaped at early stages
-of socialization, but they are also subject to change in a critical
-direction as students mature.
+Schools are key spaces of meritocratic socialization, shaping students'
+understanding of whether success is earned or inherited. Yet little is
+known about how students conceive meritocracy and how these conceptions
+relate to the acceptance of privilege. This study examines whether
+perceptions and preferences about meritocracy and privilege form
+distinct yet related dimensions of students' beliefs, and how they
+change over time and across school stages. Using a novel instrument
+previously applied to adults, we surveyed Chilean students in 6th and
+9th grade (Wave 1: N = 846) and again in 7th and 10th grade (Wave 2: N =
+662). Results support a multidimensional organization of beliefs:
+endorsing meritocratic criteria can coexist with accepting privilege
+rather than displacing it. Older students also judge more critically
+whether effort is rewarded. These findings suggest that such beliefs are
+shaped early in socialization but shift in a critical direction as
+students mature.
 
 \textbf{Keywords}: Meritocracy · Schools · Measurement invariance ·
 Socialization · Chile
@@ -271,11 +266,11 @@ society and why is a relevant aspect of the socialization process
 \citeproc{ref-resh_sense_2014}{Resh \& Sabbagh, 2014}). Schools are
 important actors in this regard, as they use grading, tracking, and
 selection to apply meritocratic criteria based primarily on individual
-talent and effort (\citeproc{ref-darnon_where_2018}{Darnon, Wiederkehr,
-et al., 2018}; \citeproc{ref-traini_stratification_2022}{Traini, 2022}).
-This early exposure to meritocratic principles in the ``impressionable
-years'' (Krosnick \& Alwin (\citeproc{ref-krosnick_aging_1989}{1989}))
-is consequential, as it shapes students' understanding of fairness and
+talent and effort (\citeproc{ref-darnon_where_2018}{Darnon et al.,
+2018}; \citeproc{ref-traini_stratification_2022}{Traini, 2022}). This
+early exposure to meritocratic principles in the ``impressionable
+years'' (\citeproc{ref-krosnick_aging_1989}{Krosnick \& Alwin, 1989}) is
+consequential, as it shapes students' understanding of fairness and
 incorporates notions of social mobility and social hierarchies. At the
 same time, schools are environments where students encounter evidence
 that outcomes are shaped by factors other than meritocratic ones, such
@@ -312,7 +307,7 @@ meritocratic and privilege-based explanations of social outcomes,
 allowing for a more comprehensive understanding of how individuals
 interpret social inequalities and fairness -- in line with the focus on
 privilege at the moment of analyzing meritocracy by Khan
-{[}(\citeproc{ref-khan_privilege_2013}{2013})).
+(\citeproc{ref-khan_privilege_2013}{2013}).
 
 Previous research has shown that privilege and meritocratic beliefs
 represent different and not necessarily opposite dimensions, therefore
@@ -339,6 +334,8 @@ early school age, and that these beliefs have a structure similar to
 that found in a previous study that applied the meritocracy framework in
 the adult population
 (\citeproc{ref-castillo_multidimensional_2023}{Castillo et al., 2023}).
+Besides, we argue that both meritocratic and privilege beliefs are not
+two ends of the same continuum, but they can coexist in students' minds.
 Furthermore, we argue that these beliefs are not static, but rather
 evolve over time as students gain more experience and exposure to
 different social contexts.
@@ -353,14 +350,14 @@ meritocratic discourse in school culture
 (\citeproc{ref-castillo_socialization_2024}{Castillo et al., 2024};
 \citeproc{ref-valenzuela_socioeconomic_2013}{Valenzuela et al., 2013}),
 alongside persistent socioeconomic inequality and a deep marketization
-of social welfare (\citeproc{ref-ferre_welfare_2023}{Ferre, 2023}),
-features shared by many Latin American countries and increasingly
-present in European and East Asian systems
-(\citeproc{ref-busemeyer_skills_2014}{Busemeyer, 2014};
-\citeproc{ref-gingrich_making_2011}{Gingrich, 2011}). This makes Chile a
-productive case for studying how students internalize, question, or
-reconcile meritocratic ideals with the reality of privilege, while the
-dimensional structure and longitudinal patterns identified here are
+of social welfare (\citeproc{ref-ferre_welfare_2023}{Ferre, 2023};
+\citeproc{ref-madariaga_three_2020}{Madariaga, 2020}), features shared
+by many Latin American countries and increasingly present in European
+and East Asian systems (\citeproc{ref-busemeyer_skills_2014}{Busemeyer,
+2014}; \citeproc{ref-gingrich_making_2011}{Gingrich, 2011}). This makes
+Chile a productive case for studying how students internalize, question,
+or reconcile meritocratic ideals with the reality of privilege, while
+the dimensional structure and longitudinal patterns identified here are
 likely to travel to other highly stratified educational contexts.
 
 The research questions guiding this study are as follows:
@@ -368,7 +365,7 @@ The research questions guiding this study are as follows:
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
 \item
-  Do school-aged students distinguish between meritocratic and
+  Are school-aged students able to distinguish between meritocratic and
   privilege-based principles, as well as between perceptions (``what
   is'') and preferences (``what should be'')?
 \item
@@ -415,7 +412,7 @@ research in adult populations has documented systematic associations
 between meritocratic beliefs and the justification of social
 inequalities (\citeproc{ref-castillo_perceptions_2025}{Castillo et al.,
 2025}; \citeproc{ref-liu_does_2025}{C. Liu \& Wang, 2025};
-\citeproc{ref-mijs_paradox_2019}{Mijs, 2019};
+\citeproc{ref-mijs_paradox_2021}{Mijs, 2021};
 \citeproc{ref-tejero-peregrina_perceived_2025}{Tejero-Peregrina et al.,
 2025}). Despite the centrality of meritocratic beliefs for the
 understanding of the social order, the question of how and when they
@@ -428,7 +425,7 @@ narratives of effort, achievement, self-improvement, and education as a
 legitimate route to rewards and social mobility
 (\citeproc{ref-batruch_belief_2022}{Batruch et al., 2022};
 \citeproc{ref-chauvin_school_2026}{Chauvin et al., 2026};
-\citeproc{ref-darnon_where_2018}{Darnon, Wiederkehr, et al., 2018};
+\citeproc{ref-darnon_where_2018}{Darnon et al., 2018};
 \citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et al., 2015}). On the
 other hand, they embed these ideals in routine practices of grading,
 tracking, selection, awards, and credentialing, which operate as
@@ -459,21 +456,20 @@ describes as dual consciousness
 coexistence is not fixed but can shift with educational experience: C.
 Liu \& Wang (\citeproc{ref-liu_does_2025}{2025}) argue that education
 can operate as either legitimation or enlightenment depending on the
-broader inequality context, and longitudinal evidence suggests that
-recognition of structural advantage tends to grow as students progress
-through schooling (\citeproc{ref-tang_meritocratic_2025}{Tang et al.,
-2025}). More broadly, meritocratic framing encourages students across
-social backgrounds to interpret success and failure in individual terms,
+inequality context, and longitudinal evidence suggests that recognition
+of structural advantage tends to grow as students progress through
+schooling (\citeproc{ref-tang_meritocratic_2025}{Tang et al., 2025}).
+More broadly, meritocratic framing encourages students across social
+backgrounds to interpret success and failure in individual terms,
 reinforcing personal responsibility while limiting attention to
-structural constraints (\citeproc{ref-darnon_where_2018}{Darnon,
-Wiederkehr, et al., 2018}). As Lampert
-(\citeproc{ref-lampert_meritocratic_2013}{2013}) argues, meritocratic
-schooling can reward a minority while leading many others to internalize
-failure as a personal deficiency, and even students from disadvantaged
-backgrounds often adopt meritocratic narratives, suggesting that
-prolonged exposure to school-based evaluation is a powerful mechanism
-shaping beliefs about justice and inequality
-(\citeproc{ref-henry_development_2006}{Henry \& Saul, 2006}).
+structural constraints (\citeproc{ref-darnon_where_2018}{Darnon et al.,
+2018}). As Lampert (\citeproc{ref-lampert_meritocratic_2013}{2013})
+argues, meritocratic schooling can reward a minority while leading many
+others to internalize failure as a personal deficiency, and even
+students from disadvantaged backgrounds often adopt meritocratic
+narratives, suggesting that prolonged exposure to school-based
+evaluation is a powerful mechanism shaping beliefs about justice and
+inequality (\citeproc{ref-henry_development_2006}{Henry \& Saul, 2006}).
 
 The dynamics of the socialization of meritocracy can change over time.
 Developmental research suggests that by around age 10, children already
@@ -503,39 +499,40 @@ mechanisms grow more salient
 (\citeproc{ref-henry_development_2006}{Henry \& Saul, 2006};
 \citeproc{ref-resh_sense_2014}{Resh \& Sabbagh, 2014}).
 
-The consequences of these beliefs extend well beyond individual
+\{==The consequences of these beliefs extend well beyond individual
 attitudes. Students who perceive schools as highly meritocratic,
-particularly believing that effort and talent are fairly rewarded, are
-more likely to justify unequal access to social services, perceive class
-inequalities as less unjust, express weaker support for redistribution,
-and endorse stronger system-justifying beliefs
-(\citeproc{ref-batruch_belief_2022}{Batruch et al., 2022};
-\citeproc{ref-castillo_socialization_2024}{Castillo et al., 2024};
-\citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et al., 2015}). The
-effects are not confined to students: among teachers, belief in school
-meritocracy predicts preference for competitive over cooperative
-classroom practices, while among parents it predicts lower demand for
-policies aimed at reducing socioeconomic inequalities in achievement
-(\citeproc{ref-darnon_competitive_2023}{Darnon et al., 2023}). These
-patterns suggest that meritocratic beliefs are not merely attitudinal
-outcomes of schooling but active inputs into the educational environment
-itself, shaping classroom dynamics, institutional decisions, and the
-broader normative climate in which students develop.
+particularly believing that effort and talent are fairly rewarded,
+notwithstanding inequality of opportunities, are more likely to justify
+unequal access to social services, perceive class inequalities as less
+unjust, express weaker support for redistribution, and endorse stronger
+system-justifying beliefs (\citeproc{ref-batruch_belief_2022}{Batruch et
+al., 2022}; \citeproc{ref-castillo_socialization_2024}{Castillo et al.,
+2024}; \citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et al., 2015}).
+The effects are not confined to students: among teachers, belief in
+school meritocracy could predict preference for competitive over
+cooperative classroom practices, while among parents it predicts lower
+demand for policies aimed at reducing socioeconomic inequalities in
+achievement (\citeproc{ref-darnon_competitive_2023}{Darnon et al.,
+2023}). These patterns suggest that meritocratic beliefs are not merely
+attitudinal outcomes of schooling but active inputs into the educational
+environment itself, shaping classroom dynamics, institutional decisions,
+and the widespread normative climate in which students
+develop.==\}\{\textgreater\textgreater JC: se puede sacar, o meter idea
+en Intro como parte de la relevancia\textless\textless\}
 
 \subsection{Conceptualizing and measuring meritocratic and privilege
 beliefs}\label{conceptualizing-and-measuring-meritocratic-and-privilege-beliefs}
 
 The research agenda on meritocratic beliefs has faced challenges in
-conceptualizing and measuring meritocracy. Some studies have relied on
-narrow operationalizations that equate meritocracy with the social
-valuation of effort and/or talent
-(\citeproc{ref-mijs_paradox_2021}{Mijs, 2021};
-\citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et al., 2015}), often
-following the original formulation by Young (Merit = Effort +
-Intelligence) (\citeproc{ref-young_rise_1958}{1958}) formulation (Merit
-= Effort + Intelligence). For instance, the ``Preference for the Merit
-Principle Scale'' (\citeproc{ref-davey_preference_1999}{Davey et al.,
-1999}) and the ``Belief in School Meritocracy Scale''
+conceptualizing and measuring meritocracy. Most studies have relied on
+operationalizations that equate meritocracy with the social valuation of
+effort and talent (\citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et
+al., 2015}), often following the original formulation by Young (Merit =
+Effort + Intelligence) (\citeproc{ref-young_rise_1958}{1958})
+formulation (Merit = Effort + Intelligence). For instance, the
+``Preference for the Merit Principle Scale''
+(\citeproc{ref-davey_preference_1999}{Davey et al., 1999}) and the
+``Belief in School Meritocracy Scale''
 (\citeproc{ref-batruch_belief_2022}{Batruch et al., 2022}) focus on the
 perceived importance of effort and ability for success, while Wiederkehr
 et al. (\citeproc{ref-wiederkehr_belief_2015}{2015}) measure the extent
@@ -543,46 +540,46 @@ to which respondents believe that hard work is rewarded. These
 approaches, however, risk conflating meritocratic beliefs with general
 attitudes toward effort or achievement, potentially overlooking the
 broader structural and relational dimensions of meritocracy. Other
-approaches treat meritocratic beliefs as interchangeable with broader
-constructs such as system justification
-(\citeproc{ref-day_movin_2017}{Day \& Fiske, 2017};
-\citeproc{ref-jost_decade_2004a}{Jost et al., 2004}), beliefs about
-social mobility (\citeproc{ref-deng_its_2025}{Deng \& Wang, 2025};
-\citeproc{ref-mccoy_priming_2007}{McCoy \& Major, 2007}), or generalized
-support for equal opportunity
+approaches treat meritocratic beliefs as interchangeable with constructs
+such as system justification (\citeproc{ref-day_movin_2017}{Day \&
+Fiske, 2017}; \citeproc{ref-jost_decade_2004a}{Jost et al., 2004}),
+beliefs about social mobility (\citeproc{ref-deng_its_2025}{Deng \&
+Wang, 2025}; \citeproc{ref-mccoy_priming_2007}{McCoy \& Major, 2007}),
+or generalized support for equal opportunity
 (\citeproc{ref-batruch_belief_2022}{Batruch et al., 2022};
-\citeproc{ref-darnon_where_2018}{Darnon, Wiederkehr, et al., 2018}). As
-a result, attempts to measure meritocracy through questionnaire items
-frequently collapse indicators that tap different dimensions, making it
-difficult to assess what meritocracy actually means in practice.
+\citeproc{ref-darnon_where_2018}{Darnon et al., 2018}). As a result,
+attempts to measure meritocracy through questionnaire items frequently
+collapse indicators that tap different dimensions, making it difficult
+to assess what meritocracy actually means in practice.
 
-A related, more specific limitation to study meritocracy concerns its
+A related, more specific limitation to study meritocracy lies on its
 links with privilege-based factors such as family wealth, social
-connections, and other structural advantages (Khan \& Jerolmack
-(\citeproc{ref-khan_saying_2013}{2013})). As Castillo et al.
-(\citeproc{ref-castillo_multidimensional_2023}{2023}) notes, much survey
-research relies on item batteries that ask respondents to rate the
-importance of effort, talent, family background, networks, or luck for
-``getting ahead'', and then reduces these into a single score. This
+connections, and other structural advantages
+(\citeproc{ref-khan_saying_2013}{Khan \& Jerolmack, 2013}). As Castillo
+et al. (\citeproc{ref-castillo_multidimensional_2023}{2023}) notes, much
+survey research relies on item batteries that ask respondents to rate
+the importance of effort, talent, family background, networks, or luck
+for ``getting ahead'', and then reduces these into a single score. This
 becomes especially problematic when researchers construct continuum
 measures in composite indicators, treating meritocratic and
-privilege-based explanations as opposite ends of the same scale (e.g.,
-by subtracting ``non-merit'' from ``merit,'' as in
-\citeproc{ref-reynolds_perceptions_2014a}{Reynolds \& Xian, 2014}). Such
-operationalizations embed a strong zero-sum assumption, namely that
-endorsing merit necessarily entails rejecting structural or relational
-advantages, thereby ruling out, by design, the empirical possibility
-that both types of beliefs coexist. Recent debates, including the
-exchange between Mijs (\citeproc{ref-mijs_visualizing_2026}{2026}) and
-Wiesner \& Sachweh (\citeproc{ref-wiesner_effort_2026}{2026}),
-underscore this point by arguing for measures that capture meritocratic
-beliefs alongside privilege-based ones, rather than as a residual of the
-relative importance assigned to structural factors. Complementary
-empirical work has raised similar concerns: C. Liu \& Wang
+privilege-based explanations as opposite ends of the same scale
+\{==(e.g., by subtracting ``non-merit'' from ``merit,'' as in
+\citeproc{ref-reynolds_perceptions_2014}{\textbf{reynolds\_perceptions\_2014?}})==\}\{\textgreater\textgreater TU:
+candidato a sacar\textless\textless\}. Such operationalizations embed a
+strong zero-sum assumption, namely that endorsing merit necessarily
+entails rejecting structural or relational advantages, thereby ruling
+out, by design, the empirical possibility that both types of beliefs
+coexist. Recent debates, including the exchange between Mijs
+(\citeproc{ref-mijs_visualizing_2026}{2026}) and Wiesner \& Sachweh
+(\citeproc{ref-wiesner_effort_2026}{2026}), underscore this point by
+arguing for measures that capture meritocratic beliefs alongside
+privilege-based ones, rather than as a residual of the relative
+importance assigned to structural factors. Complementary empirical work
+has raised similar concerns: C. Liu \& Wang
 (\citeproc{ref-liu_does_2025}{2025}) shows that meritocratic endorsement
 may remain stable even as recognition of structural constraints
 increases; Tang et al. (\citeproc{ref-tang_meritocratic_2025}{2025})
-find an increasing weight given to nonmeritocratic factors as students
+find an increasing weight given to non-meritocratic factors as students
 grow up; Kwon \& Pandian
 (\citeproc{ref-kwon_multidimensionality_2024}{2024}) identify three
 attitudinal clusters in Europe, instrumental, idealized merit, and
@@ -599,52 +596,24 @@ In response to the identified limitations for the comprehensive
 measurement of merit and privilege beliefs, Castillo et al.
 (\citeproc{ref-castillo_multidimensional_2023}{2023}) proposed a
 multidimensional framework that decomposes meritocratic beliefs along
-two analytically independent axes: preferences versus perceptions, and
-meritocratic versus privilege-based (originally called
-``non-meritocratic'') allocation principles. Preferences capture
-normative ideals about how rewards should be distributed (e.g., whether
-effort and ability ought to determine life chances); perceptions capture
-descriptive evaluations of how society actually works (e.g., whether
-observed inequalities reflect merit-based processes)
-(\citeproc{ref-janmaat_subjective_2013}{Janmaat, 2013}). Meritocratic
-elements (effort, talent) and privilege-based elements (family wealth,
-networks) are treated as distinct components rather than as opposites.
-This yields four separate constructs, allowing belief combinations that
-older measures tend to collapse, such as endorsing meritocracy as an
-ideal while simultaneously recognizing the weight of family background
-and connections. The proposal is deliberately minimalist, making it
-well-suited for large-scale surveys with limited questionnaire space,
-though this parsimony entails a trade-off: each factor is measured with
-only two items, which can constrain reliability and content coverage.
-
-Evidence from adult samples using confirmatory factor analysis supports
-a four-factor structure (perceptions and preferences of both meritocracy
-and privilege (\citeproc{ref-castillo_multidimensional_2023}{Castillo et
-al., 2023}). Besides, it shows systematic associations among dimensions:
-stronger perceived privilege tends to co-occur with stronger
-meritocratic preferences
+two analytically independent axes: perceptions (what is) versus
+preferences (what ought to be), and meritocratic versus privilege-based
+(originally called ``non-meritocratic'') allocation principles.
+Meritocratic elements (effort, talent) and privilege-based elements
+(family wealth, networks) are treated as distinct components rather than
+as opposites. This yields four separate constructs, allowing belief
+combinations that older measures tend to collapse, such as endorsing
+meritocracy as an ideal while simultaneously recognizing the weight of
+family background and connections (\citeproc{ref-khan_saying_2013}{Khan
+\& Jerolmack, 2013}). Evidence from adult samples using confirmatory
+factor analysis supports a four-factor structure (perceptions and
+preferences of both meritocracy and privilege)
 (\citeproc{ref-castillo_multidimensional_2023}{Castillo et al., 2023}),
 a pattern that aligns with Zhu's
 (\citeproc{ref-zhu_meritocratic_2025}{2025}) notion of dual
 consciousness, here understood as the simultaneous endorsement of
 meritocracy as a normative ideal alongside descriptive recognition that
-rewards are shaped by structural advantage. Regarding school-based
-research, these measurement challenges have received limited attention.
-Chauvin et al. (\citeproc{ref-chauvin_school_2026}{2026}) propose a
-multidimensional measure of school meritocracy that distinguishes
-between equity and ability dimensions, but their scale applies only to
-teachers and remains restricted to perceived meritocracy. Castillo et
-al. (\citeproc{ref-castillo_socialization_2024}{2024}) apply the
-four-factor framework to a sample of Chilean 10th graders and report
-that students differentiate perceptions from preferences and
-meritocratic from privilege-based principles; however, that study relies
-on item-level descriptives and bivariate associations rather than a
-formal factorial measurement model. Beyond this, to our knowledge no
-study has examined whether these dimensions are stable across age
-cohorts or over time, which limits understanding of how meritocratic
-beliefs develop through schooling and whether observed differences
-across stages reflect substantive change or measurement non-equivalence
-(invariance).
+rewards are shaped by structural advantage.
 
 The focus on the quality of measurement by using structural equation
 techniques such as confirmatory factor analysis and measurement
@@ -671,30 +640,22 @@ and privilege beliefs in students, as previous research has suggested
 that the socialization of meritocracy is a dynamic process that can
 change over time and across school stages
 (\citeproc{ref-liu_does_2025}{C. Liu \& Wang, 2025};
-\citeproc{ref-tang_meritocratic_2025}{Tang et al., 2025}). Besides, it
-opens the door to study further meaningful differences, such the ones
-suggested by Gogescu (\citeproc{ref-gogescu_meritocracy_2025}{2025}) and
-Khan \& Jerolmack (\citeproc{ref-khan_saying_2013}{2013}) for the role
-of gender in the endorsement of meritocratic beliefs, whereby girls tend
-to subscribe more strongly to meritocratic ideals than boys, and the
-role of social class, whereby students from lower socioeconomic
-backgrounds tend to recognize structural constraints more than their
-higher-SES peers.
+\citeproc{ref-tang_meritocratic_2025}{Tang et al., 2025}).
 
 \subsection{This study}\label{this-study}
 
-Building on the previous evidence, we state the following research
+Building on the previous antecedents, we state the following research
 hypotheses:
 
 \textbf{\(H_1\) (Dimensional differentiation)}: Students' meritocratic
 and privilege beliefs can be represented and measured by four distinct
-factors: perceived meritocracy, perceived privilege, meritocratic
+dimensions: perceived meritocracy, perceived privilege, meritocratic
 preferences, and privilege acceptance.
 
 \textbf{\(H_2\) (Beliefs compatibility)}: merit and privilege beliefs
 are not mutually exclusive, but rather compatible orientations that can
-coexist within the same individual. This means that merit and privilege
-indicators would not be negatively associated.
+coexist within the same individual. This means that endorsing merit does
+not necessarily imply rejection of privilege.
 
 \textbf{\(H_3\) (Equivalence)}: The four-factor model is equivalent
 across the two waves of the panel survey and across two students cohorts
@@ -705,27 +666,26 @@ across the two waves of the panel survey and across two students cohorts
 \subsection{Participants}\label{participants}
 
 This study uses secondary data from the 2023 and 2024 waves of the Panel
-Survey on Education and Meritocracy (EDUMER), which examines school-age
-students' beliefs, attitudes, and behaviors regarding meritocracy,
-inequality, and citizenship. The questionnaire was administered to
-sixth-grade and first-year secondary students in nine schools in Chile's
-Metropolitan and Valparaíso regions. Although the sample was
-non-probabilistic and lacked quota controls, a minimum target of 900
-students was set to ensure adequate statistical power. After data
-processing and listwise deletion, the analytical sample included 846
-students in Wave 1 (386 girls, 421 boys, 39 identifying as other;
-\(M_{age}\) = 13.4, \(SD_{age}\) = 1.6) and 662 in Wave 2 (303 girls,
-338 boys, 21 identifying as other; \(M_{age}\) = 14.4, \(SD_{age}\) =
-1.6), yielding a retention rate of 78.3\% (attrition = 21.7\%). The main
-sources of attrition were school transfers between academic years and
-high absenteeism in several schools.
-
-To distinguish students' academic level across waves for multi-group
-invariance analyses, we created a cohort indicator capturing whether the
-respondent belonged to the primary (sixth grade) or secondary
-(first-year secondary) cohort at the time of each survey wave.
-Descriptive statistics by cohort and wave are reported in
-Table~\ref{tbl-cohort}.
+Survey on Education and Meritocracy (EDUMER), funded by the chilean
+National Fund for Scientific and Technological Development (FONDECYT,
+grant 1250518). The panel examines school-age students' beliefs,
+attitudes, and behaviors regarding meritocracy, inequality, and
+citizenship. The questionnaire was administered to sixth-grade and
+ninth-grade students in nine schools in Chile's Metropolitan and
+Valparaíso regions. Although the sample was non-probabilistic and lacked
+quota controls, a minimum target of 900 students was set to ensure
+adequate statistical power. After data processing and listwise deletion,
+the analytical sample included 846 students in Wave 1 (386 girls, 421
+boys, 39 identifying as other; \(M_{age}\) = 13.4, \(SD_{age}\) = 1.6)
+and 662 in Wave 2 (303 girls, 338 boys, 21 identifying as other;
+\(M_{age}\) = 14.4, \(SD_{age}\) = 1.6), yielding a retention rate of
+78.3\% (attrition = 21.7\%). The main sources of attrition were school
+transfers between academic years and high absenteeism in several
+schools. Regarding the students cohorts, the first wave included 406
+sixth-grade students (primary cohort) and 440 ninth-grade students
+(secondary cohort), while the second wave included 319 seventh-grade
+students (primary cohort) and 343 tenth-grade students (secondary
+cohort).
 
 \begin{table}[H]
 
@@ -771,9 +731,10 @@ longitudinal linkage while protecting confidentiality, the survey firm
 generated anonymous unique identifiers for each student, and no directly
 identifying information was included in the analytic files. Following
 the principles of open science, the hypotheses were pre-registered on
-the Open Science Framework (OSF) prior to data collection, and the
-analytic code and data are publicly available on a public Github
-repository .
+the Open Science Framework (OSF) (\url{https://osf.io/hjat2/}) prior to
+data analyses. The analytic code and data are publicly available on a
+public Github repository (available after publication for anonymization
+reasons).
 
 \subsection{Measures}\label{measures}
 
@@ -853,7 +814,7 @@ To address the multidimensional nature of meritocracy conceptual
 framework, we estimated a Confirmatory Factor Analysis (CFA) based on a
 measurement model with four latent factors. The estimation is performed
 using Diagonally Weighted Least Squares with robust correction (WLSMV)
-which is suitable for ordinal items.
+which is suitable for ordinal items
 (\citeproc{ref-kline_principles_2023}{Kline, 2023}). Model fit was
 assessed following the guidelines of Brown
 (\citeproc{ref-brown_confirmatory_2015}{2015}), using several indices:
@@ -874,15 +835,16 @@ first, as a robust test of the measurement model, and second, to ensure
 that the latent constructs allow for valid comparisons across time and
 groups. In this sense, the logic of factorial invariance is that the
 same latent construct should be measured in the same way across time and
-groups, so that any observed differences in the latent construct can be
-attributed to true differences rather than measurement artifacts. In
-this study, we tested for factorial invariance across two panel waves
-(longitudinal invariance) and across school levels (comparing primary
-vs.~secondary students cohorts). The logic of factorial invariance
-testing is to compare a series of nested models with increasing
-constraints, starting from a configural model (same factor structure
-across time or groups) to more restrictive models that constrain factor
-loadings, thresholds/intercepts, and residual variances .
+groups, so that any observed differences can be attributed to true
+differences rather than measurement artifacts. In this study, we tested
+for factorial invariance across two panel waves (longitudinal
+invariance) and across school levels (comparing primary vs.~secondary
+students cohorts). The logic of factorial invariance testing is to
+compare a series of nested models with increasing constraints, starting
+from a configural model (i.e.~same factor structure across time or
+groups) to more restrictive models that constrain factor loadings,
+thresholds/intercepts, and residual variances to be equal across time
+and groups.
 
 We followed recent recommendations for ordered categorical indicators,
 specifically the longitudinal approach of Y. Liu et al.
@@ -896,45 +858,42 @@ as the primary criterion and \(\Delta\)RMSEA as supplementary,
 indicating noninvariance when \(\Delta\)CFI \(\geq\) −0.010 and
 \(\Delta\)RMSEA \(\geq\) 0.015.
 
-All analyses were performed using the \emph{lavaan} package in R version
-4.5.2. The hypotheses of this research were
-\href{https://osf.io/hjat2/}{pre-registered} on the Open Science
-Framework (OSF).
+All analyses were performed using the \emph{lavaan} package
+(\citeproc{ref-rosseel_lavaan_2012}{Rosseel, 2012}) in R version 4.5.2.
 
 \section{Results}\label{results}
 
-This section is organized into three parts, each one referred to
-corresponding three research questions and hypotheses. First, we present
+This section is organized into three parts. First, we present
 descriptive statistics and visualizations of the survey items measuring
 meritocratic perceptions and preferences, as well as perceived privilege
 and its acceptance. Second, we report the results of the confirmatory
 factor analysis (CFA) conducted to evaluate the proposed four-factor
 structure of meritocratic perceptions, meritocratic preferences,
-perceived privilege, and privilege acceptance. Based on these results we
-analyze the associations between the different dimensions of meritocracy
-and privilege, which is at the core of our investigation. Finally, we
-present the results of multigroup analyses to assess measurement
-invariance across cohorts and waves.
+perceived privilege, and privilege acceptance (\(H_1\)). Based on these
+results we analyze the associations between the different dimensions of
+meritocracy and privilege, which is at the core of our investigation
+(\(H_2\)). Finally, we present the results of multigroup analyses to
+assess measurement invariance across cohorts and waves (\(H_3\)).
 
 \subsection{Descriptives}\label{descriptives}
 
 Figure~\ref{fig-likerplot1} displays the response distributions for the
 meritocracy and privilege items by each survey wave, distinguishing
-perceptions from preferences. A clear and stable gap emerges between how
-students perceive social rewards to operate and how they think they
-should operate. In the perception items, agreement is consistently high
-for contacts, parental wealth, and talent, whereas effort displays the
-lowest perception. In the preference items, by contrast, effort is
-overwhelmingly endorsed as the legitimate basis for rewards, exceeding
-by far its perceived role in practice. Noticeably, in terms of
-preferences, is the talent item the one showing the lower frequency,
-being the use of contacts and family resources more preferred than this
-meritocratic stance. Roughly, more that half of respondents in both
-waves express an acceptance of the influence of rich parents and
-contacts, revealing that such privilege criteria are not uniformly seen
-as illegitimate way to get ahead.
+perceptions from preferences. A clear and stable pattern emerges
+regarding how students perceive social rewards to operate and how they
+think they should operate in both waves. In the perception items,
+agreement is consistently high for contacts, parental wealth, and
+talent, whereas effort displays the lowest perception. In the preference
+items, by contrast, effort is overwhelmingly endorsed as the legitimate
+basis for rewards, exceeding by far its perceived role in practice.
+Noticeably, in terms of preferences, is the talent item the one showing
+the lower frequency, being the use of contacts and family resources more
+preferred than this meritocratic stance. Roughly, more that half of
+respondents in both waves express an acceptance of the influence of rich
+parents and contacts, revealing that such privilege criteria are not
+uniformly seen as illegitimate way to get ahead.
 
-\begin{figure}
+\begin{figure}[H]
 
 \caption{\label{fig-likerplot1}Distribution of responses on the scale of
 perceptions and preferences regarding meritocracy by wave}
@@ -947,9 +906,12 @@ perceptions and preferences regarding meritocracy by wave}
 
 \end{figure}%
 
-Regarding the primary and secondary education cohorts, some contrasts
-emerge as seen in Figure~\ref{fig-likerplot2}. In terms of perception,
-the meritocratic items (effort and talent) are the ones with the highest
+Figure~\ref{fig-likerplot2} shows the distribution of responses for the
+same items, but this time by cohort (primary vs.~secondary education).
+Different from the previous analysis by wave, the cohort comparison
+reveals a more pronounced contrast between perceptions and preferences
+regarding meritocracy and privilege. In terms of perception, the
+meritocratic items (effort and talent) are the ones with the highest
 agreement in the youngest cohort and the lowest in the oldest one. At
 the same time, the privilege perceptual items (contacts and family
 wealth) are the ones with the lowest agreement in the youngest cohort
@@ -966,7 +928,7 @@ than rejected in both cohorts. Overall, the cohort comparison reveals a
 widening gap between an effort-centered meritocratic ideal and the
 perceived importance of privilege advantages in practice.
 
-\begin{figure}
+\begin{figure}[H]
 
 \caption{\label{fig-likerplot2}Distribution of responses on the scale of
 perceptions and preferences regarding meritocracy by cohort}
@@ -982,36 +944,21 @@ perceptions and preferences regarding meritocracy by cohort}
 \subsection{Multidimensional measurement of meritocracy and
 privilege}\label{multidimensional-measurement-of-meritocracy-and-privilege}
 
-The eight items described in the previous section are conceptually
-organized into four latent dimensions: meritocratic perceptions,
-meritocratic preferences, perceived privilege, and privilege acceptance.
-Previous research in adult population has shown that these dimensions
-are empirically distinguishable and can be measured with a four-factor
-structure (\citeproc{ref-castillo_multidimensional_2023}{Castillo et
-al., 2023}). In this study, we extend this line of research to the
-adolescent population, examining whether the same four-factor structure
-holds in our sample of students from primary and secondary education
-cohorts (\(H_1\)).
-
 Figure~\ref{fig-general} presents a diagram of the general measurement
-model. The hypothesized four latent dimensions are represented by
-circles in the middle, each corresponding to two observed indicators
-(rectangles) that are expected to load on the corresponding latent
-factor. The arrows indicate the direction of the hypothesized
-relationships, with factor loadings representing the strength of the
-association between each indicator and its latent construct. The model
-also allows for correlations among the four latent factors, reflecting
-the potential interrelationships between meritocratic perceptions,
-meritocratic preferences, perceived privilege, and privilege acceptance.
-The model shows a reasonable --though not fully satisfactory-- fit to
-the data (CFI = 0.97; TLI = 0.94; RMSEA = 0.07). Although the CFI falls
-within commonly accepted ranges, the RMSEA and TLI remain below
-conventional thresholds, indicating that fit is acceptable in some
-respects but not uniformly strong across indices. As we will see later
-on, part of the misfit relates to some differences across cohorts, which
-are explored in the subsequent multigroup analyses.
+model that estimates the four dimensions of meritocracy and privilege
+for both waves and cohorts (pooled sample). The hypothesized four latent
+dimensions are represented by circles in the middle, each corresponding
+to two observed indicators (rectangles) that are expected to load on the
+corresponding latent factor. The model shows a reasonable --though not
+fully satisfactory-- fit to the data (CFI = 0.97; TLI = 0.94; RMSEA =
+0.07). Although the CFI falls within commonly accepted ranges, the RMSEA
+and TLI remain below conventional thresholds, indicating that fit is
+acceptable in some respects but not uniformly strong across indices. As
+we will see later on, part of the misfit relates to some differences
+across cohorts, which are explored in the subsequent multigroup
+analyses.
 
-\begin{figure}
+\begin{figure}[H]
 
 \caption{\label{fig-general}Measurement model diagram (pooled sample)}
 
@@ -1054,75 +1001,49 @@ that perceiving society as more meritocratic is associated with a lower
 recognition of the role of privilege (and vice versa). Some positive
 associations also show a more intuitive pattern, such as the positive
 correlation between meritocratic perceptions and meritocratic
-preferences, suggesting that students who perceive society as more
-meritocratic also tend to endorse meritocratic ideals. The strongest
-association is between privilege perceptions and meritocratic
-preferences, indicating that students who recognize the role of
-privilege in society are also more likely to endorse meritocratic
-ideals. However, other correlations suggest relationships that are less
-straightforward, as for instance the positive correlation between
-meritocratic preferences and privilege acceptance, which may indicate
-that despite perceiving meritocracy, students may still accept the
-legitimacy of privilege advantages. Something similar occurs with
-positive association between meritocratic and privilege preferences,
-which may suggest that students who endorse meritocratic ideals may also
-recognize the legitimacy of privilege advantages. Although these last
-correlations are modest in size, they highlight the complexity of
-students' beliefs about meritocracy and privilege, suggesting that these
-dimensions are not simply opposites but rather can coexist in students
-minds without necessarily undermining one another.
+preferences -- similar to evidende in adult population as in Castillo et
+al. (\citeproc{ref-castillo_multidimensional_2023}{2023}) --, suggesting
+that students who perceive society as more meritocratic also tend to
+endorse meritocratic ideals. The strongest association is between
+privilege perceptions and meritocratic preferences, indicating that
+students who recognize the role of privilege in society are also more
+likely to endorse meritocratic ideals. However, other correlations
+suggest relationships that are less straightforward, as for instance the
+positive correlation between meritocratic preferences and privilege
+acceptance, which may indicate that despite perceiving meritocracy,
+students may still accept the legitimacy of privilege advantages.
+Something similar occurs with positive association between meritocratic
+and privilege preferences, which may suggest that students who endorse
+meritocratic ideals may also recognize the legitimacy of privilege
+advantages. Although these last correlations are modest in size, they
+highlight the complexity of students' beliefs about meritocracy and
+privilege, suggesting that these dimensions are not simply opposites but
+rather can coexist in students minds without necessarily undermining one
+another.
 
 \subsection{Stability of meritocracy and privilege
 beliefs}\label{stability-of-meritocracy-and-privilege-beliefs}
 
-This section objective is twofold. On the one hand, we aim at testing
-the validity of the measurement model through an assessment of it
-stability over time and cohorts. For this, we perform an assessment of
-model equivalence or \emph{invariance}, which is a form of robustness
-check that allows us to determine whether the latent constructs are
-being measured in the same way across different groups or time points.
-Such evidence is crucial for ensuring that any observed differences in
-the latent constructs are not due to measurement artifacts but rather
-reflect valid differences
-(\citeproc{ref-putnick_measurement_2016}{Putnick \& Bornstein, 2016}) .
-The test of the equivalence of parameters in a confirmatory factor
-analysis follows a hierarchical approach, starting with configural
-invariance (same factor structure across groups or time points), then
-weak invariance (equal factor loadings), strong invariance (equal
-intercepts), and finally strict invariance (equal residual variances).
-Each level of invariance provides increasingly stringent evidence that
-the measurement model is stable across groups or time points. In this
-study, we first test for longitudinal invariance across the two waves of
-data collection, and then we test for cohort invariance between primary
-and secondary education students.
-
 \subsubsection{Longitudinal invariance}\label{longitudinal-invariance}
 
 Table~\ref{tbl-longinv} reports the results of the longitudinal
-invariance tests. The logic of longitudinal invariance is to apply
-sequential constraints to the model parameters across time, in order to
-check to what extent the parameters are invariant across time. This is
-basically taking the two measurement points as two comparing groups, but
-in this case, the groups are the same individuals measured at two
-different time points, which is incorporated in the model by correlating
-the unique item variances. The table shows the fit indices for the
-configural, weak (metric), strong (scalar), and strict invariance
-models, along with the chi-square difference tests comparing each nested
-model. Overall, the scale achieved the strongest level of invariance
-(strict invariance) across the two waves. The strict model showed good
-fit, \(\chi^2\)(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90\% CI:
+invariance tests. Longitudinal invariance is a particular case of group
+comparison, whereby the groups are the same individuals measured at two
+different time points -- which is controlled in the model by correlating
+the unique item variances (\citeproc{ref-widaman_factorial_2010}{Widaman
+et al., 2010}). The table shows the fit indices for the configural, weak
+(metric), strong (scalar), and strict invariance models, along with the
+chi-square difference tests comparing each nested model. Overall, the
+scale achieved the strongest level of invariance (strict invariance)
+across the two waves. The strict model showed good fit indexes,
+\(\chi^2\)(84) = 130.17, CFI = 0.991, RMSEA = 0.031 (90\% CI:
 0.020--0.040). Moreover, compared with the strong (scalar) model, the
 deterioration in fit was negligible: \(\Delta \chi^2\)(4) = 1.635,
 \(\Delta\)CFI = 0.000, and \(\Delta\)RMSEA = -0.002. These differences
 fall well within commonly used cutoffs for invariance evaluation
 (\citeproc{ref-chen_sensitivity_2007}{Chen, 2007}), indicating that
 constraining residual variances in addition to loadings and
-thresholds/intercepts is tenable. Substantively, this implies that the
-item--factor relations are stable over time (metric invariance) and
-that, for a given level of the latent trait, respondents are expected to
-endorse the same response categories across waves (scalar invariance),
-supporting the comparability of scores and latent parameters within
-students over time.
+thresholds/intercepts is tenable.
 
 \begin{table}[H]
 
@@ -1153,15 +1074,64 @@ Strict & 130.17 (84) & 0.991 & 0.031
 
 \end{table}%
 
-As an additional diagnostic, we used univariate score tests to identify
-potential sources of localized misfit at each step of the invariance
-hierarchy. The tests revealed no meaningful violations of the imposed
-equality constraints, suggesting that model fit was not driven by a
-small subset of parameters. Global score tests and the smallest p-values
-at each step are reported in the Supplementary Material. Based on these
-results, we conclude that the measurement model is stable over time, and
-that the latent constructs are being measured in the same way across the
-two waves of data collection.
+Substantively, achieving longitudinal invariance for the model of
+perceptions and preferences for meritocracy and privilege implies that
+the instrument allows the comparability of scores and latent parameters
+within students over time. This means that any observed changes in
+students' scores can be interpreted as true changes in their beliefs
+rather than artifacts of measurement differences. In order to compare
+changes over time, Table~\ref{tbl-latmeans} reports the latent means of
+the four dimensions in each wave, estimated from the strict invariance
+model, in which the means of wave 1 are fixed to zero as the reference
+and those of wave 2 are freely estimated; the wave 2 estimate is
+therefore the change in the mean of each dimension between waves, which
+is tested with a Wald test. Latent means are expressed in the metric of
+the first indicator of each factor, so the last column reports the
+change in standard deviation units of the wave 1 latent distribution.
+None of the four dimensions changed significantly between waves (all
+adjusted \(p\) \textgreater{} .30). Perceived meritocracy declined
+slightly (\(\Delta\) = −0.29, \(p\) = .118, \(d\) = −0.14) and perceived
+privilege increased slightly (\(\Delta\) = 0.15, \(p\) = .080, \(d\) =
+0.13), a direction compatible with a growing perception of privilege,
+but neither difference is reliably different from zero. Preferences were
+practically unchanged, both for meritocracy (\(\Delta\) = −0.08, \(p\) =
+.458) and for the acceptance of privilege (\(\Delta\) = −0.12, \(p\) =
+.119). Overall, students' beliefs about meritocracy and privilege were
+stable over the period, with at most small shifts in the perception of
+how rewards operate.
+
+\begin{table}[H]
+
+\caption{\label{tbl-latmeans}Latent means of meritocracy and privilege
+dimensions by wave}
+
+\centering{
+
+\centering\begingroup\fontsize{9.5}{11.5}\selectfont
+
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}{>{\raggedright\arraybackslash}p{5.5cm}cccccc}
+\toprule
+Dimension & Wave 1 & Wave 2 (SE) & $z$ & $p$ & $p$ (Holm) & $d$\\
+\midrule
+Perceived meritocracy (effort and talent) & 0 (ref.) & -0.286 (0.183) & -1.56 & .118 & .354 & -0.14\\
+Perceived privilege (rich parents and contacts) & 0 (ref.) & 0.149 (0.085) & 1.75 & .080 & .320 & 0.13\\
+Preference for meritocracy (effort and talent) & 0 (ref.) & -0.075 (0.101) & -0.74 & .458 & .458 & -0.08\\
+Acceptance of privilege (rich parents and contacts) & 0 (ref.) & -0.115 (0.074) & -1.56 & .119 & .354 & -0.10\\
+\bottomrule
+\end{tabular}}
+\endgroup{}
+
+}
+
+\end{table}%
+
+\vspace{-1.2em}\footnotesize \emph{Note:} Latent means from the strict
+longitudinal invariance model (\(N\) = 591); wave 1 means are fixed to 0
+(reference). Wave 2 estimates are the wave 2 − wave 1 differences,
+tested with Wald tests; \(p\) (Holm) adjusts for the four comparisons.
+\(d\) = difference divided by the latent standard deviation in wave 1.
+\par\normalsize
 
 \subsection{Cohorts comparability}\label{cohorts-comparability}
 
@@ -1169,27 +1139,23 @@ Table~\ref{tbl-cohortinv} reports the results of the cross-cohort
 (multigroup) invariance tests comparing primary and secondary students.
 As in the longitudinal case, the sequence starts from a configural
 model, which imposes the same four-factor structure in both cohorts but
-lets all parameters vary freely, and then adds equality constraints on
-factor loadings (weak invariance) and on loadings and item thresholds
-(strong invariance). Since the indicators are ordinal, thresholds play
-the role that intercepts play for continuous items. The configural model
-shows a good fit, \(\chi^2\)(28) = 47.65, CFI = 0.991, RMSEA = 0.041,
-indicating that the same four-factor structure holds in both cohorts.
-However, the scale did not achieve weak invariance: constraining the
-factor loadings to be equal significantly worsened fit,
-\(\Delta \chi^2\)(4) = 20.77, \(p\) \textless{} .001. This means that
-the relationship between the latent factors and their indicators differs
-between primary and secondary students, which could be due to
-developmental differences or differences in how the items are
-interpreted across cohorts. An additional analysis following the
-alternative sequence proposed by Svetina et al.
+lets all parameters vary freely, and then progresivelly adds equality
+constraints on factor loadings (weak invariance) and on loadings and
+item thresholds (strong invariance). Since the indicators are ordinal,
+thresholds play the role that intercepts play for continuous items. The
+configural model shows a good fit, \(\chi^2\)(28) = 47.65, CFI = 0.991,
+RMSEA = 0.041, indicating that the same four-factor structure holds in
+both cohorts (using data of wave 1). However, the scale did not achieve
+weak invariance: constraining the factor loadings to be equal
+significantly worsened fit, \(\Delta \chi^2\)(4) = 20.77, \(p\)
+\textless{} .001. An additional analysis following the alternative
+sequence proposed by Svetina et al.
 (\citeproc{ref-svetina_multiplegroup_2020}{2020}), which tests the
 equivalence of thresholds before loadings, led to the same conclusion:
 invariance between primary and secondary students was not achieved
-either (see supplementary materials).
-
-The changes in CFI (\(\Delta\)CFI = −0.009) and RMSEA (\(\Delta\)RMSEA =
-0.013) are close to, though still within, the conventional cutoffs
+either (see supplementary material). The changes in CFI (\(\Delta\)CFI =
+−0.009) and RMSEA (\(\Delta\)RMSEA = 0.013) are close to, though still
+within, the conventional cutoffs
 (\citeproc{ref-chen_sensitivity_2007}{Chen, 2007}), so at the global
 level the evidence against loading invariance is not overwhelming.
 Adding the threshold constraints worsened fit further,
@@ -1235,6 +1201,11 @@ preceding one in its block (partial loadings: vs.~configural).
 
 \end{table}%
 
+*** This means that the relationship between the latent factors and
+their indicators differs between primary and secondary students, which
+could be due to developmental differences or differences in how the
+items are interpreted across cohorts.
+
 To identify the source of non-invariance, we inspected univariate score
 tests for each equality constraint on the loadings. Unlike in the
 longitudinal case, the misfit was concentrated in a single parameter:
@@ -1253,42 +1224,37 @@ preferences factor is defined mainly by the preference for talent as a
 criterion of reward (standardized loading = 0.87) and much less by the
 preference for effort (0.45). In secondary school the pattern reverses:
 effort becomes the core of the factor (0.83) whereas talent is only
-weakly related to it (0.37). Thus, younger students seem to treat effort
-and talent as two sides of the same meritocratic ideal, whereas older
-students distinguish them, with effort remaining the central
-meritocratic criterion and talent becoming a more separate
-consideration, plausibly as inherited or unearned advantages become more
-salient with age. This indicates that the meritocratic preferences
-factor does not carry an equivalent meaning across cohorts, which may
-reflect a change in how students interpret meritocratic beliefs over the
-school years. Consequently, comparisons of the factor's levels between
-cohorts should be interpreted with caution. In contrast, the loadings
-for the perceptions of meritocracy and for both privilege factors are
-equivalent across cohorts.
+weakly related to it (0.37). This indicates that the meritocratic
+preferences factor does not carry an equivalent meaning across cohorts,
+which may reflect a change in how students interpret meritocratic
+beliefs over the school years. Consequently, comparisons of the factor's
+levels between cohorts should be interpreted with caution. In contrast,
+the loadings for the perceptions of meritocracy and for both privilege
+factors are equivalent across cohorts.
 
 Even after freeing this loading, adding the threshold constraints
 significantly worsened fit (\(\Delta \chi^2\)(8) = 42.72, \(p\)
-\textless{} .001; \(\Delta\)CFI = −0.014), so strong invariance was not
-achieved. In this case, the source is different: univariate score tests
-point to the thresholds of the perceived effort item, for which all
-three constraints are violated (\(\chi^2\)(1) between 11.6 and 11.9;
+\textless{} .001; \(\Delta\)CFI = −0.014), so strong invariance was also
+not achieved. In this case, the source is different: univariate score
+tests point to the thresholds of the perceived effort item, for which
+all three constraints are violated (\(\chi^2\)(1) between 11.6 and 11.9;
 Holm-adjusted \(p\) between .015 and .017), whereas no threshold of any
 other item shows meaningful misfit (adjusted \(p\) \textgreater{} .99).
 Substantively, students in the two cohorts use the response categories
 of this item differently for a given level of perceived meritocracy,
-which is consistent with the descriptive differences reported above (see
-Figure~\ref{fig-likerplot2}): secondary students are more likely to
-endorse the lowest response category when judging whether effort is
-rewarded in society, suggesting that they apply a different criteria.
-Taken together, only partial weak invariance holds, and comparisons of
-latent means across cohorts, in particular for meritocratic perceptions,
-should be interpreted with caution.
+which is consistent with the differences reported in the descriptive
+section (see Figure~\ref{fig-likerplot2}): secondary students are more
+likely to endorse the lowest response category when judging whether
+effort is rewarded in society, suggesting that they apply a different
+criteria. Taken together, only partial weak invariance holds, and
+comparisons of latent means across cohorts, in particular for
+meritocratic perceptions, should be interpreted with caution.
 
 \section{Discussion}\label{discussion}
 
 Meritocracy and privilege are often treated as opposite poles of a
 single continuum, but the present study shows that they are better
-understood as distinct dimensions that coexist in students' beliefs,
+understood as distinct dimensions that coexist in students' minds,
 similar to what has been found in adult population
 (\citeproc{ref-castillo_multidimensional_2023}{Castillo et al., 2023}).
 Our first hypothesis proposed that students' meritocratic beliefs would
@@ -1296,13 +1262,10 @@ be best represented by four distinct dimensions: perceived meritocracy,
 perceived privilege, meritocratic preferences, and privilege acceptance.
 Such framework is consistent with the distinction between descriptive
 and normative beliefs, and with the idea that meritocratic and
-privilege-based principles are not mutually exclusive. Such proposal
-attempts to offer a comprehensive framework for understanding how
-students perceive and evaluate fairness in society, and how they relate
-to the structural conditions that shape their opportunities. The
-assessment of the conceptual model of meritocracy and privilege beliefs
-initially supports this expectation expressed in \(H_1\): the four
-latent constructs are identifiable in the school-aged population, with
+privilege-based principles are not mutually exclusive. The assessment of
+the conceptual model of meritocracy and privilege beliefs initially
+supports this expectation expressed in \(H_1\): the four latent
+constructs are identifiable in the school-aged population, with
 satisfactory model fit and strong factor loadings in the two waves
 analyzed. Consistent with previous evidence
 (\citeproc{ref-castillo_multidimensional_2023}{Castillo et al., 2023}),
@@ -1325,10 +1288,10 @@ coexistence of these orientations reflects how students actually
 navigate competing narratives about fairness and reward, rather than an
 artifact of survey design.
 
-The empirical separability of these dimensions has substantive
-implications for how meritocratic beliefs are understood and measured
-(\citeproc{ref-kwon_multidimensionality_2024}{Kwon \& Pandian, 2024};
-\citeproc{ref-mijs_visualizing_2026}{Mijs, 2026};
+The empirical separability of meritocracy and privilege dimensions has
+substantive implications for how meritocratic beliefs are understood and
+measured (\citeproc{ref-kwon_multidimensionality_2024}{Kwon \& Pandian,
+2024}; \citeproc{ref-mijs_visualizing_2026}{Mijs, 2026};
 \citeproc{ref-zhu_meritocratic_2025}{Zhu, 2025}), as proposed in
 \(H_2\). First, perceived privilege is positively associated with
 stronger meritocratic preferences, which is consistent with a
@@ -1365,17 +1328,8 @@ legitimation, weaker support for redistribution, and greater acceptance
 of unequal access to educational resources
 (\citeproc{ref-batruch_belief_2022}{Batruch et al., 2022};
 \citeproc{ref-castillo_socialization_2024}{Castillo et al., 2024};
-\citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et al., 2015}), while
-among teachers and parents, similar beliefs predict competitive
-classroom practices and lower demand for equity-oriented policies
-(\citeproc{ref-darnon_competitive_2023}{Darnon et al., 2023}). A
-particularly relevant finding is that perceived, but not preferred,
-school meritocracy predicts lower support for egalitarian and inclusive
-educational interventions (\citeproc{ref-darnon_belief_2018}{Darnon,
-Smeding, et al., 2018}), and that belief in school meritocracy is
-associated with greater acceptance of social-class achievement gaps
-(\citeproc{ref-darnon_where_2018}{Darnon, Wiederkehr, et al., 2018}).
-However, most of this research relies on unidimensional or
+\citeproc{ref-wiederkehr_belief_2015}{Wiederkehr et al., 2015}).
+However, most of such research has relied on unidimensional or
 undifferentiated measures, which means it cannot establish whether these
 effects are specific to particular dimensions or reflect a more general
 meritocratic orientation. Our findings suggest that these documented
@@ -1385,13 +1339,14 @@ consequences as perceived privilege or privilege acceptance. Chauvin et
 al. (\citeproc{ref-chauvin_school_2026}{2026}) similarly highlight
 multidimensionality by distinguishing ability and equity, but their
 measure remains confined to perceived meritocracy and applies only to
-teachers. What the present study adds is a validated four-factor
-structure applicable to students, which provides the measurement
-foundation needed to examine whether distinct dimensions of meritocratic
-belief carry distinct consequences for the educational environment, from
-students' sense of justice in school to civic attitudes and the broader
-climate of fairness, a question the existing literature has not yet been
-able to address with adequate precision.
+teachers. What the present study adds evidence that supports a
+multidimensional measurement of meritocratic and privilege beliefs
+applicable to students, which provides a model to examine whether
+distinct dimensions of meritocratic belief carry distinct consequences
+for the educational environment, from students' sense of justice in
+school to civic attitudes and the broader climate of fairness, a
+question the existing literature has not yet been able to address with
+adequate precision.
 
 Our third hypothesis concerned the robustness and equivalence of the
 meritocracy and privilege beliefs model over time and across cohorts
@@ -1403,10 +1358,10 @@ al., 2017}; \citeproc{ref-putnick_measurement_2016}{Putnick \&
 Bornstein, 2016}; \citeproc{ref-vandeschoot_editorial_2015}{Van De
 Schoot et al., 2015}). It also suggests that meritocratic belief
 structures are fairly stable over one year in early-to-mid adolescence,
-and it gives later studies a sound measurement basis. We also note that
-the link between perceived privilege and meritocratic preferences may
-depend on how fair the school system is experienced to be
-(\citeproc{ref-liu_does_2025}{C. Liu \& Wang, 2025}). However,
+and it gives further studies in this agenda a sound measurement basis.
+We also noted that the link between perceived privilege and meritocratic
+preferences may depend on how fair the school system is experienced to
+be (\citeproc{ref-liu_does_2025}{C. Liu \& Wang, 2025}). However,
 invariance across educational levels was not supported. The
 non-invariance is concentrated in preferred meritocracy, in how students
 read whether effort is rewarded. We do not consider this finding
@@ -1414,24 +1369,18 @@ reducible to a mere measurement failure. Rather, we interpret it as
 students attaching different meanings to ``effort is rewarded'', linked
 to adolescents' more sophisticated reasoning about fairness and to their
 growing exposure to school sorting such as grades, tracking and peer
-comparison; this pattern is reinforced by a decline in the preference
+comparison. This pattern is reinforced by a decline in the preference
 for talent as students progress through school, which may reflect a
 gradual process of disenchantment with inherited attributes, a kind of
 ``reality shock'' (\citeproc{ref-allen_top_2016}{Allen, 2016};
 \citeproc{ref-henry_development_2006}{Henry \& Saul, 2006};
 \citeproc{ref-resh_sense_2014}{Resh \& Sabbagh, 2014};
-\citeproc{ref-tang_meritocratic_2025}{Tang et al., 2025}). This could be
-related to Chile's stratified system, where the gap between meritocratic
-discourse and structural reality can be experienced as a moral grievance
-(\citeproc{ref-neutaguayo_neoliberalism_2025}{Neut Aguayo et al.,
-2025}), but further research in different contexts could help shading
-light into this issue. Next studies should use stage-sensitive items and
-partial-invariance approaches instead of assuming that meritocracy
-scales travel across school levels
-(\citeproc{ref-putnick_measurement_2016}{Putnick \& Bornstein, 2016};
-\citeproc{ref-vandeschoot_checklist_2012}{Van De Schoot et al., 2012}),
-and practitioners should calibrate efforts to build a shared sense of
-fairness to students' developmental stage.
+\citeproc{ref-tang_meritocratic_2025}{Tang et al., 2025}). Such finding
+could be related to Chile's stratified system, where the gap between
+meritocratic discourse and structural reality can be experienced as a
+moral grievance (\citeproc{ref-neutaguayo_neoliberalism_2025}{Neut
+Aguayo et al., 2025}), but further research in different contexts could
+help shading light into this issue.
 
 \section{Conclusions}\label{conclusions}
 
@@ -1465,57 +1414,6 @@ in school-aged populations, as a precondition for studying their
 developmental trajectory and educational implications (such as for
 instance gender and/or social class differences) in future studies.
 
-The results support a four-dimensional structure of merit and privilege
-beliefs: perceived meritocracy, perceived privilege, meritocratic
-preferences, and privilege acceptance. It shows that Chilean adolescents
-differentiate perceptions from preferences and meritocratic from
-privilege-based principles, and that merit endorsement can coexist with
-recognition of structural advantage. Consistent with this, perceived
-privilege is positively associated with meritocratic preferences,
-suggesting that recognizing unfair advantages could lead to demands that
-rewards should follow merit, a normative-reactive pattern that
-unidimensional instruments would obscure
-(\citeproc{ref-castillo_multidimensional_2023}{Castillo et al., 2023}).
-The measurement structure is longitudinally invariant within students,
-providing a reliable basis for interpreting over-time change as
-substantive rather than artifactual. At the same time, cross-cohort
-non-invariance is itself a substantive finding rather than merely a
-technical caveat: comparisons across educational stages require caution
-because the preference for that ``effort is rewarded'' does not carry
-the same meaning for primary and secondary students. This measurement
-heterogeneity is theoretically consistent with developmental accounts in
-which cumulative schooling experience progressively reshapes how
-students interpret meritocratic signals
-(\citeproc{ref-allen_top_2016}{Allen, 2016};
-\citeproc{ref-tang_meritocratic_2025}{Tang et al., 2025}), and it calls
-for stage-sensitive item formulations in future work rather than
-treating the current scale as directly comparable across levels.
-
-More broadly, these findings sharpen the way the literature should
-interpret the effects of meritocracy in educational contexts. When
-measures conflate perceptions with preferences or collapse merit and
-privilege into a single continuum, they blur substantively different
-belief profiles and yield ambiguous conclusions about whether
-meritocracy is high, low, or declining
-(\citeproc{ref-reynolds_perceptions_2014a}{Reynolds \& Xian, 2014};
-\citeproc{ref-zhu_meritocratic_2025}{Zhu, 2025}). Part of what is often
-interpreted as a change in belief in meritocracy may instead reflect
-shifting recognition of structural constraints rather than a
-straightforward decline in merit endorsement, an interpretation
-consistent with recent education-focused accounts of dual consciousness
-(\citeproc{ref-liu_does_2025}{C. Liu \& Wang, 2025};
-\citeproc{ref-tang_meritocratic_2025}{Tang et al., 2025}). While
-typological approaches have documented the coexistence of apparently
-contrasting beliefs in educational settings
-(\citeproc{ref-kwon_multidimensionality_2024}{Kwon \& Pandian, 2024};
-\citeproc{ref-zhu_meritocratic_2025}{Zhu, 2025}), the present study
-shows how that coexistence can be represented within a coherent
-measurement model that supports longitudinal inference. The combination
-of strict longitudinal invariance and cross-level non-invariance
-establishes a key boundary condition: within-student comparisons over
-time are warranted, whereas comparisons across school stages must
-account for the shifting meaning of perceived meritocracy.
-
 Although this study draws on a single country, its contributions carry
 implications beyond the Chilean case. Three findings are likely to
 travel across educational systems. First, the conceptual distinction
@@ -1544,64 +1442,32 @@ stratification profiles will help clarify which aspects of measurement
 equivalence are universal and which are conditioned by institutional
 features.
 
-\{==The findings carry distinct implications for three
-audiences==\}\{\textgreater\textgreater Andreas\_Laffert: Esto viene de
-la version anterior, donde el journal buscaba implicancias concretas. No
-se si aplique para este nuevo caso, pues si bien hace mucho sentido,
-ocupa bastante espacio en comparacion aqui en comparacion a como se
-aborda antes\textless\textless\}. For researchers, the results
-underscore the importance of treating meritocratic beliefs as
-multidimensional and of routinely testing measurement invariance before
-making developmental or cross-group comparisons. This matters
-particularly for equity-oriented research: if measurement models are not
-equivalent across socioeconomic or generational groups, observed
-differences in meritocracy may partly reflect differential item
-interpretation rather than genuine attitudinal divergence,
-misattributing to individuals what may be a structural artifact of how
-inequality shapes the meaning of merit. For practitioners, including
-teachers, school counselors, and those who design civic and citizenship
-education, the coexistence of merit endorsement and recognition of
-privilege suggests that students are not passive recipients of
-meritocratic ideals but actively navigate tensions between what schools
-tell them about fairness and what they observe in practice. This has
-direct relevance for civic education and for school climate: rather than
-simply reinforcing effort-based narratives or, conversely, dismantling
-them, educators can engage students' existing dual awareness as a
-starting point for discussing how merit and privilege coexist, helping
-cultivate a more critical and grounded sense of justice. Because the
-meanings students attach to effort and reward shift across school
-stages, such efforts need to be calibrated to students' developmental
-moment rather than applied uniformly. For policymakers concerned with
-equity, the finding that perceived privilege is positively associated to
-meritocratic preferences carries a specific message: students who
-recognize that rewards do not follow merit do not abandon the ideal of
-fairness but demand it more strongly. Educational systems that maintain
-a strong meritocratic discourse while visibly reproducing inequality
-risk widening the gap between what they promise and what students
-experience, with potential consequences for students' sense of justice
-in school, their trust in educational institutions, and their broader
-civic engagement.
-
-This study has limitations that point to clear directions for future
-research. The tested measurement scale is deliberately minimalist, with
-two items per factor, which constrains content coverage and reliability
-and means that claims about subtle within-dimension differences should
-be treated with caution. With only two waves and two school levels,
-additional waves and broader age coverage are needed to better trace
-developmental trajectories and identify when shifts in meaning in
-perceived meritocracy occur. Cross-level non-invariance calls for
-differential item functioning analyses and stage-sensitive item
-formulations to support comparability across educational stages. Most
-importantly, future research should examine how perceptions and
-preferences of meritocratic and privilege-based principles relate to the
-outcomes for which they are most likely to matter in school: students'
-sense of justice and fairness, civic attitudes and engagement, school
-climate, and wellbeing, alongside academic motivation. By providing an
-empirically supported and longitudinally invariant multidimensional
-measure for adolescents, this study offers a more reliable, if still
-provisional, foundation for studying how school-based meritocratic
-socialization shapes students' interpretations of fairness and
-inequality.
+This study has several limitations that also point to directions for
+future research. First, the measurement scale relies on two items per
+factor, which restricts both content coverage and reliability;
+inferences about fine-grained distinctions within dimensions should
+therefore be drawn with caution. Second, the design comprises only two
+waves and two school levels. Additional waves and a broader age range
+are needed to trace developmental trajectories more precisely and to
+establish when the meaning students attach to meritocracy begins to
+shift. Third, and most consequentially, the lack of measurement
+invariance across school cohorts indicates that meritocracy scales
+cannot be assumed to function equivalently between educational stages.
+Future studies should therefore examine differential item functioning,
+develop stage-sensitive item formulations, and adopt partial-invariance
+approaches to establish comparability
+(\citeproc{ref-putnick_measurement_2016}{Putnick \& Bornstein, 2016};
+\citeproc{ref-vandeschoot_checklist_2012}{Van De Schoot et al., 2012}).
+Addressing these issues would, in turn, allow for a more rigorous
+examination of substantively meaningful group differences, such as the
+gender differences in the endorsement of meritocratic beliefs suggested
+by Gogescu (\citeproc{ref-gogescu_meritocracy_2025}{2025}) and Khan \&
+Jerolmack (\citeproc{ref-khan_saying_2013}{2013}). Furthermore, it would
+also make it possible to examine how beliefs about merit and privilege
+relate to the school outcomes for which they are likely to matter most:
+students' sense of justice and fairness, civic attitudes and engagement,
+perceptions of school climate, and wellbeing, in addition to academic
+motivation.
 
 \section{References}\label{references}
 
@@ -1693,12 +1559,6 @@ meritocracy are related to their daily practices with students.
 \emph{Social Psychology of Education}, \emph{26}(6), 1789--1805.
 \url{https://doi.org/10.1007/s11218-023-09824-9}
 
-\bibitem[\citeproctext]{ref-darnon_belief_2018}
-Darnon, C., Smeding, A., \& Redersdorff, S. (2018). Belief in school
-meritocracy as an ideological barrier to the promotion of equality.
-\emph{European Journal of Social Psychology}, \emph{48}(4), 523--534.
-\url{https://doi.org/10.1002/ejsp.2347}
-
 \bibitem[\citeproctext]{ref-darnon_where_2018}
 Darnon, C., Wiederkehr, V., Dompnier, B., \& Martinot, D. (2018).
 {``Where there is a will, there is a way''}: Belief in school
@@ -1788,12 +1648,6 @@ socialización política. \emph{Revista Latinoamericana de Ciencias
 Sociales, Niñez y Juventud}, \emph{13}(2).
 \url{https://doi.org/10.11600/1692715x.1329071114}
 
-\bibitem[\citeproctext]{ref-janmaat_subjective_2013}
-Janmaat, J. G. (2013). Subjective inequality: A review of international
-comparative studies on people's views about inequality. \emph{European
-Journal of Sociology}, \emph{54}(3), 357--389.
-\url{https://doi.org/10.1017/S0003975613000209}
-
 \bibitem[\citeproctext]{ref-jost_decade_2004a}
 Jost, J. T., Banaji, M. R., \& Nosek, B. A. (2004). A decade of system
 justification theory: Accumulated evidence of conscious and unconscious
@@ -1882,11 +1736,6 @@ and their implications for justice in education. \emph{Social Justice
 Research}, \emph{29}(1), 14--34.
 \url{https://doi.org/10.1007/s11211-014-0228-0}
 
-\bibitem[\citeproctext]{ref-mijs_paradox_2019}
-Mijs, J. (2019). The paradox of inequality: Income inequality and belief
-in meritocracy go hand in hand. \emph{Socio-Economic Review},
-\emph{19}(1), 7--35. \url{https://doi.org/10.1093/ser/mwy051}
-
 \bibitem[\citeproctext]{ref-mijs_paradox_2021}
 Mijs, J. (2021). The paradox of inequality: Income inequality and belief
 in meritocracy go hand in hand. \emph{Socio-Economic Review},
@@ -1923,10 +1772,9 @@ Resh, N., \& Sabbagh, C. (2014). Sense of justice in school and civic
 attitudes. \emph{Social Psychology of Education}, \emph{17}(1), 51--72.
 \url{https://doi.org/10.1007/s11218-013-9240-8}
 
-\bibitem[\citeproctext]{ref-reynolds_perceptions_2014a}
-Reynolds, J., \& Xian, H. (2014). Perceptions of meritocracy in the land
-of opportunity. \emph{Research in Social Stratification and Mobility},
-\emph{36}, 121--137. \url{https://doi.org/10.1016/j.rssm.2014.03.001}
+\bibitem[\citeproctext]{ref-rosseel_lavaan_2012}
+Rosseel, Y. (2012). Lavaan: An r package for structural equation
+modeling. \emph{Journal of Statistical Software}, \emph{48}(2), 1--36.
 
 \bibitem[\citeproctext]{ref-sandel_tyranny_2020}
 Sandel, M. J. (2020). \emph{The tyranny of merit: What's become of the
@@ -1987,6 +1835,13 @@ Van De Werfhorst, H. G. (2024). Is meritocracy not so bad after all?
 Educational expansion and intergenerational mobility in 40 countries.
 \emph{American Sociological Review}, \emph{89}(6), 1181--1213.
 \url{https://doi.org/10.1177/00031224241292352}
+
+\bibitem[\citeproctext]{ref-widaman_factorial_2010}
+Widaman, K. F., Ferrer, E., \& Conger, R. D. (2010). Factorial
+invariance within longitudinal structural equation models: Measuring the
+same construct across time. \emph{Child Development Perspectives},
+\emph{4}(1), 10--18.
+\url{https://doi.org/10.1111/j.1750-8606.2009.00110.x}
 
 \bibitem[\citeproctext]{ref-wiederkehr_belief_2015}
 Wiederkehr, V., Bonnot, V., Krauth-Gruber, S., \& Darnon, C. (2015).

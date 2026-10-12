@@ -141,20 +141,6 @@
  
 
 
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{wrapfig}
-\usepackage{float}
-\usepackage{colortbl}
-\usepackage{pdflscape}
-\usepackage{tabu}
-\usepackage{threeparttable}
-\usepackage{threeparttablex}
-\usepackage[normalem]{ulem}
-\usepackage{makecell}
-\usepackage{xcolor}
 \usepackage[noblocks]{authblk}
 % packages needed by kableExtra tables (not recorded when chunks are cached)
 \usepackage{float}
@@ -223,29 +209,15 @@
 school-age? A longitudinal equivalence approach}
 
 
-  \author{Juan Carlos Castillo}
-            \affil{%
-                  Department of Sociology, University of Chile
-              }
-        \author{Tomás Urzúa}
-            \affil{%
-                  Department of Sociology, University of Chile
-              }
-        \author{Andreas Laffert}
-            \affil{%
-                  Institute of Sociology, Pontifical Catholic University
-                  of Chile
-              }
-        \author{René Canales}
-            \affil{%
-                  Institute of Sociology, Pontifical Catholic University
-                  of Chile
-              }
-        \author{Kevin Carrasco}
-            \affil{%
-                  Department of Sociology, University of Chile
-              }
-      
+  \author[1]{Juan Carlos Castillo}
+  \author[1]{Tomás Urzúa}
+  \author[2]{Andreas Laffert}
+  \author[3]{René Canales}
+  \author[1]{Kevin Carrasco}
+  \affil[1]{Department of Sociology, University of Chile}
+  \affil[2]{University of Konstanz, Germany}
+  \affil[3]{University of Bremen, Germany}
+
 \date{}
 \begin{document}
 \maketitle
@@ -272,6 +244,13 @@ invariance · Socialization · Chile
 
 
 \setstretch{1.5}
+\textbf{Corresponding author}: Juan Carlos Castillo, Department of
+Sociology, University of Chile, Santiago, Chile. Email:
+juancastillov@uchile.cl
+
+\textbf{Funding}: This study was funded by the chilean National Fund for
+Scientific and Technological Development (FONDECYT, grant 1250518)
+
 \section{Introduction}\label{introduction}
 
 The way in which children and youths come to understand who succeeds in
@@ -686,14 +665,22 @@ grant 1250518). The panel examines school-age students' beliefs,
 attitudes, and behaviors regarding meritocracy, inequality, and
 citizenship. The questionnaire was administered to sixth-grade and
 ninth-grade students in nine schools in Chile's Metropolitan and
-Valparaíso regions. Although the sample was non-probabilistic and lacked
-quota controls, a minimum target of 900 students was set to ensure
-adequate statistical power. After data processing and listwise deletion,
-the analytical sample included 846 students in Wave 1 (386 girls, 421
-boys, 39 identifying as other; \(M_{age}\) = 13.4, \(SD_{age}\) = 1.6)
-and 662 in Wave 2 (303 girls, 338 boys, 21 identifying as other;
-\(M_{age}\) = 14.4, \(SD_{age}\) = 1.6), yielding a retention rate of
-78.3\% (attrition = 21.7\%). The main sources of attrition were school
+Valparaíso regions. The study received ethical approval from the
+Research Ethics Committee at the Faculty of Social Sciences, University
+of Chile (Ethics Committee Reference: N° 10-09/2021). The committee
+determined that the project posed minimal risk and approved the consent
+and confidentiality procedures described in the ethical assessment
+report. Only participants who provided informed consent, reviewed and
+signed by a parent or legal guardian, were included in the study.
+
+Although the sample was non-probabilistic and lacked quota controls, a
+minimum target of 900 students was set to ensure adequate statistical
+power. After data processing and listwise deletion, the analytical
+sample included 846 students in Wave 1 (386 girls, 421 boys, 39
+identifying as other; \(M_{age}\) = 13.4, \(SD_{age}\) = 1.6) and 662 in
+Wave 2 (303 girls, 338 boys, 21 identifying as other; \(M_{age}\) =
+14.4, \(SD_{age}\) = 1.6), yielding a retention rate of 78.3\%
+(attrition = 21.7\%). The main sources of attrition were school
 transfers between academic years and high absenteeism in several
 schools. Regarding the students cohorts, the first wave included 406
 sixth-grade students (primary cohort) and 440 ninth-grade students
@@ -739,7 +726,7 @@ Wave & level & N & Mean & SD & Man & Women & Others\\
 
 Data were collected by a professional research firm using a
 Computer-Assisted Web Interviewing (CAWI) approach, based on online
-questionnaires. All participants received informed consent, which was
+questionnaires. All participants signed the informed consent, which was
 reviewed and approved by a parent or legal guardian. To enable
 longitudinal linkage while protecting confidentiality, the survey firm
 generated anonymous unique identifiers for each student, and no directly
@@ -1496,9 +1483,6 @@ manuscript proofreading and for the generation of graphs and tables. For
 these tasks, we used Claude Sonnet 5.5 (Anthropic). The authors reviewed
 all AI-assisted output and take full responsibility for the content of
 the manuscript.
-
-\textbf{Funding}: This study was funded by the chilean National Fund for
-Scientific and Technological Development (FONDECYT, grant 1250518)
 
 \section{References}\label{references}
 

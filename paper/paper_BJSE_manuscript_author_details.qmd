@@ -41,36 +41,39 @@ bibliography: "input/bib/merit-factorial.bib"
 csl: "input/bib/apa6.csl"
 author:
   - name: Juan Carlos Castillo
+#    corresponding: true
     orcid: 0000-0003-1265-7854
     email: juancastillov@uchile.cl
     affiliations:
-      - ref: 2
+      - ref: 1
   - name: Tomás Urzúa
     orcid: 0009-0008-3167-6819
     email: tomas.urzua@ug.chile.cl
     affiliations:
-      - ref: 2    
+      - ref: 1    
   - name: Andreas Laffert
-    corresponding: true
     orcid: 0000-0002-9008-2454
     email: alaffertt@estudiante.uc.cl 
     affiliations:
-      - ref: 1
+      - ref: 2
   - name: René Canales
     orcid: 0009-0002-4299-2725
     email: renecanales@uc.cl
     affiliations:
-      - ref: 1    
+      - ref: 3    
   - name: Kevin Carrasco
     orcid: 0000-0002-9348-8361
     email: kevin.carrasco@uchile.cl
     affiliations:
-      - ref: 2 
+      - ref: 1 
 affiliations: 
   - id: 1
-    name: Institute of Sociology, Pontifical Catholic University of Chile
-  - id: 2
     name: Department of Sociology, University of Chile
+  - id: 2
+    name: University of Konstanz, Germany
+  - id: 3
+    name: University of Bremen, Germany
+
 citeproc: true
 abstract: | 
  Schools are key spaces of meritocratic socialization, shaping students' understanding of whether success is earned or inherited. Yet little is known about how students conceive meritocracy and how these conceptions relate to the acceptance of privilege. This study examines whether perceptions and preferences about meritocracy and privilege form distinct yet related dimensions of students' beliefs, and how they change over time and across school stages. Using a novel instrument previously applied to adults, we surveyed Chilean students in 6th and 9th grade (Wave 1: N = 846) and again in 7th and 10th grade (Wave 2: N = 662). Results support a multidimensional organization of beliefs: endorsing meritocratic criteria can coexist with accepting privilege rather than displacing it. Older students also judge more critically whether effort is rewarded. These findings suggest that such beliefs are shaped early in socialization but shift in a critical direction as students mature.
@@ -84,6 +87,10 @@ colorlinks: true
 fig-height: 4
 fig-width: 7.5
 ---
+
+**Corresponding author**: Juan Carlos Castillo, Department of Sociology, University of Chile, Santiago, Chile. Email: juancastillov@uchile.cl
+
+**Funding**: This study was funded by the chilean National Fund for Scientific and Technological Development (FONDECYT, grant 1250518)
 
 :::: {.justify}
 

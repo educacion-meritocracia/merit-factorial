@@ -7,16 +7,10 @@ $if(subtitle)$
 $endif$
 
 $for(by-author)$
-  \author{$by-author.name.literal$}
-  $if(by-author.affiliations)$
-    $for(by-author.affiliations)$
-      \affil{%
-        $if(by-author.affiliations.name)$
-          $by-author.affiliations.name$
-        $endif$
-      }
-    $endfor$
-  $endif$
+  \author[$for(by-author.affiliations)$$by-author.affiliations.number$$sep$,$endfor$]{$by-author.name.literal$$if(by-author.attributes.corresponding)$\thanks{Corresponding author: $by-author.email$}$endif$}
+$endfor$
+$for(affiliations)$
+  \affil[$affiliations.number$]{$affiliations.name$}
 $endfor$
 
 \date{$date$}

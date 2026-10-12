@@ -1,3 +1,8 @@
 {
-    "criticmarkup.hypothesis.uri": "https://educacion-meritocracia.github.io/merit-factorial/paper/paper.html"
+    "criticmarkup.hypothesis.uri": "https://educacion-meritocracia.github.io/merit-factorial/paper/paper.html",
+    "[quarto]": {
+        "editor.hover.enabled": "onKeyboardModifier",
+        "editor.hover.delay": 1500
+    },
+    "editor.hover.enabled": "onKeyboardModifier"
 }

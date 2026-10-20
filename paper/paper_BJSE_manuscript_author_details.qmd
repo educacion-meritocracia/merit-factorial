@@ -92,6 +92,9 @@ fig-width: 7.5
 
 **Funding**: This study was funded by the chilean National Fund for Scientific and Technological Development (FONDECYT, grant 1250518)
 
+**Ethics approval**: The study received ethical approval from the Research Ethics Committee at the Faculty of Social Sciences, University of Chile (Ethics Committee Reference: N° 10-09/2021). The committee determined that the project posed minimal risk and approved the consent and confidentiality procedures described in the ethical assessment report. Only participants who provided informed consent, reviewed and signed by a parent or legal guardian, were included in the study.
+
+
 :::: {.justify}
 
 {{< include 01-introduction.qmd >}}

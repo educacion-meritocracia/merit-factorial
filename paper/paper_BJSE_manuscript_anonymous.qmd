@@ -33,6 +33,9 @@ format:
     number-sections: true
 #  wordcount-pdf: 
 #    wordcount-banner: true
+blinded: true
+params:
+  blinded: true
 #params:
 #  wordcount: |
 #    <strong>{{< words-sum body >}} total words</# strong>: {{< words-body >}} in the body

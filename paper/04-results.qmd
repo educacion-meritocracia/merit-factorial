@@ -273,7 +273,7 @@ legend_only <- ggplot(df_leg, aes(x = 2, y = 2, fill = cat)) +
   )
 # 7) caption común como panel
 cap <- ggplot() +
-  labs(caption = "Source: own elaboration based on EDUMER Panel Survey (N Wave 1 =  846; N Wave 2 = 662)") +
+  labs(caption = paste("Source: own elaboration based on", if (exists("params") && isTRUE(params$blinded)) "panel survey data [name withheld for review]" else "EDUMER Panel Survey", "(N Wave 1 =  846; N Wave 2 = 662)")) +
   theme_void() +
   theme(plot.caption = element_text(size = 8, hjust = 1, margin = margin(0)),
         plot.caption.position = "plot",
@@ -487,7 +487,7 @@ legend_only <- ggplot(df_leg, aes(x = 2, y = 2, fill = cat)) +
   )
 # 7) caption común como panel
 cap <- ggplot() +
-  labs(caption = "Source: own elaboration based on EDUMER Panel Survey (N Primary =  725; N Secondary = 783)") +
+  labs(caption = paste("Source: own elaboration based on", if (exists("params") && isTRUE(params$blinded)) "panel survey data [name withheld for review]" else "EDUMER Panel Survey", "(N Primary =  725; N Secondary = 783)")) +
   theme_void() +
   theme(plot.caption = element_text(size = 8, hjust = 1, margin = margin(0)),
         plot.caption.position = "plot",

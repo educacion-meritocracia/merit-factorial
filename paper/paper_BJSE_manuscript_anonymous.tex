@@ -141,6 +141,20 @@
  
 
 
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \usepackage[noblocks]{authblk}
 % packages needed by kableExtra tables (not recorded when chunks are cached)
 \usepackage{float}
@@ -644,21 +658,13 @@ across the two waves of the panel survey and across two students cohorts
 
 \subsection{Participants}\label{participants}
 
-This study uses secondary data from the 2023 and 2024 waves of the Panel
-Survey on Education and Meritocracy (EDUMER), funded by the chilean
-National Fund for Scientific and Technological Development (FONDECYT,
-grant 1250518). The panel examines school-age students' beliefs,
-attitudes, and behaviors regarding meritocracy, inequality, and
-citizenship. The questionnaire was administered to sixth-grade and
-ninth-grade students in nine schools in Chile's Metropolitan and
-Valparaíso regions. The study received ethical approval from the
-Research Ethics Committee at the Faculty of Social Sciences, University
-of Chile (Ethics Committee Reference: N° 10-09/2021). The committee
-determined that the project posed minimal risk and approved the consent
-and confidentiality procedures described in the ethical assessment
-report. Only participants who provided informed consent, reviewed and
-signed by a parent or legal guardian, were included in the study.
+This study uses secondary data from the 2023 and 2024 waves of a panel
+survey on education and meritocracy {[}name withheld for anonymous
+review{]}. The panel examines school-age students' beliefs, attitudes,
+and behaviors regarding meritocracy, inequality, and citizenship.
 
+The questionnaire was administered to sixth-grade and ninth-grade
+students in nine schools in Chile's Metropolitan and Valparaíso regions.
 Although the sample was non-probabilistic and lacked quota controls, a
 minimum target of 900 students was set to ensure adequate statistical
 power. After data processing and listwise deletion, the analytical
@@ -716,12 +722,9 @@ questionnaires. All participants signed the informed consent, which was
 reviewed and approved by a parent or legal guardian. To enable
 longitudinal linkage while protecting confidentiality, the survey firm
 generated anonymous unique identifiers for each student, and no directly
-identifying information was included in the analytic files. Following
-the principles of open science, the hypotheses were pre-registered on
-the Open Science Framework (OSF) (\url{https://osf.io/hjat2/}) prior to
-data analyses. The analytic code and data are publicly available on a
-public Github repository (available after publication for anonymization
-reasons).
+identifying information was included in the analytic files. The analytic
+code and data are publicly available on a public Github repository
+(available after publication for anonymization reasons).
 
 \subsection{Measures}\label{measures}
 
@@ -846,7 +849,8 @@ indicating noninvariance when \(\Delta\)CFI \(\geq\) −0.010 and
 \(\Delta\)RMSEA \(\geq\) 0.015.
 
 All analyses were performed using the \emph{lavaan} package
-(\citeproc{ref-rosseel_lavaan_2012}{Rosseel, 2012}) in R version 4.5.2.
+(\citeproc{ref-rosseel_lavaan_2012}{\textbf{rosseel\_lavaan\_2012?}}) in
+R version 4.5.2.
 
 \section{Results}\label{results}
 
@@ -1772,10 +1776,6 @@ for psychological research. \emph{Developmental Review}, \emph{41},
 Resh, N., \& Sabbagh, C. (2014). Sense of justice in school and civic
 attitudes. \emph{Social Psychology of Education}, \emph{17}(1), 51--72.
 \url{https://doi.org/10.1007/s11218-013-9240-8}
-
-\bibitem[\citeproctext]{ref-rosseel_lavaan_2012}
-Rosseel, Y. (2012). Lavaan: An r package for structural equation
-modeling. \emph{Journal of Statistical Software}, \emph{48}(2), 1--36.
 
 \bibitem[\citeproctext]{ref-sandel_tyranny_2020}
 Sandel, M. J. (2020). \emph{The tyranny of merit: What's become of the

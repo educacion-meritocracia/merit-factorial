@@ -178,7 +178,15 @@ left_join(tot, edad) %>%
 
 ## Procedure
 
-Data were collected by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires. All participants signed the informed consent, which was reviewed and approved by a parent or legal guardian. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student, and no directly identifying information was included in the analytic files. The analytic code and data are publicly available on a public Github repository (available after publication for anonymization reasons).
+Data were collected by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires. Written informed consent was obtained for all participants: students signed the consent form, which was reviewed and approved by a parent or legal guardian, and only students with signed consent were included in the study. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student, and no directly identifying information was included in the analytic files. The analytic code and data are available as described in the data availability statement.
+
+::: {.content-visible when-meta="blinded"}
+The study was approved by the Research Ethics Committee of [institution withheld for anonymous review] (reference number withheld for anonymous review), which determined that the project posed minimal risk and approved the consent and confidentiality procedures.
+:::
+
+::: {.content-visible unless-meta="blinded"}
+The study was approved by the Research Ethics Committee of the Faculty of Social Sciences, University of Chile (reference N° 10-09/2021), which determined that the project posed minimal risk and approved the consent and confidentiality procedures.
+:::
 
 ## Measures
 
@@ -235,4 +243,4 @@ A key contribution of this study is its assessment of measurement stability thro
 
 We followed recent recommendations for ordered categorical indicators, specifically the longitudinal approach of @liu_testing_2017 and the cross-group procedure as suggested by @svetina_multiplegroup_2020. In addition to the chi-square difference test, we assessed invariance using changes in approximate fit indices. Following @chen_sensitivity_2007, we treated $\Delta$CFI as the primary criterion and $\Delta$RMSEA as supplementary, indicating noninvariance when $\Delta$CFI $\geq$ −0.010 and $\Delta$RMSEA $\geq$ 0.015.
 
-All analyses were performed using the *lavaan* package [@rosseel_lavaan_2012] in R version 4.5.2.
+All analyses were performed using the *lavaan* package [@rosseel_Lavaan_2012] in R version 4.5.2.

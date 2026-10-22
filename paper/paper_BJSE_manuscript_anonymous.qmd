@@ -50,6 +50,8 @@ abstract: |
   Schools are key spaces of meritocratic socialization, shaping students' understanding of whether success is earned or inherited. Yet little is known about how students conceive meritocracy and how these conceptions relate to the acceptance of privilege. This study examines whether perceptions and preferences about meritocracy and privilege form distinct yet related dimensions of students' beliefs, and how they change over time and across school stages. Using a novel instrument previously applied to adults, we surveyed Chilean students in 6th and 9th grade (Wave 1: N = 846) and again in 7th and 10th grade (Wave 2: N = 662). Results support a multidimensional organization of beliefs: endorsing meritocratic criteria can coexist with accepting privilege rather than displacing it. Older students also judge more critically whether effort is rewarded. These findings suggest that such beliefs are shaped early in socialization but shift in a critical direction as students mature. 
   
   **Keywords**: Meritocracy · Privilege · Schools · Measurement invariance · Socialization · Chile
+  
+  **Word count**: 7,850 (main text, tables, captions, statements and references; abstract excluded)
 link-citations: true
 linestretch: 1.5       
 mainfont: Times New Roman

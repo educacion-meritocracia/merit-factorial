@@ -85,6 +85,31 @@ dim(db_long)
 ```
 
 
+# Items of the meritocracy and privilege scale
+
+```{r}
+#| label: tbl-items-es
+#| tbl-cap: Items of the meritocracy and privilege scale, English translation and original Spanish wording
+#| tbl-cap-location: top
+#| echo: false
+
+tabitems <- read.csv(file = here("input", "tables", "table-01.csv"), header = 1, sep = ",", encoding = "UTF-8")
+
+knitr::kable(tabitems, format = if (knitr::is_html_output()) "html" else "latex", booktabs = T, linesep = "",
+             col.names = c("Components", "Dimensions", "Item (English)", "Item original (Spanish)")) %>%
+  kableExtra::kable_styling(
+    full_width = F,
+    latex_options = c("HOLD_position", "scale_down"),
+    position = "center",
+    font_size = 9.5,
+    bootstrap_options = c("striped", "bordered")) %>%
+  kableExtra::column_spec(column = 1, width = "2cm") %>%
+  kableExtra::column_spec(column = 2, width = "2cm") %>%
+  kableExtra::column_spec(column = 3, width = "6.5cm") %>%
+  kableExtra::column_spec(column = 4, width = "6.5cm") %>%
+  kableExtra::collapse_rows(columns = 1:2, valign = "middle")
+```
+
 # Correlation matrix
 ```{r}
 #| label: fig-cr

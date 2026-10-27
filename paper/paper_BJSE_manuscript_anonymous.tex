@@ -5,10 +5,10 @@
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
-  13pt,
+  11pt,
 ]{article}
 \usepackage{xcolor}
-\usepackage[margin=2cm]{geometry}
+\usepackage[top=2.5cm,bottom=2.5cm,left=3cm,right=3cm]{geometry}
 \usepackage{amsmath,amssymb}
 \setcounter{secnumdepth}{5}
 \usepackage{iftex}
@@ -24,7 +24,7 @@
 \usepackage{lmodern}
 \ifPDFTeX\else
   % xetex/luatex font selection
-  \setmainfont[]{Times New Roman}
+  \setmainfont[Path=fonts/,Extension=.ttf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,BoldItalicFont=*-BoldItalic]{Bitter}
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -33,16 +33,6 @@
   \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
 \usepackage{setspace}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
 % Make \paragraph and \subparagraph free-standing
 \makeatletter
 \ifx\paragraph\undefined\else
@@ -152,6 +142,18 @@
 \renewcommand*{\Authand}{, }
 \renewcommand*{\Authands}{, }
 \renewcommand\Affilfont{\small}
+% Social Forces-like typography: compact bold headings, running header
+\usepackage{titlesec}
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\subsubsection}{\normalsize\bfseries\itshape}
+\titlespacing*{\section}{0pt}{1.5ex plus .5ex}{.8ex}
+\titlespacing*{\subsection}{0pt}{1.2ex plus .4ex}{.6ex}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[R]{\small Meritocratic beliefs and privilege at school-age \quad\textbar\quad \textbf{\thepage}}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -231,15 +233,19 @@ whether effort is rewarded. These findings suggest that such beliefs are
 shaped early in socialization but shift in a critical direction as
 students mature.
 
+\medskip
+
 \textbf{Keywords}: Meritocracy · Privilege · Schools · Measurement
 invariance · Socialization · Chile
 
-\textbf{Word count}: 7,850 (main text, tables, captions, statements and
-references; abstract excluded)
+\medskip
+
+\textbf{Word count}: 7042 (main text, notes, statements and references;
+abstract, tables and figures excluded)
 \end{abstract}
 
 
-\setstretch{1.5}
+\setstretch{1.25}
 \section{Introduction}\label{introduction}
 
 The way in which children and youths come to understand who succeeds in
@@ -384,7 +390,8 @@ other hand, they embed these ideals in routine practices of grading,
 tracking, selection, awards, and credentialing, which operate as
 institutional markers of worth that make merit visible and consequential
 in ways that are immediate and socially meaningful
-(\citeproc{ref-resh_sense_2014}{Resh \& Sabbagh, 2014};
+(\citeproc{ref-lampert_meritocratic_2013}{Lampert, 2013};
+\citeproc{ref-resh_sense_2014}{Resh \& Sabbagh, 2014};
 \citeproc{ref-traini_stratification_2022}{Traini, 2022}). At the same
 time, schools are also settings where privilege-based advantages,
 including family resources, cultural capital, peer environments, and
@@ -613,6 +620,9 @@ The study was approved by the Research Ethics Committee of
 {[}institution withheld for anonymous review{]} (reference number
 withheld for anonymous review), which determined that the project posed
 minimal risk and approved the consent and confidentiality procedures.
+The hypotheses were preregistered on the Open Science Framework (OSF)
+prior to data analysis
+(https://osf.io/2uhrk/overview){[}https://osf.io/2uhrk/overview{]}.
 
 \subsection{Measures}\label{measures}
 
@@ -1157,12 +1167,12 @@ consciousness} (\citeproc{ref-kluegel_beliefs_1987}{Kluegel \& Smith,
 \citeproc{ref-tang_meritocratic_2025}{Tang et al., 2025}). Extending
 Castillo et al.'s (\citeproc{ref-castillo_multidimensional_2023}{2023})
 multidimensional framework to two cohorts of Chilean students (6th and
-9th graders in 2023, followed into 7th and 10th grade in 2024), this
-study shows that these beliefs can be measured reliably in school-aged
-populations, and equivalently over time. This is a modest but
-foundational contribution: a precondition for studying the developmental
-trajectory of meritocratic beliefs and their educational implications,
-such as gender and social class differences.
+9th graders in 2023, followed into 7th and 10th grade in 2024), the
+measurement of meritocratic and privilege beliefs provides evidence of
+reliability in school-aged populations, and equivalently over time. This
+is a foundational contribution: a precondition for studying the
+developmental trajectory of meritocratic beliefs and their educational
+implications, such as gender and social class differences.
 
 Although this study draws on a single country, three of its
 contributions are likely to travel across educational systems. First,
@@ -1404,6 +1414,11 @@ Kwon, R., \& Pandian, R. K. (2024). Multidimensionality in merit
 attitudes: The role of hard work, skills, and social connections in
 europe. \emph{Social Science Research}, \emph{122}, 103056.
 \url{https://doi.org/10.1016/j.ssresearch.2024.103056}
+
+\bibitem[\citeproctext]{ref-lampert_meritocratic_2013}
+Lampert, K. (2013). \emph{Meritocratic education and social
+worthlessness}. London: Palgrave Macmillan UK.
+\url{https://doi.org/10.1057/9781137324894}
 
 \bibitem[\citeproctext]{ref-lareau_unequal_2003}
 Lareau, A. (2003). \emph{Unequal childhoods: Class, race, and family

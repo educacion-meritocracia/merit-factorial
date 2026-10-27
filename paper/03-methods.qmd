@@ -179,11 +179,11 @@ left_join(tot, edad) %>%
 Data were collected by a professional research firm using a Computer-Assisted Web Interviewing (CAWI) approach, based on online questionnaires. Written informed consent was obtained for all participants: students signed the consent form, which was reviewed and approved by a parent or legal guardian, and only students with signed consent were included in the study. To enable longitudinal linkage while protecting confidentiality, the survey firm generated anonymous unique identifiers for each student, and no directly identifying information was included in the analytic files. The analytic code and data are available as described in the data availability statement.
 
 ::: {.content-visible when-meta="blinded"}
-The study was approved by the Research Ethics Committee of [institution withheld for anonymous review] (reference number withheld for anonymous review), which determined that the project posed minimal risk and approved the consent and confidentiality procedures.
+The study was approved by the Research Ethics Committee of [institution withheld for anonymous review] (reference number withheld for anonymous review), which determined that the project posed minimal risk and approved the consent and confidentiality procedures. The hypotheses were preregistered on the Open Science Framework (OSF) prior to data analysis (https://osf.io/2uhrk/overview)[https://osf.io/2uhrk/overview].            
 :::
 
 ::: {.content-visible unless-meta="blinded"}
-The study was approved by the Research Ethics Committee of the Faculty of Social Sciences, University of Chile (reference N° 10-09/2021), which determined that the project posed minimal risk and approved the consent and confidentiality procedures.
+The study was approved by the Research Ethics Committee of the Faculty of Social Sciences, University of Chile (reference N° 10-09/2021), which determined that the project posed minimal risk and approved the consent and confidentiality procedures. The hypotheses were preregistered on the Open Science Framework (OSF) prior to data analysis  [link withheld for anonymous review].            
 :::
 
 ## Measures

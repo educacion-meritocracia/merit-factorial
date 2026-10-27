@@ -11,7 +11,11 @@ format:
     theme:
       - pretty.scss
   pdf: 
-    geometry: margin=2cm
+    geometry:
+      - top=2.5cm
+      - bottom=2.5cm
+      - left=3cm
+      - right=3cm
     fig-pos: 'H'
     tbl-pos: 'H'
     template-partials: 
@@ -28,6 +32,18 @@ format:
         \renewcommand*{\Authand}{, }
         \renewcommand*{\Authands}{, }
         \renewcommand\Affilfont{\small}
+        % Social Forces-like typography: compact bold headings, running header
+        \usepackage{titlesec}
+        \titleformat*{\section}{\large\bfseries}
+        \titleformat*{\subsection}{\normalsize\bfseries}
+        \titleformat*{\subsubsection}{\normalsize\bfseries\itshape}
+        \titlespacing*{\section}{0pt}{1.5ex plus .5ex}{.8ex}
+        \titlespacing*{\subsection}{0pt}{1.2ex plus .4ex}{.6ex}
+        \usepackage{fancyhdr}
+        \pagestyle{fancy}
+        \fancyhf{}
+        \renewcommand{\headrulewidth}{0pt}
+        \fancyhead[R]{\small Meritocratic beliefs and privilege at school-age \quad\textbar\quad \textbf{\thepage}}
     number-sections: true
 #  wordcount-pdf: 
 #    wordcount-banner: true
@@ -74,17 +90,37 @@ affiliations:
   - id: 3
     name: University of Bremen, Germany
 
-citeproc: true
+# dynamic word count (andrewheiss/wordcount filters attached to the regular pdf/html formats);
+# the extension runs its own citeproc so references are counted
+filters:
+  - at: pre-quarto
+    path: wordcount-citeproc.lua
+  - at: pre-quarto
+    path: _extensions/andrewheiss/wordcount/wordcount.lua
+citeproc: false
 abstract: | 
  Schools are key spaces of meritocratic socialization, shaping students' understanding of whether success is earned or inherited. Yet little is known about how students conceive meritocracy and how these conceptions relate to the acceptance of privilege. This study examines whether perceptions and preferences about meritocracy and privilege form distinct yet related dimensions of students' beliefs, and how they change over time and across school stages. Using a novel instrument previously applied to adults, we surveyed Chilean students in 6th and 9th grade (Wave 1: N = 846) and again in 7th and 10th grade (Wave 2: N = 662). Results support a multidimensional organization of beliefs: endorsing meritocratic criteria can coexist with accepting privilege rather than displacing it. Older students also judge more critically whether effort is rewarded. These findings suggest that such beliefs are shaped early in socialization but shift in a critical direction as students mature.
   
+ \medskip
+ 
  **Keywords**: Meritocracy · Privilege · Schools · Measurement invariance · Socialization · Chile
  
- **Word count**: 7,850 (main text, tables, captions, statements and references; abstract excluded)
+ \medskip
+ 
+ **Word count**: {{< words-total >}} (main text, notes, statements and references; abstract, tables and figures excluded)
 link-citations: true
-linestretch: 1.5       
-mainfont: Times New Roman
-fontsize: 13pt          
+linestretch: 1.25
+# Bitter (OFL, in fonts/): free slab serif close to Social Forces' Caecilia
+mainfont: Bitter
+mainfontoptions:
+  - Path=fonts/
+  - Extension=.ttf
+  - UprightFont=*-Regular
+  - BoldFont=*-Bold
+  - ItalicFont=*-Italic
+  - BoldItalicFont=*-BoldItalic
+fontsize: 11pt
+indent: true
 colorlinks: true
 fig-height: 4
 fig-width: 7.5

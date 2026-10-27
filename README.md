@@ -1,12 +1,5 @@
 # Stability and comparability of meritocratic beliefs in school-age students: A measurement invariance approach across time and cohorts
 
-## Paper files
-
-[Paper HTML](https://educacion-meritocracia.github.io/merit-factorial/paper/paper.html)
-
-[Paper PDF](https://educacion-meritocracia.github.io/merit-factorial/paper/paper.pdf)
-
-
 ## Conferences
 
 [Abstract COES 2024 HTML Version](https://educacion-meritocracia.github.io/merit-factorial/conferences/coes/extended-abstract.html)

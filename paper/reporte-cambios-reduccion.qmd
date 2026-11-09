@@ -1,0 +1,145 @@
+---
+title: "Reporte de cambios: manuscrito BJSE (reducción de palabras)"
+subtitle: "Comparación entre `8add720` (27-oct-2026) y `13569ec` (09-nov-2026)"
+date: 2026-11-09
+lang: es
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    embed-resources: true
+---
+
+# Resumen
+
+Se compararon las fuentes `.qmd` del manuscrito entre el commit `8add720` (27 de octubre) y `13569ec` (9 de noviembre). Esa comparación cubre los commits `36dd543`, `d9564c9`, `210679f` y `13569ec`.
+
+- **Extensión:** el PDF anónimo bajó de unas **8.245 a 7.845 palabras**, unas 400 menos. La cifra se midió con `pdftotext` e incluye tablas y referencias, así que no coincide con el contador del filtro `wordcount`.
+- **Tipo de cambios:** la mayoría son recortes, pero varios cambian el contenido. El abstract se reescribió, se corrigió la tasa de retención, se matizó la asociación entre mérito y privilegio y se moderaron las afirmaciones de generalización.
+
+# Tabla comparativa: cambios más relevantes
+
+| Sección | Aspecto | Versión anterior (27-oct) | Versión actual (09-nov) | Tipo |
+|---|---|---|---|---|
+| Abstract | Encuadre inicial | "…shaping students' understanding of whether success is earned or inherited. Yet…" | "…socialization, yet little is known…" | Recorte |
+| Abstract | Objetivo | Incluía una oración de objetivo ("This study examines whether…") | Se eliminó | Recorte |
+| Abstract | Instrumento | "a novel instrument" | "an instrument" | Ajuste |
+| Abstract | Resultados | "multidimensional organization"; el mérito "can coexist with accepting privilege" | Cuatro dimensiones, equivalentes entre olas y parcialmente entre niveles; "about one third of students held both positions", con una asociación débil e inconsistente | **Contenido** |
+| Abstract | Cambio en el tiempo | Las creencias "shift in a critical direction as students mature" | Las medias latentes no cambian en un año; el contraste por nivel es transversal y está limitado por la no equivalencia de ítems | **Contenido** |
+| Introducción | Alcance del caso chileno | Rasgos compartidos con Latinoamérica, Europa y Asia del Este (Busemeyer; Gingrich); los resultados "likely to travel" | Se eliminaron la comparación y las citas | **Contenido** |
+| Antecedentes | Literatura de medición | Incluía los enfoques de *system justification*, movilidad e igualdad de oportunidades (Jost, Deng, Batruch, Darnon) | Se eliminó | Recorte |
+| Antecedentes | Dual consciousness | Vinculaba el modelo de cuatro factores con Zhu (2025) | Se eliminó | Recorte |
+| Métodos | Colegios | "nine schools" | Nueve colegios en vez de los 15 planificados, por rechazos | **Contenido** |
+| Métodos | Retención | **78,3%** (atrición 21,7%) | **69,9%** (591 vinculados; 71 casos de la ola 2 sin datos completos en la ola 1) | **Contenido** |
+| Métodos | Sesgo por atrición | No se reportaba | Las medias de retenidos y no retenidos difieren ≤ 0,14 puntos | **Contenido** |
+| Métodos | Enlace OSF | Visible en la versión anónima y "withheld" en la de autores (invertido) | Corregido: "withheld" en la anónima y visible en la de autores | Corrección |
+| Resultados | Cierre sobre H2 | Mérito y privilegio "can coexist… without undermining one another" | "are not simply opposites" | **Contenido** |
+| Resultados | Invarianza por cohorte | "…evidence against loading invariance is not overwhelming"; "the other three factors are equivalent" | Se eliminaron ambas frases | Recorte |
+| Discusión | Mérito percibido × aceptación del privilegio | "positively correlated" | "weakly correlated… in the pooled sample, not consistent across cohorts and waves" | **Contenido** |
+| Discusión | Reality shock | Se usaba la expresión, citando a Henry y a Allen | Se quitaron la expresión y esas citas | Recorte |
+| Discusión | Chauvin et al. (2026) | Se comparaba con su medida | Se eliminó | Recorte |
+| Conclusión | Generalización | "Although… a single country, … likely to travel… regardless of national context" | Muestra no probabilística de 9 colegios; no generalizable estadísticamente; "may be relevant beyond this setting" | **Contenido** |
+| Conclusión | Resultados futuros | Justicia y *fairness*, actitudes y participación cívica, clima escolar, bienestar, motivación | Justicia, actitudes cívicas y motivación académica | Recorte |
+
+# Detalle por sección
+
+## Abstract
+
+Se reescribió para quedar en ≤ 150 palabras (commit `210679f`) y se actualizó después en `13569ec`. Se eliminaron el encuadre sobre si el éxito es "earned or inherited", la oración de objetivo y la conclusión de un cambio en "dirección crítica" con la madurez. La versión nueva reporta resultados más concretos y cautelosos:
+
+- La estructura de cuatro dimensiones es equivalente entre olas y solo parcialmente entre niveles escolares.
+- Cerca de un tercio de los estudiantes sostiene ambas posiciones, aunque la asociación latente es débil e inconsistente.
+- No hay cambio significativo en las medias latentes en un año.
+- Los estudiantes de media son más escépticos sobre si el esfuerzo se recompensa, pero ese es un contraste transversal limitado por la no equivalencia de ítems.
+- Cierra con una oración sobre el aporte conceptual y de medición.
+
+## Introducción
+
+- Se eliminó la oración que ejemplificaba la coexistencia de creencias.
+- Se quitaron las citas Busemeyer y Gingrich, y la afirmación de que los resultados se trasladan a otros sistemas educativos estratificados.
+- "gain experience" pasó a "accumulate experience".
+
+## Antecedentes
+
+- Se eliminó la oración sobre la meritocracia como juicio cognitivo y lente moral (Heuer).
+- Se simplificó la descripción de las prácticas escolares: se quitó "institutional markers of worth…".
+- Se reordenó la frase sobre las ventajas de privilegio y "unequal" pasó a "heterogeneous school quality".
+- Se acortó el pasaje sobre Tang et al.: "the reality shock" pasó a "a reality shock".
+- Se eliminó el párrafo breve sobre otros enfoques de operacionalización.
+- Se eliminó el vínculo con la *dual consciousness* de Zhu.
+- Se reescribió el párrafo de medición: "extends beyond technical considerations and constitutes a matter of sociological concern".
+
+## Métodos
+
+- La muestra quedó en 9 colegios en vez de los 15 planificados, por rechazos.
+- La retención se recalculó: **69,9%** de casos vinculados con datos completos (antes 78,3%).
+- Se agregó un chequeo de sesgo por atrición: diferencias de medias ≤ 0,14.
+- Se eliminó la referencia al *data availability statement* en el procedimiento.
+- Se corrigió la inversión del enlace OSF entre la versión anónima y la de autores.
+- Se acortó la justificación de la invarianza.
+
+## Resultados
+
+- Se eliminó la frase "opens the black box…".
+- La conclusión sobre H2 quedó más prudente: "not simply opposites".
+- Se eliminaron dos frases interpretativas en la invarianza por cohorte.
+
+## Discusión
+
+- Se eliminó "rather than an artifact of survey design".
+- La correlación entre mérito percibido y aceptación del privilegio quedó descrita como débil e inconsistente entre grupos.
+- Se eliminaron Kwon (clusters), Chauvin et al. (2026) y la expresión "reality shock", junto con Henry y Allen.
+
+## Conclusión
+
+- "Students" pasó a "Many students".
+- Se reconocen explícitamente los límites de generalización de una muestra no probabilística.
+- Se acortó la lista de resultados escolares para investigación futura.
+
+## Otros
+
+- `input/bib/merit-factorial.bib` tiene cambios sin commitear: 20 líneas añadidas y 12 eliminadas.
+- Se eliminó el archivo intermedio `.rmarkdown`.
+
+# Referencias eliminadas
+
+Se compararon las claves de cita de las secciones incluidas en el manuscrito (01 a 06 y el abstract) entre ambas versiones. Pasaron de **62 a 58 referencias citadas**, y no se agregó ninguna nueva.
+
+## Referencias que salieron de la lista bibliográfica
+
+Estas cuatro referencias ya no se citan en ninguna parte del manuscrito, así que desaparecen de la lista de referencias.
+
+| Clave | Referencia | Dónde se citaba | Motivo del recorte |
+|---|---|---|---|
+| `busemeyer_skills_2014` | Busemeyer, M. (2014). *Skills and Inequality: Partisan Politics and the Political Economy of Education Reforms in Western Welfare States*. Cambridge University Press. | Introducción (contexto chileno) | Se eliminó la comparación con sistemas europeos y de Asia del Este |
+| `gingrich_making_2011` | Gingrich, J. R. (2011). *Making Markets in the Welfare State: The Politics of Varying Market Reforms*. Cambridge University Press. | Introducción (contexto chileno) | Mismo motivo |
+| `jost_decade_2004a` | Jost, J. T., Banaji, M. R., & Nosek, B. A. (2004). A Decade of System Justification Theory. *Political Psychology*. | Antecedentes (medición) | Se eliminó la oración sobre los enfoques que tratan la meritocracia como *system justification* |
+| `deng_its_2025` | Deng, Y., & Wang, F. (2025). It's My Fault, I Should Try Harder! *British Journal of Psychology*. | Antecedentes (medición) | Misma oración (creencias sobre movilidad social) |
+
+## Citas eliminadas de un pasaje que siguen en el manuscrito
+
+Estas citas se sacaron de un pasaje específico, pero se citan en otra parte, así que siguen en la lista de referencias.
+
+| Clave | Pasaje del que se eliminó |
+|---|---|
+| `heuer_legitimizing_2020` | Antecedentes: oración sobre la meritocracia como juicio cognitivo y lente moral |
+| `batruch_belief_2022`, `darnon_where_2018` | Antecedentes: oración sobre la igualdad de oportunidades |
+| `zhu_meritocratic_2025` | Antecedentes: vínculo con la *dual consciousness* |
+| `kwon_multidimensionality_2024` | Discusión: clusters actitudinales |
+| `chauvin_school_2026` | Discusión: comparación con su medida en profesores |
+| `henry_development_2006`, `allen_top_2016` | Discusión: "reality shock" |
+
+`input/bib/merit-factorial.bib` tiene además cambios sin commitear (20 líneas añadidas y 12 eliminadas). No afectan qué referencias se citan.
+
+# Problemas para revisar
+
+| # | Archivo | Problema | Sugerencia |
+|---|---|---|---|
+| 1 | Abstract (ambos `.qmd`) | "About one third of students held both positions" no aparece en ninguna sección de resultados | Agregar la cifra a los resultados o sacarla del abstract |
+| 2 | `02-antecedentes.qmd` | "acrossschool" sin espacio | "across school" |
+| 3 | `02-antecedentes.qmd` | Falta el punto en "structural factors Empirical work…" | "factors. Empirical…" |
+| 4 | `02-antecedentes.qmd` | "ignore--referred" sin espacio | "ignore—referred" |
+| 5 | `02-antecedentes.qmd` | "estimands @lundberg_what_2021" se renderiza como cita narrativa | "estimands [@lundberg_what_2021]" |
+| 6 | `05-discussion.qmd` | Falta el punto final en "…fairness and reward" | Agregar el punto |
+| 7 | `03-methods.qmd` (versión de autores) | La sintaxis del enlace OSF está invertida: `(url)[url]` | `[https://osf.io/2uhrk/overview](https://osf.io/2uhrk/overview)` |
+| 8 | Métodos / material suplementario | La retención cambió de 78,3% a 69,9% | Verificar la coherencia con el material suplementario y con otras menciones de N |

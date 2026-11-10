@@ -86,9 +86,9 @@ affiliations:
   - id: 1
     name: Department of Sociology, University of Chile
   - id: 2
-    name: University of Konstanz, Germany
+    name: Cluster of Excellence The Politics of Inequality,University of Konstanz, Germany
   - id: 3
-    name: University of Bremen, Germany
+    name: Bremen International Graduate School of Social Sciences (BIGSSS), University of Bremen, Germany
 
 # dynamic word count (andrewheiss/wordcount filters attached to the regular pdf/html formats);
 # the extension runs its own citeproc so references are counted
@@ -97,9 +97,13 @@ filters:
     path: wordcount-citeproc.lua
   - at: pre-quarto
     path: _extensions/andrewheiss/wordcount/wordcount.lua
+  # CriticMarkup ({~~a~>b~~}, {++x++}, {>>nota<<}) visible only in HTML
+  - criticmarkup.lua
 citeproc: false
+shortcodes:
+  - wordcount-blinded-shortcode.lua
 abstract: | 
- Schools are key spaces of meritocratic socialization, yet little is known about how students conceive meritocracy and how these conceptions relate to the acceptance of privilege. Using an instrument previously applied to adults, we surveyed Chilean students in 6th and 9th grade (Wave 1: N = 846) and again in 7th and 10th grade (Wave 2: N = 662). Results support four distinct dimensions of beliefs, equivalent across waves but only partially across school stages. Endorsing meritocracy did not imply rejecting privilege: about one third of students held both positions, although their latent association was weak and inconsistent across groups. Latent means did not change significantly over one year. Secondary students were more skeptical than primary students about whether effort is rewarded, a cross-sectional contrast limited by item non-equivalence. The study offers a conceptual and measurement foundation for research on the development of these beliefs and their educational implications.
+ Schools are key spaces of meritocratic socialization, yet little is known about how students conceive meritocracy and how these conceptions relate to the acceptance of privilege. Although several studies have suggested that beliefs in meritocracy are opposed to support for privilege, the evidence is mostly based on adult samples and unidimensional measures. In the present paper we surveyed Chilean students in 6th and 9th grade (Wave 1: N = 846) and again in 7th and 10th grade (Wave 2: N = 662), addressing not only the dimensionality of meritocratic and privilege beliefs, but also their longitudinal and cross-sectional measurement equivalence. We found that meritocracy and privilege are distinct dimensions, with weak and inconsistent associations across groups. Furthermore, secondary students were more skeptical than primary students about meritocracy. The study highlights the role of developmental and contextual factors in shaping students' beliefs about social inequalities.
   
  \medskip
  
@@ -107,7 +111,7 @@ abstract: |
  
  \medskip
  
- **Word count**: {{< words-total >}} (main text, notes, statements and references; abstract, tables and figures excluded)
+ **Word count**: 7.846 
 link-citations: true
 linestretch: 1.25
 # Bitter (OFL, in fonts/): free slab serif close to Social Forces' Caecilia

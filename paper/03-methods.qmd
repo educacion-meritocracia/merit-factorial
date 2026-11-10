@@ -184,7 +184,7 @@ The study was approved by the Research Ethics Committee of [institution withheld
 
 ::: {.content-visible unless-meta="blinded"} 
 The study was approved by the Research Ethics Committee of the Faculty of Social Sciences, University of Chile (reference N° 10-09/2021), which determined that the project posed minimal risk and approved the consent and confidentiality procedures. 
-The hypotheses were preregistered on the Open Science Framework (OSF) prior to data analysis (https://osf.io/2uhrk/overview)[https://osf.io/2uhrk/overview].
+The hypotheses were preregistered on the Open Science Framework (OSF) prior to data analysis [https://osf.io/2uhrk/overview](https://osf.io/2uhrk/overview).
 :::
 
 ## Measures
